@@ -1,0 +1,211 @@
+@import url("app/less/_var.less");
+@import url("app/less/_mixins.less");
+
+html {
+  font-size: 14px;
+}
+html {
+  scroll-behavior: smooth;
+}
+html,
+body {
+  overflow-x: hidden;
+  color: @white;
+  height: 100%;
+  width: 100%;
+ 
+}
+
+::selection {
+  background: rgba(@main-color);
+  color: @white;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: @font-color;
+  // letter-spacing: 1.15px;
+  letter-spacing: 0.01rem;
+  line-height: 1;
+  background-color: @white;
+
+}
+
+
+
+
+div,
+a {
+  outline: none;
+  color: @font-color;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+img, picture, source{
+  max-width: 100%;
+  display: block;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  padding: 0;
+  margin: 0;
+}
+
+h2 {
+  overflow-wrap: break-word;
+}
+
+ul,
+li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
+  display: block;
+  color: @font-color;
+  cursor: pointer;
+}
+
+input {
+  width: 100%;
+  outline: none;
+  border: none;
+  text-align: center;
+}
+
+
+main {
+  height: 100%;
+  width: 100%;
+}
+.center {
+  max-width: 1540px + 30px + 30px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+.f-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+
+//|||||||||||||||||||COMMON ELEMENTS|||||||||||||||||||//
+
+.main-btn {
+  font-family: Nunito,sans-serif;
+  border-radius: 25px;
+  background: @main-color;
+  width: 100%;
+  max-width: 150px;
+  letter-spacing: 0rem;
+  font-size: (16px/16px) * 1rem;
+  line-height: 1;
+  font-weight: 600;
+  padding: 14px 18px;
+  text-align: center;
+  color: @white;
+  transition: color .20s cubic-bezier(.75,.1,.25,.9);
+  outline: none;
+  border: none;
+  width: 100%;
+  overflow: hidden;
+  cursor: pointer;
+
+  letter-spacing: 0.1px;
+  position: relative;
+
+    &:hover {
+      color: @white;
+      & .btn-overlay {
+        transform: translate(-50%, -50%) scale(1,1);
+      }
+  }
+}
+
+
+main.main {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  overflow-x: auto;
+}
+
+
+.rows {
+  // flex-basis: 1720/1920 * 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+
+}
+
+.sidebar {
+  flex-basis: 200/1920 * 100%;
+  min-width: 200px;
+  position: relative;
+}
+
+
+.tag {
+  background: @dark-blue;
+  font-size:12px;
+  line-height: 14/12;
+  color: @white;
+  font-weight: 700;
+  border-radius: 10px;
+  padding: 3px 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-style: normal;
+}
+
+.manager-tag {
+  background: @dark-blue;
+}
+
+
+.attention-tag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+//|||||||||||||||||||COMMON ELEMENTS END|||||||||||||||||||//
+
+//////////////////////////
+
+//////////////////////////
+
+@import url("app/less/_sidebar.less");
+@import url("app/less/_row.less");
+
+@import url("app/less/_popup.less");
+@import url("app/less/sprite.less");

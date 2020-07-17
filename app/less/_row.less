@@ -1,0 +1,117 @@
+.row {
+	cursor: pointer;
+	width: 100%;
+	height: 44px;
+	&:nth-child(even) {
+		background: @light-blue;
+			&:hover {
+				background: @light-blue - 10;
+		}
+	}
+
+	.f-container {
+		height: 100%;
+		flex-wrap: nowrap;
+	}
+	transition: background 0.05s linear;
+
+	&:hover {
+		background: rgba(@font-color, 0.05);
+	}
+}
+
+.row__cell {
+	height: 100%;
+	padding: 13px;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	
+	 	// white-space: nowrap;
+	 	overflow: hidden;
+	 	
+	 span, p {
+	 text-overflow: ellipsis;
+	 overflow: hidden;
+	 white-space: nowrap;
+	 }
+	
+}
+
+.row__country {
+	flex-basis: 81/1720 * 100%;
+	border-right: 1px solid @main-color;
+}
+
+.row__company {
+	flex-basis: 268/1720 * 100%;
+	border-right: 1px solid @main-color;
+}
+
+.row__name {
+	flex-basis: 268/1720 * 100%;
+	border-right: 1px solid @main-color;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.row__phone {
+	flex-basis: 148/1720 * 100%;
+	border-right: 1px solid @main-color;
+}
+
+.row__address {
+	flex-basis: 310/1720 * 100%;
+	border-right: 1px solid @main-color;
+}
+
+
+.row__jobs {
+	flex-basis: 268/1720 * 100%;
+	border-right: 1px solid @main-color;
+}
+
+
+.row__labels {
+	flex-basis: 397/1720 * 100%;
+	// border-right: 1px solid @main-color;
+}
+
+.row__flag {
+	width: 26px;
+	height: 19px;
+	margin-right: 7px;
+	svg {
+		width: 26px;
+		height: 19px;
+		// fill: red;
+	}
+}
+
+
+.row__country {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+
+.row__abbr {
+	display: block;
+}
+
+.row__tags {
+	display: flex;
+	align-items: center;
+	i {
+		&:not(:last-child) {
+			margin-right: 7px;
+		}
+		svg {
+			width: 25px;
+			height: 25px;
+		}
+	}
+}
