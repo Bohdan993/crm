@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/libs.min.css?v=1595025581520">
-    <link rel="stylesheet" href="css/main.min.css?v=1595025581520">
+    <link rel="stylesheet" href="css/libs.min.css?v=1595101947396">
+    <link rel="stylesheet" href="css/main.min.css?v=1595101947396">
   </head>
   <body>
     <main class="main">
@@ -33,51 +33,70 @@
               </ul>
             </div>
             <div class="sidebar__filters">
-              <input class="sidebar__search-input">
+              <div class="sidebar__input-wrapper">
+                <input class="sidebar__search-input"><i>
+                  <svg>
+                    <use xlink:href="img/sprites/svg/symbol/sprite.svg#search"></use>
+                  </svg></i>
+              </div>
               <ul class="sidebar__filter">
                 <li class="sidebar__filter-item">
-                  <p>Страны</p><span class="sidebar__filter-remove"></span>
+                  <div class="sidebar__filter-wrapper country-filter-wrapper">
+                    <p>Страны</p><span class="sidebar__filter-remove"></span>
+                  </div>
                 </li>
                 <li class="sidebar__filter-item">
-                  <p>Типы производства</p><span class="sidebar__filter-remove"></span>
+                  <div class="sidebar__filter-wrapper type-manufactury-filter-wrapper">
+                    <p>Типы производства</p><span class="sidebar__filter-remove"></span>
+                  </div>
                 </li>
                 <li class="sidebar__filter-item">
-                  <p>Контактные данные</p><span class="sidebar__filter-remove"></span>
+                  <div class="sidebar__filter-wrapper contact-filter-wrapper">
+                    <p>Контактные данные</p><span class="sidebar__filter-remove"></span>
+                  </div>
                 </li>
                 <li class="sidebar__filter-item">
-                  <p>Менеджеры</p><span class="sidebar__filter-remove"></span>
+                  <div class="sidebar__filter-wrapper">
+                    <p>Менеджеры</p><span class="sidebar__filter-remove"></span>
+                  </div>
                 </li>
                 <li class="sidebar__filter-item">
-                  <p>Посредники</p><span class="sidebar__filter-remove"></span>
+                  <div class="sidebar__filter-wrapper">
+                    <p>Посредники</p><span class="sidebar__filter-remove"></span>
+                  </div>
                 </li>
                 <li class="sidebar__filter-item">
-                  <p>Вакансии</p><span class="sidebar__filter-remove"></span>
+                  <div class="sidebar__filter-wrapper">
+                    <p>Вакансии</p><span class="sidebar__filter-remove"></span>
+                  </div>
                 </li>
                 <li class="sidebar__filter-item">
-                  <p>Последний контакт</p><span class="sidebar__filter-remove"></span>
+                  <div class="sidebar__filter-wrapper">
+                    <p>Последний контакт</p><span class="sidebar__filter-remove"></span>
+                  </div>
                 </li>
               </ul>
             </div>
-            <div class="sidebar__wrapper">
-              <div class="sidebar__stats">
-                <div class="sidebar__stats-top">
-                  <ul class="sidebar__stat">
-                    <li class="sidebar__stat-item">
-                      <p>Сортировка</p>
-                    </li>
-                  </ul>
-                </div>
-                <div class="sidebar__stats-bottom">
-                  <ul class="sidebar__stat">
-                    <li class="sidebar__stat-item">
-                      <p>Сгенерировать в Excel</p>
-                    </li>
-                    <li class="sidebar__stat-item">
-                      <p>Распечатать отчет</p>
-                    </li>
-                  </ul>
-                </div>
+            <div class="sidebar__stats">
+              <div class="sidebar__stats-top">
+                <ul class="sidebar__stat">
+                  <li class="sidebar__stat-item">
+                    <p>Сортировка</p><span class="sidebar__filter-remove"></span>
+                  </li>
+                </ul>
               </div>
+              <div class="sidebar__stats-bottom">
+                <ul class="sidebar__stat">
+                  <li class="sidebar__stat-item">
+                    <p>Сгенерировать в Excel</p>
+                  </li>
+                  <li class="sidebar__stat-item">
+                    <p>Распечатать отчет</p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="sidebar__wrapper">
               <div class="sidebar__info">
                 <p class="sidebar__choosed">Отобрано:<span>56</span></p>
                 <p class="sidebar__full-number">Общее количество:<span>42846</span></p>
@@ -840,9 +859,114 @@
       </div>
     </main>
     <div class="popup">
-      <div class="popup__layer"></div>
+      <div class="popup__layer">
+        <div class="sidebar-popup" id="country-popup">
+          <form>
+            <div class="input-group">
+              <input type="checkbox" id="AT-chbx">
+              <label for="AT-chbx">Австрия</label>
+            </div>
+            <div class="input-group">
+              <input type="checkbox" id="DE-chbx">
+              <label for="DE-chbx">Германия</label>
+            </div>
+            <div class="input-group">
+              <input type="checkbox" id="DK-chbx">
+              <label for="DK-chbx">Дания</label>
+            </div>
+            <div class="input-group">
+              <input type="checkbox" id="NO-chbx">
+              <label for="NO-chbx">Норвегия</label>
+            </div>
+            <div class="input-group">
+              <input type="checkbox" id="FI-chbx">
+              <label for="FI-chbx">Финляндия</label>
+            </div>
+            <div class="input-group">
+              <input type="checkbox" id="SE-chbx">
+              <label for="SE-chbx">Швеция</label>
+            </div>
+          </form>
+        </div>
+        <div class="sidebar-popup" id="type-manufactury-popup">
+          <form>
+            <div class="form-layer">
+              <div class="input-group">
+                <input type="checkbox" id="flowers-chbx">
+                <label for="flowers-chbx">цветы</label>
+              </div>
+              <div class="input-group">
+                <input type="checkbox" id="vegetables-chbx">
+                <label for="vegetables-chbx">овощи</label>
+              </div>
+              <div class="input-group">
+                <input type="checkbox" id="cows-chbx">
+                <label for="cows-chbx">коровы</label>
+              </div>
+              <div class="input-group">
+                <input type="checkbox" id="pigs-chbx">
+                <label for="pigs-chbx">свиньи</label>
+              </div>
+              <div class="input-group">
+                <input type="checkbox" id="fields-chbx">
+                <label for="fields-chbx">поля</label>
+              </div>
+            </div>
+            <div class="form-layer">
+              <div class="input-group">
+                <input type="checkbox" id="berries-chbx">
+                <label for="berries-chbx">ягоды</label>
+              </div>
+              <div class="input-group">
+                <input type="checkbox" id="greenhouses-chbx">
+                <label for="greenhouses-chbx">теплицы</label>
+              </div>
+              <div class="input-group">
+                <input type="checkbox" id="wood-chbx">
+                <label for="wood-chbx">лес</label>
+              </div>
+              <div class="input-group">
+                <input type="checkbox" id="landscape-chbx">
+                <label for="landscape-chbx">ландшафт</label>
+              </div>
+              <div class="input-group">
+                <input type="checkbox" id="horses-chbx">
+                <label for="horses-chbx">лошади</label>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="sidebar-popup" id="contact-popup">
+          <form>
+            <div class="input-group">
+              <input type="checkbox" id="phone-chbx">
+              <label for="phone-chbx">Телефон</label>
+            </div>
+            <div class="input-group">
+              <input type="checkbox" id="email-chbx">
+              <label for="email-chbx">E-mail</label>
+            </div>
+            <div class="input-group">
+              <input type="checkbox" id="mail-address-chbx">
+              <label for="mail-address-chbx">Почтовый адрес</label>
+            </div>
+            <div class="input-group">
+              <input type="checkbox" id="site-chbx">
+              <label for="site-chbx">Сайт</label>
+            </div>
+            <div class="input-group">
+              <input type="checkbox" id="facebook-chbx">
+              <label for="facebook-chbx">Facebook</label>
+            </div>
+            <div class="input-group">
+              <input type="checkbox" id="instagram-chbx">
+              <label for="instagram-chbx">Instagram</label>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
-    <script src="js/libs.min.js?v=1595025581520" defer></script>
-    <script src="js/script.min.js?v=1595025581520" async></script>
+    <script src="js/libs.min.js?v=1595101947396" defer></script>
+    <script src="js/script.min.js?v=1595101947396" async></script>
   </body>
 </html>

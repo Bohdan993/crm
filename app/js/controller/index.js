@@ -21,6 +21,7 @@ const app = {
 		this.initOSB()
 		this.pah()
 		this.ip()
+		// this.test()
 		// this.slt()
 	},
 
@@ -36,7 +37,7 @@ const app = {
 
 	ip(){
 		initPopups()
-	},
+	}
 
 }
 

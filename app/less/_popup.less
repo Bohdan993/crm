@@ -1,12 +1,14 @@
 .modal_short {
     position: absolute;
     background-color: #85a6cb;
-    width: 100%;
+    width: auto;
+    // height: 100%;
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
     /*padding: 25px;*/
     color: white;
     z-index: 2;
     border-radius: 4px;
+    transform: translateY(-50%);
 }
 
 .modal_short > svg {
@@ -19,8 +21,8 @@
 }
 
 .modal_short > svg > polygon {
-    fill: @secondary;
-    stroke: @secondary;
+    fill: @main-color;
+    stroke:  @main-color;
 }
 
 
@@ -175,3 +177,37 @@
 // .micromodal-slide .modal__overlay {
 //   will-change: transform;
 // }
+
+
+
+
+//////////////////////////////
+
+
+
+.sidebar-popup {
+    // display: none;
+    form {
+        height: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 15px;
+    }
+
+    .input-group {
+        width: 100%;
+        color: @white;
+        // display: flex;
+
+    }
+}
+
+
+#type-manufactury-popup {
+    form {
+        flex-wrap: nowrap;
+            .form-layer:not(:last-child) {
+            margin-right:   53px;
+        }
+    }
+}

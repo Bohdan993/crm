@@ -47,6 +47,8 @@ class PopupMD {
             DOMElement.innerHTML = this.modal;
             this.modal = DOMElement.children[0];
 
+            // console.log(DOMElement.innerHTML)
+
             //вызов базовой настройки
             this.firstSetting(data);
 
@@ -194,9 +196,11 @@ class PopupMD {
                 svgTranslateY = 40;
                 break;
             case 'right':
+                console.log(this.modal.offsetHeight)
                 this.pointerPosition(this.modal.offsetHeight);
                 top = (this.element.offsetTop + this.element.offsetHeight / 2 - this.modal.offsetHeight / 2) + this.size_pointer_position;
-                left = (this.element.offsetLeft + this.element.offsetWidth + 8) + this.margin_element;
+                // top = -this.modal.offsetHeight / 2;
+                left = (this.element.offsetLeft + this.element.offsetWidth + 19) + this.margin_element;
                 svgRotate = 0;
                 svgLeft = 0;
                 svgTop = this.size_pointer_position;
