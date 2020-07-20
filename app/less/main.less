@@ -103,12 +103,13 @@ input[type="checkbox"], input[type="radio"]{
 input[type="checkbox"] + label {
   display: flex;
   padding: 5px;
-  white-space: nowrap;    
+  white-space: nowrap;
+  align-items: center;
 }
 input[type="checkbox"] + label:before{
     content: "\2714";
-    color: @white;
-    background-color: @white;
+    color: @secondary;
+    background-color: @secondary;
     display: inline-block;
     border: none;
     border-radius: 3px;
@@ -264,6 +265,49 @@ main.main {
   align-items: center;
 }
 
+
+i.label {
+  line-height: 16/14;
+  vertical-align: middle;
+  color: @white;
+  font-style: normal;
+  background: @main-color;
+  padding: 0px 7px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  &:not(:last-child) {
+    margin-right: 15px;
+
+  }
+  span {
+    line-height: 16/14;
+  }
+}
+
+
+.label.attention__label {
+  background: @orange;
+}
+
+.label.success__label {
+  background: @teal;
+}
+
+
+  .tippy-box {
+    background: @main-color;
+    
+  }
+
+  .tippy-content {
+    color: @white;
+  }
+
+  .tippy-arrow {
+    color: @main-color;
+  }
 
 
 //|||||||||||||||||||COMMON ELEMENTS END|||||||||||||||||||//

@@ -11,12 +11,13 @@ function throttle(f, ms){
 			return
 		}
 
+		f.apply(this, arguments)
+
 		isThrottled = true;
 
 		setTimeout(function(){
 			isThrottled = false;
 			if(a) {
-				f.apply(t, a)
 				d.apply(t, a);
 				t = a = null;
 			}
@@ -27,6 +28,25 @@ function throttle(f, ms){
 }
 
 
+
+function debounce(f, ms) {
+
+  let isCooldown = false;
+
+  return function() {
+    if (isCooldown) return;
+
+    f.apply(this, arguments);
+
+    isCooldown = true;
+
+    setTimeout(() => isCooldown = false, ms);
+  };
+
+}
+
+
 export {
-	throttle
+	throttle,
+	debounce
 }

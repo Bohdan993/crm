@@ -9,6 +9,8 @@
 		}
 	}
 
+
+
 	.f-container {
 		height: 100%;
 		flex-wrap: nowrap;
@@ -28,10 +30,9 @@
 	align-items: center;
 	justify-content: flex-start;
 	
-	 	// white-space: nowrap;
-	 	overflow: hidden;
+	overflow: hidden;
 	 	
-	 span, p {
+	 span, p, a,i {
 	 text-overflow: ellipsis;
 	 overflow: hidden;
 	 white-space: nowrap;
@@ -55,11 +56,28 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+
+	.row__tags {
+		overflow: visible;
+	}
+
+	.row__fullname {
+		margin-right: 5px;
+	}
 }
 
 .row__phone {
 	flex-basis: 148/1720 * 100%;
 	border-right: 1px solid @main-color;
+	i {
+		width: 16px;
+		height: 16px;
+		margin-right: 11px;
+		svg {
+			width: 16px;
+			height: 16px;
+		}
+	}
 }
 
 .row__address {
@@ -76,6 +94,7 @@
 
 .row__labels {
 	flex-basis: 397/1720 * 100%;
+	overflow: visible;
 	// border-right: 1px solid @main-color;
 }
 
@@ -103,6 +122,7 @@
 }
 
 .row__tags {
+	// overflow: visible;
 	display: flex;
 	align-items: center;
 	i {

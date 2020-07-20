@@ -3,7 +3,9 @@ import {
 	initOverlayScrollbars,
 	// sidebarListsToggle,
 	playAudioHover,
-	initPopups
+	initPopups,
+	initTooltips,
+	initWorkPopup
 
 } from '../model'
 
@@ -21,6 +23,8 @@ const app = {
 		this.initOSB()
 		this.pah()
 		this.ip()
+		this.it()
+		this.iwp()
 		// this.test()
 		// this.slt()
 	},
@@ -37,6 +41,12 @@ const app = {
 
 	ip(){
 		initPopups()
+	},
+	it() {
+		initTooltips()
+	},
+	iwp() {
+		initWorkPopup()
 	}
 
 }

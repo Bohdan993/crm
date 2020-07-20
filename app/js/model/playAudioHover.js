@@ -14,17 +14,22 @@ const playAudioHover = (items) => {
 	<source src="audio/1.mp3"><source>
 
 	`
-
+	audio.muted = true
 	audio.volume = 0.04
 
-	items.forEach(item=> {
-		item.addEventListener('mouseenter', function(){
-			audio.play();
-		})
-		// item.addEventListener('mouseleave', function(){
-		// 	audio.pause();
-		// })
-	})
+	// items.forEach(item=> {
+	// 	item.addEventListener('mouseenter', async function(){
+	// 		try{
+	// 			let promise = await audio.play();
+	// 		}catch(e){
+	// 			console.error(e)
+	// 		}
+			
+	// 	})
+	// 	// item.addEventListener('mouseleave', function(){
+	// 	// 	audio.pause();
+	// 	// })
+	// })
 }
 
 

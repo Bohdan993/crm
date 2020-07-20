@@ -3,6 +3,8 @@
 // import Chart from 'chart.js'
 import OverlayScrollbars from 'overlayscrollbars'
 import MicroModal from 'micromodal'
+import tippy from 'tippy.js'
+// import { detectOverflow } from '@popperjs/core'
 
 
 
@@ -10,5 +12,7 @@ import MicroModal from 'micromodal'
 
 export {
 	OverlayScrollbars,
-	MicroModal
+	MicroModal,
+	tippy,
+	// detectOverflow
 }

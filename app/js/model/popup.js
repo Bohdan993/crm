@@ -454,4 +454,4 @@ PopupMD.list_object = {
 // Короче нужно переделать функцию checkPreviousModal()
 
 
-export default PopupMD
+// export default PopupMD

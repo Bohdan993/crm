@@ -1,4 +1,4 @@
-.row
+.row(data-custom-open="modal-1")
 	.f-container
 		.row__country.row__cell
 			i.row__flag
@@ -6,17 +6,22 @@
 			p.row__abbr
 				|NO
 		.row__company.row__cell
-			span
+			p
 				|Thompson Equestrian Partners
 		.row__name.row__cell
 			p.row__fullname
-				|Christel Rogge
+				|Christel Rogge Christel Rogge
 			span.row__tags
 				i.attention-tag
 					+svg2('attention')
 				i.tag.manager-tag
 					|AK
 		.row__phone.row__cell
+			i
+				+svg2('phone')
+			p
+				a(href="tel:+4777847243")
+					|+47 77847243
 		.row__address.row__cell
 			p
 				|Otterveien 1, 9300 Finnsnes, 9300 Finnsnes
@@ -24,3 +29,31 @@
 			p
 				|Цветы, Свиньи, Теплицы
 		.row__labels.row__cell
+			i.label.attention__label
+				span
+					|NO 
+				|293 - 17
+			i.label.success__label
+				span
+					|NO 
+				|211 - 8
+			//- i.label.success__label
+			//- 	span
+			//- 		|NO 
+			//- 	|211 - 8
+			//- i.label.success__label
+			//- 	span
+			//- 		|NO 
+			//- 	|211 - 8
+			//- i.label.success__label
+			//- 	span
+			//- 		|NO 
+			//- 	|211 - 8
+			//- i.label.attention__label
+			//- 	span
+			//- 		|NO 
+			//- 	|293 - 17
+			//- i.label.attention__label
+			//- 	span
+			//- 		|NO 
+			//- 	|293 - 17

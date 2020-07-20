@@ -1,0 +1,179 @@
+#modal-1.modal.micromodal-slide(aria-hidden='true')
+	.modal__overlay(tabindex='-1' data-custom-close="modal-1")
+		.modal__container(role='dialog' aria-modal='true' aria-labelledby='modal-1-title')
+			.sidebar__layout
+				.f-container
+					.sidebar__avatar
+						a.sidebar__avatar-link(href='')
+							img.sidebar__ava(src='img/ava.png' alt='Avatar')
+						p.sidebar__name
+							|Василий
+					.sidebar__lists
+						ul.sidebar__list
+							li.sidebar__list-item
+								p
+									|Вакансии
+								span.sidebar__list-add
+									span
+									span
+							li.sidebar__list-item
+								p
+									|Клиенты
+								span.sidebar__list-add
+									span
+									span
+							li.sidebar__list-item.active
+								p 
+									|Работодатели
+								span.sidebar__list-add
+									span
+									span
+							li.sidebar__list-item
+								p
+									|Статистика
+								span.sidebar__list-add
+									span
+									span
+					.sidebar__filters
+						.sidebar__input-wrapper
+							input.sidebar__search-input
+							i
+								svg
+									use(xlink:href='img/sprites/svg/symbol/sprite.svg#search')
+						ul.sidebar__filter
+							li.sidebar__filter-item
+								.sidebar__filter-wrapper.country-filter-wrapper
+									p
+										|Страны
+									span.sidebar__filter-remove
+							li.sidebar__filter-item
+								.sidebar__filter-wrapper.type-manufactury-filter-wrapper
+									p
+										|Типы производства
+									span.sidebar__filter-remove
+							li.sidebar__filter-item
+								.sidebar__filter-wrapper.contact-filter-wrapper
+									p
+										|Контактные данные
+									span.sidebar__filter-remove
+							li.sidebar__filter-item
+								.sidebar__filter-wrapper
+									p
+										|Менеджеры
+									span.sidebar__filter-remove
+							li.sidebar__filter-item
+								.sidebar__filter-wrapper
+									p
+										|Постредники
+									span.sidebar__filter-remove
+							li.sidebar__filter-item
+								.sidebar__filter-wrapper
+									p
+										|Вакансии
+									span.sidebar__filter-remove
+							li.sidebar__filter-item
+								.sidebar__filter-wrapper.last-contact-filter-wrapper
+									p
+										|Последний контакт
+									span.sidebar__filter-remove
+					.sidebar__stats
+						.sidebar__stats-top
+							ul.sidebar__stat
+								li.sidebar__stat-item
+									p
+										|Сотрировка
+									span.sidebar__filter-remove
+						.sidebar__stats-bottom
+							ul.sidebar__stat
+								li.sidebar__stat-item
+									p
+										|Сгенерировать в Excel
+								li.sidebar__stat-item
+									p
+										|Распечатать отчет
+					.sidebar__wrapper
+						.sidebar__info
+							p.sidebar__choosed
+								| Отобрано:
+								span 56
+							p.sidebar__full-number
+								| Общее количество:
+								span 42846
+			.row(data-custom-open="modal-1")
+	.f-container
+		.row__country.row__cell
+			i.row__flag
+				+svg2('flag-norway')
+			p.row__abbr
+				|NO
+		.row__company.row__cell
+			p
+				|Thompson Equestrian Partners
+		.row__name.row__cell
+			p.row__fullname
+				|Christel Rogge Christel Rogge
+			span.row__tags
+				i.attention-tag
+					+svg2('attention')
+				i.tag.manager-tag
+					|AK
+		.row__phone.row__cell
+			i
+				+svg2('phone')
+			p
+				a(href="tel:+4777847243")
+					|+47 77847243
+		.row__address.row__cell
+			p
+				|Otterveien 1, 9300 Finnsnes, 9300 Finnsnes
+		.row__jobs.row__cell
+			p
+				|Цветы, Свиньи, Теплицы
+		.row__labels.row__cell
+			i.label.attention__label
+				span
+					|NO 
+				|293 - 17
+			i.label.success__label
+				span
+					|NO 
+				|211 - 8
+			//- i.label.success__label
+			//- 	span
+			//- 		|NO 
+			//- 	|211 - 8
+			//- i.label.success__label
+			//- 	span
+			//- 		|NO 
+			//- 	|211 - 8
+			//- i.label.success__label
+			//- 	span
+			//- 		|NO 
+			//- 	|211 - 8
+			//- i.label.attention__label
+			//- 	span
+			//- 		|NO 
+			//- 	|293 - 17
+			//- i.label.attention__label
+			//- 	span
+			//- 		|NO 
+			//- 	|293 - 17
+					
+
+#modal-2.modal.micromodal-slide(aria-hidden='true')
+	.modal__overlay(tabindex='-1' data-custom-close="modal-2")
+		.modal__container(role='dialog' aria-modal='true' aria-labelledby='modal-1-title')
+			header.modal__header
+				h2#modal-1-title.modal__title
+					| Micromodal-2
+				button.modal__close(aria-label='Close modal' data-custom-close="modal-2")
+			main#modal-1-content.modal__content
+				p
+					| Try hitting the 
+					code tab
+					|	key and notice how the focus stays within the modal itself. Also, 
+					code esc
+					|	to close modal.
+			footer.modal__footer
+				button.modal__btn.modal__btn-primary Continue
+				button.modal__btn(data-custom-close="modal-2" aria-label='Close this dialog window') Close
