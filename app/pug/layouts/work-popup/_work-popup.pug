@@ -1,165 +1,144 @@
 #modal-1.modal.micromodal-slide(aria-hidden='true')
 	.modal__overlay(tabindex='-1' data-custom-close="modal-1")
-		.modal__container(role='dialog' aria-modal='true' aria-labelledby='modal-1-title')
-			.sidebar__layout
-				.f-container
-					.sidebar__avatar
-						a.sidebar__avatar-link(href='')
-							img.sidebar__ava(src='img/ava.png' alt='Avatar')
-						p.sidebar__name
-							|Василий
-					.sidebar__lists
-						ul.sidebar__list
-							li.sidebar__list-item
+		.modal__wrapper.my-modal-wrapper(data-custom-close="modal-1")
+			.modal__container.work-modal.my-modal(role='dialog' aria-modal='true' aria-labelledby='modal-1-title')
+				.sidebar
+					.sidebar__layout
+						.f-container
+							.sidebar__info
+								form(action="")
+									.input-group
+										p
+											|Менеджер
+										select.manager-select(name="manager-select")
+											//- option(value="" disabled selected)
+											//- 	|Отсутствует
+											//- option(value="AK")
+											//- 	i.tag.manager-tag.dark-blue-tag
+											//- 		|AK
+											//- 	|Алексей
+											//- option(value="CK")
+											//- 	i.tag.manager-tag.light-green-tag
+											//- 		|CK
+											//- 	|Светлана
+									.input-group
+										.input-group__control
+											p
+												|Задачи
+											.add-item
+												span
+													|+ 
+												| добавить
+										textarea(type="text" class="sidebar__task-input" rows="1" data-elastic="true")
+							.sidebar__notes
+								.input-group
+									textarea(rows="4" class="sidebar__area-notes" data-elastic="true")
+							.sidebar__actions
+								ul.sidebar__action
+									li.sidebar__action-item
+										.input-group
+											input(type="checkbox" id="remove-sending-chbx")
+											label(for="remove-sending-chbx")
+												|Исключить из рассылки
+							.sidebar__menu
+								ul.sidebar__filter
+									li.sidebar__filter-item
+										.sidebar__filter-wrapper
+											p
+												|История анонсов
+											span.sidebar__filter-remove
+									li.sidebar__filter-item
+										.sidebar__filter-wrapper
+											p
+												|Данные для документов
+											span.sidebar__filter-remove
+									li.sidebar__filter-item
+										.sidebar__filter-wrapper
+											p
+												|Создать вакансию
+											span.sidebar__filter-remove
+									li.sidebar__filter-item
+										.sidebar__filter-wrapper
+											p
+												|Удалить
+											span.sidebar__filter-remove
+				.rows
+					.row.common-info.modal-row
+						.common-info__left
+							.common-info__company.info-block
 								p
-									|Вакансии
-								span.sidebar__list-add
-									span
-									span
-							li.sidebar__list-item
+									|Предприятие
+								.input-group
+									textarea.info-area(name="" rows="3")
+										|BoGrønt Solblomsten Gartneri og Hagesenter / Solblomsten A
+							.common-info__country.info-block
 								p
-									|Клиенты
-								span.sidebar__list-add
-									span
-									span
-							li.sidebar__list-item.active
-								p 
-									|Работодатели
-								span.sidebar__list-add
-									span
-									span
-							li.sidebar__list-item
+									|Страна
+								.input-group
+									select.info-area.country-select(name="")
+							.common-info__address.info-block
 								p
-									|Статистика
-								span.sidebar__list-add
-									span
-									span
-					.sidebar__filters
-						.sidebar__input-wrapper
-							input.sidebar__search-input
-							i
-								svg
-									use(xlink:href='img/sprites/svg/symbol/sprite.svg#search')
-						ul.sidebar__filter
-							li.sidebar__filter-item
-								.sidebar__filter-wrapper.country-filter-wrapper
+									|Адрес
+								.input-group
+									textarea.info-area(type="text" rows="2")
+										|Otterveien 1, 9300 Finnsnes, 9300 Finnsnes
+									.map
+						.common-info__right
+							.common-info__contact-person.common-info__group
+								.common-info__contact-person_curr.common-info__group_small.info-block
 									p
-										|Страны
-									span.sidebar__filter-remove
-							li.sidebar__filter-item
-								.sidebar__filter-wrapper.type-manufactury-filter-wrapper
+										|Контактное лицо
+									.input-group
+										input.info-area(type="text" value="Gunnlaug Eide")
+								.common-info__contact-person_other.common-info__group_big.info-block
 									p
-										|Типы производства
-									span.sidebar__filter-remove
-							li.sidebar__filter-item
-								.sidebar__filter-wrapper.contact-filter-wrapper
+										|Другие контактые лица
+									.input-group
+										input.info-area(type="text" value="BoGrønt Solblomsten, BoGrønt Solblomsten")
+							.common-info__contact-info.common-info__group
+								.common-info__contact-info_curr.common-info__group_small.info-block
 									p
-										|Контактные данные
-									span.sidebar__filter-remove
-							li.sidebar__filter-item
-								.sidebar__filter-wrapper
+										|Контактная информация
+									.input-group
+										input.info-area(type="text" value="+47 77847243")
+									.input-group
+										input.info-area(type="text" value="solblomsten@bogront.no")
+								.common-info__contact-info_other.common-info__group_big.info-block
 									p
-										|Менеджеры
-									span.sidebar__filter-remove
-							li.sidebar__filter-item
-								.sidebar__filter-wrapper
-									p
-										|Постредники
-									span.sidebar__filter-remove
-							li.sidebar__filter-item
-								.sidebar__filter-wrapper
-									p
-										|Вакансии
-									span.sidebar__filter-remove
-							li.sidebar__filter-item
-								.sidebar__filter-wrapper.last-contact-filter-wrapper
-									p
-										|Последний контакт
-									span.sidebar__filter-remove
-					.sidebar__stats
-						.sidebar__stats-top
-							ul.sidebar__stat
-								li.sidebar__stat-item
-									p
-										|Сотрировка
-									span.sidebar__filter-remove
-						.sidebar__stats-bottom
-							ul.sidebar__stat
-								li.sidebar__stat-item
-									p
-										|Сгенерировать в Excel
-								li.sidebar__stat-item
-									p
-										|Распечатать отчет
-					.sidebar__wrapper
-						.sidebar__info
-							p.sidebar__choosed
-								| Отобрано:
-								span 56
-							p.sidebar__full-number
-								| Общее количество:
-								span 42846
-			.row(data-custom-open="modal-1")
-	.f-container
-		.row__country.row__cell
-			i.row__flag
-				+svg2('flag-norway')
-			p.row__abbr
-				|NO
-		.row__company.row__cell
-			p
-				|Thompson Equestrian Partners
-		.row__name.row__cell
-			p.row__fullname
-				|Christel Rogge Christel Rogge
-			span.row__tags
-				i.attention-tag
-					+svg2('attention')
-				i.tag.manager-tag
-					|AK
-		.row__phone.row__cell
-			i
-				+svg2('phone')
-			p
-				a(href="tel:+4777847243")
-					|+47 77847243
-		.row__address.row__cell
-			p
-				|Otterveien 1, 9300 Finnsnes, 9300 Finnsnes
-		.row__jobs.row__cell
-			p
-				|Цветы, Свиньи, Теплицы
-		.row__labels.row__cell
-			i.label.attention__label
-				span
-					|NO 
-				|293 - 17
-			i.label.success__label
-				span
-					|NO 
-				|211 - 8
-			//- i.label.success__label
-			//- 	span
-			//- 		|NO 
-			//- 	|211 - 8
-			//- i.label.success__label
-			//- 	span
-			//- 		|NO 
-			//- 	|211 - 8
-			//- i.label.success__label
-			//- 	span
-			//- 		|NO 
-			//- 	|211 - 8
-			//- i.label.attention__label
-			//- 	span
-			//- 		|NO 
-			//- 	|293 - 17
-			//- i.label.attention__label
-			//- 	span
-			//- 		|NO 
-			//- 	|293 - 17
-					
-
+										|Дополнительные контакты
+									.input-group
+										input.info-area(type="text" value="+47 77843366, +47 77843366, +47 77843366 ")
+									.input-group
+										input.info-area(type="text" value="post@solblomsten.no, post@solblomsten.no")
+							.common-info__social.info-block
+								p
+									|Сайт и социальные сети
+								.input-group
+									input.info-area(type="text" value="www.bogront.no/solblomsten/indt.no/solblomsten/ind")
+								.input-group
+									input.info-area(type="text" value="www.bogront.no/solblomsten/")
+								.input-group
+									input.info-area(type="text" value="www.bogront.no/solblo")
+							.common-info__more-info.common-info__group
+								.common-info__more-info_inner-left
+									.common-info__more-info-about.info-block
+										p
+											|Дополнительная информация
+										.input-group
+											textarea.info-area(type="text" rows="5")
+												|BoGrønt Solblomsten Gartneri og Hagesenter / Solblomsten AS
+								.common-info__more-info_inner-right
+									.common-info__more-info-mediator.info-block
+										p
+											|Посредник
+										.input-group
+											select.info-area.mediator-select(name="")
+									.common-info__more-info-source.info-block
+										p
+											|Источник
+										.input-group
+											select.info-area.source-select(name="")
+					include _manufactury-type
 #modal-2.modal.micromodal-slide(aria-hidden='true')
 	.modal__overlay(tabindex='-1' data-custom-close="modal-2")
 		.modal__container(role='dialog' aria-modal='true' aria-labelledby='modal-1-title')

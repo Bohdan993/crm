@@ -5,7 +5,7 @@
 	&:nth-child(even) {
 		background: @light-blue;
 			&:hover {
-				background: @light-blue - 10;
+				// background: @light-blue - 10;
 		}
 	}
 
@@ -18,8 +18,12 @@
 	transition: background 0.05s linear;
 
 	&:hover {
-		background: rgba(@font-color, 0.05);
+		background: @hover_row;
 	}
+
+	.tippy-content {
+        padding: 3px 7px;
+    }
 }
 
 .row__cell {
@@ -32,7 +36,7 @@
 	
 	overflow: hidden;
 	 	
-	 span, p, a,i {
+	 span, p, a {
 	 text-overflow: ellipsis;
 	 overflow: hidden;
 	 white-space: nowrap;
@@ -43,6 +47,8 @@
 .row__country {
 	flex-basis: 81/1720 * 100%;
 	border-right: 1px solid @main-color;
+	min-width: 80px;
+
 }
 
 .row__company {
@@ -69,10 +75,13 @@
 .row__phone {
 	flex-basis: 148/1720 * 100%;
 	border-right: 1px solid @main-color;
+	min-width: 147px;
 	i {
 		width: 16px;
 		height: 16px;
 		margin-right: 11px;
+		margin-right: 5px;
+		overflow: visible;
 		svg {
 			width: 16px;
 			height: 16px;

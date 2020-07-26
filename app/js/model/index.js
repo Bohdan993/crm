@@ -4,6 +4,9 @@ import playAudioHover from './playAudioHover'
 import initPopups from './initPopups'
 import initTooltips from './initToottips'
 import initWorkPopup from './initWorkPopup'
+import test from './testing'
+import initWorkModalSelect from './initWorkModalSelect'
+import sidebarSearchInput from './sidebarSearchInput'
 
 
 
@@ -15,5 +18,8 @@ export {
 	playAudioHover,
 	initPopups,
 	initTooltips,
-	initWorkPopup
+	initWorkPopup,
+	test,
+	initWorkModalSelect,
+	sidebarSearchInput
 }

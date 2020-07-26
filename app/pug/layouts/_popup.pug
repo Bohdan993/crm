@@ -1,6 +1,5 @@
 .popup
 	.popup__layer
-		include work-popup/_work-popup
 		#country-popup.sidebar-popup
 			form
 				.input-group
@@ -28,8 +27,8 @@
 					label(for="SE-chbx")
 						|Швеция
 		#type-manufactury-popup.sidebar-popup
-			form
-				.form-layer
+			form.flex-form
+				fieldset
 					.input-group
 						input(type="checkbox" id="flowers-chbx")
 						label(for="flowers-chbx")
@@ -50,7 +49,7 @@
 						input(type="checkbox" id="fields-chbx")
 						label(for="fields-chbx")
 							|поля
-				.form-layer
+				fieldset
 					.input-group
 						input(type="checkbox" id="berries-chbx")
 						label(for="berries-chbx")
@@ -100,18 +99,114 @@
 		#last-contact-popup.sidebar-popup
 			form
 				.input-group
-					input(type="checkbox" id="1-month-chbx")
-					label(for="1-month-chbx")
+					input(type="radio" id="1-month-rbtn" name="last-contact-rbtn")
+					label(for="1-month-rbtn")
 						|более 1 мес назад
 				.input-group
-					input(type="checkbox" id="3-month-chbx")
-					label(for="3-month-chbx")
+					input(type="radio" id="3-month-rbtn" name="last-contact-rbtn")
+					label(for="3-month-rbtn")
 						|более 3 мес назад
 				.input-group
-					input(type="checkbox" id="6-month-chbx") 
-					label(for="6-month-chbx")
+					input(type="radio" id="6-month-rbtn" name="last-contact-rbtn") 
+					label(for="6-month-rbtn")
 						|более 6 мес назад
 				.input-group
-					input(type="checkbox" id="never-chbx")
-					label(for="never-chbx")
+					input(type="radio" id="never-rbtn" name="last-contact-rbtn")
+					label(for="never-rbtn")
 						|никогда
+		#managers-popup.sidebar-popup
+			form
+				.input-group
+					input(type="checkbox" id="AK-chbx")
+					label(for="AK-chbx")
+						i.tag.manager-tag.dark-blue-tag
+							|AK
+						|Алексей Ключников
+				.input-group
+					input(type="checkbox" id='CK-chbx')
+					label(for="CK-chbx")
+						i.tag.manager-tag.light-green-tag
+							|CK
+						|Светлана Ковальчук
+		#intermediaries-popup.sidebar-popup
+			form
+				.input-group.radio-group-type-1
+					input(type="radio" id="show-rbtn" name="intermediaries-rbtn" checked="true")
+					label(for="show-rbtn")
+						|Показать
+					input(type="radio" id="remove-rbtn" name="intermediaries-rbtn")
+					label(for="remove-rbtn")
+						|Исключить
+				.input-group
+					input(type="checkbox" id="AngriNord-chbx")
+					label(for="AngriNord-chbx")
+						|AngriNord
+				.input-group
+					input(type="checkbox" id='Victoria-chbx')
+					label(for="Victoria-chbx")
+						|Виктория
+				.input-group
+					input(type="checkbox" id='Yanina-chbx')
+					label(for="Yanina-chbx")
+						|Янина
+		#vacancies-popup.sidebar-popup
+			form
+				fieldset
+					.input-group
+						input(type="checkbox" id="Earlier-chbx")
+						label(for="Earlier-chbx")
+							|Ранее предоставляли вакансии
+				fieldset
+					p
+						|Тип вакансии
+					.input-group.radio-group-type-2
+						.group
+							input(type="checkbox" id="season-chbx" name="vacancies-chbx" checked="true")
+							label(for="season-chbx")
+								|Сезонная
+							input(type="checkbox" id="practice-chbx" name="vacancies-chbx")
+							label(for="practice-chbx")
+								|Практика
+							input(type="checkbox" id="work-chbx" name="vacancies-chbx")
+							label(for="work-chbx")
+								|Рабочая
+				fieldset
+					p
+						|Срок вакансии
+					.input-group.radio-group-type-2.yellow
+						.group
+							input(type="checkbox" id="3mnth-chbx" name="vacancies-chbx-2" checked="true")
+							label(for="3mnth-chbx")
+								|до 3 мес
+							input(type="checkbox" id="3-6mnth-chbx" name="vacancies-chbx-2")
+							label(for="3-6mnth-chbx")
+								|3 - 6 мес
+							input(type="checkbox" id="6-9mnth-chbx" name="vacancies-chbx-2")
+							label(for="6-9mnth-chbx")
+								|6 - 9 мес
+						.group
+							input(type="checkbox" id="9-12mnth-chbx" name="vacancies-chbx-2")
+							label(for="9-12mnth-chbx")
+								|9 - 12 мес
+							input(type="checkbox" id="12mnth-chbx" name="vacancies-chbxn-2")
+							label(for="12mnth-chbx")
+								|12 +
+		#sorting-popup.sidebar-popup
+			form
+				.input-group
+					input(type="radio" id="date-rbtn" name="sorting-rbtn")
+					label(for="date-rbtn")
+						|По внесению
+				.input-group
+					input(type="radio" id='name-rbtn' name="sorting-rbtn")
+					label(for="name-rbtn")
+						|По имени
+				.input-group
+					input(type="radio" id='contacts-rbtn' name="sorting-rbtn")
+					label(for="contacts-rbtn")
+						|По контактам
+				.input-group
+					input(type="radio" id='vacancies-rbtn' name="sorting-rbtn")
+					label(for="vacancies-rbtn")
+						|По вакансиям
+		include work-popup/_work-popup

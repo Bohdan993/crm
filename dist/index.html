@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/libs.min.css?v=1595204148316">
-    <link rel="stylesheet" href="css/main.min.css?v=1595204148316">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap&amp;subset=cyrillic" rel="stylesheet">
+    <link rel="stylesheet" href="css/libs.min.css?v=1595806940381">
+    <link rel="stylesheet" href="css/main.min.css?v=1595806940381">
   </head>
   <body>
     <main class="main">
@@ -18,60 +18,60 @@
             </div>
             <div class="sidebar__lists">
               <ul class="sidebar__list">
-                <li class="sidebar__list-item">
+                <li class="sidebar__list-item sidebar__li">
                   <p>Вакансии</p><span class="sidebar__list-add"><span></span><span></span></span>
                 </li>
-                <li class="sidebar__list-item">
+                <li class="sidebar__list-item sidebar__li">
                   <p>Клиенты</p><span class="sidebar__list-add"><span></span><span></span></span>
                 </li>
-                <li class="sidebar__list-item active">
+                <li class="sidebar__list-item active sidebar__li">
                   <p>
                      Работодатели</p><span class="sidebar__list-add"><span></span><span></span></span>
                 </li>
-                <li class="sidebar__list-item">
+                <li class="sidebar__list-item sidebar__li">
                   <p>Статистика</p><span class="sidebar__list-add"><span></span><span></span></span>
                 </li>
               </ul>
             </div>
             <div class="sidebar__filters">
               <div class="sidebar__input-wrapper">
-                <input class="sidebar__search-input"><i>
+                <input class="sidebar__search-input" type="text"><i class="search-icon">
                   <svg>
                     <use xlink:href="img/sprites/svg/symbol/sprite.svg#search"></use>
-                  </svg></i>
+                  </svg></i><i class="remove-icon hidden"></i>
               </div>
               <ul class="sidebar__filter">
-                <li class="sidebar__filter-item">
+                <li class="sidebar__filter-item sidebar__li">
                   <div class="sidebar__filter-wrapper country-filter-wrapper">
                     <p>Страны</p><span class="sidebar__filter-remove"></span>
                   </div>
                 </li>
-                <li class="sidebar__filter-item">
+                <li class="sidebar__filter-item sidebar__li">
                   <div class="sidebar__filter-wrapper type-manufactury-filter-wrapper">
                     <p>Типы производства</p><span class="sidebar__filter-remove"></span>
                   </div>
                 </li>
-                <li class="sidebar__filter-item">
+                <li class="sidebar__filter-item sidebar__li">
                   <div class="sidebar__filter-wrapper contact-filter-wrapper">
                     <p>Контактные данные</p><span class="sidebar__filter-remove"></span>
                   </div>
                 </li>
-                <li class="sidebar__filter-item">
-                  <div class="sidebar__filter-wrapper">
+                <li class="sidebar__filter-item sidebar__li">
+                  <div class="sidebar__filter-wrapper managers-filter-wrapper">
                     <p>Менеджеры</p><span class="sidebar__filter-remove"></span>
                   </div>
                 </li>
-                <li class="sidebar__filter-item">
-                  <div class="sidebar__filter-wrapper">
-                    <p>Постредники</p><span class="sidebar__filter-remove"></span>
+                <li class="sidebar__filter-item sidebar__li">
+                  <div class="sidebar__filter-wrapper intermediaries-filter-wrapper">
+                    <p>Посредники</p><span class="sidebar__filter-remove"></span>
                   </div>
                 </li>
-                <li class="sidebar__filter-item">
-                  <div class="sidebar__filter-wrapper">
+                <li class="sidebar__filter-item sidebar__li">
+                  <div class="sidebar__filter-wrapper vacancies-filter-wrapper">
                     <p>Вакансии</p><span class="sidebar__filter-remove"></span>
                   </div>
                 </li>
-                <li class="sidebar__filter-item">
+                <li class="sidebar__filter-item sidebar__li">
                   <div class="sidebar__filter-wrapper last-contact-filter-wrapper">
                     <p>Последний контакт</p><span class="sidebar__filter-remove"></span>
                   </div>
@@ -81,26 +81,32 @@
             <div class="sidebar__stats">
               <div class="sidebar__stats-top">
                 <ul class="sidebar__stat">
-                  <li class="sidebar__stat-item">
-                    <p>Сотрировка</p><span class="sidebar__filter-remove"></span>
+                  <li class="sidebar__stat-item sidebar__li">
+                    <div class="sidebar__stats-wrapper sorting-stats-wrapper">
+                      <p>Сотрировка</p><span class="sidebar__filter-remove"></span>
+                    </div>
                   </li>
                 </ul>
               </div>
               <div class="sidebar__stats-bottom">
                 <ul class="sidebar__stat">
-                  <li class="sidebar__stat-item">
-                    <p>Сгенерировать в Excel</p>
+                  <li class="sidebar__stat-item sidebar__li">
+                    <div class="sidebar__stats-wrapper">
+                      <p>Сгенерировать в Excel</p>
+                    </div>
                   </li>
-                  <li class="sidebar__stat-item">
-                    <p>Распечатать отчет</p>
+                  <li class="sidebar__stat-item sidebar__li">
+                    <div class="sidebar__stats-wrapper">
+                      <p>Распечатать отчет</p>
+                    </div>
                   </li>
                 </ul>
               </div>
             </div>
             <div class="sidebar__wrapper">
               <div class="sidebar__info">
-                <p class="sidebar__choosed">Отобрано:<span>56</span></p>
-                <p class="sidebar__full-number">Общее количество:<span>42846</span></p>
+                <p class="sidebar__choosed">Отобрано: <span>56</span></p>
+                <p class="sidebar__full-number">Общее количество: <span>42846</span></p>
               </div>
             </div>
           </div>
@@ -122,7 +128,7 @@
               <p class="row__fullname">Christel Rogge Christel Rogge</p><span class="row__tags"><i class="attention-tag">
                   <svg>
                     <use xlink:href="img/sprites/svg/symbol/sprite.svg#attention"></use>
-                  </svg></i><i class="tag manager-tag">AK</i></span>
+                  </svg></i><i class="tag manager-tag dark-blue-tag">AK</i></span>
             </div>
             <div class="row__phone row__cell"><i>
                 <svg>
@@ -154,7 +160,7 @@
               <p class="row__fullname">Christel Rogge Christel Rogge</p><span class="row__tags"><i class="attention-tag">
                   <svg>
                     <use xlink:href="img/sprites/svg/symbol/sprite.svg#attention"></use>
-                  </svg></i><i class="tag manager-tag">AK</i></span>
+                  </svg></i><i class="tag manager-tag dark-blue-tag">AK</i></span>
             </div>
             <div class="row__phone row__cell"><i>
                 <svg>
@@ -186,7 +192,7 @@
               <p class="row__fullname">Christel Rogge Christel Rogge</p><span class="row__tags"><i class="attention-tag">
                   <svg>
                     <use xlink:href="img/sprites/svg/symbol/sprite.svg#attention"></use>
-                  </svg></i><i class="tag manager-tag">AK</i></span>
+                  </svg></i><i class="tag manager-tag dark-blue-tag">AK</i></span>
             </div>
             <div class="row__phone row__cell"><i>
                 <svg>
@@ -218,7 +224,7 @@
               <p class="row__fullname">Christel Rogge Christel Rogge</p><span class="row__tags"><i class="attention-tag">
                   <svg>
                     <use xlink:href="img/sprites/svg/symbol/sprite.svg#attention"></use>
-                  </svg></i><i class="tag manager-tag">AK</i></span>
+                  </svg></i><i class="tag manager-tag dark-blue-tag">AK</i></span>
             </div>
             <div class="row__phone row__cell"><i>
                 <svg>
@@ -250,7 +256,7 @@
               <p class="row__fullname">Christel Rogge Christel Rogge</p><span class="row__tags"><i class="attention-tag">
                   <svg>
                     <use xlink:href="img/sprites/svg/symbol/sprite.svg#attention"></use>
-                  </svg></i><i class="tag manager-tag">AK</i></span>
+                  </svg></i><i class="tag manager-tag dark-blue-tag">AK</i></span>
             </div>
             <div class="row__phone row__cell"><i>
                 <svg>
@@ -282,7 +288,7 @@
               <p class="row__fullname">Christel Rogge Christel Rogge</p><span class="row__tags"><i class="attention-tag">
                   <svg>
                     <use xlink:href="img/sprites/svg/symbol/sprite.svg#attention"></use>
-                  </svg></i><i class="tag manager-tag">AK</i></span>
+                  </svg></i><i class="tag manager-tag dark-blue-tag">AK</i></span>
             </div>
             <div class="row__phone row__cell"><i>
                 <svg>
@@ -314,7 +320,7 @@
               <p class="row__fullname">Christel Rogge Christel Rogge</p><span class="row__tags"><i class="attention-tag">
                   <svg>
                     <use xlink:href="img/sprites/svg/symbol/sprite.svg#attention"></use>
-                  </svg></i><i class="tag manager-tag">AK</i></span>
+                  </svg></i><i class="tag manager-tag dark-blue-tag">AK</i></span>
             </div>
             <div class="row__phone row__cell"><i>
                 <svg>
@@ -346,7 +352,7 @@
               <p class="row__fullname">Christel Rogge Christel Rogge</p><span class="row__tags"><i class="attention-tag">
                   <svg>
                     <use xlink:href="img/sprites/svg/symbol/sprite.svg#attention"></use>
-                  </svg></i><i class="tag manager-tag">AK</i></span>
+                  </svg></i><i class="tag manager-tag dark-blue-tag">AK</i></span>
             </div>
             <div class="row__phone row__cell"><i>
                 <svg>
@@ -378,7 +384,7 @@
               <p class="row__fullname">Christel Rogge Christel Rogge</p><span class="row__tags"><i class="attention-tag">
                   <svg>
                     <use xlink:href="img/sprites/svg/symbol/sprite.svg#attention"></use>
-                  </svg></i><i class="tag manager-tag">AK</i></span>
+                  </svg></i><i class="tag manager-tag dark-blue-tag">AK</i></span>
             </div>
             <div class="row__phone row__cell"><i>
                 <svg>
@@ -410,7 +416,7 @@
               <p class="row__fullname">Christel Rogge Christel Rogge</p><span class="row__tags"><i class="attention-tag">
                   <svg>
                     <use xlink:href="img/sprites/svg/symbol/sprite.svg#attention"></use>
-                  </svg></i><i class="tag manager-tag">AK</i></span>
+                  </svg></i><i class="tag manager-tag dark-blue-tag">AK</i></span>
             </div>
             <div class="row__phone row__cell"><i>
                 <svg>
@@ -442,7 +448,7 @@
               <p class="row__fullname">Christel Rogge Christel Rogge</p><span class="row__tags"><i class="attention-tag">
                   <svg>
                     <use xlink:href="img/sprites/svg/symbol/sprite.svg#attention"></use>
-                  </svg></i><i class="tag manager-tag">AK</i></span>
+                  </svg></i><i class="tag manager-tag dark-blue-tag">AK</i></span>
             </div>
             <div class="row__phone row__cell"><i>
                 <svg>
@@ -474,7 +480,7 @@
               <p class="row__fullname">Christel Rogge Christel Rogge</p><span class="row__tags"><i class="attention-tag">
                   <svg>
                     <use xlink:href="img/sprites/svg/symbol/sprite.svg#attention"></use>
-                  </svg></i><i class="tag manager-tag">AK</i></span>
+                  </svg></i><i class="tag manager-tag dark-blue-tag">AK</i></span>
             </div>
             <div class="row__phone row__cell"><i>
                 <svg>
@@ -506,7 +512,7 @@
               <p class="row__fullname">Christel Rogge Christel Rogge</p><span class="row__tags"><i class="attention-tag">
                   <svg>
                     <use xlink:href="img/sprites/svg/symbol/sprite.svg#attention"></use>
-                  </svg></i><i class="tag manager-tag">AK</i></span>
+                  </svg></i><i class="tag manager-tag dark-blue-tag">AK</i></span>
             </div>
             <div class="row__phone row__cell"><i>
                 <svg>
@@ -538,7 +544,7 @@
               <p class="row__fullname">Christel Rogge Christel Rogge</p><span class="row__tags"><i class="attention-tag">
                   <svg>
                     <use xlink:href="img/sprites/svg/symbol/sprite.svg#attention"></use>
-                  </svg></i><i class="tag manager-tag">AK</i></span>
+                  </svg></i><i class="tag manager-tag dark-blue-tag">AK</i></span>
             </div>
             <div class="row__phone row__cell"><i>
                 <svg>
@@ -570,7 +576,7 @@
               <p class="row__fullname">Christel Rogge Christel Rogge</p><span class="row__tags"><i class="attention-tag">
                   <svg>
                     <use xlink:href="img/sprites/svg/symbol/sprite.svg#attention"></use>
-                  </svg></i><i class="tag manager-tag">AK</i></span>
+                  </svg></i><i class="tag manager-tag dark-blue-tag">AK</i></span>
             </div>
             <div class="row__phone row__cell"><i>
                 <svg>
@@ -602,7 +608,7 @@
               <p class="row__fullname">Christel Rogge Christel Rogge</p><span class="row__tags"><i class="attention-tag">
                   <svg>
                     <use xlink:href="img/sprites/svg/symbol/sprite.svg#attention"></use>
-                  </svg></i><i class="tag manager-tag">AK</i></span>
+                  </svg></i><i class="tag manager-tag dark-blue-tag">AK</i></span>
             </div>
             <div class="row__phone row__cell"><i>
                 <svg>
@@ -634,7 +640,7 @@
               <p class="row__fullname">Christel Rogge Christel Rogge</p><span class="row__tags"><i class="attention-tag">
                   <svg>
                     <use xlink:href="img/sprites/svg/symbol/sprite.svg#attention"></use>
-                  </svg></i><i class="tag manager-tag">AK</i></span>
+                  </svg></i><i class="tag manager-tag dark-blue-tag">AK</i></span>
             </div>
             <div class="row__phone row__cell"><i>
                 <svg>
@@ -666,7 +672,7 @@
               <p class="row__fullname">Christel Rogge Christel Rogge</p><span class="row__tags"><i class="attention-tag">
                   <svg>
                     <use xlink:href="img/sprites/svg/symbol/sprite.svg#attention"></use>
-                  </svg></i><i class="tag manager-tag">AK</i></span>
+                  </svg></i><i class="tag manager-tag dark-blue-tag">AK</i></span>
             </div>
             <div class="row__phone row__cell"><i>
                 <svg>
@@ -698,7 +704,7 @@
               <p class="row__fullname">Christel Rogge Christel Rogge</p><span class="row__tags"><i class="attention-tag">
                   <svg>
                     <use xlink:href="img/sprites/svg/symbol/sprite.svg#attention"></use>
-                  </svg></i><i class="tag manager-tag">AK</i></span>
+                  </svg></i><i class="tag manager-tag dark-blue-tag">AK</i></span>
             </div>
             <div class="row__phone row__cell"><i>
                 <svg>
@@ -730,7 +736,7 @@
               <p class="row__fullname">Christel Rogge Christel Rogge</p><span class="row__tags"><i class="attention-tag">
                   <svg>
                     <use xlink:href="img/sprites/svg/symbol/sprite.svg#attention"></use>
-                  </svg></i><i class="tag manager-tag">AK</i></span>
+                  </svg></i><i class="tag manager-tag dark-blue-tag">AK</i></span>
             </div>
             <div class="row__phone row__cell"><i>
                 <svg>
@@ -762,7 +768,7 @@
               <p class="row__fullname">Christel Rogge Christel Rogge</p><span class="row__tags"><i class="attention-tag">
                   <svg>
                     <use xlink:href="img/sprites/svg/symbol/sprite.svg#attention"></use>
-                  </svg></i><i class="tag manager-tag">AK</i></span>
+                  </svg></i><i class="tag manager-tag dark-blue-tag">AK</i></span>
             </div>
             <div class="row__phone row__cell"><i>
                 <svg>
@@ -794,7 +800,7 @@
               <p class="row__fullname">Christel Rogge Christel Rogge</p><span class="row__tags"><i class="attention-tag">
                   <svg>
                     <use xlink:href="img/sprites/svg/symbol/sprite.svg#attention"></use>
-                  </svg></i><i class="tag manager-tag">AK</i></span>
+                  </svg></i><i class="tag manager-tag dark-blue-tag">AK</i></span>
             </div>
             <div class="row__phone row__cell"><i>
                 <svg>
@@ -826,7 +832,7 @@
               <p class="row__fullname">Christel Rogge Christel Rogge</p><span class="row__tags"><i class="attention-tag">
                   <svg>
                     <use xlink:href="img/sprites/svg/symbol/sprite.svg#attention"></use>
-                  </svg></i><i class="tag manager-tag">AK</i></span>
+                  </svg></i><i class="tag manager-tag dark-blue-tag">AK</i></span>
             </div>
             <div class="row__phone row__cell"><i>
                 <svg>
@@ -858,7 +864,7 @@
               <p class="row__fullname">Christel Rogge Christel Rogge</p><span class="row__tags"><i class="attention-tag">
                   <svg>
                     <use xlink:href="img/sprites/svg/symbol/sprite.svg#attention"></use>
-                  </svg></i><i class="tag manager-tag">AK</i></span>
+                  </svg></i><i class="tag manager-tag dark-blue-tag">AK</i></span>
             </div>
             <div class="row__phone row__cell"><i>
                 <svg>
@@ -890,7 +896,7 @@
               <p class="row__fullname">Christel Rogge Christel Rogge</p><span class="row__tags"><i class="attention-tag">
                   <svg>
                     <use xlink:href="img/sprites/svg/symbol/sprite.svg#attention"></use>
-                  </svg></i><i class="tag manager-tag">AK</i></span>
+                  </svg></i><i class="tag manager-tag dark-blue-tag">AK</i></span>
             </div>
             <div class="row__phone row__cell"><i>
                 <svg>
@@ -922,7 +928,7 @@
               <p class="row__fullname">Christel Rogge Christel Rogge</p><span class="row__tags"><i class="attention-tag">
                   <svg>
                     <use xlink:href="img/sprites/svg/symbol/sprite.svg#attention"></use>
-                  </svg></i><i class="tag manager-tag">AK</i></span>
+                  </svg></i><i class="tag manager-tag dark-blue-tag">AK</i></span>
             </div>
             <div class="row__phone row__cell"><i>
                 <svg>
@@ -954,7 +960,7 @@
               <p class="row__fullname">Christel Rogge Christel Rogge</p><span class="row__tags"><i class="attention-tag">
                   <svg>
                     <use xlink:href="img/sprites/svg/symbol/sprite.svg#attention"></use>
-                  </svg></i><i class="tag manager-tag">AK</i></span>
+                  </svg></i><i class="tag manager-tag dark-blue-tag">AK</i></span>
             </div>
             <div class="row__phone row__cell"><i>
                 <svg>
@@ -986,7 +992,7 @@
               <p class="row__fullname">Christel Rogge Christel Rogge</p><span class="row__tags"><i class="attention-tag">
                   <svg>
                     <use xlink:href="img/sprites/svg/symbol/sprite.svg#attention"></use>
-                  </svg></i><i class="tag manager-tag">AK</i></span>
+                  </svg></i><i class="tag manager-tag dark-blue-tag">AK</i></span>
             </div>
             <div class="row__phone row__cell"><i>
                 <svg>
@@ -1018,7 +1024,7 @@
               <p class="row__fullname">Christel Rogge Christel Rogge</p><span class="row__tags"><i class="attention-tag">
                   <svg>
                     <use xlink:href="img/sprites/svg/symbol/sprite.svg#attention"></use>
-                  </svg></i><i class="tag manager-tag">AK</i></span>
+                  </svg></i><i class="tag manager-tag dark-blue-tag">AK</i></span>
             </div>
             <div class="row__phone row__cell"><i>
                 <svg>
@@ -1050,7 +1056,7 @@
               <p class="row__fullname">Christel Rogge Christel Rogge</p><span class="row__tags"><i class="attention-tag">
                   <svg>
                     <use xlink:href="img/sprites/svg/symbol/sprite.svg#attention"></use>
-                  </svg></i><i class="tag manager-tag">AK</i></span>
+                  </svg></i><i class="tag manager-tag dark-blue-tag">AK</i></span>
             </div>
             <div class="row__phone row__cell"><i>
                 <svg>
@@ -1071,154 +1077,6 @@
     </main>
     <div class="popup">
       <div class="popup__layer">
-        <div class="modal micromodal-slide" id="modal-1" aria-hidden="true">
-          <div class="modal__overlay" tabindex="-1" data-custom-close="modal-1">
-            <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
-              <div class="sidebar__layout">
-                <div class="f-container">
-                  <div class="sidebar__avatar"><a class="sidebar__avatar-link" href=""><img class="sidebar__ava" src="img/ava.png" alt="Avatar"></a>
-                    <p class="sidebar__name">Василий</p>
-                  </div>
-                  <div class="sidebar__lists">
-                    <ul class="sidebar__list">
-                      <li class="sidebar__list-item">
-                        <p>Вакансии</p><span class="sidebar__list-add"><span></span><span></span></span>
-                      </li>
-                      <li class="sidebar__list-item">
-                        <p>Клиенты</p><span class="sidebar__list-add"><span></span><span></span></span>
-                      </li>
-                      <li class="sidebar__list-item active">
-                        <p>
-                           Работодатели</p><span class="sidebar__list-add"><span></span><span></span></span>
-                      </li>
-                      <li class="sidebar__list-item">
-                        <p>Статистика</p><span class="sidebar__list-add"><span></span><span></span></span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="sidebar__filters">
-                    <div class="sidebar__input-wrapper">
-                      <input class="sidebar__search-input"><i>
-                        <svg>
-                          <use xlink:href="img/sprites/svg/symbol/sprite.svg#search"></use>
-                        </svg></i>
-                    </div>
-                    <ul class="sidebar__filter">
-                      <li class="sidebar__filter-item">
-                        <div class="sidebar__filter-wrapper country-filter-wrapper">
-                          <p>Страны</p><span class="sidebar__filter-remove"></span>
-                        </div>
-                      </li>
-                      <li class="sidebar__filter-item">
-                        <div class="sidebar__filter-wrapper type-manufactury-filter-wrapper">
-                          <p>Типы производства</p><span class="sidebar__filter-remove"></span>
-                        </div>
-                      </li>
-                      <li class="sidebar__filter-item">
-                        <div class="sidebar__filter-wrapper contact-filter-wrapper">
-                          <p>Контактные данные</p><span class="sidebar__filter-remove"></span>
-                        </div>
-                      </li>
-                      <li class="sidebar__filter-item">
-                        <div class="sidebar__filter-wrapper">
-                          <p>Менеджеры</p><span class="sidebar__filter-remove"></span>
-                        </div>
-                      </li>
-                      <li class="sidebar__filter-item">
-                        <div class="sidebar__filter-wrapper">
-                          <p>Постредники</p><span class="sidebar__filter-remove"></span>
-                        </div>
-                      </li>
-                      <li class="sidebar__filter-item">
-                        <div class="sidebar__filter-wrapper">
-                          <p>Вакансии</p><span class="sidebar__filter-remove"></span>
-                        </div>
-                      </li>
-                      <li class="sidebar__filter-item">
-                        <div class="sidebar__filter-wrapper last-contact-filter-wrapper">
-                          <p>Последний контакт</p><span class="sidebar__filter-remove"></span>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="sidebar__stats">
-                    <div class="sidebar__stats-top">
-                      <ul class="sidebar__stat">
-                        <li class="sidebar__stat-item">
-                          <p>Сотрировка</p><span class="sidebar__filter-remove"></span>
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="sidebar__stats-bottom">
-                      <ul class="sidebar__stat">
-                        <li class="sidebar__stat-item">
-                          <p>Сгенерировать в Excel</p>
-                        </li>
-                        <li class="sidebar__stat-item">
-                          <p>Распечатать отчет</p>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="sidebar__wrapper">
-                    <div class="sidebar__info">
-                      <p class="sidebar__choosed">Отобрано:<span>56</span></p>
-                      <p class="sidebar__full-number">Общее количество:<span>42846</span></p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row" data-custom-open="modal-1"></div>
-            </div>
-          </div>
-          <div class="f-container">
-            <div class="row__country row__cell"><i class="row__flag">
-                <svg>
-                  <use xlink:href="img/sprites/svg/symbol/sprite.svg#flag-norway"></use>
-                </svg></i>
-              <p class="row__abbr">NO</p>
-            </div>
-            <div class="row__company row__cell">
-              <p>Thompson Equestrian Partners</p>
-            </div>
-            <div class="row__name row__cell">
-              <p class="row__fullname">Christel Rogge Christel Rogge</p><span class="row__tags"><i class="attention-tag">
-                  <svg>
-                    <use xlink:href="img/sprites/svg/symbol/sprite.svg#attention"></use>
-                  </svg></i><i class="tag manager-tag">AK</i></span>
-            </div>
-            <div class="row__phone row__cell"><i>
-                <svg>
-                  <use xlink:href="img/sprites/svg/symbol/sprite.svg#phone"></use>
-                </svg></i>
-              <p><a href="tel:+4777847243">+47 77847243</a></p>
-            </div>
-            <div class="row__address row__cell">
-              <p>Otterveien 1, 9300 Finnsnes, 9300 Finnsnes</p>
-            </div>
-            <div class="row__jobs row__cell">
-              <p>Цветы, Свиньи, Теплицы</p>
-            </div>
-            <div class="row__labels row__cell"><i class="label attention__label"><span>NO </span>293 - 17</i><i class="label success__label"><span>NO </span>211 - 8</i></div>
-          </div>
-        </div>
-        <div class="modal micromodal-slide" id="modal-2" aria-hidden="true">
-          <div class="modal__overlay" tabindex="-1" data-custom-close="modal-2">
-            <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
-              <header class="modal__header">
-                <h2 class="modal__title" id="modal-1-title">Micromodal-2</h2>
-                <button class="modal__close" aria-label="Close modal" data-custom-close="modal-2"></button>
-              </header>
-              <main class="modal__content" id="modal-1-content">
-                <p>Try hitting the <code>tab</code>	key and notice how the focus stays within the modal itself. Also, <code>esc</code>	to close modal.</p>
-              </main>
-              <footer class="modal__footer">
-                <button class="modal__btn modal__btn-primary">Continue</button>
-                <button class="modal__btn" data-custom-close="modal-2" aria-label="Close this dialog window">Close</button>
-              </footer>
-            </div>
-          </div>
-        </div>
         <div class="sidebar-popup" id="country-popup">
           <form>
             <div class="input-group">
@@ -1248,8 +1106,8 @@
           </form>
         </div>
         <div class="sidebar-popup" id="type-manufactury-popup">
-          <form>
-            <div class="form-layer">
+          <form class="flex-form">
+            <fieldset>
               <div class="input-group">
                 <input type="checkbox" id="flowers-chbx">
                 <label for="flowers-chbx">цветы</label>
@@ -1270,8 +1128,8 @@
                 <input type="checkbox" id="fields-chbx">
                 <label for="fields-chbx">поля</label>
               </div>
-            </div>
-            <div class="form-layer">
+            </fieldset>
+            <fieldset>
               <div class="input-group">
                 <input type="checkbox" id="berries-chbx">
                 <label for="berries-chbx">ягоды</label>
@@ -1292,7 +1150,7 @@
                 <input type="checkbox" id="horses-chbx">
                 <label for="horses-chbx">лошади</label>
               </div>
-            </div>
+            </fieldset>
           </form>
         </div>
         <div class="sidebar-popup" id="contact-popup">
@@ -1326,26 +1184,310 @@
         <div class="sidebar-popup" id="last-contact-popup">
           <form>
             <div class="input-group">
-              <input type="checkbox" id="1-month-chbx">
-              <label for="1-month-chbx">более 1 мес назад</label>
+              <input type="radio" id="1-month-rbtn" name="last-contact-rbtn">
+              <label for="1-month-rbtn">более 1 мес назад</label>
             </div>
             <div class="input-group">
-              <input type="checkbox" id="3-month-chbx">
-              <label for="3-month-chbx">более 3 мес назад</label>
+              <input type="radio" id="3-month-rbtn" name="last-contact-rbtn">
+              <label for="3-month-rbtn">более 3 мес назад</label>
             </div>
             <div class="input-group">
-              <input type="checkbox" id="6-month-chbx">
-              <label for="6-month-chbx">более 6 мес назад</label>
+              <input type="radio" id="6-month-rbtn" name="last-contact-rbtn">
+              <label for="6-month-rbtn">более 6 мес назад</label>
             </div>
             <div class="input-group">
-              <input type="checkbox" id="never-chbx">
-              <label for="never-chbx">никогда</label>
+              <input type="radio" id="never-rbtn" name="last-contact-rbtn">
+              <label for="never-rbtn">никогда</label>
             </div>
           </form>
         </div>
+        <div class="sidebar-popup" id="managers-popup">
+          <form>
+            <div class="input-group">
+              <input type="checkbox" id="AK-chbx">
+              <label for="AK-chbx"><i class="tag manager-tag dark-blue-tag">AK</i>Алексей Ключников</label>
+            </div>
+            <div class="input-group">
+              <input type="checkbox" id="CK-chbx">
+              <label for="CK-chbx"><i class="tag manager-tag light-green-tag">CK</i>Светлана Ковальчук</label>
+            </div>
+          </form>
+        </div>
+        <div class="sidebar-popup" id="intermediaries-popup">
+          <form>
+            <div class="input-group radio-group-type-1">
+              <input type="radio" id="show-rbtn" name="intermediaries-rbtn" checked="true">
+              <label for="show-rbtn">Показать</label>
+              <input type="radio" id="remove-rbtn" name="intermediaries-rbtn">
+              <label for="remove-rbtn">Исключить</label>
+            </div>
+            <div class="input-group">
+              <input type="checkbox" id="AngriNord-chbx">
+              <label for="AngriNord-chbx">AngriNord</label>
+            </div>
+            <div class="input-group">
+              <input type="checkbox" id="Victoria-chbx">
+              <label for="Victoria-chbx">Виктория</label>
+            </div>
+            <div class="input-group">
+              <input type="checkbox" id="Yanina-chbx">
+              <label for="Yanina-chbx">Янина</label>
+            </div>
+          </form>
+        </div>
+        <div class="sidebar-popup" id="vacancies-popup">
+          <form>
+            <fieldset>
+              <div class="input-group">
+                <input type="checkbox" id="Earlier-chbx">
+                <label for="Earlier-chbx">Ранее предоставляли вакансии</label>
+              </div>
+            </fieldset>
+            <fieldset>
+              <p>Тип вакансии</p>
+              <div class="input-group radio-group-type-2">
+                <div class="group">
+                  <input type="checkbox" id="season-chbx" name="vacancies-chbx" checked="true">
+                  <label for="season-chbx">Сезонная</label>
+                  <input type="checkbox" id="practice-chbx" name="vacancies-chbx">
+                  <label for="practice-chbx">Практика</label>
+                  <input type="checkbox" id="work-chbx" name="vacancies-chbx">
+                  <label for="work-chbx">Рабочая</label>
+                </div>
+              </div>
+            </fieldset>
+            <fieldset>
+              <p>Срок вакансии</p>
+              <div class="input-group radio-group-type-2 yellow">
+                <div class="group">
+                  <input type="checkbox" id="3mnth-chbx" name="vacancies-chbx-2" checked="true">
+                  <label for="3mnth-chbx">до 3 мес</label>
+                  <input type="checkbox" id="3-6mnth-chbx" name="vacancies-chbx-2">
+                  <label for="3-6mnth-chbx">3 - 6 мес</label>
+                  <input type="checkbox" id="6-9mnth-chbx" name="vacancies-chbx-2">
+                  <label for="6-9mnth-chbx">6 - 9 мес</label>
+                </div>
+                <div class="group">
+                  <input type="checkbox" id="9-12mnth-chbx" name="vacancies-chbx-2">
+                  <label for="9-12mnth-chbx">9 - 12 мес</label>
+                  <input type="checkbox" id="12mnth-chbx" name="vacancies-chbxn-2">
+                  <label for="12mnth-chbx">12 +</label>
+                </div>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+        <div class="sidebar-popup" id="sorting-popup">
+          <form>
+            <div class="input-group">
+              <input type="radio" id="date-rbtn" name="sorting-rbtn">
+              <label for="date-rbtn">По внесению</label>
+            </div>
+            <div class="input-group">
+              <input type="radio" id="name-rbtn" name="sorting-rbtn">
+              <label for="name-rbtn">По имени</label>
+            </div>
+            <div class="input-group">
+              <input type="radio" id="contacts-rbtn" name="sorting-rbtn">
+              <label for="contacts-rbtn">По контактам</label>
+            </div>
+            <div class="input-group">
+              <input type="radio" id="vacancies-rbtn" name="sorting-rbtn">
+              <label for="vacancies-rbtn">По вакансиям</label>
+            </div>
+          </form>
+        </div>
+        <div class="modal micromodal-slide" id="modal-1" aria-hidden="true">
+          <div class="modal__overlay" tabindex="-1" data-custom-close="modal-1">
+            <div class="modal__wrapper my-modal-wrapper" data-custom-close="modal-1">
+              <div class="modal__container work-modal my-modal" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+                <div class="sidebar">
+                  <div class="sidebar__layout">
+                    <div class="f-container">
+                      <div class="sidebar__info">
+                        <form action="">
+                          <div class="input-group">
+                            <p>Менеджер</p>
+                            <select class="manager-select" name="manager-select"></select>
+                          </div>
+                          <div class="input-group">
+                            <div class="input-group__control">
+                              <p>Задачи</p>
+                              <div class="add-item"><span>+ </span>добавить</div>
+                            </div>
+                            <textarea class="sidebar__task-input" type="text" rows="1" data-elastic="true"></textarea>
+                          </div>
+                        </form>
+                      </div>
+                      <div class="sidebar__notes">
+                        <div class="input-group">
+                          <textarea class="sidebar__area-notes" rows="4" data-elastic="true"></textarea>
+                        </div>
+                      </div>
+                      <div class="sidebar__actions">
+                        <ul class="sidebar__action">
+                          <li class="sidebar__action-item">
+                            <div class="input-group">
+                              <input type="checkbox" id="remove-sending-chbx">
+                              <label for="remove-sending-chbx">Исключить из рассылки</label>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="sidebar__menu">
+                        <ul class="sidebar__filter">
+                          <li class="sidebar__filter-item">
+                            <div class="sidebar__filter-wrapper">
+                              <p>История анонсов</p><span class="sidebar__filter-remove"></span>
+                            </div>
+                          </li>
+                          <li class="sidebar__filter-item">
+                            <div class="sidebar__filter-wrapper">
+                              <p>Данные для документов</p><span class="sidebar__filter-remove"></span>
+                            </div>
+                          </li>
+                          <li class="sidebar__filter-item">
+                            <div class="sidebar__filter-wrapper">
+                              <p>Создать вакансию</p><span class="sidebar__filter-remove"></span>
+                            </div>
+                          </li>
+                          <li class="sidebar__filter-item">
+                            <div class="sidebar__filter-wrapper">
+                              <p>Удалить</p><span class="sidebar__filter-remove"></span>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="rows">
+                  <div class="row common-info modal-row">
+                    <div class="common-info__left">
+                      <div class="common-info__company info-block">
+                        <p>Предприятие</p>
+                        <div class="input-group">
+                          <textarea class="info-area" name="" rows="3">BoGrønt Solblomsten Gartneri og Hagesenter / Solblomsten A</textarea>
+                        </div>
+                      </div>
+                      <div class="common-info__country info-block">
+                        <p>Страна</p>
+                        <div class="input-group">
+                          <select class="info-area country-select" name=""></select>
+                        </div>
+                      </div>
+                      <div class="common-info__address info-block">
+                        <p>Адрес</p>
+                        <div class="input-group">
+                          <textarea class="info-area" type="text" rows="2">Otterveien 1, 9300 Finnsnes, 9300 Finnsnes</textarea>
+                          <div class="map"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="common-info__right">
+                      <div class="common-info__contact-person common-info__group">
+                        <div class="common-info__contact-person_curr common-info__group_small info-block">
+                          <p>Контактное лицо</p>
+                          <div class="input-group">
+                            <input class="info-area" type="text" value="Gunnlaug Eide">
+                          </div>
+                        </div>
+                        <div class="common-info__contact-person_other common-info__group_big info-block">
+                          <p>Другие контактые лица</p>
+                          <div class="input-group">
+                            <input class="info-area" type="text" value="BoGrønt Solblomsten, BoGrønt Solblomsten">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="common-info__contact-info common-info__group">
+                        <div class="common-info__contact-info_curr common-info__group_small info-block">
+                          <p>Контактная информация</p>
+                          <div class="input-group">
+                            <input class="info-area" type="text" value="+47 77847243">
+                          </div>
+                          <div class="input-group">
+                            <input class="info-area" type="text" value="solblomsten@bogront.no">
+                          </div>
+                        </div>
+                        <div class="common-info__contact-info_other common-info__group_big info-block">
+                          <p>Дополнительные контакты</p>
+                          <div class="input-group">
+                            <input class="info-area" type="text" value="+47 77843366, +47 77843366, +47 77843366 ">
+                          </div>
+                          <div class="input-group">
+                            <input class="info-area" type="text" value="post@solblomsten.no, post@solblomsten.no">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="common-info__social info-block">
+                        <p>Сайт и социальные сети</p>
+                        <div class="input-group">
+                          <input class="info-area" type="text" value="www.bogront.no/solblomsten/indt.no/solblomsten/ind">
+                        </div>
+                        <div class="input-group">
+                          <input class="info-area" type="text" value="www.bogront.no/solblomsten/">
+                        </div>
+                        <div class="input-group">
+                          <input class="info-area" type="text" value="www.bogront.no/solblo">
+                        </div>
+                      </div>
+                      <div class="common-info__more-info common-info__group">
+                        <div class="common-info__more-info_inner-left">
+                          <div class="common-info__more-info-about info-block">
+                            <p>Дополнительная информация</p>
+                            <div class="input-group">
+                              <textarea class="info-area" type="text" rows="5">BoGrønt Solblomsten Gartneri og Hagesenter / Solblomsten AS</textarea>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="common-info__more-info_inner-right">
+                          <div class="common-info__more-info-mediator info-block">
+                            <p>Посредник</p>
+                            <div class="input-group">
+                              <select class="info-area mediator-select" name=""></select>
+                            </div>
+                          </div>
+                          <div class="common-info__more-info-source info-block">
+                            <p>Источник</p>
+                            <div class="input-group">
+                              <select class="info-area source-select" name=""></select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row manufactury-type modal-row">
+                    <div class="modal-row__controls">
+                      <p>Тип производства</p>
+                    </div>
+                    <div class="modal-row__layer empty-layer"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal micromodal-slide" id="modal-2" aria-hidden="true">
+          <div class="modal__overlay" tabindex="-1" data-custom-close="modal-2">
+            <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+              <header class="modal__header">
+                <h2 class="modal__title" id="modal-1-title">Micromodal-2</h2>
+                <button class="modal__close" aria-label="Close modal" data-custom-close="modal-2"></button>
+              </header>
+              <main class="modal__content" id="modal-1-content">
+                <p>Try hitting the <code>tab</code>	key and notice how the focus stays within the modal itself. Also, <code>esc</code>	to close modal.</p>
+              </main>
+              <footer class="modal__footer">
+                <button class="modal__btn modal__btn-primary">Continue</button>
+                <button class="modal__btn" data-custom-close="modal-2" aria-label="Close this dialog window">Close</button>
+              </footer>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <script src="js/libs.min.js?v=1595204148317" defer></script>
-    <script src="js/script.min.js?v=1595204148317" async></script>
+    <script src="js/libs.min.js?v=1595806940381" defer></script>
+    <script src="js/script.min.js?v=1595806940381" async></script>
   </body>
 </html>

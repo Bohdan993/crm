@@ -2,6 +2,8 @@
 	height: 100%;
 	position: fixed;
 	width: 200px;
+	user-select: none;
+
 
 	.tippy-box {
 		background: @main-color;
@@ -11,33 +13,26 @@
 		color: @main-color;
 	}
 
+	
+
 	.f-container {
 		height: 100%;
 		align-content: flex-start;
+		flex-direction: column;
+		flex-wrap: nowrap;
 	}
 }
 
 
 .sidebar__wrapper {
-	// overflow-y: auto;
-	// overflow-x: visible;
-	height: calc(100% - 4.6% - 28.5% - 14.8% - 45.4%);
 	width: 200px;
-
-
-
-	// .os-resize-observer-host {
-	// 	overflow-x: visible;
-	// }
-
-	// .os-padding {
-	// 	overflow-x: visible;
-	// }
-
-	// .os-viewport {
-	// 	overflow-x: visible!important;
-	// }
 }
+
+.sidebar__li {
+	line-height: 17/14;
+	letter-spacing: 0.01px;
+}
+
 .sidebar__avatar {
 	width: 100%;
 	background: @secondary;
@@ -46,9 +41,10 @@
 	justify-content: flex-start;
 	align-items: center;
 	padding: 7px;
+	padding-left: 14px;
 	
 	height: 46/1000 * 100vh;
-	// min-height: 46px;
+	min-height: 46px;
 }
 
 .sidebar__ava {
@@ -70,6 +66,9 @@
 	width: 100%;
 	background: @main-color;
 	color: @white;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
 }
 
 
@@ -88,7 +87,7 @@
 .sidebar__list-item {
 	cursor: default;
 	
-	padding: 9px 0;
+	padding: 8px 0;
 	padding-right: 6px;
 	padding-left: 14px;
 	display: flex;
@@ -112,11 +111,13 @@
 
 			&:hover {
 			background: @secondary - 10;
+			color: @white;
 		}
 	}
 
 	&:hover {
-		background: @main-color - 10;
+		background: @hover_main-color;
+		color: @hover_color;
 	}
 }
 
@@ -160,10 +161,13 @@
 	border: 2px solid transparent;
 	text-align: left;
 	color: @main-color;
+	position: relative;
 	transition: border 0.25s linear;
 	&:focus {
 	border: 2px solid @secondary;
 	}
+
+
 }
 
 .sidebar__filters {
@@ -172,15 +176,28 @@
 	padding-bottom: 11px;
 	height: 285/1000 * 100vh;
 	min-height: 285px;
+
 }
 
 
-.sidebar__filter-wrapper, .sidebar__stat-item {
-	padding: 9px 9px 9px 14px;
+.sidebar__filter-wrapper, .sidebar__stats-wrapper{
+	padding: 7px 7px 7px 14px;
 	cursor: default;
 }
 
-.sidebar__filter-wrapper, .sidebar__stats-top .sidebar__stat-item {
+// .sidebar__stats-wrapper {
+// 	position: relative;
+// 	border-top-right-radius: 25px;
+// 	border-bottom-right-radius: 25px;
+// 	display: flex;
+// 	justify-content: space-between;
+// 	align-items: center;
+// 	color: @white;
+// 	white-space: nowrap;
+// 	width: 100%;
+// }
+
+.sidebar__filter-wrapper, .sidebar__stats-wrapper {
 	position: relative;
 	width: 186/200 * 100%;
 	border-top-right-radius: 25px;
@@ -189,9 +206,11 @@
 	justify-content: space-between;
 	align-items: center;
 	color: @white;
+	white-space: nowrap;
 
 	&:hover {
-		background: @main-color - 10;
+		background: @hover_main-color;
+		color: @hover_color;
 		span {
 			&:before, &:after {
 				display: block;
@@ -210,20 +229,53 @@
 	max-width: 172px;
 	width: 100%;
 	margin: 0 auto;
+	margin-bottom: 11px;
 	i {
 		cursor: pointer;
 		position: absolute;
 		width: 15px;
 		height: 15px;
+		// display: none;	
 		right: 5px;
 		top: 50%;
 		transform: translateY(-50%);
+		&.hidden {
+			display: none;
+		}
 		svg {
 			width: 15px;
 			height: 15px;
 			fill:@main-color;
 		}
 	}
+
+	.remove-icon {
+		position: absolute;	
+		width: 	16px;
+		display: block;	
+		height: 	16px;
+			&:before, &:after {
+				content: '';
+				position: absolute;	
+				width: 	100%;
+				height: 	2px;
+				background: @main-color;
+				// right: 	5px;
+				transform: translateY(-50%);
+				top: 50%;
+				z-index: 1;
+			}
+
+			&:after {
+				transform: translateY(-50%) rotate(135deg);
+			}
+
+			&:before {
+				transform: translateY(-50%) rotate(45deg);
+			}
+	}
+
+
 }
 
 .sidebar__stats {
@@ -232,6 +284,8 @@
 	// min-height: 454px;
 	display: flex;
 	flex-wrap: wrap;
+	flex-shrink: 2;
+	padding: (15px - 7px) 0;
 }
 
 .sidebar__stats-bottom {
@@ -244,10 +298,14 @@
 		// width: 186/200 * 100%;
 	border-top-right-radius: 25px;
 	border-bottom-right-radius: 25px;
-		&:hover {
-			background: @main-color - 10;
-		}
+		// &:hover {
+		// 	background: @main-color - 10;
+		// }
 	}
+}
+
+.sidebar__stat {
+	width: 100%;
 }
 
 .sidebar__stats-top {
@@ -262,7 +320,7 @@
 	font-size: 12px;
 	line-height: 14/12;
 	padding: 15px 14px;
-	padding-bottom:80px;
+	// padding-bottom:80px;
 
 	p:not(:last-child) {
 		margin-bottom: 6px;
@@ -274,7 +332,7 @@
 	position: relative;
 	width: 9.5px;
 	height: 9.5px;
-	display: block;
+	display: none;
 	&:before, &:after {
 		content: '';
 		position: absolute;

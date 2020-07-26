@@ -25,7 +25,7 @@ body {
   padding: 0;
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
-  font-weight: 400;
+  font-weight: normal;
   color: @font-color;
   // letter-spacing: 1.15px;
   letter-spacing: 0.01rem;
@@ -83,14 +83,25 @@ a {
   display: block;
   color: @font-color;
   cursor: pointer;
+  font-weight: normal;
 }
 
-input {
+input, select {
   width: 100%;
   outline: none;
   border: none;
   text-align: center;
 }
+
+
+label {
+  margin-bottom: 0;
+  font-size: 12px;
+  font-weight:400;
+}
+
+
+
 
 
 
@@ -100,7 +111,7 @@ input[type="checkbox"], input[type="radio"]{
     display: none;
 }
 
-input[type="checkbox"] + label {
+input[type="checkbox"] + label, input[type="radio"] + label {
   display: flex;
   padding: 5px;
   white-space: nowrap;
@@ -125,8 +136,8 @@ input[type="checkbox"] + label:before{
 }
 input[type="radio"] + label:before{
     content: "\2714";
-    color: @white;
-    background-color: @white;
+    color: @secondary;
+    background-color: @secondary;
     display: inline-block;
     border: none;
     border-radius: 6px;
@@ -241,21 +252,26 @@ main.main {
 
 
 .tag {
-  background: @dark-blue;
+  background: @secondary;
   font-size:12px;
   line-height: 14/12;
   color: @white;
-  font-weight: 700;
-  border-radius: 10px;
+  font-weight: 500;
+  border-radius: 14px;
   padding: 3px 5px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-style: normal;
+  border: 1px solid @white;
 }
 
-.manager-tag {
+.dark-blue-tag{
   background: @dark-blue;
+}
+
+.light-green-tag {
+  background: @light-green;
 }
 
 
@@ -271,8 +287,9 @@ i.label {
   vertical-align: middle;
   color: @white;
   font-style: normal;
+  font-weight: 500;
   background: @main-color;
-  padding: 0px 7px;
+  padding: 3px 7px;
   border-radius: 20px;
   display: flex;
   align-items: center;
@@ -283,6 +300,7 @@ i.label {
   }
   span {
     line-height: 16/14;
+    margin-right: 5px;
   }
 }
 
@@ -309,6 +327,132 @@ i.label {
     color: @main-color;
   }
 
+.radio-group-type-1 {
+  margin-bottom: 11px;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+    input {
+      &:first-of-type {
+        & + label {
+          border-top-left-radius: 25px;
+          border-bottom-left-radius: 25px;
+        }
+      }
+      &:last-of-type {
+        & + label {
+          border-top-right-radius: 25px;
+          border-bottom-right-radius: 25px;
+        }
+      }
+      & + label {
+      cursor: pointer;
+      color: @main-color;
+      background: @secondary;
+      width: 80px;
+      text-align: center;
+      padding: 2px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &:before {
+        content: none;
+      }
+    }
+
+      &:checked + label {
+        color: @white;
+        background: @blue;
+      }
+  }
+}
+
+
+
+.radio-group-type-2 {
+  // margin-bottom: 11px;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+    .group {
+      width: 100%;
+      // margin: 0 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &:not(:last-child) {
+        margin-bottom: 15px;
+      }
+      
+    }
+    input {
+    
+      & + label {
+      cursor: pointer;
+      color: @main-color;
+      background: @secondary;
+      width: 69px;
+      display: block;
+      text-align: center;
+      padding: 2px 0;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &:not(:last-child) {
+        margin-right: 10px;
+      }
+
+      &:before {
+        content: none;
+      }
+    }
+
+      &:checked + label {
+        color: @white;
+        background: @green;
+      }
+  }
+
+  &.yellow {
+    input {
+      &:checked + label {
+        color: @main-color;
+        background: @yellow;
+      }
+    }
+  }
+}
+
+
+.flex-form {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+
+.info-area {
+  border-radius: 3px;
+  background: @white;
+  width: 100%;
+  border: 2px solid transparent;
+  transition: border 0.2s linear;
+  outline: none;
+  text-align: left;
+  padding: 3px 6px;
+
+  &:focus {
+    border: 2px solid @main-color;
+  }
+}
+
 
 //|||||||||||||||||||COMMON ELEMENTS END|||||||||||||||||||//
 
@@ -320,4 +464,5 @@ i.label {
 @import url("app/less/_row.less");
 
 @import url("app/less/_popup.less");
+@import url("app/less/_modal.less");
 @import url("app/less/sprite.less");

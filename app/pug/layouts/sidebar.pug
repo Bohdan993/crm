@@ -7,25 +7,25 @@
 				|Василий
 		.sidebar__lists
 			ul.sidebar__list
-				li.sidebar__list-item
+				li.sidebar__list-item.sidebar__li
 					p
 						|Вакансии
 					span.sidebar__list-add
 						span
 						span
-				li.sidebar__list-item
+				li.sidebar__list-item.sidebar__li
 					p
 						|Клиенты
 					span.sidebar__list-add
 						span
 						span
-				li.sidebar__list-item.active
+				li.sidebar__list-item.active.sidebar__li
 					p 
 						|Работодатели
 					span.sidebar__list-add
 						span
 						span
-				li.sidebar__list-item
+				li.sidebar__list-item.sidebar__li
 					p
 						|Статистика
 					span.sidebar__list-add
@@ -33,42 +33,44 @@
 						span
 		.sidebar__filters
 			.sidebar__input-wrapper
-				input.sidebar__search-input
-				i
+				
+				input.sidebar__search-input(type="text")
+				i.search-icon
 					svg
 						use(xlink:href='img/sprites/svg/symbol/sprite.svg#search')
+				i.remove-icon.hidden
 			ul.sidebar__filter
-				li.sidebar__filter-item
+				li.sidebar__filter-item.sidebar__li
 					.sidebar__filter-wrapper.country-filter-wrapper
 						p
 							|Страны
 						span.sidebar__filter-remove
-				li.sidebar__filter-item
+				li.sidebar__filter-item.sidebar__li
 					.sidebar__filter-wrapper.type-manufactury-filter-wrapper
 						p
 							|Типы производства
 						span.sidebar__filter-remove
-				li.sidebar__filter-item
+				li.sidebar__filter-item.sidebar__li
 					.sidebar__filter-wrapper.contact-filter-wrapper
 						p
 							|Контактные данные
 						span.sidebar__filter-remove
-				li.sidebar__filter-item
-					.sidebar__filter-wrapper
+				li.sidebar__filter-item.sidebar__li
+					.sidebar__filter-wrapper.managers-filter-wrapper
 						p
 							|Менеджеры
 						span.sidebar__filter-remove
-				li.sidebar__filter-item
-					.sidebar__filter-wrapper
+				li.sidebar__filter-item.sidebar__li
+					.sidebar__filter-wrapper.intermediaries-filter-wrapper
 						p
-							|Постредники
+							|Посредники
 						span.sidebar__filter-remove
-				li.sidebar__filter-item
-					.sidebar__filter-wrapper
+				li.sidebar__filter-item.sidebar__li
+					.sidebar__filter-wrapper.vacancies-filter-wrapper
 						p
 							|Вакансии
 						span.sidebar__filter-remove
-				li.sidebar__filter-item
+				li.sidebar__filter-item.sidebar__li
 					.sidebar__filter-wrapper.last-contact-filter-wrapper
 						p
 							|Последний контакт
@@ -76,23 +78,26 @@
 		.sidebar__stats
 			.sidebar__stats-top
 				ul.sidebar__stat
-					li.sidebar__stat-item
-						p
-							|Сотрировка
-						span.sidebar__filter-remove
+					li.sidebar__stat-item.sidebar__li
+						.sidebar__stats-wrapper.sorting-stats-wrapper
+							p
+								|Сотрировка
+							span.sidebar__filter-remove
 			.sidebar__stats-bottom
 				ul.sidebar__stat
-					li.sidebar__stat-item
-						p
-							|Сгенерировать в Excel
-					li.sidebar__stat-item
-						p
-							|Распечатать отчет
+					li.sidebar__stat-item.sidebar__li
+						.sidebar__stats-wrapper
+							p
+								|Сгенерировать в Excel
+					li.sidebar__stat-item.sidebar__li
+						.sidebar__stats-wrapper
+							p
+								|Распечатать отчет
 		.sidebar__wrapper
 			.sidebar__info
 				p.sidebar__choosed
-					| Отобрано:
+					| Отобрано: 
 					span 56
 				p.sidebar__full-number
-					| Общее количество:
+					| Общее количество: 
 					span 42846
