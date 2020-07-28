@@ -2,6 +2,32 @@
 	.modal-row__controls
 		p
 			|Тип производства
-	.modal-row__layer.empty-layer
-		//- select.info-area(name="")
+		.add-item
+			span
+				|+ 
+			|добавить тип производства
+	.modal-row__layer
+		//.empty-layer
+		.modal-row__manufactury-type-row
+			.input-group.modal-row__manufactury-type-select
+				select.info-area(name="")
+					option(value="" disabled selected)
+						|Выбрать
+					option(value="")
+						|Коровы
+					option(value="")
+						|Цветы
+			.input-group
+				input.info-area(type="text" name="")
+		.modal-row__manufactury-type-row
+			.input-group.modal-row__manufactury-type-select
+				select.info-area(name="")
+					option(value="" disabled selected)
+						|Выбрать
+					option(value="")
+						|Коровы
+					option(value="")
+						|Цветы
+			.input-group
+				input.info-area(type="text" name="")
 		//- select.info-area(name="")

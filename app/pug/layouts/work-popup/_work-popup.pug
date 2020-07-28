@@ -69,7 +69,7 @@
 								p
 									|Предприятие
 								.input-group
-									textarea.info-area(name="" rows="3")
+									textarea.info-area.common-info__manufactury-area(name="" rows="3")
 										|BoGrønt Solblomsten Gartneri og Hagesenter / Solblomsten A
 							.common-info__country.info-block
 								p
@@ -89,7 +89,7 @@
 									p
 										|Контактное лицо
 									.input-group
-										input.info-area(type="text" value="Gunnlaug Eide")
+										input.info-area.common-info__contact-person-area(type="text" value="Gunnlaug Eide")
 								.common-info__contact-person_other.common-info__group_big.info-block
 									p
 										|Другие контактые лица
@@ -139,6 +139,8 @@
 										.input-group
 											select.info-area.source-select(name="")
 					include _manufactury-type
+					include _contacts-history
+					include _vacancies-history
 #modal-2.modal.micromodal-slide(aria-hidden='true')
 	.modal__overlay(tabindex='-1' data-custom-close="modal-2")
 		.modal__container(role='dialog' aria-modal='true' aria-labelledby='modal-1-title')

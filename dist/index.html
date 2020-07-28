@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap&amp;subset=cyrillic" rel="stylesheet">
-    <link rel="stylesheet" href="css/libs.min.css?v=1595806940381">
-    <link rel="stylesheet" href="css/main.min.css?v=1595806940381">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/libs.min.css?v=1595980235660">
+    <link rel="stylesheet" href="css/main.min.css?v=1595980235660">
   </head>
   <body>
     <main class="main">
@@ -1367,7 +1367,7 @@
                       <div class="common-info__company info-block">
                         <p>Предприятие</p>
                         <div class="input-group">
-                          <textarea class="info-area" name="" rows="3">BoGrønt Solblomsten Gartneri og Hagesenter / Solblomsten A</textarea>
+                          <textarea class="info-area common-info__manufactury-area" name="" rows="3">BoGrønt Solblomsten Gartneri og Hagesenter / Solblomsten A</textarea>
                         </div>
                       </div>
                       <div class="common-info__country info-block">
@@ -1389,7 +1389,7 @@
                         <div class="common-info__contact-person_curr common-info__group_small info-block">
                           <p>Контактное лицо</p>
                           <div class="input-group">
-                            <input class="info-area" type="text" value="Gunnlaug Eide">
+                            <input class="info-area common-info__contact-person-area" type="text" value="Gunnlaug Eide">
                           </div>
                         </div>
                         <div class="common-info__contact-person_other common-info__group_big info-block">
@@ -1460,8 +1460,140 @@
                   <div class="row manufactury-type modal-row">
                     <div class="modal-row__controls">
                       <p>Тип производства</p>
+                      <div class="add-item"><span>+ </span>добавить тип производства</div>
                     </div>
-                    <div class="modal-row__layer empty-layer"></div>
+                    <div class="modal-row__layer">
+                      <!--.empty-layer-->
+                      <div class="modal-row__manufactury-type-row">
+                        <div class="input-group modal-row__manufactury-type-select">
+                          <select class="info-area" name="">
+                            <option value="" disabled selected>Выбрать</option>
+                            <option value="">Коровы</option>
+                            <option value="">Цветы</option>
+                          </select>
+                        </div>
+                        <div class="input-group">
+                          <input class="info-area" type="text" name="">
+                        </div>
+                      </div>
+                      <div class="modal-row__manufactury-type-row">
+                        <div class="input-group modal-row__manufactury-type-select">
+                          <select class="info-area" name="">
+                            <option value="" disabled selected>Выбрать</option>
+                            <option value="">Коровы</option>
+                            <option value="">Цветы</option>
+                          </select>
+                        </div>
+                        <div class="input-group">
+                          <input class="info-area" type="text" name="">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row contacts-history modal-row">
+                    <div class="modal-row__controls">
+                      <p>История контактов</p>
+                      <div class="add-item"><span>+ </span>добавить контакт</div>
+                    </div>
+                    <div class="modal-row__layer">
+                      <div class="modal-row__contacts-history-row">
+                        <div class="modal-row__contacts-history-manager"><i class="tag manager-tag dark-blue-tag">AK</i></div>
+                        <div class="modal-row__contacts-history-date">
+                          <time>20.06.2019</time>
+                        </div>
+                        <div class="modal-row__contacts-history-text"><i class="ico letter-ico">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#letter"></use>
+                            </svg></i>
+                          <p>Прислал полный пакет документов :)</p>
+                        </div>
+                      </div>
+                      <div class="modal-row__contacts-history-row">
+                        <div class="modal-row__contacts-history-manager"><i class="tag manager-tag dark-blue-tag">AK</i></div>
+                        <div class="modal-row__contacts-history-date">
+                          <time>18.06.2019</time>
+                        </div>
+                        <div class="modal-row__contacts-history-text"><i class="ico phone-ico">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#phone"></use>
+                            </svg></i>
+                          <p>Багатырчуки и парень Ани должны приехать 15-16 октября. Аня - вовремя, а вторая группа тоже вовремя. Соседу</p>
+                        </div>
+                      </div>
+                      <div class="modal-row__contacts-history-row">
+                        <div class="modal-row__contacts-history-manager"><i class="tag manager-tag light-green-tag">СК</i></div>
+                        <div class="modal-row__contacts-history-date">
+                          <time>03.03.2019</time>
+                        </div>
+                        <div class="modal-row__contacts-history-text"><i class="ico message-ico">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#message"></use>
+                            </svg></i>
+                          <p>Проверь почту</p>
+                        </div>
+                      </div>
+                      <div class="modal-row__contacts-history-row">
+                        <div class="modal-row__contacts-history-manager"><i class="tag manager-tag light-green-tag">СК</i></div>
+                        <div class="modal-row__contacts-history-date">
+                          <time>29.02.2019</time>
+                        </div>
+                        <div class="modal-row__contacts-history-text"><i class="ico mail-ico">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#mail"></use>
+                            </svg></i>
+                          <p>Hello! Sorry about the delay of answering you. Becaus eof the corona-situation I have been bussy organizing other things for</p>
+                        </div>
+                      </div>
+                      <div class="modal-row__contacts-history-row">
+                        <div class="modal-row__contacts-history-manager"><i class="tag manager-tag light-green-tag">СК</i></div>
+                        <div class="modal-row__contacts-history-date">
+                          <time>16.02.2019</time>
+                        </div>
+                        <div class="modal-row__contacts-history-text"><i class="ico fax-ico">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#fax"></use>
+                            </svg></i>
+                          <p>Hei I spoke with Tania and Viktor and they should contact you. Exept them we will need 12 practicants.Total 14 aplications</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row vacancies-history modal-row">
+                    <div class="modal-row__controls">
+                      <p>История вакансий</p>
+                    </div>
+                    <div class="modal-row__layer">
+                      <div class="modal-row__vacancies-history-row">
+                        <div class="modal-row__vacancies-history-labels"></div>
+                        <div class="modal-row__vacancies-history-date">
+                          <time>16.02.2019</time>
+                        </div>
+                        <div class="modal-row__vacancies-history-terms">
+                          <time>16.02.2019</time>
+                        </div>
+                        <div class="modal-row__vacancies-history-type"></div>
+                      </div>
+                      <div class="modal-row__vacancies-history-row">
+                        <div class="modal-row__vacancies-history-labels"></div>
+                        <div class="modal-row__vacancies-history-date">
+                          <time>16.02.2019</time>
+                        </div>
+                        <div class="modal-row__vacancies-history-terms">
+                          <time>16.02.2019</time>
+                        </div>
+                        <div class="modal-row__vacancies-history-type"></div>
+                      </div>
+                      <div class="modal-row__vacancies-history-row">
+                        <div class="modal-row__vacancies-history-labels"></div>
+                        <div class="modal-row__vacancies-history-date">
+                          <time>16.02.2019</time>
+                        </div>
+                        <div class="modal-row__vacancies-history-terms">
+                          <time>16.02.2019</time>
+                        </div>
+                        <div class="modal-row__vacancies-history-type"></div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1487,7 +1619,7 @@
         </div>
       </div>
     </div>
-    <script src="js/libs.min.js?v=1595806940381" defer></script>
-    <script src="js/script.min.js?v=1595806940381" async></script>
+    <script src="js/libs.min.js?v=1595980235660" defer></script>
+    <script src="js/script.min.js?v=1595980235660" async></script>
   </body>
 </html>

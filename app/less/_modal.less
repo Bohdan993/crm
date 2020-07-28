@@ -2,9 +2,7 @@
   Basic Work Modal Styles
 \**************************/
 
-.modal {
-  font-family: -apple-system,BlinkMacSystemFont,avenir next,avenir,helvetica neue,helvetica,ubuntu,roboto,noto,segoe ui,arial,sans-serif;
-}
+
 
 .modal__overlay {
   position: fixed;
@@ -175,6 +173,7 @@
   justify-content: space-between;
   flex-wrap: nowrap;
   align-items: stretch;
+  border-radius: 0;
   // overflow-x: auto;
   .sidebar {
     min-width: 250px;
@@ -327,10 +326,14 @@
       background: transparent;
 
     }
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
   }
 
   .info-area {
     resize: none;
+    // font-weight: 500;
   }
   
   .input-group {
@@ -398,6 +401,108 @@
     border-top: 1px solid @main-color;
   }
 
+  .common-info__manufactury-area, .common-info__contact-person-area {
+    font-weight: 500;
+  }
+
+  .modal-row__manufactury-type-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+
+    .info-area {
+      height: 26px;
+    }
+
+    .input-group {
+      flex-basis: 823/998 * 100%;
+    }
+
+    .modal-row__manufactury-type-select {
+      flex-basis: 147/998 * 100%;
+      &:not(:last-child) {
+        margin-bottom: 0;
+      }
+    }
+  }
+ .modal-row__controls {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 4px;
+  color: @main-color;
+  font-size: 12/14 * 1rem;
+
+  .add-item {
+     color: @main-color;
+     font-size: 12/14 * 1rem;
+     cursor: pointer;
+  }
+ }
+
+ .modal-row__contacts-history-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: @white;
+    border-radius: 3px;
+    padding: 0px 8px;
+    height: 26px;
+    border-bottom: 1px solid @secondary;
+ }
+
+
+
+ .modal-row__contacts-history-manager {
+    flex-basis: 67/982 * 100%;
+    border-right: 1px solid @secondary;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+ }
+
+
+
+ .modal-row__contacts-history-date {
+  font-size: 12/14 * 1rem;
+  color: @main-color;
+  flex-basis: 81/982 * 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid @secondary;
+  height: 100%;
+ }
+
+ .modal-row__contacts-history-text {
+    flex-basis: 842/982 * 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 11px;
+
+    .ico {
+      margin-right: 12px;
+    }
+ }
+
+  .modal-row__vacancies-history-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: @white;
+    border-radius: 3px;
+    padding: 0px 8px;
+    height: 34px;
+    border-bottom: 1px solid @secondary;
+ }
+
 }
 
 
@@ -459,8 +564,20 @@
 }
 
 .sidebar-select-modal__list {
+  // height: 26px;
+  // display: flex;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  // align-items: center;
+  // height: 100%;
   .tag {
     margin-right: 10px;
+  }
+
+  .choices__item {
+     // height: 26px;
+    display: flex;
+    align-items: center;
   }
 }
 
