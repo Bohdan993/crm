@@ -17,11 +17,14 @@ import {
 
 	sidebarListItems,
 	rows,
+	sidebarLayout,
 	workModalRows,
 	workModalSidebar,
 	workModalManagerSelect,
 	sidebarSearchInput as searchInput,
-	workModalCountrySelect
+	workModalCountrySelect,
+	workModalContactsHistory,
+	workModalVacanciesHistory
 } from '../view'
 
 const app = {
@@ -39,19 +42,22 @@ const app = {
 	},
 
 	initOSB(){
+		initOverlayScrollbars(sidebarLayout)
 		initOverlayScrollbars(workModalRows)
 		initOverlayScrollbars(workModalSidebar)
-		// initOverlayScrollbars(workModalSidebar)
+		initOverlayScrollbars(workModalContactsHistory)
+		initOverlayScrollbars(workModalVacanciesHistory)
+		
 		// console.log(OverlayScrollbars)
-		OverlayScrollbars([document.querySelector('.sidebar__layout')], {
-            paddingAbsolute: true,
-            scrollbars: {
-                autoHide: 'move',
-                clickScrolling: true,
-            },
-            callbacks: {
-            }
-        });
+		// OverlayScrollbars([document.querySelector('.sidebar__layout')], {
+  //           paddingAbsolute: true,
+  //           scrollbars: {
+  //               autoHide: 'move',
+  //               clickScrolling: true,
+  //           },
+  //           callbacks: {
+  //           }
+  //       });
 	},
 	// slt(){
 	// 	sidebarListsToggle(sidebarListItems)

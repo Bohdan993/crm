@@ -3,6 +3,7 @@ const body = document.querySelector('body');
 const sidebarListItems = document.querySelectorAll('.sidebar__list-item');
 const rows = document.querySelectorAll('.row');
 const sidebarSearchInput = document.querySelector('.sidebar__search-input');
+const sidebarLayout = document.querySelector('.sidebar__layout');
 
 ////Tooltips Templates
 const countryTemplate = document.querySelector('#country-popup');
@@ -22,6 +23,9 @@ const workModalRows = document.querySelector('.work-modal .rows')
 const workModalSidebar = document.querySelector('.work-modal .sidebar__layout')
 const workModalManagerSelect = document.querySelector('.work-modal .manager-select')
 const workModalCountrySelect = document.querySelector('.work-modal .country-select')
+const workModalContactsHistory = document.querySelector('.work-modal .contacts-history .modal-row__layer');
+const workModalVacanciesHistory = document.querySelector('.work-modal .vacancies-history .modal-row__layer');
+
 
 
 
@@ -45,5 +49,8 @@ export {
 	body,
 	workModalManagerSelect,
 	sidebarSearchInput,
-	workModalCountrySelect
+	workModalCountrySelect,
+	workModalContactsHistory,
+	sidebarLayout,
+	workModalVacanciesHistory
 }
