@@ -25,6 +25,9 @@ const workModalManagerSelect = document.querySelector('.work-modal .manager-sele
 const workModalCountrySelect = document.querySelector('.work-modal .country-select')
 const workModalContactsHistory = document.querySelector('.work-modal .contacts-history .modal-row__layer');
 const workModalVacanciesHistory = document.querySelector('.work-modal .vacancies-history .modal-row__layer');
+const modalRowMediaWrapper = document.querySelector('.work-modal .modal-row__media-wrapper');
+const modalRowMedia = document.querySelectorAll('.work-modal .modal-row__media');
+
 
 
 
@@ -52,5 +55,7 @@ export {
 	workModalCountrySelect,
 	workModalContactsHistory,
 	sidebarLayout,
-	workModalVacanciesHistory
+	workModalVacanciesHistory,
+	modalRowMediaWrapper,
+	modalRowMedia
 }

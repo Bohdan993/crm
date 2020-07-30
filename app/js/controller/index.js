@@ -8,7 +8,9 @@ import {
 	initWorkPopup,
 	test,
 	initWorkModalSelect,
-	sidebarSearchInput
+	sidebarSearchInput,
+	checkIfWrapperIsEmpty,
+	checkMediaWidth
 
 } from '../model'
 
@@ -24,7 +26,9 @@ import {
 	sidebarSearchInput as searchInput,
 	workModalCountrySelect,
 	workModalContactsHistory,
-	workModalVacanciesHistory
+	workModalVacanciesHistory,
+	modalRowMediaWrapper,
+	modalRowMedia
 } from '../view'
 
 const app = {

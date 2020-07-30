@@ -99,9 +99,13 @@
 								.common-info__contact-info_curr.common-info__group_small.info-block
 									p
 										|Контактная информация
-									.input-group
+									.input-group.info-group-ico
+										i.ico
+											+svg2('phone')
 										input.info-area(type="text" value="+47 77847243")
-									.input-group
+									.input-group.info-group-ico
+										i.ico
+											+svg2('mail')
 										input.info-area(type="text" value="solblomsten@bogront.no")
 								.common-info__contact-info_other.common-info__group_big.info-block
 									p
@@ -113,11 +117,17 @@
 							.common-info__social.info-block
 								p
 									|Сайт и социальные сети
-								.input-group
+								.input-group.info-group-ico 
+									i.ico
+										+svg2('web')
 									input.info-area(type="text" value="www.bogront.no/solblomsten/indt.no/solblomsten/ind")
-								.input-group
+								.input-group.info-group-ico 
+									i.ico
+										+svg2('facebook')
 									input.info-area(type="text" value="www.bogront.no/solblomsten/")
-								.input-group
+								.input-group.info-group-ico 
+									i.ico
+										+svg2('instagram')
 									input.info-area(type="text" value="www.bogront.no/solblo")
 							.common-info__more-info.common-info__group
 								.common-info__more-info_inner-left
@@ -125,22 +135,23 @@
 										p
 											|Дополнительная информация
 										.input-group
-											textarea.info-area(type="text" rows="5")
+											textarea.info-area(type="text" rows="6")
 												|BoGrønt Solblomsten Gartneri og Hagesenter / Solblomsten AS
 								.common-info__more-info_inner-right
 									.common-info__more-info-mediator.info-block
 										p
 											|Посредник
-										.input-group
+										.input-group.native-select
 											select.info-area.mediator-select(name="")
 									.common-info__more-info-source.info-block
 										p
 											|Источник
-										.input-group
+										.input-group.native-select
 											select.info-area.source-select(name="")
 					include _manufactury-type
 					include _contacts-history
 					include _vacancies-history
+					include _media
 #modal-2.modal.micromodal-slide(aria-hidden='true')
 	.modal__overlay(tabindex='-1' data-custom-close="modal-2")
 		.modal__container(role='dialog' aria-modal='true' aria-labelledby='modal-1-title')

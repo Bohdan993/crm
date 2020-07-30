@@ -300,7 +300,8 @@ i.label {
   font-style: normal;
   font-weight: 500;
   background: @main-color;
-  padding: 3px 7px;
+  padding: 4px 7px;
+  padding-bottom: 2px;
   border-radius: 20px;
   display: flex;
   align-items: center;
@@ -311,7 +312,10 @@ i.label {
   }
   span {
     line-height: 16/14;
-    margin-right: 5px;
+    &:not(:last-child) {
+       margin-right: 5px;
+    }
+   
   }
 }
 
@@ -322,6 +326,14 @@ i.label {
 
 .label.success__label {
   background: @teal;
+}
+
+.label.success-2__label {
+  background: @grass-green;
+}
+
+.label.primary__label {
+  background: @blue;
 }
 
 
@@ -463,6 +475,32 @@ i.label {
     border: 2px solid @main-color;
   }
 }
+
+
+ .native-select {
+  position: relative;
+  // display: inline-block;
+    select {
+    padding-right: 25px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+}
+ .native-select:after {
+    content: '';
+    height: 0;
+    width: 0;
+    border-style: solid;
+    border-color: @main-color transparent transparent;
+    border-width: 5px;
+    position: absolute;
+    right: 11.5px;
+    top: 50%;
+    margin-top: -2.5px;
+    pointer-events: none;
+}
+
 
 
 //|||||||||||||||||||COMMON ELEMENTS END|||||||||||||||||||//

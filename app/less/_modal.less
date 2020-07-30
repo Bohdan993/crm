@@ -315,6 +315,8 @@
     background: @secondary;
   }
 
+
+
   .modal-row {
     display: flex;
     justify-content: space-between;
@@ -328,6 +330,15 @@
     }
     &:not(:last-child) {
       margin-bottom: 20px;
+    }
+  }
+
+  .modal-row__cell {
+    overflow: hidden;
+    p {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
     }
   }
 
@@ -359,6 +370,10 @@
     flex-basis: 730/1040 * 100%;
   }
 
+  .common-info__company, .common-info__country {
+    margin-bottom: 20px;
+  }
+
   .common-info__group {
     display: flex;
     justify-content: space-between;
@@ -386,6 +401,19 @@
 
   .common-info__more-info_inner-right {
     flex-basis: 318/730 * 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-end;
+  }
+
+  .common-info__more-info-mediator {
+    margin-bottom: 12px;
+    width: 100%;
+  }
+
+  .common-info__more-info-source {
+    width: 100%;
+    margin-bottom: 3px;
   }
 
   .modal-row__layer {
@@ -478,6 +506,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    min-width: 67px;
  }
 
 
@@ -491,6 +520,43 @@
   align-items: center;
   border-right: 1px solid @secondary;
   height: 100%;
+  min-width: 81px;
+ }
+
+ .modal-row__vacancies-history-labels {
+  display: flex;
+  flex-basis: 191/982 * 100%;
+  justify-content: flex-start;
+  align-items: center;
+  border-right: 1px solid @secondary;
+  height: 100%;
+ }
+
+ .modal-row__vacancies-history-date, .modal-row__vacancies-history-terms {
+  font-size: 12/14 * 1rem;
+  color: @main-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid @secondary;
+  height: 100%;
+ }
+
+ .modal-row__vacancies-history-date {
+    flex-basis: 196/982 * 100%;
+ }
+
+ .modal-row__vacancies-history-terms {
+    flex-basis: 92/982 * 100%;
+ }
+
+ .modal-row__vacancies-history-type {
+  display: flex;
+  flex-basis: 603/982 * 100%;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+  padding-left: 8px;
  }
 
  .modal-row__contacts-history-text {
@@ -517,6 +583,42 @@
     border-bottom: 1px solid @secondary;
  }
 
+ .info-group-ico {
+  position: relative;
+  .ico {
+    position: absolute;
+    top: 50%;
+    left: 8px;
+    transform: translateY(-50%);
+  }
+  .info-area {
+    padding-left: 35px;
+  }
+ }
+
+
+ .modal-row__media-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+ }
+
+ .modal-row__media {
+  margin-bottom: 5px;
+  &:not(:last-child) {
+    margin-right: 20px;
+  }
+
+  img {
+    height: 100px;
+    width: auto;
+    object-fit: cover;
+    object-position: center;
+    max-width: 100%;
+  }
+ }
+
 }
 
 
@@ -524,9 +626,9 @@
 
 
 //////////////////////////////
-.sidebar-select-modal {
+.sidebar-select-modal, .common-info-select-modal {
   &[data-type*=select-one] {
-    .sidebar-select-modal_inner {
+    .sidebar-select-modal_inner, .common-info-select-modal_inner {
       padding: 0;
       padding-bottom: 0;
     }
@@ -559,7 +661,7 @@
   }
 }
 
-.sidebar-select-modal_inner {
+.sidebar-select-modal_inner, .common-info-select-modal_inner {
   min-height: 26px;
   border: 0;
    
@@ -577,7 +679,7 @@
   align-items: center;
 }
 
-.sidebar-select-modal__list {
+.sidebar-select-modal__list, .common-info-select-modal__list {
   // height: 26px;
   // display: flex;
   padding-top: 5px;

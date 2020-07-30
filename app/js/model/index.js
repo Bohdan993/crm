@@ -7,6 +7,8 @@ import initWorkPopup from './initWorkPopup'
 import test from './testing'
 import initWorkModalSelect from './initWorkModalSelect'
 import sidebarSearchInput from './sidebarSearchInput'
+import checkMediaWidth from './media'
+import checkIfWrapperIsEmpty from './checkIfWrapperIsEmpty'
 
 
 
@@ -21,5 +23,7 @@ export {
 	initWorkPopup,
 	test,
 	initWorkModalSelect,
-	sidebarSearchInput
+	sidebarSearchInput,
+	checkMediaWidth,
+	checkIfWrapperIsEmpty
 }
