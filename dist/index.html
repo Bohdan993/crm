@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/libs.min.css?v=1596067777036">
-    <link rel="stylesheet" href="css/main.min.css?v=1596067777036">
+    <link rel="stylesheet" href="css/libs.min.css?v=1596153827932">
+    <link rel="stylesheet" href="css/main.min.css?v=1596153827932">
   </head>
   <body>
     <main class="main">
@@ -1538,7 +1538,6 @@
                       <div class="add-item"><span>+ </span>добавить тип производства</div>
                     </div>
                     <div class="modal-row__layer">
-                      <!--.empty-layer-->
                       <div class="modal-row__manufactury-type-row">
                         <div class="input-group modal-row__manufactury-type-select native-select"> 
                           <select class="info-area" name="">
@@ -1566,12 +1565,13 @@
                     </div>
                   </div>
                   <div class="row contacts-history modal-row">
+                    <button class="show-more">показать еще 5 контактов</button>
                     <div class="modal-row__controls">
                       <p>История контактов</p>
-                      <div class="add-item"><span>+ </span>добавить контакт</div>
+                      <div class="add-item" data-custom-open="modal-2"><span>+ </span>добавить контакт</div>
                     </div>
                     <div class="modal-row__layer">
-                      <div class="modal-row__contacts-history-row">
+                      <div class="modal-row__contacts-history-row" data-custom-open="modal-2">
                         <div class="modal-row__contacts-history-manager modal-row__cell"><i class="tag manager-tag dark-blue-tag">AK</i></div>
                         <div class="modal-row__contacts-history-date modal-row__cell">
                           <time>20.06.2019</time>
@@ -1583,7 +1583,7 @@
                           <p>Прислал полный пакет документов :)</p>
                         </div>
                       </div>
-                      <div class="modal-row__contacts-history-row">
+                      <div class="modal-row__contacts-history-row" data-custom-open="modal-2">
                         <div class="modal-row__contacts-history-manager modal-row__cell"><i class="tag manager-tag dark-blue-tag">AK</i></div>
                         <div class="modal-row__contacts-history-date modal-row__cell">
                           <time>18.06.2019</time>
@@ -1595,7 +1595,7 @@
                           <p>Багатырчуки и парень Ани должны приехать 15-16 октября. Аня - вовремя, а вторая группа тоже вовремя. Соседу</p>
                         </div>
                       </div>
-                      <div class="modal-row__contacts-history-row">
+                      <div class="modal-row__contacts-history-row" data-custom-open="modal-2">
                         <div class="modal-row__contacts-history-manager modal-row__cell"><i class="tag manager-tag light-green-tag">СК</i></div>
                         <div class="modal-row__contacts-history-date modal-row__cell">
                           <time>03.03.2019</time>
@@ -1607,7 +1607,7 @@
                           <p>Проверь почту</p>
                         </div>
                       </div>
-                      <div class="modal-row__contacts-history-row">
+                      <div class="modal-row__contacts-history-row" data-custom-open="modal-2">
                         <div class="modal-row__contacts-history-manager modal-row__cell"><i class="tag manager-tag light-green-tag">СК</i></div>
                         <div class="modal-row__contacts-history-date modal-row__cell">
                           <time>29.02.2019</time>
@@ -1619,7 +1619,7 @@
                           <p>Hello! Sorry about the delay of answering you. Becaus eof the corona-situation I have been bussy organizing other things for</p>
                         </div>
                       </div>
-                      <div class="modal-row__contacts-history-row">
+                      <div class="modal-row__contacts-history-row" data-custom-open="modal-2">
                         <div class="modal-row__contacts-history-manager modal-row__cell"><i class="tag manager-tag light-green-tag">СК</i></div>
                         <div class="modal-row__contacts-history-date modal-row__cell">
                           <time>16.02.2019</time>
@@ -1631,7 +1631,7 @@
                           <p>Hei I spoke with Tania and Viktor and they should contact you. Exept them we will need 12 practicants.Total 14 aplications</p>
                         </div>
                       </div>
-                      <div class="modal-row__contacts-history-row">
+                      <div class="modal-row__contacts-history-row hidden-row" data-custom-open="modal-2">
                         <div class="modal-row__contacts-history-manager modal-row__cell"><i class="tag manager-tag light-green-tag">СК</i></div>
                         <div class="modal-row__contacts-history-date modal-row__cell">
                           <time>16.02.2019</time>
@@ -1643,7 +1643,7 @@
                           <p>Hei I spoke with Tania and Viktor and they should contact you. Exept them we will need 12 practicants.Total 14 aplications</p>
                         </div>
                       </div>
-                      <div class="modal-row__contacts-history-row">
+                      <div class="modal-row__contacts-history-row hidden-row" data-custom-open="modal-2">
                         <div class="modal-row__contacts-history-manager modal-row__cell"><i class="tag manager-tag light-green-tag">СК</i></div>
                         <div class="modal-row__contacts-history-date modal-row__cell">
                           <time>16.02.2019</time>
@@ -1655,7 +1655,7 @@
                           <p>Hei I spoke with Tania and Viktor and they should contact you. Exept them we will need 12 practicants.Total 14 aplications</p>
                         </div>
                       </div>
-                      <div class="modal-row__contacts-history-row">
+                      <div class="modal-row__contacts-history-row hidden-row" data-custom-open="modal-2">
                         <div class="modal-row__contacts-history-manager modal-row__cell"><i class="tag manager-tag light-green-tag">СК</i></div>
                         <div class="modal-row__contacts-history-date modal-row__cell">
                           <time>16.02.2019</time>
@@ -1667,7 +1667,7 @@
                           <p>Hei I spoke with Tania and Viktor and they should contact you. Exept them we will need 12 practicants.Total 14 aplications</p>
                         </div>
                       </div>
-                      <div class="modal-row__contacts-history-row">
+                      <div class="modal-row__contacts-history-row hidden-row" data-custom-open="modal-2">
                         <div class="modal-row__contacts-history-manager modal-row__cell"><i class="tag manager-tag light-green-tag">СК</i></div>
                         <div class="modal-row__contacts-history-date modal-row__cell">
                           <time>16.02.2019</time>
@@ -1679,7 +1679,7 @@
                           <p>Hei I spoke with Tania and Viktor and they should contact you. Exept them we will need 12 practicants.Total 14 aplications</p>
                         </div>
                       </div>
-                      <div class="modal-row__contacts-history-row">
+                      <div class="modal-row__contacts-history-row hidden-row" data-custom-open="modal-2">
                         <div class="modal-row__contacts-history-manager modal-row__cell"><i class="tag manager-tag light-green-tag">СК</i></div>
                         <div class="modal-row__contacts-history-date modal-row__cell">
                           <time>16.02.2019</time>
@@ -1691,7 +1691,7 @@
                           <p>Hei I spoke with Tania and Viktor and they should contact you. Exept them we will need 12 practicants.Total 14 aplications</p>
                         </div>
                       </div>
-                      <div class="modal-row__contacts-history-row">
+                      <div class="modal-row__contacts-history-row hidden-row" data-custom-open="modal-2">
                         <div class="modal-row__contacts-history-manager modal-row__cell"><i class="tag manager-tag light-green-tag">СК</i></div>
                         <div class="modal-row__contacts-history-date modal-row__cell">
                           <time>16.02.2019</time>
@@ -1703,7 +1703,7 @@
                           <p>Hei I spoke with Tania and Viktor and they should contact you. Exept them we will need 12 practicants.Total 14 aplications</p>
                         </div>
                       </div>
-                      <div class="modal-row__contacts-history-row">
+                      <div class="modal-row__contacts-history-row hidden-row" data-custom-open="modal-2">
                         <div class="modal-row__contacts-history-manager modal-row__cell"><i class="tag manager-tag light-green-tag">СК</i></div>
                         <div class="modal-row__contacts-history-date modal-row__cell">
                           <time>16.02.2019</time>
@@ -1715,7 +1715,7 @@
                           <p>Hei I spoke with Tania and Viktor and they should contact you. Exept them we will need 12 practicants.Total 14 aplications</p>
                         </div>
                       </div>
-                      <div class="modal-row__contacts-history-row">
+                      <div class="modal-row__contacts-history-row hidden-row" data-custom-open="modal-2">
                         <div class="modal-row__contacts-history-manager modal-row__cell"><i class="tag manager-tag light-green-tag">СК</i></div>
                         <div class="modal-row__contacts-history-date modal-row__cell">
                           <time>16.02.2019</time>
@@ -1727,7 +1727,7 @@
                           <p>Hei I spoke with Tania and Viktor and they should contact you. Exept them we will need 12 practicants.Total 14 aplications</p>
                         </div>
                       </div>
-                      <div class="modal-row__contacts-history-row">
+                      <div class="modal-row__contacts-history-row hidden-row" data-custom-open="modal-2">
                         <div class="modal-row__contacts-history-manager modal-row__cell"><i class="tag manager-tag light-green-tag">СК</i></div>
                         <div class="modal-row__contacts-history-date modal-row__cell">
                           <time>16.02.2019</time>
@@ -1739,7 +1739,7 @@
                           <p>Hei I spoke with Tania and Viktor and they should contact you. Exept them we will need 12 practicants.Total 14 aplications</p>
                         </div>
                       </div>
-                      <div class="modal-row__contacts-history-row">
+                      <div class="modal-row__contacts-history-row hidden-row" data-custom-open="modal-2">
                         <div class="modal-row__contacts-history-manager modal-row__cell"><i class="tag manager-tag light-green-tag">СК</i></div>
                         <div class="modal-row__contacts-history-date modal-row__cell">
                           <time>16.02.2019</time>
@@ -1751,7 +1751,7 @@
                           <p>Hei I spoke with Tania and Viktor and they should contact you. Exept them we will need 12 practicants.Total 14 aplications</p>
                         </div>
                       </div>
-                      <div class="modal-row__contacts-history-row">
+                      <div class="modal-row__contacts-history-row hidden-row" data-custom-open="modal-2">
                         <div class="modal-row__contacts-history-manager modal-row__cell"><i class="tag manager-tag light-green-tag">СК</i></div>
                         <div class="modal-row__contacts-history-date modal-row__cell">
                           <time>16.02.2019</time>
@@ -1763,7 +1763,7 @@
                           <p>Hei I spoke with Tania and Viktor and they should contact you. Exept them we will need 12 practicants.Total 14 aplications</p>
                         </div>
                       </div>
-                      <div class="modal-row__contacts-history-row">
+                      <div class="modal-row__contacts-history-row hidden-row" data-custom-open="modal-2">
                         <div class="modal-row__contacts-history-manager modal-row__cell"><i class="tag manager-tag light-green-tag">СК</i></div>
                         <div class="modal-row__contacts-history-date modal-row__cell">
                           <time>16.02.2019</time>
@@ -1775,7 +1775,7 @@
                           <p>Hei I spoke with Tania and Viktor and they should contact you. Exept them we will need 12 practicants.Total 14 aplications</p>
                         </div>
                       </div>
-                      <div class="modal-row__contacts-history-row">
+                      <div class="modal-row__contacts-history-row hidden-row" data-custom-open="modal-2">
                         <div class="modal-row__contacts-history-manager modal-row__cell"><i class="tag manager-tag light-green-tag">СК</i></div>
                         <div class="modal-row__contacts-history-date modal-row__cell">
                           <time>16.02.2019</time>
@@ -1790,6 +1790,7 @@
                     </div>
                   </div>
                   <div class="row vacancies-history modal-row">
+                    <button class="show-more">показать еще 5 вакансий</button>
                     <div class="modal-row__controls">
                       <p>История вакансий</p>
                     </div>
@@ -1859,7 +1860,7 @@
                           <p>Поля</p>
                         </div>
                       </div>
-                      <div class="modal-row__vacancies-history-row">
+                      <div class="modal-row__vacancies-history-row hidden-row">
                         <div class="modal-row__vacancies-history-labels"><i class="label attention__label"><span>NO</span><span>
                                293 - 17</span></i></div>
                         <div class="modal-row__vacancies-history-date">
@@ -1872,7 +1873,7 @@
                           <p>Свиньи</p>
                         </div>
                       </div>
-                      <div class="modal-row__vacancies-history-row">
+                      <div class="modal-row__vacancies-history-row hidden-row">
                         <div class="modal-row__vacancies-history-labels"><i class="label success__label"><span>NO</span><span>
                                293 - 17</span></i></div>
                         <div class="modal-row__vacancies-history-date">
@@ -1885,7 +1886,7 @@
                           <p>Поля</p>
                         </div>
                       </div>
-                      <div class="modal-row__vacancies-history-row">
+                      <div class="modal-row__vacancies-history-row hidden-row">
                         <div class="modal-row__vacancies-history-labels"><i class="label success__label"><span>NO</span><span>
                                293 - 17</span></i></div>
                         <div class="modal-row__vacancies-history-date">
@@ -1898,7 +1899,7 @@
                           <p>Свиньи</p>
                         </div>
                       </div>
-                      <div class="modal-row__vacancies-history-row">
+                      <div class="modal-row__vacancies-history-row hidden-row">
                         <div class="modal-row__vacancies-history-labels"><i class="label success__label"><span>NO</span><span>
                                293 - 17</span></i></div>
                         <div class="modal-row__vacancies-history-date">
@@ -1911,7 +1912,7 @@
                           <p>Свиньи</p>
                         </div>
                       </div>
-                      <div class="modal-row__vacancies-history-row">
+                      <div class="modal-row__vacancies-history-row hidden-row">
                         <div class="modal-row__vacancies-history-labels"><i class="label success__label"><span>NO</span><span>
                                293 - 17</span></i></div>
                         <div class="modal-row__vacancies-history-date">
@@ -1924,7 +1925,7 @@
                           <p>Свиньи</p>
                         </div>
                       </div>
-                      <div class="modal-row__vacancies-history-row">
+                      <div class="modal-row__vacancies-history-row hidden-row">
                         <div class="modal-row__vacancies-history-labels"><i class="label success__label"><span>NO</span><span>
                                293 - 17</span></i></div>
                         <div class="modal-row__vacancies-history-date">
@@ -1937,7 +1938,7 @@
                           <p>Свиньи</p>
                         </div>
                       </div>
-                      <div class="modal-row__vacancies-history-row">
+                      <div class="modal-row__vacancies-history-row hidden-row">
                         <div class="modal-row__vacancies-history-labels"><i class="label success__label"><span>NO</span><span>
                                293 - 17</span></i></div>
                         <div class="modal-row__vacancies-history-date">
@@ -1950,7 +1951,7 @@
                           <p>Свиньи</p>
                         </div>
                       </div>
-                      <div class="modal-row__vacancies-history-row">
+                      <div class="modal-row__vacancies-history-row hidden-row">
                         <div class="modal-row__vacancies-history-labels"><i class="label attention__label"><span>NO</span><span>
                                293 - 17</span></i></div>
                         <div class="modal-row__vacancies-history-date">
@@ -1966,6 +1967,7 @@
                     </div>
                   </div>
                   <div class="row media modal-row">
+                    <button class="show-more">показать еще</button>
                     <div class="modal-row__controls">
                       <p>Медиа</p>
                       <div class="add-item"><span>+ </span>добавить</div>
@@ -1993,24 +1995,51 @@
         </div>
         <div class="modal micromodal-slide" id="modal-2" aria-hidden="true">
           <div class="modal__overlay" tabindex="-1" data-custom-close="modal-2">
-            <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
-              <header class="modal__header">
-                <h2 class="modal__title" id="modal-1-title">Micromodal-2</h2>
-                <button class="modal__close" aria-label="Close modal" data-custom-close="modal-2"></button>
-              </header>
-              <main class="modal__content" id="modal-1-content">
-                <p>Try hitting the <code>tab</code>	key and notice how the focus stays within the modal itself. Also, <code>esc</code>	to close modal.</p>
-              </main>
-              <footer class="modal__footer">
-                <button class="modal__btn modal__btn-primary">Continue</button>
-                <button class="modal__btn" data-custom-close="modal-2" aria-label="Close this dialog window">Close</button>
-              </footer>
+            <div class="modal__container contact-history-modal" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+              <div class="contact-history-modal__header">
+                <div class="contact-history-modal__block">
+                  <p>Менеджер</p>
+                  <div class="input-group">
+                    <select name=""></select>
+                  </div>
+                </div>
+                <div class="contact-history-modal__block">
+                  <p>Направление</p>
+                  <div class="input-group">
+                    <div class="button">
+                      <svg>
+                        <use xlink:href="img/sprites/svg/symbol/sprite.svg#arrow"></use>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div class="contact-history-modal__block">
+                  <p>Дата</p>
+                  <div class="input-group">
+                    <input type="date">
+                  </div>
+                </div>
+                <div class="contact-history-modal__block">
+                  <p>Тип контакта</p>
+                  <div class="input-group">
+                    <select name=""></select>
+                  </div>
+                </div>
+              </div>
+              <div class="contact-history-modal__body">
+                <div class="contact-history-modal__block">
+                  <p>Содержание</p>
+                  <div class="input-group">
+                    <textarea class="info-area" type="text" rows="12"></textarea>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <script src="js/libs.min.js?v=1596067777037" defer></script>
-    <script src="js/script.min.js?v=1596067777037" async></script>
+    <script src="js/libs.min.js?v=1596153827933" defer></script>
+    <script src="js/script.min.js?v=1596153827933" async></script>
   </body>
 </html>

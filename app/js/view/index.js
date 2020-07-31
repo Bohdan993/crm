@@ -27,6 +27,20 @@ const workModalContactsHistory = document.querySelector('.work-modal .contacts-h
 const workModalVacanciesHistory = document.querySelector('.work-modal .vacancies-history .modal-row__layer');
 const modalRowMediaWrapper = document.querySelector('.work-modal .modal-row__media-wrapper');
 const modalRowMedia = document.querySelectorAll('.work-modal .modal-row__media');
+const modalRowLayer = document.querySelectorAll('.work-modal .modal-row__layer');
+const contactsHistory = document.querySelector('.work-modal .contacts-history');
+const contactsHistoryShowMore = document.querySelector('.work-modal .contacts-history .show-more');
+
+const vacanciesHistory = document.querySelector('.work-modal .vacancies-history');
+const vacanciesHistoryShowMore = document.querySelector('.work-modal .vacancies-history .show-more');
+
+const manufacturyTypeAddItem = document.querySelector('.work-modal .manufactury-type .add-item');
+const manufacturyType = document.querySelector('.work-modal .manufactury-type');
+
+
+const contactsHistoryAddItem = document.querySelector('.work-modal .contacts-history .add-item');
+
+
 
 
 
@@ -57,5 +71,13 @@ export {
 	sidebarLayout,
 	workModalVacanciesHistory,
 	modalRowMediaWrapper,
-	modalRowMedia
+	modalRowMedia,
+	modalRowLayer,
+	contactsHistory,
+	contactsHistoryShowMore,
+	vacanciesHistory,
+	vacanciesHistoryShowMore,
+	manufacturyTypeAddItem,
+	manufacturyType,
+	contactsHistoryAddItem,
 }

@@ -9,6 +9,9 @@ import initWorkModalSelect from './initWorkModalSelect'
 import sidebarSearchInput from './sidebarSearchInput'
 import checkMediaWidth from './media'
 import checkIfWrapperIsEmpty from './checkIfWrapperIsEmpty'
+import show5Rows from './show5Rows'
+import addManufacturyType from './addManufacturyType'
+import addContactHistory from './addContactHistory'
 
 
 
@@ -25,5 +28,8 @@ export {
 	initWorkModalSelect,
 	sidebarSearchInput,
 	checkMediaWidth,
-	checkIfWrapperIsEmpty
+	checkIfWrapperIsEmpty,
+	show5Rows,
+	addManufacturyType,
+	addContactHistory
 }

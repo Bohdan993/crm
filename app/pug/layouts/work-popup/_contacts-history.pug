@@ -1,13 +1,15 @@
 .row.contacts-history.modal-row
+	button.show-more
+		|показать еще 5 контактов
 	.modal-row__controls
 		p
 			|История контактов
-		.add-item
+		.add-item(data-custom-open="modal-2")
 			span
 				|+ 
 			|добавить контакт
 	.modal-row__layer
-		.modal-row__contacts-history-row
+		.modal-row__contacts-history-row(data-custom-open="modal-2")
 			.modal-row__contacts-history-manager.modal-row__cell
 				i.tag.manager-tag.dark-blue-tag
 					|AK
@@ -19,7 +21,7 @@
 					+svg2('letter')
 				p
 					|Прислал полный пакет документов :)
-		.modal-row__contacts-history-row
+		.modal-row__contacts-history-row(data-custom-open="modal-2")
 			.modal-row__contacts-history-manager.modal-row__cell
 				i.tag.manager-tag.dark-blue-tag
 					|AK
@@ -31,7 +33,7 @@
 					+svg2('phone')
 				p
 					|Багатырчуки и парень Ани должны приехать 15-16 октября. Аня - вовремя, а вторая группа тоже вовремя. Соседу
-		.modal-row__contacts-history-row
+		.modal-row__contacts-history-row(data-custom-open="modal-2")
 			.modal-row__contacts-history-manager.modal-row__cell
 				i.tag.manager-tag.light-green-tag
 					|СК
@@ -43,7 +45,7 @@
 					+svg2('message')
 				p
 					|Проверь почту
-		.modal-row__contacts-history-row
+		.modal-row__contacts-history-row(data-custom-open="modal-2")
 			.modal-row__contacts-history-manager.modal-row__cell
 				i.tag.manager-tag.light-green-tag
 					|СК
@@ -55,7 +57,7 @@
 					+svg2('mail')
 				p
 					|Hello! Sorry about the delay of answering you. Becaus eof the corona-situation I have been bussy organizing other things for
-		.modal-row__contacts-history-row
+		.modal-row__contacts-history-row(data-custom-open="modal-2")
 			.modal-row__contacts-history-manager.modal-row__cell
 				i.tag.manager-tag.light-green-tag
 					|СК
@@ -67,7 +69,7 @@
 					+svg2('fax')
 				p
 					|Hei I spoke with Tania and Viktor and they should contact you. Exept them we will need 12 practicants.Total 14 aplications
-		.modal-row__contacts-history-row
+		.modal-row__contacts-history-row(data-custom-open="modal-2").hidden-row
 			.modal-row__contacts-history-manager.modal-row__cell
 				i.tag.manager-tag.light-green-tag
 					|СК
@@ -79,7 +81,7 @@
 					+svg2('fax')
 				p
 					|Hei I spoke with Tania and Viktor and they should contact you. Exept them we will need 12 practicants.Total 14 aplications
-		.modal-row__contacts-history-row
+		.modal-row__contacts-history-row(data-custom-open="modal-2").hidden-row
 			.modal-row__contacts-history-manager.modal-row__cell
 				i.tag.manager-tag.light-green-tag
 					|СК
@@ -91,7 +93,7 @@
 					+svg2('fax')
 				p
 					|Hei I spoke with Tania and Viktor and they should contact you. Exept them we will need 12 practicants.Total 14 aplications
-		.modal-row__contacts-history-row
+		.modal-row__contacts-history-row(data-custom-open="modal-2").hidden-row
 			.modal-row__contacts-history-manager.modal-row__cell
 				i.tag.manager-tag.light-green-tag
 					|СК
@@ -103,7 +105,7 @@
 					+svg2('fax')
 				p
 					|Hei I spoke with Tania and Viktor and they should contact you. Exept them we will need 12 practicants.Total 14 aplications
-		.modal-row__contacts-history-row
+		.modal-row__contacts-history-row(data-custom-open="modal-2").hidden-row
 			.modal-row__contacts-history-manager.modal-row__cell
 				i.tag.manager-tag.light-green-tag
 					|СК
@@ -115,7 +117,7 @@
 					+svg2('fax')
 				p
 					|Hei I spoke with Tania and Viktor and they should contact you. Exept them we will need 12 practicants.Total 14 aplications
-		.modal-row__contacts-history-row
+		.modal-row__contacts-history-row(data-custom-open="modal-2").hidden-row
 			.modal-row__contacts-history-manager.modal-row__cell
 				i.tag.manager-tag.light-green-tag
 					|СК
@@ -127,7 +129,7 @@
 					+svg2('fax')
 				p
 					|Hei I spoke with Tania and Viktor and they should contact you. Exept them we will need 12 practicants.Total 14 aplications
-		.modal-row__contacts-history-row
+		.modal-row__contacts-history-row(data-custom-open="modal-2").hidden-row
 			.modal-row__contacts-history-manager.modal-row__cell
 				i.tag.manager-tag.light-green-tag
 					|СК
@@ -139,7 +141,7 @@
 					+svg2('fax')
 				p
 					|Hei I spoke with Tania and Viktor and they should contact you. Exept them we will need 12 practicants.Total 14 aplications
-		.modal-row__contacts-history-row
+		.modal-row__contacts-history-row(data-custom-open="modal-2").hidden-row
 			.modal-row__contacts-history-manager.modal-row__cell
 				i.tag.manager-tag.light-green-tag
 					|СК
@@ -151,7 +153,7 @@
 					+svg2('fax')
 				p
 					|Hei I spoke with Tania and Viktor and they should contact you. Exept them we will need 12 practicants.Total 14 aplications
-		.modal-row__contacts-history-row
+		.modal-row__contacts-history-row(data-custom-open="modal-2").hidden-row
 			.modal-row__contacts-history-manager.modal-row__cell
 				i.tag.manager-tag.light-green-tag
 					|СК
@@ -163,7 +165,7 @@
 					+svg2('fax')
 				p
 					|Hei I spoke with Tania and Viktor and they should contact you. Exept them we will need 12 practicants.Total 14 aplications
-		.modal-row__contacts-history-row
+		.modal-row__contacts-history-row(data-custom-open="modal-2").hidden-row
 			.modal-row__contacts-history-manager.modal-row__cell
 				i.tag.manager-tag.light-green-tag
 					|СК
@@ -175,7 +177,7 @@
 					+svg2('fax')
 				p
 					|Hei I spoke with Tania and Viktor and they should contact you. Exept them we will need 12 practicants.Total 14 aplications
-		.modal-row__contacts-history-row
+		.modal-row__contacts-history-row(data-custom-open="modal-2").hidden-row
 			.modal-row__contacts-history-manager.modal-row__cell
 				i.tag.manager-tag.light-green-tag
 					|СК
@@ -187,7 +189,7 @@
 					+svg2('fax')
 				p
 					|Hei I spoke with Tania and Viktor and they should contact you. Exept them we will need 12 practicants.Total 14 aplications
-		.modal-row__contacts-history-row
+		.modal-row__contacts-history-row(data-custom-open="modal-2").hidden-row
 			.modal-row__contacts-history-manager.modal-row__cell
 				i.tag.manager-tag.light-green-tag
 					|СК
@@ -199,7 +201,7 @@
 					+svg2('fax')
 				p
 					|Hei I spoke with Tania and Viktor and they should contact you. Exept them we will need 12 practicants.Total 14 aplications
-		.modal-row__contacts-history-row
+		.modal-row__contacts-history-row(data-custom-open="modal-2").hidden-row
 			.modal-row__contacts-history-manager.modal-row__cell
 				i.tag.manager-tag.light-green-tag
 					|СК
@@ -211,7 +213,7 @@
 					+svg2('fax')
 				p
 					|Hei I spoke with Tania and Viktor and they should contact you. Exept them we will need 12 practicants.Total 14 aplications
-		.modal-row__contacts-history-row
+		.modal-row__contacts-history-row(data-custom-open="modal-2").hidden-row
 			.modal-row__contacts-history-manager.modal-row__cell
 				i.tag.manager-tag.light-green-tag
 					|СК

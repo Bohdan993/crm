@@ -154,18 +154,32 @@
 					include _media
 #modal-2.modal.micromodal-slide(aria-hidden='true')
 	.modal__overlay(tabindex='-1' data-custom-close="modal-2")
-		.modal__container(role='dialog' aria-modal='true' aria-labelledby='modal-1-title')
-			header.modal__header
-				h2#modal-1-title.modal__title
-					| Micromodal-2
-				button.modal__close(aria-label='Close modal' data-custom-close="modal-2")
-			main#modal-1-content.modal__content
-				p
-					| Try hitting the 
-					code tab
-					|	key and notice how the focus stays within the modal itself. Also, 
-					code esc
-					|	to close modal.
-			footer.modal__footer
-				button.modal__btn.modal__btn-primary Continue
-				button.modal__btn(data-custom-close="modal-2" aria-label='Close this dialog window') Close
+		.modal__container.contact-history-modal(role='dialog' aria-modal='true' aria-labelledby='modal-1-title')
+			.contact-history-modal__header
+				.contact-history-modal__block
+					p
+						|Менеджер
+					.input-group
+						select(name="")
+				.contact-history-modal__block
+					p
+						|Направление
+					.input-group
+						.button
+							+svg2('arrow')
+				.contact-history-modal__block
+					p
+						|Дата
+					.input-group
+						input(type="date")
+				.contact-history-modal__block
+					p
+						|Тип контакта
+					.input-group
+						select(name="")
+			.contact-history-modal__body
+				.contact-history-modal__block
+					p
+						|Содержание
+					.input-group
+						textarea.info-area(type="text" rows="12")

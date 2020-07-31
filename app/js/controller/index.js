@@ -10,7 +10,10 @@ import {
 	initWorkModalSelect,
 	sidebarSearchInput,
 	checkIfWrapperIsEmpty,
-	checkMediaWidth
+	checkMediaWidth,
+	show5Rows,
+	addManufacturyType,
+	addContactHistory
 
 } from '../model'
 
@@ -28,7 +31,15 @@ import {
 	workModalContactsHistory,
 	workModalVacanciesHistory,
 	modalRowMediaWrapper,
-	modalRowMedia
+	modalRowMedia,
+	modalRowLayer,
+	contactsHistoryShowMore,
+	contactsHistory,
+	vacanciesHistory,
+	vacanciesHistoryShowMore,
+	manufacturyTypeAddItem,
+	manufacturyType,
+	contactsHistoryAddItem,
 } from '../view'
 
 const app = {
@@ -41,6 +52,10 @@ const app = {
 		this.t()
 		this.iwms()
 		this.ssi()
+		this.ciwie()
+		this.s5r()
+		this.amt()
+		this.ach()
 		// this.test()
 		// this.slt()
 	},
@@ -88,6 +103,20 @@ const app = {
 	},
 	ssi(){
 		sidebarSearchInput(searchInput)
+	},
+	ciwie(){
+		checkIfWrapperIsEmpty(modalRowLayer)
+	},
+	s5r() {
+		show5Rows(contactsHistoryShowMore, contactsHistory)
+		show5Rows(vacanciesHistoryShowMore, vacanciesHistory)
+	},
+	amt() {
+		addManufacturyType(manufacturyTypeAddItem, manufacturyType)
+	},
+
+	ach() {
+		addContactHistory(contactsHistoryAddItem, contactsHistory)
 	}
 
 }

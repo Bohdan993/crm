@@ -323,6 +323,7 @@
     height: auto;
     cursor:default;
     flex-wrap: wrap;
+    position: relative;
     background: transparent;
     &:hover {
       background: transparent;
@@ -330,6 +331,22 @@
     }
     &:not(:last-child) {
       margin-bottom: 20px;
+    }
+
+    .show-more {
+      position: absolute;
+      bottom: -7.5px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      color: @white;
+      background: @main-color;
+      border-radius: 15px;
+      height: 15px;
+      border: none;
+      outline: none;
+      font-size: 12px;
+      cursor: pointer;
     }
   }
 
@@ -421,6 +438,9 @@
     border-radius: 5px;
     width: 100%;
     padding: 20px;
+    position: relative;
+
+
   }
 
   .empty-layer {
@@ -495,6 +515,7 @@
     padding: 0px 8px;
     height: 26px;
     border-bottom: 1px solid @secondary;
+    cursor: pointer;
  }
 
 
@@ -715,4 +736,36 @@
   &:focus {
     background: @white;
   }
+}
+
+//////////////////////////////////////
+
+.contact-history-modal {
+  background: @main-color;
+  max-width: 800px;
+  width: 100%;
+}
+
+.contact-history-modal__header {
+  margin-bottom: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  .contact-history-modal__block {
+    &:not(:last-child) {
+      margin-right: 20px;
+    }
+
+
+  }
+}
+
+.contact-history-modal__block {
+  color: @white;
+  font-size: 12/14 * 1rem;
+   p {
+      margin-bottom: 4px;
+    }
 }
