@@ -7,11 +7,13 @@ import initWorkPopup from './initWorkPopup'
 import test from './testing'
 import initWorkModalSelect from './initWorkModalSelect'
 import sidebarSearchInput from './sidebarSearchInput'
-import checkMediaWidth from './media'
+import {checkMediaWidth} from './media'
 import checkIfWrapperIsEmpty from './checkIfWrapperIsEmpty'
 import show5Rows from './show5Rows'
 import addManufacturyType from './addManufacturyType'
 import addContactHistory from './addContactHistory'
+import show1Row from './show1rowFeedback'
+import chooseAndAddMedia from './chooseAndAddMedia'
 
 
 
@@ -31,5 +33,7 @@ export {
 	checkIfWrapperIsEmpty,
 	show5Rows,
 	addManufacturyType,
-	addContactHistory
+	addContactHistory,
+	show1Row,
+	chooseAndAddMedia
 }

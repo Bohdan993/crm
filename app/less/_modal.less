@@ -347,6 +347,7 @@
       outline: none;
       font-size: 12px;
       cursor: pointer;
+      display: none;
     }
   }
 
@@ -623,10 +624,12 @@
     flex-wrap: wrap;
     justify-content: flex-start;
     align-items: center;
+    width: 100%;
  }
 
  .modal-row__media {
-  margin-bottom: 5px;
+  position: relative;
+  margin-bottom: 15px;
   &:not(:last-child) {
     margin-right: 20px;
   }
@@ -638,10 +641,119 @@
     object-position: center;
     max-width: 100%;
   }
+
+  &:hover {
+    .modal-row__media-remove {
+      display: block;
+    }
+  }
  }
+
+ .media {
+  .modal-row__layer {
+    max-height: 387px;
+    height: 100%;
+  }
+ }
+
+ .modal-row__media-remove {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 0;
+    right: 0;
+    background: rgba(#ccc, 0.51);
+    cursor: pointer;
+    display: none;
+    &:before, &:after {
+      content: '';
+      position: absolute;
+      width: 15px;
+      height: 2px;
+      border-radius: 5px;
+      background: @white;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+
+    }
+
+
+    &:before {
+      transform: translate(-50%, -50%) rotate(135deg);
+    }
+
+    &:after {
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+ }
+
+
+  .modal-row__feedback-row {
+    i {
+      width: 20px;
+      height: 20px;
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 22px;
+    }
+  }
+
+  .modal-row__feedback-speakers {
+    margin-bottom: 6px;
+    display: flex;
+    align-items: flex-end;
+
+    *:not(:last-child) {
+      margin-right: 8px;
+    }
+  }
+
+   .modal-row__feedback-from, .modal-row__feedback-to {
+    color: @main-color;
+    font-weight: 500;
+   }
+
+    .modal-row__feedback-date {
+      font-size: 12/14 * 1rem;
+      color: @main-color;
+      margin-bottom: 9px;
+      margin-left: 28px;
+    }
+
+   .modal-row__feedback-text {
+      background: @light-blue;
+      border-radius: 3px;
+      padding: 4px 12px;
+      margin-left: 28px;
+   }
 
 }
 
+
+// .choose {
+ 
+//     text-align: center;
+//     cursor: pointer;
+//     display: block;
+// }
+
+
+    
+.add-media {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
 
 
 

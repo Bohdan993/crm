@@ -13,7 +13,8 @@ import {
 	checkMediaWidth,
 	show5Rows,
 	addManufacturyType,
-	addContactHistory
+	addContactHistory,
+	show1Row
 
 } from '../model'
 
@@ -40,6 +41,8 @@ import {
 	manufacturyTypeAddItem,
 	manufacturyType,
 	contactsHistoryAddItem,
+	workModalMediaLayer,
+	mediaShowMore
 } from '../view'
 
 const app = {
@@ -54,8 +57,10 @@ const app = {
 		this.ssi()
 		this.ciwie()
 		this.s5r()
+		this.s1r()
 		this.amt()
 		this.ach()
+		this.cmw()
 		// this.test()
 		// this.slt()
 	},
@@ -66,6 +71,7 @@ const app = {
 		initOverlayScrollbars(workModalSidebar)
 		initOverlayScrollbars(workModalContactsHistory)
 		initOverlayScrollbars(workModalVacanciesHistory)
+		initOverlayScrollbars(workModalMediaLayer)
 		
 		// console.log(OverlayScrollbars)
 		// OverlayScrollbars([document.querySelector('.sidebar__layout')], {
@@ -111,12 +117,19 @@ const app = {
 		show5Rows(contactsHistoryShowMore, contactsHistory)
 		show5Rows(vacanciesHistoryShowMore, vacanciesHistory)
 	},
+	s1r() {
+		show1Row(mediaShowMore, modalRowMedia)
+	},
 	amt() {
 		addManufacturyType(manufacturyTypeAddItem, manufacturyType)
 	},
 
 	ach() {
 		addContactHistory(contactsHistoryAddItem, contactsHistory)
+	},
+
+	cmw() {
+		checkMediaWidth(modalRowMediaWrapper,modalRowMedia)
 	}
 
 }

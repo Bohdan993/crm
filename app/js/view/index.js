@@ -27,6 +27,8 @@ const workModalContactsHistory = document.querySelector('.work-modal .contacts-h
 const workModalVacanciesHistory = document.querySelector('.work-modal .vacancies-history .modal-row__layer');
 const modalRowMediaWrapper = document.querySelector('.work-modal .modal-row__media-wrapper');
 const modalRowMedia = document.querySelectorAll('.work-modal .modal-row__media');
+const workModalMediaLayer = document.querySelector('.work-modal .media .modal-row__layer');
+const mediaShowMore = document.querySelector('.work-modal .media .show-more');
 const modalRowLayer = document.querySelectorAll('.work-modal .modal-row__layer');
 const contactsHistory = document.querySelector('.work-modal .contacts-history');
 const contactsHistoryShowMore = document.querySelector('.work-modal .contacts-history .show-more');
@@ -80,4 +82,6 @@ export {
 	manufacturyTypeAddItem,
 	manufacturyType,
 	contactsHistoryAddItem,
+	workModalMediaLayer,
+	mediaShowMore
 }
