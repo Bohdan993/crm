@@ -14,6 +14,11 @@ import addManufacturyType from './addManufacturyType'
 import addContactHistory from './addContactHistory'
 import show1Row from './show1rowFeedback'
 import chooseAndAddMedia from './chooseAndAddMedia'
+import addNewTask from './addNewTask'
+import deleteTask from './deleteTask'
+import setFeedbackDate from './setFeedbacklDate'
+import addFeedbackForm from './addfeedbackForm'
+import showRemoveBtnOnChecking from './showRemoveBtnOnChecking'
 
 
 
@@ -35,5 +40,10 @@ export {
 	addManufacturyType,
 	addContactHistory,
 	show1Row,
-	chooseAndAddMedia
+	chooseAndAddMedia,
+	addNewTask,
+	deleteTask,
+	setFeedbackDate,
+	addFeedbackForm,
+	showRemoveBtnOnChecking
 }

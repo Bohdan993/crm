@@ -6,6 +6,7 @@
   "dependencies": {
     "@babel/plugin-transform-runtime": "^7.10.5",
     "@babel/runtime": "^7.10.5",
+    "@trevoreyre/autocomplete-js": "^2.2.0",
     "choices.js": "^9.0.1",
     "micromodal": "^0.4.6",
     "normalize.css": "^8.0.1",

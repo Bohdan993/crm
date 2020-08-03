@@ -14,13 +14,17 @@ import {
 	show5Rows,
 	addManufacturyType,
 	addContactHistory,
-	show1Row
-
+	show1Row,
+	addNewTask,
+	deleteTask,
+	setFeedbackDate,
+	addFeedbackForm,
+	showRemoveBtnOnChecking
 } from '../model'
 
 import {OverlayScrollbars} from '../../libs/libs'
 import {
-
+	body,
 	sidebarListItems,
 	rows,
 	sidebarLayout,
@@ -42,7 +46,15 @@ import {
 	manufacturyType,
 	contactsHistoryAddItem,
 	workModalMediaLayer,
-	mediaShowMore
+	mediaShowMore,
+	workModalAddTask,
+	workModalFeedbackDate,
+	modal2ManagerSelect,
+	modal2ContactSelect,
+	modal2ContactDate,
+	feedbackAddItem,
+	addfeedbackForm,
+
 } from '../view'
 
 const app = {
@@ -61,6 +73,11 @@ const app = {
 		this.amt()
 		this.ach()
 		this.cmw()
+		this.ant()
+		this.dt()
+		this.sfd()
+		this.aff()
+		this.srboc()
 		// this.test()
 		// this.slt()
 	},
@@ -106,6 +123,9 @@ const app = {
 	iwms(){
 		initWorkModalSelect(workModalManagerSelect)
 		initWorkModalSelect(workModalCountrySelect)
+		initWorkModalSelect(modal2ManagerSelect)
+		initWorkModalSelect(modal2ContactSelect)
+		
 	},
 	ssi(){
 		sidebarSearchInput(searchInput)
@@ -130,6 +150,25 @@ const app = {
 
 	cmw() {
 		checkMediaWidth(modalRowMediaWrapper,modalRowMedia)
+	},
+	ant() {
+		addNewTask(workModalAddTask)
+	},
+	dt() {
+		deleteTask(body)
+	},
+	sfd() {
+		setFeedbackDate(workModalFeedbackDate)
+		setFeedbackDate(modal2ContactDate)
+		
+	},
+
+	aff() {
+		addFeedbackForm(feedbackAddItem, addfeedbackForm)
+	},
+
+	srboc() {
+		showRemoveBtnOnChecking()
 	}
 
 }

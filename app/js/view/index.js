@@ -14,6 +14,9 @@ const intermediariesTemplate = document.querySelector('#intermediaries-popup');
 const lastContactTemplate = document.querySelector('#last-contact-popup');
 const vacanciesTemplate = document.querySelector('#vacancies-popup');
 const sortingTemplate = document.querySelector('#sorting-popup');
+const typeFeedbackTemplate = document.querySelector('#type-feedback-popup')
+const choiceClientTemplate = document.querySelector('#choice-client-feedback-popup')
+
 
 
 
@@ -21,7 +24,10 @@ const sortingTemplate = document.querySelector('#sorting-popup');
 
 const workModalRows = document.querySelector('.work-modal .rows')
 const workModalSidebar = document.querySelector('.work-modal .sidebar__layout')
+const workModalAddTask = document.querySelector('.work-modal .add-task-group .add-item')
 const workModalManagerSelect = document.querySelector('.work-modal .manager-select')
+const modal2ManagerSelect = document.querySelector('#modal-2 .manager-select')
+const modal2ContactSelect = document.querySelector('#modal-2 .contact-select')
 const workModalCountrySelect = document.querySelector('.work-modal .country-select')
 const workModalContactsHistory = document.querySelector('.work-modal .contacts-history .modal-row__layer');
 const workModalVacanciesHistory = document.querySelector('.work-modal .vacancies-history .modal-row__layer');
@@ -41,6 +47,22 @@ const manufacturyType = document.querySelector('.work-modal .manufactury-type');
 
 
 const contactsHistoryAddItem = document.querySelector('.work-modal .contacts-history .add-item');
+
+
+const workModalFeedbackDate = document.querySelector('.work-modal .modal-row__feedback-date input')
+const modal2ContactDate = document.querySelector('#modal-2 .date-block input')
+
+
+const feedbackAddItem = document.querySelector('.work-modal .feedback .add-item')
+const addfeedbackForm = document.querySelector('.work-modal .feedback .add-feedback-form')
+
+
+
+
+
+// Popups elements
+
+const confirmBtnTypeFeedback = document.querySelector('#type-feedback-popup .confirm-btn')
 
 
 
@@ -63,10 +85,13 @@ export {
 	intermediariesTemplate,
 	vacanciesTemplate,
 	sortingTemplate,
+	typeFeedbackTemplate,
+	choiceClientTemplate,
 	workModalRows,
 	workModalSidebar,
 	body,
 	workModalManagerSelect,
+	workModalAddTask,
 	sidebarSearchInput,
 	workModalCountrySelect,
 	workModalContactsHistory,
@@ -83,5 +108,11 @@ export {
 	manufacturyType,
 	contactsHistoryAddItem,
 	workModalMediaLayer,
-	mediaShowMore
+	mediaShowMore,
+	workModalFeedbackDate,
+	modal2ManagerSelect,
+	modal2ContactSelect,
+	modal2ContactDate,
+	feedbackAddItem,
+	addfeedbackForm
 }

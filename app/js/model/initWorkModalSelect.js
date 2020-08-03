@@ -49,7 +49,7 @@ const initWorkModalSelect = (elem) => {
 		  disabled: false,
 		},
 		{
-		  value: 'Норвегия',
+		  value: 'Норвегия2',
 		  label: `<i class="row__flag">
                 <svg>
                   <use xlink:href="img/sprites/svg/symbol/sprite.svg#flag-norway"></use>
@@ -62,6 +62,73 @@ const initWorkModalSelect = (elem) => {
 			containerInner: 'choices__inner common-info-select-modal_inner',
 			itemSelectable: 'common-info-select-item_selectable',
 			list: 'common-info-select-modal__list',
+		}
+
+ }); 
+ } else if (elem.classList.contains('contact-select')) {
+ 	 const choices = new Choices(elem, {
+		choices: [
+		{
+			value: 'Отсутствует',
+			label: '<span>Отсутствует</span>',
+			selected:true,
+		  disabled: true,
+		},
+		{
+			value: 'Почтовое письмо',
+		  label: `<i class="contact-ico">
+                <svg>
+                  <use xlink:href="img/sprites/svg/symbol/sprite.svg#letter"></use>
+                </svg></i><span>Почтовое письмо</span>`,
+		  selected: false,
+		  disabled: false,
+		},
+		{
+		  value: 'Телефонный звонок',
+		  label: `<i class="contact-ico">
+                <svg>
+                  <use xlink:href="img/sprites/svg/symbol/sprite.svg#phone"></use>
+                </svg></i><span>Телефонный звонок</span>`,
+		  selected: false,
+		  disabled: false,
+		},
+
+		{
+		  value: 'SMS или мессенджер',
+		  label: `<i class="contact-ico">
+                <svg>
+                  <use xlink:href="img/sprites/svg/symbol/sprite.svg#message"></use>
+                </svg></i><span>SMS или мессенджер</span>`,
+		  selected: false,
+		  disabled: false,
+		},
+
+		{
+		  value: 'Электронная почта',
+		  label: `<i class="contact-ico">
+                <svg>
+                  <use xlink:href="img/sprites/svg/symbol/sprite.svg#mail"></use>
+                </svg></i><span>Электронная почта</span>`,
+		  selected: false,
+		  disabled: false,
+		},
+
+		{
+		  value: 'Факс',
+		  label: `<i class="contact-ico">
+                <svg>
+                  <use xlink:href="img/sprites/svg/symbol/sprite.svg#fax"></use>
+                </svg></i><span>Факс</span>`,
+		  selected: false,
+		  disabled: false,
+		}
+
+		],
+		classNames: {
+			containerOuter: 'choices contact-select-modal',
+			containerInner: 'choices__inner contact-select-modal_inner',
+			itemSelectable: 'contact-select-item_selectable',
+			list: 'contact-select-modal__list',
 		}
 
  }); 

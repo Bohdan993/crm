@@ -209,4 +209,42 @@
 					input(type="radio" id='vacancies-rbtn' name="sorting-rbtn")
 					label(for="vacancies-rbtn")
 						|По вакансиям
+		#type-feedback-popup.work-modal-popup
+			form
+				p
+					|Тип отзыва
+				.input-group
+					input(type="radio" id="inf-feedback-rbtn" name="type-feedback-rbtn")
+					label(for="inf-feedback-rbtn")
+						i.ico
+							+svg2('inf-feedback')
+						|Информационный
+				.input-group
+					input(type="radio" id='pos-feedback-rbtn' name="type-feedback-rbtn")
+					label(for="pos-feedback-rbtn")
+						i.ico
+							+svg2('pos-feedback')
+						|Хороший отзыв
+				.input-group
+					input(type="radio" id='neg-feedback-rbtn' name="type-feedback-rbtn")
+					label(for="neg-feedback-rbtn")
+						i.ico
+							+svg2('neg-feedback')
+						|Плохой отзыв
+				button.confirm-bnt
+					|OK
+		#choice-client-feedback-popup.work-modal-popup
+			form
+				.input-group
+					input(type="radio" id="client-feedback-rbtn" name="client-feedback-rbtn")
+					label(for="client-feedback-rbtn")
+						|Выберите клиента
+					input.find-client(type="text")
+					ul.autocomplete-result-list
+				.input-group
+					input(type="radio" id='uamf-feedback-rbtn' name="client-feedback-rbtn")
+					label(for="uamf-feedback-rbtn")
+						|УАМФ
+				button.confirm-bnt
+					|OK
 		include work-popup/_work-popup

@@ -3,14 +3,39 @@
 		|показать еще
 	.modal-row__controls
 		p
-			|Отзывы - 
+			|Отзывы -
 			span
-				|4
+				|4 
+			span
+				|(
+			span.negative
+				|негативных - 2
+			span
+				|)
 		.add-item
 			span
 				|+ 
 			|добавить отзыв
 	.modal-row__layer
+		form.modal-row__feedback-row.add-feedback-form
+			.modal-row__feedback-speakers
+				i.modal-row__feedback-ico
+					+svg2('pos-feedback')
+				a.modal-row__feedback-choise
+					|Выбрать
+				i.modal-row__feedback-direction
+					+svg2('arrow')
+				p.modal-row__feedback-to
+					|Thompson Equestrian Partners
+			.modal-row__feedback-date
+				input(type="text")
+			.modal-row__feedback-text
+				textarea(name="" rows="3" placeholder="введите текст отзыва")
+			.modal-row__feedback-controls
+				button.modal-row__feedback-cancel.feedback-btn
+					|Отменить
+				button.modal-row__feedback-save.feedback-btn
+					|Сохранить
 		.modal-row__feedback-row
 			.modal-row__feedback-speakers
 				i.modal-row__feedback-ico

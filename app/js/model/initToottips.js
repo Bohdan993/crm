@@ -9,20 +9,30 @@ import {
 	managersTemplate,
 	intermediariesTemplate,
 	vacanciesTemplate,
-	sortingTemplate
+	sortingTemplate,
+	typeFeedbackTemplate,
+	choiceClientTemplate,
+	body
 
 } from '../view'
 
 const initTooltips = () => {
 	
 	countryTemplate.style.display = 'block';
-	typeManufacturyTemplate.style.display = 'block';
-	contactTemplate.style.display = 'block';
+	if(typeManufacturyTemplate) {
+		typeManufacturyTemplate.style.display = 'block';
+	}
+	if(contactTemplate) {
+		contactTemplate.style.display = 'block';
+	}
+	
 	managersTemplate.style.display = 'block';
 	lastContactTemplate.style.display = 'block';
 	intermediariesTemplate.style.display = 'block';
 	vacanciesTemplate.style.display = 'block';
 	sortingTemplate.style.display = 'block';
+	typeFeedbackTemplate.style.display = 'block'
+	choiceClientTemplate.style.display = 'block'
 /////////////////////////////////////////////////////
 	function initSidebarTooltip(el, content){
 		let instance = tippy(el, {
@@ -42,6 +52,25 @@ const initTooltips = () => {
 						instance.hide();
 					}
 				})
+
+				let children = instance.props.content.querySelectorAll('input')
+
+				children.forEach(child => {
+					child.addEventListener('change', function(){
+							if(child.checked) {
+							instance.reference.children[1].style.display = 'block'
+						}
+					})
+				})
+
+				instance.reference.children[1].addEventListener('click', function(){
+					children.forEach(child=> {
+						child.checked = false
+					})
+
+					this.style.display = 'none'
+				})
+
 			},
 		})
 
@@ -65,8 +94,33 @@ const initTooltips = () => {
 	initSidebarTooltip('.sorting-stats-wrapper', sortingTemplate)
 /////////////////////////////////////////////////////////////////////////////////
 
+function initWorkModalTooltip(el, content){
+		let instance = tippy(el, {
+			content,
+			allowHTML: true,
+			interactive: true,
+			interactiveBorder: 5,
+			interactiveDebounce: 0,
+			placement: 'bottom',
+			offset: [0, 20],
+			hideOnClick: true,
+			trigger: 'click',
+			appendTo: () => document.body,
+			onShown(instance) {
+				document.addEventListener('keyup', function(e){
+					if(e.keyCode === 27) {
+						instance.hide();
+					}
+				})
+			},
+		})
 
-// console.log(detectOverflow);
+	}
+
+initWorkModalTooltip('.add-feedback-form .modal-row__feedback-ico', typeFeedbackTemplate)
+initWorkModalTooltip('.add-feedback-form .modal-row__feedback-choise', choiceClientTemplate)
+
+
 
 function initRowTooltips(el, content){
 	let instance = tippy(el, {

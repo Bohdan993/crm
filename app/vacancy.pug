@@ -1,0 +1,48 @@
+extends pug/base
+
+
+
+append vars
+
+
+prepend vars
+
+
+
+
+
+block links
+	link(href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet")
+
+
+block head-end
+
+
+
+
+
+
+
+
+
+
+
+
+block content
+	main.main
+		.sidebar
+			include pug/layouts/vacancy/sidebar
+		.rows
+			include pug/layouts/vacancy/row
+			include pug/layouts/vacancy/row
+			include pug/layouts/vacancy/row
+			include pug/layouts/vacancy/row
+			include pug/layouts/vacancy/row
+			include pug/layouts/vacancy/row
+			include pug/layouts/vacancy/row
+	//- include pug/layouts/vacancy/_popup
+	include pug/layouts/_popup
+			//- include pug/layouts/header
+			//- include pug/layouts/footer
+
+
