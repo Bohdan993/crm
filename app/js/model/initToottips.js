@@ -17,22 +17,41 @@ import {
 } from '../view'
 
 const initTooltips = () => {
-	
-	countryTemplate.style.display = 'block';
+	if(countryTemplate) {
+		countryTemplate.style.display = 'block';
+	}
 	if(typeManufacturyTemplate) {
 		typeManufacturyTemplate.style.display = 'block';
 	}
 	if(contactTemplate) {
 		contactTemplate.style.display = 'block';
 	}
+	if(managersTemplate) {
+			managersTemplate.style.display = 'block';
+	}
+	if(lastContactTemplate){
+		lastContactTemplate.style.display = 'block';
+	}
+	if(intermediariesTemplate){
+		intermediariesTemplate.style.display = 'block';
+	}
+	if(vacanciesTemplate) {
+		vacanciesTemplate.style.display = 'block';
+	}
+	if(sortingTemplate){
+		sortingTemplate.style.display = 'block';
+	}
+	if(typeFeedbackTemplate){
+		typeFeedbackTemplate.style.display = 'block'
+	}
+	if(choiceClientTemplate){
+		choiceClientTemplate.style.display = 'block'
+	}
 	
-	managersTemplate.style.display = 'block';
-	lastContactTemplate.style.display = 'block';
-	intermediariesTemplate.style.display = 'block';
-	vacanciesTemplate.style.display = 'block';
-	sortingTemplate.style.display = 'block';
-	typeFeedbackTemplate.style.display = 'block'
-	choiceClientTemplate.style.display = 'block'
+	
+	
+	
+	
 /////////////////////////////////////////////////////
 	function initSidebarTooltip(el, content){
 		let instance = tippy(el, {

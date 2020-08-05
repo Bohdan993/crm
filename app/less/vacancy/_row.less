@@ -1,0 +1,179 @@
+.row__terms {
+	flex-basis: 8/1720 * 100%;
+	min-width: 8px;
+	padding: 0;
+
+	&.hot {
+		background: @hot;
+	}
+
+	&.medium {
+		background: @medium;
+	}
+}
+
+
+.row__labels-2 {
+	flex-basis: 228/1720 * 100%;
+	border-right: 1px solid @main-color;
+}
+
+.row__indicators {
+	flex-basis: 244/1720 * 100%;
+	border-right: 1px solid @main-color;
+}
+
+
+.row__name-2 {
+	flex-basis: 389/1720 * 100%;
+	border-right: 1px solid @main-color;
+	justify-content: space-between;
+
+	p {
+		margin-right: 10px;
+	}
+}
+
+
+.row__vacancies {
+	flex-basis: 320/1720 * 100%;
+	border-right: 1px solid @main-color;
+}
+
+.row__notes {
+	flex-basis: 531/1720 * 100%;
+}
+
+.row__indicators {
+	justify-content: space-between;
+}
+
+.row__indicator {
+	line-height: 23px;
+	text-align: center;
+	display: block;
+	width: 22px;
+	height: 22px;
+	min-width: 22px;
+	background: @white;
+	color: @white;
+	// display: flex;
+	// justify-content: center;
+	// align-content: center;
+	// align-items: center;
+	border-radius: 50%;
+	&.decline {
+		background: @creame-orange;
+	}
+
+	&.choosen {
+		background: @grass-green;
+	}
+
+	&.ready {
+		background: @green;
+	}
+
+	&.wait {
+		background: @teal;
+	}
+
+	&.department {
+		background: @blue;
+	}
+
+	&.busy {
+		background: @brown;
+	}
+
+	&.empty {
+		width: 3px;
+		height: 3px;
+		min-width: 3px;
+		background: @gray;
+		border: 1px solid @gray;
+	}
+}
+
+
+.row__full-info {
+	max-width: (1720 - 236)/1720 * 100%;
+	margin-left: auto;
+}
+
+.table-full {
+	.f-container {
+		height: 30px;
+	}
+}
+
+
+.table-full__row  {
+	border-bottom: 1px solid @ligth-gray;
+}
+
+
+p.status {
+	padding: 2px 7px;
+	border-radius: 15px;
+
+	transition: background 0.2s linear, color 0.2s linear;
+	&:hover {
+		color: @white;
+	}
+
+	&.choosen:hover {
+		background: @grass-green;
+	}
+
+	&.decline:hover {
+		background: @creame-orange;
+	}
+
+	&.choosen:hover {
+		background: @grass-green;
+	}
+
+	&.ready:hover {
+		background: @green;
+	}
+
+	&.wait:hover {
+		background: @teal;
+	}
+
+	&.department:hover {
+		background: @blue;
+	}
+
+	&.busy:hover {
+		background: @brown;
+	}
+}
+
+.table-full__cell {
+	padding: 2px 13px;
+}
+
+.table-full__choosen {
+	border-top: 2px solid @grass-green;
+	border-left: 4px solid @grass-green;
+}
+
+
+.table-full__ready {
+	border-top: 2px solid @green;
+	border-left: 4px solid @green;
+}
+.table-full__wait {
+	border-top: 2px solid @teal;
+	border-left: 4px solid  @teal;
+}
+.table-full__department {
+	border-top: 2px solid @blue;
+	border-left: 4px solid  @blue;
+}
+.table-full__busy {
+	border-top: 2px solid @brown;
+	border-left: 4px solid @brown;
+}
