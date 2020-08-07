@@ -121,10 +121,24 @@ const app = {
 		test()
 	},
 	iwms(){
-		initWorkModalSelect(workModalManagerSelect)
-		initWorkModalSelect(workModalCountrySelect)
-		initWorkModalSelect(modal2ManagerSelect)
-		initWorkModalSelect(modal2ContactSelect)
+		if(workModalManagerSelect) {
+			initWorkModalSelect(workModalManagerSelect)
+		}
+
+		if(workModalCountrySelect) {
+			initWorkModalSelect(workModalCountrySelect)
+		}
+		
+		if(modal2ManagerSelect){
+			initWorkModalSelect(modal2ManagerSelect)
+		}
+		
+
+		if(modal2ContactSelect){
+			initWorkModalSelect(modal2ContactSelect)
+		}
+		
+		
 		
 	},
 	ssi(){
@@ -134,14 +148,24 @@ const app = {
 		checkIfWrapperIsEmpty(modalRowLayer)
 	},
 	s5r() {
-		show5Rows(contactsHistoryShowMore, contactsHistory)
-		show5Rows(vacanciesHistoryShowMore, vacanciesHistory)
+
+		if(contactsHistory) {
+			show5Rows(contactsHistoryShowMore, contactsHistory)
+		}
+
+		if(vacanciesHistory) {
+			show5Rows(vacanciesHistoryShowMore, vacanciesHistory)
+		}
+
 	},
 	s1r() {
 		show1Row(mediaShowMore, modalRowMedia)
 	},
 	amt() {
-		addManufacturyType(manufacturyTypeAddItem, manufacturyType)
+		if(manufacturyType) {
+			addManufacturyType(manufacturyTypeAddItem, manufacturyType)
+		}
+		
 	},
 
 	ach() {
@@ -152,19 +176,31 @@ const app = {
 		checkMediaWidth(modalRowMediaWrapper,modalRowMedia)
 	},
 	ant() {
-		addNewTask(workModalAddTask)
+		if(workModalAddTask) {
+			addNewTask(workModalAddTask)
+		}
+		
 	},
 	dt() {
 		deleteTask(body)
 	},
 	sfd() {
-		setFeedbackDate(workModalFeedbackDate)
-		setFeedbackDate(modal2ContactDate)
+		if(workModalFeedbackDate) {
+			setFeedbackDate(workModalFeedbackDate)
+		}
+		
+		if(modal2ContactDate) {
+			setFeedbackDate(modal2ContactDate)
+		}
+		
 		
 	},
 
 	aff() {
-		addFeedbackForm(feedbackAddItem, addfeedbackForm)
+		if(addfeedbackForm) {
+			addFeedbackForm(feedbackAddItem, addfeedbackForm)
+		}
+		
 	},
 
 	srboc() {

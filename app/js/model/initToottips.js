@@ -12,7 +12,9 @@ import {
 	sortingTemplate,
 	typeFeedbackTemplate,
 	choiceClientTemplate,
-	body
+	body,
+	selectingTemplate,
+	statusTemplate
 
 } from '../view'
 
@@ -47,7 +49,12 @@ const initTooltips = () => {
 	if(choiceClientTemplate){
 		choiceClientTemplate.style.display = 'block'
 	}
-	
+	if(statusTemplate){
+		statusTemplate.style.display = 'block'
+	}
+	if(selectingTemplate){
+		selectingTemplate.style.display = 'block'
+	}
 	
 	
 	
@@ -112,6 +119,10 @@ const initTooltips = () => {
 /////////////////////////////////////////////////////////////////////////////////
 	initSidebarTooltip('.sorting-stats-wrapper', sortingTemplate)
 /////////////////////////////////////////////////////////////////////////////////
+	initSidebarTooltip('.stages-vacancies-filter-wrapper', statusTemplate)
+/////////////////////////////////////////////////////////////////////////////////
+	initSidebarTooltip('.selecting-stats-wrapper', selectingTemplate)
+
 
 function initWorkModalTooltip(el, content){
 		let instance = tippy(el, {

@@ -241,13 +241,62 @@ main.main {
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
+  position: relative;
 
 }
+
+.grid {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  pointer-events: none;
+  right: 0;
+  z-index: 10;
+}
+
+.columns {
+  flex-basis: 100%;
+  display: flex;
+}
+
+.side-column {
+  flex-basis: 200/1920 * 100%;
+  min-width: 200px;
+  max-width: 200px;
+  position: relative;
+}
+
+.first-column{
+  flex-basis: 236/1720 * 100%;
+  border-right: 1px solid @main-color;
+}
+
+.second-column {
+  flex-basis: 244/1720 * 100%;
+  border-right: 1px solid @main-color;
+}
+
+.third-column {
+  flex-basis: 389/1720 * 100%;
+  border-right: 1px solid @main-color;
+}
+
+.fourth-column {
+  flex-basis: 320/1720 * 100%;
+  border-right: 1px solid @main-color;
+}
+
+.fifth-column {
+  flex-basis: 531/1720 * 100%;
+}
+
 
 .sidebar {
   flex-basis: 200/1920 * 100%;
   min-width: 200px;
   position: relative;
+  z-index: 2;
 }
 
 
@@ -303,14 +352,14 @@ span.negative {
 
 
 i.label {
-  line-height: 16/14;
+  // line-height: 16/14;
   vertical-align: middle;
   color: @white;
   font-style: normal;
   font-weight: 500;
   background: @main-color;
-  padding: 4px 7px;
-  padding-bottom: 2px;
+  padding: 0px 7px;
+  line-height: 22px;
   border-radius: 20px;
   display: flex;
   align-items: center;
@@ -320,7 +369,7 @@ i.label {
 
   }
   span {
-    line-height: 16/14;
+    line-height: 22px ;
     &:not(:last-child) {
        margin-right: 5px;
     }
@@ -339,6 +388,23 @@ i.label {
 
 .label.success__label {
   background: @teal;
+}
+
+.label.hot__label {
+  background: @hot;
+}
+
+.label.green__label {
+  background: @grass-green;
+}
+
+.label.blue__label {
+  background: @blue;
+}
+
+
+.label.dirty-green__label {
+  background: @dirty-green;
 }
 
 .success-number {

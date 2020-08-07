@@ -15,18 +15,18 @@
 
 .row__labels-2 {
 	flex-basis: 228/1720 * 100%;
-	border-right: 1px solid @main-color;
+	
 }
 
 .row__indicators {
 	flex-basis: 244/1720 * 100%;
-	border-right: 1px solid @main-color;
+	
 }
 
 
 .row__name-2 {
 	flex-basis: 389/1720 * 100%;
-	border-right: 1px solid @main-color;
+	
 	justify-content: space-between;
 
 	p {
@@ -37,7 +37,7 @@
 
 .row__vacancies {
 	flex-basis: 320/1720 * 100%;
-	border-right: 1px solid @main-color;
+	
 }
 
 .row__notes {
@@ -48,7 +48,7 @@
 	justify-content: space-between;
 }
 
-.row__indicator {
+.row__cell .row__indicator {
 	line-height: 23px;
 	text-align: center;
 	display: block;
@@ -176,4 +176,54 @@ p.status {
 .table-full__busy {
 	border-top: 2px solid @brown;
 	border-left: 4px solid @brown;
+}
+
+.cell-names {
+	flex-basis: 244/1484 * 100%;
+	
+}
+
+.cell-status {
+	flex-basis: 389/1484 * 100%;
+	padding-top: 0;
+	padding-bottom: 0;
+	
+}
+
+.cell-exp {
+	flex-basis: 320/1484 * 100%;
+	i.label:not(:last-child) {
+		margin-right: 10px;
+	}
+
+	p:not(:last-child) {
+		margin-right: 20px;
+	}
+}
+
+.cell-notes {
+	flex-basis: 531/1484 * 100%;
+}
+
+
+.cell-status__left {
+	flex-basis: 259/389 * 100%;
+	border-right: 2px solid @light-gray;
+	height: 100%;
+	display: flex;
+	align-items: center;
+}
+
+.cell-statu__right {
+	flex-basis: (389-259)/389 * 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+}
+
+.status {
+	display: none;
+	&.active {
+		display: block;
+	}
 }

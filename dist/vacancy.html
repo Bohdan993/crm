@@ -5,11 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/libs.min.css?v=1596587021728">
-    <link rel="stylesheet" href="css/main.min.css?v=1596587021728">
+    <link rel="stylesheet" href="css/libs.min.css?v=1596842688481">
+    <link rel="stylesheet" href="css/main.min.css?v=1596842688481">
   </head>
   <body>
     <main class="main">
+      <div class="grid">
+        <div class="side-column"></div>
+        <div class="columns">
+          <div class="grid-column first-column"></div>
+          <div class="grid-column second-column"></div>
+          <div class="grid-column third-column"></div>
+          <div class="grid-column fourth-column"></div>
+          <div class="grid-column fifth-column"></div>
+        </div>
+      </div>
       <div class="sidebar">
         <div class="sidebar__layout">
           <div class="f-container">
@@ -18,13 +28,13 @@
             </div>
             <div class="sidebar__lists">
               <ul class="sidebar__list">
-                <li class="sidebar__list-item sidebar__li">
+                <li class="sidebar__list-item sidebar__li active">
                   <p>Вакансии</p><span class="sidebar__list-add"><span></span><span></span></span>
                 </li>
                 <li class="sidebar__list-item sidebar__li">
                   <p>Клиенты</p><span class="sidebar__list-add"><span></span><span></span></span>
                 </li>
-                <li class="sidebar__list-item active sidebar__li">
+                <li class="sidebar__list-item sidebar__li">
                   <p>
                      Работодатели</p><span class="sidebar__list-add"><span></span><span></span></span>
                 </li>
@@ -72,7 +82,7 @@
                   </div>
                 </li>
                 <li class="sidebar__filter-item sidebar__li">
-                  <div class="sidebar__filter-wrapper intermediaries-filter-wrapper">
+                  <div class="sidebar__filter-wrapper stages-vacancies-filter-wrapper">
                     <p>Этапы вакансий</p><span class="sidebar__filter-remove"></span>
                   </div>
                 </li>
@@ -82,7 +92,7 @@
               <div class="sidebar__stats-top">
                 <ul class="sidebar__stat">
                   <li class="sidebar__stat-item sidebar__li">
-                    <div class="sidebar__stats-wrapper sorting-stats-wrapper">
+                    <div class="sidebar__stats-wrapper selecting-stats-wrapper">
                       <p>Сотрировка</p><span class="sidebar__filter-remove"></span>
                     </div>
                   </li>
@@ -130,7 +140,105 @@
                 </div>
                 <div class="table-full__cell row__cell cell-status">
                   <div class="cell-status__left">
+                    <p class="status choosen active">Подготовка CV</p>
+                    <p class="status choosen">CV отправлено</p>
+                    <p class="status ready">Утвержден</p>
+                    <p class="status ready">Контракт подписан</p>
+                    <p class="status wait">Подан в визовый центр</p>
+                    <p class="status department">Получил разрешение</p>
+                    <p class="status department">Забрал разрешение</p>
+                    <p class="status department">Билеты куплены</p>
+                    <p class="status busy">Трудоустроен</p>
+                  </div>
+                  <div class="cell-statu__right"></div>
+                </div>
+                <div class="table-full__cell row__cell cell-exp"><i class="label hot__label">Сезонная</i>
+                  <p>Цветы</p>
+                </div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Лемешко Аліна</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status"></div>
+                <div class="table-full__cell row__cell cell-exp"><i class="label green__label">Практика</i>
+                  <p>Поля</p>
+                </div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Романов Валентин</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status"></div>
+                <div class="table-full__cell row__cell cell-exp"></div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Тарасюк Віталій</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status"></div>
+                <div class="table-full__cell row__cell cell-exp"><i class="label blue__label">Рабочая</i>
+                  <p>Коровы</p>
+                </div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Бичківська Алла</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status"></div>
+                <div class="table-full__cell row__cell cell-exp"><i class="label green__label">Д2</i>
+                  <p>Агроном</p><i class="label dirty-green__label">ВСТ</i>
+                </div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+            </div>
+            <div class="table-full__ready">
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Червінський Йосип</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status">
+                  <div class="cell-status__left">
                     <p class="status choosen">Подготовка CV</p>
+                    <p class="status choosen">CV отправлено</p>
+                    <p class="status ready">Утвержден</p>
+                    <p class="status ready">Контракт подписан</p>
+                    <p class="status wait">Подан в визовый центр</p>
+                    <p class="status department">Получил разрешение</p>
+                    <p class="status department">Забрал разрешение</p>
+                    <p class="status department">Билеты куплены</p>
+                    <p class="status busy">Трудоустроен</p>
+                  </div>
+                  <div class="cell-statu__right"></div>
+                </div>
+                <div class="table-full__cell row__cell cell-exp"></div>
+                <div class="table-full__cell row__cell cell-notes">
+                  <p>Записан в посольство на 10.05</p>
+                </div>
+              </div>
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Шащук Іван</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status"></div>
+                <div class="table-full__cell row__cell cell-exp"><i class="label green__label">Практика</i>
+                  <p>Поля</p>
+                </div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+            </div>
+            <div class="table-full__wait">
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Іванчик Олександр</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status">
+                  <div class="cell-status__left">
+                    <p class="status choosen active">Подготовка CV</p>
                     <p class="status choosen">CV отправлено</p>
                     <p class="status ready">Утвержден</p>
                     <p class="status ready">Контракт подписан</p>
@@ -147,41 +255,93 @@
               </div>
               <div class="table-full__row f-container">
                 <div class="table-full__cell row__cell cell-names">
-                  <p>Лемешко Аліна</p>
+                  <p>Волтарніст Юлія</p>
                 </div>
-                <div class="table-full__cell row__cell cell-status"></div>
+                <div class="table-full__cell row__cell cell-status">
+                  <div class="cell-status__left">
+                    <p class="status choosen active">Подготовка CV</p>
+                    <p class="status choosen">CV отправлено</p>
+                    <p class="status ready">Утвержден</p>
+                    <p class="status ready">Контракт подписан</p>
+                    <p class="status wait">Подан в визовый центр</p>
+                    <p class="status department">Получил разрешение</p>
+                    <p class="status department">Забрал разрешение</p>
+                    <p class="status department">Билеты куплены</p>
+                    <p class="status busy">Трудоустроен</p>
+                  </div>
+                  <div class="cell-statu__right"></div>
+                </div>
                 <div class="table-full__cell row__cell cell-exp"></div>
                 <div class="table-full__cell row__cell cell-notes"></div>
               </div>
               <div class="table-full__row f-container">
                 <div class="table-full__cell row__cell cell-names">
-                  <p>Романов Валентин</p>
+                  <p>Ситнік Оксана</p>
                 </div>
-                <div class="table-full__cell row__cell cell-status"></div>
-                <div class="table-full__cell row__cell cell-exp"></div>
-                <div class="table-full__cell row__cell cell-notes"></div>
-              </div>
-              <div class="table-full__row f-container">
-                <div class="table-full__cell row__cell cell-names">
-                  <p>Тарасюк Віталій</p>
+                <div class="table-full__cell row__cell cell-status">
+                  <div class="cell-status__left">
+                    <p class="status choosen active">Подготовка CV</p>
+                    <p class="status choosen">CV отправлено</p>
+                    <p class="status ready">Утвержден</p>
+                    <p class="status ready">Контракт подписан</p>
+                    <p class="status wait">Подан в визовый центр</p>
+                    <p class="status department">Получил разрешение</p>
+                    <p class="status department">Забрал разрешение</p>
+                    <p class="status department">Билеты куплены</p>
+                    <p class="status busy">Трудоустроен</p>
+                  </div>
+                  <div class="cell-statu__right"></div>
                 </div>
-                <div class="table-full__cell row__cell cell-status"></div>
-                <div class="table-full__cell row__cell cell-exp"></div>
-                <div class="table-full__cell row__cell cell-notes"></div>
-              </div>
-              <div class="table-full__row f-container">
-                <div class="table-full__cell row__cell cell-names">
-                  <p>Бичківська Алла</p>
-                </div>
-                <div class="table-full__cell row__cell cell-status"></div>
                 <div class="table-full__cell row__cell cell-exp"></div>
                 <div class="table-full__cell row__cell cell-notes"></div>
               </div>
             </div>
-            <div class="table-full__ready"></div>
-            <div class="table-full__wait"></div>
-            <div class="table-full__department"></div>
-            <div class="table-full__busy"></div>
+            <div class="table-full__department">
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Коргун Максим</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status">
+                  <div class="cell-status__left">
+                    <p class="status choosen active">Подготовка CV</p>
+                    <p class="status choosen">CV отправлено</p>
+                    <p class="status ready">Утвержден</p>
+                    <p class="status ready">Контракт подписан</p>
+                    <p class="status wait">Подан в визовый центр</p>
+                    <p class="status department">Получил разрешение</p>
+                    <p class="status department">Забрал разрешение</p>
+                    <p class="status department">Билеты куплены</p>
+                    <p class="status busy">Трудоустроен</p>
+                  </div>
+                  <div class="cell-statu__right"></div>
+                </div>
+                <div class="table-full__cell row__cell cell-exp"></div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+            </div>
+            <div class="table-full__busy">
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Конончук Віталій</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status">
+                  <div class="cell-status__left">
+                    <p class="status choosen active">Подготовка CV</p>
+                    <p class="status choosen">CV отправлено</p>
+                    <p class="status ready">Утвержден</p>
+                    <p class="status ready">Контракт подписан</p>
+                    <p class="status wait">Подан в визовый центр</p>
+                    <p class="status department">Получил разрешение</p>
+                    <p class="status department">Забрал разрешение</p>
+                    <p class="status department">Билеты куплены</p>
+                    <p class="status busy">Трудоустроен</p>
+                  </div>
+                  <div class="cell-statu__right"></div>
+                </div>
+                <div class="table-full__cell row__cell cell-exp"></div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="row" data-custom-open="modal-1">
@@ -221,7 +381,105 @@
                 </div>
                 <div class="table-full__cell row__cell cell-status">
                   <div class="cell-status__left">
+                    <p class="status choosen active">Подготовка CV</p>
+                    <p class="status choosen">CV отправлено</p>
+                    <p class="status ready">Утвержден</p>
+                    <p class="status ready">Контракт подписан</p>
+                    <p class="status wait">Подан в визовый центр</p>
+                    <p class="status department">Получил разрешение</p>
+                    <p class="status department">Забрал разрешение</p>
+                    <p class="status department">Билеты куплены</p>
+                    <p class="status busy">Трудоустроен</p>
+                  </div>
+                  <div class="cell-statu__right"></div>
+                </div>
+                <div class="table-full__cell row__cell cell-exp"><i class="label hot__label">Сезонная</i>
+                  <p>Цветы</p>
+                </div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Лемешко Аліна</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status"></div>
+                <div class="table-full__cell row__cell cell-exp"><i class="label green__label">Практика</i>
+                  <p>Поля</p>
+                </div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Романов Валентин</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status"></div>
+                <div class="table-full__cell row__cell cell-exp"></div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Тарасюк Віталій</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status"></div>
+                <div class="table-full__cell row__cell cell-exp"><i class="label blue__label">Рабочая</i>
+                  <p>Коровы</p>
+                </div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Бичківська Алла</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status"></div>
+                <div class="table-full__cell row__cell cell-exp"><i class="label green__label">Д2</i>
+                  <p>Агроном</p><i class="label dirty-green__label">ВСТ</i>
+                </div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+            </div>
+            <div class="table-full__ready">
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Червінський Йосип</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status">
+                  <div class="cell-status__left">
                     <p class="status choosen">Подготовка CV</p>
+                    <p class="status choosen">CV отправлено</p>
+                    <p class="status ready">Утвержден</p>
+                    <p class="status ready">Контракт подписан</p>
+                    <p class="status wait">Подан в визовый центр</p>
+                    <p class="status department">Получил разрешение</p>
+                    <p class="status department">Забрал разрешение</p>
+                    <p class="status department">Билеты куплены</p>
+                    <p class="status busy">Трудоустроен</p>
+                  </div>
+                  <div class="cell-statu__right"></div>
+                </div>
+                <div class="table-full__cell row__cell cell-exp"></div>
+                <div class="table-full__cell row__cell cell-notes">
+                  <p>Записан в посольство на 10.05</p>
+                </div>
+              </div>
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Шащук Іван</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status"></div>
+                <div class="table-full__cell row__cell cell-exp"><i class="label green__label">Практика</i>
+                  <p>Поля</p>
+                </div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+            </div>
+            <div class="table-full__wait">
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Іванчик Олександр</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status">
+                  <div class="cell-status__left">
+                    <p class="status choosen active">Подготовка CV</p>
                     <p class="status choosen">CV отправлено</p>
                     <p class="status ready">Утвержден</p>
                     <p class="status ready">Контракт подписан</p>
@@ -238,41 +496,93 @@
               </div>
               <div class="table-full__row f-container">
                 <div class="table-full__cell row__cell cell-names">
-                  <p>Лемешко Аліна</p>
+                  <p>Волтарніст Юлія</p>
                 </div>
-                <div class="table-full__cell row__cell cell-status"></div>
+                <div class="table-full__cell row__cell cell-status">
+                  <div class="cell-status__left">
+                    <p class="status choosen active">Подготовка CV</p>
+                    <p class="status choosen">CV отправлено</p>
+                    <p class="status ready">Утвержден</p>
+                    <p class="status ready">Контракт подписан</p>
+                    <p class="status wait">Подан в визовый центр</p>
+                    <p class="status department">Получил разрешение</p>
+                    <p class="status department">Забрал разрешение</p>
+                    <p class="status department">Билеты куплены</p>
+                    <p class="status busy">Трудоустроен</p>
+                  </div>
+                  <div class="cell-statu__right"></div>
+                </div>
                 <div class="table-full__cell row__cell cell-exp"></div>
                 <div class="table-full__cell row__cell cell-notes"></div>
               </div>
               <div class="table-full__row f-container">
                 <div class="table-full__cell row__cell cell-names">
-                  <p>Романов Валентин</p>
+                  <p>Ситнік Оксана</p>
                 </div>
-                <div class="table-full__cell row__cell cell-status"></div>
-                <div class="table-full__cell row__cell cell-exp"></div>
-                <div class="table-full__cell row__cell cell-notes"></div>
-              </div>
-              <div class="table-full__row f-container">
-                <div class="table-full__cell row__cell cell-names">
-                  <p>Тарасюк Віталій</p>
+                <div class="table-full__cell row__cell cell-status">
+                  <div class="cell-status__left">
+                    <p class="status choosen active">Подготовка CV</p>
+                    <p class="status choosen">CV отправлено</p>
+                    <p class="status ready">Утвержден</p>
+                    <p class="status ready">Контракт подписан</p>
+                    <p class="status wait">Подан в визовый центр</p>
+                    <p class="status department">Получил разрешение</p>
+                    <p class="status department">Забрал разрешение</p>
+                    <p class="status department">Билеты куплены</p>
+                    <p class="status busy">Трудоустроен</p>
+                  </div>
+                  <div class="cell-statu__right"></div>
                 </div>
-                <div class="table-full__cell row__cell cell-status"></div>
-                <div class="table-full__cell row__cell cell-exp"></div>
-                <div class="table-full__cell row__cell cell-notes"></div>
-              </div>
-              <div class="table-full__row f-container">
-                <div class="table-full__cell row__cell cell-names">
-                  <p>Бичківська Алла</p>
-                </div>
-                <div class="table-full__cell row__cell cell-status"></div>
                 <div class="table-full__cell row__cell cell-exp"></div>
                 <div class="table-full__cell row__cell cell-notes"></div>
               </div>
             </div>
-            <div class="table-full__ready"></div>
-            <div class="table-full__wait"></div>
-            <div class="table-full__department"></div>
-            <div class="table-full__busy"></div>
+            <div class="table-full__department">
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Коргун Максим</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status">
+                  <div class="cell-status__left">
+                    <p class="status choosen active">Подготовка CV</p>
+                    <p class="status choosen">CV отправлено</p>
+                    <p class="status ready">Утвержден</p>
+                    <p class="status ready">Контракт подписан</p>
+                    <p class="status wait">Подан в визовый центр</p>
+                    <p class="status department">Получил разрешение</p>
+                    <p class="status department">Забрал разрешение</p>
+                    <p class="status department">Билеты куплены</p>
+                    <p class="status busy">Трудоустроен</p>
+                  </div>
+                  <div class="cell-statu__right"></div>
+                </div>
+                <div class="table-full__cell row__cell cell-exp"></div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+            </div>
+            <div class="table-full__busy">
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Конончук Віталій</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status">
+                  <div class="cell-status__left">
+                    <p class="status choosen active">Подготовка CV</p>
+                    <p class="status choosen">CV отправлено</p>
+                    <p class="status ready">Утвержден</p>
+                    <p class="status ready">Контракт подписан</p>
+                    <p class="status wait">Подан в визовый центр</p>
+                    <p class="status department">Получил разрешение</p>
+                    <p class="status department">Забрал разрешение</p>
+                    <p class="status department">Билеты куплены</p>
+                    <p class="status busy">Трудоустроен</p>
+                  </div>
+                  <div class="cell-statu__right"></div>
+                </div>
+                <div class="table-full__cell row__cell cell-exp"></div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="row" data-custom-open="modal-1">
@@ -312,7 +622,105 @@
                 </div>
                 <div class="table-full__cell row__cell cell-status">
                   <div class="cell-status__left">
+                    <p class="status choosen active">Подготовка CV</p>
+                    <p class="status choosen">CV отправлено</p>
+                    <p class="status ready">Утвержден</p>
+                    <p class="status ready">Контракт подписан</p>
+                    <p class="status wait">Подан в визовый центр</p>
+                    <p class="status department">Получил разрешение</p>
+                    <p class="status department">Забрал разрешение</p>
+                    <p class="status department">Билеты куплены</p>
+                    <p class="status busy">Трудоустроен</p>
+                  </div>
+                  <div class="cell-statu__right"></div>
+                </div>
+                <div class="table-full__cell row__cell cell-exp"><i class="label hot__label">Сезонная</i>
+                  <p>Цветы</p>
+                </div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Лемешко Аліна</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status"></div>
+                <div class="table-full__cell row__cell cell-exp"><i class="label green__label">Практика</i>
+                  <p>Поля</p>
+                </div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Романов Валентин</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status"></div>
+                <div class="table-full__cell row__cell cell-exp"></div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Тарасюк Віталій</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status"></div>
+                <div class="table-full__cell row__cell cell-exp"><i class="label blue__label">Рабочая</i>
+                  <p>Коровы</p>
+                </div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Бичківська Алла</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status"></div>
+                <div class="table-full__cell row__cell cell-exp"><i class="label green__label">Д2</i>
+                  <p>Агроном</p><i class="label dirty-green__label">ВСТ</i>
+                </div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+            </div>
+            <div class="table-full__ready">
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Червінський Йосип</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status">
+                  <div class="cell-status__left">
                     <p class="status choosen">Подготовка CV</p>
+                    <p class="status choosen">CV отправлено</p>
+                    <p class="status ready">Утвержден</p>
+                    <p class="status ready">Контракт подписан</p>
+                    <p class="status wait">Подан в визовый центр</p>
+                    <p class="status department">Получил разрешение</p>
+                    <p class="status department">Забрал разрешение</p>
+                    <p class="status department">Билеты куплены</p>
+                    <p class="status busy">Трудоустроен</p>
+                  </div>
+                  <div class="cell-statu__right"></div>
+                </div>
+                <div class="table-full__cell row__cell cell-exp"></div>
+                <div class="table-full__cell row__cell cell-notes">
+                  <p>Записан в посольство на 10.05</p>
+                </div>
+              </div>
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Шащук Іван</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status"></div>
+                <div class="table-full__cell row__cell cell-exp"><i class="label green__label">Практика</i>
+                  <p>Поля</p>
+                </div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+            </div>
+            <div class="table-full__wait">
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Іванчик Олександр</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status">
+                  <div class="cell-status__left">
+                    <p class="status choosen active">Подготовка CV</p>
                     <p class="status choosen">CV отправлено</p>
                     <p class="status ready">Утвержден</p>
                     <p class="status ready">Контракт подписан</p>
@@ -329,41 +737,93 @@
               </div>
               <div class="table-full__row f-container">
                 <div class="table-full__cell row__cell cell-names">
-                  <p>Лемешко Аліна</p>
+                  <p>Волтарніст Юлія</p>
                 </div>
-                <div class="table-full__cell row__cell cell-status"></div>
+                <div class="table-full__cell row__cell cell-status">
+                  <div class="cell-status__left">
+                    <p class="status choosen active">Подготовка CV</p>
+                    <p class="status choosen">CV отправлено</p>
+                    <p class="status ready">Утвержден</p>
+                    <p class="status ready">Контракт подписан</p>
+                    <p class="status wait">Подан в визовый центр</p>
+                    <p class="status department">Получил разрешение</p>
+                    <p class="status department">Забрал разрешение</p>
+                    <p class="status department">Билеты куплены</p>
+                    <p class="status busy">Трудоустроен</p>
+                  </div>
+                  <div class="cell-statu__right"></div>
+                </div>
                 <div class="table-full__cell row__cell cell-exp"></div>
                 <div class="table-full__cell row__cell cell-notes"></div>
               </div>
               <div class="table-full__row f-container">
                 <div class="table-full__cell row__cell cell-names">
-                  <p>Романов Валентин</p>
+                  <p>Ситнік Оксана</p>
                 </div>
-                <div class="table-full__cell row__cell cell-status"></div>
-                <div class="table-full__cell row__cell cell-exp"></div>
-                <div class="table-full__cell row__cell cell-notes"></div>
-              </div>
-              <div class="table-full__row f-container">
-                <div class="table-full__cell row__cell cell-names">
-                  <p>Тарасюк Віталій</p>
+                <div class="table-full__cell row__cell cell-status">
+                  <div class="cell-status__left">
+                    <p class="status choosen active">Подготовка CV</p>
+                    <p class="status choosen">CV отправлено</p>
+                    <p class="status ready">Утвержден</p>
+                    <p class="status ready">Контракт подписан</p>
+                    <p class="status wait">Подан в визовый центр</p>
+                    <p class="status department">Получил разрешение</p>
+                    <p class="status department">Забрал разрешение</p>
+                    <p class="status department">Билеты куплены</p>
+                    <p class="status busy">Трудоустроен</p>
+                  </div>
+                  <div class="cell-statu__right"></div>
                 </div>
-                <div class="table-full__cell row__cell cell-status"></div>
-                <div class="table-full__cell row__cell cell-exp"></div>
-                <div class="table-full__cell row__cell cell-notes"></div>
-              </div>
-              <div class="table-full__row f-container">
-                <div class="table-full__cell row__cell cell-names">
-                  <p>Бичківська Алла</p>
-                </div>
-                <div class="table-full__cell row__cell cell-status"></div>
                 <div class="table-full__cell row__cell cell-exp"></div>
                 <div class="table-full__cell row__cell cell-notes"></div>
               </div>
             </div>
-            <div class="table-full__ready"></div>
-            <div class="table-full__wait"></div>
-            <div class="table-full__department"></div>
-            <div class="table-full__busy"></div>
+            <div class="table-full__department">
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Коргун Максим</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status">
+                  <div class="cell-status__left">
+                    <p class="status choosen active">Подготовка CV</p>
+                    <p class="status choosen">CV отправлено</p>
+                    <p class="status ready">Утвержден</p>
+                    <p class="status ready">Контракт подписан</p>
+                    <p class="status wait">Подан в визовый центр</p>
+                    <p class="status department">Получил разрешение</p>
+                    <p class="status department">Забрал разрешение</p>
+                    <p class="status department">Билеты куплены</p>
+                    <p class="status busy">Трудоустроен</p>
+                  </div>
+                  <div class="cell-statu__right"></div>
+                </div>
+                <div class="table-full__cell row__cell cell-exp"></div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+            </div>
+            <div class="table-full__busy">
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Конончук Віталій</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status">
+                  <div class="cell-status__left">
+                    <p class="status choosen active">Подготовка CV</p>
+                    <p class="status choosen">CV отправлено</p>
+                    <p class="status ready">Утвержден</p>
+                    <p class="status ready">Контракт подписан</p>
+                    <p class="status wait">Подан в визовый центр</p>
+                    <p class="status department">Получил разрешение</p>
+                    <p class="status department">Забрал разрешение</p>
+                    <p class="status department">Билеты куплены</p>
+                    <p class="status busy">Трудоустроен</p>
+                  </div>
+                  <div class="cell-statu__right"></div>
+                </div>
+                <div class="table-full__cell row__cell cell-exp"></div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="row" data-custom-open="modal-1">
@@ -403,7 +863,105 @@
                 </div>
                 <div class="table-full__cell row__cell cell-status">
                   <div class="cell-status__left">
+                    <p class="status choosen active">Подготовка CV</p>
+                    <p class="status choosen">CV отправлено</p>
+                    <p class="status ready">Утвержден</p>
+                    <p class="status ready">Контракт подписан</p>
+                    <p class="status wait">Подан в визовый центр</p>
+                    <p class="status department">Получил разрешение</p>
+                    <p class="status department">Забрал разрешение</p>
+                    <p class="status department">Билеты куплены</p>
+                    <p class="status busy">Трудоустроен</p>
+                  </div>
+                  <div class="cell-statu__right"></div>
+                </div>
+                <div class="table-full__cell row__cell cell-exp"><i class="label hot__label">Сезонная</i>
+                  <p>Цветы</p>
+                </div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Лемешко Аліна</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status"></div>
+                <div class="table-full__cell row__cell cell-exp"><i class="label green__label">Практика</i>
+                  <p>Поля</p>
+                </div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Романов Валентин</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status"></div>
+                <div class="table-full__cell row__cell cell-exp"></div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Тарасюк Віталій</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status"></div>
+                <div class="table-full__cell row__cell cell-exp"><i class="label blue__label">Рабочая</i>
+                  <p>Коровы</p>
+                </div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Бичківська Алла</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status"></div>
+                <div class="table-full__cell row__cell cell-exp"><i class="label green__label">Д2</i>
+                  <p>Агроном</p><i class="label dirty-green__label">ВСТ</i>
+                </div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+            </div>
+            <div class="table-full__ready">
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Червінський Йосип</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status">
+                  <div class="cell-status__left">
                     <p class="status choosen">Подготовка CV</p>
+                    <p class="status choosen">CV отправлено</p>
+                    <p class="status ready">Утвержден</p>
+                    <p class="status ready">Контракт подписан</p>
+                    <p class="status wait">Подан в визовый центр</p>
+                    <p class="status department">Получил разрешение</p>
+                    <p class="status department">Забрал разрешение</p>
+                    <p class="status department">Билеты куплены</p>
+                    <p class="status busy">Трудоустроен</p>
+                  </div>
+                  <div class="cell-statu__right"></div>
+                </div>
+                <div class="table-full__cell row__cell cell-exp"></div>
+                <div class="table-full__cell row__cell cell-notes">
+                  <p>Записан в посольство на 10.05</p>
+                </div>
+              </div>
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Шащук Іван</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status"></div>
+                <div class="table-full__cell row__cell cell-exp"><i class="label green__label">Практика</i>
+                  <p>Поля</p>
+                </div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+            </div>
+            <div class="table-full__wait">
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Іванчик Олександр</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status">
+                  <div class="cell-status__left">
+                    <p class="status choosen active">Подготовка CV</p>
                     <p class="status choosen">CV отправлено</p>
                     <p class="status ready">Утвержден</p>
                     <p class="status ready">Контракт подписан</p>
@@ -420,41 +978,93 @@
               </div>
               <div class="table-full__row f-container">
                 <div class="table-full__cell row__cell cell-names">
-                  <p>Лемешко Аліна</p>
+                  <p>Волтарніст Юлія</p>
                 </div>
-                <div class="table-full__cell row__cell cell-status"></div>
+                <div class="table-full__cell row__cell cell-status">
+                  <div class="cell-status__left">
+                    <p class="status choosen active">Подготовка CV</p>
+                    <p class="status choosen">CV отправлено</p>
+                    <p class="status ready">Утвержден</p>
+                    <p class="status ready">Контракт подписан</p>
+                    <p class="status wait">Подан в визовый центр</p>
+                    <p class="status department">Получил разрешение</p>
+                    <p class="status department">Забрал разрешение</p>
+                    <p class="status department">Билеты куплены</p>
+                    <p class="status busy">Трудоустроен</p>
+                  </div>
+                  <div class="cell-statu__right"></div>
+                </div>
                 <div class="table-full__cell row__cell cell-exp"></div>
                 <div class="table-full__cell row__cell cell-notes"></div>
               </div>
               <div class="table-full__row f-container">
                 <div class="table-full__cell row__cell cell-names">
-                  <p>Романов Валентин</p>
+                  <p>Ситнік Оксана</p>
                 </div>
-                <div class="table-full__cell row__cell cell-status"></div>
-                <div class="table-full__cell row__cell cell-exp"></div>
-                <div class="table-full__cell row__cell cell-notes"></div>
-              </div>
-              <div class="table-full__row f-container">
-                <div class="table-full__cell row__cell cell-names">
-                  <p>Тарасюк Віталій</p>
+                <div class="table-full__cell row__cell cell-status">
+                  <div class="cell-status__left">
+                    <p class="status choosen active">Подготовка CV</p>
+                    <p class="status choosen">CV отправлено</p>
+                    <p class="status ready">Утвержден</p>
+                    <p class="status ready">Контракт подписан</p>
+                    <p class="status wait">Подан в визовый центр</p>
+                    <p class="status department">Получил разрешение</p>
+                    <p class="status department">Забрал разрешение</p>
+                    <p class="status department">Билеты куплены</p>
+                    <p class="status busy">Трудоустроен</p>
+                  </div>
+                  <div class="cell-statu__right"></div>
                 </div>
-                <div class="table-full__cell row__cell cell-status"></div>
-                <div class="table-full__cell row__cell cell-exp"></div>
-                <div class="table-full__cell row__cell cell-notes"></div>
-              </div>
-              <div class="table-full__row f-container">
-                <div class="table-full__cell row__cell cell-names">
-                  <p>Бичківська Алла</p>
-                </div>
-                <div class="table-full__cell row__cell cell-status"></div>
                 <div class="table-full__cell row__cell cell-exp"></div>
                 <div class="table-full__cell row__cell cell-notes"></div>
               </div>
             </div>
-            <div class="table-full__ready"></div>
-            <div class="table-full__wait"></div>
-            <div class="table-full__department"></div>
-            <div class="table-full__busy"></div>
+            <div class="table-full__department">
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Коргун Максим</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status">
+                  <div class="cell-status__left">
+                    <p class="status choosen active">Подготовка CV</p>
+                    <p class="status choosen">CV отправлено</p>
+                    <p class="status ready">Утвержден</p>
+                    <p class="status ready">Контракт подписан</p>
+                    <p class="status wait">Подан в визовый центр</p>
+                    <p class="status department">Получил разрешение</p>
+                    <p class="status department">Забрал разрешение</p>
+                    <p class="status department">Билеты куплены</p>
+                    <p class="status busy">Трудоустроен</p>
+                  </div>
+                  <div class="cell-statu__right"></div>
+                </div>
+                <div class="table-full__cell row__cell cell-exp"></div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+            </div>
+            <div class="table-full__busy">
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Конончук Віталій</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status">
+                  <div class="cell-status__left">
+                    <p class="status choosen active">Подготовка CV</p>
+                    <p class="status choosen">CV отправлено</p>
+                    <p class="status ready">Утвержден</p>
+                    <p class="status ready">Контракт подписан</p>
+                    <p class="status wait">Подан в визовый центр</p>
+                    <p class="status department">Получил разрешение</p>
+                    <p class="status department">Забрал разрешение</p>
+                    <p class="status department">Билеты куплены</p>
+                    <p class="status busy">Трудоустроен</p>
+                  </div>
+                  <div class="cell-statu__right"></div>
+                </div>
+                <div class="table-full__cell row__cell cell-exp"></div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="row" data-custom-open="modal-1">
@@ -494,7 +1104,105 @@
                 </div>
                 <div class="table-full__cell row__cell cell-status">
                   <div class="cell-status__left">
+                    <p class="status choosen active">Подготовка CV</p>
+                    <p class="status choosen">CV отправлено</p>
+                    <p class="status ready">Утвержден</p>
+                    <p class="status ready">Контракт подписан</p>
+                    <p class="status wait">Подан в визовый центр</p>
+                    <p class="status department">Получил разрешение</p>
+                    <p class="status department">Забрал разрешение</p>
+                    <p class="status department">Билеты куплены</p>
+                    <p class="status busy">Трудоустроен</p>
+                  </div>
+                  <div class="cell-statu__right"></div>
+                </div>
+                <div class="table-full__cell row__cell cell-exp"><i class="label hot__label">Сезонная</i>
+                  <p>Цветы</p>
+                </div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Лемешко Аліна</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status"></div>
+                <div class="table-full__cell row__cell cell-exp"><i class="label green__label">Практика</i>
+                  <p>Поля</p>
+                </div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Романов Валентин</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status"></div>
+                <div class="table-full__cell row__cell cell-exp"></div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Тарасюк Віталій</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status"></div>
+                <div class="table-full__cell row__cell cell-exp"><i class="label blue__label">Рабочая</i>
+                  <p>Коровы</p>
+                </div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Бичківська Алла</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status"></div>
+                <div class="table-full__cell row__cell cell-exp"><i class="label green__label">Д2</i>
+                  <p>Агроном</p><i class="label dirty-green__label">ВСТ</i>
+                </div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+            </div>
+            <div class="table-full__ready">
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Червінський Йосип</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status">
+                  <div class="cell-status__left">
                     <p class="status choosen">Подготовка CV</p>
+                    <p class="status choosen">CV отправлено</p>
+                    <p class="status ready">Утвержден</p>
+                    <p class="status ready">Контракт подписан</p>
+                    <p class="status wait">Подан в визовый центр</p>
+                    <p class="status department">Получил разрешение</p>
+                    <p class="status department">Забрал разрешение</p>
+                    <p class="status department">Билеты куплены</p>
+                    <p class="status busy">Трудоустроен</p>
+                  </div>
+                  <div class="cell-statu__right"></div>
+                </div>
+                <div class="table-full__cell row__cell cell-exp"></div>
+                <div class="table-full__cell row__cell cell-notes">
+                  <p>Записан в посольство на 10.05</p>
+                </div>
+              </div>
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Шащук Іван</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status"></div>
+                <div class="table-full__cell row__cell cell-exp"><i class="label green__label">Практика</i>
+                  <p>Поля</p>
+                </div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+            </div>
+            <div class="table-full__wait">
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Іванчик Олександр</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status">
+                  <div class="cell-status__left">
+                    <p class="status choosen active">Подготовка CV</p>
                     <p class="status choosen">CV отправлено</p>
                     <p class="status ready">Утвержден</p>
                     <p class="status ready">Контракт подписан</p>
@@ -511,41 +1219,93 @@
               </div>
               <div class="table-full__row f-container">
                 <div class="table-full__cell row__cell cell-names">
-                  <p>Лемешко Аліна</p>
+                  <p>Волтарніст Юлія</p>
                 </div>
-                <div class="table-full__cell row__cell cell-status"></div>
+                <div class="table-full__cell row__cell cell-status">
+                  <div class="cell-status__left">
+                    <p class="status choosen active">Подготовка CV</p>
+                    <p class="status choosen">CV отправлено</p>
+                    <p class="status ready">Утвержден</p>
+                    <p class="status ready">Контракт подписан</p>
+                    <p class="status wait">Подан в визовый центр</p>
+                    <p class="status department">Получил разрешение</p>
+                    <p class="status department">Забрал разрешение</p>
+                    <p class="status department">Билеты куплены</p>
+                    <p class="status busy">Трудоустроен</p>
+                  </div>
+                  <div class="cell-statu__right"></div>
+                </div>
                 <div class="table-full__cell row__cell cell-exp"></div>
                 <div class="table-full__cell row__cell cell-notes"></div>
               </div>
               <div class="table-full__row f-container">
                 <div class="table-full__cell row__cell cell-names">
-                  <p>Романов Валентин</p>
+                  <p>Ситнік Оксана</p>
                 </div>
-                <div class="table-full__cell row__cell cell-status"></div>
-                <div class="table-full__cell row__cell cell-exp"></div>
-                <div class="table-full__cell row__cell cell-notes"></div>
-              </div>
-              <div class="table-full__row f-container">
-                <div class="table-full__cell row__cell cell-names">
-                  <p>Тарасюк Віталій</p>
+                <div class="table-full__cell row__cell cell-status">
+                  <div class="cell-status__left">
+                    <p class="status choosen active">Подготовка CV</p>
+                    <p class="status choosen">CV отправлено</p>
+                    <p class="status ready">Утвержден</p>
+                    <p class="status ready">Контракт подписан</p>
+                    <p class="status wait">Подан в визовый центр</p>
+                    <p class="status department">Получил разрешение</p>
+                    <p class="status department">Забрал разрешение</p>
+                    <p class="status department">Билеты куплены</p>
+                    <p class="status busy">Трудоустроен</p>
+                  </div>
+                  <div class="cell-statu__right"></div>
                 </div>
-                <div class="table-full__cell row__cell cell-status"></div>
-                <div class="table-full__cell row__cell cell-exp"></div>
-                <div class="table-full__cell row__cell cell-notes"></div>
-              </div>
-              <div class="table-full__row f-container">
-                <div class="table-full__cell row__cell cell-names">
-                  <p>Бичківська Алла</p>
-                </div>
-                <div class="table-full__cell row__cell cell-status"></div>
                 <div class="table-full__cell row__cell cell-exp"></div>
                 <div class="table-full__cell row__cell cell-notes"></div>
               </div>
             </div>
-            <div class="table-full__ready"></div>
-            <div class="table-full__wait"></div>
-            <div class="table-full__department"></div>
-            <div class="table-full__busy"></div>
+            <div class="table-full__department">
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Коргун Максим</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status">
+                  <div class="cell-status__left">
+                    <p class="status choosen active">Подготовка CV</p>
+                    <p class="status choosen">CV отправлено</p>
+                    <p class="status ready">Утвержден</p>
+                    <p class="status ready">Контракт подписан</p>
+                    <p class="status wait">Подан в визовый центр</p>
+                    <p class="status department">Получил разрешение</p>
+                    <p class="status department">Забрал разрешение</p>
+                    <p class="status department">Билеты куплены</p>
+                    <p class="status busy">Трудоустроен</p>
+                  </div>
+                  <div class="cell-statu__right"></div>
+                </div>
+                <div class="table-full__cell row__cell cell-exp"></div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+            </div>
+            <div class="table-full__busy">
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Конончук Віталій</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status">
+                  <div class="cell-status__left">
+                    <p class="status choosen active">Подготовка CV</p>
+                    <p class="status choosen">CV отправлено</p>
+                    <p class="status ready">Утвержден</p>
+                    <p class="status ready">Контракт подписан</p>
+                    <p class="status wait">Подан в визовый центр</p>
+                    <p class="status department">Получил разрешение</p>
+                    <p class="status department">Забрал разрешение</p>
+                    <p class="status department">Билеты куплены</p>
+                    <p class="status busy">Трудоустроен</p>
+                  </div>
+                  <div class="cell-statu__right"></div>
+                </div>
+                <div class="table-full__cell row__cell cell-exp"></div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="row" data-custom-open="modal-1">
@@ -585,7 +1345,105 @@
                 </div>
                 <div class="table-full__cell row__cell cell-status">
                   <div class="cell-status__left">
+                    <p class="status choosen active">Подготовка CV</p>
+                    <p class="status choosen">CV отправлено</p>
+                    <p class="status ready">Утвержден</p>
+                    <p class="status ready">Контракт подписан</p>
+                    <p class="status wait">Подан в визовый центр</p>
+                    <p class="status department">Получил разрешение</p>
+                    <p class="status department">Забрал разрешение</p>
+                    <p class="status department">Билеты куплены</p>
+                    <p class="status busy">Трудоустроен</p>
+                  </div>
+                  <div class="cell-statu__right"></div>
+                </div>
+                <div class="table-full__cell row__cell cell-exp"><i class="label hot__label">Сезонная</i>
+                  <p>Цветы</p>
+                </div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Лемешко Аліна</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status"></div>
+                <div class="table-full__cell row__cell cell-exp"><i class="label green__label">Практика</i>
+                  <p>Поля</p>
+                </div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Романов Валентин</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status"></div>
+                <div class="table-full__cell row__cell cell-exp"></div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Тарасюк Віталій</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status"></div>
+                <div class="table-full__cell row__cell cell-exp"><i class="label blue__label">Рабочая</i>
+                  <p>Коровы</p>
+                </div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Бичківська Алла</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status"></div>
+                <div class="table-full__cell row__cell cell-exp"><i class="label green__label">Д2</i>
+                  <p>Агроном</p><i class="label dirty-green__label">ВСТ</i>
+                </div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+            </div>
+            <div class="table-full__ready">
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Червінський Йосип</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status">
+                  <div class="cell-status__left">
                     <p class="status choosen">Подготовка CV</p>
+                    <p class="status choosen">CV отправлено</p>
+                    <p class="status ready">Утвержден</p>
+                    <p class="status ready">Контракт подписан</p>
+                    <p class="status wait">Подан в визовый центр</p>
+                    <p class="status department">Получил разрешение</p>
+                    <p class="status department">Забрал разрешение</p>
+                    <p class="status department">Билеты куплены</p>
+                    <p class="status busy">Трудоустроен</p>
+                  </div>
+                  <div class="cell-statu__right"></div>
+                </div>
+                <div class="table-full__cell row__cell cell-exp"></div>
+                <div class="table-full__cell row__cell cell-notes">
+                  <p>Записан в посольство на 10.05</p>
+                </div>
+              </div>
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Шащук Іван</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status"></div>
+                <div class="table-full__cell row__cell cell-exp"><i class="label green__label">Практика</i>
+                  <p>Поля</p>
+                </div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+            </div>
+            <div class="table-full__wait">
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Іванчик Олександр</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status">
+                  <div class="cell-status__left">
+                    <p class="status choosen active">Подготовка CV</p>
                     <p class="status choosen">CV отправлено</p>
                     <p class="status ready">Утвержден</p>
                     <p class="status ready">Контракт подписан</p>
@@ -602,41 +1460,93 @@
               </div>
               <div class="table-full__row f-container">
                 <div class="table-full__cell row__cell cell-names">
-                  <p>Лемешко Аліна</p>
+                  <p>Волтарніст Юлія</p>
                 </div>
-                <div class="table-full__cell row__cell cell-status"></div>
+                <div class="table-full__cell row__cell cell-status">
+                  <div class="cell-status__left">
+                    <p class="status choosen active">Подготовка CV</p>
+                    <p class="status choosen">CV отправлено</p>
+                    <p class="status ready">Утвержден</p>
+                    <p class="status ready">Контракт подписан</p>
+                    <p class="status wait">Подан в визовый центр</p>
+                    <p class="status department">Получил разрешение</p>
+                    <p class="status department">Забрал разрешение</p>
+                    <p class="status department">Билеты куплены</p>
+                    <p class="status busy">Трудоустроен</p>
+                  </div>
+                  <div class="cell-statu__right"></div>
+                </div>
                 <div class="table-full__cell row__cell cell-exp"></div>
                 <div class="table-full__cell row__cell cell-notes"></div>
               </div>
               <div class="table-full__row f-container">
                 <div class="table-full__cell row__cell cell-names">
-                  <p>Романов Валентин</p>
+                  <p>Ситнік Оксана</p>
                 </div>
-                <div class="table-full__cell row__cell cell-status"></div>
-                <div class="table-full__cell row__cell cell-exp"></div>
-                <div class="table-full__cell row__cell cell-notes"></div>
-              </div>
-              <div class="table-full__row f-container">
-                <div class="table-full__cell row__cell cell-names">
-                  <p>Тарасюк Віталій</p>
+                <div class="table-full__cell row__cell cell-status">
+                  <div class="cell-status__left">
+                    <p class="status choosen active">Подготовка CV</p>
+                    <p class="status choosen">CV отправлено</p>
+                    <p class="status ready">Утвержден</p>
+                    <p class="status ready">Контракт подписан</p>
+                    <p class="status wait">Подан в визовый центр</p>
+                    <p class="status department">Получил разрешение</p>
+                    <p class="status department">Забрал разрешение</p>
+                    <p class="status department">Билеты куплены</p>
+                    <p class="status busy">Трудоустроен</p>
+                  </div>
+                  <div class="cell-statu__right"></div>
                 </div>
-                <div class="table-full__cell row__cell cell-status"></div>
-                <div class="table-full__cell row__cell cell-exp"></div>
-                <div class="table-full__cell row__cell cell-notes"></div>
-              </div>
-              <div class="table-full__row f-container">
-                <div class="table-full__cell row__cell cell-names">
-                  <p>Бичківська Алла</p>
-                </div>
-                <div class="table-full__cell row__cell cell-status"></div>
                 <div class="table-full__cell row__cell cell-exp"></div>
                 <div class="table-full__cell row__cell cell-notes"></div>
               </div>
             </div>
-            <div class="table-full__ready"></div>
-            <div class="table-full__wait"></div>
-            <div class="table-full__department"></div>
-            <div class="table-full__busy"></div>
+            <div class="table-full__department">
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Коргун Максим</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status">
+                  <div class="cell-status__left">
+                    <p class="status choosen active">Подготовка CV</p>
+                    <p class="status choosen">CV отправлено</p>
+                    <p class="status ready">Утвержден</p>
+                    <p class="status ready">Контракт подписан</p>
+                    <p class="status wait">Подан в визовый центр</p>
+                    <p class="status department">Получил разрешение</p>
+                    <p class="status department">Забрал разрешение</p>
+                    <p class="status department">Билеты куплены</p>
+                    <p class="status busy">Трудоустроен</p>
+                  </div>
+                  <div class="cell-statu__right"></div>
+                </div>
+                <div class="table-full__cell row__cell cell-exp"></div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+            </div>
+            <div class="table-full__busy">
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Конончук Віталій</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status">
+                  <div class="cell-status__left">
+                    <p class="status choosen active">Подготовка CV</p>
+                    <p class="status choosen">CV отправлено</p>
+                    <p class="status ready">Утвержден</p>
+                    <p class="status ready">Контракт подписан</p>
+                    <p class="status wait">Подан в визовый центр</p>
+                    <p class="status department">Получил разрешение</p>
+                    <p class="status department">Забрал разрешение</p>
+                    <p class="status department">Билеты куплены</p>
+                    <p class="status busy">Трудоустроен</p>
+                  </div>
+                  <div class="cell-statu__right"></div>
+                </div>
+                <div class="table-full__cell row__cell cell-exp"></div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="row" data-custom-open="modal-1">
@@ -676,7 +1586,105 @@
                 </div>
                 <div class="table-full__cell row__cell cell-status">
                   <div class="cell-status__left">
+                    <p class="status choosen active">Подготовка CV</p>
+                    <p class="status choosen">CV отправлено</p>
+                    <p class="status ready">Утвержден</p>
+                    <p class="status ready">Контракт подписан</p>
+                    <p class="status wait">Подан в визовый центр</p>
+                    <p class="status department">Получил разрешение</p>
+                    <p class="status department">Забрал разрешение</p>
+                    <p class="status department">Билеты куплены</p>
+                    <p class="status busy">Трудоустроен</p>
+                  </div>
+                  <div class="cell-statu__right"></div>
+                </div>
+                <div class="table-full__cell row__cell cell-exp"><i class="label hot__label">Сезонная</i>
+                  <p>Цветы</p>
+                </div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Лемешко Аліна</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status"></div>
+                <div class="table-full__cell row__cell cell-exp"><i class="label green__label">Практика</i>
+                  <p>Поля</p>
+                </div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Романов Валентин</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status"></div>
+                <div class="table-full__cell row__cell cell-exp"></div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Тарасюк Віталій</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status"></div>
+                <div class="table-full__cell row__cell cell-exp"><i class="label blue__label">Рабочая</i>
+                  <p>Коровы</p>
+                </div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Бичківська Алла</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status"></div>
+                <div class="table-full__cell row__cell cell-exp"><i class="label green__label">Д2</i>
+                  <p>Агроном</p><i class="label dirty-green__label">ВСТ</i>
+                </div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+            </div>
+            <div class="table-full__ready">
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Червінський Йосип</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status">
+                  <div class="cell-status__left">
                     <p class="status choosen">Подготовка CV</p>
+                    <p class="status choosen">CV отправлено</p>
+                    <p class="status ready">Утвержден</p>
+                    <p class="status ready">Контракт подписан</p>
+                    <p class="status wait">Подан в визовый центр</p>
+                    <p class="status department">Получил разрешение</p>
+                    <p class="status department">Забрал разрешение</p>
+                    <p class="status department">Билеты куплены</p>
+                    <p class="status busy">Трудоустроен</p>
+                  </div>
+                  <div class="cell-statu__right"></div>
+                </div>
+                <div class="table-full__cell row__cell cell-exp"></div>
+                <div class="table-full__cell row__cell cell-notes">
+                  <p>Записан в посольство на 10.05</p>
+                </div>
+              </div>
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Шащук Іван</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status"></div>
+                <div class="table-full__cell row__cell cell-exp"><i class="label green__label">Практика</i>
+                  <p>Поля</p>
+                </div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+            </div>
+            <div class="table-full__wait">
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Іванчик Олександр</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status">
+                  <div class="cell-status__left">
+                    <p class="status choosen active">Подготовка CV</p>
                     <p class="status choosen">CV отправлено</p>
                     <p class="status ready">Утвержден</p>
                     <p class="status ready">Контракт подписан</p>
@@ -693,41 +1701,93 @@
               </div>
               <div class="table-full__row f-container">
                 <div class="table-full__cell row__cell cell-names">
-                  <p>Лемешко Аліна</p>
+                  <p>Волтарніст Юлія</p>
                 </div>
-                <div class="table-full__cell row__cell cell-status"></div>
+                <div class="table-full__cell row__cell cell-status">
+                  <div class="cell-status__left">
+                    <p class="status choosen active">Подготовка CV</p>
+                    <p class="status choosen">CV отправлено</p>
+                    <p class="status ready">Утвержден</p>
+                    <p class="status ready">Контракт подписан</p>
+                    <p class="status wait">Подан в визовый центр</p>
+                    <p class="status department">Получил разрешение</p>
+                    <p class="status department">Забрал разрешение</p>
+                    <p class="status department">Билеты куплены</p>
+                    <p class="status busy">Трудоустроен</p>
+                  </div>
+                  <div class="cell-statu__right"></div>
+                </div>
                 <div class="table-full__cell row__cell cell-exp"></div>
                 <div class="table-full__cell row__cell cell-notes"></div>
               </div>
               <div class="table-full__row f-container">
                 <div class="table-full__cell row__cell cell-names">
-                  <p>Романов Валентин</p>
+                  <p>Ситнік Оксана</p>
                 </div>
-                <div class="table-full__cell row__cell cell-status"></div>
-                <div class="table-full__cell row__cell cell-exp"></div>
-                <div class="table-full__cell row__cell cell-notes"></div>
-              </div>
-              <div class="table-full__row f-container">
-                <div class="table-full__cell row__cell cell-names">
-                  <p>Тарасюк Віталій</p>
+                <div class="table-full__cell row__cell cell-status">
+                  <div class="cell-status__left">
+                    <p class="status choosen active">Подготовка CV</p>
+                    <p class="status choosen">CV отправлено</p>
+                    <p class="status ready">Утвержден</p>
+                    <p class="status ready">Контракт подписан</p>
+                    <p class="status wait">Подан в визовый центр</p>
+                    <p class="status department">Получил разрешение</p>
+                    <p class="status department">Забрал разрешение</p>
+                    <p class="status department">Билеты куплены</p>
+                    <p class="status busy">Трудоустроен</p>
+                  </div>
+                  <div class="cell-statu__right"></div>
                 </div>
-                <div class="table-full__cell row__cell cell-status"></div>
-                <div class="table-full__cell row__cell cell-exp"></div>
-                <div class="table-full__cell row__cell cell-notes"></div>
-              </div>
-              <div class="table-full__row f-container">
-                <div class="table-full__cell row__cell cell-names">
-                  <p>Бичківська Алла</p>
-                </div>
-                <div class="table-full__cell row__cell cell-status"></div>
                 <div class="table-full__cell row__cell cell-exp"></div>
                 <div class="table-full__cell row__cell cell-notes"></div>
               </div>
             </div>
-            <div class="table-full__ready"></div>
-            <div class="table-full__wait"></div>
-            <div class="table-full__department"></div>
-            <div class="table-full__busy"></div>
+            <div class="table-full__department">
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Коргун Максим</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status">
+                  <div class="cell-status__left">
+                    <p class="status choosen active">Подготовка CV</p>
+                    <p class="status choosen">CV отправлено</p>
+                    <p class="status ready">Утвержден</p>
+                    <p class="status ready">Контракт подписан</p>
+                    <p class="status wait">Подан в визовый центр</p>
+                    <p class="status department">Получил разрешение</p>
+                    <p class="status department">Забрал разрешение</p>
+                    <p class="status department">Билеты куплены</p>
+                    <p class="status busy">Трудоустроен</p>
+                  </div>
+                  <div class="cell-statu__right"></div>
+                </div>
+                <div class="table-full__cell row__cell cell-exp"></div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+            </div>
+            <div class="table-full__busy">
+              <div class="table-full__row f-container">
+                <div class="table-full__cell row__cell cell-names">
+                  <p>Конончук Віталій</p>
+                </div>
+                <div class="table-full__cell row__cell cell-status">
+                  <div class="cell-status__left">
+                    <p class="status choosen active">Подготовка CV</p>
+                    <p class="status choosen">CV отправлено</p>
+                    <p class="status ready">Утвержден</p>
+                    <p class="status ready">Контракт подписан</p>
+                    <p class="status wait">Подан в визовый центр</p>
+                    <p class="status department">Получил разрешение</p>
+                    <p class="status department">Забрал разрешение</p>
+                    <p class="status department">Билеты куплены</p>
+                    <p class="status busy">Трудоустроен</p>
+                  </div>
+                  <div class="cell-statu__right"></div>
+                </div>
+                <div class="table-full__cell row__cell cell-exp"></div>
+                <div class="table-full__cell row__cell cell-notes"></div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="row" data-custom-open="modal-1">
@@ -789,9 +1849,53 @@
             </div>
           </form>
         </div>
+        <div class="sidebar-popup" id="status-popup">
+          <form>
+            <div class="input-group">
+              <input type="checkbox" id="shortfall-chbx">
+              <label for="shortfall-chbx">Недоборы</label>
+            </div>
+            <div class="input-group">
+              <input type="checkbox" id="selected-chbx">
+              <label for="selected-chbx">Отобраны</label>
+            </div>
+            <div class="input-group">
+              <input type="checkbox" id="supply-chbx">
+              <label for="supply-chbx">Готовятся к подаче</label>
+            </div>
+            <div class="input-group">
+              <input type="checkbox" id="wait-chbx">
+              <label for="wait-chbx">Ждут разрешения</label>
+            </div>
+            <div class="input-group">
+              <input type="checkbox" id="department-chbx">
+              <label for="department-chbx">Готовятся к отъезду</label>
+            </div>
+            <div class="input-group">
+              <input type="checkbox" id="busy-chbx">
+              <label for="busy-chbx">Трудоустроены</label>
+            </div>
+          </form>
+        </div>
+        <div class="sidebar-popup" id="selecting-popup">
+          <form>
+            <div class="input-group">
+              <input type="checkbox" id="date-start-chbx">
+              <label for="date-start-chbx">По дате начала работы</label>
+            </div>
+            <div class="input-group">
+              <input type="checkbox" id="countries-chbx">
+              <label for="countries-chbx">По странам</label>
+            </div>
+            <div class="input-group">
+              <input type="checkbox" id="managers-chbx">
+              <label for="managers-chbx">По менеджерам</label>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
-    <script src="js/libs.min.js?v=1596587021728" defer></script>
-    <script src="js/script.min.js?v=1596587021728" async></script>
+    <script src="js/libs.min.js?v=1596842688481" defer></script>
+    <script src="js/script.min.js?v=1596842688481" async></script>
   </body>
 </html>

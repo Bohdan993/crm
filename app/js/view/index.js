@@ -16,6 +16,8 @@ const vacanciesTemplate = document.querySelector('#vacancies-popup');
 const sortingTemplate = document.querySelector('#sorting-popup');
 const typeFeedbackTemplate = document.querySelector('#type-feedback-popup')
 const choiceClientTemplate = document.querySelector('#choice-client-feedback-popup')
+const statusTemplate = document.querySelector('#status-popup')
+const selectingTemplate = document.querySelector('#selecting-popup')
 
 
 
@@ -114,5 +116,7 @@ export {
 	modal2ContactSelect,
 	modal2ContactDate,
 	feedbackAddItem,
-	addfeedbackForm
+	addfeedbackForm,
+	statusTemplate,
+	selectingTemplate
 }
