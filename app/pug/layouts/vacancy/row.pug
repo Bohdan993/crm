@@ -1,13 +1,13 @@
 .row(data-custom-open="modal-1")
 	.f-container
 		.row__terms.row__cell.hot
-		.row__labels-2.row__cell
-			i.label.attention__label
-				span
+		.row__labels-2.row__cell.no-open
+			i.label.attention__label.no-open
+				span.no-open
 					|NO
-				span 
+				span.no-open
 					|118 - 22
-			span.number-of-people.attention-number
+			span.number-of-people.attention-number.no-open
 					|М12 Ж5
 		.row__indicators.row__cell
 			span.row__indicator.empty
@@ -16,10 +16,10 @@
 			span.row__indicator.empty
 			span.row__indicator.empty
 			span.row__indicator.empty
-		.row__name-2.row__cell
-			p.row__fullname
+		.row__name-2.row__cell.no-open
+			p.row__fullname.no-open
 				|Thompson Equestrian Partners / Junction Engineering
-			i.tag.manager-tag.dark-blue-tag
+			i.tag.manager-tag.dark-blue-tag.no-open
 				|AK
 		.row__vacancies.row__cell
 		.row__notes.row__cell
@@ -33,25 +33,41 @@
 						|Гурківський Олександр
 				.table-full__cell.row__cell.cell-status
 					.cell-status__left
-						p.status.choosen.active
-							|Подготовка CV
-						p.status.choosen
-							|CV отправлено
-						p.status.ready
-							|Утвержден
-						p.status.ready
-							|Контракт подписан
-						p.status.wait
-							|Подан в визовый центр
-						p.status.department
-							|Получил разрешение
-						p.status.department
-							|Забрал разрешение
-						p.status.department
-							|Билеты куплены
-						p.status.busy
-							|Трудоустроен
-					.cell-statu__right
+						.cell-status__slider
+							p.status.choosen
+								|Подготовка CV
+							p.status.choosen
+								|CV отправлено
+							p.status.ready
+								|Утвержден
+							p.status.ready
+								|Контракт подписан
+							p.status.wait.active
+								|Подан в визовый центр
+							p.status.department
+								|Получил разрешение
+							p.status.department
+								|Забрал разрешение
+							p.status.department
+								|Билеты куплены
+							p.status.busy
+								|Трудоустроен
+						.cell-status__controls
+							.cell-status__control-left
+								i.ico.rotate-left
+									+svg2('little-arrow')
+							.cell-status__control-right
+								i.ico
+									+svg2('little-arrow')
+					.cell-status__right
+						i.ico
+							+svg2('phone2')
+						i.ico
+							+svg2('docs')
+						i.ico
+							+svg2('page')
+						.tag.manager-tag.purple-tag
+							|AC
 				.table-full__cell.row__cell.cell-exp
 					i.label.hot__label
 						|Сезонная
@@ -63,6 +79,36 @@
 					p
 						|Лемешко Аліна
 				.table-full__cell.row__cell.cell-status
+					.cell-status__left
+						.cell-status__slider
+							p.status.choosen
+								|Подготовка CV
+							p.status.choosen
+								|CV отправлено
+							p.status.ready
+								|Утвержден
+							p.status.ready
+								|Контракт подписан
+							p.status.wait.active
+								|Подан в визовый центр
+							p.status.department
+								|Получил разрешение
+							p.status.department
+								|Забрал разрешение
+							p.status.department
+								|Билеты куплены
+							p.status.busy
+								|Трудоустроен
+						.cell-status__controls
+							.cell-status__control-left
+								i.ico.rotate-left
+									+svg2('little-arrow')
+							.cell-status__control-right
+								i.ico
+									+svg2('little-arrow')
+					.cell-status__right
+						.tag.manager-tag.purple-tag
+							|AC
 				.table-full__cell.row__cell.cell-exp
 					i.label.green__label
 						|Практика
@@ -74,6 +120,40 @@
 					p
 						|Романов Валентин
 				.table-full__cell.row__cell.cell-status
+					.cell-status__left
+						.cell-status__slider
+							p.status.choosen
+								|Подготовка CV
+							p.status.choosen
+								|CV отправлено
+							p.status.ready
+								|Утвержден
+							p.status.ready
+								|Контракт подписан
+							p.status.wait.active
+								|Подан в визовый центр
+							p.status.department
+								|Получил разрешение
+							p.status.department
+								|Забрал разрешение
+							p.status.department
+								|Билеты куплены
+							p.status.busy
+								|Трудоустроен
+						.cell-status__controls
+							.cell-status__control-left
+								i.ico.rotate-left
+									+svg2('little-arrow')
+							.cell-status__control-right
+								i.ico
+									+svg2('little-arrow')
+					.cell-status__right
+						i.ico
+							+svg2('phone2')
+						i.ico
+							+svg2('page')
+						.tag.manager-tag.purple-tag
+							|AC
 				.table-full__cell.row__cell.cell-exp
 				.table-full__cell.row__cell.cell-notes
 			.table-full__row.f-container
@@ -81,6 +161,38 @@
 					p
 						|Тарасюк Віталій
 				.table-full__cell.row__cell.cell-status
+					.cell-status__left
+						.cell-status__slider
+							p.status.choosen
+								|Подготовка CV
+							p.status.choosen
+								|CV отправлено
+							p.status.ready
+								|Утвержден
+							p.status.ready
+								|Контракт подписан
+							p.status.wait.active
+								|Подан в визовый центр
+							p.status.department
+								|Получил разрешение
+							p.status.department
+								|Забрал разрешение
+							p.status.department
+								|Билеты куплены
+							p.status.busy
+								|Трудоустроен
+						.cell-status__controls
+							.cell-status__control-left
+								i.ico.rotate-left
+									+svg2('little-arrow')
+							.cell-status__control-right
+								i.ico
+									+svg2('little-arrow')
+					.cell-status__right
+						i.ico
+							+svg2('page')
+						.tag.manager-tag.purple-tag
+							|AC
 				.table-full__cell.row__cell.cell-exp
 					i.label.blue__label
 						|Рабочая
@@ -92,6 +204,36 @@
 					p
 						|Бичківська Алла
 				.table-full__cell.row__cell.cell-status
+					.cell-status__left
+						.cell-status__slider
+							p.status.choosen
+								|Подготовка CV
+							p.status.choosen
+								|CV отправлено
+							p.status.ready
+								|Утвержден
+							p.status.ready
+								|Контракт подписан
+							p.status.wait.active
+								|Подан в визовый центр
+							p.status.department
+								|Получил разрешение
+							p.status.department
+								|Забрал разрешение
+							p.status.department
+								|Билеты куплены
+							p.status.busy
+								|Трудоустроен
+						.cell-status__controls
+							.cell-status__control-left
+								i.ico.rotate-left
+									+svg2('little-arrow')
+							.cell-status__control-right
+								i.ico
+									+svg2('little-arrow')
+					.cell-status__right
+						.tag.manager-tag.purple-tag
+							|AC
 				.table-full__cell.row__cell.cell-exp
 					i.label.green__label
 						|Д2
@@ -107,25 +249,33 @@
 						|Червінський Йосип
 				.table-full__cell.row__cell.cell-status
 					.cell-status__left
-						p.status.choosen
-							|Подготовка CV
-						p.status.choosen
-							|CV отправлено
-						p.status.ready
-							|Утвержден
-						p.status.ready
-							|Контракт подписан
-						p.status.wait
-							|Подан в визовый центр
-						p.status.department
-							|Получил разрешение
-						p.status.department
-							|Забрал разрешение
-						p.status.department
-							|Билеты куплены
-						p.status.busy
-							|Трудоустроен
-					.cell-statu__right
+						.cell-status__slider
+							p.status.choosen
+								|Подготовка CV
+							p.status.choosen
+								|CV отправлено
+							p.status.ready
+								|Утвержден
+							p.status.ready
+								|Контракт подписан
+							p.status.wait.active
+								|Подан в визовый центр
+							p.status.department
+								|Получил разрешение
+							p.status.department
+								|Забрал разрешение
+							p.status.department
+								|Билеты куплены
+							p.status.busy
+								|Трудоустроен
+						.cell-status__controls
+							.cell-status__control-left
+								i.ico.rotate-left
+									+svg2('little-arrow')
+							.cell-status__control-right
+								i.ico
+									+svg2('little-arrow')
+					.cell-status__right
 				.table-full__cell.row__cell.cell-exp
 				.table-full__cell.row__cell.cell-notes
 					p
@@ -148,25 +298,33 @@
 						|Іванчик Олександр
 				.table-full__cell.row__cell.cell-status
 					.cell-status__left
-						p.status.choosen.active
-							|Подготовка CV
-						p.status.choosen
-							|CV отправлено
-						p.status.ready
-							|Утвержден
-						p.status.ready
-							|Контракт подписан
-						p.status.wait
-							|Подан в визовый центр
-						p.status.department
-							|Получил разрешение
-						p.status.department
-							|Забрал разрешение
-						p.status.department
-							|Билеты куплены
-						p.status.busy
-							|Трудоустроен
-					.cell-statu__right
+						.cell-status__slider
+							p.status.choosen
+								|Подготовка CV
+							p.status.choosen
+								|CV отправлено
+							p.status.ready
+								|Утвержден
+							p.status.ready
+								|Контракт подписан
+							p.status.wait.active
+								|Подан в визовый центр
+							p.status.department
+								|Получил разрешение
+							p.status.department
+								|Забрал разрешение
+							p.status.department
+								|Билеты куплены
+							p.status.busy
+								|Трудоустроен
+						.cell-status__controls
+							.cell-status__control-left
+								i.ico.rotate-left
+									+svg2('little-arrow')
+							.cell-status__control-right
+								i.ico
+									+svg2('little-arrow')
+					.cell-status__right
 				.table-full__cell.row__cell.cell-exp
 				.table-full__cell.row__cell.cell-notes
 			.table-full__row.f-container
@@ -175,25 +333,33 @@
 						|Волтарніст Юлія
 				.table-full__cell.row__cell.cell-status
 					.cell-status__left
-						p.status.choosen.active
-							|Подготовка CV
-						p.status.choosen
-							|CV отправлено
-						p.status.ready
-							|Утвержден
-						p.status.ready
-							|Контракт подписан
-						p.status.wait
-							|Подан в визовый центр
-						p.status.department
-							|Получил разрешение
-						p.status.department
-							|Забрал разрешение
-						p.status.department
-							|Билеты куплены
-						p.status.busy
-							|Трудоустроен
-					.cell-statu__right
+						.cell-status__slider
+							p.status.choosen
+								|Подготовка CV
+							p.status.choosen
+								|CV отправлено
+							p.status.ready
+								|Утвержден
+							p.status.ready
+								|Контракт подписан
+							p.status.wait.active
+								|Подан в визовый центр
+							p.status.department
+								|Получил разрешение
+							p.status.department
+								|Забрал разрешение
+							p.status.department
+								|Билеты куплены
+							p.status.busy
+								|Трудоустроен
+						.cell-status__controls
+							.cell-status__control-left
+								i.ico.rotate-left
+									+svg2('little-arrow')
+							.cell-status__control-right
+								i.ico
+									+svg2('little-arrow')
+					.cell-status__right
 				.table-full__cell.row__cell.cell-exp
 				.table-full__cell.row__cell.cell-notes
 			.table-full__row.f-container
@@ -202,25 +368,33 @@
 						|Ситнік Оксана
 				.table-full__cell.row__cell.cell-status
 					.cell-status__left
-						p.status.choosen.active
-							|Подготовка CV
-						p.status.choosen
-							|CV отправлено
-						p.status.ready
-							|Утвержден
-						p.status.ready
-							|Контракт подписан
-						p.status.wait
-							|Подан в визовый центр
-						p.status.department
-							|Получил разрешение
-						p.status.department
-							|Забрал разрешение
-						p.status.department
-							|Билеты куплены
-						p.status.busy
-							|Трудоустроен
-					.cell-statu__right
+						.cell-status__slider
+							p.status.choosen
+								|Подготовка CV
+							p.status.choosen
+								|CV отправлено
+							p.status.ready
+								|Утвержден
+							p.status.ready
+								|Контракт подписан
+							p.status.wait.active
+								|Подан в визовый центр
+							p.status.department
+								|Получил разрешение
+							p.status.department
+								|Забрал разрешение
+							p.status.department
+								|Билеты куплены
+							p.status.busy
+								|Трудоустроен
+						.cell-status__controls
+							.cell-status__control-left
+								i.ico.rotate-left
+									+svg2('little-arrow')
+							.cell-status__control-right
+								i.ico
+									+svg2('little-arrow')
+					.cell-status__right
 				.table-full__cell.row__cell.cell-exp
 				.table-full__cell.row__cell.cell-notes
 		.table-full__department
@@ -230,25 +404,33 @@
 						|Коргун Максим
 				.table-full__cell.row__cell.cell-status
 					.cell-status__left
-						p.status.choosen.active
-							|Подготовка CV
-						p.status.choosen
-							|CV отправлено
-						p.status.ready
-							|Утвержден
-						p.status.ready
-							|Контракт подписан
-						p.status.wait
-							|Подан в визовый центр
-						p.status.department
-							|Получил разрешение
-						p.status.department
-							|Забрал разрешение
-						p.status.department
-							|Билеты куплены
-						p.status.busy
-							|Трудоустроен
-					.cell-statu__right
+						.cell-status__slider
+							p.status.choosen
+								|Подготовка CV
+							p.status.choosen
+								|CV отправлено
+							p.status.ready
+								|Утвержден
+							p.status.ready
+								|Контракт подписан
+							p.status.wait.active
+								|Подан в визовый центр
+							p.status.department
+								|Получил разрешение
+							p.status.department
+								|Забрал разрешение
+							p.status.department
+								|Билеты куплены
+							p.status.busy
+								|Трудоустроен
+						.cell-status__controls
+							.cell-status__control-left
+								i.ico.rotate-left
+									+svg2('little-arrow')
+							.cell-status__control-right
+								i.ico
+									+svg2('little-arrow')
+					.cell-status__right
 				.table-full__cell.row__cell.cell-exp
 				.table-full__cell.row__cell.cell-notes
 		.table-full__busy
@@ -258,35 +440,43 @@
 						|Конончук Віталій
 				.table-full__cell.row__cell.cell-status
 					.cell-status__left
-						p.status.choosen.active
-							|Подготовка CV
-						p.status.choosen
-							|CV отправлено
-						p.status.ready
-							|Утвержден
-						p.status.ready
-							|Контракт подписан
-						p.status.wait
-							|Подан в визовый центр
-						p.status.department
-							|Получил разрешение
-						p.status.department
-							|Забрал разрешение
-						p.status.department
-							|Билеты куплены
-						p.status.busy
-							|Трудоустроен
-					.cell-statu__right
+						.cell-status__slider
+							p.status.choosen
+								|Подготовка CV
+							p.status.choosen
+								|CV отправлено
+							p.status.ready
+								|Утвержден
+							p.status.ready
+								|Контракт подписан
+							p.status.wait.active
+								|Подан в визовый центр
+							p.status.department
+								|Получил разрешение
+							p.status.department
+								|Забрал разрешение
+							p.status.department
+								|Билеты куплены
+							p.status.busy
+								|Трудоустроен
+						.cell-status__controls
+							.cell-status__control-left
+								i.ico.rotate-left
+									+svg2('little-arrow')
+							.cell-status__control-right
+								i.ico
+									+svg2('little-arrow')
+					.cell-status__right
 				.table-full__cell.row__cell.cell-exp
 				.table-full__cell.row__cell.cell-notes
 .row(data-custom-open="modal-1")
 	.f-container
 		.row__terms.row__cell.medium
-		.row__labels-2.row__cell
-			i.label.attention__label
-				span
+		.row__labels-2.row__cell.no-open
+			i.label.attention__label.no-open
+				span.no-open
 					|DE
-				span 
+				span.no-open
 					|18 - 5
 		.row__indicators.row__cell
 			span.row__indicator.decline
@@ -301,10 +491,10 @@
 				|3
 			span.row__indicator.busy
 				|2
-		.row__name-2.row__cell
-			p.row__fullname
+		.row__name-2.row__cell.no-open
+			p.row__fullname.no-open
 				|Gustav Schlüter Gmbh
-			i.tag.manager-tag.light-green-tag
+			i.tag.manager-tag.light-green-tag.no-open
 				|CK
 		.row__vacancies.row__cell
 		.row__notes.row__cell

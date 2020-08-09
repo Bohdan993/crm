@@ -20,6 +20,7 @@ import setFeedbackDate from './setFeedbacklDate'
 import addFeedbackForm from './addfeedbackForm'
 import showRemoveBtnOnChecking from './showRemoveBtnOnChecking'
 
+import showFullRow from './vacancy/showFullRow'
 
 
 
@@ -45,5 +46,6 @@ export {
 	deleteTask,
 	setFeedbackDate,
 	addFeedbackForm,
-	showRemoveBtnOnChecking
+	showRemoveBtnOnChecking,
+	showFullRow
 }

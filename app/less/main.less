@@ -231,7 +231,7 @@ main.main {
   display: flex;
   justify-content: space-between;
   flex-wrap: nowrap;
-  align-items: stretch;
+  align-items: center;
   overflow-x: auto;
 }
 
@@ -242,7 +242,17 @@ main.main {
   flex-wrap: wrap;
   align-content: flex-start;
   position: relative;
+  // align-self: flex-start; 
 
+}
+
+.vacancy-rows {
+  min-width: 1580px;
+  align-self: flex-start; 
+}
+
+.worker-rows {
+ align-self: flex-start;
 }
 
 .grid {
@@ -258,6 +268,9 @@ main.main {
 .columns {
   flex-basis: 100%;
   display: flex;
+  min-width: 1580px;
+  // position: absolute;
+  width: 100%;
 }
 
 .side-column {
@@ -268,12 +281,12 @@ main.main {
 }
 
 .first-column{
-  flex-basis: 236/1720 * 100%;
+  flex-basis: 238/1720 * 100%;
   border-right: 1px solid @main-color;
 }
 
 .second-column {
-  flex-basis: 244/1720 * 100%;
+  flex-basis: 246/1720 * 100%;
   border-right: 1px solid @main-color;
 }
 
@@ -297,6 +310,7 @@ main.main {
   min-width: 200px;
   position: relative;
   z-index: 2;
+  align-self: flex-start; 
 }
 
 
@@ -332,6 +346,10 @@ span.negative {
 
 .light-green-tag {
   background: @light-green;
+}
+
+.purple-tag {
+  background: @purple;
 }
 
 .ico {

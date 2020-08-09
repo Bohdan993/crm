@@ -19,7 +19,8 @@ import {
 	deleteTask,
 	setFeedbackDate,
 	addFeedbackForm,
-	showRemoveBtnOnChecking
+	showRemoveBtnOnChecking,
+	showFullRow
 } from '../model'
 
 import {OverlayScrollbars} from '../../libs/libs'
@@ -54,6 +55,7 @@ import {
 	modal2ContactDate,
 	feedbackAddItem,
 	addfeedbackForm,
+	vacancyRows
 
 } from '../view'
 
@@ -78,6 +80,7 @@ const app = {
 		this.sfd()
 		this.aff()
 		this.srboc()
+		this.sfr()
 		// this.test()
 		// this.slt()
 	},
@@ -205,6 +208,12 @@ const app = {
 
 	srboc() {
 		showRemoveBtnOnChecking()
+	},
+
+	sfr(){
+		if(vacancyRows){
+			showFullRow(vacancyRows)
+		}
 	}
 
 }
