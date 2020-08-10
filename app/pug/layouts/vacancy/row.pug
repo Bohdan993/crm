@@ -1,4 +1,4 @@
-.row(data-custom-open="modal-1")
+.row(data-custom-open="modal-1").no-open
 	.f-container
 		.row__terms.row__cell.hot
 		.row__labels-2.row__cell.no-open
@@ -26,54 +26,58 @@
 			p
 				|14.11.2019 - 15.04.2020 (6 мес)
 	.row__full-info.table-full
-		.table-full__choosen
-			.table-full__row.f-container
-				.table-full__cell.row__cell.cell-names
-					p
-						|Гурківський Олександр
-				.table-full__cell.row__cell.cell-status
-					.cell-status__left
-						.cell-status__slider
-							p.status.choosen
-								|Подготовка CV
-							p.status.choosen
-								|CV отправлено
-							p.status.ready
-								|Утвержден
-							p.status.ready
-								|Контракт подписан
-							p.status.wait.active
-								|Подан в визовый центр
-							p.status.department
-								|Получил разрешение
-							p.status.department
-								|Забрал разрешение
-							p.status.department
-								|Билеты куплены
-							p.status.busy
-								|Трудоустроен
-						.cell-status__controls
-							.cell-status__control-left
-								i.ico.rotate-left
-									+svg2('little-arrow')
-							.cell-status__control-right
-								i.ico
-									+svg2('little-arrow')
-					.cell-status__right
-						i.ico
-							+svg2('phone2')
-						i.ico
-							+svg2('docs')
-						i.ico
-							+svg2('page')
-						.tag.manager-tag.purple-tag
-							|AC
-				.table-full__cell.row__cell.cell-exp
-					i.label.hot__label
-						|Сезонная
-					p
-						|Цветы
-				.table-full__cell.row__cell.cell-notes
+		.table-full__choosen.choosen
+			.table-full__row
+				.table-full__row-layer
+					p.table-full__title
+						|Отобраны
+				.table-full__row-layer.f-container
+					.table-full__cell.row__cell.cell-names
+						p
+							|Гурківський Олександр
+					.table-full__cell.row__cell.cell-status
+						.cell-status__left
+							.cell-status__slider
+								p.status.choosen
+									|Подготовка CV
+								p.status.choosen
+									|CV отправлено
+								p.status.ready
+									|Утвержден
+								p.status.ready
+									|Контракт подписан
+								p.status.wait.active
+									|Подан в визовый центр
+								p.status.department
+									|Получил разрешение
+								p.status.department
+									|Забрал разрешение
+								p.status.department
+									|Билеты куплены
+								p.status.busy
+									|Трудоустроен
+							.cell-status__controls
+								.cell-status__control-left
+									i.ico.rotate-left
+										+svg2('little-arrow')
+								.cell-status__control-right
+									i.ico
+										+svg2('little-arrow')
+						.cell-status__right
+							i.ico
+								+svg2('phone2')
+							i.ico
+								+svg2('docs')
+							i.ico
+								+svg2('page')
+							.tag.manager-tag.purple-tag
+								|AC
+					.table-full__cell.row__cell.cell-exp
+						i.label.hot__label
+							|Сезонная
+						p
+							|Цветы
+					.table-full__cell.row__cell.cell-notes
 			.table-full__row.f-container
 				.table-full__cell.row__cell.cell-names
 					p
@@ -242,44 +246,48 @@
 					i.label.dirty-green__label
 						|ВСТ
 				.table-full__cell.row__cell.cell-notes
-		.table-full__ready
-			.table-full__row.f-container
-				.table-full__cell.row__cell.cell-names
-					p
-						|Червінський Йосип
-				.table-full__cell.row__cell.cell-status
-					.cell-status__left
-						.cell-status__slider
-							p.status.choosen
-								|Подготовка CV
-							p.status.choosen
-								|CV отправлено
-							p.status.ready
-								|Утвержден
-							p.status.ready
-								|Контракт подписан
-							p.status.wait.active
-								|Подан в визовый центр
-							p.status.department
-								|Получил разрешение
-							p.status.department
-								|Забрал разрешение
-							p.status.department
-								|Билеты куплены
-							p.status.busy
-								|Трудоустроен
-						.cell-status__controls
-							.cell-status__control-left
-								i.ico.rotate-left
-									+svg2('little-arrow')
-							.cell-status__control-right
-								i.ico
-									+svg2('little-arrow')
-					.cell-status__right
-				.table-full__cell.row__cell.cell-exp
-				.table-full__cell.row__cell.cell-notes
-					p
-						|Записан в посольство на 10.05
+		.table-full__ready.ready
+			.table-full__row
+				.table-full__row-layer
+					p.table-full__title
+						|Готовятся к подаче
+				.table-full__row-layer.f-container
+					.table-full__cell.row__cell.cell-names
+						p
+							|Червінський Йосип
+					.table-full__cell.row__cell.cell-status
+						.cell-status__left
+							.cell-status__slider
+								p.status.choosen
+									|Подготовка CV
+								p.status.choosen
+									|CV отправлено
+								p.status.ready
+									|Утвержден
+								p.status.ready
+									|Контракт подписан
+								p.status.wait.active
+									|Подан в визовый центр
+								p.status.department
+									|Получил разрешение
+								p.status.department
+									|Забрал разрешение
+								p.status.department
+									|Билеты куплены
+								p.status.busy
+									|Трудоустроен
+							.cell-status__controls
+								.cell-status__control-left
+									i.ico.rotate-left
+										+svg2('little-arrow')
+								.cell-status__control-right
+									i.ico
+										+svg2('little-arrow')
+						.cell-status__right
+					.table-full__cell.row__cell.cell-exp
+					.table-full__cell.row__cell.cell-notes
+						p
+							|Записан в посольство на 10.05
 			.table-full__row.f-container
 				.table-full__cell.row__cell.cell-names
 					p
@@ -291,42 +299,46 @@
 					p
 						|Поля
 				.table-full__cell.row__cell.cell-notes
-		.table-full__wait
-			.table-full__row.f-container
-				.table-full__cell.row__cell.cell-names
-					p
-						|Іванчик Олександр
-				.table-full__cell.row__cell.cell-status
-					.cell-status__left
-						.cell-status__slider
-							p.status.choosen
-								|Подготовка CV
-							p.status.choosen
-								|CV отправлено
-							p.status.ready
-								|Утвержден
-							p.status.ready
-								|Контракт подписан
-							p.status.wait.active
-								|Подан в визовый центр
-							p.status.department
-								|Получил разрешение
-							p.status.department
-								|Забрал разрешение
-							p.status.department
-								|Билеты куплены
-							p.status.busy
-								|Трудоустроен
-						.cell-status__controls
-							.cell-status__control-left
-								i.ico.rotate-left
-									+svg2('little-arrow')
-							.cell-status__control-right
-								i.ico
-									+svg2('little-arrow')
-					.cell-status__right
-				.table-full__cell.row__cell.cell-exp
-				.table-full__cell.row__cell.cell-notes
+		.table-full__wait.wait
+			.table-full__row
+				.table-full__row-layer
+					p.table-full__title
+						|Ждут разрешения
+				.table-full__row-layer.f-container
+					.table-full__cell.row__cell.cell-names
+						p
+							|Іванчик Олександр
+					.table-full__cell.row__cell.cell-status
+						.cell-status__left
+							.cell-status__slider
+								p.status.choosen
+									|Подготовка CV
+								p.status.choosen
+									|CV отправлено
+								p.status.ready
+									|Утвержден
+								p.status.ready
+									|Контракт подписан
+								p.status.wait.active
+									|Подан в визовый центр
+								p.status.department
+									|Получил разрешение
+								p.status.department
+									|Забрал разрешение
+								p.status.department
+									|Билеты куплены
+								p.status.busy
+									|Трудоустроен
+							.cell-status__controls
+								.cell-status__control-left
+									i.ico.rotate-left
+										+svg2('little-arrow')
+								.cell-status__control-right
+									i.ico
+										+svg2('little-arrow')
+						.cell-status__right
+					.table-full__cell.row__cell.cell-exp
+					.table-full__cell.row__cell.cell-notes
 			.table-full__row.f-container
 				.table-full__cell.row__cell.cell-names
 					p
@@ -397,79 +409,87 @@
 					.cell-status__right
 				.table-full__cell.row__cell.cell-exp
 				.table-full__cell.row__cell.cell-notes
-		.table-full__department
-			.table-full__row.f-container
-				.table-full__cell.row__cell.cell-names
-					p
-						|Коргун Максим
-				.table-full__cell.row__cell.cell-status
-					.cell-status__left
-						.cell-status__slider
-							p.status.choosen
-								|Подготовка CV
-							p.status.choosen
-								|CV отправлено
-							p.status.ready
-								|Утвержден
-							p.status.ready
-								|Контракт подписан
-							p.status.wait.active
-								|Подан в визовый центр
-							p.status.department
-								|Получил разрешение
-							p.status.department
-								|Забрал разрешение
-							p.status.department
-								|Билеты куплены
-							p.status.busy
-								|Трудоустроен
-						.cell-status__controls
-							.cell-status__control-left
-								i.ico.rotate-left
-									+svg2('little-arrow')
-							.cell-status__control-right
-								i.ico
-									+svg2('little-arrow')
-					.cell-status__right
-				.table-full__cell.row__cell.cell-exp
-				.table-full__cell.row__cell.cell-notes
-		.table-full__busy
-			.table-full__row.f-container
-				.table-full__cell.row__cell.cell-names
-					p
-						|Конончук Віталій
-				.table-full__cell.row__cell.cell-status
-					.cell-status__left
-						.cell-status__slider
-							p.status.choosen
-								|Подготовка CV
-							p.status.choosen
-								|CV отправлено
-							p.status.ready
-								|Утвержден
-							p.status.ready
-								|Контракт подписан
-							p.status.wait.active
-								|Подан в визовый центр
-							p.status.department
-								|Получил разрешение
-							p.status.department
-								|Забрал разрешение
-							p.status.department
-								|Билеты куплены
-							p.status.busy
-								|Трудоустроен
-						.cell-status__controls
-							.cell-status__control-left
-								i.ico.rotate-left
-									+svg2('little-arrow')
-							.cell-status__control-right
-								i.ico
-									+svg2('little-arrow')
-					.cell-status__right
-				.table-full__cell.row__cell.cell-exp
-				.table-full__cell.row__cell.cell-notes
-.row(data-custom-open="modal-1")
+		.table-full__department.department
+			.table-full__row
+				.table-full__row-layer
+					p.table-full__title
+						|Готовятся к отъезду
+				.table-full__row-layer.f-container
+					.table-full__cell.row__cell.cell-names
+						p
+							|Коргун Максим
+					.table-full__cell.row__cell.cell-status
+						.cell-status__left
+							.cell-status__slider
+								p.status.choosen
+									|Подготовка CV
+								p.status.choosen
+									|CV отправлено
+								p.status.ready
+									|Утвержден
+								p.status.ready
+									|Контракт подписан
+								p.status.wait.active
+									|Подан в визовый центр
+								p.status.department
+									|Получил разрешение
+								p.status.department
+									|Забрал разрешение
+								p.status.department
+									|Билеты куплены
+								p.status.busy
+									|Трудоустроен
+							.cell-status__controls
+								.cell-status__control-left
+									i.ico.rotate-left
+										+svg2('little-arrow')
+								.cell-status__control-right
+									i.ico
+										+svg2('little-arrow')
+						.cell-status__right
+					.table-full__cell.row__cell.cell-exp
+					.table-full__cell.row__cell.cell-notes
+		.table-full__busy.busy
+			.table-full__row
+				.table-full__row-layer
+					p.table-full__title
+						|Трудоустроены
+				.table-full__row-layer.f-container
+					.table-full__cell.row__cell.cell-names
+						p
+							|Конончук Віталій
+					.table-full__cell.row__cell.cell-status
+						.cell-status__left
+							.cell-status__slider
+								p.status.choosen
+									|Подготовка CV
+								p.status.choosen
+									|CV отправлено
+								p.status.ready
+									|Утвержден
+								p.status.ready
+									|Контракт подписан
+								p.status.wait.active
+									|Подан в визовый центр
+								p.status.department
+									|Получил разрешение
+								p.status.department
+									|Забрал разрешение
+								p.status.department
+									|Билеты куплены
+								p.status.busy
+									|Трудоустроен
+							.cell-status__controls
+								.cell-status__control-left
+									i.ico.rotate-left
+										+svg2('little-arrow')
+								.cell-status__control-right
+									i.ico
+										+svg2('little-arrow')
+						.cell-status__right
+					.table-full__cell.row__cell.cell-exp
+					.table-full__cell.row__cell.cell-notes
+.row(data-custom-open="modal-1").no-open
 	.f-container
 		.row__terms.row__cell.medium
 		.row__labels-2.row__cell.no-open

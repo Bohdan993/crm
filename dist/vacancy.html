@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/libs.min.css?v=1597002037254">
-    <link rel="stylesheet" href="css/main.min.css?v=1597002037254">
+    <link rel="stylesheet" href="css/libs.min.css?v=1597091719836">
+    <link rel="stylesheet" href="css/main.min.css?v=1597091719836">
   </head>
   <body>
     <main class="main">
-      <div class="sidebar">
+      <div class="sidebar vacancy-sidebar">
         <div class="sidebar__layout">
           <div class="f-container">
             <div class="sidebar__avatar"><a class="sidebar__avatar-link" href=""><img class="sidebar__ava" src="img/ava.png" alt="Avatar"></a>
@@ -100,8 +100,9 @@
             </div>
             <div class="sidebar__wrapper">
               <div class="sidebar__info">
-                <p class="sidebar__choosed">Отобрано: <span>56</span></p>
-                <p class="sidebar__full-number">Общее количество: <span>42846</span></p>
+                <p class="sidebar__needed">Требуется работников: <span>12</span></p>
+                <p class="sidebar__full-number">Рабочих мест: <span>56</span></p>
+                <p class="sidebar__current">Текущих вакансий: <span>18</span></p>
               </div>
             </div>
           </div>
@@ -117,7 +118,7 @@
             <div class="grid-column fifth-column"></div>
           </div>
         </div>
-        <div class="row" data-custom-open="modal-1">
+        <div class="row no-open" data-custom-open="modal-1">
           <div class="f-container">
             <div class="row__terms row__cell hot"></div>
             <div class="row__labels-2 row__cell no-open"><i class="label attention__label no-open"><span class="no-open">NO</span><span class="no-open">118 - 22</span></i><span class="number-of-people attention-number no-open">М12 Ж5</span></div>
@@ -131,52 +132,57 @@
             </div>
           </div>
           <div class="row__full-info table-full">
-            <div class="table-full__choosen">
-              <div class="table-full__row f-container">
-                <div class="table-full__cell row__cell cell-names">
-                  <p>Гурківський Олександр</p>
+            <div class="table-full__choosen choosen">
+              <div class="table-full__row">
+                <div class="table-full__row-layer">
+                  <p class="table-full__title">Отобраны</p>
                 </div>
-                <div class="table-full__cell row__cell cell-status">
-                  <div class="cell-status__left">
-                    <div class="cell-status__slider">
-                      <p class="status choosen">Подготовка CV</p>
-                      <p class="status choosen">CV отправлено</p>
-                      <p class="status ready">Утвержден</p>
-                      <p class="status ready">Контракт подписан</p>
-                      <p class="status wait active">Подан в визовый центр</p>
-                      <p class="status department">Получил разрешение</p>
-                      <p class="status department">Забрал разрешение</p>
-                      <p class="status department">Билеты куплены</p>
-                      <p class="status busy">Трудоустроен</p>
+                <div class="table-full__row-layer f-container">
+                  <div class="table-full__cell row__cell cell-names">
+                    <p>Гурківський Олександр</p>
+                  </div>
+                  <div class="table-full__cell row__cell cell-status">
+                    <div class="cell-status__left">
+                      <div class="cell-status__slider">
+                        <p class="status choosen">Подготовка CV</p>
+                        <p class="status choosen">CV отправлено</p>
+                        <p class="status ready">Утвержден</p>
+                        <p class="status ready">Контракт подписан</p>
+                        <p class="status wait active">Подан в визовый центр</p>
+                        <p class="status department">Получил разрешение</p>
+                        <p class="status department">Забрал разрешение</p>
+                        <p class="status department">Билеты куплены</p>
+                        <p class="status busy">Трудоустроен</p>
+                      </div>
+                      <div class="cell-status__controls">
+                        <div class="cell-status__control-left"><i class="ico rotate-left">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                        <div class="cell-status__control-right"><i class="ico">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                      </div>
                     </div>
-                    <div class="cell-status__controls">
-                      <div class="cell-status__control-left"><i class="ico rotate-left">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                      <div class="cell-status__control-right"><i class="ico">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
+                    <div class="cell-status__right"><i class="ico">
+                        <svg>
+                          <use xlink:href="img/sprites/svg/symbol/sprite.svg#phone2"></use>
+                        </svg></i><i class="ico">
+                        <svg>
+                          <use xlink:href="img/sprites/svg/symbol/sprite.svg#docs"></use>
+                        </svg></i><i class="ico">
+                        <svg>
+                          <use xlink:href="img/sprites/svg/symbol/sprite.svg#page"></use>
+                        </svg></i>
+                      <div class="tag manager-tag purple-tag">AC</div>
                     </div>
                   </div>
-                  <div class="cell-status__right"><i class="ico">
-                      <svg>
-                        <use xlink:href="img/sprites/svg/symbol/sprite.svg#phone2"></use>
-                      </svg></i><i class="ico">
-                      <svg>
-                        <use xlink:href="img/sprites/svg/symbol/sprite.svg#docs"></use>
-                      </svg></i><i class="ico">
-                      <svg>
-                        <use xlink:href="img/sprites/svg/symbol/sprite.svg#page"></use>
-                      </svg></i>
-                    <div class="tag manager-tag purple-tag">AC</div>
+                  <div class="table-full__cell row__cell cell-exp"><i class="label hot__label">Сезонная</i>
+                    <p>Цветы</p>
                   </div>
+                  <div class="table-full__cell row__cell cell-notes"></div>
                 </div>
-                <div class="table-full__cell row__cell cell-exp"><i class="label hot__label">Сезонная</i>
-                  <p>Цветы</p>
-                </div>
-                <div class="table-full__cell row__cell cell-notes"></div>
               </div>
               <div class="table-full__row f-container">
                 <div class="table-full__cell row__cell cell-names">
@@ -334,40 +340,45 @@
                 <div class="table-full__cell row__cell cell-notes"></div>
               </div>
             </div>
-            <div class="table-full__ready">
-              <div class="table-full__row f-container">
-                <div class="table-full__cell row__cell cell-names">
-                  <p>Червінський Йосип</p>
+            <div class="table-full__ready ready">
+              <div class="table-full__row">
+                <div class="table-full__row-layer">
+                  <p class="table-full__title">Готовятся к подаче</p>
                 </div>
-                <div class="table-full__cell row__cell cell-status">
-                  <div class="cell-status__left">
-                    <div class="cell-status__slider">
-                      <p class="status choosen">Подготовка CV</p>
-                      <p class="status choosen">CV отправлено</p>
-                      <p class="status ready">Утвержден</p>
-                      <p class="status ready">Контракт подписан</p>
-                      <p class="status wait active">Подан в визовый центр</p>
-                      <p class="status department">Получил разрешение</p>
-                      <p class="status department">Забрал разрешение</p>
-                      <p class="status department">Билеты куплены</p>
-                      <p class="status busy">Трудоустроен</p>
-                    </div>
-                    <div class="cell-status__controls">
-                      <div class="cell-status__control-left"><i class="ico rotate-left">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                      <div class="cell-status__control-right"><i class="ico">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                    </div>
+                <div class="table-full__row-layer f-container">
+                  <div class="table-full__cell row__cell cell-names">
+                    <p>Червінський Йосип</p>
                   </div>
-                  <div class="cell-status__right"></div>
-                </div>
-                <div class="table-full__cell row__cell cell-exp"></div>
-                <div class="table-full__cell row__cell cell-notes">
-                  <p>Записан в посольство на 10.05</p>
+                  <div class="table-full__cell row__cell cell-status">
+                    <div class="cell-status__left">
+                      <div class="cell-status__slider">
+                        <p class="status choosen">Подготовка CV</p>
+                        <p class="status choosen">CV отправлено</p>
+                        <p class="status ready">Утвержден</p>
+                        <p class="status ready">Контракт подписан</p>
+                        <p class="status wait active">Подан в визовый центр</p>
+                        <p class="status department">Получил разрешение</p>
+                        <p class="status department">Забрал разрешение</p>
+                        <p class="status department">Билеты куплены</p>
+                        <p class="status busy">Трудоустроен</p>
+                      </div>
+                      <div class="cell-status__controls">
+                        <div class="cell-status__control-left"><i class="ico rotate-left">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                        <div class="cell-status__control-right"><i class="ico">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                      </div>
+                    </div>
+                    <div class="cell-status__right"></div>
+                  </div>
+                  <div class="table-full__cell row__cell cell-exp"></div>
+                  <div class="table-full__cell row__cell cell-notes">
+                    <p>Записан в посольство на 10.05</p>
+                  </div>
                 </div>
               </div>
               <div class="table-full__row f-container">
@@ -381,39 +392,44 @@
                 <div class="table-full__cell row__cell cell-notes"></div>
               </div>
             </div>
-            <div class="table-full__wait">
-              <div class="table-full__row f-container">
-                <div class="table-full__cell row__cell cell-names">
-                  <p>Іванчик Олександр</p>
+            <div class="table-full__wait wait">
+              <div class="table-full__row">
+                <div class="table-full__row-layer">
+                  <p class="table-full__title">Ждут разрешения</p>
                 </div>
-                <div class="table-full__cell row__cell cell-status">
-                  <div class="cell-status__left">
-                    <div class="cell-status__slider">
-                      <p class="status choosen">Подготовка CV</p>
-                      <p class="status choosen">CV отправлено</p>
-                      <p class="status ready">Утвержден</p>
-                      <p class="status ready">Контракт подписан</p>
-                      <p class="status wait active">Подан в визовый центр</p>
-                      <p class="status department">Получил разрешение</p>
-                      <p class="status department">Забрал разрешение</p>
-                      <p class="status department">Билеты куплены</p>
-                      <p class="status busy">Трудоустроен</p>
-                    </div>
-                    <div class="cell-status__controls">
-                      <div class="cell-status__control-left"><i class="ico rotate-left">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                      <div class="cell-status__control-right"><i class="ico">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                    </div>
+                <div class="table-full__row-layer f-container">
+                  <div class="table-full__cell row__cell cell-names">
+                    <p>Іванчик Олександр</p>
                   </div>
-                  <div class="cell-status__right"></div>
+                  <div class="table-full__cell row__cell cell-status">
+                    <div class="cell-status__left">
+                      <div class="cell-status__slider">
+                        <p class="status choosen">Подготовка CV</p>
+                        <p class="status choosen">CV отправлено</p>
+                        <p class="status ready">Утвержден</p>
+                        <p class="status ready">Контракт подписан</p>
+                        <p class="status wait active">Подан в визовый центр</p>
+                        <p class="status department">Получил разрешение</p>
+                        <p class="status department">Забрал разрешение</p>
+                        <p class="status department">Билеты куплены</p>
+                        <p class="status busy">Трудоустроен</p>
+                      </div>
+                      <div class="cell-status__controls">
+                        <div class="cell-status__control-left"><i class="ico rotate-left">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                        <div class="cell-status__control-right"><i class="ico">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                      </div>
+                    </div>
+                    <div class="cell-status__right"></div>
+                  </div>
+                  <div class="table-full__cell row__cell cell-exp"></div>
+                  <div class="table-full__cell row__cell cell-notes"></div>
                 </div>
-                <div class="table-full__cell row__cell cell-exp"></div>
-                <div class="table-full__cell row__cell cell-notes"></div>
               </div>
               <div class="table-full__row f-container">
                 <div class="table-full__cell row__cell cell-names">
@@ -482,79 +498,89 @@
                 <div class="table-full__cell row__cell cell-notes"></div>
               </div>
             </div>
-            <div class="table-full__department">
-              <div class="table-full__row f-container">
-                <div class="table-full__cell row__cell cell-names">
-                  <p>Коргун Максим</p>
+            <div class="table-full__department department">
+              <div class="table-full__row">
+                <div class="table-full__row-layer">
+                  <p class="table-full__title">Готовятся к отъезду</p>
                 </div>
-                <div class="table-full__cell row__cell cell-status">
-                  <div class="cell-status__left">
-                    <div class="cell-status__slider">
-                      <p class="status choosen">Подготовка CV</p>
-                      <p class="status choosen">CV отправлено</p>
-                      <p class="status ready">Утвержден</p>
-                      <p class="status ready">Контракт подписан</p>
-                      <p class="status wait active">Подан в визовый центр</p>
-                      <p class="status department">Получил разрешение</p>
-                      <p class="status department">Забрал разрешение</p>
-                      <p class="status department">Билеты куплены</p>
-                      <p class="status busy">Трудоустроен</p>
-                    </div>
-                    <div class="cell-status__controls">
-                      <div class="cell-status__control-left"><i class="ico rotate-left">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                      <div class="cell-status__control-right"><i class="ico">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                    </div>
+                <div class="table-full__row-layer f-container">
+                  <div class="table-full__cell row__cell cell-names">
+                    <p>Коргун Максим</p>
                   </div>
-                  <div class="cell-status__right"></div>
+                  <div class="table-full__cell row__cell cell-status">
+                    <div class="cell-status__left">
+                      <div class="cell-status__slider">
+                        <p class="status choosen">Подготовка CV</p>
+                        <p class="status choosen">CV отправлено</p>
+                        <p class="status ready">Утвержден</p>
+                        <p class="status ready">Контракт подписан</p>
+                        <p class="status wait active">Подан в визовый центр</p>
+                        <p class="status department">Получил разрешение</p>
+                        <p class="status department">Забрал разрешение</p>
+                        <p class="status department">Билеты куплены</p>
+                        <p class="status busy">Трудоустроен</p>
+                      </div>
+                      <div class="cell-status__controls">
+                        <div class="cell-status__control-left"><i class="ico rotate-left">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                        <div class="cell-status__control-right"><i class="ico">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                      </div>
+                    </div>
+                    <div class="cell-status__right"></div>
+                  </div>
+                  <div class="table-full__cell row__cell cell-exp"></div>
+                  <div class="table-full__cell row__cell cell-notes"></div>
                 </div>
-                <div class="table-full__cell row__cell cell-exp"></div>
-                <div class="table-full__cell row__cell cell-notes"></div>
               </div>
             </div>
-            <div class="table-full__busy">
-              <div class="table-full__row f-container">
-                <div class="table-full__cell row__cell cell-names">
-                  <p>Конончук Віталій</p>
+            <div class="table-full__busy busy">
+              <div class="table-full__row">
+                <div class="table-full__row-layer">
+                  <p class="table-full__title">Трудоустроены</p>
                 </div>
-                <div class="table-full__cell row__cell cell-status">
-                  <div class="cell-status__left">
-                    <div class="cell-status__slider">
-                      <p class="status choosen">Подготовка CV</p>
-                      <p class="status choosen">CV отправлено</p>
-                      <p class="status ready">Утвержден</p>
-                      <p class="status ready">Контракт подписан</p>
-                      <p class="status wait active">Подан в визовый центр</p>
-                      <p class="status department">Получил разрешение</p>
-                      <p class="status department">Забрал разрешение</p>
-                      <p class="status department">Билеты куплены</p>
-                      <p class="status busy">Трудоустроен</p>
-                    </div>
-                    <div class="cell-status__controls">
-                      <div class="cell-status__control-left"><i class="ico rotate-left">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                      <div class="cell-status__control-right"><i class="ico">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                    </div>
+                <div class="table-full__row-layer f-container">
+                  <div class="table-full__cell row__cell cell-names">
+                    <p>Конончук Віталій</p>
                   </div>
-                  <div class="cell-status__right"></div>
+                  <div class="table-full__cell row__cell cell-status">
+                    <div class="cell-status__left">
+                      <div class="cell-status__slider">
+                        <p class="status choosen">Подготовка CV</p>
+                        <p class="status choosen">CV отправлено</p>
+                        <p class="status ready">Утвержден</p>
+                        <p class="status ready">Контракт подписан</p>
+                        <p class="status wait active">Подан в визовый центр</p>
+                        <p class="status department">Получил разрешение</p>
+                        <p class="status department">Забрал разрешение</p>
+                        <p class="status department">Билеты куплены</p>
+                        <p class="status busy">Трудоустроен</p>
+                      </div>
+                      <div class="cell-status__controls">
+                        <div class="cell-status__control-left"><i class="ico rotate-left">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                        <div class="cell-status__control-right"><i class="ico">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                      </div>
+                    </div>
+                    <div class="cell-status__right"></div>
+                  </div>
+                  <div class="table-full__cell row__cell cell-exp"></div>
+                  <div class="table-full__cell row__cell cell-notes"></div>
                 </div>
-                <div class="table-full__cell row__cell cell-exp"></div>
-                <div class="table-full__cell row__cell cell-notes"></div>
               </div>
             </div>
           </div>
         </div>
-        <div class="row" data-custom-open="modal-1">
+        <div class="row no-open" data-custom-open="modal-1">
           <div class="f-container">
             <div class="row__terms row__cell medium"></div>
             <div class="row__labels-2 row__cell no-open"><i class="label attention__label no-open"><span class="no-open">DE</span><span class="no-open">18 - 5</span></i></div>
@@ -568,7 +594,7 @@
             </div>
           </div>
         </div>
-        <div class="row" data-custom-open="modal-1">
+        <div class="row no-open" data-custom-open="modal-1">
           <div class="f-container">
             <div class="row__terms row__cell hot"></div>
             <div class="row__labels-2 row__cell no-open"><i class="label attention__label no-open"><span class="no-open">NO</span><span class="no-open">118 - 22</span></i><span class="number-of-people attention-number no-open">М12 Ж5</span></div>
@@ -582,52 +608,57 @@
             </div>
           </div>
           <div class="row__full-info table-full">
-            <div class="table-full__choosen">
-              <div class="table-full__row f-container">
-                <div class="table-full__cell row__cell cell-names">
-                  <p>Гурківський Олександр</p>
+            <div class="table-full__choosen choosen">
+              <div class="table-full__row">
+                <div class="table-full__row-layer">
+                  <p class="table-full__title">Отобраны</p>
                 </div>
-                <div class="table-full__cell row__cell cell-status">
-                  <div class="cell-status__left">
-                    <div class="cell-status__slider">
-                      <p class="status choosen">Подготовка CV</p>
-                      <p class="status choosen">CV отправлено</p>
-                      <p class="status ready">Утвержден</p>
-                      <p class="status ready">Контракт подписан</p>
-                      <p class="status wait active">Подан в визовый центр</p>
-                      <p class="status department">Получил разрешение</p>
-                      <p class="status department">Забрал разрешение</p>
-                      <p class="status department">Билеты куплены</p>
-                      <p class="status busy">Трудоустроен</p>
+                <div class="table-full__row-layer f-container">
+                  <div class="table-full__cell row__cell cell-names">
+                    <p>Гурківський Олександр</p>
+                  </div>
+                  <div class="table-full__cell row__cell cell-status">
+                    <div class="cell-status__left">
+                      <div class="cell-status__slider">
+                        <p class="status choosen">Подготовка CV</p>
+                        <p class="status choosen">CV отправлено</p>
+                        <p class="status ready">Утвержден</p>
+                        <p class="status ready">Контракт подписан</p>
+                        <p class="status wait active">Подан в визовый центр</p>
+                        <p class="status department">Получил разрешение</p>
+                        <p class="status department">Забрал разрешение</p>
+                        <p class="status department">Билеты куплены</p>
+                        <p class="status busy">Трудоустроен</p>
+                      </div>
+                      <div class="cell-status__controls">
+                        <div class="cell-status__control-left"><i class="ico rotate-left">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                        <div class="cell-status__control-right"><i class="ico">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                      </div>
                     </div>
-                    <div class="cell-status__controls">
-                      <div class="cell-status__control-left"><i class="ico rotate-left">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                      <div class="cell-status__control-right"><i class="ico">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
+                    <div class="cell-status__right"><i class="ico">
+                        <svg>
+                          <use xlink:href="img/sprites/svg/symbol/sprite.svg#phone2"></use>
+                        </svg></i><i class="ico">
+                        <svg>
+                          <use xlink:href="img/sprites/svg/symbol/sprite.svg#docs"></use>
+                        </svg></i><i class="ico">
+                        <svg>
+                          <use xlink:href="img/sprites/svg/symbol/sprite.svg#page"></use>
+                        </svg></i>
+                      <div class="tag manager-tag purple-tag">AC</div>
                     </div>
                   </div>
-                  <div class="cell-status__right"><i class="ico">
-                      <svg>
-                        <use xlink:href="img/sprites/svg/symbol/sprite.svg#phone2"></use>
-                      </svg></i><i class="ico">
-                      <svg>
-                        <use xlink:href="img/sprites/svg/symbol/sprite.svg#docs"></use>
-                      </svg></i><i class="ico">
-                      <svg>
-                        <use xlink:href="img/sprites/svg/symbol/sprite.svg#page"></use>
-                      </svg></i>
-                    <div class="tag manager-tag purple-tag">AC</div>
+                  <div class="table-full__cell row__cell cell-exp"><i class="label hot__label">Сезонная</i>
+                    <p>Цветы</p>
                   </div>
+                  <div class="table-full__cell row__cell cell-notes"></div>
                 </div>
-                <div class="table-full__cell row__cell cell-exp"><i class="label hot__label">Сезонная</i>
-                  <p>Цветы</p>
-                </div>
-                <div class="table-full__cell row__cell cell-notes"></div>
               </div>
               <div class="table-full__row f-container">
                 <div class="table-full__cell row__cell cell-names">
@@ -785,40 +816,45 @@
                 <div class="table-full__cell row__cell cell-notes"></div>
               </div>
             </div>
-            <div class="table-full__ready">
-              <div class="table-full__row f-container">
-                <div class="table-full__cell row__cell cell-names">
-                  <p>Червінський Йосип</p>
+            <div class="table-full__ready ready">
+              <div class="table-full__row">
+                <div class="table-full__row-layer">
+                  <p class="table-full__title">Готовятся к подаче</p>
                 </div>
-                <div class="table-full__cell row__cell cell-status">
-                  <div class="cell-status__left">
-                    <div class="cell-status__slider">
-                      <p class="status choosen">Подготовка CV</p>
-                      <p class="status choosen">CV отправлено</p>
-                      <p class="status ready">Утвержден</p>
-                      <p class="status ready">Контракт подписан</p>
-                      <p class="status wait active">Подан в визовый центр</p>
-                      <p class="status department">Получил разрешение</p>
-                      <p class="status department">Забрал разрешение</p>
-                      <p class="status department">Билеты куплены</p>
-                      <p class="status busy">Трудоустроен</p>
-                    </div>
-                    <div class="cell-status__controls">
-                      <div class="cell-status__control-left"><i class="ico rotate-left">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                      <div class="cell-status__control-right"><i class="ico">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                    </div>
+                <div class="table-full__row-layer f-container">
+                  <div class="table-full__cell row__cell cell-names">
+                    <p>Червінський Йосип</p>
                   </div>
-                  <div class="cell-status__right"></div>
-                </div>
-                <div class="table-full__cell row__cell cell-exp"></div>
-                <div class="table-full__cell row__cell cell-notes">
-                  <p>Записан в посольство на 10.05</p>
+                  <div class="table-full__cell row__cell cell-status">
+                    <div class="cell-status__left">
+                      <div class="cell-status__slider">
+                        <p class="status choosen">Подготовка CV</p>
+                        <p class="status choosen">CV отправлено</p>
+                        <p class="status ready">Утвержден</p>
+                        <p class="status ready">Контракт подписан</p>
+                        <p class="status wait active">Подан в визовый центр</p>
+                        <p class="status department">Получил разрешение</p>
+                        <p class="status department">Забрал разрешение</p>
+                        <p class="status department">Билеты куплены</p>
+                        <p class="status busy">Трудоустроен</p>
+                      </div>
+                      <div class="cell-status__controls">
+                        <div class="cell-status__control-left"><i class="ico rotate-left">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                        <div class="cell-status__control-right"><i class="ico">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                      </div>
+                    </div>
+                    <div class="cell-status__right"></div>
+                  </div>
+                  <div class="table-full__cell row__cell cell-exp"></div>
+                  <div class="table-full__cell row__cell cell-notes">
+                    <p>Записан в посольство на 10.05</p>
+                  </div>
                 </div>
               </div>
               <div class="table-full__row f-container">
@@ -832,39 +868,44 @@
                 <div class="table-full__cell row__cell cell-notes"></div>
               </div>
             </div>
-            <div class="table-full__wait">
-              <div class="table-full__row f-container">
-                <div class="table-full__cell row__cell cell-names">
-                  <p>Іванчик Олександр</p>
+            <div class="table-full__wait wait">
+              <div class="table-full__row">
+                <div class="table-full__row-layer">
+                  <p class="table-full__title">Ждут разрешения</p>
                 </div>
-                <div class="table-full__cell row__cell cell-status">
-                  <div class="cell-status__left">
-                    <div class="cell-status__slider">
-                      <p class="status choosen">Подготовка CV</p>
-                      <p class="status choosen">CV отправлено</p>
-                      <p class="status ready">Утвержден</p>
-                      <p class="status ready">Контракт подписан</p>
-                      <p class="status wait active">Подан в визовый центр</p>
-                      <p class="status department">Получил разрешение</p>
-                      <p class="status department">Забрал разрешение</p>
-                      <p class="status department">Билеты куплены</p>
-                      <p class="status busy">Трудоустроен</p>
-                    </div>
-                    <div class="cell-status__controls">
-                      <div class="cell-status__control-left"><i class="ico rotate-left">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                      <div class="cell-status__control-right"><i class="ico">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                    </div>
+                <div class="table-full__row-layer f-container">
+                  <div class="table-full__cell row__cell cell-names">
+                    <p>Іванчик Олександр</p>
                   </div>
-                  <div class="cell-status__right"></div>
+                  <div class="table-full__cell row__cell cell-status">
+                    <div class="cell-status__left">
+                      <div class="cell-status__slider">
+                        <p class="status choosen">Подготовка CV</p>
+                        <p class="status choosen">CV отправлено</p>
+                        <p class="status ready">Утвержден</p>
+                        <p class="status ready">Контракт подписан</p>
+                        <p class="status wait active">Подан в визовый центр</p>
+                        <p class="status department">Получил разрешение</p>
+                        <p class="status department">Забрал разрешение</p>
+                        <p class="status department">Билеты куплены</p>
+                        <p class="status busy">Трудоустроен</p>
+                      </div>
+                      <div class="cell-status__controls">
+                        <div class="cell-status__control-left"><i class="ico rotate-left">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                        <div class="cell-status__control-right"><i class="ico">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                      </div>
+                    </div>
+                    <div class="cell-status__right"></div>
+                  </div>
+                  <div class="table-full__cell row__cell cell-exp"></div>
+                  <div class="table-full__cell row__cell cell-notes"></div>
                 </div>
-                <div class="table-full__cell row__cell cell-exp"></div>
-                <div class="table-full__cell row__cell cell-notes"></div>
               </div>
               <div class="table-full__row f-container">
                 <div class="table-full__cell row__cell cell-names">
@@ -933,79 +974,89 @@
                 <div class="table-full__cell row__cell cell-notes"></div>
               </div>
             </div>
-            <div class="table-full__department">
-              <div class="table-full__row f-container">
-                <div class="table-full__cell row__cell cell-names">
-                  <p>Коргун Максим</p>
+            <div class="table-full__department department">
+              <div class="table-full__row">
+                <div class="table-full__row-layer">
+                  <p class="table-full__title">Готовятся к отъезду</p>
                 </div>
-                <div class="table-full__cell row__cell cell-status">
-                  <div class="cell-status__left">
-                    <div class="cell-status__slider">
-                      <p class="status choosen">Подготовка CV</p>
-                      <p class="status choosen">CV отправлено</p>
-                      <p class="status ready">Утвержден</p>
-                      <p class="status ready">Контракт подписан</p>
-                      <p class="status wait active">Подан в визовый центр</p>
-                      <p class="status department">Получил разрешение</p>
-                      <p class="status department">Забрал разрешение</p>
-                      <p class="status department">Билеты куплены</p>
-                      <p class="status busy">Трудоустроен</p>
-                    </div>
-                    <div class="cell-status__controls">
-                      <div class="cell-status__control-left"><i class="ico rotate-left">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                      <div class="cell-status__control-right"><i class="ico">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                    </div>
+                <div class="table-full__row-layer f-container">
+                  <div class="table-full__cell row__cell cell-names">
+                    <p>Коргун Максим</p>
                   </div>
-                  <div class="cell-status__right"></div>
+                  <div class="table-full__cell row__cell cell-status">
+                    <div class="cell-status__left">
+                      <div class="cell-status__slider">
+                        <p class="status choosen">Подготовка CV</p>
+                        <p class="status choosen">CV отправлено</p>
+                        <p class="status ready">Утвержден</p>
+                        <p class="status ready">Контракт подписан</p>
+                        <p class="status wait active">Подан в визовый центр</p>
+                        <p class="status department">Получил разрешение</p>
+                        <p class="status department">Забрал разрешение</p>
+                        <p class="status department">Билеты куплены</p>
+                        <p class="status busy">Трудоустроен</p>
+                      </div>
+                      <div class="cell-status__controls">
+                        <div class="cell-status__control-left"><i class="ico rotate-left">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                        <div class="cell-status__control-right"><i class="ico">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                      </div>
+                    </div>
+                    <div class="cell-status__right"></div>
+                  </div>
+                  <div class="table-full__cell row__cell cell-exp"></div>
+                  <div class="table-full__cell row__cell cell-notes"></div>
                 </div>
-                <div class="table-full__cell row__cell cell-exp"></div>
-                <div class="table-full__cell row__cell cell-notes"></div>
               </div>
             </div>
-            <div class="table-full__busy">
-              <div class="table-full__row f-container">
-                <div class="table-full__cell row__cell cell-names">
-                  <p>Конончук Віталій</p>
+            <div class="table-full__busy busy">
+              <div class="table-full__row">
+                <div class="table-full__row-layer">
+                  <p class="table-full__title">Трудоустроены</p>
                 </div>
-                <div class="table-full__cell row__cell cell-status">
-                  <div class="cell-status__left">
-                    <div class="cell-status__slider">
-                      <p class="status choosen">Подготовка CV</p>
-                      <p class="status choosen">CV отправлено</p>
-                      <p class="status ready">Утвержден</p>
-                      <p class="status ready">Контракт подписан</p>
-                      <p class="status wait active">Подан в визовый центр</p>
-                      <p class="status department">Получил разрешение</p>
-                      <p class="status department">Забрал разрешение</p>
-                      <p class="status department">Билеты куплены</p>
-                      <p class="status busy">Трудоустроен</p>
-                    </div>
-                    <div class="cell-status__controls">
-                      <div class="cell-status__control-left"><i class="ico rotate-left">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                      <div class="cell-status__control-right"><i class="ico">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                    </div>
+                <div class="table-full__row-layer f-container">
+                  <div class="table-full__cell row__cell cell-names">
+                    <p>Конончук Віталій</p>
                   </div>
-                  <div class="cell-status__right"></div>
+                  <div class="table-full__cell row__cell cell-status">
+                    <div class="cell-status__left">
+                      <div class="cell-status__slider">
+                        <p class="status choosen">Подготовка CV</p>
+                        <p class="status choosen">CV отправлено</p>
+                        <p class="status ready">Утвержден</p>
+                        <p class="status ready">Контракт подписан</p>
+                        <p class="status wait active">Подан в визовый центр</p>
+                        <p class="status department">Получил разрешение</p>
+                        <p class="status department">Забрал разрешение</p>
+                        <p class="status department">Билеты куплены</p>
+                        <p class="status busy">Трудоустроен</p>
+                      </div>
+                      <div class="cell-status__controls">
+                        <div class="cell-status__control-left"><i class="ico rotate-left">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                        <div class="cell-status__control-right"><i class="ico">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                      </div>
+                    </div>
+                    <div class="cell-status__right"></div>
+                  </div>
+                  <div class="table-full__cell row__cell cell-exp"></div>
+                  <div class="table-full__cell row__cell cell-notes"></div>
                 </div>
-                <div class="table-full__cell row__cell cell-exp"></div>
-                <div class="table-full__cell row__cell cell-notes"></div>
               </div>
             </div>
           </div>
         </div>
-        <div class="row" data-custom-open="modal-1">
+        <div class="row no-open" data-custom-open="modal-1">
           <div class="f-container">
             <div class="row__terms row__cell medium"></div>
             <div class="row__labels-2 row__cell no-open"><i class="label attention__label no-open"><span class="no-open">DE</span><span class="no-open">18 - 5</span></i></div>
@@ -1019,7 +1070,7 @@
             </div>
           </div>
         </div>
-        <div class="row" data-custom-open="modal-1">
+        <div class="row no-open" data-custom-open="modal-1">
           <div class="f-container">
             <div class="row__terms row__cell hot"></div>
             <div class="row__labels-2 row__cell no-open"><i class="label attention__label no-open"><span class="no-open">NO</span><span class="no-open">118 - 22</span></i><span class="number-of-people attention-number no-open">М12 Ж5</span></div>
@@ -1033,52 +1084,57 @@
             </div>
           </div>
           <div class="row__full-info table-full">
-            <div class="table-full__choosen">
-              <div class="table-full__row f-container">
-                <div class="table-full__cell row__cell cell-names">
-                  <p>Гурківський Олександр</p>
+            <div class="table-full__choosen choosen">
+              <div class="table-full__row">
+                <div class="table-full__row-layer">
+                  <p class="table-full__title">Отобраны</p>
                 </div>
-                <div class="table-full__cell row__cell cell-status">
-                  <div class="cell-status__left">
-                    <div class="cell-status__slider">
-                      <p class="status choosen">Подготовка CV</p>
-                      <p class="status choosen">CV отправлено</p>
-                      <p class="status ready">Утвержден</p>
-                      <p class="status ready">Контракт подписан</p>
-                      <p class="status wait active">Подан в визовый центр</p>
-                      <p class="status department">Получил разрешение</p>
-                      <p class="status department">Забрал разрешение</p>
-                      <p class="status department">Билеты куплены</p>
-                      <p class="status busy">Трудоустроен</p>
+                <div class="table-full__row-layer f-container">
+                  <div class="table-full__cell row__cell cell-names">
+                    <p>Гурківський Олександр</p>
+                  </div>
+                  <div class="table-full__cell row__cell cell-status">
+                    <div class="cell-status__left">
+                      <div class="cell-status__slider">
+                        <p class="status choosen">Подготовка CV</p>
+                        <p class="status choosen">CV отправлено</p>
+                        <p class="status ready">Утвержден</p>
+                        <p class="status ready">Контракт подписан</p>
+                        <p class="status wait active">Подан в визовый центр</p>
+                        <p class="status department">Получил разрешение</p>
+                        <p class="status department">Забрал разрешение</p>
+                        <p class="status department">Билеты куплены</p>
+                        <p class="status busy">Трудоустроен</p>
+                      </div>
+                      <div class="cell-status__controls">
+                        <div class="cell-status__control-left"><i class="ico rotate-left">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                        <div class="cell-status__control-right"><i class="ico">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                      </div>
                     </div>
-                    <div class="cell-status__controls">
-                      <div class="cell-status__control-left"><i class="ico rotate-left">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                      <div class="cell-status__control-right"><i class="ico">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
+                    <div class="cell-status__right"><i class="ico">
+                        <svg>
+                          <use xlink:href="img/sprites/svg/symbol/sprite.svg#phone2"></use>
+                        </svg></i><i class="ico">
+                        <svg>
+                          <use xlink:href="img/sprites/svg/symbol/sprite.svg#docs"></use>
+                        </svg></i><i class="ico">
+                        <svg>
+                          <use xlink:href="img/sprites/svg/symbol/sprite.svg#page"></use>
+                        </svg></i>
+                      <div class="tag manager-tag purple-tag">AC</div>
                     </div>
                   </div>
-                  <div class="cell-status__right"><i class="ico">
-                      <svg>
-                        <use xlink:href="img/sprites/svg/symbol/sprite.svg#phone2"></use>
-                      </svg></i><i class="ico">
-                      <svg>
-                        <use xlink:href="img/sprites/svg/symbol/sprite.svg#docs"></use>
-                      </svg></i><i class="ico">
-                      <svg>
-                        <use xlink:href="img/sprites/svg/symbol/sprite.svg#page"></use>
-                      </svg></i>
-                    <div class="tag manager-tag purple-tag">AC</div>
+                  <div class="table-full__cell row__cell cell-exp"><i class="label hot__label">Сезонная</i>
+                    <p>Цветы</p>
                   </div>
+                  <div class="table-full__cell row__cell cell-notes"></div>
                 </div>
-                <div class="table-full__cell row__cell cell-exp"><i class="label hot__label">Сезонная</i>
-                  <p>Цветы</p>
-                </div>
-                <div class="table-full__cell row__cell cell-notes"></div>
               </div>
               <div class="table-full__row f-container">
                 <div class="table-full__cell row__cell cell-names">
@@ -1236,40 +1292,45 @@
                 <div class="table-full__cell row__cell cell-notes"></div>
               </div>
             </div>
-            <div class="table-full__ready">
-              <div class="table-full__row f-container">
-                <div class="table-full__cell row__cell cell-names">
-                  <p>Червінський Йосип</p>
+            <div class="table-full__ready ready">
+              <div class="table-full__row">
+                <div class="table-full__row-layer">
+                  <p class="table-full__title">Готовятся к подаче</p>
                 </div>
-                <div class="table-full__cell row__cell cell-status">
-                  <div class="cell-status__left">
-                    <div class="cell-status__slider">
-                      <p class="status choosen">Подготовка CV</p>
-                      <p class="status choosen">CV отправлено</p>
-                      <p class="status ready">Утвержден</p>
-                      <p class="status ready">Контракт подписан</p>
-                      <p class="status wait active">Подан в визовый центр</p>
-                      <p class="status department">Получил разрешение</p>
-                      <p class="status department">Забрал разрешение</p>
-                      <p class="status department">Билеты куплены</p>
-                      <p class="status busy">Трудоустроен</p>
-                    </div>
-                    <div class="cell-status__controls">
-                      <div class="cell-status__control-left"><i class="ico rotate-left">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                      <div class="cell-status__control-right"><i class="ico">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                    </div>
+                <div class="table-full__row-layer f-container">
+                  <div class="table-full__cell row__cell cell-names">
+                    <p>Червінський Йосип</p>
                   </div>
-                  <div class="cell-status__right"></div>
-                </div>
-                <div class="table-full__cell row__cell cell-exp"></div>
-                <div class="table-full__cell row__cell cell-notes">
-                  <p>Записан в посольство на 10.05</p>
+                  <div class="table-full__cell row__cell cell-status">
+                    <div class="cell-status__left">
+                      <div class="cell-status__slider">
+                        <p class="status choosen">Подготовка CV</p>
+                        <p class="status choosen">CV отправлено</p>
+                        <p class="status ready">Утвержден</p>
+                        <p class="status ready">Контракт подписан</p>
+                        <p class="status wait active">Подан в визовый центр</p>
+                        <p class="status department">Получил разрешение</p>
+                        <p class="status department">Забрал разрешение</p>
+                        <p class="status department">Билеты куплены</p>
+                        <p class="status busy">Трудоустроен</p>
+                      </div>
+                      <div class="cell-status__controls">
+                        <div class="cell-status__control-left"><i class="ico rotate-left">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                        <div class="cell-status__control-right"><i class="ico">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                      </div>
+                    </div>
+                    <div class="cell-status__right"></div>
+                  </div>
+                  <div class="table-full__cell row__cell cell-exp"></div>
+                  <div class="table-full__cell row__cell cell-notes">
+                    <p>Записан в посольство на 10.05</p>
+                  </div>
                 </div>
               </div>
               <div class="table-full__row f-container">
@@ -1283,39 +1344,44 @@
                 <div class="table-full__cell row__cell cell-notes"></div>
               </div>
             </div>
-            <div class="table-full__wait">
-              <div class="table-full__row f-container">
-                <div class="table-full__cell row__cell cell-names">
-                  <p>Іванчик Олександр</p>
+            <div class="table-full__wait wait">
+              <div class="table-full__row">
+                <div class="table-full__row-layer">
+                  <p class="table-full__title">Ждут разрешения</p>
                 </div>
-                <div class="table-full__cell row__cell cell-status">
-                  <div class="cell-status__left">
-                    <div class="cell-status__slider">
-                      <p class="status choosen">Подготовка CV</p>
-                      <p class="status choosen">CV отправлено</p>
-                      <p class="status ready">Утвержден</p>
-                      <p class="status ready">Контракт подписан</p>
-                      <p class="status wait active">Подан в визовый центр</p>
-                      <p class="status department">Получил разрешение</p>
-                      <p class="status department">Забрал разрешение</p>
-                      <p class="status department">Билеты куплены</p>
-                      <p class="status busy">Трудоустроен</p>
-                    </div>
-                    <div class="cell-status__controls">
-                      <div class="cell-status__control-left"><i class="ico rotate-left">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                      <div class="cell-status__control-right"><i class="ico">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                    </div>
+                <div class="table-full__row-layer f-container">
+                  <div class="table-full__cell row__cell cell-names">
+                    <p>Іванчик Олександр</p>
                   </div>
-                  <div class="cell-status__right"></div>
+                  <div class="table-full__cell row__cell cell-status">
+                    <div class="cell-status__left">
+                      <div class="cell-status__slider">
+                        <p class="status choosen">Подготовка CV</p>
+                        <p class="status choosen">CV отправлено</p>
+                        <p class="status ready">Утвержден</p>
+                        <p class="status ready">Контракт подписан</p>
+                        <p class="status wait active">Подан в визовый центр</p>
+                        <p class="status department">Получил разрешение</p>
+                        <p class="status department">Забрал разрешение</p>
+                        <p class="status department">Билеты куплены</p>
+                        <p class="status busy">Трудоустроен</p>
+                      </div>
+                      <div class="cell-status__controls">
+                        <div class="cell-status__control-left"><i class="ico rotate-left">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                        <div class="cell-status__control-right"><i class="ico">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                      </div>
+                    </div>
+                    <div class="cell-status__right"></div>
+                  </div>
+                  <div class="table-full__cell row__cell cell-exp"></div>
+                  <div class="table-full__cell row__cell cell-notes"></div>
                 </div>
-                <div class="table-full__cell row__cell cell-exp"></div>
-                <div class="table-full__cell row__cell cell-notes"></div>
               </div>
               <div class="table-full__row f-container">
                 <div class="table-full__cell row__cell cell-names">
@@ -1384,79 +1450,89 @@
                 <div class="table-full__cell row__cell cell-notes"></div>
               </div>
             </div>
-            <div class="table-full__department">
-              <div class="table-full__row f-container">
-                <div class="table-full__cell row__cell cell-names">
-                  <p>Коргун Максим</p>
+            <div class="table-full__department department">
+              <div class="table-full__row">
+                <div class="table-full__row-layer">
+                  <p class="table-full__title">Готовятся к отъезду</p>
                 </div>
-                <div class="table-full__cell row__cell cell-status">
-                  <div class="cell-status__left">
-                    <div class="cell-status__slider">
-                      <p class="status choosen">Подготовка CV</p>
-                      <p class="status choosen">CV отправлено</p>
-                      <p class="status ready">Утвержден</p>
-                      <p class="status ready">Контракт подписан</p>
-                      <p class="status wait active">Подан в визовый центр</p>
-                      <p class="status department">Получил разрешение</p>
-                      <p class="status department">Забрал разрешение</p>
-                      <p class="status department">Билеты куплены</p>
-                      <p class="status busy">Трудоустроен</p>
-                    </div>
-                    <div class="cell-status__controls">
-                      <div class="cell-status__control-left"><i class="ico rotate-left">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                      <div class="cell-status__control-right"><i class="ico">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                    </div>
+                <div class="table-full__row-layer f-container">
+                  <div class="table-full__cell row__cell cell-names">
+                    <p>Коргун Максим</p>
                   </div>
-                  <div class="cell-status__right"></div>
+                  <div class="table-full__cell row__cell cell-status">
+                    <div class="cell-status__left">
+                      <div class="cell-status__slider">
+                        <p class="status choosen">Подготовка CV</p>
+                        <p class="status choosen">CV отправлено</p>
+                        <p class="status ready">Утвержден</p>
+                        <p class="status ready">Контракт подписан</p>
+                        <p class="status wait active">Подан в визовый центр</p>
+                        <p class="status department">Получил разрешение</p>
+                        <p class="status department">Забрал разрешение</p>
+                        <p class="status department">Билеты куплены</p>
+                        <p class="status busy">Трудоустроен</p>
+                      </div>
+                      <div class="cell-status__controls">
+                        <div class="cell-status__control-left"><i class="ico rotate-left">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                        <div class="cell-status__control-right"><i class="ico">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                      </div>
+                    </div>
+                    <div class="cell-status__right"></div>
+                  </div>
+                  <div class="table-full__cell row__cell cell-exp"></div>
+                  <div class="table-full__cell row__cell cell-notes"></div>
                 </div>
-                <div class="table-full__cell row__cell cell-exp"></div>
-                <div class="table-full__cell row__cell cell-notes"></div>
               </div>
             </div>
-            <div class="table-full__busy">
-              <div class="table-full__row f-container">
-                <div class="table-full__cell row__cell cell-names">
-                  <p>Конончук Віталій</p>
+            <div class="table-full__busy busy">
+              <div class="table-full__row">
+                <div class="table-full__row-layer">
+                  <p class="table-full__title">Трудоустроены</p>
                 </div>
-                <div class="table-full__cell row__cell cell-status">
-                  <div class="cell-status__left">
-                    <div class="cell-status__slider">
-                      <p class="status choosen">Подготовка CV</p>
-                      <p class="status choosen">CV отправлено</p>
-                      <p class="status ready">Утвержден</p>
-                      <p class="status ready">Контракт подписан</p>
-                      <p class="status wait active">Подан в визовый центр</p>
-                      <p class="status department">Получил разрешение</p>
-                      <p class="status department">Забрал разрешение</p>
-                      <p class="status department">Билеты куплены</p>
-                      <p class="status busy">Трудоустроен</p>
-                    </div>
-                    <div class="cell-status__controls">
-                      <div class="cell-status__control-left"><i class="ico rotate-left">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                      <div class="cell-status__control-right"><i class="ico">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                    </div>
+                <div class="table-full__row-layer f-container">
+                  <div class="table-full__cell row__cell cell-names">
+                    <p>Конончук Віталій</p>
                   </div>
-                  <div class="cell-status__right"></div>
+                  <div class="table-full__cell row__cell cell-status">
+                    <div class="cell-status__left">
+                      <div class="cell-status__slider">
+                        <p class="status choosen">Подготовка CV</p>
+                        <p class="status choosen">CV отправлено</p>
+                        <p class="status ready">Утвержден</p>
+                        <p class="status ready">Контракт подписан</p>
+                        <p class="status wait active">Подан в визовый центр</p>
+                        <p class="status department">Получил разрешение</p>
+                        <p class="status department">Забрал разрешение</p>
+                        <p class="status department">Билеты куплены</p>
+                        <p class="status busy">Трудоустроен</p>
+                      </div>
+                      <div class="cell-status__controls">
+                        <div class="cell-status__control-left"><i class="ico rotate-left">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                        <div class="cell-status__control-right"><i class="ico">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                      </div>
+                    </div>
+                    <div class="cell-status__right"></div>
+                  </div>
+                  <div class="table-full__cell row__cell cell-exp"></div>
+                  <div class="table-full__cell row__cell cell-notes"></div>
                 </div>
-                <div class="table-full__cell row__cell cell-exp"></div>
-                <div class="table-full__cell row__cell cell-notes"></div>
               </div>
             </div>
           </div>
         </div>
-        <div class="row" data-custom-open="modal-1">
+        <div class="row no-open" data-custom-open="modal-1">
           <div class="f-container">
             <div class="row__terms row__cell medium"></div>
             <div class="row__labels-2 row__cell no-open"><i class="label attention__label no-open"><span class="no-open">DE</span><span class="no-open">18 - 5</span></i></div>
@@ -1470,7 +1546,7 @@
             </div>
           </div>
         </div>
-        <div class="row" data-custom-open="modal-1">
+        <div class="row no-open" data-custom-open="modal-1">
           <div class="f-container">
             <div class="row__terms row__cell hot"></div>
             <div class="row__labels-2 row__cell no-open"><i class="label attention__label no-open"><span class="no-open">NO</span><span class="no-open">118 - 22</span></i><span class="number-of-people attention-number no-open">М12 Ж5</span></div>
@@ -1484,52 +1560,57 @@
             </div>
           </div>
           <div class="row__full-info table-full">
-            <div class="table-full__choosen">
-              <div class="table-full__row f-container">
-                <div class="table-full__cell row__cell cell-names">
-                  <p>Гурківський Олександр</p>
+            <div class="table-full__choosen choosen">
+              <div class="table-full__row">
+                <div class="table-full__row-layer">
+                  <p class="table-full__title">Отобраны</p>
                 </div>
-                <div class="table-full__cell row__cell cell-status">
-                  <div class="cell-status__left">
-                    <div class="cell-status__slider">
-                      <p class="status choosen">Подготовка CV</p>
-                      <p class="status choosen">CV отправлено</p>
-                      <p class="status ready">Утвержден</p>
-                      <p class="status ready">Контракт подписан</p>
-                      <p class="status wait active">Подан в визовый центр</p>
-                      <p class="status department">Получил разрешение</p>
-                      <p class="status department">Забрал разрешение</p>
-                      <p class="status department">Билеты куплены</p>
-                      <p class="status busy">Трудоустроен</p>
+                <div class="table-full__row-layer f-container">
+                  <div class="table-full__cell row__cell cell-names">
+                    <p>Гурківський Олександр</p>
+                  </div>
+                  <div class="table-full__cell row__cell cell-status">
+                    <div class="cell-status__left">
+                      <div class="cell-status__slider">
+                        <p class="status choosen">Подготовка CV</p>
+                        <p class="status choosen">CV отправлено</p>
+                        <p class="status ready">Утвержден</p>
+                        <p class="status ready">Контракт подписан</p>
+                        <p class="status wait active">Подан в визовый центр</p>
+                        <p class="status department">Получил разрешение</p>
+                        <p class="status department">Забрал разрешение</p>
+                        <p class="status department">Билеты куплены</p>
+                        <p class="status busy">Трудоустроен</p>
+                      </div>
+                      <div class="cell-status__controls">
+                        <div class="cell-status__control-left"><i class="ico rotate-left">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                        <div class="cell-status__control-right"><i class="ico">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                      </div>
                     </div>
-                    <div class="cell-status__controls">
-                      <div class="cell-status__control-left"><i class="ico rotate-left">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                      <div class="cell-status__control-right"><i class="ico">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
+                    <div class="cell-status__right"><i class="ico">
+                        <svg>
+                          <use xlink:href="img/sprites/svg/symbol/sprite.svg#phone2"></use>
+                        </svg></i><i class="ico">
+                        <svg>
+                          <use xlink:href="img/sprites/svg/symbol/sprite.svg#docs"></use>
+                        </svg></i><i class="ico">
+                        <svg>
+                          <use xlink:href="img/sprites/svg/symbol/sprite.svg#page"></use>
+                        </svg></i>
+                      <div class="tag manager-tag purple-tag">AC</div>
                     </div>
                   </div>
-                  <div class="cell-status__right"><i class="ico">
-                      <svg>
-                        <use xlink:href="img/sprites/svg/symbol/sprite.svg#phone2"></use>
-                      </svg></i><i class="ico">
-                      <svg>
-                        <use xlink:href="img/sprites/svg/symbol/sprite.svg#docs"></use>
-                      </svg></i><i class="ico">
-                      <svg>
-                        <use xlink:href="img/sprites/svg/symbol/sprite.svg#page"></use>
-                      </svg></i>
-                    <div class="tag manager-tag purple-tag">AC</div>
+                  <div class="table-full__cell row__cell cell-exp"><i class="label hot__label">Сезонная</i>
+                    <p>Цветы</p>
                   </div>
+                  <div class="table-full__cell row__cell cell-notes"></div>
                 </div>
-                <div class="table-full__cell row__cell cell-exp"><i class="label hot__label">Сезонная</i>
-                  <p>Цветы</p>
-                </div>
-                <div class="table-full__cell row__cell cell-notes"></div>
               </div>
               <div class="table-full__row f-container">
                 <div class="table-full__cell row__cell cell-names">
@@ -1687,40 +1768,45 @@
                 <div class="table-full__cell row__cell cell-notes"></div>
               </div>
             </div>
-            <div class="table-full__ready">
-              <div class="table-full__row f-container">
-                <div class="table-full__cell row__cell cell-names">
-                  <p>Червінський Йосип</p>
+            <div class="table-full__ready ready">
+              <div class="table-full__row">
+                <div class="table-full__row-layer">
+                  <p class="table-full__title">Готовятся к подаче</p>
                 </div>
-                <div class="table-full__cell row__cell cell-status">
-                  <div class="cell-status__left">
-                    <div class="cell-status__slider">
-                      <p class="status choosen">Подготовка CV</p>
-                      <p class="status choosen">CV отправлено</p>
-                      <p class="status ready">Утвержден</p>
-                      <p class="status ready">Контракт подписан</p>
-                      <p class="status wait active">Подан в визовый центр</p>
-                      <p class="status department">Получил разрешение</p>
-                      <p class="status department">Забрал разрешение</p>
-                      <p class="status department">Билеты куплены</p>
-                      <p class="status busy">Трудоустроен</p>
-                    </div>
-                    <div class="cell-status__controls">
-                      <div class="cell-status__control-left"><i class="ico rotate-left">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                      <div class="cell-status__control-right"><i class="ico">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                    </div>
+                <div class="table-full__row-layer f-container">
+                  <div class="table-full__cell row__cell cell-names">
+                    <p>Червінський Йосип</p>
                   </div>
-                  <div class="cell-status__right"></div>
-                </div>
-                <div class="table-full__cell row__cell cell-exp"></div>
-                <div class="table-full__cell row__cell cell-notes">
-                  <p>Записан в посольство на 10.05</p>
+                  <div class="table-full__cell row__cell cell-status">
+                    <div class="cell-status__left">
+                      <div class="cell-status__slider">
+                        <p class="status choosen">Подготовка CV</p>
+                        <p class="status choosen">CV отправлено</p>
+                        <p class="status ready">Утвержден</p>
+                        <p class="status ready">Контракт подписан</p>
+                        <p class="status wait active">Подан в визовый центр</p>
+                        <p class="status department">Получил разрешение</p>
+                        <p class="status department">Забрал разрешение</p>
+                        <p class="status department">Билеты куплены</p>
+                        <p class="status busy">Трудоустроен</p>
+                      </div>
+                      <div class="cell-status__controls">
+                        <div class="cell-status__control-left"><i class="ico rotate-left">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                        <div class="cell-status__control-right"><i class="ico">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                      </div>
+                    </div>
+                    <div class="cell-status__right"></div>
+                  </div>
+                  <div class="table-full__cell row__cell cell-exp"></div>
+                  <div class="table-full__cell row__cell cell-notes">
+                    <p>Записан в посольство на 10.05</p>
+                  </div>
                 </div>
               </div>
               <div class="table-full__row f-container">
@@ -1734,39 +1820,44 @@
                 <div class="table-full__cell row__cell cell-notes"></div>
               </div>
             </div>
-            <div class="table-full__wait">
-              <div class="table-full__row f-container">
-                <div class="table-full__cell row__cell cell-names">
-                  <p>Іванчик Олександр</p>
+            <div class="table-full__wait wait">
+              <div class="table-full__row">
+                <div class="table-full__row-layer">
+                  <p class="table-full__title">Ждут разрешения</p>
                 </div>
-                <div class="table-full__cell row__cell cell-status">
-                  <div class="cell-status__left">
-                    <div class="cell-status__slider">
-                      <p class="status choosen">Подготовка CV</p>
-                      <p class="status choosen">CV отправлено</p>
-                      <p class="status ready">Утвержден</p>
-                      <p class="status ready">Контракт подписан</p>
-                      <p class="status wait active">Подан в визовый центр</p>
-                      <p class="status department">Получил разрешение</p>
-                      <p class="status department">Забрал разрешение</p>
-                      <p class="status department">Билеты куплены</p>
-                      <p class="status busy">Трудоустроен</p>
-                    </div>
-                    <div class="cell-status__controls">
-                      <div class="cell-status__control-left"><i class="ico rotate-left">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                      <div class="cell-status__control-right"><i class="ico">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                    </div>
+                <div class="table-full__row-layer f-container">
+                  <div class="table-full__cell row__cell cell-names">
+                    <p>Іванчик Олександр</p>
                   </div>
-                  <div class="cell-status__right"></div>
+                  <div class="table-full__cell row__cell cell-status">
+                    <div class="cell-status__left">
+                      <div class="cell-status__slider">
+                        <p class="status choosen">Подготовка CV</p>
+                        <p class="status choosen">CV отправлено</p>
+                        <p class="status ready">Утвержден</p>
+                        <p class="status ready">Контракт подписан</p>
+                        <p class="status wait active">Подан в визовый центр</p>
+                        <p class="status department">Получил разрешение</p>
+                        <p class="status department">Забрал разрешение</p>
+                        <p class="status department">Билеты куплены</p>
+                        <p class="status busy">Трудоустроен</p>
+                      </div>
+                      <div class="cell-status__controls">
+                        <div class="cell-status__control-left"><i class="ico rotate-left">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                        <div class="cell-status__control-right"><i class="ico">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                      </div>
+                    </div>
+                    <div class="cell-status__right"></div>
+                  </div>
+                  <div class="table-full__cell row__cell cell-exp"></div>
+                  <div class="table-full__cell row__cell cell-notes"></div>
                 </div>
-                <div class="table-full__cell row__cell cell-exp"></div>
-                <div class="table-full__cell row__cell cell-notes"></div>
               </div>
               <div class="table-full__row f-container">
                 <div class="table-full__cell row__cell cell-names">
@@ -1835,79 +1926,89 @@
                 <div class="table-full__cell row__cell cell-notes"></div>
               </div>
             </div>
-            <div class="table-full__department">
-              <div class="table-full__row f-container">
-                <div class="table-full__cell row__cell cell-names">
-                  <p>Коргун Максим</p>
+            <div class="table-full__department department">
+              <div class="table-full__row">
+                <div class="table-full__row-layer">
+                  <p class="table-full__title">Готовятся к отъезду</p>
                 </div>
-                <div class="table-full__cell row__cell cell-status">
-                  <div class="cell-status__left">
-                    <div class="cell-status__slider">
-                      <p class="status choosen">Подготовка CV</p>
-                      <p class="status choosen">CV отправлено</p>
-                      <p class="status ready">Утвержден</p>
-                      <p class="status ready">Контракт подписан</p>
-                      <p class="status wait active">Подан в визовый центр</p>
-                      <p class="status department">Получил разрешение</p>
-                      <p class="status department">Забрал разрешение</p>
-                      <p class="status department">Билеты куплены</p>
-                      <p class="status busy">Трудоустроен</p>
-                    </div>
-                    <div class="cell-status__controls">
-                      <div class="cell-status__control-left"><i class="ico rotate-left">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                      <div class="cell-status__control-right"><i class="ico">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                    </div>
+                <div class="table-full__row-layer f-container">
+                  <div class="table-full__cell row__cell cell-names">
+                    <p>Коргун Максим</p>
                   </div>
-                  <div class="cell-status__right"></div>
+                  <div class="table-full__cell row__cell cell-status">
+                    <div class="cell-status__left">
+                      <div class="cell-status__slider">
+                        <p class="status choosen">Подготовка CV</p>
+                        <p class="status choosen">CV отправлено</p>
+                        <p class="status ready">Утвержден</p>
+                        <p class="status ready">Контракт подписан</p>
+                        <p class="status wait active">Подан в визовый центр</p>
+                        <p class="status department">Получил разрешение</p>
+                        <p class="status department">Забрал разрешение</p>
+                        <p class="status department">Билеты куплены</p>
+                        <p class="status busy">Трудоустроен</p>
+                      </div>
+                      <div class="cell-status__controls">
+                        <div class="cell-status__control-left"><i class="ico rotate-left">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                        <div class="cell-status__control-right"><i class="ico">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                      </div>
+                    </div>
+                    <div class="cell-status__right"></div>
+                  </div>
+                  <div class="table-full__cell row__cell cell-exp"></div>
+                  <div class="table-full__cell row__cell cell-notes"></div>
                 </div>
-                <div class="table-full__cell row__cell cell-exp"></div>
-                <div class="table-full__cell row__cell cell-notes"></div>
               </div>
             </div>
-            <div class="table-full__busy">
-              <div class="table-full__row f-container">
-                <div class="table-full__cell row__cell cell-names">
-                  <p>Конончук Віталій</p>
+            <div class="table-full__busy busy">
+              <div class="table-full__row">
+                <div class="table-full__row-layer">
+                  <p class="table-full__title">Трудоустроены</p>
                 </div>
-                <div class="table-full__cell row__cell cell-status">
-                  <div class="cell-status__left">
-                    <div class="cell-status__slider">
-                      <p class="status choosen">Подготовка CV</p>
-                      <p class="status choosen">CV отправлено</p>
-                      <p class="status ready">Утвержден</p>
-                      <p class="status ready">Контракт подписан</p>
-                      <p class="status wait active">Подан в визовый центр</p>
-                      <p class="status department">Получил разрешение</p>
-                      <p class="status department">Забрал разрешение</p>
-                      <p class="status department">Билеты куплены</p>
-                      <p class="status busy">Трудоустроен</p>
-                    </div>
-                    <div class="cell-status__controls">
-                      <div class="cell-status__control-left"><i class="ico rotate-left">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                      <div class="cell-status__control-right"><i class="ico">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                    </div>
+                <div class="table-full__row-layer f-container">
+                  <div class="table-full__cell row__cell cell-names">
+                    <p>Конончук Віталій</p>
                   </div>
-                  <div class="cell-status__right"></div>
+                  <div class="table-full__cell row__cell cell-status">
+                    <div class="cell-status__left">
+                      <div class="cell-status__slider">
+                        <p class="status choosen">Подготовка CV</p>
+                        <p class="status choosen">CV отправлено</p>
+                        <p class="status ready">Утвержден</p>
+                        <p class="status ready">Контракт подписан</p>
+                        <p class="status wait active">Подан в визовый центр</p>
+                        <p class="status department">Получил разрешение</p>
+                        <p class="status department">Забрал разрешение</p>
+                        <p class="status department">Билеты куплены</p>
+                        <p class="status busy">Трудоустроен</p>
+                      </div>
+                      <div class="cell-status__controls">
+                        <div class="cell-status__control-left"><i class="ico rotate-left">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                        <div class="cell-status__control-right"><i class="ico">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                      </div>
+                    </div>
+                    <div class="cell-status__right"></div>
+                  </div>
+                  <div class="table-full__cell row__cell cell-exp"></div>
+                  <div class="table-full__cell row__cell cell-notes"></div>
                 </div>
-                <div class="table-full__cell row__cell cell-exp"></div>
-                <div class="table-full__cell row__cell cell-notes"></div>
               </div>
             </div>
           </div>
         </div>
-        <div class="row" data-custom-open="modal-1">
+        <div class="row no-open" data-custom-open="modal-1">
           <div class="f-container">
             <div class="row__terms row__cell medium"></div>
             <div class="row__labels-2 row__cell no-open"><i class="label attention__label no-open"><span class="no-open">DE</span><span class="no-open">18 - 5</span></i></div>
@@ -1921,7 +2022,7 @@
             </div>
           </div>
         </div>
-        <div class="row" data-custom-open="modal-1">
+        <div class="row no-open" data-custom-open="modal-1">
           <div class="f-container">
             <div class="row__terms row__cell hot"></div>
             <div class="row__labels-2 row__cell no-open"><i class="label attention__label no-open"><span class="no-open">NO</span><span class="no-open">118 - 22</span></i><span class="number-of-people attention-number no-open">М12 Ж5</span></div>
@@ -1935,52 +2036,57 @@
             </div>
           </div>
           <div class="row__full-info table-full">
-            <div class="table-full__choosen">
-              <div class="table-full__row f-container">
-                <div class="table-full__cell row__cell cell-names">
-                  <p>Гурківський Олександр</p>
+            <div class="table-full__choosen choosen">
+              <div class="table-full__row">
+                <div class="table-full__row-layer">
+                  <p class="table-full__title">Отобраны</p>
                 </div>
-                <div class="table-full__cell row__cell cell-status">
-                  <div class="cell-status__left">
-                    <div class="cell-status__slider">
-                      <p class="status choosen">Подготовка CV</p>
-                      <p class="status choosen">CV отправлено</p>
-                      <p class="status ready">Утвержден</p>
-                      <p class="status ready">Контракт подписан</p>
-                      <p class="status wait active">Подан в визовый центр</p>
-                      <p class="status department">Получил разрешение</p>
-                      <p class="status department">Забрал разрешение</p>
-                      <p class="status department">Билеты куплены</p>
-                      <p class="status busy">Трудоустроен</p>
+                <div class="table-full__row-layer f-container">
+                  <div class="table-full__cell row__cell cell-names">
+                    <p>Гурківський Олександр</p>
+                  </div>
+                  <div class="table-full__cell row__cell cell-status">
+                    <div class="cell-status__left">
+                      <div class="cell-status__slider">
+                        <p class="status choosen">Подготовка CV</p>
+                        <p class="status choosen">CV отправлено</p>
+                        <p class="status ready">Утвержден</p>
+                        <p class="status ready">Контракт подписан</p>
+                        <p class="status wait active">Подан в визовый центр</p>
+                        <p class="status department">Получил разрешение</p>
+                        <p class="status department">Забрал разрешение</p>
+                        <p class="status department">Билеты куплены</p>
+                        <p class="status busy">Трудоустроен</p>
+                      </div>
+                      <div class="cell-status__controls">
+                        <div class="cell-status__control-left"><i class="ico rotate-left">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                        <div class="cell-status__control-right"><i class="ico">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                      </div>
                     </div>
-                    <div class="cell-status__controls">
-                      <div class="cell-status__control-left"><i class="ico rotate-left">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                      <div class="cell-status__control-right"><i class="ico">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
+                    <div class="cell-status__right"><i class="ico">
+                        <svg>
+                          <use xlink:href="img/sprites/svg/symbol/sprite.svg#phone2"></use>
+                        </svg></i><i class="ico">
+                        <svg>
+                          <use xlink:href="img/sprites/svg/symbol/sprite.svg#docs"></use>
+                        </svg></i><i class="ico">
+                        <svg>
+                          <use xlink:href="img/sprites/svg/symbol/sprite.svg#page"></use>
+                        </svg></i>
+                      <div class="tag manager-tag purple-tag">AC</div>
                     </div>
                   </div>
-                  <div class="cell-status__right"><i class="ico">
-                      <svg>
-                        <use xlink:href="img/sprites/svg/symbol/sprite.svg#phone2"></use>
-                      </svg></i><i class="ico">
-                      <svg>
-                        <use xlink:href="img/sprites/svg/symbol/sprite.svg#docs"></use>
-                      </svg></i><i class="ico">
-                      <svg>
-                        <use xlink:href="img/sprites/svg/symbol/sprite.svg#page"></use>
-                      </svg></i>
-                    <div class="tag manager-tag purple-tag">AC</div>
+                  <div class="table-full__cell row__cell cell-exp"><i class="label hot__label">Сезонная</i>
+                    <p>Цветы</p>
                   </div>
+                  <div class="table-full__cell row__cell cell-notes"></div>
                 </div>
-                <div class="table-full__cell row__cell cell-exp"><i class="label hot__label">Сезонная</i>
-                  <p>Цветы</p>
-                </div>
-                <div class="table-full__cell row__cell cell-notes"></div>
               </div>
               <div class="table-full__row f-container">
                 <div class="table-full__cell row__cell cell-names">
@@ -2138,40 +2244,45 @@
                 <div class="table-full__cell row__cell cell-notes"></div>
               </div>
             </div>
-            <div class="table-full__ready">
-              <div class="table-full__row f-container">
-                <div class="table-full__cell row__cell cell-names">
-                  <p>Червінський Йосип</p>
+            <div class="table-full__ready ready">
+              <div class="table-full__row">
+                <div class="table-full__row-layer">
+                  <p class="table-full__title">Готовятся к подаче</p>
                 </div>
-                <div class="table-full__cell row__cell cell-status">
-                  <div class="cell-status__left">
-                    <div class="cell-status__slider">
-                      <p class="status choosen">Подготовка CV</p>
-                      <p class="status choosen">CV отправлено</p>
-                      <p class="status ready">Утвержден</p>
-                      <p class="status ready">Контракт подписан</p>
-                      <p class="status wait active">Подан в визовый центр</p>
-                      <p class="status department">Получил разрешение</p>
-                      <p class="status department">Забрал разрешение</p>
-                      <p class="status department">Билеты куплены</p>
-                      <p class="status busy">Трудоустроен</p>
-                    </div>
-                    <div class="cell-status__controls">
-                      <div class="cell-status__control-left"><i class="ico rotate-left">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                      <div class="cell-status__control-right"><i class="ico">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                    </div>
+                <div class="table-full__row-layer f-container">
+                  <div class="table-full__cell row__cell cell-names">
+                    <p>Червінський Йосип</p>
                   </div>
-                  <div class="cell-status__right"></div>
-                </div>
-                <div class="table-full__cell row__cell cell-exp"></div>
-                <div class="table-full__cell row__cell cell-notes">
-                  <p>Записан в посольство на 10.05</p>
+                  <div class="table-full__cell row__cell cell-status">
+                    <div class="cell-status__left">
+                      <div class="cell-status__slider">
+                        <p class="status choosen">Подготовка CV</p>
+                        <p class="status choosen">CV отправлено</p>
+                        <p class="status ready">Утвержден</p>
+                        <p class="status ready">Контракт подписан</p>
+                        <p class="status wait active">Подан в визовый центр</p>
+                        <p class="status department">Получил разрешение</p>
+                        <p class="status department">Забрал разрешение</p>
+                        <p class="status department">Билеты куплены</p>
+                        <p class="status busy">Трудоустроен</p>
+                      </div>
+                      <div class="cell-status__controls">
+                        <div class="cell-status__control-left"><i class="ico rotate-left">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                        <div class="cell-status__control-right"><i class="ico">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                      </div>
+                    </div>
+                    <div class="cell-status__right"></div>
+                  </div>
+                  <div class="table-full__cell row__cell cell-exp"></div>
+                  <div class="table-full__cell row__cell cell-notes">
+                    <p>Записан в посольство на 10.05</p>
+                  </div>
                 </div>
               </div>
               <div class="table-full__row f-container">
@@ -2185,39 +2296,44 @@
                 <div class="table-full__cell row__cell cell-notes"></div>
               </div>
             </div>
-            <div class="table-full__wait">
-              <div class="table-full__row f-container">
-                <div class="table-full__cell row__cell cell-names">
-                  <p>Іванчик Олександр</p>
+            <div class="table-full__wait wait">
+              <div class="table-full__row">
+                <div class="table-full__row-layer">
+                  <p class="table-full__title">Ждут разрешения</p>
                 </div>
-                <div class="table-full__cell row__cell cell-status">
-                  <div class="cell-status__left">
-                    <div class="cell-status__slider">
-                      <p class="status choosen">Подготовка CV</p>
-                      <p class="status choosen">CV отправлено</p>
-                      <p class="status ready">Утвержден</p>
-                      <p class="status ready">Контракт подписан</p>
-                      <p class="status wait active">Подан в визовый центр</p>
-                      <p class="status department">Получил разрешение</p>
-                      <p class="status department">Забрал разрешение</p>
-                      <p class="status department">Билеты куплены</p>
-                      <p class="status busy">Трудоустроен</p>
-                    </div>
-                    <div class="cell-status__controls">
-                      <div class="cell-status__control-left"><i class="ico rotate-left">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                      <div class="cell-status__control-right"><i class="ico">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                    </div>
+                <div class="table-full__row-layer f-container">
+                  <div class="table-full__cell row__cell cell-names">
+                    <p>Іванчик Олександр</p>
                   </div>
-                  <div class="cell-status__right"></div>
+                  <div class="table-full__cell row__cell cell-status">
+                    <div class="cell-status__left">
+                      <div class="cell-status__slider">
+                        <p class="status choosen">Подготовка CV</p>
+                        <p class="status choosen">CV отправлено</p>
+                        <p class="status ready">Утвержден</p>
+                        <p class="status ready">Контракт подписан</p>
+                        <p class="status wait active">Подан в визовый центр</p>
+                        <p class="status department">Получил разрешение</p>
+                        <p class="status department">Забрал разрешение</p>
+                        <p class="status department">Билеты куплены</p>
+                        <p class="status busy">Трудоустроен</p>
+                      </div>
+                      <div class="cell-status__controls">
+                        <div class="cell-status__control-left"><i class="ico rotate-left">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                        <div class="cell-status__control-right"><i class="ico">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                      </div>
+                    </div>
+                    <div class="cell-status__right"></div>
+                  </div>
+                  <div class="table-full__cell row__cell cell-exp"></div>
+                  <div class="table-full__cell row__cell cell-notes"></div>
                 </div>
-                <div class="table-full__cell row__cell cell-exp"></div>
-                <div class="table-full__cell row__cell cell-notes"></div>
               </div>
               <div class="table-full__row f-container">
                 <div class="table-full__cell row__cell cell-names">
@@ -2286,79 +2402,89 @@
                 <div class="table-full__cell row__cell cell-notes"></div>
               </div>
             </div>
-            <div class="table-full__department">
-              <div class="table-full__row f-container">
-                <div class="table-full__cell row__cell cell-names">
-                  <p>Коргун Максим</p>
+            <div class="table-full__department department">
+              <div class="table-full__row">
+                <div class="table-full__row-layer">
+                  <p class="table-full__title">Готовятся к отъезду</p>
                 </div>
-                <div class="table-full__cell row__cell cell-status">
-                  <div class="cell-status__left">
-                    <div class="cell-status__slider">
-                      <p class="status choosen">Подготовка CV</p>
-                      <p class="status choosen">CV отправлено</p>
-                      <p class="status ready">Утвержден</p>
-                      <p class="status ready">Контракт подписан</p>
-                      <p class="status wait active">Подан в визовый центр</p>
-                      <p class="status department">Получил разрешение</p>
-                      <p class="status department">Забрал разрешение</p>
-                      <p class="status department">Билеты куплены</p>
-                      <p class="status busy">Трудоустроен</p>
-                    </div>
-                    <div class="cell-status__controls">
-                      <div class="cell-status__control-left"><i class="ico rotate-left">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                      <div class="cell-status__control-right"><i class="ico">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                    </div>
+                <div class="table-full__row-layer f-container">
+                  <div class="table-full__cell row__cell cell-names">
+                    <p>Коргун Максим</p>
                   </div>
-                  <div class="cell-status__right"></div>
+                  <div class="table-full__cell row__cell cell-status">
+                    <div class="cell-status__left">
+                      <div class="cell-status__slider">
+                        <p class="status choosen">Подготовка CV</p>
+                        <p class="status choosen">CV отправлено</p>
+                        <p class="status ready">Утвержден</p>
+                        <p class="status ready">Контракт подписан</p>
+                        <p class="status wait active">Подан в визовый центр</p>
+                        <p class="status department">Получил разрешение</p>
+                        <p class="status department">Забрал разрешение</p>
+                        <p class="status department">Билеты куплены</p>
+                        <p class="status busy">Трудоустроен</p>
+                      </div>
+                      <div class="cell-status__controls">
+                        <div class="cell-status__control-left"><i class="ico rotate-left">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                        <div class="cell-status__control-right"><i class="ico">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                      </div>
+                    </div>
+                    <div class="cell-status__right"></div>
+                  </div>
+                  <div class="table-full__cell row__cell cell-exp"></div>
+                  <div class="table-full__cell row__cell cell-notes"></div>
                 </div>
-                <div class="table-full__cell row__cell cell-exp"></div>
-                <div class="table-full__cell row__cell cell-notes"></div>
               </div>
             </div>
-            <div class="table-full__busy">
-              <div class="table-full__row f-container">
-                <div class="table-full__cell row__cell cell-names">
-                  <p>Конончук Віталій</p>
+            <div class="table-full__busy busy">
+              <div class="table-full__row">
+                <div class="table-full__row-layer">
+                  <p class="table-full__title">Трудоустроены</p>
                 </div>
-                <div class="table-full__cell row__cell cell-status">
-                  <div class="cell-status__left">
-                    <div class="cell-status__slider">
-                      <p class="status choosen">Подготовка CV</p>
-                      <p class="status choosen">CV отправлено</p>
-                      <p class="status ready">Утвержден</p>
-                      <p class="status ready">Контракт подписан</p>
-                      <p class="status wait active">Подан в визовый центр</p>
-                      <p class="status department">Получил разрешение</p>
-                      <p class="status department">Забрал разрешение</p>
-                      <p class="status department">Билеты куплены</p>
-                      <p class="status busy">Трудоустроен</p>
-                    </div>
-                    <div class="cell-status__controls">
-                      <div class="cell-status__control-left"><i class="ico rotate-left">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                      <div class="cell-status__control-right"><i class="ico">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                    </div>
+                <div class="table-full__row-layer f-container">
+                  <div class="table-full__cell row__cell cell-names">
+                    <p>Конончук Віталій</p>
                   </div>
-                  <div class="cell-status__right"></div>
+                  <div class="table-full__cell row__cell cell-status">
+                    <div class="cell-status__left">
+                      <div class="cell-status__slider">
+                        <p class="status choosen">Подготовка CV</p>
+                        <p class="status choosen">CV отправлено</p>
+                        <p class="status ready">Утвержден</p>
+                        <p class="status ready">Контракт подписан</p>
+                        <p class="status wait active">Подан в визовый центр</p>
+                        <p class="status department">Получил разрешение</p>
+                        <p class="status department">Забрал разрешение</p>
+                        <p class="status department">Билеты куплены</p>
+                        <p class="status busy">Трудоустроен</p>
+                      </div>
+                      <div class="cell-status__controls">
+                        <div class="cell-status__control-left"><i class="ico rotate-left">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                        <div class="cell-status__control-right"><i class="ico">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                      </div>
+                    </div>
+                    <div class="cell-status__right"></div>
+                  </div>
+                  <div class="table-full__cell row__cell cell-exp"></div>
+                  <div class="table-full__cell row__cell cell-notes"></div>
                 </div>
-                <div class="table-full__cell row__cell cell-exp"></div>
-                <div class="table-full__cell row__cell cell-notes"></div>
               </div>
             </div>
           </div>
         </div>
-        <div class="row" data-custom-open="modal-1">
+        <div class="row no-open" data-custom-open="modal-1">
           <div class="f-container">
             <div class="row__terms row__cell medium"></div>
             <div class="row__labels-2 row__cell no-open"><i class="label attention__label no-open"><span class="no-open">DE</span><span class="no-open">18 - 5</span></i></div>
@@ -2372,7 +2498,7 @@
             </div>
           </div>
         </div>
-        <div class="row" data-custom-open="modal-1">
+        <div class="row no-open" data-custom-open="modal-1">
           <div class="f-container">
             <div class="row__terms row__cell hot"></div>
             <div class="row__labels-2 row__cell no-open"><i class="label attention__label no-open"><span class="no-open">NO</span><span class="no-open">118 - 22</span></i><span class="number-of-people attention-number no-open">М12 Ж5</span></div>
@@ -2386,52 +2512,57 @@
             </div>
           </div>
           <div class="row__full-info table-full">
-            <div class="table-full__choosen">
-              <div class="table-full__row f-container">
-                <div class="table-full__cell row__cell cell-names">
-                  <p>Гурківський Олександр</p>
+            <div class="table-full__choosen choosen">
+              <div class="table-full__row">
+                <div class="table-full__row-layer">
+                  <p class="table-full__title">Отобраны</p>
                 </div>
-                <div class="table-full__cell row__cell cell-status">
-                  <div class="cell-status__left">
-                    <div class="cell-status__slider">
-                      <p class="status choosen">Подготовка CV</p>
-                      <p class="status choosen">CV отправлено</p>
-                      <p class="status ready">Утвержден</p>
-                      <p class="status ready">Контракт подписан</p>
-                      <p class="status wait active">Подан в визовый центр</p>
-                      <p class="status department">Получил разрешение</p>
-                      <p class="status department">Забрал разрешение</p>
-                      <p class="status department">Билеты куплены</p>
-                      <p class="status busy">Трудоустроен</p>
+                <div class="table-full__row-layer f-container">
+                  <div class="table-full__cell row__cell cell-names">
+                    <p>Гурківський Олександр</p>
+                  </div>
+                  <div class="table-full__cell row__cell cell-status">
+                    <div class="cell-status__left">
+                      <div class="cell-status__slider">
+                        <p class="status choosen">Подготовка CV</p>
+                        <p class="status choosen">CV отправлено</p>
+                        <p class="status ready">Утвержден</p>
+                        <p class="status ready">Контракт подписан</p>
+                        <p class="status wait active">Подан в визовый центр</p>
+                        <p class="status department">Получил разрешение</p>
+                        <p class="status department">Забрал разрешение</p>
+                        <p class="status department">Билеты куплены</p>
+                        <p class="status busy">Трудоустроен</p>
+                      </div>
+                      <div class="cell-status__controls">
+                        <div class="cell-status__control-left"><i class="ico rotate-left">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                        <div class="cell-status__control-right"><i class="ico">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                      </div>
                     </div>
-                    <div class="cell-status__controls">
-                      <div class="cell-status__control-left"><i class="ico rotate-left">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                      <div class="cell-status__control-right"><i class="ico">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
+                    <div class="cell-status__right"><i class="ico">
+                        <svg>
+                          <use xlink:href="img/sprites/svg/symbol/sprite.svg#phone2"></use>
+                        </svg></i><i class="ico">
+                        <svg>
+                          <use xlink:href="img/sprites/svg/symbol/sprite.svg#docs"></use>
+                        </svg></i><i class="ico">
+                        <svg>
+                          <use xlink:href="img/sprites/svg/symbol/sprite.svg#page"></use>
+                        </svg></i>
+                      <div class="tag manager-tag purple-tag">AC</div>
                     </div>
                   </div>
-                  <div class="cell-status__right"><i class="ico">
-                      <svg>
-                        <use xlink:href="img/sprites/svg/symbol/sprite.svg#phone2"></use>
-                      </svg></i><i class="ico">
-                      <svg>
-                        <use xlink:href="img/sprites/svg/symbol/sprite.svg#docs"></use>
-                      </svg></i><i class="ico">
-                      <svg>
-                        <use xlink:href="img/sprites/svg/symbol/sprite.svg#page"></use>
-                      </svg></i>
-                    <div class="tag manager-tag purple-tag">AC</div>
+                  <div class="table-full__cell row__cell cell-exp"><i class="label hot__label">Сезонная</i>
+                    <p>Цветы</p>
                   </div>
+                  <div class="table-full__cell row__cell cell-notes"></div>
                 </div>
-                <div class="table-full__cell row__cell cell-exp"><i class="label hot__label">Сезонная</i>
-                  <p>Цветы</p>
-                </div>
-                <div class="table-full__cell row__cell cell-notes"></div>
               </div>
               <div class="table-full__row f-container">
                 <div class="table-full__cell row__cell cell-names">
@@ -2589,40 +2720,45 @@
                 <div class="table-full__cell row__cell cell-notes"></div>
               </div>
             </div>
-            <div class="table-full__ready">
-              <div class="table-full__row f-container">
-                <div class="table-full__cell row__cell cell-names">
-                  <p>Червінський Йосип</p>
+            <div class="table-full__ready ready">
+              <div class="table-full__row">
+                <div class="table-full__row-layer">
+                  <p class="table-full__title">Готовятся к подаче</p>
                 </div>
-                <div class="table-full__cell row__cell cell-status">
-                  <div class="cell-status__left">
-                    <div class="cell-status__slider">
-                      <p class="status choosen">Подготовка CV</p>
-                      <p class="status choosen">CV отправлено</p>
-                      <p class="status ready">Утвержден</p>
-                      <p class="status ready">Контракт подписан</p>
-                      <p class="status wait active">Подан в визовый центр</p>
-                      <p class="status department">Получил разрешение</p>
-                      <p class="status department">Забрал разрешение</p>
-                      <p class="status department">Билеты куплены</p>
-                      <p class="status busy">Трудоустроен</p>
-                    </div>
-                    <div class="cell-status__controls">
-                      <div class="cell-status__control-left"><i class="ico rotate-left">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                      <div class="cell-status__control-right"><i class="ico">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                    </div>
+                <div class="table-full__row-layer f-container">
+                  <div class="table-full__cell row__cell cell-names">
+                    <p>Червінський Йосип</p>
                   </div>
-                  <div class="cell-status__right"></div>
-                </div>
-                <div class="table-full__cell row__cell cell-exp"></div>
-                <div class="table-full__cell row__cell cell-notes">
-                  <p>Записан в посольство на 10.05</p>
+                  <div class="table-full__cell row__cell cell-status">
+                    <div class="cell-status__left">
+                      <div class="cell-status__slider">
+                        <p class="status choosen">Подготовка CV</p>
+                        <p class="status choosen">CV отправлено</p>
+                        <p class="status ready">Утвержден</p>
+                        <p class="status ready">Контракт подписан</p>
+                        <p class="status wait active">Подан в визовый центр</p>
+                        <p class="status department">Получил разрешение</p>
+                        <p class="status department">Забрал разрешение</p>
+                        <p class="status department">Билеты куплены</p>
+                        <p class="status busy">Трудоустроен</p>
+                      </div>
+                      <div class="cell-status__controls">
+                        <div class="cell-status__control-left"><i class="ico rotate-left">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                        <div class="cell-status__control-right"><i class="ico">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                      </div>
+                    </div>
+                    <div class="cell-status__right"></div>
+                  </div>
+                  <div class="table-full__cell row__cell cell-exp"></div>
+                  <div class="table-full__cell row__cell cell-notes">
+                    <p>Записан в посольство на 10.05</p>
+                  </div>
                 </div>
               </div>
               <div class="table-full__row f-container">
@@ -2636,39 +2772,44 @@
                 <div class="table-full__cell row__cell cell-notes"></div>
               </div>
             </div>
-            <div class="table-full__wait">
-              <div class="table-full__row f-container">
-                <div class="table-full__cell row__cell cell-names">
-                  <p>Іванчик Олександр</p>
+            <div class="table-full__wait wait">
+              <div class="table-full__row">
+                <div class="table-full__row-layer">
+                  <p class="table-full__title">Ждут разрешения</p>
                 </div>
-                <div class="table-full__cell row__cell cell-status">
-                  <div class="cell-status__left">
-                    <div class="cell-status__slider">
-                      <p class="status choosen">Подготовка CV</p>
-                      <p class="status choosen">CV отправлено</p>
-                      <p class="status ready">Утвержден</p>
-                      <p class="status ready">Контракт подписан</p>
-                      <p class="status wait active">Подан в визовый центр</p>
-                      <p class="status department">Получил разрешение</p>
-                      <p class="status department">Забрал разрешение</p>
-                      <p class="status department">Билеты куплены</p>
-                      <p class="status busy">Трудоустроен</p>
-                    </div>
-                    <div class="cell-status__controls">
-                      <div class="cell-status__control-left"><i class="ico rotate-left">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                      <div class="cell-status__control-right"><i class="ico">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                    </div>
+                <div class="table-full__row-layer f-container">
+                  <div class="table-full__cell row__cell cell-names">
+                    <p>Іванчик Олександр</p>
                   </div>
-                  <div class="cell-status__right"></div>
+                  <div class="table-full__cell row__cell cell-status">
+                    <div class="cell-status__left">
+                      <div class="cell-status__slider">
+                        <p class="status choosen">Подготовка CV</p>
+                        <p class="status choosen">CV отправлено</p>
+                        <p class="status ready">Утвержден</p>
+                        <p class="status ready">Контракт подписан</p>
+                        <p class="status wait active">Подан в визовый центр</p>
+                        <p class="status department">Получил разрешение</p>
+                        <p class="status department">Забрал разрешение</p>
+                        <p class="status department">Билеты куплены</p>
+                        <p class="status busy">Трудоустроен</p>
+                      </div>
+                      <div class="cell-status__controls">
+                        <div class="cell-status__control-left"><i class="ico rotate-left">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                        <div class="cell-status__control-right"><i class="ico">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                      </div>
+                    </div>
+                    <div class="cell-status__right"></div>
+                  </div>
+                  <div class="table-full__cell row__cell cell-exp"></div>
+                  <div class="table-full__cell row__cell cell-notes"></div>
                 </div>
-                <div class="table-full__cell row__cell cell-exp"></div>
-                <div class="table-full__cell row__cell cell-notes"></div>
               </div>
               <div class="table-full__row f-container">
                 <div class="table-full__cell row__cell cell-names">
@@ -2737,79 +2878,89 @@
                 <div class="table-full__cell row__cell cell-notes"></div>
               </div>
             </div>
-            <div class="table-full__department">
-              <div class="table-full__row f-container">
-                <div class="table-full__cell row__cell cell-names">
-                  <p>Коргун Максим</p>
+            <div class="table-full__department department">
+              <div class="table-full__row">
+                <div class="table-full__row-layer">
+                  <p class="table-full__title">Готовятся к отъезду</p>
                 </div>
-                <div class="table-full__cell row__cell cell-status">
-                  <div class="cell-status__left">
-                    <div class="cell-status__slider">
-                      <p class="status choosen">Подготовка CV</p>
-                      <p class="status choosen">CV отправлено</p>
-                      <p class="status ready">Утвержден</p>
-                      <p class="status ready">Контракт подписан</p>
-                      <p class="status wait active">Подан в визовый центр</p>
-                      <p class="status department">Получил разрешение</p>
-                      <p class="status department">Забрал разрешение</p>
-                      <p class="status department">Билеты куплены</p>
-                      <p class="status busy">Трудоустроен</p>
-                    </div>
-                    <div class="cell-status__controls">
-                      <div class="cell-status__control-left"><i class="ico rotate-left">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                      <div class="cell-status__control-right"><i class="ico">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                    </div>
+                <div class="table-full__row-layer f-container">
+                  <div class="table-full__cell row__cell cell-names">
+                    <p>Коргун Максим</p>
                   </div>
-                  <div class="cell-status__right"></div>
+                  <div class="table-full__cell row__cell cell-status">
+                    <div class="cell-status__left">
+                      <div class="cell-status__slider">
+                        <p class="status choosen">Подготовка CV</p>
+                        <p class="status choosen">CV отправлено</p>
+                        <p class="status ready">Утвержден</p>
+                        <p class="status ready">Контракт подписан</p>
+                        <p class="status wait active">Подан в визовый центр</p>
+                        <p class="status department">Получил разрешение</p>
+                        <p class="status department">Забрал разрешение</p>
+                        <p class="status department">Билеты куплены</p>
+                        <p class="status busy">Трудоустроен</p>
+                      </div>
+                      <div class="cell-status__controls">
+                        <div class="cell-status__control-left"><i class="ico rotate-left">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                        <div class="cell-status__control-right"><i class="ico">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                      </div>
+                    </div>
+                    <div class="cell-status__right"></div>
+                  </div>
+                  <div class="table-full__cell row__cell cell-exp"></div>
+                  <div class="table-full__cell row__cell cell-notes"></div>
                 </div>
-                <div class="table-full__cell row__cell cell-exp"></div>
-                <div class="table-full__cell row__cell cell-notes"></div>
               </div>
             </div>
-            <div class="table-full__busy">
-              <div class="table-full__row f-container">
-                <div class="table-full__cell row__cell cell-names">
-                  <p>Конончук Віталій</p>
+            <div class="table-full__busy busy">
+              <div class="table-full__row">
+                <div class="table-full__row-layer">
+                  <p class="table-full__title">Трудоустроены</p>
                 </div>
-                <div class="table-full__cell row__cell cell-status">
-                  <div class="cell-status__left">
-                    <div class="cell-status__slider">
-                      <p class="status choosen">Подготовка CV</p>
-                      <p class="status choosen">CV отправлено</p>
-                      <p class="status ready">Утвержден</p>
-                      <p class="status ready">Контракт подписан</p>
-                      <p class="status wait active">Подан в визовый центр</p>
-                      <p class="status department">Получил разрешение</p>
-                      <p class="status department">Забрал разрешение</p>
-                      <p class="status department">Билеты куплены</p>
-                      <p class="status busy">Трудоустроен</p>
-                    </div>
-                    <div class="cell-status__controls">
-                      <div class="cell-status__control-left"><i class="ico rotate-left">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                      <div class="cell-status__control-right"><i class="ico">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                    </div>
+                <div class="table-full__row-layer f-container">
+                  <div class="table-full__cell row__cell cell-names">
+                    <p>Конончук Віталій</p>
                   </div>
-                  <div class="cell-status__right"></div>
+                  <div class="table-full__cell row__cell cell-status">
+                    <div class="cell-status__left">
+                      <div class="cell-status__slider">
+                        <p class="status choosen">Подготовка CV</p>
+                        <p class="status choosen">CV отправлено</p>
+                        <p class="status ready">Утвержден</p>
+                        <p class="status ready">Контракт подписан</p>
+                        <p class="status wait active">Подан в визовый центр</p>
+                        <p class="status department">Получил разрешение</p>
+                        <p class="status department">Забрал разрешение</p>
+                        <p class="status department">Билеты куплены</p>
+                        <p class="status busy">Трудоустроен</p>
+                      </div>
+                      <div class="cell-status__controls">
+                        <div class="cell-status__control-left"><i class="ico rotate-left">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                        <div class="cell-status__control-right"><i class="ico">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                      </div>
+                    </div>
+                    <div class="cell-status__right"></div>
+                  </div>
+                  <div class="table-full__cell row__cell cell-exp"></div>
+                  <div class="table-full__cell row__cell cell-notes"></div>
                 </div>
-                <div class="table-full__cell row__cell cell-exp"></div>
-                <div class="table-full__cell row__cell cell-notes"></div>
               </div>
             </div>
           </div>
         </div>
-        <div class="row" data-custom-open="modal-1">
+        <div class="row no-open" data-custom-open="modal-1">
           <div class="f-container">
             <div class="row__terms row__cell medium"></div>
             <div class="row__labels-2 row__cell no-open"><i class="label attention__label no-open"><span class="no-open">DE</span><span class="no-open">18 - 5</span></i></div>
@@ -2823,7 +2974,7 @@
             </div>
           </div>
         </div>
-        <div class="row" data-custom-open="modal-1">
+        <div class="row no-open" data-custom-open="modal-1">
           <div class="f-container">
             <div class="row__terms row__cell hot"></div>
             <div class="row__labels-2 row__cell no-open"><i class="label attention__label no-open"><span class="no-open">NO</span><span class="no-open">118 - 22</span></i><span class="number-of-people attention-number no-open">М12 Ж5</span></div>
@@ -2837,52 +2988,57 @@
             </div>
           </div>
           <div class="row__full-info table-full">
-            <div class="table-full__choosen">
-              <div class="table-full__row f-container">
-                <div class="table-full__cell row__cell cell-names">
-                  <p>Гурківський Олександр</p>
+            <div class="table-full__choosen choosen">
+              <div class="table-full__row">
+                <div class="table-full__row-layer">
+                  <p class="table-full__title">Отобраны</p>
                 </div>
-                <div class="table-full__cell row__cell cell-status">
-                  <div class="cell-status__left">
-                    <div class="cell-status__slider">
-                      <p class="status choosen">Подготовка CV</p>
-                      <p class="status choosen">CV отправлено</p>
-                      <p class="status ready">Утвержден</p>
-                      <p class="status ready">Контракт подписан</p>
-                      <p class="status wait active">Подан в визовый центр</p>
-                      <p class="status department">Получил разрешение</p>
-                      <p class="status department">Забрал разрешение</p>
-                      <p class="status department">Билеты куплены</p>
-                      <p class="status busy">Трудоустроен</p>
+                <div class="table-full__row-layer f-container">
+                  <div class="table-full__cell row__cell cell-names">
+                    <p>Гурківський Олександр</p>
+                  </div>
+                  <div class="table-full__cell row__cell cell-status">
+                    <div class="cell-status__left">
+                      <div class="cell-status__slider">
+                        <p class="status choosen">Подготовка CV</p>
+                        <p class="status choosen">CV отправлено</p>
+                        <p class="status ready">Утвержден</p>
+                        <p class="status ready">Контракт подписан</p>
+                        <p class="status wait active">Подан в визовый центр</p>
+                        <p class="status department">Получил разрешение</p>
+                        <p class="status department">Забрал разрешение</p>
+                        <p class="status department">Билеты куплены</p>
+                        <p class="status busy">Трудоустроен</p>
+                      </div>
+                      <div class="cell-status__controls">
+                        <div class="cell-status__control-left"><i class="ico rotate-left">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                        <div class="cell-status__control-right"><i class="ico">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                      </div>
                     </div>
-                    <div class="cell-status__controls">
-                      <div class="cell-status__control-left"><i class="ico rotate-left">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                      <div class="cell-status__control-right"><i class="ico">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
+                    <div class="cell-status__right"><i class="ico">
+                        <svg>
+                          <use xlink:href="img/sprites/svg/symbol/sprite.svg#phone2"></use>
+                        </svg></i><i class="ico">
+                        <svg>
+                          <use xlink:href="img/sprites/svg/symbol/sprite.svg#docs"></use>
+                        </svg></i><i class="ico">
+                        <svg>
+                          <use xlink:href="img/sprites/svg/symbol/sprite.svg#page"></use>
+                        </svg></i>
+                      <div class="tag manager-tag purple-tag">AC</div>
                     </div>
                   </div>
-                  <div class="cell-status__right"><i class="ico">
-                      <svg>
-                        <use xlink:href="img/sprites/svg/symbol/sprite.svg#phone2"></use>
-                      </svg></i><i class="ico">
-                      <svg>
-                        <use xlink:href="img/sprites/svg/symbol/sprite.svg#docs"></use>
-                      </svg></i><i class="ico">
-                      <svg>
-                        <use xlink:href="img/sprites/svg/symbol/sprite.svg#page"></use>
-                      </svg></i>
-                    <div class="tag manager-tag purple-tag">AC</div>
+                  <div class="table-full__cell row__cell cell-exp"><i class="label hot__label">Сезонная</i>
+                    <p>Цветы</p>
                   </div>
+                  <div class="table-full__cell row__cell cell-notes"></div>
                 </div>
-                <div class="table-full__cell row__cell cell-exp"><i class="label hot__label">Сезонная</i>
-                  <p>Цветы</p>
-                </div>
-                <div class="table-full__cell row__cell cell-notes"></div>
               </div>
               <div class="table-full__row f-container">
                 <div class="table-full__cell row__cell cell-names">
@@ -3040,40 +3196,45 @@
                 <div class="table-full__cell row__cell cell-notes"></div>
               </div>
             </div>
-            <div class="table-full__ready">
-              <div class="table-full__row f-container">
-                <div class="table-full__cell row__cell cell-names">
-                  <p>Червінський Йосип</p>
+            <div class="table-full__ready ready">
+              <div class="table-full__row">
+                <div class="table-full__row-layer">
+                  <p class="table-full__title">Готовятся к подаче</p>
                 </div>
-                <div class="table-full__cell row__cell cell-status">
-                  <div class="cell-status__left">
-                    <div class="cell-status__slider">
-                      <p class="status choosen">Подготовка CV</p>
-                      <p class="status choosen">CV отправлено</p>
-                      <p class="status ready">Утвержден</p>
-                      <p class="status ready">Контракт подписан</p>
-                      <p class="status wait active">Подан в визовый центр</p>
-                      <p class="status department">Получил разрешение</p>
-                      <p class="status department">Забрал разрешение</p>
-                      <p class="status department">Билеты куплены</p>
-                      <p class="status busy">Трудоустроен</p>
-                    </div>
-                    <div class="cell-status__controls">
-                      <div class="cell-status__control-left"><i class="ico rotate-left">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                      <div class="cell-status__control-right"><i class="ico">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                    </div>
+                <div class="table-full__row-layer f-container">
+                  <div class="table-full__cell row__cell cell-names">
+                    <p>Червінський Йосип</p>
                   </div>
-                  <div class="cell-status__right"></div>
-                </div>
-                <div class="table-full__cell row__cell cell-exp"></div>
-                <div class="table-full__cell row__cell cell-notes">
-                  <p>Записан в посольство на 10.05</p>
+                  <div class="table-full__cell row__cell cell-status">
+                    <div class="cell-status__left">
+                      <div class="cell-status__slider">
+                        <p class="status choosen">Подготовка CV</p>
+                        <p class="status choosen">CV отправлено</p>
+                        <p class="status ready">Утвержден</p>
+                        <p class="status ready">Контракт подписан</p>
+                        <p class="status wait active">Подан в визовый центр</p>
+                        <p class="status department">Получил разрешение</p>
+                        <p class="status department">Забрал разрешение</p>
+                        <p class="status department">Билеты куплены</p>
+                        <p class="status busy">Трудоустроен</p>
+                      </div>
+                      <div class="cell-status__controls">
+                        <div class="cell-status__control-left"><i class="ico rotate-left">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                        <div class="cell-status__control-right"><i class="ico">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                      </div>
+                    </div>
+                    <div class="cell-status__right"></div>
+                  </div>
+                  <div class="table-full__cell row__cell cell-exp"></div>
+                  <div class="table-full__cell row__cell cell-notes">
+                    <p>Записан в посольство на 10.05</p>
+                  </div>
                 </div>
               </div>
               <div class="table-full__row f-container">
@@ -3087,39 +3248,44 @@
                 <div class="table-full__cell row__cell cell-notes"></div>
               </div>
             </div>
-            <div class="table-full__wait">
-              <div class="table-full__row f-container">
-                <div class="table-full__cell row__cell cell-names">
-                  <p>Іванчик Олександр</p>
+            <div class="table-full__wait wait">
+              <div class="table-full__row">
+                <div class="table-full__row-layer">
+                  <p class="table-full__title">Ждут разрешения</p>
                 </div>
-                <div class="table-full__cell row__cell cell-status">
-                  <div class="cell-status__left">
-                    <div class="cell-status__slider">
-                      <p class="status choosen">Подготовка CV</p>
-                      <p class="status choosen">CV отправлено</p>
-                      <p class="status ready">Утвержден</p>
-                      <p class="status ready">Контракт подписан</p>
-                      <p class="status wait active">Подан в визовый центр</p>
-                      <p class="status department">Получил разрешение</p>
-                      <p class="status department">Забрал разрешение</p>
-                      <p class="status department">Билеты куплены</p>
-                      <p class="status busy">Трудоустроен</p>
-                    </div>
-                    <div class="cell-status__controls">
-                      <div class="cell-status__control-left"><i class="ico rotate-left">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                      <div class="cell-status__control-right"><i class="ico">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                    </div>
+                <div class="table-full__row-layer f-container">
+                  <div class="table-full__cell row__cell cell-names">
+                    <p>Іванчик Олександр</p>
                   </div>
-                  <div class="cell-status__right"></div>
+                  <div class="table-full__cell row__cell cell-status">
+                    <div class="cell-status__left">
+                      <div class="cell-status__slider">
+                        <p class="status choosen">Подготовка CV</p>
+                        <p class="status choosen">CV отправлено</p>
+                        <p class="status ready">Утвержден</p>
+                        <p class="status ready">Контракт подписан</p>
+                        <p class="status wait active">Подан в визовый центр</p>
+                        <p class="status department">Получил разрешение</p>
+                        <p class="status department">Забрал разрешение</p>
+                        <p class="status department">Билеты куплены</p>
+                        <p class="status busy">Трудоустроен</p>
+                      </div>
+                      <div class="cell-status__controls">
+                        <div class="cell-status__control-left"><i class="ico rotate-left">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                        <div class="cell-status__control-right"><i class="ico">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                      </div>
+                    </div>
+                    <div class="cell-status__right"></div>
+                  </div>
+                  <div class="table-full__cell row__cell cell-exp"></div>
+                  <div class="table-full__cell row__cell cell-notes"></div>
                 </div>
-                <div class="table-full__cell row__cell cell-exp"></div>
-                <div class="table-full__cell row__cell cell-notes"></div>
               </div>
               <div class="table-full__row f-container">
                 <div class="table-full__cell row__cell cell-names">
@@ -3188,79 +3354,89 @@
                 <div class="table-full__cell row__cell cell-notes"></div>
               </div>
             </div>
-            <div class="table-full__department">
-              <div class="table-full__row f-container">
-                <div class="table-full__cell row__cell cell-names">
-                  <p>Коргун Максим</p>
+            <div class="table-full__department department">
+              <div class="table-full__row">
+                <div class="table-full__row-layer">
+                  <p class="table-full__title">Готовятся к отъезду</p>
                 </div>
-                <div class="table-full__cell row__cell cell-status">
-                  <div class="cell-status__left">
-                    <div class="cell-status__slider">
-                      <p class="status choosen">Подготовка CV</p>
-                      <p class="status choosen">CV отправлено</p>
-                      <p class="status ready">Утвержден</p>
-                      <p class="status ready">Контракт подписан</p>
-                      <p class="status wait active">Подан в визовый центр</p>
-                      <p class="status department">Получил разрешение</p>
-                      <p class="status department">Забрал разрешение</p>
-                      <p class="status department">Билеты куплены</p>
-                      <p class="status busy">Трудоустроен</p>
-                    </div>
-                    <div class="cell-status__controls">
-                      <div class="cell-status__control-left"><i class="ico rotate-left">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                      <div class="cell-status__control-right"><i class="ico">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                    </div>
+                <div class="table-full__row-layer f-container">
+                  <div class="table-full__cell row__cell cell-names">
+                    <p>Коргун Максим</p>
                   </div>
-                  <div class="cell-status__right"></div>
+                  <div class="table-full__cell row__cell cell-status">
+                    <div class="cell-status__left">
+                      <div class="cell-status__slider">
+                        <p class="status choosen">Подготовка CV</p>
+                        <p class="status choosen">CV отправлено</p>
+                        <p class="status ready">Утвержден</p>
+                        <p class="status ready">Контракт подписан</p>
+                        <p class="status wait active">Подан в визовый центр</p>
+                        <p class="status department">Получил разрешение</p>
+                        <p class="status department">Забрал разрешение</p>
+                        <p class="status department">Билеты куплены</p>
+                        <p class="status busy">Трудоустроен</p>
+                      </div>
+                      <div class="cell-status__controls">
+                        <div class="cell-status__control-left"><i class="ico rotate-left">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                        <div class="cell-status__control-right"><i class="ico">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                      </div>
+                    </div>
+                    <div class="cell-status__right"></div>
+                  </div>
+                  <div class="table-full__cell row__cell cell-exp"></div>
+                  <div class="table-full__cell row__cell cell-notes"></div>
                 </div>
-                <div class="table-full__cell row__cell cell-exp"></div>
-                <div class="table-full__cell row__cell cell-notes"></div>
               </div>
             </div>
-            <div class="table-full__busy">
-              <div class="table-full__row f-container">
-                <div class="table-full__cell row__cell cell-names">
-                  <p>Конончук Віталій</p>
+            <div class="table-full__busy busy">
+              <div class="table-full__row">
+                <div class="table-full__row-layer">
+                  <p class="table-full__title">Трудоустроены</p>
                 </div>
-                <div class="table-full__cell row__cell cell-status">
-                  <div class="cell-status__left">
-                    <div class="cell-status__slider">
-                      <p class="status choosen">Подготовка CV</p>
-                      <p class="status choosen">CV отправлено</p>
-                      <p class="status ready">Утвержден</p>
-                      <p class="status ready">Контракт подписан</p>
-                      <p class="status wait active">Подан в визовый центр</p>
-                      <p class="status department">Получил разрешение</p>
-                      <p class="status department">Забрал разрешение</p>
-                      <p class="status department">Билеты куплены</p>
-                      <p class="status busy">Трудоустроен</p>
-                    </div>
-                    <div class="cell-status__controls">
-                      <div class="cell-status__control-left"><i class="ico rotate-left">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                      <div class="cell-status__control-right"><i class="ico">
-                          <svg>
-                            <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
-                          </svg></i></div>
-                    </div>
+                <div class="table-full__row-layer f-container">
+                  <div class="table-full__cell row__cell cell-names">
+                    <p>Конончук Віталій</p>
                   </div>
-                  <div class="cell-status__right"></div>
+                  <div class="table-full__cell row__cell cell-status">
+                    <div class="cell-status__left">
+                      <div class="cell-status__slider">
+                        <p class="status choosen">Подготовка CV</p>
+                        <p class="status choosen">CV отправлено</p>
+                        <p class="status ready">Утвержден</p>
+                        <p class="status ready">Контракт подписан</p>
+                        <p class="status wait active">Подан в визовый центр</p>
+                        <p class="status department">Получил разрешение</p>
+                        <p class="status department">Забрал разрешение</p>
+                        <p class="status department">Билеты куплены</p>
+                        <p class="status busy">Трудоустроен</p>
+                      </div>
+                      <div class="cell-status__controls">
+                        <div class="cell-status__control-left"><i class="ico rotate-left">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                        <div class="cell-status__control-right"><i class="ico">
+                            <svg>
+                              <use xlink:href="img/sprites/svg/symbol/sprite.svg#little-arrow"></use>
+                            </svg></i></div>
+                      </div>
+                    </div>
+                    <div class="cell-status__right"></div>
+                  </div>
+                  <div class="table-full__cell row__cell cell-exp"></div>
+                  <div class="table-full__cell row__cell cell-notes"></div>
                 </div>
-                <div class="table-full__cell row__cell cell-exp"></div>
-                <div class="table-full__cell row__cell cell-notes"></div>
               </div>
             </div>
           </div>
         </div>
-        <div class="row" data-custom-open="modal-1">
+        <div class="row no-open" data-custom-open="modal-1">
           <div class="f-container">
             <div class="row__terms row__cell medium"></div>
             <div class="row__labels-2 row__cell no-open"><i class="label attention__label no-open"><span class="no-open">DE</span><span class="no-open">18 - 5</span></i></div>
@@ -3364,7 +3540,7 @@
         </div>
       </div>
     </div>
-    <script src="js/libs.min.js?v=1597002037255" defer></script>
-    <script src="js/script.min.js?v=1597002037255" async></script>
+    <script src="js/libs.min.js?v=1597091719836" defer></script>
+    <script src="js/script.min.js?v=1597091719836" async></script>
   </body>
 </html>

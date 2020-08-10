@@ -21,6 +21,7 @@ import addFeedbackForm from './addfeedbackForm'
 import showRemoveBtnOnChecking from './showRemoveBtnOnChecking'
 
 import showFullRow from './vacancy/showFullRow'
+import switchRowStatuses from './vacancy/switchRowStatuses'
 
 
 
@@ -47,5 +48,6 @@ export {
 	setFeedbackDate,
 	addFeedbackForm,
 	showRemoveBtnOnChecking,
-	showFullRow
+	showFullRow,
+	switchRowStatuses
 }

@@ -104,12 +104,17 @@
 
 .table-full {
 	
-
+	transition: height 0.35s ease-in-out;
+  overflow: hidden;
 	&.open {
 		display: block;
 	}
+	
 
+	&:not(.active) {
 		display: none;
+	}
+
 	.f-container {
 		height: 30px;
 	}
@@ -140,25 +145,59 @@ p.status {
 .table-full__choosen {
 	border-top: 2px solid @grass-green;
 	border-left: 4px solid @grass-green;
+
+	.table-full__title {
+		color: @grass-green;
+	}
+
 }
 
 
 .table-full__ready {
 	border-top: 2px solid @green;
 	border-left: 4px solid @green;
+
+	.table-full__title {
+		color: @green;
+	}
 }
 .table-full__wait {
 	border-top: 2px solid @teal;
 	border-left: 4px solid  @teal;
+
+	.table-full__title {
+		color: @teal;
+	}
 }
 .table-full__department {
 	border-top: 2px solid @blue;
 	border-left: 4px solid  @blue;
+
+	.table-full__title {
+		color: @blue;
+	}
 }
 .table-full__busy {
 	border-top: 2px solid @brown;
 	border-left: 4px solid @brown;
+
+	.table-full__title {
+		color: @brown;
+	}
 }
+
+.table-full__row:first-child {
+	height: 53px;
+}
+
+.table-full__title {
+	padding: 0 13px;
+	padding-top: 7px;
+	font-size: 12px;
+	line-height: 14/12;
+}
+
+
 
 .cell-names {
 	flex-basis: 244/1484 * 100%;

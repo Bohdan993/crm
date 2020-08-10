@@ -20,7 +20,8 @@ import {
 	setFeedbackDate,
 	addFeedbackForm,
 	showRemoveBtnOnChecking,
-	showFullRow
+	showFullRow,
+	switchRowStatuses
 } from '../model'
 
 import {OverlayScrollbars} from '../../libs/libs'
@@ -55,7 +56,8 @@ import {
 	modal2ContactDate,
 	feedbackAddItem,
 	addfeedbackForm,
-	vacancyRows
+	vacancyRows,
+	statusLeft
 
 } from '../view'
 
@@ -81,6 +83,7 @@ const app = {
 		this.aff()
 		this.srboc()
 		this.sfr()
+		this.srs()
 		// this.test()
 		// this.slt()
 	},
@@ -214,6 +217,10 @@ const app = {
 		if(vacancyRows){
 			showFullRow(vacancyRows)
 		}
+	},
+
+	srs() {
+		switchRowStatuses(statusLeft)
 	}
 
 }

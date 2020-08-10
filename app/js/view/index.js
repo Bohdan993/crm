@@ -71,7 +71,10 @@ const confirmBtnTypeFeedback = document.querySelector('#type-feedback-popup .con
 
 
 
-import {rows as vacancyRows} from './vacancy'
+import {
+	rows as vacancyRows,
+	statusLeft
+} from './vacancy'
 
 
 
@@ -119,5 +122,6 @@ export {
 	addfeedbackForm,
 	statusTemplate,
 	selectingTemplate,
-	vacancyRows
+	vacancyRows,
+	statusLeft
 }
