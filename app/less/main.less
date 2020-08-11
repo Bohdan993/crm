@@ -176,6 +176,7 @@ input[type="checkbox"]:checked + label:before, input[type="radio"]:checked + lab
 main {
   height: 100%;
   width: 100%;
+  overflow-y: scroll;
 }
 .center {
   max-width: 1540px + 30px + 30px;
@@ -554,6 +555,15 @@ i.label {
     }
   }
 
+  &.hot {
+    input {
+      &:checked + label {
+        color: @white;
+        background: @hot;
+      }
+    }
+  }
+
   &.blue {
     input {
       & + label {
@@ -642,5 +652,6 @@ i.label {
 //Vacancy
 @import url("app/less/vacancy/_row.less");
 @import url("app/less/vacancy/_sidebar.less");
+@import url("app/less/vacancy/_popup.less");
 
 @import url("app/less/sprite.less");

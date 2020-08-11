@@ -12,9 +12,9 @@ const switchRowStatuses = (statuses) => {
 				let parent = this.parentNode.parentNode
 				let slider = parent.querySelectorAll('.status')
 				let flag = false
-				let row = parent.parentNode.parentNode.parentNode
+				let row = parent.parentNode.parentNode
 				let table = row.parentNode
-				let tableParent = table.parentNode
+				let tableParent = table.parentNode.parentNode
 				console.log(row)
 				console.log(table)
 
@@ -29,36 +29,40 @@ const switchRowStatuses = (statuses) => {
 							if(!table.classList.contains('choosen')) {
 								let oldChild = table.removeChild(row)
 								tableParent.querySelector('.table-full__choosen').appendChild(oldChild)
-								console.log(oldChild)
 							}
 						} else if(arr[ind].classList.contains('ready')) {
 							if(!table.classList.contains('ready')) {
-								console.log('needed to replace2')
+								let oldChild = table.removeChild(row)
+								tableParent.querySelector('.table-full__ready').appendChild(oldChild)
 							}
 						} else if(arr[ind].classList.contains('wait')) {
 							if(!table.classList.contains('wait')) {
-								console.log('needed to replace3')
+								let oldChild = table.removeChild(row)
+								tableParent.querySelector('.table-full__wait').appendChild(oldChild)
 							}
 						} else if(arr[ind].classList.contains('department')) {
 							if(!table.classList.contains('department')) {
-								console.log('needed to replace4')
+								let oldChild = table.removeChild(row)
+								tableParent.querySelector('.table-full__department').appendChild(oldChild)
 							}
 						} else if(arr[ind].classList.contains('busy')) {
 							if(!table.classList.contains('busy')) {
-								console.log('needed to replace5')
+								let oldChild = table.removeChild(row)
+								tableParent.querySelector('.table-full__busy').appendChild(oldChild)
 							}
 						}
 
 						flag = true
-
-
 					}
-
-					// if(elem.classList.contains('active')) {
-					// 	console.log(elem.classList)
-					// }
-
 				})
+
+				// if(table.children.length === 1) {
+				// 	table.style.display = 'none'
+				// }
+
+				// if(table.children.length > 1) {
+				// 	table.style.display = 'block'
+				// }
 
 			})
 
@@ -67,11 +71,14 @@ const switchRowStatuses = (statuses) => {
 				let parent = this.parentNode.parentNode
 				let slider = parent.querySelectorAll('.status')
 				let flag = false
-				let row = parent.parentNode.parentNode.parentNode
+				let row = parent.parentNode.parentNode
 				let table = row.parentNode
-				let tableParent = table.parentNode
-
+				let tableParent = table.parentNode.parentNode
+				console.log(row)
+				console.log(table)
+			
 				slider.forEach((elem, ind, arr) => {
+
 					if(elem.classList.contains('active') && !flag) {
 						elem.classList.remove('active')
 						ind = ind === arr.length - 1 ? arr.length - 1 : ind + 1
@@ -84,19 +91,23 @@ const switchRowStatuses = (statuses) => {
 							}
 						} else if(arr[ind].classList.contains('ready')) {
 							if(!table.classList.contains('ready')) {
-								console.log('needed to replace2')
+								let oldChild = table.removeChild(row)
+								tableParent.querySelector('.table-full__ready').appendChild(oldChild)
 							}
 						} else if(arr[ind].classList.contains('wait')) {
 							if(!table.classList.contains('wait')) {
-								console.log('needed to replace3')
+								let oldChild = table.removeChild(row)
+								tableParent.querySelector('.table-full__wait').appendChild(oldChild)
 							}
 						} else if(arr[ind].classList.contains('department')) {
 							if(!table.classList.contains('department')) {
-								console.log('needed to replace4')
+								let oldChild = table.removeChild(row)
+								tableParent.querySelector('.table-full__department').appendChild(oldChild)
 							}
 						} else if(arr[ind].classList.contains('busy')) {
 							if(!table.classList.contains('busy')) {
-								console.log('needed to replace5')
+								let oldChild = table.removeChild(row)
+								tableParent.querySelector('.table-full__busy').appendChild(oldChild)
 							}
 						}
 
@@ -104,6 +115,14 @@ const switchRowStatuses = (statuses) => {
 					}
 				})
 
+				// console.log(table.children.length	)
+				// if(table.children.length === 1) {
+				// 	table.style.display = 'none'
+				// }
+
+				// if(table.children.length > 1) {
+				// 	table.style.display = 'block'
+				// }
 			})
 
 		})

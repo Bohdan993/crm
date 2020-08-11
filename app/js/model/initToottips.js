@@ -14,7 +14,9 @@ import {
 	choiceClientTemplate,
 	body,
 	selectingTemplate,
-	statusTemplate
+	statusTemplate,
+	typeWorkTemplate,
+	dateTermsTemplate
 
 } from '../view'
 
@@ -54,6 +56,12 @@ const initTooltips = () => {
 	}
 	if(selectingTemplate){
 		selectingTemplate.style.display = 'block'
+	}
+	if(typeWorkTemplate) {
+		typeWorkTemplate.style.display = 'block'
+	}
+	if(dateTermsTemplate) {
+		dateTermsTemplate.style.display = 'block'
 	}
 	
 	
@@ -122,6 +130,11 @@ const initTooltips = () => {
 	initSidebarTooltip('.stages-vacancies-filter-wrapper', statusTemplate)
 /////////////////////////////////////////////////////////////////////////////////
 	initSidebarTooltip('.selecting-stats-wrapper', selectingTemplate)
+////////////////////////////////////////////////////////////////////////////////
+	initSidebarTooltip('.type-work-filter-wrapper', typeWorkTemplate)
+////////////////////////////////////////////////////////////////////////////////
+	initSidebarTooltip('.date-terms-filter-wrapper', dateTermsTemplate)
+
 
 
 function initWorkModalTooltip(el, content){

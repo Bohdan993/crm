@@ -18,6 +18,8 @@ const typeFeedbackTemplate = document.querySelector('#type-feedback-popup')
 const choiceClientTemplate = document.querySelector('#choice-client-feedback-popup')
 const statusTemplate = document.querySelector('#status-popup')
 const selectingTemplate = document.querySelector('#selecting-popup')
+const typeWorkTemplate = document.querySelector('#type-work-popup')
+const dateTermsTemplate = document.querySelector('#date-terms-popup')
 
 
 
@@ -123,5 +125,7 @@ export {
 	statusTemplate,
 	selectingTemplate,
 	vacancyRows,
-	statusLeft
+	statusLeft,
+	typeWorkTemplate,
+	dateTermsTemplate
 }
