@@ -1,4 +1,4 @@
-import {tippy} from '../../libs/libs'
+import {tippy, createSingleton} from '../../libs/libs'
 import {throttle, debounce} from './helper'
 import { 
 
@@ -16,7 +16,8 @@ import {
 	selectingTemplate,
 	statusTemplate,
 	typeWorkTemplate,
-	dateTermsTemplate
+	dateTermsTemplate,
+	// statusChangeTemplate	
 
 } from '../view'
 
@@ -63,6 +64,9 @@ const initTooltips = () => {
 	if(dateTermsTemplate) {
 		dateTermsTemplate.style.display = 'block'
 	}
+	// if(statusChangeTemplate) {
+	// 	statusChangeTemplate.style.display = 'block'
+	// }
 	
 	
 	
@@ -134,6 +138,9 @@ const initTooltips = () => {
 	initSidebarTooltip('.type-work-filter-wrapper', typeWorkTemplate)
 ////////////////////////////////////////////////////////////////////////////////
 	initSidebarTooltip('.date-terms-filter-wrapper', dateTermsTemplate)
+////////////////////////////////////////////////////////////////////////////////
+
+	
 
 
 
@@ -163,6 +170,81 @@ function initWorkModalTooltip(el, content){
 initWorkModalTooltip('.add-feedback-form .modal-row__feedback-ico', typeFeedbackTemplate)
 initWorkModalTooltip('.add-feedback-form .modal-row__feedback-choise', choiceClientTemplate)
 
+function initVacancyTooltip(el, content){
+		let instance = tippy(el, {
+			content: `<div class="row-popup" id="status-change-popup">
+          <form>
+            <div class="input-group">
+              <p class="status choosen">Подготовка CV</p>
+              <time></time>
+            </div>
+            <div class="input-group">
+              <p class="status choosen">CV отправлено</p>
+              <time></time>
+            </div>
+            <div class="input-group">
+              <p class="status ready">Утвержден</p>
+              <time></time>
+            </div>
+            <div class="input-group">
+              <p class="status ready">Контракт подписан</p>
+              <time></time>
+            </div>
+            <div class="input-group">
+             <p class="status wait">Подан в визовый центр</p>
+             <time></time>
+            </div>
+           	<div class="input-group">
+              <p class="status department">Получил рашрешение</p>
+              <time></time>
+            </div>
+            <div class="input-group">
+              <p class="status department">Забрал разрешение</p>
+              <time></time>
+            </div>
+            <div class="input-group">
+              <p class="status department">Билеты куплены</p>
+              <time></time>
+            </div>
+            <div class="input-group">
+              <p class="status busy">Трудоустроен</p>
+              <time></time>
+            </div>
+            <div class="input-group">
+              <p class="status delete">Исключить из вакансии</p>
+            </div>
+          </form>
+        </div>`,
+			// content: content.innerHTML, 
+			allowHTML: true,
+			interactive: true,
+			interactiveBorder: 5,
+			interactiveDebounce: 0,
+			placement: 'right',
+			offset: [0, 20],
+			hideOnClick: true,
+			trigger: 'click',
+			onCreate(instance) {
+
+			},
+			onShown(instance) {
+				document.addEventListener('keyup', function(e){
+					if(e.keyCode === 27) {
+						instance.hide();
+					}
+				})
+
+				// let child = instance.reference.querySelector('.active')
+				// console.log(child)
+			},
+			appendTo: () => document.body,
+		})
+
+		// let singleton = createSingleton(instance, {delay: 1000});
+	}
+
+
+	initVacancyTooltip('.cell-status__slider')
 
 
 function initRowTooltips(el, content){

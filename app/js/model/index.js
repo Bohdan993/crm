@@ -22,6 +22,7 @@ import showRemoveBtnOnChecking from './showRemoveBtnOnChecking'
 
 import showFullRow from './vacancy/showFullRow'
 import switchRowStatuses from './vacancy/switchRowStatuses'
+import setDateToSlider from './vacancy/setDateToSlider'
 
 
 
@@ -49,5 +50,6 @@ export {
 	addFeedbackForm,
 	showRemoveBtnOnChecking,
 	showFullRow,
-	switchRowStatuses
+	switchRowStatuses,
+	setDateToSlider
 }

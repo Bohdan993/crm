@@ -20,6 +20,7 @@ const statusTemplate = document.querySelector('#status-popup')
 const selectingTemplate = document.querySelector('#selecting-popup')
 const typeWorkTemplate = document.querySelector('#type-work-popup')
 const dateTermsTemplate = document.querySelector('#date-terms-popup')
+// const statusChangeTemplate = document.querySelector('#status-change-popup')
 
 
 
@@ -75,7 +76,8 @@ const confirmBtnTypeFeedback = document.querySelector('#type-feedback-popup .con
 
 import {
 	rows as vacancyRows,
-	statusLeft
+	statusLeft,
+	sliders
 } from './vacancy'
 
 
@@ -127,5 +129,7 @@ export {
 	vacancyRows,
 	statusLeft,
 	typeWorkTemplate,
-	dateTermsTemplate
+	dateTermsTemplate,
+	sliders
+	// statusChangeTemplate
 }

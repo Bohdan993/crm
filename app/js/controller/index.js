@@ -21,7 +21,8 @@ import {
 	addFeedbackForm,
 	showRemoveBtnOnChecking,
 	showFullRow,
-	switchRowStatuses
+	switchRowStatuses,
+	setDateToSlider
 } from '../model'
 
 import {OverlayScrollbars} from '../../libs/libs'
@@ -57,7 +58,8 @@ import {
 	feedbackAddItem,
 	addfeedbackForm,
 	vacancyRows,
-	statusLeft
+	statusLeft,
+	sliders
 
 } from '../view'
 
@@ -84,6 +86,7 @@ const app = {
 		this.srboc()
 		this.sfr()
 		this.srs()
+		this.sdts()
 		// this.test()
 		// this.slt()
 	},
@@ -221,6 +224,9 @@ const app = {
 
 	srs() {
 		switchRowStatuses(statusLeft)
+	},
+	sdts() {
+		setDateToSlider(sliders)
 	}
 
 }

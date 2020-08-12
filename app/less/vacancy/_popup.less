@@ -83,3 +83,65 @@
 		}
 	}
 }
+
+.row-popup {
+	form {
+		height: 100%;
+    padding: 18px;
+    width: auto;
+    width: 260px;
+	}
+
+	time {
+		color: @secondary;
+		font-size: 12/14 * 1rem;
+	}
+
+	.input-group {
+		display: flex;
+		align-items: center;
+		 &:not(:last-child) {
+    	margin-bottom: 10px;
+    }
+
+	}
+	.status {
+		font-size: 12/14 * 1rem;
+		display: block;
+		padding: 2px 6px;
+    border-radius: 15px;
+    display: inline-block;
+    // text-align: center;
+    color: @white;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 9px;
+   
+
+    &.choosen {
+    	color: @main-color;
+    	background: @secondary;
+    }
+
+    &.ready {
+    	background: @green;
+    }
+
+    &.wait {
+				background: @teal;
+			}
+
+		&.department {
+			background: @blue;
+		}
+
+		&.busy {
+			background: @brown;
+		}
+
+		&.delete {
+			background: @hot;
+		}
+	}
+}
