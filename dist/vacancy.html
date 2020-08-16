@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/libs.min.css?v=1597593179236">
-    <link rel="stylesheet" href="css/main.min.css?v=1597593179236">
+    <link rel="stylesheet" href="css/libs.min.css?v=1597620673192">
+    <link rel="stylesheet" href="css/main.min.css?v=1597620673192">
   </head>
   <body>
     <main class="main">
@@ -4315,11 +4315,39 @@
         <div class="vacancy-modal-popup" id="employer-type-popup">
           <form>
             <p class="vacancy-modal__title">Введите имя работодателя или название организации	</p>
-            <div class="input-group">
+            <div class="input-group" data-loading="false">
               <input class="find-employer" id="find-employer" type="text">
               <ul class="autocomplete-result-list"></ul>
             </div>
             <button class="confirm-bnt">OK</button>
+          </form>
+        </div>
+        <div class="vacancy-modal-popup" id="work-type-popup">
+          <form>
+            <div class="form-group">
+              <p>Thompson Equestrian Partners</p>
+              <div class="input-group radio-group-type-2 hot top-group">
+                <div class="group">
+                  <input type="radio" id="season-rbtn" name="vacancies-rbtn" checked="true" value="Сезонная">
+                  <label for="season-rbtn">Сезонная</label>
+                  <input type="radio" id="practice-rbtn" name="vacancies-rbtn" value="Практика">
+                  <label for="practice-rbtn">Практика</label>
+                  <input type="radio" id="work-rbtn" name="vacancies-rbtn" value="Рабочая">
+                  <label for="work-rbtn">Рабочая</label>
+                </div>
+              </div>
+              <div class="input-group radio-group-type-2 hot bottom-group">
+                <div class="group">
+                  <input type="checkbox" id="greenhouses-chbx-2" name="greenhouses-chbx-2" checked="true" value="Теплицы">
+                  <label for="greenhouses-chbx-2">Теплицы</label>
+                  <input type="checkbox" id="flowers-chbx-2" name="flowers-chbx-2" value="Цветы">
+                  <label for="flowers-chbx-2">Цветы</label>
+                  <input type="checkbox" id="fields-chbx-2" name="fields-chbx-2" value="Поля">
+                  <label for="fields-chbx-2">Поля</label>
+                </div>
+              </div>
+              <button class="confirm-bnt">OK</button>
+            </div>
           </form>
         </div>
         <div class="modal micromodal-slide" id="modal-2" aria-hidden="true">
@@ -4400,7 +4428,7 @@
                         </div>
                         <div class="choose-product-type">
                           <p class="country-vacancy">NO 293</p>
-                          <p>Выберете тип продукции</p>
+                          <p class="type-product">Выберете тип продукции</p>
                         </div>
                         <div class="full-info">
                           <p class="country-vacancy">NO 293</p>
@@ -4420,7 +4448,7 @@
                       </div>
                       <div class="main-info__layer_right">
                         <div class="main-info__price">
-                          <p>Цена вакансии</p><span>500 евро</span>
+                          <p>Цена вакансии</p><span>не достаточно данных</span>
                         </div>
                         <div class="main-info__dates">
                           <p>Даты</p><span>01.06.2020 - 15.04.2020</span>
@@ -4588,7 +4616,7 @@
         </div>
       </div>
     </div>
-    <script src="js/libs.min.js?v=1597593179237" defer></script>
-    <script src="js/script.min.js?v=1597593179237" async></script>
+    <script src="js/libs.min.js?v=1597620673193" defer></script>
+    <script src="js/script.min.js?v=1597620673193" async></script>
   </body>
 </html>

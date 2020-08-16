@@ -21,6 +21,7 @@ const selectingTemplate = document.querySelector('#selecting-popup')
 const typeWorkTemplate = document.querySelector('#type-work-popup')
 const dateTermsTemplate = document.querySelector('#date-terms-popup')
 const employerTypeTemplate = document.querySelector('#employer-type-popup')
+const workTypeTemplate = document.querySelector('#work-type-popup')
 // const statusChangeTemplate = document.querySelector('#status-change-popup')
 
 
@@ -78,7 +79,12 @@ const confirmBtnTypeFeedback = document.querySelector('#type-feedback-popup .con
 import {
 	rows as vacancyRows,
 	statusLeft,
-	sliders
+	sliders,
+	findEmployer,
+	chooseEmployer, 
+	chooseProductType,
+	chooseFullInfo,
+	mainInfoChooseBlock
 } from './vacancy'
 
 
@@ -132,6 +138,12 @@ export {
 	typeWorkTemplate,
 	dateTermsTemplate,
 	sliders,
-	employerTypeTemplate
+	employerTypeTemplate,
+	findEmployer,
+	chooseEmployer, 
+	chooseProductType,
+	workTypeTemplate,
+	chooseFullInfo,
+	mainInfoChooseBlock
 	// statusChangeTemplate
 }

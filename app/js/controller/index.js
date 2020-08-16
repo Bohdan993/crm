@@ -23,7 +23,8 @@ import {
 	showFullRow,
 	switchRowStatuses,
 	setDateToSlider,
-	autocompleteInput
+	autocompleteInput,
+	showChooseBlockFullInfo
 } from '../model'
 
 import {OverlayScrollbars} from '../../libs/libs'
@@ -60,7 +61,13 @@ import {
 	addfeedbackForm,
 	vacancyRows,
 	statusLeft,
-	sliders
+	sliders,
+	findEmployer,
+	chooseEmployer, 
+	chooseProductType,
+	workTypeTemplate,
+	chooseFullInfo,
+	mainInfoChooseBlock
 
 } from '../view'
 
@@ -89,6 +96,7 @@ const app = {
 		this.srs()
 		this.sdts()
 		this.ai()
+		this.scbfi()
 		// this.test()
 		// this.slt()
 	},
@@ -231,7 +239,21 @@ const app = {
 		setDateToSlider(sliders)
 	},
 	ai() {
-		autocompleteInput()
+		if(findEmployer) {
+			autocompleteInput(findEmployer, chooseEmployer, chooseProductType)
+		}
+		
+	},
+
+	scbfi() {
+		if(workTypeTemplate) {
+			showChooseBlockFullInfo(workTypeTemplate, {
+				prev: chooseProductType,
+				next: chooseFullInfo,
+				block: mainInfoChooseBlock
+			})
+		}
+		
 	}
 
 }

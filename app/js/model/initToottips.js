@@ -17,7 +17,8 @@ import {
 	statusTemplate,
 	typeWorkTemplate,
 	dateTermsTemplate,
-	employerTypeTemplate
+	employerTypeTemplate,
+	workTypeTemplate
 	// statusChangeTemplate	
 
 } from '../view'
@@ -67,6 +68,9 @@ const initTooltips = () => {
 	}
 	if(employerTypeTemplate) {
 		employerTypeTemplate.style.display = 'block'
+	}
+	if(workTypeTemplate) {
+		workTypeTemplate.style.display = 'block'
 	}
 	
 	
@@ -273,6 +277,8 @@ function initVacancyModalTooltip(el, content){
 	}
 
 initVacancyModalTooltip('.modal-row__layer.main-info_left .choose-employer', employerTypeTemplate)
+initVacancyModalTooltip('.modal-row__layer.main-info_left .choose-product-type .type-product', workTypeTemplate)
+
 
 function initRowTooltips(el, content){
 	let instance = tippy(el, {

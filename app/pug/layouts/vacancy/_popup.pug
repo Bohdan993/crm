@@ -174,9 +174,38 @@
 			form
 				p.vacancy-modal__title
 					|Введите имя работодателя или название организации	
-				.input-group
+				.input-group(data-loading="false")
 					input.find-employer#find-employer(type="text")
 					ul.autocomplete-result-list
 				button.confirm-bnt
 					|OK
+		#work-type-popup.vacancy-modal-popup
+			form
+				.form-group
+					p
+						|Thompson Equestrian Partners
+					.input-group.radio-group-type-2.hot.top-group
+						.group
+							input(type="radio" id="season-rbtn" name="vacancies-rbtn" checked="true" value="Сезонная")
+							label(for="season-rbtn")
+								|Сезонная
+							input(type="radio" id="practice-rbtn" name="vacancies-rbtn" value="Практика")
+							label(for="practice-rbtn")
+								|Практика
+							input(type="radio" id="work-rbtn" name="vacancies-rbtn"  value="Рабочая")
+							label(for="work-rbtn")
+								|Рабочая
+					.input-group.radio-group-type-2.hot.bottom-group
+						.group
+							input(type="checkbox" id="greenhouses-chbx-2" name="greenhouses-chbx-2" checked="true" value="Теплицы")
+							label(for="greenhouses-chbx-2")
+								|Теплицы
+							input(type="checkbox" id="flowers-chbx-2" name="flowers-chbx-2" value="Цветы")
+							label(for="flowers-chbx-2")
+								|Цветы
+							input(type="checkbox" id="fields-chbx-2" name="fields-chbx-2" value="Поля")
+							label(for="fields-chbx-2")
+								|Поля
+					button.confirm-bnt
+						|OK
 		include vacancy-popup/_vacancy-popup

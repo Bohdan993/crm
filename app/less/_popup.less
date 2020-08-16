@@ -156,6 +156,37 @@
         text-align: left;
         padding: 2px 7px;
     }
+
+    .input-group {
+        &:not(:last-child) {
+            border-bottom: 1px solid #fff;
+            padding-bottom: 12px;
+        }
+
+         &:not(:first-of-type) {
+            padding-top: 12px;
+
+            input+label {
+                width: auto;
+                padding-left: 7px;
+                padding-right: 7px;
+            }
+        }
+
+        input+label {
+            width: 77px;
+        }
+
+        input:checked + [for="practice-rbtn"] {
+            background: @grass-green;
+        }
+
+        input:checked + [for="work-rbtn"] {
+            background: @blue;
+        }
+    }
+    
+    
 }
 
 
@@ -168,4 +199,24 @@
             fieldset:not(:last-child) {
             margin-right:   53px;
         }
+}
+
+
+#employer-type-popup {
+    input {
+        padding-right: 30px;
+    }
+    .input-group[data-loading="true"] {
+        &:after {
+            content: '';
+            position: absolute;
+            right: 5px;
+            width: 16px;
+            height: 100%;
+            top: 0;
+            background: url(../img/sprites/svg/smile.svg) no-repeat center/contain;
+            animation: spin 2s linear infinite;
+        }
+    }
+
 }
