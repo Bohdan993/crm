@@ -19,6 +19,7 @@ import deleteTask from './deleteTask'
 import setFeedbackDate from './setFeedbacklDate'
 import addFeedbackForm from './addfeedbackForm'
 import showRemoveBtnOnChecking from './showRemoveBtnOnChecking'
+import autocompleteInput from './autocompleteInput'
 
 import showFullRow from './vacancy/showFullRow'
 import switchRowStatuses from './vacancy/switchRowStatuses'
@@ -51,5 +52,6 @@ export {
 	showRemoveBtnOnChecking,
 	showFullRow,
 	switchRowStatuses,
-	setDateToSlider
+	setDateToSlider,
+	autocompleteInput
 }

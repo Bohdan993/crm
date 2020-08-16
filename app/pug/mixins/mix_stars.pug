@@ -1,0 +1,6 @@
+mixin stars(name, stars)
+	i.label.blue__label
+		span.language= name 
+		- for (let i = 0; i < stars; i++)
+			i.ico
+				+svg2('star')

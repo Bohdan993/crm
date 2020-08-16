@@ -1,0 +1,111 @@
+.my-modal .main-info {
+	flex-wrap: nowrap;
+	margin-top: 10px;
+
+
+	.modal-row__layer {
+		flex-basis: 500/1040 * 100%;
+		min-height: 200px;
+		padding-top: 24px;
+		padding-left: 20px;
+		padding-right: 20px;
+		padding-bottom: 15px;
+		position: relative;
+		overflow: visible;
+	}
+
+
+}
+
+
+.main-info_left {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	p {
+		margin-bottom: 6px;
+		font-size: 12/14 * 1rem;
+		line-height: 1rem;
+		color: @main-color;
+	}
+
+	.main-info__layer_left {
+		flex-basis: 43%;
+	}
+
+	.main-info__layer_right {
+		flex-basis: 57%;
+	}
+}
+
+.main-info__choose-block {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 2;
+	p {
+		margin-bottom: 0;
+	}
+
+	.choose-employer {
+		width: 100%;
+		background: @main-color;
+		padding: 3px 9px;
+		border-radius: 20px;
+		cursor: pointer;
+		
+		
+		p {
+			color: @white;
+			font-size: 1rem;
+			font-weight: 500;
+		}
+	}
+	.choose-product-type, .full-info {
+		display: none;
+	}
+}
+
+.main-info__layer_left, .main-info__layer_right {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items:stretch;
+
+	& > div {
+		flex-basis: 100/3 * 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		&:not(:last-child) {
+			margin-bottom: 20px;
+		}
+	
+	}
+}
+
+.main-info__indicators {
+	display: flex;
+
+	.main-info__indicator {
+		line-height: 22px;
+		&:not(:last-child) {
+			margin-right: 16px;
+		}
+		
+	}
+}
+
+.main-info__numbers {
+	display: flex;
+}
+
+
+.main-info__closed-vacancies {
+	p {
+		margin-bottom: 2px;
+	}
+}

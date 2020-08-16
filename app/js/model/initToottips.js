@@ -17,6 +17,7 @@ import {
 	statusTemplate,
 	typeWorkTemplate,
 	dateTermsTemplate,
+	employerTypeTemplate
 	// statusChangeTemplate	
 
 } from '../view'
@@ -64,9 +65,9 @@ const initTooltips = () => {
 	if(dateTermsTemplate) {
 		dateTermsTemplate.style.display = 'block'
 	}
-	// if(statusChangeTemplate) {
-	// 	statusChangeTemplate.style.display = 'block'
-	// }
+	if(employerTypeTemplate) {
+		employerTypeTemplate.style.display = 'block'
+	}
 	
 	
 	
@@ -170,6 +171,7 @@ function initWorkModalTooltip(el, content){
 initWorkModalTooltip('.add-feedback-form .modal-row__feedback-ico', typeFeedbackTemplate)
 initWorkModalTooltip('.add-feedback-form .modal-row__feedback-choise', choiceClientTemplate)
 
+
 function initVacancyTooltip(el, content){
 		let instance = tippy(el, {
 			content: `<div class="row-popup" id="status-change-popup">
@@ -246,6 +248,31 @@ function initVacancyTooltip(el, content){
 
 	initVacancyTooltip('.cell-status__slider')
 
+function initVacancyModalTooltip(el, content){
+		let instance = tippy(el, {
+			content,
+			allowHTML: true,
+			maxWidth: 364,
+			interactive: true,
+			interactiveBorder: 5,
+			interactiveDebounce: 0,
+			placement: 'bottom',
+			offset: [0, 8],
+			hideOnClick: true,
+			trigger: 'click',
+			appendTo: () => document.body,
+			onShown(instance) {
+				document.addEventListener('keyup', function(e){
+					if(e.keyCode === 27) {
+						instance.hide();
+					}
+				})
+			},
+		})
+
+	}
+
+initVacancyModalTooltip('.modal-row__layer.main-info_left .choose-employer', employerTypeTemplate)
 
 function initRowTooltips(el, content){
 	let instance = tippy(el, {

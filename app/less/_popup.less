@@ -78,8 +78,9 @@
     }
 }
 
-.work-modal-popup {
+.work-modal-popup, .vacancy-modal-popup {
     box-shadow: 4px 3px 6px 0px rgba(@font-color, 0.5);
+    border-radius: 4px;
     font-size: 12px;
     line-height: 14/12;
     display: none;
@@ -140,6 +141,22 @@
     
 }
 
+
+.vacancy-modal-popup {
+    max-width: 364px;
+
+    .vacancy-modal__title {
+        padding-left: 0;
+        padding-right: 13px;
+    }
+
+    .find-employer {
+        height: 20px;
+        border-radius: 3px;
+        text-align: left;
+        padding: 2px 7px;
+    }
+}
 
 
 #type-manufactury-popup {

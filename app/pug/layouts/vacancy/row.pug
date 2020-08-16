@@ -2,7 +2,7 @@
 	.f-container
 		.row__terms.row__cell.hot
 		.row__labels-2.row__cell.no-open
-			i.label.attention__label.no-open
+			i.label.attention__label.no-open(data-custom-open="modal-2")
 				span.no-open
 					|NO
 				span.no-open
@@ -10,12 +10,12 @@
 			span.number-of-people.attention-number.no-open
 					|М12 Ж5
 		.row__indicators.row__cell
-			span.row__indicator.empty
-			span.row__indicator.empty
-			span.row__indicator.empty
-			span.row__indicator.empty
-			span.row__indicator.empty
-			span.row__indicator.empty
+			span.row__indicator.indicator.empty
+			span.row__indicator.indicator.empty
+			span.row__indicator.indicator.empty
+			span.row__indicator.indicator.empty
+			span.row__indicator.indicator.empty
+			span.row__indicator.indicator.empty
 		.row__name-2.row__cell.no-open
 			p.row__fullname.no-open
 				|Thompson Equestrian Partners / Junction Engineering
@@ -38,7 +38,7 @@
 					.table-full__cell.row__cell.cell-names
 						p
 							|Гурківський Олександр
-						span.row__indicator.department
+						span.row__indicator.indicator.department
 							|2
 					.table-full__cell.row__cell.cell-status
 						.cell-status__left
@@ -244,8 +244,10 @@
 						.tag.manager-tag.purple-tag
 							|AC
 				.table-full__cell.row__cell.cell-exp
+				
 					i.label.green__label
 						|Д2
+					+stars('EN', 3)
 					p
 						|Агроном
 					i.label.dirty-green__label
@@ -522,23 +524,23 @@
 	.f-container
 		.row__terms.row__cell.medium
 		.row__labels-2.row__cell.no-open
-			i.label.attention__label.no-open
+			i.label.attention__label.no-open(data-custom-open="modal-2")
 				span.no-open
 					|DE
 				span.no-open
 					|18 - 5
 		.row__indicators.row__cell
-			span.row__indicator.decline
+			span.row__indicator.indicator.decline
 				|4
-			span.row__indicator.choosen
+			span.row__indicator.indicator.choosen
 				|8
-			span.row__indicator.ready
+			span.row__indicator.indicator.ready
 				|5
-			span.row__indicator.wait
+			span.row__indicator.indicator.wait
 				|12
-			span.row__indicator.department
+			span.row__indicator.indicator.department
 				|3
-			span.row__indicator.busy
+			span.row__indicator.indicator.busy
 				|2
 		.row__name-2.row__cell.no-open
 			p.row__fullname.no-open

@@ -22,7 +22,8 @@ import {
 	showRemoveBtnOnChecking,
 	showFullRow,
 	switchRowStatuses,
-	setDateToSlider
+	setDateToSlider,
+	autocompleteInput
 } from '../model'
 
 import {OverlayScrollbars} from '../../libs/libs'
@@ -87,6 +88,7 @@ const app = {
 		this.sfr()
 		this.srs()
 		this.sdts()
+		this.ai()
 		// this.test()
 		// this.slt()
 	},
@@ -227,6 +229,9 @@ const app = {
 	},
 	sdts() {
 		setDateToSlider(sliders)
+	},
+	ai() {
+		autocompleteInput()
 	}
 
 }

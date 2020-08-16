@@ -389,7 +389,8 @@ function pug() {
         // }))
         .pipe(plumber()) // plumber
         .pipe(pugToHtml({
-            pretty: true
+            pretty: true,
+            basedir: '/'
         }))
         .pipe(rename({ dirname: '' }))
 

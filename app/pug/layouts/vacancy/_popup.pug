@@ -170,29 +170,13 @@
 						.input-group
 							p
 								|мес
-		//- #status-change-popup.row-popup
-		//- 	form
-		//- 		.input-group
-		//- 			input(type="checkbox" id="shortfall-chbx")
-		//- 			label(for="shortfall-chbx")
-		//- 				|Недоборы
-		//- 		.input-group
-		//- 			input(type="checkbox" id='selected-chbx')
-		//- 			label(for="selected-chbx")
-		//- 				|Отобраны
-		//- 		.input-group
-		//- 			input(type="checkbox" id='supply-chbx')
-		//- 			label(for="supply-chbx")
-		//- 				|Готовятся к подаче
-		//- 		.input-group
-		//- 			input(type="checkbox" id='wait-chbx')
-		//- 			label(for="wait-chbx")
-		//- 				|Ждут разрешения
-		//- 		.input-group
-		//- 			input(type="checkbox" id='department-chbx')
-		//- 			label(for="department-chbx")
-		//- 				|Готовятся к отъезду
-		//- 		.input-group
-		//- 			input(type="checkbox" id='busy-chbx')
-		//- 			label(for="busy-chbx")
-		//- 				|Трудоустроены
+		#employer-type-popup.vacancy-modal-popup
+			form
+				p.vacancy-modal__title
+					|Введите имя работодателя или название организации	
+				.input-group
+					input.find-employer#find-employer(type="text")
+					ul.autocomplete-result-list
+				button.confirm-bnt
+					|OK
+		include vacancy-popup/_vacancy-popup

@@ -5,6 +5,7 @@ import OverlayScrollbars from 'overlayscrollbars'
 import MicroModal from 'micromodal'
 import tippy, {createSingleton} from 'tippy.js';
 import Choices from 'choices.js'
+import Autocomplete from '@trevoreyre/autocomplete-js'
 // import { detectOverflow } from '@popperjs/core'
 
 
@@ -16,6 +17,7 @@ export {
 	MicroModal,
 	tippy,
 	Choices,
-	createSingleton
+	createSingleton,
+	Autocomplete
 	// detectOverflow
 }

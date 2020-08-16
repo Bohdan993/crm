@@ -312,6 +312,7 @@ main.main {
   position: relative;
   z-index: 2;
   align-self: flex-start; 
+  z-index: 11;
 }
 
 
@@ -393,6 +394,27 @@ i.label {
        margin-right: 5px;
     }
    
+  }
+  .ico {
+    width: 12px;
+    height: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:not(:last-child) {
+      margin-right: 2px;
+    }
+  }
+  svg {
+    width: 12px;
+    height: 12px;
+    fill: @white;
+  }
+
+  .language {
+    font-size: 12/14 * 1rem;
+    line-height: 20px;
   }
 }
 
@@ -635,6 +657,54 @@ i.label {
   display: none!important;
 }
 
+.indicator {
+  line-height: 23px;
+  text-align: center;
+  display: block;
+  width: 22px;
+  height: 22px;
+  min-width: 22px;
+  background: @white;
+  color: @white;
+  overflow: visible;
+  // display: flex;
+  // justify-content: center;
+  // align-content: center;
+  // align-items: center;
+  border-radius: 50%;
+  &.decline {
+    background: @creame-orange;
+  }
+
+  &.choosen {
+    background: @grass-green;
+  }
+
+  &.ready {
+    background: @green;
+  }
+
+  &.wait {
+    background: @teal;
+  }
+
+  &.department {
+    background: @blue;
+  }
+
+  &.busy {
+    background: @brown;
+  }
+
+  &.empty {
+    width: 3px;
+    height: 3px;
+    min-width: 3px;
+    background: @gray;
+    border: 1px solid @gray;
+  }
+}
+
 
 //|||||||||||||||||||COMMON ELEMENTS END|||||||||||||||||||//
 
@@ -652,6 +722,7 @@ i.label {
 //Vacancy
 @import url("app/less/vacancy/_row.less");
 @import url("app/less/vacancy/_sidebar.less");
+@import url("app/less/vacancy/_main-info.less");
 @import url("app/less/vacancy/_popup.less");
 
 @import url("app/less/sprite.less");

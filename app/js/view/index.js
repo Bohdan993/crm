@@ -20,6 +20,7 @@ const statusTemplate = document.querySelector('#status-popup')
 const selectingTemplate = document.querySelector('#selecting-popup')
 const typeWorkTemplate = document.querySelector('#type-work-popup')
 const dateTermsTemplate = document.querySelector('#date-terms-popup')
+const employerTypeTemplate = document.querySelector('#employer-type-popup')
 // const statusChangeTemplate = document.querySelector('#status-change-popup')
 
 
@@ -130,6 +131,7 @@ export {
 	statusLeft,
 	typeWorkTemplate,
 	dateTermsTemplate,
-	sliders
+	sliders,
+	employerTypeTemplate
 	// statusChangeTemplate
 }
