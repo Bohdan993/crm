@@ -21,7 +21,9 @@ const selectingTemplate = document.querySelector('#selecting-popup')
 const typeWorkTemplate = document.querySelector('#type-work-popup')
 const dateTermsTemplate = document.querySelector('#date-terms-popup')
 const employerTypeTemplate = document.querySelector('#employer-type-popup')
+const employerTypeTemplate2 = document.querySelector('#employer-type-popup2')
 const workTypeTemplate = document.querySelector('#work-type-popup')
+const pricePopupTemplate = document.querySelector('#price-popup')
 // const statusChangeTemplate = document.querySelector('#status-change-popup')
 
 
@@ -84,7 +86,12 @@ import {
 	chooseEmployer, 
 	chooseProductType,
 	chooseFullInfo,
-	mainInfoChooseBlock
+	mainInfoChooseBlock,
+	switcher,
+	findEmployer2,
+	chooseEmployer2,
+	chooseProductType2
+	// mainInfoPrice
 } from './vacancy'
 
 
@@ -139,11 +146,18 @@ export {
 	dateTermsTemplate,
 	sliders,
 	employerTypeTemplate,
+	employerTypeTemplate2,
 	findEmployer,
 	chooseEmployer, 
 	chooseProductType,
 	workTypeTemplate,
 	chooseFullInfo,
-	mainInfoChooseBlock
+	mainInfoChooseBlock,
+	pricePopupTemplate,
+	switcher,
+	findEmployer2,
+	chooseEmployer2,
+	chooseProductType2
+	// mainInfoPrice
 	// statusChangeTemplate
 }

@@ -25,6 +25,7 @@ import showFullRow from './vacancy/showFullRow'
 import switchRowStatuses from './vacancy/switchRowStatuses'
 import setDateToSlider from './vacancy/setDateToSlider'
 import showChooseBlockFullInfo from './vacancy/showChooseBlockFullInfo'
+import showFullClientsRow from './vacancy/showFullClientsRow'
 
 
 
@@ -55,5 +56,6 @@ export {
 	switchRowStatuses,
 	setDateToSlider,
 	autocompleteInput,
-	showChooseBlockFullInfo
+	showChooseBlockFullInfo,
+	showFullClientsRow
 }

@@ -179,6 +179,15 @@
 					ul.autocomplete-result-list
 				button.confirm-bnt
 					|OK
+		#employer-type-popup2.vacancy-modal-popup
+			form
+				p.vacancy-modal__title
+					|Введите имя работодателя или название организации	
+				.input-group(data-loading="false")
+					input.find-employer#find-employer-2(type="text")
+					ul.autocomplete-result-list
+				button.confirm-bnt
+					|OK
 		#work-type-popup.vacancy-modal-popup
 			form
 				.form-group
@@ -208,4 +217,15 @@
 								|Поля
 					button.confirm-bnt
 						|OK
+		#price-popup.vacancy-modal-popup
+			form
+				p.vacancy-modal__title
+					|Какая-то надпись
+				.input-group(data-loading="false")
+					input.calc-price#calc-price(type="text")
+				.btn-group
+					button.confirm-bnt
+						|OK
+					button.cancel-bnt
+						|Отмена
 		include vacancy-popup/_vacancy-popup

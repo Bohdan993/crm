@@ -706,6 +706,30 @@ i.label {
 }
 
 
+.bottom-areas {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .info-block {
+    flex-basis: 485/998 * 100%;
+  }
+}
+
+.vacancy-textarea {
+    width: 100%;
+    resize: none;
+    border: 0;
+    border-radius: 3px;
+    padding: 3px 7px;
+    outline: none;
+
+    &:focus {
+      border: none;
+    }
+}
+
+
 ////////Animations/////
 
 
@@ -735,6 +759,9 @@ i.label {
 @import url("app/less/vacancy/_row.less");
 @import url("app/less/vacancy/_sidebar.less");
 @import url("app/less/vacancy/_main-info.less");
+@import url("app/less/vacancy/_clients.less");
+@import url("app/less/vacancy/_demands.less");
+@import url("app/less/vacancy/_terms.less");
 @import url("app/less/vacancy/_popup.less");
 
 @import url("app/less/sprite.less");

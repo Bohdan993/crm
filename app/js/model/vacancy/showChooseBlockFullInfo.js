@@ -1,5 +1,4 @@
 
-
 const showChooseBlockFullInfo = (popup, {
 	prev, 
 	next,
@@ -9,7 +8,6 @@ const showChooseBlockFullInfo = (popup, {
 	const topGroup = popup.querySelectorAll('.top-group input')
 	const bottomGroup = popup.querySelectorAll('.bottom-group input')
 	
-
 
 	confirmBtn.addEventListener('click', function(e){
 		const arr = []

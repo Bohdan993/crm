@@ -1,0 +1,62 @@
+.clients .modal-row__layer {
+	position: relative;
+	overflow-y: auto;
+	.table-full {
+		display: block;
+		max-width: 100%;
+		margin: 0;
+		min-width: 998px;
+	}
+
+	.cell-names {
+		flex-basis: 211/989 * 100%;
+		border-right: 1px solid @white;
+	}
+
+	.cell-status {
+		flex-basis: 355/989 * 100%;
+		border-right: 1px solid @white;
+	}
+
+	.cell-exp {
+		flex-basis: 177/989 * 100%;
+		border-right: 1px solid @white;
+	}
+
+	.cell-notes {
+		flex-basis: 246/989 * 100%;
+		border-right: 1px solid @white;
+	}
+
+	.table-full__row {
+		&:not(:first-child) {
+			border-bottom: 1px solid @white;
+		}
+		
+	}
+
+	// .table-full__busy  {
+	// 	.table-full__row {
+	// 		border-bottom: 1px solid @white;
+	// 	}
+	// }
+}
+
+.switcher {
+	position: absolute;
+	left: 0;
+	z-index: 10;
+	cursor: pointer;
+	top: 30px;
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+	background: @main-color;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	svg {
+		width: 8px;
+		height: 8px;
+	}
+}

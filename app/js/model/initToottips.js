@@ -18,7 +18,9 @@ import {
 	typeWorkTemplate,
 	dateTermsTemplate,
 	employerTypeTemplate,
-	workTypeTemplate
+	employerTypeTemplate2,
+	workTypeTemplate,
+	pricePopupTemplate
 	// statusChangeTemplate	
 
 } from '../view'
@@ -72,6 +74,13 @@ const initTooltips = () => {
 	if(workTypeTemplate) {
 		workTypeTemplate.style.display = 'block'
 	}
+	if(pricePopupTemplate) {
+		pricePopupTemplate.style.display = 'block'
+	}
+	if(employerTypeTemplate2) {
+		employerTypeTemplate2.style.display = 'block'
+	}
+	
 	
 	
 	
@@ -257,6 +266,7 @@ function initVacancyModalTooltip(el, content){
 			content,
 			allowHTML: true,
 			maxWidth: 364,
+			// content: ``,
 			interactive: true,
 			interactiveBorder: 5,
 			interactiveDebounce: 0,
@@ -277,7 +287,9 @@ function initVacancyModalTooltip(el, content){
 	}
 
 initVacancyModalTooltip('.modal-row__layer.main-info_left .choose-employer', employerTypeTemplate)
+initVacancyModalTooltip('.modal-row__layer.main-info_right .choose-employer', employerTypeTemplate2)
 initVacancyModalTooltip('.modal-row__layer.main-info_left .choose-product-type .type-product', workTypeTemplate)
+initVacancyModalTooltip('.modal-row__layer.main-info_left .main-info__price span', pricePopupTemplate)
 
 
 function initRowTooltips(el, content){
