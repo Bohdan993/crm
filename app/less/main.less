@@ -233,7 +233,7 @@ main.main {
   justify-content: space-between;
   flex-wrap: nowrap;
   align-items: center;
-  overflow-x: auto;
+  // overflow-x: auto;
 }
 
 
@@ -248,12 +248,23 @@ main.main {
 }
 
 .vacancy-rows {
-  min-width: 1580px;
+  
   align-self: flex-start; 
+
+  overflow-x: auto;
+
+   .row {
+    min-width: 1580px;
+   }
 }
 
 .worker-rows {
  align-self: flex-start;
+ overflow-x: auto;
+
+   .row {
+    min-width: 1250px
+   }
 }
 
 .grid {
@@ -662,7 +673,7 @@ i.label {
   text-align: center;
   display: block;
   width: 22px;
-  height: 22px;
+  // height: 22px;
   min-width: 22px;
   background: @white;
   color: @white;
@@ -724,9 +735,16 @@ i.label {
     padding: 3px 7px;
     outline: none;
 
+    border: 1px solid transparent;
+    transition: border 0.2s linear;
+
     &:focus {
-      border: none;
+      border: 1px solid @main-color;
     }
+
+    // &:focus {
+    //   border: none;
+    // }
 }
 
 

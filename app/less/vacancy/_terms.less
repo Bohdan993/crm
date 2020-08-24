@@ -1,5 +1,38 @@
 .terms__top {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	.terms__start-date {
+		flex-basis: 150/998 * 100%;
+	}
 
+	.terms__period  {
+		flex-basis: 150/998 * 100%;
+	}
+
+	.terms__salary {
+		flex-basis: 650/998 * 100%;
+
+	}
+
+	input {
+		height: 26px;
+		border-radius: 3px;
+		padding: 3px 7px;
+		text-align: left;
+		border: 1px solid transparent;
+		transition: border 0.2s linear;
+
+		&:focus {
+			border: 1px solid @main-color;
+		}
+	}
+
+	p {
+		white-space: nowrap;
+	}
+
+	margin-bottom: 20px;
 }
 
 .terms__middle {
@@ -11,6 +44,11 @@
   .info-block {
     flex-basis: 320/998 * 100%;
   }
+
+  .terms__taxes {
+  	flex-basis: 305/998 * 100%;
+  }
+  margin-bottom: 20px;
 }
 
 

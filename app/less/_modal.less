@@ -48,7 +48,42 @@
   border: 0;
 }
 
-.modal__header .modal__close:before { content: "\2715"; }
+.modal__container .modal__close {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  right: 11px;
+  top: 11px;
+  z-index: 2;
+  cursor: pointer;
+
+  &:hover {
+    span {
+      // background: @hover_color;v 
+    }
+  }
+
+  span {
+    width: 12px;
+    display: block;
+    height: 2px;
+    border-radius: 5px;
+    background: @main-color;
+    position: absolute;
+    top: 50%;
+    pointer-events: none;
+    transition: background 0.2s linear;
+    // transform: translateY(-50%);
+
+    &:first-child {
+      transform: translateY(-50%) rotate(45deg);
+    }
+
+    &:last-child {
+      transform: translateY(-50%) rotate(135deg);
+    }
+  }
+}
 
 .modal__content {
   margin-top: 2rem;
@@ -215,6 +250,7 @@
   }
 
   .sidebar__notes {
+    font-size: 12px;
     background: @main-color;
     width: 100%;
     padding-top: 15px;
@@ -226,6 +262,12 @@
     // min-height: 119px;
     height:   auto;
     border-bottom: 1px solid @secondary;
+
+    .input-group {
+      p:not(:last-child) {
+        margin-bottom: 6px;
+      }
+    }
   }
 
 
@@ -322,6 +364,24 @@
     padding: 25px;
     background: @secondary;
   }
+  .sidebar__filter-item {
+    &:last-child {
+      .sidebar__filter-wrapper {
+        &:hover {
+          p {
+            color: @delete;
+          }
+        }
+        
+      }
+    }
+  }
+  .sidebar__filter-wrapper {
+    &:hover {
+      background: @main-color;
+      color: @secondary;
+    }
+  }
 
 
 
@@ -356,6 +416,9 @@
       font-size: 12px;
       cursor: pointer;
       display: none;
+      vertical-align: middle!important;
+      align-items: center;
+      justify-content: center;
     }
   }
 
@@ -769,7 +832,7 @@
     }
     .ico {
       position: absolute;
-      top: 54%;
+      top: 50%;
       transform: translateY(-50%);
       left:   7px;
     }
@@ -777,7 +840,7 @@
     .sidebar__task-input {
       padding-left: 36px;
       padding-right:  36px;
-      padding-top: 8px;
+      padding-top: 4px;
     }
 
     .delete-task-item {

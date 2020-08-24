@@ -13,7 +13,7 @@ const initWorkPopup = ()=> {
   		let wrapWidth = modalRowMediaWrapper.offsetWidth
   		let width = 0
   		
-
+  //Функционал медиа
   		modalRowMedia.forEach(el=> {
   			let style = el.currentStyle || window.getComputedStyle(el)
   			width += el.offsetWidth + parseInt(style.marginRight)
@@ -24,7 +24,7 @@ const initWorkPopup = ()=> {
   					el.classList.add('hidden-row-opacity')
   				}	
 
-  				mediaShowMore.style.display = 'block'
+  				mediaShowMore.style.display = 'flex'
   			}
   		})
 
@@ -72,6 +72,14 @@ const initWorkPopup = ()=> {
 
   	}
   	show = true
+
+    // let wrapper = modal.querySelector('.modal__wrapper')
+
+    // console.log(wrapper)
+
+    // wrapper.addEventListener('mouseup', function(e){
+    //   alert('dfdf')
+    // })
   },
   onClose: modal => console.info(`${modal.id} is hidden`), // [2]
   openTrigger: 'data-custom-open', // [3]

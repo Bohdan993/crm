@@ -2,7 +2,7 @@
 	position: relative;
 	overflow-y: auto;
 	.table-full {
-		display: block;
+		// display: block;
 		max-width: 100%;
 		margin: 0;
 		min-width: 998px;
@@ -55,8 +55,30 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	transition: transform 0.2s linear;
 	svg {
 		width: 8px;
 		height: 8px;
+	}
+
+	&.rotate {
+		transform: rotate(180deg);
+	}
+}
+
+.modal-row__clients-row {
+
+	transition: 0.2s opacity 0.3s linear;
+	&:not(.active) {
+		opacity: 0;
+		visibility: hidden;
+		transition: 0.2s opacity 0.3s linear;
+
+	}
+	p {
+		text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+
 	}
 }

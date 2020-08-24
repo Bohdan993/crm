@@ -90,7 +90,8 @@ import {
 	switcher,
 	findEmployer2,
 	chooseEmployer2,
-	chooseProductType2
+	chooseProductType2,
+	clientsRow
 	// mainInfoPrice
 } from './vacancy'
 
@@ -157,7 +158,8 @@ export {
 	switcher,
 	findEmployer2,
 	chooseEmployer2,
-	chooseProductType2
+	chooseProductType2,
+	clientsRow
 	// mainInfoPrice
 	// statusChangeTemplate
 }

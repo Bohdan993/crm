@@ -117,6 +117,7 @@
     align-items: center;
     justify-content: center;
     margin-right: 9px;
+    cursor: pointer;
    
 
     &.choosen {
@@ -156,5 +157,41 @@
 	.row {
 		padding-left: 8px;
 		padding-right: 8px;
+	}
+}
+
+#price-popup {
+	form {
+		display: flex;
+		flex-direction: column;
+	}
+	width: 400px;
+	height: 184px;
+	.input-group {
+		margin-bottom: auto;
+	}
+	.btn-group {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.calc-price {
+		max-width: 131px;
+		height: 20px;
+		border-radius: 3px;
+		text-align: left;
+		padding: 3px 7px;
+
+		border: 1px solid transparent;
+		transition: border 0.2s linear;
+
+		&:focus {
+			border: 1px solid @secondary;
+		}
+	}
+
+	button {
+		margin: 0;
 	}
 }

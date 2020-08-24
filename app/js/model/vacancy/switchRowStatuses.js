@@ -30,8 +30,21 @@ const switchRowStatuses = (statuses) => {
 			let timeArray = Array(9).fill({text: '', date: ''})
 			let leftArrow = el.querySelector('.cell-status__control-left')
 			let rightArrow = el.querySelector('.cell-status__control-right')
+			let slider = el.querySelector('.cell-status__slider')
 
-			// console.log(slider)
+			// slider.addEventListener('click', function(){
+			// 	let instance = this._tippy
+
+			// 	console.log(instance)
+			// 	let instanseStatuses = instance.popper.querySelectorAll('.status')
+
+			// 	instanseStatuses.forEach(status=> {
+			// 		status.addEventListener('click', function(){
+			// 			console.log('fff')
+			// 		})
+			// 	})
+			// })
+			// // console.log(slider)
 			leftArrow.addEventListener('click', function(){
 				
 				let parent = this.parentNode.parentNode
@@ -103,26 +116,35 @@ const switchRowStatuses = (statuses) => {
 							if(!table.classList.contains('choosen')) {
 								let oldChild = table.removeChild(row)
 								tableParent.querySelector('.table-full__choosen').appendChild(oldChild)
+								this.parentNode.classList.remove('ready')
+								this.parentNode.classList.add('choosen')
 							}
 						} else if(arr[ind].classList.contains('ready')) {
 							if(!table.classList.contains('ready')) {
 								let oldChild = table.removeChild(row)
 								tableParent.querySelector('.table-full__ready').appendChild(oldChild)
+								this.parentNode.classList.remove('wait')
+								this.parentNode.classList.add('ready')
 							}
 						} else if(arr[ind].classList.contains('wait')) {
 							if(!table.classList.contains('wait')) {
 								let oldChild = table.removeChild(row)
 								tableParent.querySelector('.table-full__wait').appendChild(oldChild)
+								this.parentNode.classList.remove('department')
+								this.parentNode.classList.add('wait')
 							}
 						} else if(arr[ind].classList.contains('department')) {
 							if(!table.classList.contains('department')) {
 								let oldChild = table.removeChild(row)
 								tableParent.querySelector('.table-full__department').appendChild(oldChild)
+								this.parentNode.classList.remove('busy')
+								this.parentNode.classList.add('department')
 							}
 						} else if(arr[ind].classList.contains('busy')) {
 							if(!table.classList.contains('busy')) {
 								let oldChild = table.removeChild(row)
 								tableParent.querySelector('.table-full__busy').appendChild(oldChild)
+
 							}
 						}
 
@@ -161,7 +183,7 @@ const switchRowStatuses = (statuses) => {
 				let row = parent.parentNode.parentNode
 				let table = row.parentNode
 				let tableParent = table.parentNode.parentNode
-				// console.log(row)
+				console.log(row)
 				// console.log(table)
 			
 				slider.forEach((elem, ind, arr) => {
@@ -176,6 +198,7 @@ const switchRowStatuses = (statuses) => {
 							text: arr[ind].textContent,
 							date: new Date().toLocaleDateString()
 						}
+						console.log(arr[ind])
 						instance.setContent(`<div class="row-popup" id="status-change-popup">
 		          <form>
 		            <div class="input-group">
@@ -223,26 +246,35 @@ const switchRowStatuses = (statuses) => {
 							if(!table.classList.contains('choosen')) {
 								let oldChild = table.removeChild(row)
 								tableParent.querySelector('.table-full__choosen').appendChild(oldChild)
+								this.parentNode.classList.add('choosen')
 							}
 						} else if(arr[ind].classList.contains('ready')) {
 							if(!table.classList.contains('ready')) {
 								let oldChild = table.removeChild(row)
 								tableParent.querySelector('.table-full__ready').appendChild(oldChild)
+								this.parentNode.classList.remove('choosen')
+								this.parentNode.classList.add('ready')
 							}
 						} else if(arr[ind].classList.contains('wait')) {
 							if(!table.classList.contains('wait')) {
 								let oldChild = table.removeChild(row)
 								tableParent.querySelector('.table-full__wait').appendChild(oldChild)
+								this.parentNode.classList.remove('ready')
+								this.parentNode.classList.add('wait')
 							}
 						} else if(arr[ind].classList.contains('department')) {
 							if(!table.classList.contains('department')) {
 								let oldChild = table.removeChild(row)
 								tableParent.querySelector('.table-full__department').appendChild(oldChild)
+								this.parentNode.classList.remove('wait')
+								this.parentNode.classList.add('department')
 							}
 						} else if(arr[ind].classList.contains('busy')) {
 							if(!table.classList.contains('busy')) {
 								let oldChild = table.removeChild(row)
 								tableParent.querySelector('.table-full__busy').appendChild(oldChild)
+								this.parentNode.classList.remove('department')
+								this.parentNode.classList.add('busy')
 							}
 						}
 

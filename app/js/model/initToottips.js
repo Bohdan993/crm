@@ -1,4 +1,4 @@
-import {tippy, createSingleton} from '../../libs/libs'
+import {tippy, createSingleton, sticky} from '../../libs/libs'
 import {throttle, debounce} from './helper'
 import { 
 
@@ -24,6 +24,8 @@ import {
 	// statusChangeTemplate	
 
 } from '../view'
+
+
 
 const initTooltips = () => {
 	if(countryTemplate) {
@@ -107,10 +109,13 @@ const initTooltips = () => {
 
 				let children = instance.props.content.querySelectorAll('input')
 
+				console.log(instance)
+
 				children.forEach(child => {
 					child.addEventListener('change', function(){
 							if(child.checked) {
 							instance.reference.children[1].style.display = 'block'
+							instance.reference.classList.add('active')
 						}
 					})
 				})
@@ -121,6 +126,8 @@ const initTooltips = () => {
 					})
 
 					this.style.display = 'none'
+
+					instance.reference.classList.remove('active')
 				})
 
 			},
@@ -239,6 +246,9 @@ function initVacancyTooltip(el, content){
 			offset: [0, 20],
 			hideOnClick: true,
 			trigger: 'click',
+			sticky: 'reference',
+			moveTransition: 'transform 0.2s ease-out',
+			plugins: [sticky],
 			onCreate(instance) {
 
 			},
@@ -249,8 +259,8 @@ function initVacancyTooltip(el, content){
 					}
 				})
 
-				// let child = instance.reference.querySelector('.active')
-				// console.log(child)
+				status(instance)
+
 			},
 			appendTo: () => document.body,
 		})
@@ -344,5 +354,43 @@ countryInstance.forEach(el=> {
 
 }
 
+
+
+function status(instance) {
+
+	let statuses = instance.popper.querySelectorAll('.status')
+
+	statuses.forEach(el=> {
+	el.addEventListener('click', forEachStatus)
+})
+
+}
+
+
+function forEachStatus() {
+	let tippy = this.closest('.tippy-box').parentNode._tippy
+	let row = tippy.reference.closest('.table-full__row')
+	let parentRow = row.parentNode
+	let parentTable = parentRow.parentNode
+
+	console.log(parentRow)
+
+	if(this.classList.contains('choosen') && !parentRow.classList.contains('choosen')){
+			let oldChild = parentRow.removeChild(row)
+			parentTable.querySelector('.table-full__choosen').appendChild(oldChild)
+	}else if(this.classList.contains('ready') && !parentRow.classList.contains('ready')) {
+			let oldChild = parentRow.removeChild(row)
+			parentTable.querySelector('.table-full__ready').appendChild(oldChild)
+	}else if(this.classList.contains('wait') && !parentRow.classList.contains('wait')) {
+		let oldChild = parentRow.removeChild(row)
+			parentTable.querySelector('.table-full__wait').appendChild(oldChild)
+	}else if(this.classList.contains('department') && !parentRow.classList.contains('department')) {
+		let oldChild = parentRow.removeChild(row)
+			parentTable.querySelector('.table-full__department').appendChild(oldChild)
+	}else if(this.classList.contains('busy') && !parentRow.classList.contains('busy')) {
+		let oldChild = parentRow.removeChild(row)
+			parentTable.querySelector('.table-full__busy').appendChild(oldChild)
+	}
+}
 
 export default initTooltips

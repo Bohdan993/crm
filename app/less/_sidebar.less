@@ -85,7 +85,7 @@
 
 
 .sidebar__list-item {
-	cursor: default;
+	cursor: pointer;
 	
 	padding: 8px 0;
 	padding-right: 6px;
@@ -198,6 +198,7 @@
 // }
 
 .sidebar__filter-wrapper, .sidebar__stats-wrapper {
+	cursor: pointer;
 	position: relative;
 	width: 186/200 * 100%;
 	border-top-right-radius: 25px;
@@ -208,15 +209,37 @@
 	color: @white;
 	white-space: nowrap;
 
-	&:hover {
-		background: @hover_main-color;
-		color: @hover_color;
-		span {
+	span {
 			&:before, &:after {
 				display: block;
 			}
 		}
+
+	&:hover {
+		background: @hover_main-color;
+		color: @hover_color;
+		
 	}
+
+	&.active {
+			&:hover {
+			background:@secondary;
+			color: @main-color;
+			font-weight: 500;
+
+			span {
+				&:before, &:after {
+					background: @main-color;
+				}
+			}
+		}
+
+		
+	}
+
+	// &[aria-expanded="true"] {
+
+	// }
 }
 
 
@@ -354,3 +377,5 @@
 	}
 
 }
+
+

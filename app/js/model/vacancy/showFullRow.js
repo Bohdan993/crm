@@ -8,27 +8,23 @@ const showFullRow = (rows) => {
 
 	  linkToggle[i].addEventListener('click', function(event){
 
-	  		let parent  = this.querySelector('.table-full')
+	  		let container  = this.querySelector('.table-full')
 	  		
 	  		if(event.target.classList.contains('no-open')) {
 					return
 				}
 
-				if(isChildOf(event.target, parent)) {
+				if(isChildOf(event.target, container)) {
 					return
 				}
-
-				// console.log(event.target)
-
-
-		    var container = this.querySelector('.table-full');
+		    
 
 		    if (container && !container.classList.contains('active')) {
 		      
 		      container.classList.add('active');
 		      container.style.height = 'auto';
 
-		      var height = container.clientHeight + 'px';
+		      let height = container.clientHeight + 'px';
 
 		      container.style.height = '0px';
 

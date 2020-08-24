@@ -3,7 +3,7 @@
 // import Chart from 'chart.js'
 import OverlayScrollbars from 'overlayscrollbars'
 import MicroModal from 'micromodal'
-import tippy, {createSingleton} from 'tippy.js';
+import tippy, {createSingleton, sticky} from 'tippy.js';
 import Choices from 'choices.js'
 import Autocomplete from '@trevoreyre/autocomplete-js'
 // import { detectOverflow } from '@popperjs/core'
@@ -18,6 +18,7 @@ export {
 	tippy,
 	Choices,
 	createSingleton,
-	Autocomplete
+	Autocomplete, 
+	sticky
 	// detectOverflow
 }

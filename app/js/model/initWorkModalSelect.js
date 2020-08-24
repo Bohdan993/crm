@@ -8,8 +8,9 @@ const initWorkModalSelect = (elem) => {
 			value: 'Отсутствует',
 			label: '<span>Отсутствует</span>',
 			selected:true,
-		  disabled: true,
+		  disabled: false,
 		},
+		
 		{
 			value: 'Алексей',
 		  label: `<i class="tag manager-tag dark-blue-tag">AK</i><span>Алексей</span>`,
@@ -21,7 +22,12 @@ const initWorkModalSelect = (elem) => {
 		  label: '<i class="tag manager-tag light-green-tag">СК</i><span>Светлана</span>',
 		  selected: false,
 		  disabled: false,
-		}],
+		},
+	
+
+		],
+		searchEnabled: false,
+		shouldSort: false,
 		classNames: {
 			containerOuter: 'choices sidebar-select-modal',
 			containerInner: 'choices__inner sidebar-select-modal_inner',
@@ -33,11 +39,11 @@ const initWorkModalSelect = (elem) => {
  } else if (elem.classList.contains('country-select')) {
  	 const choices = new Choices(elem, {
 		choices: [
-		{
+			{
 			value: 'Отсутствует',
 			label: '<span>Отсутствует</span>',
 			selected:true,
-		  disabled: true,
+		  disabled: false,
 		},
 		{
 			value: 'Норвегия',
@@ -56,7 +62,12 @@ const initWorkModalSelect = (elem) => {
                 </svg></i><span>Норвегия</span>`,
 		  selected: false,
 		  disabled: false,
-		}],
+		},
+	
+
+		],
+		searchEnabled: false,
+		shouldSort: false,
 		classNames: {
 			containerOuter: 'choices common-info-select-modal',
 			containerInner: 'choices__inner common-info-select-modal_inner',
@@ -72,7 +83,7 @@ const initWorkModalSelect = (elem) => {
 			value: 'Отсутствует',
 			label: '<span>Отсутствует</span>',
 			selected:true,
-		  disabled: true,
+		  disabled: false,
 		},
 		{
 			value: 'Почтовое письмо',
@@ -121,9 +132,13 @@ const initWorkModalSelect = (elem) => {
                 </svg></i><span>Факс</span>`,
 		  selected: false,
 		  disabled: false,
-		}
+		},
+
+	
 
 		],
+		searchEnabled: false,
+		shouldSort: false,
 		classNames: {
 			containerOuter: 'choices contact-select-modal',
 			containerInner: 'choices__inner contact-select-modal_inner',

@@ -1,8 +1,40 @@
 .demands__top {
 	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 20px;
+	input {
+		height: 26px;
+		border-radius: 3px;
+		padding: 3px 7px;
+		text-align: left;
+		border: 1px solid transparent;
+		transition: border 0.2s linear;
 
+		&:focus {
+			border: 1px solid @main-color;
+		}
+	}
+
+	p {
+		white-space: nowrap;
+	}
+	.demands__clients {
+		flex-basis: 98/998 * 100%;
+	}
+
+	.demands__men {
+		flex-basis: 33/998 * 100%;
+	}
+
+	.demands__women {
+		flex-basis: 33/998 * 100%;
+	}
+
+	.demands__languages {
+		flex-basis: 770/998 * 100%;
+	}
 }
 
 .demands__bottom {
-
 }

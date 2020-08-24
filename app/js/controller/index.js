@@ -72,7 +72,8 @@ import {
 	mainInfoChooseBlock,
 	switcher,
 	chooseEmployer2,
-	chooseProductType2
+	chooseProductType2,
+	clientsRow
 
 } from '../view'
 
@@ -267,7 +268,10 @@ const app = {
 	},
 
 	sfcr() {
-		showFullClientsRow(switcher)
+		if(clientsRow) {
+			showFullClientsRow(switcher, clientsRow)
+		}
+		
 	}
 
 }
