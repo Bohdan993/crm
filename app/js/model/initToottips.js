@@ -20,7 +20,8 @@ import {
 	employerTypeTemplate,
 	employerTypeTemplate2,
 	workTypeTemplate,
-	pricePopupTemplate
+	pricePopupTemplate,
+	choiceClientTemplate2
 	// statusChangeTemplate	
 
 } from '../view'
@@ -81,6 +82,9 @@ const initTooltips = () => {
 	}
 	if(employerTypeTemplate2) {
 		employerTypeTemplate2.style.display = 'block'
+	}
+	if(choiceClientTemplate2) {
+		choiceClientTemplate2.style.display = 'block'
 	}
 	
 	
@@ -190,6 +194,8 @@ function initWorkModalTooltip(el, content){
 
 initWorkModalTooltip('.add-feedback-form .modal-row__feedback-ico', typeFeedbackTemplate)
 initWorkModalTooltip('.add-feedback-form .modal-row__feedback-choise', choiceClientTemplate)
+initWorkModalTooltip('.clients .modal-row__controls .add-item', choiceClientTemplate2)
+
 
 
 function initVacancyTooltip(el, content){

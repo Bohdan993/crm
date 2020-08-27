@@ -21,6 +21,8 @@ import addFeedbackForm from './addfeedbackForm'
 import showRemoveBtnOnChecking from './showRemoveBtnOnChecking'
 import autocompleteInput from './autocompleteInput'
 import switchModalParts from './switchModalParts'
+import linkToSocial from './linkToSocial'
+import changeDirection from './changeDirection'
 
 import showFullRow from './vacancy/showFullRow'
 import switchRowStatuses from './vacancy/switchRowStatuses'
@@ -59,5 +61,7 @@ export {
 	autocompleteInput,
 	showChooseBlockFullInfo,
 	showFullClientsRow,
-	switchModalParts
+	switchModalParts,
+	linkToSocial,
+	changeDirection
 }

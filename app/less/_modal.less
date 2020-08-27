@@ -495,6 +495,11 @@
 
   .common-info__right {
     flex-basis: 730/1040 * 100%;
+
+    .ico, .ico svg {
+      width: 18px;
+      height: 18px;
+    }
   }
 
   .common-info__company, .common-info__country {
@@ -567,6 +572,49 @@
 
   .common-info__manufactury-area, .common-info__contact-person-area {
     font-weight: 500;
+  }
+
+  .manufactury-type {
+    .input-group {
+      position: relative;
+
+      &:hover {
+         .delete-manufactury-type {
+            opacity: 1;
+            pointer-events: all;
+            visibility: visible;
+         }
+        
+      }
+    }
+    .delete-manufactury-type {
+      width:  16px;
+      height:   16px;
+      border-radius: 50%;
+      display: block;
+      background: @red;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      // z-index: 2;
+      right:  7px;
+      cursor: pointer;
+      opacity: 0;
+      pointer-events: none;
+      visibility: hidden;
+      transition: opacity 0.2s linear;
+      &:before {
+        content: '';
+        width:  10px;
+        height:   2px;
+        background: @white;
+        border-radius: 5px;
+        position: absolute;
+        left:   50%;
+        top:  50%;
+        transform: translate(-50%, -50%);
+      }
+    }
   }
 
   .modal-row__manufactury-type-row {
@@ -680,7 +728,9 @@
   align-items: center;
   border-right: 1px solid @secondary;
   height: 100%;
-
+  span {
+    margin-top: 0.2em;
+  }
   i.label {
     &:not(:last-child) {
       margin-right: 10px;
@@ -696,10 +746,16 @@
   align-items: center;
   border-right: 1px solid @secondary;
   height: 100%;
+
+   time {
+      margin-top: 0.2em;
+    }
  }
 
  .modal-row__vacancies-history-date {
     flex-basis: 196/982 * 100%;
+
+   
  }
 
  .modal-row__vacancies-history-terms {
@@ -713,6 +769,10 @@
   align-items: center;
   height: 100%;
   padding-left: 8px;
+
+  p {
+    margin-top: 0.2em;
+  }
  }
 
  .modal-row__contacts-history-text {
@@ -744,7 +804,7 @@
   .ico {
     position: absolute;
     top: 50%;
-    left: 8px;
+    left: 6px;
     transform: translateY(-50%);
   }
   .info-area {
@@ -834,11 +894,11 @@
   .modal-row__feedback-row {
     i {
       width: 20px;
-      height: 14px;
+      height: 20px;
 
       svg {
         width: 20px;
-        height: 14px;
+        height: 20px;
       }
     }
 
@@ -850,7 +910,7 @@
   .modal-row__feedback-speakers {
     margin-bottom: 6px;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
 
     *:not(:last-child) {
       margin-right: 8px;
@@ -923,10 +983,10 @@
       }
     }
    }
-    .modal-row__feedback-direction {
-      transform: rotate(180deg);
+    // .modal-row__feedback-direction {
+    //   transform: rotate(180deg);
   
-    }
+    // }
 
    .add-feedback-form {
     display: none; 
@@ -953,6 +1013,7 @@
       }
       
     }
+
       .feedback-btn {
         background: @main-color;
         color: @white;
@@ -996,8 +1057,8 @@
      .modal-row__feedback-ico {
         background: @main-color;
         border-radius: 50%;
-        height: 24px;
-        width: 24px;
+        height: 32px;
+        width: 32px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -1008,13 +1069,18 @@
      .modal-row__feedback-direction {
         background: @main-color;
         border-radius: 50%;
-        height: 20px;
-        width: 20px;
+        height: 22px;
+        width: 22px;
         display: flex;
         align-items: center;
         justify-content: center;
         cursor: pointer;
         padding: 1px;
+
+        svg {
+          width: 16px;
+          height: 16px;
+        }
      }
 
      .modal-row__feedback-date {
@@ -1043,6 +1109,44 @@
   .sidebar__filter-wrapper {
     padding-top: 8px;
     padding-bottom: 8px;
+  }
+  .phone-group {
+    .ico, .ico svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  .instagram-group {
+    .ico, .ico svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .ico {
+      left: 3px;
+    }
+  }
+  .web-group {
+    .ico, .ico svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .ico {
+      left: 4px;
+    }
+  }
+
+  .mail-group {
+    .ico, .ico svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .ico {
+      left: 4px;
+    }
   }
 }
 
@@ -1215,6 +1319,9 @@
   justify-content: flex-start;
   align-items: flex-start;
 
+
+ 
+
   .contact-history-modal__block {
     &:not(:last-child) {
       margin-right: 20px;
@@ -1256,6 +1363,14 @@
           background: @white;
           border-radius: 50%;
           padding: 1px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          svg {
+            width: 16px;
+            height: 16px;
+          }
         }
       }
     }
@@ -1274,7 +1389,7 @@
       flex-basis: 177/740 * 100%;
     }
 
-      .contact-ico {
+  .contact-ico {
     width: 20px;
     height: 16px;
     margin-right: 6px;

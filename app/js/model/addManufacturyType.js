@@ -10,6 +10,7 @@ const addManufacturyType = (btn, block) => {
                           </select>
                         </div>
                         <div class="input-group">
+                        		<span class="delete-manufactury-type"></span>
                           <input class="info-area" type="text" name="">
                         </div>
                       </div>`

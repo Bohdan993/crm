@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/libs.min.css?v=1598487018548">
-    <link rel="stylesheet" href="css/main.min.css?v=1598487018548">
+    <link rel="stylesheet" href="css/libs.min.css?v=1598565008704">
+    <link rel="stylesheet" href="css/main.min.css?v=1598565008704">
   </head>
   <body>
     <main class="main">
@@ -1357,7 +1357,7 @@
             </div>
           </form>
         </div>
-        <div id="type-feedback-popup">
+        <div class="work-modal-popup" id="type-feedback-popup">
           <form>
             <p>Тип отзыва</p>
             <div class="input-group">
@@ -1390,7 +1390,6 @@
               <input type="radio" id="client-feedback-rbtn" name="client-feedback-rbtn">
               <label for="client-feedback-rbtn">Выберите клиента</label>
               <input class="find-client" type="text">
-              <ul class="autocomplete-result-list"></ul>
             </div>
             <div class="input-group">
               <input type="radio" id="uamf-feedback-rbtn" name="client-feedback-rbtn">
@@ -1522,16 +1521,16 @@
                         <div class="common-info__contact-info common-info__group">
                           <div class="common-info__contact-info_curr common-info__group_small info-block">
                             <p>Контактная информация</p>
-                            <div class="input-group info-group-ico"><i class="ico">
+                            <div class="input-group info-group-ico phone-group"><i class="ico">
                                 <svg>
                                   <use xlink:href="img/sprites/svg/symbol/sprite.svg#phone"></use>
                                 </svg></i>
                               <input class="info-area" type="text" value="+47 77847243">
                             </div>
-                            <div class="input-group info-group-ico"><i class="ico">
-                                <svg>
-                                  <use xlink:href="img/sprites/svg/symbol/sprite.svg#mail"></use>
-                                </svg></i>
+                            <div class="input-group info-group-ico mail-group"><a class="social-link mail-link" href="#" rel="nofollow noreferrer noopener"><i class="ico">
+                                  <svg>
+                                    <use xlink:href="img/sprites/svg/symbol/sprite.svg#mail"></use>
+                                  </svg></i></a>
                               <input class="info-area" type="text" value="solblomsten@bogront.no">
                             </div>
                           </div>
@@ -1547,23 +1546,23 @@
                         </div>
                         <div class="common-info__social info-block">
                           <p>Сайт и социальные сети</p>
-                          <div class="input-group info-group-ico"> <i class="ico">
-                              <svg>
-                                <use xlink:href="img/sprites/svg/symbol/sprite.svg#web"></use>
-                              </svg></i>
+                          <div class="input-group info-group-ico web-group"><a class="social-link" href="#" rel="nofollow noreferrer noopener"><i class="ico">
+                                <svg>
+                                  <use xlink:href="img/sprites/svg/symbol/sprite.svg#web"></use>
+                                </svg></i></a>
                             <input class="info-area" type="text" value="www.bogront.no/solblomsten/indt.no/solblomsten/ind">
                           </div>
-                          <div class="input-group info-group-ico"> <i class="ico">
-                              <svg>
-                                <use xlink:href="img/sprites/svg/symbol/sprite.svg#facebook"></use>
-                              </svg></i>
-                            <input class="info-area" type="text" value="www.bogront.no/solblomsten/">
+                          <div class="input-group info-group-ico"><a class="social-link" href="#" rel="nofollow noreferrer noopener"> <i class="ico">
+                                <svg>
+                                  <use xlink:href="img/sprites/svg/symbol/sprite.svg#facebook"></use>
+                                </svg></i></a>
+                            <input class="info-area" type="text" value="">
                           </div>
-                          <div class="input-group info-group-ico"> <i class="ico">
-                              <svg>
-                                <use xlink:href="img/sprites/svg/symbol/sprite.svg#instagram"></use>
-                              </svg></i>
-                            <input class="info-area" type="text" value="www.bogront.no/solblo">
+                          <div class="input-group info-group-ico instagram-group"> <a class="social-link" href="#" rel="nofollow noreferrer noopener"><i class="ico">
+                                <svg>
+                                  <use xlink:href="img/sprites/svg/symbol/sprite.svg#instagram"></use>
+                                </svg></i></a>
+                            <input class="info-area" type="text" value="https://www.instagram.com/b_0_h_dan/?hl=ru">
                           </div>
                         </div>
                         <div class="common-info__more-info common-info__group">
@@ -1599,26 +1598,26 @@
                       </div>
                       <div class="modal-row__layer">
                         <div class="modal-row__manufactury-type-row">
-                          <div class="input-group modal-row__manufactury-type-select native-select"> 
+                          <div class="input-group modal-row__manufactury-type-select native-select">
                             <select class="info-area" name="">
                               <option value="" disabled selected>Выбрать</option>
                               <option value="">Коровы</option>
                               <option value="">Цветы</option>
                             </select>
                           </div>
-                          <div class="input-group">
+                          <div class="input-group"><span class="delete-manufactury-type"></span>
                             <input class="info-area" type="text" name="">
                           </div>
                         </div>
                         <div class="modal-row__manufactury-type-row">
-                          <div class="input-group modal-row__manufactury-type-select native-select"> 
+                          <div class="input-group modal-row__manufactury-type-select native-select">
                             <select class="info-area" name="">
                               <option value="" disabled selected>Выбрать</option>
                               <option value="">Коровы</option>
                               <option value="">Цветы</option>
                             </select>
                           </div>
-                          <div class="input-group">
+                          <div class="input-group"><span class="delete-manufactury-type"></span>
                             <input class="info-area" type="text" name="">
                           </div>
                         </div>
@@ -2127,10 +2126,10 @@
                         <form class="modal-row__feedback-row add-feedback-form">
                           <div class="modal-row__feedback-speakers"><i class="modal-row__feedback-ico">
                               <svg>
-                                <use xlink:href="img/sprites/svg/symbol/sprite.svg#pos-feedback"></use>
-                              </svg></i><a class="modal-row__feedback-choise">Выбрать</a><i class="modal-row__feedback-direction">
+                                <use xlink:href="img/sprites/svg/symbol/sprite.svg#pos-feedback-white"></use>
+                              </svg></i><a class="modal-row__feedback-choise">Выбрать</a><i class="modal-row__feedback-direction change-direction">
                               <svg>
-                                <use xlink:href="img/sprites/svg/symbol/sprite.svg#arrow"></use>
+                                <use xlink:href="img/sprites/svg/symbol/sprite.svg#arrow-white"></use>
                               </svg></i>
                             <p class="modal-row__feedback-to">Thompson Equestrian Partners</p>
                           </div>
@@ -2293,7 +2292,7 @@
                 </div>
                 <div class="contact-history-modal__block direction-block">
                   <p>Направление</p>
-                  <div class="input-group"><i class="ico">
+                  <div class="input-group"><i class="ico change-direction">
                       <svg>
                         <use xlink:href="img/sprites/svg/symbol/sprite.svg#arrow"></use>
                       </svg></i></div>
@@ -2326,7 +2325,7 @@
         </div>
       </div>
     </div>
-    <script src="js/libs.min.js?v=1598487018549" defer></script>
-    <script src="js/script.min.js?v=1598487018549" async></script>
+    <script src="js/libs.min.js?v=1598565008705" defer></script>
+    <script src="js/script.min.js?v=1598565008705" async></script>
   </body>
 </html>

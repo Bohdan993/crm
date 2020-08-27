@@ -26,7 +26,9 @@ import {
 	autocompleteInput,
 	showChooseBlockFullInfo,
 	showFullClientsRow,
-	switchModalParts
+	switchModalParts,
+	linkToSocial,
+	changeDirection
 } from '../model'
 
 import {OverlayScrollbars} from '../../libs/libs'
@@ -76,7 +78,9 @@ import {
 	chooseProductType2,
 	clientsRow,
 	modalParts,
-	modalSwitchers
+	modalSwitchers,
+	socialLinks,
+	changeDirection as changeDirectionArrows
 
 } from '../view'
 
@@ -108,6 +112,8 @@ const app = {
 		this.scbfi()
 		this.sfcr()
 		this.smp()
+		this.lts()
+		this.cd()
 		// this.test()
 		// this.slt()
 	},
@@ -280,6 +286,14 @@ const app = {
 
 	smp() {
 		switchModalParts(modalSwitchers, modalParts)
+	},
+
+	lts() {
+		linkToSocial(socialLinks)
+	},
+
+	cd() {
+		changeDirection(changeDirectionArrows)
 	}
 
 }

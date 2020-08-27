@@ -124,13 +124,14 @@
 									.common-info__contact-info_curr.common-info__group_small.info-block
 										p
 											|Контактная информация
-										.input-group.info-group-ico
+										.input-group.info-group-ico.phone-group
 											i.ico
 												+svg2('phone')
 											input.info-area(type="text" value="+47 77847243")
-										.input-group.info-group-ico
-											i.ico
-												+svg2('mail')
+										.input-group.info-group-ico.mail-group
+											a.social-link.mail-link(href="#" rel="nofollow noreferrer noopener")
+												i.ico
+													+svg2('mail')
 											input.info-area(type="text" value="solblomsten@bogront.no")
 									.common-info__contact-info_other.common-info__group_big.info-block
 										p
@@ -142,18 +143,21 @@
 								.common-info__social.info-block
 									p
 										|Сайт и социальные сети
-									.input-group.info-group-ico 
-										i.ico
-											+svg2('web')
+									.input-group.info-group-ico.web-group
+										a.social-link(href="#" rel="nofollow noreferrer noopener")
+											i.ico
+												+svg2('web')
 										input.info-area(type="text" value="www.bogront.no/solblomsten/indt.no/solblomsten/ind")
-									.input-group.info-group-ico 
-										i.ico
-											+svg2('facebook')
-										input.info-area(type="text" value="www.bogront.no/solblomsten/")
-									.input-group.info-group-ico 
-										i.ico
-											+svg2('instagram')
-										input.info-area(type="text" value="www.bogront.no/solblo")
+									.input-group.info-group-ico
+										a.social-link(href="#" rel="nofollow noreferrer noopener") 
+											i.ico
+												+svg2('facebook')
+										input.info-area(type="text" value="")
+									.input-group.info-group-ico.instagram-group 
+										a.social-link(href="#" rel="nofollow noreferrer noopener")
+											i.ico
+												+svg2('instagram')
+										input.info-area(type="text" value="https://www.instagram.com/b_0_h_dan/?hl=ru")
 								.common-info__more-info.common-info__group
 									.common-info__more-info_inner-left
 										.common-info__more-info-about.info-block
@@ -203,7 +207,7 @@
 					p
 						|Направление
 					.input-group
-						i.ico
+						i.ico.change-direction
 							+svg2('arrow')
 				.contact-history-modal__block.date-block
 					p

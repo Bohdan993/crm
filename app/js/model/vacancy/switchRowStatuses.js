@@ -179,7 +179,7 @@ const switchRowStatuses = (statuses) => {
 				let row = parent.parentNode.parentNode
 				let table = row.parentNode
 				let tableParent = table.parentNode.parentNode
-				console.log(row)
+				// console.log(row)
 				// console.log(table)
 			
 				slider.forEach((elem, ind, arr) => {
@@ -194,7 +194,7 @@ const switchRowStatuses = (statuses) => {
 							text: arr[ind].textContent,
 							date: new Date().toLocaleDateString()
 						}
-						console.log(arr[ind])
+						// console.log(arr[ind])
 						instance.setContent(`<div class="row-popup" id="status-change-popup">
 		          <form>
 		            <div class="input-group">
@@ -240,12 +240,14 @@ const switchRowStatuses = (statuses) => {
 		        </div>`);
 						if(arr[ind].classList.contains('choosen')) {
 							if(!table.classList.contains('choosen')) {
+								console.log(arr[ind].textContent)
 								let oldChild = table.removeChild(row)
 								tableParent.querySelector('.table-full__choosen').appendChild(oldChild)
 								this.parentNode.classList.add('choosen')
 							}
 						} else if(arr[ind].classList.contains('ready')) {
 							if(!table.classList.contains('ready')) {
+								console.log(arr[ind].textContent)
 								let oldChild = table.removeChild(row)
 								tableParent.querySelector('.table-full__ready').appendChild(oldChild)
 								this.parentNode.classList.remove('choosen')
@@ -274,26 +276,62 @@ const switchRowStatuses = (statuses) => {
 							}
 						}
 
-						// arr[ind].dispatchEvent(new CustomEvent("date", {
-					 //    detail: { date: new Date().toLocaleDateString() }
-					 //  }));
+						
+						// let oldChild = table.removeChild(row)
 
-					 //  arr[ind].addEventListener("date", function(event) {
-				  //   	alert(event.detail.date)
-				  // 	});
+						// if(arr[ind].textContent === 'Подготовка CV') {
 
+						// 	this.parentNode.classList.add('choosen')
+						// 	tableParent.querySelector('.table-full__choosen').appendChild(oldChild)
+
+						// }else if(arr[ind].textContent === 'CV отправлено') {
+
+						// 	this.parentNode.classList.add('choosen')
+						// 	let node = tableParent.querySelector('.table-full__choosen').querySelector('[data-count="2"]:last-child')
+						// 	oldChild.after(node)
+
+						// }else if(arr[ind].textContent === 'Утвержден') {
+
+						// 	this.parentNode.classList.remove('choosen')
+						// 	this.parentNode.classList.add('ready')
+
+						// }else if(arr[ind].textContent === 'Контракт подписан') {
+
+						// 	this.parentNode.classList.remove('choosen')
+						// 	this.parentNode.classList.add('ready')
+
+						// }else if(arr[ind].textContent === 'Подан в визовый центр') {
+
+						// 	this.parentNode.classList.remove('ready')
+						// 	this.parentNode.classList.add('wait')
+
+						// }else if(arr[ind].textContent === 'Получил разрешение') {
+
+						// 	this.parentNode.classList.remove('wait')
+						// 	this.parentNode.classList.add('department')
+
+						// }else if(arr[ind].textContent === 'Забрал разрешение') {
+
+						// 	this.parentNode.classList.remove('wait')
+						// 	this.parentNode.classList.add('department')
+
+						// }else if(arr[ind].textContent === 'Билеты куплены') {
+
+						// 	this.parentNode.classList.remove('wait')
+						// 	this.parentNode.classList.add('department')
+
+						// }else if(arr[ind].textContent === 'Трудоустроен') {
+
+						// 	this.parentNode.classList.remove('department')
+						// 	this.parentNode.classList.add('busy')
+
+						// }
+
+			
 						flag = true
 					}
 				})
 
-				// console.log(table.children.length	)
-				// if(table.children.length === 1) {
-				// 	table.style.display = 'none'
-				// }
-
-				// if(table.children.length > 1) {
-				// 	table.style.display = 'block'
-				// }
 			})
 
 		})

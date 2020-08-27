@@ -13,8 +13,37 @@
 }
 
 
+.vacancy-rows {
+	.row__fullname {
+		a {
+			color: @font-color;
+
+			&:focus {
+				font-weight: 400;
+			}
+		}
+		transition: text-decoration 0.8s linear;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
+
+
 .row__labels-2 {
 	flex-basis: 228/1720 * 100%;
+
+	.attention__label{
+		&:hover {
+			background: @orange - 25;
+		}
+	}
+
+	.attention-number {
+		&:hover {
+			color: @orange - 25;
+		}
+	}
 	
 }
 
@@ -49,6 +78,7 @@
 }
 
 .row__cell .row__indicator {
+	overflow: visible;
 	span {
 		// line-height: 22px;
 		display: inline-block;

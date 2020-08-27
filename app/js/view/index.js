@@ -5,6 +5,7 @@ const rows = document.querySelectorAll('.row');
 const sidebarSearchInput = document.querySelector('.sidebar__search-input');
 const sidebarLayout = document.querySelector('.sidebar__layout');
 
+
 ////Tooltips Templates
 const countryTemplate = document.querySelector('#country-popup');
 const typeManufacturyTemplate = document.querySelector('#type-manufactury-popup');
@@ -16,6 +17,7 @@ const vacanciesTemplate = document.querySelector('#vacancies-popup');
 const sortingTemplate = document.querySelector('#sorting-popup');
 const typeFeedbackTemplate = document.querySelector('#type-feedback-popup')
 const choiceClientTemplate = document.querySelector('#choice-client-feedback-popup')
+const choiceClientTemplate2 = document.querySelector('#choice-client-popup')
 const statusTemplate = document.querySelector('#status-popup')
 const selectingTemplate = document.querySelector('#selecting-popup')
 const typeWorkTemplate = document.querySelector('#type-work-popup')
@@ -68,6 +70,10 @@ const addfeedbackForm = document.querySelector('.work-modal .feedback .add-feedb
 
 const modalSwitchers = document.querySelectorAll('[data-part]')
 const modalParts = document.querySelectorAll('.my-modal-part')
+
+const socialLinks = document.querySelectorAll('.social-link')
+
+const changeDirection = document.querySelectorAll('.change-direction')
 
 
 // Popups elements
@@ -162,7 +168,10 @@ export {
 	chooseProductType2,
 	clientsRow,
 	modalParts,
-	modalSwitchers
+	modalSwitchers,
+	socialLinks,
+	changeDirection,
+	choiceClientTemplate2
 	// mainInfoPrice
 	// statusChangeTemplate
 }

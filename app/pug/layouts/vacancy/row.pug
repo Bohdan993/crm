@@ -1,13 +1,13 @@
 .row.no-open
 	.f-container
 		.row__terms.row__cell.hot
-		.row__labels-2.row__cell.no-open
+		.row__labels-2.row__cell
 			i.label.attention__label.no-open(data-custom-open="modal-2")
 				span.no-open
 					|NO
 				span.no-open
 					|118 - 22
-			span.number-of-people.attention-number.no-open
+			span.number-of-people.attention-number.no-open(data-custom-open="modal-2")
 					|М12 Ж5
 		.row__indicators.row__cell
 			span.row__indicator.indicator.empty
@@ -16,10 +16,11 @@
 			span.row__indicator.indicator.empty
 			span.row__indicator.indicator.empty
 			span.row__indicator.indicator.empty
-		.row__name-2.row__cell.no-open
+		.row__name-2.row__cell
 			p.row__fullname.no-open
-				|Thompson Equestrian Partners / Junction Engineering
-			i.tag.manager-tag.dark-blue-tag.no-open
+				a.no-open(href="#")
+					|Thompson Equestrian Partners / Junction Engineering
+			i.tag.manager-tag.dark-blue-tag
 				|AK
 		.row__vacancies.row__cell
 			i.label.green__label
@@ -38,7 +39,7 @@
 				.table-full__placeholder.first
 				.table-full__placeholder.second
 				.table-full__placeholder.third
-			.table-full__row.f-container
+			.table-full__row.f-container(data-status="CV отправлено" data-count="2" data-table="choosen")
 					.table-full__cell.row__cell.cell-names
 						p
 							|Гурківський Олександр
@@ -89,7 +90,7 @@
 						p
 							|Цветы
 					.table-full__cell.row__cell.cell-notes
-			.table-full__row.f-container
+			.table-full__row.f-container(data-status="CV отправлено" data-count="2" data-table="choosen")
 				.table-full__cell.row__cell.cell-names
 					p
 						|Лемешко Аліна
@@ -131,7 +132,7 @@
 					p
 						|Поля
 				.table-full__cell.row__cell.cell-notes
-			.table-full__row.f-container
+			.table-full__row.f-container(data-status="CV отправлено" data-count="2" data-table="choosen")
 				.table-full__cell.row__cell.cell-names
 					p
 						|Романов Валентин
@@ -172,7 +173,7 @@
 							|AC
 				.table-full__cell.row__cell.cell-exp
 				.table-full__cell.row__cell.cell-notes
-			.table-full__row.f-container
+			.table-full__row.f-container(data-status="CV отправлено" data-count="2" data-table="choosen")
 				.table-full__cell.row__cell.cell-names
 					p
 						|Тарасюк Віталій
@@ -216,7 +217,7 @@
 					p
 						|Коровы
 				.table-full__cell.row__cell.cell-notes
-			.table-full__row.f-container
+			.table-full__row.f-container(data-status="CV отправлено" data-count="2" data-table="choosen")
 				.table-full__cell.row__cell.cell-names
 					p
 						|Бичківська Алла
@@ -270,7 +271,7 @@
 				.table-full__placeholder.first
 				.table-full__placeholder.second
 				.table-full__placeholder.third
-			.table-full__row.f-container
+			.table-full__row.f-container(data-status="Утвержден" data-count="1" data-table="ready")
 					.table-full__cell.row__cell.cell-names
 						p
 							|Червінський Йосип
@@ -307,7 +308,7 @@
 					.table-full__cell.row__cell.cell-notes
 						p
 							|Записан в посольство на 10.05
-			.table-full__row.f-container
+			.table-full__row.f-container(data-status="Утвержден" data-count="1" data-table="ready")
 				.table-full__cell.row__cell.cell-names
 					p
 						|Шащук Іван
@@ -354,7 +355,7 @@
 				.table-full__placeholder.first
 				.table-full__placeholder.second
 				.table-full__placeholder.third
-			.table-full__row.f-container
+			.table-full__row.f-container(data-status="Подан в визовый центр" data-count="1" data-table="wait")
 				.table-full__cell.row__cell.cell-names
 					p
 						|Іванчик Олександр
@@ -389,7 +390,7 @@
 					.cell-status__right
 				.table-full__cell.row__cell.cell-exp
 				.table-full__cell.row__cell.cell-notes
-			.table-full__row.f-container
+			.table-full__row.f-container(data-status="Подан в визовый центр" data-count="1" data-table="wait")
 				.table-full__cell.row__cell.cell-names
 					p
 						|Волтарніст Юлія
@@ -424,7 +425,7 @@
 					.cell-status__right
 				.table-full__cell.row__cell.cell-exp
 				.table-full__cell.row__cell.cell-notes
-			.table-full__row.f-container
+			.table-full__row.f-container(data-status="Подан в визовый центр" data-count="1" data-table="wait")
 				.table-full__cell.row__cell.cell-names
 					p
 						|Ситнік Оксана
@@ -466,7 +467,7 @@
 				.table-full__placeholder.first
 				.table-full__placeholder.second
 				.table-full__placeholder.third
-			.table-full__row.f-container
+			.table-full__row.f-container(data-status="Забрал разрешение" data-count="2" data-table="department")
 				.table-full__cell.row__cell.cell-names
 					p
 						|Коргун Максим
@@ -508,7 +509,7 @@
 				.table-full__placeholder.first
 				.table-full__placeholder.second
 				.table-full__placeholder.third
-			.table-full__row.f-container
+			.table-full__row.f-container(data-status="Трудоустроен" data-count="1" data-table="busy")
 				.table-full__cell.row__cell.cell-names
 					p
 						|Конончук Віталій
@@ -546,7 +547,7 @@
 .row.no-open
 	.f-container
 		.row__terms.row__cell.medium
-		.row__labels-2.row__cell.no-open
+		.row__labels-2.row__cell
 			i.label.attention__label.no-open(data-custom-open="modal-2")
 				span.no-open
 					|DE
@@ -571,10 +572,11 @@
 			span.row__indicator.indicator.busy
 				span
 					|2
-		.row__name-2.row__cell.no-open
+		.row__name-2.row__cell
 			p.row__fullname.no-open
-				|Gustav Schlüter Gmbh
-			i.tag.manager-tag.light-green-tag.no-open
+				a.no-open(href="#")
+					|Gustav Schlüter Gmbh
+			i.tag.manager-tag.light-green-tag
 				|CK
 		.row__vacancies.row__cell
 			i.label.hot__label
