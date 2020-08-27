@@ -66,7 +66,8 @@ const feedbackAddItem = document.querySelector('.work-modal .feedback .add-item'
 const addfeedbackForm = document.querySelector('.work-modal .feedback .add-feedback-form')
 
 
-
+const modalSwitchers = document.querySelectorAll('[data-part]')
+const modalParts = document.querySelectorAll('.my-modal-part')
 
 
 // Popups elements
@@ -159,7 +160,9 @@ export {
 	findEmployer2,
 	chooseEmployer2,
 	chooseProductType2,
-	clientsRow
+	clientsRow,
+	modalParts,
+	modalSwitchers
 	// mainInfoPrice
 	// statusChangeTemplate
 }

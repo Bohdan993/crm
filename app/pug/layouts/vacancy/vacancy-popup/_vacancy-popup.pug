@@ -2,6 +2,9 @@
 	.modal__overlay(tabindex='-1' data-custom-close="modal-2")
 		.modal__wrapper.my-modal-wrapper(data-custom-close="modal-2")
 			.modal__container.work-modal.my-modal(role='dialog' aria-modal='true' aria-labelledby='modal-2-title')
+				span.modal__close(data-custom-close="modal-1")
+					span
+					span
 				.sidebar
 					.sidebar__layout
 						.f-container
@@ -42,21 +45,25 @@
 									li.sidebar__action-item
 							.sidebar__menu
 								ul.sidebar__filter
-									li.sidebar__filter-item
+									li.sidebar__filter-item.active(data-part="vacancy-data")
+										.sidebar__filter-wrapper
+											p
+												|Данные вакансии
+									li.sidebar__filter-item(data-part="check-list")
 										.sidebar__filter-wrapper
 											p
 												|Чек-лист
-									li.sidebar__filter-item
+									li.sidebar__filter-item(data-part="print-pt")
 										.sidebar__filter-wrapper
 											p
 												|Распечатать ПТ
 									
-									li.sidebar__filter-item
+									li.sidebar__filter-item(data-part="archive-vacancy")
 										.sidebar__filter-wrapper
 											p
 												|Архивировать вакансию
 									
-									li.sidebar__filter-item
+									li.sidebar__filter-item(data-part="create-vacancy-copy")
 										.sidebar__filter-wrapper
 											p
 												|Создать копию вакансии
@@ -68,8 +75,21 @@
 											span
 												|20.04.2019
 				.rows
-					include _main-info
-					include _clients
-					include _demands
-					include _terms
-					include ../../work-popup/_feedback
+					#vacancy-data.vacancy-data.my-modal-part.active
+						include _main-info
+						include _clients
+						include _demands
+						include _terms
+						include ../../work-popup/_feedback
+					#check-list.check-list.my-modal-part
+						p
+							|Чек лист
+					#print-pt.print-pt.my-modal-part
+						p
+							|Распечатать ПТ
+					#archive-vacancy.archive-vacancy.my-modal-part
+						p
+							|Архивировать вакансию
+					#create-vacancy-copy.create-vacancy-copy.my-modal-part
+						p
+							|Создать копию вакансии

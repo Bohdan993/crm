@@ -233,7 +233,7 @@ function initVacancyTooltip(el, content){
               <time></time>
             </div>
             <div class="input-group">
-              <p class="status delete">Исключить из вакансии</p>
+              <p class="del-status delete">Исключить из вакансии</p>
             </div>
           </form>
         </div>`,
@@ -259,7 +259,7 @@ function initVacancyTooltip(el, content){
 					}
 				})
 
-				status(instance)
+				// status(instance)
 
 			},
 			appendTo: () => document.body,
@@ -356,41 +356,41 @@ countryInstance.forEach(el=> {
 
 
 
-function status(instance) {
+// function status(instance) {
 
-	let statuses = instance.popper.querySelectorAll('.status')
+// 	let statuses = instance.popper.querySelectorAll('.status')
 
-	statuses.forEach(el=> {
-	el.addEventListener('click', forEachStatus)
-})
+// 	statuses.forEach(el=> {
+// 	el.addEventListener('click', forEachStatus)
+// })
 
-}
+// }
 
 
-function forEachStatus() {
-	let tippy = this.closest('.tippy-box').parentNode._tippy
-	let row = tippy.reference.closest('.table-full__row')
-	let parentRow = row.parentNode
-	let parentTable = parentRow.parentNode
+// function forEachStatus() {
+// 	let tippy = this.closest('.tippy-box').parentNode._tippy
+// 	let row = tippy.reference.closest('.table-full__row')
+// 	let parentRow = row.parentNode
+// 	let parentTable = parentRow.parentNode
 
-	console.log(parentRow)
+// 	console.log(parentRow)
 
-	if(this.classList.contains('choosen') && !parentRow.classList.contains('choosen')){
-			let oldChild = parentRow.removeChild(row)
-			parentTable.querySelector('.table-full__choosen').appendChild(oldChild)
-	}else if(this.classList.contains('ready') && !parentRow.classList.contains('ready')) {
-			let oldChild = parentRow.removeChild(row)
-			parentTable.querySelector('.table-full__ready').appendChild(oldChild)
-	}else if(this.classList.contains('wait') && !parentRow.classList.contains('wait')) {
-		let oldChild = parentRow.removeChild(row)
-			parentTable.querySelector('.table-full__wait').appendChild(oldChild)
-	}else if(this.classList.contains('department') && !parentRow.classList.contains('department')) {
-		let oldChild = parentRow.removeChild(row)
-			parentTable.querySelector('.table-full__department').appendChild(oldChild)
-	}else if(this.classList.contains('busy') && !parentRow.classList.contains('busy')) {
-		let oldChild = parentRow.removeChild(row)
-			parentTable.querySelector('.table-full__busy').appendChild(oldChild)
-	}
-}
+// 	if(this.classList.contains('choosen') && !parentRow.classList.contains('choosen')){
+// 			let oldChild = parentRow.removeChild(row)
+// 			parentTable.querySelector('.table-full__choosen').appendChild(oldChild)
+// 	}else if(this.classList.contains('ready') && !parentRow.classList.contains('ready')) {
+// 			let oldChild = parentRow.removeChild(row)
+// 			parentTable.querySelector('.table-full__ready').appendChild(oldChild)
+// 	}else if(this.classList.contains('wait') && !parentRow.classList.contains('wait')) {
+// 		let oldChild = parentRow.removeChild(row)
+// 			parentTable.querySelector('.table-full__wait').appendChild(oldChild)
+// 	}else if(this.classList.contains('department') && !parentRow.classList.contains('department')) {
+// 		let oldChild = parentRow.removeChild(row)
+// 			parentTable.querySelector('.table-full__department').appendChild(oldChild)
+// 	}else if(this.classList.contains('busy') && !parentRow.classList.contains('busy')) {
+// 		let oldChild = parentRow.removeChild(row)
+// 			parentTable.querySelector('.table-full__busy').appendChild(oldChild)
+// 	}
+// }
 
 export default initTooltips

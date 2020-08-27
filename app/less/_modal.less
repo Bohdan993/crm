@@ -25,6 +25,7 @@
   border-radius: 4px;
   overflow-y: auto;
   box-sizing: border-box;
+  position: relative;
 }
 
 .modal__header {
@@ -196,8 +197,13 @@
 
   padding: 50px;
   width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
   
 }
+
+
 
 .my-modal {
 
@@ -211,13 +217,30 @@
   align-items: stretch;
   border-radius: 0;
   // overflow-x: auto;
+  .my-modal-part {
+    & > p {
+      text-align: center;
+      font-size: 24px;
+      line-height: 28px;
+      color: @main-color;
+    }
+      &:not(.active) {
+        display: none;
+      }
+    }
+
   .sidebar {
     min-width: 250px;
   }
  
   .sidebar__layout {
+
     width: 250px;
     position: fixed;
+    p {
+    font-weight: 300;
+  }
+
       .os-content {
         // height: auto!important;
          // min-height: 100%;
@@ -234,6 +257,9 @@
 
   .rows {
     overflow: auto!important;
+    p {
+      font-weight: 400;
+    }
   }
 
   form {
@@ -361,7 +387,7 @@
 
   .rows {
     width:  100%;
-    padding: 25px;
+    padding: 30px;
     background: @secondary;
   }
   .sidebar__filter-item {
@@ -373,6 +399,13 @@
           }
         }
         
+      }
+    }
+
+    &.active {
+      .sidebar__filter-wrapper {
+        background: #85a6cb;
+        color: #d0e4f8;
       }
     }
   }
@@ -410,6 +443,7 @@
       color: @white;
       background: @main-color;
       border-radius: 15px;
+      
       height: 15px;
       border: none;
       outline: none;
@@ -419,12 +453,16 @@
       vertical-align: middle!important;
       align-items: center;
       justify-content: center;
+      span {
+        margin-top: 0.2em;
+      }
     }
   }
 
   .modal-row__cell {
     overflow: hidden;
     p {
+      margin-top: 0.2em;
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;
@@ -564,9 +602,18 @@
   font-size: 12/14 * 1rem;
 
   .add-item {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
      color: @main-color;
      font-size: 12/14 * 1rem;
      cursor: pointer;
+
+     span {
+      font-size: 18px;
+      display: inline-block;
+      margin-right: 6px;
+     }
   }
  }
 
@@ -776,6 +823,14 @@
  }
 
 
+ .feedback {
+  .modal-row__layer {
+    padding-bottom: 0;
+  }
+  margin-bottom: 2px;
+ }
+
+
   .modal-row__feedback-row {
     i {
       width: 20px;
@@ -788,7 +843,7 @@
     }
 
     &:not(:last-child) {
-      margin-bottom: 22px;
+      margin-bottom: 25px;
     }
   }
 
@@ -904,7 +959,7 @@
         border: none;
         outline: none;
         border-radius: 3px;
-        font-size: 12/14 * 1rem;
+        font-size: 14px;
         padding: 3px 8px;
         display: block;
         &:not(:last-child) {
@@ -926,7 +981,17 @@
      .modal-row__feedback-controls {
         margin-left: 28px;
         display: flex;
+        justify-content: space-between;
+        button {
+          cursor: pointer;
+        }
      }
+
+     .modal-row__feedback-controls_left {
+      display: flex;
+     }
+
+  
 
      .modal-row__feedback-ico {
         background: @main-color;
@@ -968,10 +1033,17 @@
       }
      }
 
+
+
+
    }
-
+   height: 100%;
+   width: 100%;
    
-
+  .sidebar__filter-wrapper {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
 }
 
 
@@ -1109,17 +1181,30 @@
   width: 100%;
 
   .confirm-btn {
-    background: #d0e4f8;
+    background: @secondary;
     display: block;
     margin: 0 auto;
     max-width: 80px;
     border-radius: 3px;
-    color: #85a6cb;
+    color: @main-color;
     text-align: center;
     padding: 2px 6px;
     cursor: pointer;
     border: 0;
     width: 100%;
+  }
+
+  .delete-btn {
+    color: @secondary;
+    position: absolute;
+    right: 30px;
+    bottom: 35px;
+  }
+
+  .modal__close {
+    span {
+      background: @secondary;
+    }
   }
 }
 

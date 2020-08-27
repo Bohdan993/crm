@@ -14,15 +14,20 @@ const showChooseBlockFullInfo = (popup, {
 		e.preventDefault()
 		topGroup.forEach(el => {
 			if(el.checked) {
+				let products = block.querySelector('.products')
+				let secondClass = products.classList[2]
 				switch (el.value) {
 					  case "Сезонная":
-					   	block.querySelector('.products').classList.add('season');
+					  	products.classList.remove(secondClass)
+					   	products.classList.add('season')
 					    break;
 					  case "Практика":
-					    block.querySelector('.products').classList.add('practics')
+					  	products.classList.remove(secondClass)
+					    products.classList.add('practics')
 					    break;
 					  case "Рабочая":
-					    block.querySelector('.products').classList.add('working')
+					  	products.classList.remove(secondClass)
+					    products.classList.add('working')
 					    break;
 					  default:
 					    console.error('error')

@@ -25,7 +25,8 @@ import {
 	setDateToSlider,
 	autocompleteInput,
 	showChooseBlockFullInfo,
-	showFullClientsRow
+	showFullClientsRow,
+	switchModalParts
 } from '../model'
 
 import {OverlayScrollbars} from '../../libs/libs'
@@ -73,7 +74,9 @@ import {
 	switcher,
 	chooseEmployer2,
 	chooseProductType2,
-	clientsRow
+	clientsRow,
+	modalParts,
+	modalSwitchers
 
 } from '../view'
 
@@ -104,6 +107,7 @@ const app = {
 		this.ai()
 		this.scbfi()
 		this.sfcr()
+		this.smp()
 		// this.test()
 		// this.slt()
 	},
@@ -272,6 +276,10 @@ const app = {
 			showFullClientsRow(switcher, clientsRow)
 		}
 		
+	},
+
+	smp() {
+		switchModalParts(modalSwitchers, modalParts)
 	}
 
 }

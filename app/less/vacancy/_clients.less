@@ -56,13 +56,15 @@
 	align-items: center;
 	justify-content: center;
 	transition: transform 0.2s linear;
+	transform: rotate(180deg);
 	svg {
 		width: 8px;
 		height: 8px;
+	
 	}
 
 	&.rotate {
-		transform: rotate(180deg);
+		transform: rotate(0deg);
 	}
 }
 
@@ -73,6 +75,7 @@
 		opacity: 0;
 		visibility: hidden;
 		transition: 0.2s opacity 0.3s linear;
+		height: 0;
 
 	}
 	p {

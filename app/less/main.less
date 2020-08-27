@@ -100,6 +100,10 @@ label {
   font-weight:400;
 }
 
+button {
+  cursor: pointer;
+}
+
 
 
 
@@ -390,6 +394,7 @@ i.label {
   font-weight: 500;
   background: @main-color;
   padding: 0px 7px;
+  height: 22px;
   line-height: 22px;
   border-radius: 20px;
   display: flex;
@@ -400,7 +405,8 @@ i.label {
 
   }
   span {
-    line-height: 22px ;
+    margin-top: 0.1em;
+    line-height: initial;
     &:not(:last-child) {
        margin-right: 5px;
     }
@@ -601,6 +607,7 @@ i.label {
     input {
       & + label {
         width:  81px;
+
       }
     }
     input {
@@ -669,20 +676,19 @@ i.label {
 }
 
 .indicator {
-  line-height: 23px;
   text-align: center;
-  display: block;
   width: 22px;
-  // height: 22px;
   min-width: 22px;
+  height: 22px;
   background: @white;
   color: @white;
   overflow: visible;
-  // display: flex;
-  // justify-content: center;
-  // align-content: center;
-  // align-items: center;
   border-radius: 50%;
+  span {
+    // display: inline-block;
+    margin-top: 0.2em;
+    line-height: 22px;
+  }
   &.decline {
     background: @creame-orange;
   }
@@ -745,6 +751,20 @@ i.label {
     // &:focus {
     //   border: none;
     // }
+}
+
+
+.delete-btn {
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 14/12 * 1rem;
+  color: @main-color;
+  outline: none;
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+
 }
 
 

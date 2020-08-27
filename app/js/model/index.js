@@ -20,6 +20,7 @@ import setFeedbackDate from './setFeedbacklDate'
 import addFeedbackForm from './addfeedbackForm'
 import showRemoveBtnOnChecking from './showRemoveBtnOnChecking'
 import autocompleteInput from './autocompleteInput'
+import switchModalParts from './switchModalParts'
 
 import showFullRow from './vacancy/showFullRow'
 import switchRowStatuses from './vacancy/switchRowStatuses'
@@ -57,5 +58,6 @@ export {
 	setDateToSlider,
 	autocompleteInput,
 	showChooseBlockFullInfo,
-	showFullClientsRow
+	showFullClientsRow,
+	switchModalParts
 }

@@ -51,21 +51,21 @@
 												|Исключить из рассылки
 							.sidebar__menu
 								ul.sidebar__filter
-									li.sidebar__filter-item
+									li.sidebar__filter-item.active(data-part="employer-data")
 										.sidebar__filter-wrapper
 											p
 												|Данные работодателя
-									li.sidebar__filter-item
+									li.sidebar__filter-item(data-part="announcement-history")
 										.sidebar__filter-wrapper
 											p
 												|История анонсов
 									
-									li.sidebar__filter-item
+									li.sidebar__filter-item(data-part="data-for-documents")
 										.sidebar__filter-wrapper
 											p
 												|Данные для документов
 									
-									li.sidebar__filter-item
+									li.sidebar__filter-item(data-part="create-vacancy")
 										.sidebar__filter-wrapper
 											p
 												|Создать вакансию
@@ -77,109 +77,122 @@
 											span
 												|20.04.2019
 				.rows
-					.row.common-info.modal-row
-						.common-info__left
-							.common-info__company.info-block
-								p
-									|Предприятие
-								.input-group
-									textarea.info-area.common-info__manufactury-area(name="" rows="3")
-										|BoGrønt Solblomsten Gartneri og Hagesenter / Solblomsten A
-							.common-info__country.info-block
-								p
-									|Страна
-								.input-group
-									select.info-area.country-select(name="")
-							.common-info__address.info-block
-								p
-									|Адрес
-								.input-group
-									textarea.info-area(type="text" rows="2")
-										|Otterveien 1, 9300 Finnsnes, 9300 Finnsnes
-									.map
-										div(style='overflow:hidden;width: 100%;position: relative;')
-											iframe(width='100%' height='200' src='https://maps.google.com/maps?width=100%&height=200&hl=en&q=%D0%96%D0%B8%D1%82%D0%BE%D0%BC%D0%B8%D1%80+(%D0%9D%D0%B0%D0%B7%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5)&ie=UTF8&t=&z=11&iwloc=B&output=embed' frameborder='0' scrolling='no' marginheight='0' marginwidth='0')
-											div(style='position: absolute;width: 80%;bottom: 10px;left: 0;right: 0;margin-left: auto;margin-right: auto;color: #000;text-align: center;')
-												small(style='line-height: 1.8;font-size: 2px;background: #fff;')
-													| Powered by 
-													a(href='https://embedgooglemaps.com/ru/') embedgooglemaps RU
-													|	&amp; 
-													a(href='https://iamsterdamcard.it') i amsterdamcard it
-											style.
-												#gmap_canvas img{max-width:none!important;background:none!important}
-						.common-info__right
-							.common-info__contact-person.common-info__group
-								.common-info__contact-person_curr.common-info__group_small.info-block
+					#employer-data.employer-data.my-modal-part.active
+						.row.common-info.modal-row
+							.common-info__left
+								.common-info__company.info-block
 									p
-										|Контактное лицо
+										|Предприятие
 									.input-group
-										input.info-area.common-info__contact-person-area(type="text" value="Gunnlaug Eide")
-								.common-info__contact-person_other.common-info__group_big.info-block
+										textarea.info-area.common-info__manufactury-area(name="" rows="3")
+											|BoGrønt Solblomsten Gartneri og Hagesenter / Solblomsten A
+								.common-info__country.info-block
 									p
-										|Другие контактые лица
+										|Страна
 									.input-group
-										input.info-area(type="text" value="BoGrønt Solblomsten, BoGrønt Solblomsten")
-							.common-info__contact-info.common-info__group
-								.common-info__contact-info_curr.common-info__group_small.info-block
+										select.info-area.country-select(name="")
+								.common-info__address.info-block
 									p
-										|Контактная информация
-									.input-group.info-group-ico
-										i.ico
-											+svg2('phone')
-										input.info-area(type="text" value="+47 77847243")
-									.input-group.info-group-ico
-										i.ico
-											+svg2('mail')
-										input.info-area(type="text" value="solblomsten@bogront.no")
-								.common-info__contact-info_other.common-info__group_big.info-block
-									p
-										|Дополнительные контакты
+										|Адрес
 									.input-group
-										input.info-area(type="text" value="+47 77843366, +47 77843366, +47 77843366 ")
-									.input-group
-										input.info-area(type="text" value="post@solblomsten.no, post@solblomsten.no")
-							.common-info__social.info-block
-								p
-									|Сайт и социальные сети
-								.input-group.info-group-ico 
-									i.ico
-										+svg2('web')
-									input.info-area(type="text" value="www.bogront.no/solblomsten/indt.no/solblomsten/ind")
-								.input-group.info-group-ico 
-									i.ico
-										+svg2('facebook')
-									input.info-area(type="text" value="www.bogront.no/solblomsten/")
-								.input-group.info-group-ico 
-									i.ico
-										+svg2('instagram')
-									input.info-area(type="text" value="www.bogront.no/solblo")
-							.common-info__more-info.common-info__group
-								.common-info__more-info_inner-left
-									.common-info__more-info-about.info-block
+										textarea.info-area(type="text" rows="2")
+											|Otterveien 1, 9300 Finnsnes, 9300 Finnsnes
+										.map
+											div(style='overflow:hidden;width: 100%;position: relative;')
+												iframe(width='100%' height='200' src='https://maps.google.com/maps?width=100%&height=200&hl=en&q=%D0%96%D0%B8%D1%82%D0%BE%D0%BC%D0%B8%D1%80+(%D0%9D%D0%B0%D0%B7%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5)&ie=UTF8&t=&z=11&iwloc=B&output=embed' frameborder='0' scrolling='no' marginheight='0' marginwidth='0')
+												div(style='position: absolute;width: 80%;bottom: 10px;left: 0;right: 0;margin-left: auto;margin-right: auto;color: #000;text-align: center;')
+													small(style='line-height: 1.8;font-size: 2px;background: #fff;')
+														| Powered by 
+														a(href='https://embedgooglemaps.com/ru/') embedgooglemaps RU
+														|	&amp; 
+														a(href='https://iamsterdamcard.it') i amsterdamcard it
+												style.
+													#gmap_canvas img{max-width:none!important;background:none!important}
+							.common-info__right
+								.common-info__contact-person.common-info__group
+									.common-info__contact-person_curr.common-info__group_small.info-block
 										p
-											|Дополнительная информация
+											|Контактное лицо
 										.input-group
-											textarea.info-area(type="text" rows="6")
-												|BoGrønt Solblomsten Gartneri og Hagesenter / Solblomsten AS
-								.common-info__more-info_inner-right
-									.common-info__more-info-mediator.info-block
+											input.info-area.common-info__contact-person-area(type="text" value="Gunnlaug Eide")
+									.common-info__contact-person_other.common-info__group_big.info-block
 										p
-											|Посредник
-										.input-group.native-select
-											select.info-area.mediator-select(name="")
-									.common-info__more-info-source.info-block
+											|Другие контактые лица
+										.input-group
+											input.info-area(type="text" value="BoGrønt Solblomsten, BoGrønt Solblomsten")
+								.common-info__contact-info.common-info__group
+									.common-info__contact-info_curr.common-info__group_small.info-block
 										p
-											|Источник
-										.input-group.native-select
-											select.info-area.source-select(name="")
-					include _manufactury-type
-					include _contacts-history
-					include _vacancies-history
-					include _media
-					include _feedback
+											|Контактная информация
+										.input-group.info-group-ico
+											i.ico
+												+svg2('phone')
+											input.info-area(type="text" value="+47 77847243")
+										.input-group.info-group-ico
+											i.ico
+												+svg2('mail')
+											input.info-area(type="text" value="solblomsten@bogront.no")
+									.common-info__contact-info_other.common-info__group_big.info-block
+										p
+											|Дополнительные контакты
+										.input-group
+											input.info-area(type="text" value="+47 77843366, +47 77843366, +47 77843366 ")
+										.input-group
+											input.info-area(type="text" value="post@solblomsten.no, post@solblomsten.no")
+								.common-info__social.info-block
+									p
+										|Сайт и социальные сети
+									.input-group.info-group-ico 
+										i.ico
+											+svg2('web')
+										input.info-area(type="text" value="www.bogront.no/solblomsten/indt.no/solblomsten/ind")
+									.input-group.info-group-ico 
+										i.ico
+											+svg2('facebook')
+										input.info-area(type="text" value="www.bogront.no/solblomsten/")
+									.input-group.info-group-ico 
+										i.ico
+											+svg2('instagram')
+										input.info-area(type="text" value="www.bogront.no/solblo")
+								.common-info__more-info.common-info__group
+									.common-info__more-info_inner-left
+										.common-info__more-info-about.info-block
+											p
+												|Дополнительная информация
+											.input-group
+												textarea.info-area(type="text" rows="6")
+													|BoGrønt Solblomsten Gartneri og Hagesenter / Solblomsten AS
+									.common-info__more-info_inner-right
+										.common-info__more-info-mediator.info-block
+											p
+												|Посредник
+											.input-group.native-select
+												select.info-area.mediator-select(name="")
+										.common-info__more-info-source.info-block
+											p
+												|Источник
+											.input-group.native-select
+												select.info-area.source-select(name="")
+						include _manufactury-type
+						include _contacts-history
+						include _vacancies-history
+						include _media
+						include _feedback
+					#announcement-history.announcement-history.my-modal-part
+						p
+							|История анонсов
+					#data-for-documents.data-for-documents.my-modal-part
+						p
+							|Данные для документов
+					#create-vacancy.create-vacancy.my-modal-part
+						p
+							|Создать вакансию
 #modal-2.modal.micromodal-slide(aria-hidden='true')
-	.modal__overlay(tabindex='-1' data-custom-close="modal-2")
+	.modal__overlay(tabindex='-1')
 		.modal__container.contact-history-modal(role='dialog' aria-modal='true' aria-labelledby='modal-1-title')
+			span.modal__close(data-custom-close="modal-2")
+					span
+					span
 			.contact-history-modal__header
 				.contact-history-modal__block.manager-block
 					p
@@ -210,3 +223,5 @@
 						textarea.info-area(type="text" rows="12")
 			button.confirm-btn
 				|OK
+			button.delete-btn
+				|Удалить

@@ -32,18 +32,14 @@ const switchRowStatuses = (statuses) => {
 			let rightArrow = el.querySelector('.cell-status__control-right')
 			let slider = el.querySelector('.cell-status__slider')
 
-			// slider.addEventListener('click', function(){
-			// 	let instance = this._tippy
+			slider.addEventListener('click', function(){
+				let instance = this._tippy
+				let instanseStatuses = instance.popper.querySelectorAll('.status')
 
-			// 	console.log(instance)
-			// 	let instanseStatuses = instance.popper.querySelectorAll('.status')
-
-			// 	instanseStatuses.forEach(status=> {
-			// 		status.addEventListener('click', function(){
-			// 			console.log('fff')
-			// 		})
-			// 	})
-			// })
+				instanseStatuses.forEach(status=> {
+					status.addEventListener('click', forEachStatus)
+				})
+			})
 			// // console.log(slider)
 			leftArrow.addEventListener('click', function(){
 				
@@ -108,7 +104,7 @@ const switchRowStatuses = (statuses) => {
 		              <time>${timeArray[ind].text === 'Трудоустроен' ? timeArray[ind].date : timeArray[8].date}</time>
 		            </div>
 		            <div class="input-group">
-		              <p class="status delete">Исключить из вакансии</p>
+		              <p class="del-status delete">Исключить из вакансии</p>
 		            </div>
 		          </form>
 		        </div>`);
@@ -238,7 +234,7 @@ const switchRowStatuses = (statuses) => {
 		              <time>${timeArray[ind].text === 'Трудоустроен' ? timeArray[ind].date : timeArray[8].date}</time>
 		            </div>
 		            <div class="input-group">
-		              <p class="status delete">Исключить из вакансии</p>
+		              <p class="del-status delete">Исключить из вакансии</p>
 		            </div>
 		          </form>
 		        </div>`);
@@ -303,4 +299,53 @@ const switchRowStatuses = (statuses) => {
 		})
 }
 
+
+function forEachStatus() {
+	let tippy = this.closest('.tippy-box').parentNode._tippy
+	let row = tippy.reference.closest('.table-full__row')
+	let parentRow = row.parentNode
+	let parentTable = parentRow.parentNode
+
+	let statuses = row.querySelectorAll('.status')
+	let controls = row.querySelector('.cell-status__controls')
+
+
+// Убираем второй класс у стрелочок переключателей статуса
+controls.classList.remove(controls.classList[1])
+
+
+//Устанавливаем активный статус в строке
+	statuses.forEach(el=> {
+		el.classList.remove('active')
+
+		if(this.textContent === el.textContent) {
+			el.classList.add('active')
+		}
+	})
+
+//Добавляем дату утановки статуса в попапе
+	this.nextElementSibling.textContent = new Date().toLocaleDateString()
+
+	if(this.classList.contains('choosen') && !parentRow.classList.contains('choosen')){
+			let oldChild = parentRow.removeChild(row)
+			parentTable.querySelector('.table-full__choosen').appendChild(oldChild)
+			controls.classList.add('choosen')
+	}else if(this.classList.contains('ready') && !parentRow.classList.contains('ready')) {
+			let oldChild = parentRow.removeChild(row)
+			parentTable.querySelector('.table-full__ready').appendChild(oldChild)
+			controls.classList.add('ready')
+	}else if(this.classList.contains('wait') && !parentRow.classList.contains('wait')) {
+			let oldChild = parentRow.removeChild(row)
+			parentTable.querySelector('.table-full__wait').appendChild(oldChild)
+			controls.classList.add('wait')
+	}else if(this.classList.contains('department') && !parentRow.classList.contains('department')) {
+			let oldChild = parentRow.removeChild(row)
+			parentTable.querySelector('.table-full__department').appendChild(oldChild)
+			controls.classList.add('department')
+	}else if(this.classList.contains('busy') && !parentRow.classList.contains('busy')) {
+			let oldChild = parentRow.removeChild(row)
+			parentTable.querySelector('.table-full__busy').appendChild(oldChild)
+			controls.classList.add('busy')
+	}
+}
 export default switchRowStatuses

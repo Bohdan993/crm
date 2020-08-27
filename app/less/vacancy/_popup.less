@@ -105,7 +105,7 @@
     }
 
 	}
-	.status {
+	.status, .del-status {
 		font-size: 12/14 * 1rem;
 		display: block;
 		padding: 2px 6px;
@@ -193,5 +193,22 @@
 
 	button {
 		margin: 0;
+	}
+}
+
+#status-change-popup {
+	form {
+		padding-right: 0;
+		padding-left: 0;
+	}
+
+	.input-group {
+		padding-right: 18px;
+		padding-left: 18px;
+
+		&:last-child {
+			border-top: 1px solid @white;
+			padding-top: 10px;
+		}
 	}
 }

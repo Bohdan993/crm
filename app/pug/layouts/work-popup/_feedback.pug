@@ -1,11 +1,12 @@
 .row.feedback.modal-row
 	button.show-more
-		|показать еще
+		span
+			|показать еще
 	.modal-row__controls
 		p
-			|Отзывы -
+			|Отзывы - 
 			span
-				|4 
+				| 4 
 			span
 				|(
 			span.negative
@@ -32,10 +33,14 @@
 			.modal-row__feedback-text
 				textarea(name="" rows="3" placeholder="введите текст отзыва")
 			.modal-row__feedback-controls
-				button.modal-row__feedback-cancel.feedback-btn
-					|Отменить
-				button.modal-row__feedback-save.feedback-btn
-					|Сохранить
+				.modal-row__feedback-controls_left
+					button.modal-row__feedback-cancel.feedback-btn
+						|Отменить
+					button.modal-row__feedback-save.feedback-btn
+						|Сохранить
+				.modal-row__feedback-controls_right
+					button.modal-row__feedback-delete.delete-btn
+						|Удалить
 		.modal-row__feedback-row
 			.modal-row__feedback-speakers
 				i.modal-row__feedback-ico
@@ -49,6 +54,8 @@
 			.modal-row__feedback-date
 				time
 					|22.08.2019
+				button.modal-row__feedback-edit
+					|Редактировать
 			.modal-row__feedback-text
 				p
 					|Работодатель очень хорошо говорит по английски, чёткий, по документам знает всю прецедуру. Сам составит текст контрактов и вышлет подписанные документы на почту
@@ -65,6 +72,8 @@
 			.modal-row__feedback-date
 				time
 					|15.07.2019
+				button.modal-row__feedback-edit
+					|Редактировать
 			.modal-row__feedback-text
 				p
 					|Клиент проходил собеседование по скайпу. В ходе разговора выяснил, что с собой на предприятие нужно брать постель и зимнюю одежду. Рабочую одежду всю выдаёт работодатель. Выходные будут один день в 7 дней, можно выбирать день самостоятельно. Так-же раз в пол года можно брать неделю отпуска
@@ -81,6 +90,8 @@
 			.modal-row__feedback-date
 				time
 					|09.10.2018
+				button.modal-row__feedback-edit
+					|Редактировать
 			.modal-row__feedback-text
 				p
 					|Проработал у работодателя 2 месяца, зарплату задержал, дал только аванс, сказал что рассчитается в следующим месяце. Очень строгий, придалбуется по любому поводу.
@@ -97,6 +108,8 @@
 			.modal-row__feedback-date
 				time
 					|03.04.2018
+				button.modal-row__feedback-edit
+					|Редактировать
 			.modal-row__feedback-text
 				p
 					|Очень медленно работает. Не остаётся после работы доделать недоделанную работу
@@ -113,6 +126,8 @@
 			.modal-row__feedback-date
 				time
 					|03.04.2018
+				button.modal-row__feedback-edit
+					|Редактировать
 			.modal-row__feedback-text
 				p
 					|Очень медленно работает. Не остаётся после работы доделать недоделанную работу
@@ -129,6 +144,8 @@
 				.modal-row__feedback-date
 					time
 						|03.04.2018
+					button.modal-row__feedback-edit
+						|Редактировать
 				.modal-row__feedback-text
 					p
 						|Очень медленно работает. Не остаётся после работы доделать недоделанную работу

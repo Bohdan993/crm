@@ -49,7 +49,12 @@
 }
 
 .row__cell .row__indicator {
-	line-height: 22px;
+	span {
+		// line-height: 22px;
+		display: inline-block;
+
+	}
+	
 }
 
 
@@ -104,6 +109,7 @@ p.status {
 
 	.table-full__title {
 		color: @grass-green;
+
 	}
 
 }
@@ -115,6 +121,7 @@ p.status {
 
 	.table-full__title {
 		color: @green;
+
 	}
 }
 .table-full__wait {
@@ -143,9 +150,37 @@ p.status {
 }
 
 .table-full__row:first-child {
+	display: flex;
 	height: auto;
 	border-bottom: unset;
 	padding-bottom: 2px;
+
+	.table-full__title {
+		flex-basis: 244/1484 * 100%;
+	}
+
+	.table-full__placeholder.first {
+		flex-basis: 389/1484 * 100%;
+		position: relative; 
+		&:after {
+			content: '';
+			position: absolute;
+			top: 0;
+			height: 100%;
+			width: 131px;
+			right: 0;
+			border-left: 1px solid @ligth-gray;
+		}
+
+	}
+
+	.table-full__placeholder.second {
+		flex-basis: 320/1484 * 100%;
+	}
+
+	.table-full__placeholder.third {
+		flex-basis: 531/1484 * 100%;
+	}
 }
 
 .table-full__title {
@@ -153,6 +188,7 @@ p.status {
 	padding-top: 7px;
 	font-size: 12px;
 	line-height: 14/12;
+	
 }
 
 
@@ -172,7 +208,9 @@ p.status {
 
 	&:hover {
 		.cell-status__controls {
-			display: flex;
+			opacity: 1;
+			visibility: visible;
+			pointer-events: all;
 		}
 		p.status {
 			color: @white;
@@ -229,7 +267,7 @@ p.status {
 
 .cell-status__left {
 	// flex-basis: 259/363 * 100%;
-	border-right: 2px solid @light-gray;
+	border-right: 1px solid @ligth-gray;
 	height: 100%;
 	display: flex;
 	align-items: center;
@@ -261,7 +299,12 @@ p.status {
 }
 
 .cell-status__controls {
-	display: none;
+	// display: none;
+	display: flex;
+	opacity: 0;
+	visibility:hidden;
+	pointer-events: none;
+	transition: opacity .25s linear;
 	svg {
 		width: 8px;
 		height: 8px;
