@@ -45,6 +45,8 @@ const workModalVacanciesHistory = document.querySelector('.work-modal .vacancies
 const modalRowMediaWrapper = document.querySelector('.work-modal .modal-row__media-wrapper');
 const modalRowMedia = document.querySelectorAll('.work-modal .modal-row__media');
 const workModalMediaLayer = document.querySelector('.work-modal .media .modal-row__layer');
+const workModalFeedback = document.querySelector('.work-modal .feedback .modal-row__layer');
+const feedbackShowMore = document.querySelector('.work-modal .feedback .show-more');
 const mediaShowMore = document.querySelector('.work-modal .media .show-more');
 const modalRowLayer = document.querySelectorAll('.work-modal .modal-row__layer');
 const contactsHistory = document.querySelector('.work-modal .contacts-history');
@@ -75,7 +77,7 @@ const socialLinks = document.querySelectorAll('.social-link')
 
 const changeDirection = document.querySelectorAll('.change-direction')
 
-
+const editBtns = document.querySelectorAll('.modal-row__feedback-edit')
 // Popups elements
 
 const confirmBtnTypeFeedback = document.querySelector('#type-feedback-popup .confirm-btn')
@@ -128,6 +130,8 @@ export {
 	workModalContactsHistory,
 	sidebarLayout,
 	workModalVacanciesHistory,
+	workModalFeedback,
+	feedbackShowMore,
 	modalRowMediaWrapper,
 	modalRowMedia,
 	modalRowLayer,
@@ -171,7 +175,8 @@ export {
 	modalSwitchers,
 	socialLinks,
 	changeDirection,
-	choiceClientTemplate2
+	choiceClientTemplate2,
+	editBtns
 	// mainInfoPrice
 	// statusChangeTemplate
 }

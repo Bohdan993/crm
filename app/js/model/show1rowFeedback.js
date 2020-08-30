@@ -1,29 +1,30 @@
 
 
 
-const show1Row = (btn, blocks) => {
+const show1Row = (btn, block) => {
 
-	// console.log(btn, blocks)
-	// let rows = block.querySelectorAll('.hidden-row')
+	const rows = block.querySelectorAll('.hidden-row')
 
-	// if(rows.length) {
-	// 	btn.style.display = 'block'
-	// }
+	console.log(rows)
 
-	// btn.addEventListener('click', function(){
-	// 	let rows = block.querySelectorAll('.hidden-row')
-	// 	rows.forEach((row, i, arr)=> {
-	// 		if(i < 5) {
-	// 			row.classList.remove('hidden-row')
-	// 		}
-	
-	// 	})
-	// 	console.log(rows)
-	// 	if(rows.length < 5) {
-	// 		btn.style.display = 'none'
-	// 	}
+	if(rows.length) {
+		btn.style.display = 'flex'
+	}
 
-	// })
+		btn.addEventListener('click', function(){
+			let rows = block.querySelectorAll('.hidden-row')
+			rows.forEach((row, i, arr)=> {
+				if(i < 4) {
+					row.classList.remove('hidden-row')
+				}
+		
+			})
+			// console.log(rows)
+			if(rows.length < 4) {
+				btn.style.display = 'none'
+			}
+
+		})
 }
 
 

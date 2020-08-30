@@ -28,7 +28,8 @@ import {
 	showFullClientsRow,
 	switchModalParts,
 	linkToSocial,
-	changeDirection
+	changeDirection,
+	feedbackEdit
 } from '../model'
 
 import {OverlayScrollbars} from '../../libs/libs'
@@ -80,7 +81,10 @@ import {
 	modalParts,
 	modalSwitchers,
 	socialLinks,
-	changeDirection as changeDirectionArrows
+	changeDirection as changeDirectionArrows,
+	editBtns,
+	workModalFeedback,
+	feedbackShowMore
 
 } from '../view'
 
@@ -114,6 +118,7 @@ const app = {
 		this.smp()
 		this.lts()
 		this.cd()
+		this.fe()
 		// this.test()
 		// this.slt()
 	},
@@ -125,6 +130,7 @@ const app = {
 		initOverlayScrollbars(workModalContactsHistory)
 		initOverlayScrollbars(workModalVacanciesHistory)
 		initOverlayScrollbars(workModalMediaLayer)
+		initOverlayScrollbars(workModalFeedback)
 		
 		// console.log(OverlayScrollbars)
 		// OverlayScrollbars([document.querySelector('.sidebar__layout')], {
@@ -195,7 +201,7 @@ const app = {
 
 	},
 	s1r() {
-		show1Row(mediaShowMore, modalRowMedia)
+		show1Row(feedbackShowMore, workModalFeedback)
 	},
 	amt() {
 		if(manufacturyType) {
@@ -294,6 +300,9 @@ const app = {
 
 	cd() {
 		changeDirection(changeDirectionArrows)
+	},
+	fe() {
+		 feedbackEdit(editBtns)
 	}
 
 }

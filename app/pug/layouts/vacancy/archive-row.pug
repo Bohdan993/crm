@@ -2,21 +2,21 @@
 	.f-container
 		.row__terms.row__cell.hot
 		.row__labels-2.row__cell.no-open
-			i.label.attention__label.no-open
+			i.label.attention__label.no-open(data-custom-open="modal-2")
 				span.no-open
 					|NO
 				span.no-open
 					|118 - 22
-			span.number-of-people.attention-number.no-open
+			span.number-of-people.attention-number.no-open(data-custom-open="modal-2")
 					|М12 Ж5
 		.row__archive.row__cell
 			p
 				|Архив - 28.10.2019
-		.row__name-2.row__cell.no-open
+		.row__name-2.row__cell
 			p.row__fullname.no-open
 				a.no-open(href="#")
 					|Thompson Equestrian Partners / Junction Engineering
-			i.tag.manager-tag.dark-blue-tag.no-open
+			i.tag.manager-tag.dark-blue-tag
 				|AK
 		.row__vacancies.row__cell
 			i.label.green__label
@@ -31,12 +31,13 @@
 			.table-full__row
 				p.table-full__title
 					|Отобраны
-			.table-full__row.f-container
+			.table-full__row.f-container(data-count="2")
 					.table-full__cell.row__cell.cell-names
 						p
 							|Гурківський Олександр
-						span.row__indicator.department
-							|2
+						span.row__indicator.department.indicator 
+							span
+								|2
 					.table-full__cell.row__cell.cell-status
 						.cell-status__left
 							.cell-status__slider
@@ -80,7 +81,7 @@
 						p
 							|Цветы
 					.table-full__cell.row__cell.cell-notes
-			.table-full__row.f-container
+			.table-full__row.f-container(data-count="2")
 				.table-full__cell.row__cell.cell-names
 					p
 						|Лемешко Аліна
@@ -121,7 +122,7 @@
 					p
 						|Поля
 				.table-full__cell.row__cell.cell-notes
-			.table-full__row.f-container
+			.table-full__row.f-container(data-count="2")
 				.table-full__cell.row__cell.cell-names
 					p
 						|Романов Валентин
@@ -162,7 +163,7 @@
 							|AC
 				.table-full__cell.row__cell.cell-exp
 				.table-full__cell.row__cell.cell-notes
-			.table-full__row.f-container
+			.table-full__row.f-container(data-count="2")
 				.table-full__cell.row__cell.cell-names
 					p
 						|Тарасюк Віталій
@@ -205,7 +206,7 @@
 					p
 						|Коровы
 				.table-full__cell.row__cell.cell-notes
-			.table-full__row.f-container
+			.table-full__row.f-container(data-count="2")
 				.table-full__cell.row__cell.cell-names
 					p
 						|Бичківська Алла
@@ -242,7 +243,7 @@
 							|AC
 				.table-full__cell.row__cell.cell-exp
 					i.label.green__label
-						|Д2
+						|Д 2
 					p
 						|Агроном
 					i.label.dirty-green__label
@@ -252,7 +253,7 @@
 			.table-full__row
 				p.table-full__title
 					|Готовятся к подаче
-			.table-full__row.f-container
+			.table-full__row.f-container(data-count="1")
 					.table-full__cell.row__cell.cell-names
 						p
 							|Червінський Йосип
@@ -289,7 +290,7 @@
 					.table-full__cell.row__cell.cell-notes
 						p
 							|Записан в посольство на 10.05
-			.table-full__row.f-container
+			.table-full__row.f-container(data-count="1")
 				.table-full__cell.row__cell.cell-names
 					p
 						|Шащук Іван
@@ -332,7 +333,7 @@
 			.table-full__row
 				p.table-full__title
 					|Ждут разрешения
-			.table-full__row.f-container
+			.table-full__row.f-container(data-count="1")
 				.table-full__cell.row__cell.cell-names
 					p
 						|Іванчик Олександр
@@ -367,7 +368,7 @@
 					.cell-status__right
 				.table-full__cell.row__cell.cell-exp
 				.table-full__cell.row__cell.cell-notes
-			.table-full__row.f-container
+			.table-full__row.f-container(data-count="1")
 				.table-full__cell.row__cell.cell-names
 					p
 						|Волтарніст Юлія
@@ -402,7 +403,7 @@
 					.cell-status__right
 				.table-full__cell.row__cell.cell-exp
 				.table-full__cell.row__cell.cell-notes
-			.table-full__row.f-container
+			.table-full__row.f-container(data-count="1")
 				.table-full__cell.row__cell.cell-names
 					p
 						|Ситнік Оксана
@@ -441,7 +442,7 @@
 			.table-full__row
 				p.table-full__title
 					|Готовятся к отъезду
-			.table-full__row.f-container
+			.table-full__row.f-container(data-count="2")
 				.table-full__cell.row__cell.cell-names
 					p
 						|Коргун Максим
@@ -480,7 +481,7 @@
 			.table-full__row
 				p.table-full__title
 					|Трудоустроены
-			.table-full__row.f-container
+			.table-full__row.f-container(data-count="1")
 				.table-full__cell.row__cell.cell-names
 					p
 						|Конончук Віталій

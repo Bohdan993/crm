@@ -754,7 +754,7 @@ i.label {
 }
 
 
-.delete-btn {
+.delete-btn, .edit-btn {
   cursor: pointer;
   font-size: 12px;
   line-height: 14/12 * 1rem;
@@ -765,6 +765,13 @@ i.label {
   padding: 0;
   margin: 0;
 
+}
+
+.edit-btn {
+  transition: opacity 0.2s linear;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 

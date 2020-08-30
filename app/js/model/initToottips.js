@@ -1,4 +1,4 @@
-import {tippy, createSingleton, sticky} from '../../libs/libs'
+import {tippy, createSingleton, sticky, delegate} from '../../libs/libs'
 import {throttle, debounce} from './helper'
 import { 
 
@@ -169,9 +169,10 @@ const initTooltips = () => {
 
 
 
-function initWorkModalTooltip(el, content){
-		let instance = tippy(el, {
+function initWorkModalTooltip(parent, el, content){
+		let instance = delegate(parent, {
 			content,
+			target: el,
 			allowHTML: true,
 			interactive: true,
 			interactiveBorder: 5,
@@ -192,9 +193,9 @@ function initWorkModalTooltip(el, content){
 
 	}
 
-initWorkModalTooltip('.add-feedback-form .modal-row__feedback-ico', typeFeedbackTemplate)
-initWorkModalTooltip('.add-feedback-form .modal-row__feedback-choise', choiceClientTemplate)
-initWorkModalTooltip('.clients .modal-row__controls .add-item', choiceClientTemplate2)
+initWorkModalTooltip('.row.feedback', '.add-feedback-form .modal-row__feedback-ico', typeFeedbackTemplate)
+initWorkModalTooltip('.row.feedback', '.add-feedback-form .modal-row__feedback-choise', choiceClientTemplate)
+initWorkModalTooltip('.row.clients', '.clients .modal-row__controls .add-item', choiceClientTemplate2)
 
 
 
@@ -223,7 +224,7 @@ function initVacancyTooltip(el, content){
              <time></time>
             </div>
            	<div class="input-group">
-              <p class="status department">Получил рашрешение</p>
+              <p class="status department">Получил разрешение</p>
               <time></time>
             </div>
             <div class="input-group">

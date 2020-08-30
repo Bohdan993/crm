@@ -679,6 +679,13 @@
   }
  }
 
+ .feedback {
+  .modal-row__layer {
+     max-height: 470px;
+     height: 100%;
+  }
+ }
+
  .modal-row__contacts-history-row {
     display: flex;
     align-items: center;
@@ -901,9 +908,14 @@
         height: 20px;
       }
     }
+     margin-bottom: 25px;
 
-    &:not(:last-child) {
-      margin-bottom: 25px;
+    &:hover {
+      .edit-btn {
+        pointer-events: all;
+        visibility: visible;
+        opacity: 1;
+      }
     }
   }
 
@@ -927,6 +939,9 @@
       color: @main-color;
       margin-bottom: 9px;
       margin-left: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
    .modal-row__feedback-text {
@@ -988,8 +1003,10 @@
   
     // }
 
-   .add-feedback-form {
+   .add-feedback-form, .edit-feedback-form {
     display: none; 
+    border-bottom: 1px solid @main-color;
+    padding-bottom: 26px;
     .modal-row__feedback-text {
       display: flex;
       padding: 0;
@@ -1103,6 +1120,11 @@
 
 
    }
+
+   .edit-feedback-form {
+    display: block;
+   }
+
    height: 100%;
    width: 100%;
    

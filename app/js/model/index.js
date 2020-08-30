@@ -23,6 +23,7 @@ import autocompleteInput from './autocompleteInput'
 import switchModalParts from './switchModalParts'
 import linkToSocial from './linkToSocial'
 import changeDirection from './changeDirection'
+import feedbackEdit from './feedbackEdit'
 
 import showFullRow from './vacancy/showFullRow'
 import switchRowStatuses from './vacancy/switchRowStatuses'
@@ -63,5 +64,6 @@ export {
 	showFullClientsRow,
 	switchModalParts,
 	linkToSocial,
-	changeDirection
+	changeDirection,
+	feedbackEdit
 }
