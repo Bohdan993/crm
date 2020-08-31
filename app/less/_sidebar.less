@@ -223,8 +223,8 @@
 		
 	}
 
-	&.active {
-			&:hover {
+	&.active[aria-expanded="true"], &[aria-expanded="true"] {
+		
 			background:@secondary;
 			color: @main-color;
 			font-weight: 500;
@@ -234,7 +234,24 @@
 					background: @main-color;
 				}
 			}
-		}
+		
+
+		
+	}
+
+	&.active[aria-expanded="false"] {
+			background: @hover_main-color;
+			color: @hover_color;
+			// background:@secondary;
+			// color: @main-color;
+			// font-weight: 500;
+
+			// span {
+			// 	&:before, &:after {
+			// 		background: @main-color;
+			// 	}
+			// }
+		
 
 		
 	}

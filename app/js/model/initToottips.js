@@ -113,10 +113,20 @@ const initTooltips = () => {
 
 				let children = instance.props.content.querySelectorAll('input')
 
-				console.log(instance)
 
-				children.forEach(child => {
+				children.forEach((child, ind) => {
 					child.addEventListener('change', function(){
+		
+						let check = [].every.call(children, (child) => {
+							return  !child.checked
+						})
+
+							if(check) {
+
+								instance.reference.children[1].style.display = 'none'
+								instance.reference.classList.remove('active')
+							} 
+
 							if(child.checked) {
 							instance.reference.children[1].style.display = 'block'
 							instance.reference.classList.add('active')

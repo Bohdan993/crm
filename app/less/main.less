@@ -180,7 +180,7 @@ input[type="checkbox"]:checked + label:before, input[type="radio"]:checked + lab
 main {
   height: 100%;
   width: 100%;
-  overflow-y: scroll;
+  // overflow-y: scroll;
 }
 .center {
   max-width: 1540px + 30px + 30px;
@@ -240,6 +240,11 @@ main.main {
   // overflow-x: auto;
 }
 
+.rows-wrapper {
+  overflow-y: scroll;
+  overflow-x: auto;
+  height: 100vh;
+}
 
 .rows {
   // flex-basis: 1720/1920 * 100%;
@@ -264,7 +269,7 @@ main.main {
 
 .worker-rows {
  align-self: flex-start;
- overflow-x: auto;
+ // overflow-x: auto;
 
    .row {
     min-width: 1250px
