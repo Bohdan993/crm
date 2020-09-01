@@ -17,10 +17,11 @@ let chooseFullInfo = document.querySelector('.main-info_left .full-info')
 
 let mainInfoChooseBlock = document.querySelector('.main-info_left .main-info__choose-block')
 
+let clientsModalLayer = document.querySelector('.clients .modal-row__layer')
+
 let switcher  = document.querySelector('.switcher')
 let clientsRow = document.querySelector('.row.clients')
 
-// let mainInfoPrice = document.querySelector('.main-info__price span')
 export {
 
 	rows,
@@ -35,7 +36,8 @@ export {
 	findEmployer2,
 	chooseEmployer2,
 	chooseProductType2,
-	clientsRow
+	clientsRow,
+	clientsModalLayer
 	// mainInfoPrice
 	
 }

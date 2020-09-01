@@ -100,7 +100,8 @@ import {
 	findEmployer2,
 	chooseEmployer2,
 	chooseProductType2,
-	clientsRow
+	clientsRow,
+	clientsModalLayer
 	// mainInfoPrice
 } from './vacancy'
 
@@ -176,7 +177,8 @@ export {
 	socialLinks,
 	changeDirection,
 	choiceClientTemplate2,
-	editBtns
+	editBtns,
+	clientsModalLayer
 	// mainInfoPrice
 	// statusChangeTemplate
 }

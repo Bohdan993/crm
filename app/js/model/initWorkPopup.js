@@ -5,10 +5,28 @@ import {MicroModal} from '../../libs/libs'
 import {modalRowMediaWrapper,modalRowMedia,mediaShowMore, body} from '../view'
 
 
+function addMouseUpTrigger(e) {
+  if(e.target.classList.contains('my-modal-wrapper')) {
+    return
+  }
+
+}
+
+
+function closeModal(modal, e) {
+  if(e.target.classList.contains('my-modal-wrapper')) {
+    MicroModal.close(modal.id)
+  }
+}
+
 const initWorkPopup = ()=> {
 	let show = false
 	MicroModal.init({
   onShow: modal => {
+    const wrapper = modal.querySelector('.my-modal-wrapper')
+    wrapper.addEventListener('mouseup', addMouseUpTrigger)
+    wrapper.addEventListener('mousedown', closeModal.bind(wrapper, modal))
+
   	if(modal.id === 'modal-1') {
   		let wrapWidth = modalRowMediaWrapper.offsetWidth
   		let width = 0
@@ -73,13 +91,6 @@ const initWorkPopup = ()=> {
   	}
   	show = true
 
-    // let wrapper = modal.querySelector('.modal__wrapper')
-
-    // console.log(wrapper)
-
-    // wrapper.addEventListener('mouseup', function(e){
-    //   alert('dfdf')
-    // })
   },
   onClose: modal => console.info(`${modal.id} is hidden`), // [2]
   openTrigger: 'data-custom-open', // [3]

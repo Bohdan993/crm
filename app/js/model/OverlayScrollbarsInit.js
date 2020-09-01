@@ -19,10 +19,6 @@ const initOverlayScrollbars = (node)=> {
 					this.scroll({ y : "100%"  })
 				}
 		},
-
-		// onHostSizeChanged: function(eventArgs){
-		// 	console.log(eventArgs)
-		// }
 	}
 	
 }); 

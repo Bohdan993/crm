@@ -134,7 +134,8 @@ const initTooltips = () => {
 					})
 				})
 
-				instance.reference.children[1].addEventListener('click', function(){
+				instance.reference.children[1].addEventListener('click', function(e){
+					e.stopPropagation();
 					children.forEach(child=> {
 						child.checked = false
 					})

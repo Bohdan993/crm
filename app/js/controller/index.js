@@ -84,7 +84,8 @@ import {
 	changeDirection as changeDirectionArrows,
 	editBtns,
 	workModalFeedback,
-	feedbackShowMore
+	feedbackShowMore,
+	clientsModalLayer
 
 } from '../view'
 
@@ -131,6 +132,8 @@ const app = {
 		initOverlayScrollbars(workModalVacanciesHistory)
 		initOverlayScrollbars(workModalMediaLayer)
 		initOverlayScrollbars(workModalFeedback)
+		initOverlayScrollbars(clientsModalLayer)
+		
 		
 		// console.log(OverlayScrollbars)
 		// OverlayScrollbars([document.querySelector('.sidebar__layout')], {
