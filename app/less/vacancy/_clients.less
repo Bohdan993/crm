@@ -11,25 +11,41 @@
 
 	.cell-names {
 		flex-basis: 211/989 * 100%;
+		margin: 0;
+		padding: 0 13px;
 		border-right: 1px solid @white;
 	}
 
 	.cell-status {
 		flex-basis: 355/989 * 100%;
+		margin: 0;
+		padding: 0 13px;
 		border-right: 1px solid @white;
 	}
 
 	.cell-exp {
 		flex-basis: 177/989 * 100%;
+		margin: 0;
+		padding: 0 13px;
 		border-right: 1px solid @white;
 	}
 
 	.cell-notes {
 		flex-basis: 246/989 * 100%;
+		margin: 0;
+		// padding: 0 13px;
 		border-right: 1px solid @white;
 	}
 
 	.table-full__row {
+
+		&:nth-child(2) {
+			.indicator {
+				span {
+					margin-top: 0.25em;
+				}
+			}
+		}
 	
 
 		&:not(:first-child) {

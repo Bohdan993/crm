@@ -175,19 +175,21 @@
 				p.vacancy-modal__title
 					|Введите имя работодателя или название организации	
 				.input-group(data-loading="false")
-					input.find-employer#find-employer(type="text")
+					input.find-employer#find-employer.info-area(type="text")
 					ul.autocomplete-result-list
 				button.confirm-bnt
-					|OK
+					span
+						|OK
 		#employer-type-popup2.vacancy-modal-popup
 			form
 				p.vacancy-modal__title
 					|Введите имя работодателя или название организации	
 				.input-group(data-loading="false")
-					input.find-employer#find-employer-2(type="text")
+					input.find-employer#find-employer-2.info-area(type="text")
 					ul.autocomplete-result-list
 				button.confirm-bnt
-					|OK
+					span
+						|OK
 		#work-type-popup.vacancy-modal-popup
 			form
 				.form-group
@@ -216,7 +218,8 @@
 							label(for="fields-chbx-2")
 								|Поля
 					button.confirm-bnt
-						|OK
+						span
+							|OK
 		#price-popup.vacancy-modal-popup
 			form
 				p.vacancy-modal__title
@@ -225,9 +228,11 @@
 					input.calc-price#calc-price(type="text")
 				.btn-group
 					button.confirm-bnt
-						|OK
+						span
+							|OK
 					button.cancel-bnt
-						|Отмена
+						span
+							|Отмена
 			#type-feedback-popup.vacancy-modal-popup
 				form
 					p
@@ -251,7 +256,8 @@
 								+svg2('neg-feedback')
 							|Плохой отзыв
 					button.confirm-bnt
-						|OK
+						span
+							|OK
 		#choice-client-feedback-popup.vacancy-modal-popup
 			form
 				.input-group
@@ -265,7 +271,8 @@
 					label(for="uamf-feedback-rbtn")
 						|УАМФ
 				button.confirm-bnt
-					|OK
+					span
+						|OK
 		#choice-client-popup.vacancy-modal-popup
 			form
 				.input-group
@@ -274,5 +281,6 @@
 					input(type="text")
 					//- ul.autocomplete-result-list
 				button.confirm-bnt
-					|OK
+					span
+						|OK
 		include vacancy-popup/_vacancy-popup

@@ -182,8 +182,13 @@ const switchRowStatuses = (statuses) => {
                         } else {
                             let nodes = tableParent.querySelector('.table-full__choosen').querySelectorAll('[data-count="1"]')
                             let node = nodes[nodes.length - 1]
-
-                            node.after(oldChild)
+                            if(node) {
+                                node.after(oldChild)
+                            }else {
+                                let node = tableParent.querySelector('.table-full__choosen').querySelector('.table-full__row')
+                                node.after(oldChild)
+                            }
+                            
                         }
 
 
@@ -222,8 +227,13 @@ const switchRowStatuses = (statuses) => {
                         } else {
                             let nodes = tableParent.querySelector('.table-full__ready').querySelectorAll('[data-count="1"]')
                             let node = nodes[nodes.length - 1]
-
+                            if(node) {
+                                node.after(oldChild) 
+                            }else {
+                            let node = tableParent.querySelector('.table-full__ready').querySelector('.table-full__row')
                             node.after(oldChild)
+                            }
+                           
                         }
 
                     } else if (arr[ind].textContent === 'Подан в визовый центр') {
@@ -264,8 +274,13 @@ const switchRowStatuses = (statuses) => {
                         } else {
                             let nodes = tableParent.querySelector('.table-full__department').querySelectorAll('[data-count="1"]')
                             let node = nodes[nodes.length - 1]
-
+                            if(node) {
+                               node.after(oldChild) 
+                           }else {
+                            let node = tableParent.querySelector('.table-full__department').querySelector('.table-full__row')
                             node.after(oldChild)
+                           }
+                            
                         }
 
                     } else if (arr[ind].textContent === 'Билеты куплены') {
@@ -289,8 +304,14 @@ const switchRowStatuses = (statuses) => {
                             } else {
                                 let nodes = tableParent.querySelector('.table-full__department').querySelectorAll('[data-count="1"]')
                                 let node = nodes[nodes.length - 1]
-
-                                node.after(oldChild)
+                                if( node) {
+                                    node.after(oldChild)
+                                }
+                                else {
+                                    let node = tableParent.querySelector('.table-full__department').querySelector('.table-full__row')
+                                    node.after(oldChild)
+                                }
+                                
                             }
 
                         }
@@ -483,7 +504,14 @@ const switchRowStatuses = (statuses) => {
                         } else {
                             let nodes = tableParent.querySelector('.table-full__ready').querySelectorAll('[data-count="1"]')
                             let node = nodes[nodes.length - 1]
-                            node.after(oldChild)
+                           
+
+                            if(node) {
+                                node.after(oldChild) 
+                            } else {
+                                let node = tableParent.querySelector('.table-full__ready').querySelector('.table-full__row')
+                                node.after(oldChild)
+                            }
                         }
 
                     } else if (arr[ind].textContent === 'Подан в визовый центр') {
@@ -526,7 +554,14 @@ const switchRowStatuses = (statuses) => {
                         } else {
                             let nodes = tableParent.querySelector('.table-full__department').querySelectorAll('[data-count="1"]')
                             let node = nodes[nodes.length - 1]
-                            node.after(oldChild)
+                            
+
+                            if(node) {
+                                node.after(oldChild)
+                            } else  {
+                                let node = tableParent.querySelector('.table-full__department').querySelector('.table-full__row')
+                                node.after(oldChild)
+                            }
                         }
 
                     } else if (arr[ind].textContent === 'Билеты куплены') {
@@ -548,7 +583,13 @@ const switchRowStatuses = (statuses) => {
                                 let nodes = tableParent.querySelector('.table-full__department').querySelectorAll('[data-count="1"]')
                                 let node = nodes[nodes.length - 1]
 
-                                node.after(oldChild)
+                                if(node) {
+                                   node.after(oldChild) 
+                                } else {
+                                    let node = tableParent.querySelector('.table-full__department').querySelector('.table-full__row')
+                                    node.after(oldChild)
+                                }
+                                
                             }
 
                         }
@@ -759,7 +800,13 @@ function forEachStatus(timeArray, tippy) {
         } else {
             let nodes = parentTable.querySelector('.table-full__department').querySelectorAll('[data-count="1"]')
             let node = nodes[nodes.length - 1]
-            node.after(oldChild)
+            if(node) {
+               node.after(oldChild) 
+           } else {
+                let node = parentTable.querySelector('.table-full__department').querySelector('.table-full__row')
+                node.after(oldChild)
+           }
+            
         }
 
     } else if (this.textContent === 'Билеты куплены') {
@@ -781,15 +828,21 @@ function forEachStatus(timeArray, tippy) {
             } else {
                 let nodes = parentTable.querySelector('.table-full__department').querySelectorAll('[data-count="1"]')
                 let node = nodes[nodes.length - 1]
-
-                node.after(oldChild)
+                if(node) {
+                   node.after(oldChild) 
+               } else {
+                    let node = parentTable.querySelector('.table-full__department').querySelector('.table-full__row')
+                    node.after(oldChild)
+                    
+               }
+                
             }
 
         }
 
     } else if (this.textContent === 'Трудоустроен') {
         
-        controls.classList.add('department')
+        controls.classList.add('busy')
         oldChild.dataset.count = '1'
         parentTable.querySelector('.table-full__busy').append(oldChild)
 
