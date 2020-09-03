@@ -2,6 +2,7 @@
 	flex-basis: 8/1720 * 100%;
 	min-width: 8px;
 	padding: 0;
+	margin: 0;
 
 	&.hot {
 		background: @hot;
@@ -31,30 +32,43 @@
 
 
 .row__labels-2 {
-	flex-basis: 228/1720 * 100%;
+	flex-basis: (228 - 26)/1720 * 100%;
 
-	.attention__label{
-		&:hover {
-			background: @orange - 25;
-		}
-	}
 
-	.attention-number {
-		&:hover {
-			color: @orange - 25;
+
+	.number-of-people {
+		overflow-x: visible;
+		&:not(:last-child) {
+			margin-right: 15px;
 		}
 	}
 	
 }
 
+.row__labels-2-layer {
+	display: flex;
+	width: auto;
+	align-items: center;
+
+	&:hover {
+		.attention__label{
+			background: @orange - 25;
+		}
+
+		.attention-number {
+			color: @orange - 25;
+		}
+	}
+}
+
 .row__indicators, .row__archive {
-	flex-basis: 244/1720 * 100%;
+	flex-basis: (244 - 26)/1720 * 100%;
 	
 }
 
 
 .row__name-2 {
-	flex-basis: 389/1720 * 100%;
+	flex-basis: (389 - 26)/1720 * 100%;
 	
 	justify-content: space-between;
 
@@ -65,12 +79,19 @@
 
 
 .row__vacancies {
-	flex-basis: 320/1720 * 100%;
+	flex-basis: (320 - 26)/1720 * 100%;
+
+	p {
+		min-width: 15px;
+		&:not(:last-child) {
+			margin-right: 15px;
+		}
+	}
 	
 }
 
 .row__notes {
-	flex-basis: 531/1720 * 100%;
+	flex-basis: (531 - 26)/1720 * 100%;
 }
 
 .row__indicators {
@@ -131,7 +152,7 @@ p.status {
 }
 
 .table-full__cell {
-	padding: 2px 13px;
+	padding: 2px 0px;
 }
 
 .table-full__choosen {
@@ -225,15 +246,28 @@ p.status {
 
 
 .cell-names {
-	flex-basis: 244/1484 * 100%;
+	flex-basis: (244 - 26)/1484 * 100%;
 	display: flex;
 	justify-content: space-between;
 	align-items:center;	
+
+	a {
+		color: @font-color;
+		transition: text-decoration 0.2s linear;
+
+		&:hover {
+			text-decoration: underline;
+		}
+
+		&:focus {
+			font-weight: 400;
+		}
+	}
 	
 }
 
 .cell-status {
-	flex-basis: 389/1484 * 100%;
+	flex-basis: (389 - 26)/1484 * 100%;
 	padding: 0;
 	
 
@@ -281,7 +315,7 @@ p.status {
 }
 
 .cell-exp {
-	flex-basis: 320/1484 * 100%;
+	flex-basis: (320 - 26)/1484 * 100%;
 	i.label:not(:last-child) {
 		margin-right: 10px;
 	}
@@ -293,6 +327,18 @@ p.status {
 
 .cell-notes {
 	flex-basis: 531/1484 * 100%;
+	margin: 0;
+	padding: 0;
+	input {
+		background: transparent;
+		text-align: left;
+		padding: 2px 13px;
+		height: 100%;
+
+		&:focus {
+			background: @white;
+		}
+	}
 }
 
 

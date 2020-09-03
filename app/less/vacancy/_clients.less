@@ -30,9 +30,16 @@
 	}
 
 	.table-full__row {
+	
+
 		&:not(:first-child) {
 			border-bottom: 1px solid @white;
 		}
+
+			&:last-child {
+				border-bottom: none;
+		}
+
 
 		&:first-child {
 			padding-bottom: 0;
@@ -59,11 +66,13 @@
 		
 	}
 
-	// .table-full__busy  {
-	// 	.table-full__row {
-	// 		border-bottom: 1px solid @white;
-	// 	}
-	// }
+	.table-full__busy  {
+		.table-full__row {
+			&:last-child {
+				border-bottom: 1px solid @white;
+			}
+		}
+	}
 }
 
 .switcher {
@@ -93,6 +102,7 @@
 }
 
 .modal-row__clients-row {
+	cursor: pointer;
 
 	transition: 0.2s opacity 0.3s linear, 0.2s height 0.3s linear;
 	&:not(.active) {

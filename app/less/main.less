@@ -348,7 +348,7 @@ main.main {
   justify-content: center;
   align-items: center;
   font-style: normal;
-  border: 1px solid @white;
+  // border: 1px solid @white;
   width: 26px;
   white-space: nowrap;
 }
@@ -359,6 +359,8 @@ span.negative {
 
 .number-of-people {
   text-transform: uppercase;
+
+  overflow-x: visible;
 }
 
 
@@ -639,7 +641,7 @@ i.label {
   transition: border 0.2s linear;
   outline: none;
   text-align: left;
-  padding: 3px 6px;
+  padding: 4px 6px 2px 6px;
 
   &:focus {
     border: 2px solid @main-color;
@@ -792,6 +794,10 @@ i.label {
   &.rotate {
     transform: rotate(180deg);
   }
+}
+
+.choices__item {
+  cursor: pointer;
 }
 
 

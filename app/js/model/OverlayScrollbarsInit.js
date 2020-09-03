@@ -15,8 +15,20 @@ const initOverlayScrollbars = (node)=> {
 
 	callbacks : {
 			onContentSizeChanged: function(eventArgs) {
-				if(this.getElements().target.classList.contains('modal-row__layer')) {
-					this.scroll({ y : "100%"  })
+				let target = this.getElements().target
+				let $this = this
+				if(target.classList.contains('feedback-row__layer')) {
+					target.parentNode.querySelector('.add-item').addEventListener('click', function(){
+						$this.scroll({ y : "-100%"})
+					})
+
+					target.parentNode.querySelector('.show-more').addEventListener('click', function(){
+						$this.scroll({ y : "100%"})
+					})
+					
+				}
+				else if(target.classList.contains('modal-row__layer')) {
+					this.scroll({ y : "100%"})
 				}
 		},
 	}
