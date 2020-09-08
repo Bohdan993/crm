@@ -69,43 +69,43 @@ const switchRowStatuses = (statuses) => {
                     instance.setContent(`<div class="row-popup" id="status-change-popup">
 		          <form>
 		            <div class="input-group">
-		              <p class="status choosen">Подготовка CV</p>
+		              <p class="status choosen"><span>Подготовка CV</span></p>
 		              <time>${timeArray[ind].text === 'Подготовка CV' ? timeArray[ind].date : timeArray[0].date}</time>
 		            </div>
 		            <div class="input-group">
-		              <p class="status choosen">CV отправлено</p>
+		              <p class="status choosen"><span>CV отправлено</span></p>
 		              <time>${timeArray[ind].text === 'CV отправлено' ? timeArray[ind].date : timeArray[1].date}</time>
 		            </div>
 		            <div class="input-group">
-		              <p class="status ready">Утвержден</p>
+		              <p class="status ready"><span>Утвержден</span></p>
 		              <time>${timeArray[ind].text === 'Утвержден' ? timeArray[ind].date : timeArray[2].date}</time>
 		            </div>
 		            <div class="input-group">
-		              <p class="status ready">Контракт подписан</p>
+		              <p class="status ready"><span>Контракт подписан</span></p>
 		              <time>${timeArray[ind].text === 'Контракт подписан' ? timeArray[ind].date : timeArray[3].date}</time>
 		            </div>
 		            <div class="input-group">
-		             <p class="status wait">Подан в визовый центр</p>
+		             <p class="status wait"><span>Подан в визовый центр</span></p>
 		             <time>${timeArray[ind].text === 'Подан в визовый центр' ? timeArray[ind].date : timeArray[4].date}</time>
 		            </div>
 		           	<div class="input-group">
-		              <p class="status department">Получил разрешение</p>
+		              <p class="status department"><span>Получил разрешение</span></p>
 		              <time>${timeArray[ind].text === 'Получил разрешение' ? timeArray[ind].date : timeArray[5].date}</time>
 		            </div>
 		            <div class="input-group">
-		              <p class="status department">Забрал разрешение</p>
+		              <p class="status department"><span>Забрал разрешение</span></p>
 		              <time>${timeArray[ind].text === 'Забрал разрешение' ? timeArray[ind].date : timeArray[6].date}</time>
 		            </div>
 		            <div class="input-group">
-		              <p class="status department">Билеты куплены</p>
+		              <p class="status department"><span>Билеты куплены</span></p>
 		              <time>${timeArray[ind].text === 'Билеты куплены' ? timeArray[ind].date : timeArray[7].date}</time>
 		            </div>
 		            <div class="input-group">
-		              <p class="status busy">Трудоустроен</p>
+		              <p class="status busy"><span>Трудоустроен</span></p>
 		              <time>${timeArray[ind].text === 'Трудоустроен' ? timeArray[ind].date : timeArray[8].date}</time>
 		            </div>
 		            <div class="input-group">
-		              <p class="del-status delete">Исключить из вакансии</p>
+		              <p class="del-status delete"><span>Исключить из вакансии</span></p>
 		            </div>
 		          </form>
 		        </div>`);
@@ -370,43 +370,43 @@ const switchRowStatuses = (statuses) => {
                     instance.setContent(`<div class="row-popup" id="status-change-popup">
 		          <form>
 		            <div class="input-group">
-		              <p class="status choosen">Подготовка CV</p>
+		              <p class="status choosen"><span>Подготовка CV</span></p>
 		              <time>${timeArray[ind].text === 'Подготовка CV' ? timeArray[ind].date : timeArray[0].date}</time>
 		            </div>
 		            <div class="input-group">
-		              <p class="status choosen">CV отправлено</p>
+		              <p class="status choosen"><span>CV отправлено</span></p>
 		              <time>${timeArray[ind].text === 'CV отправлено' ? timeArray[ind].date : timeArray[1].date}</time>
 		            </div>
 		            <div class="input-group">
-		              <p class="status ready">Утвержден</p>
+		              <p class="status ready"><span>Утвержден</span></p>
 		              <time>${timeArray[ind].text === 'Утвержден' ? timeArray[ind].date : timeArray[2].date}</time>
 		            </div>
 		            <div class="input-group">
-		              <p class="status ready">Контракт подписан</p>
+		              <p class="status ready"><span>Контракт подписан</span></p>
 		              <time>${timeArray[ind].text === 'Контракт подписан' ? timeArray[ind].date : timeArray[3].date}</time>
 		            </div>
 		            <div class="input-group">
-		             <p class="status wait">Подан в визовый центр</p>
+		             <p class="status wait"><span>Подан в визовый центр</span></p>
 		             <time>${timeArray[ind].text === 'Подан в визовый центр' ? timeArray[ind].date : timeArray[4].date}</time>
 		            </div>
 		           	<div class="input-group">
-		              <p class="status department">Получил разрешение</p>
+		              <p class="status department"><span>Получил разрешение</span></p>
 		              <time>${timeArray[ind].text === 'Получил разрешение' ? timeArray[ind].date : timeArray[5].date}</time>
 		            </div>
 		            <div class="input-group">
-		              <p class="status department">Забрал разрешение</p>
+		              <p class="status department"><span>Забрал разрешение</span></p>
 		              <time>${timeArray[ind].text === 'Забрал разрешение' ? timeArray[ind].date : timeArray[6].date}</time>
 		            </div>
 		            <div class="input-group">
-		              <p class="status department">Билеты куплены</p>
+		              <p class="status department"><span>Билеты куплены</span></p>
 		              <time>${timeArray[ind].text === 'Билеты куплены' ? timeArray[ind].date : timeArray[7].date}</time>
 		            </div>
 		            <div class="input-group">
-		              <p class="status busy">Трудоустроен</p>
+		              <p class="status busy"><span>Трудоустроен</span></p>
 		              <time>${timeArray[ind].text === 'Трудоустроен' ? timeArray[ind].date : timeArray[8].date}</time>
 		            </div>
 		            <div class="input-group">
-		              <p class="del-status delete">Исключить из вакансии</p>
+		              <p class="del-status delete"><span>Исключить из вакансии</span></p>
 		            </div>
 		          </form>
 		        </div>`);

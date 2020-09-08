@@ -118,6 +118,11 @@
     justify-content: center;
     margin-right: 9px;
     cursor: pointer;
+
+    span {
+			display: inline-block;
+			margin-top: 0.1em;
+		}
    
 
     &.choosen {
@@ -209,6 +214,28 @@
 		&:last-child {
 			border-top: 1px solid @white;
 			padding-top: 10px;
+		}
+	}
+}
+
+#choice-client-feedback-popup {
+		input[type="text"] {
+		width: 200px;
+		height: 20px;
+
+		&:focus {
+			border-color: @secondary;
+		}
+	}
+}
+
+#choice-client-popup {
+	input {
+		width: 200px;
+		height: 20px;
+
+		&:focus {
+			border-color: @secondary;
 		}
 	}
 }

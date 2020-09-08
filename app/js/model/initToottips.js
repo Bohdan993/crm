@@ -215,43 +215,43 @@ function initVacancyTooltip(el, content){
 			content: `<div class="row-popup" id="status-change-popup">
           <form>
             <div class="input-group">
-              <p class="status choosen">Подготовка CV</p>
+              <p class="status choosen"><span>Подготовка CV</span></p>
               <time></time>
             </div>
             <div class="input-group">
-              <p class="status choosen">CV отправлено</p>
+              <p class="status choosen"><span>CV отправлено</span></p>
               <time></time>
             </div>
             <div class="input-group">
-              <p class="status ready">Утвержден</p>
+              <p class="status ready"><span>Утвержден</span></p>
               <time></time>
             </div>
             <div class="input-group">
-              <p class="status ready">Контракт подписан</p>
+              <p class="status ready"><span>Контракт подписан</span></p>
               <time></time>
             </div>
             <div class="input-group">
-             <p class="status wait">Подан в визовый центр</p>
+             <p class="status wait"><span>Подан в визовый центр</span></p>
              <time></time>
             </div>
            	<div class="input-group">
-              <p class="status department">Получил разрешение</p>
+              <p class="status department"><span>Получил разрешение</span></p>
               <time></time>
             </div>
             <div class="input-group">
-              <p class="status department">Забрал разрешение</p>
+              <p class="status department"><span>Забрал разрешение</span></p>
               <time></time>
             </div>
             <div class="input-group">
-              <p class="status department">Билеты куплены</p>
+              <p class="status department"><span>Билеты куплены</span></p>
               <time></time>
             </div>
             <div class="input-group">
-              <p class="status busy">Трудоустроен</p>
+              <p class="status busy"><span>Трудоустроен</span></p>
               <time></time>
             </div>
             <div class="input-group">
-              <p class="del-status delete">Исключить из вакансии</p>
+              <p class="del-status delete"><span>Исключить из вакансии</span></p>
             </div>
           </form>
         </div>`,

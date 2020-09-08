@@ -327,7 +327,7 @@
     background: @secondary;
     border: none;
     border-radius: 5px;
-    padding: 3px 7px;
+    padding: 4px 7px 2px;
     min-height: 40px;
     outline: none;
     resize: none;
@@ -388,6 +388,7 @@
   .rows {
     width:  100%;
     padding: 30px;
+    padding-top: 21px;
     background: @secondary;
   }
   .sidebar__filter-item {
@@ -682,7 +683,7 @@
 
  .feedback {
   .modal-row__layer {
-     max-height: 490px;
+     max-height: 495px;
      height: 100%;
   }
  }
@@ -814,6 +815,10 @@
     top: 50%;
     left: 6px;
     transform: translateY(-50%);
+
+    svg {
+      margin-top: 0;
+    }
   }
   .info-area {
     padding-left: 35px;
@@ -950,7 +955,7 @@
       border-radius: 3px;
       padding: 4px 12px;
       margin-left: 28px;
-      line-height: 16/14;
+      line-height: normal;
    }
 
 
@@ -973,7 +978,7 @@
       padding-left: 36px;
       padding-right:  36px;
       padding-top: 8px;
-      padding-bottom: 6px;
+      padding-bottom: 5px;
       line-height: 13px;
     }
 
@@ -1273,8 +1278,13 @@
 .sidebar-select-modal__list, .common-info-select-modal__list, .contact-select-modal__list {
   // height: 26px;
   // display: flex;
-  padding-top: 4px;
-  padding-bottom: 2px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+
+  span {
+    display: inline-block;
+    margin-top: 0.2em;
+  }
  
 
   // align-items: center;
