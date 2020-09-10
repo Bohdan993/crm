@@ -9,7 +9,7 @@ html {
 }
 html,
 body {
-  overflow-x: hidden;
+  overflow: hidden;
   color: @white;
   height: 100%;
   width: 100%;
@@ -242,8 +242,10 @@ main.main {
 
 .rows-wrapper {
   overflow-y: scroll;
-  overflow-x: auto;
+  // overflow-x: auto;
   height: 100vh;
+  position: relative;
+  width: 100%;
 }
 
 .rows {
@@ -822,7 +824,7 @@ i.label {
 //////////////////////////
 
 //////////////////////////
-
+@import url("app/less/_loader.less");
 @import url("app/less/_sidebar.less");
 @import url("app/less/_row.less");
 
