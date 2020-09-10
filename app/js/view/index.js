@@ -1,3 +1,4 @@
+
 // const sidebarWrapper = document.querySelector('.sidebar__wrapper');
 const body = document.querySelector('body');
 const sidebarListItems = document.querySelectorAll('.sidebar__list-item');

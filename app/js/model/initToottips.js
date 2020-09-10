@@ -6,7 +6,7 @@ import {
 	typeManufacturyTemplate, 
 	contactTemplate, 
 	lastContactTemplate,
-	managersTemplate,
+
 	intermediariesTemplate,
 	vacanciesTemplate,
 	sortingTemplate,
@@ -37,9 +37,6 @@ const initTooltips = () => {
 	}
 	if(contactTemplate) {
 		contactTemplate.style.display = 'block';
-	}
-	if(managersTemplate) {
-			managersTemplate.style.display = 'block';
 	}
 	if(lastContactTemplate){
 		lastContactTemplate.style.display = 'block';
@@ -92,64 +89,7 @@ const initTooltips = () => {
 	
 	
 /////////////////////////////////////////////////////
-	function initSidebarTooltip(el, content){
-		let instance = tippy(el, {
-			content,
-			allowHTML: true,
-			interactive: true,
-			interactiveBorder: 5,
-			interactiveDebounce: 0,
-			placement: 'right',
-			offset: [0, 20],
-			hideOnClick: true,
-			trigger: 'click',
-			appendTo: () => document.body,
-			onShown(instance) {
-				document.addEventListener('keyup', function(e){
-					if(e.keyCode === 27) {
-						instance.hide();
-					}
-				})
 
-				let children = instance.props.content.querySelectorAll('input')
-
-
-				children.forEach((child, ind) => {
-					child.addEventListener('change', function(){
-		
-						let check = [].every.call(children, (child) => {
-							return  !child.checked
-						})
-
-							if(check) {
-
-								instance.reference.children[1].style.display = 'none'
-								instance.reference.classList.remove('active')
-							} 
-
-							if(child.checked) {
-							instance.reference.children[1].style.display = 'block'
-							instance.reference.classList.add('active')
-						}
-					})
-				})
-
-				instance.reference.children[1].addEventListener('click', function(e){
-					e.stopPropagation();
-					children.forEach(child=> {
-						child.checked = false
-					})
-
-					this.style.display = 'none'
-
-					instance.reference.classList.remove('active')
-				})
-
-			},
-		})
-
-		// console.log(instance);
-	}
 	/////////////////////////////////////////
 	initSidebarTooltip('.country-filter-wrapper', countryTemplate)
 ////////////////////////////////////////////////////////////
@@ -157,7 +97,7 @@ const initTooltips = () => {
 ////////////////////////////////////////////////////////
 	initSidebarTooltip('.type-manufactury-filter-wrapper', typeManufacturyTemplate)
 /////////////////////////////////////////////////////////////////////////////////
-	initSidebarTooltip('.managers-filter-wrapper', managersTemplate)
+	
 /////////////////////////////////////////////////////////////////////////////////
 	initSidebarTooltip('.intermediaries-filter-wrapper', intermediariesTemplate)
 /////////////////////////////////////////////////////////////////////////////////
@@ -372,43 +312,68 @@ countryInstance.forEach(el=> {
 
 }
 
+function initSidebarTooltip(el, content){
+		let instance = tippy(el, {
+			content,
+			allowHTML: true,
+			interactive: true,
+			interactiveBorder: 5,
+			interactiveDebounce: 0,
+			placement: 'right',
+			offset: [0, 20],
+			hideOnClick: true,
+			trigger: 'click',
+			appendTo: () => document.body,
+			onShown(instance) {
+				document.addEventListener('keyup', function(e){
+					if(e.keyCode === 27) {
+						instance.hide();
+					}
+				})
+
+				let children = instance.props.content.querySelectorAll('input')
 
 
-// function status(instance) {
+				children.forEach((child, ind) => {
+					child.addEventListener('change', function(){
+		
+						let check = [].every.call(children, (child) => {
+							return  !child.checked
+						})
 
-// 	let statuses = instance.popper.querySelectorAll('.status')
+							if(check) {
 
-// 	statuses.forEach(el=> {
-// 	el.addEventListener('click', forEachStatus)
-// })
+								instance.reference.children[1].style.display = 'none'
+								instance.reference.classList.remove('active')
+							} 
 
-// }
+							if(child.checked) {
+							instance.reference.children[1].style.display = 'block'
+							instance.reference.classList.add('active')
+						}
+					})
+				})
 
+				instance.reference.children[1].addEventListener('click', function(e){
+					e.stopPropagation();
+					children.forEach(child=> {
+						child.checked = false
+					})
 
-// function forEachStatus() {
-// 	let tippy = this.closest('.tippy-box').parentNode._tippy
-// 	let row = tippy.reference.closest('.table-full__row')
-// 	let parentRow = row.parentNode
-// 	let parentTable = parentRow.parentNode
+					this.style.display = 'none'
 
-// 	console.log(parentRow)
+					instance.reference.classList.remove('active')
+				})
 
-// 	if(this.classList.contains('choosen') && !parentRow.classList.contains('choosen')){
-// 			let oldChild = parentRow.removeChild(row)
-// 			parentTable.querySelector('.table-full__choosen').appendChild(oldChild)
-// 	}else if(this.classList.contains('ready') && !parentRow.classList.contains('ready')) {
-// 			let oldChild = parentRow.removeChild(row)
-// 			parentTable.querySelector('.table-full__ready').appendChild(oldChild)
-// 	}else if(this.classList.contains('wait') && !parentRow.classList.contains('wait')) {
-// 		let oldChild = parentRow.removeChild(row)
-// 			parentTable.querySelector('.table-full__wait').appendChild(oldChild)
-// 	}else if(this.classList.contains('department') && !parentRow.classList.contains('department')) {
-// 		let oldChild = parentRow.removeChild(row)
-// 			parentTable.querySelector('.table-full__department').appendChild(oldChild)
-// 	}else if(this.classList.contains('busy') && !parentRow.classList.contains('busy')) {
-// 		let oldChild = parentRow.removeChild(row)
-// 			parentTable.querySelector('.table-full__busy').appendChild(oldChild)
-// 	}
-// }
+			},
+		})
+
+		// console.log(instance);
+	}
 
 export default initTooltips
+
+
+export {
+	initSidebarTooltip
+}

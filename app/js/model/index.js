@@ -33,6 +33,11 @@ import showFullClientsRow from './vacancy/showFullClientsRow'
 
 
 
+import getEmployersList from './fetchingData/getEmployersList'
+import getManagerPopup from './fetchingData/getManagerPopup'
+import getIntermediariesPopup from './fetchingData/getIntermediariesPopup'
+
+
 
 export {
 	initOverlayScrollbars,
@@ -65,5 +70,8 @@ export {
 	switchModalParts,
 	linkToSocial,
 	changeDirection,
-	feedbackEdit
+	feedbackEdit,
+	getEmployersList,
+	getManagerPopup,
+	getIntermediariesPopup
 }

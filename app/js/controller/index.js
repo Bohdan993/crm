@@ -29,7 +29,10 @@ import {
 	switchModalParts,
 	linkToSocial,
 	changeDirection,
-	feedbackEdit
+	feedbackEdit,
+	getEmployersList,
+	getManagerPopup,
+	getIntermediariesPopup
 } from '../model'
 
 import {OverlayScrollbars} from '../../libs/libs'
@@ -95,7 +98,7 @@ const app = {
 		this.pah()
 		this.ip()
 		this.it()
-		this.iwp()
+		// this.iwp()
 		this.t()
 		this.iwms()
 		this.ssi()
@@ -120,6 +123,9 @@ const app = {
 		this.lts()
 		this.cd()
 		this.fe()
+		this.gel()
+		this.gmp()
+		this.gip()
 		// this.test()
 		// this.slt()
 	},
@@ -306,6 +312,17 @@ const app = {
 	},
 	fe() {
 		 feedbackEdit(editBtns)
+	},
+
+	gel() {
+		getEmployersList()
+	},
+
+	gmp() {
+		getManagerPopup()
+	},
+	gip() {
+		getIntermediariesPopup()
 	}
 
 }
