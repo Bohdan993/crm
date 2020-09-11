@@ -5,7 +5,7 @@ const show1Row = (btn, block) => {
 
 	const rows = block.querySelectorAll('.hidden-row')
 
-	console.log(rows)
+	// console.log(rows)
 
 	if(rows.length) {
 		btn.style.display = 'flex'

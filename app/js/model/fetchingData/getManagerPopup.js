@@ -10,7 +10,7 @@ if(managersTemplate) {
 
 
 
-const popup = list("form", ManagerPopup)
+const popup = list("form", ManagerPopup, 'id')
 mount(document.querySelector('#managers-popup'), popup)
 
 

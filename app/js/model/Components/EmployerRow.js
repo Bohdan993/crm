@@ -69,4 +69,5 @@ export default class RowEmployer {
 		this.addressText.innerText = data.address
 		this.jobsText.innerText = data.production ? data.production.join(', ') : ""
 	}
+
 }

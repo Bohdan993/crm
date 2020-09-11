@@ -14,6 +14,7 @@ export default class ManagerPopup {
 	}
 
 	 update(data, index, items, context) {
+	 		// console.log(data)
 			this.data = data
 			this.data.index = index
 			this.input.id = 'manager-chbx-' + data.id
