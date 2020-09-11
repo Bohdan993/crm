@@ -1,12 +1,7 @@
 import fetch from './fetchingDataClass'
 import ManagerPopup from '../Components/ManagerPopup'
-import {initSidebarTooltip} from '../initToottips'
-import {managersTemplate} from '../../view'
 import {list, mount} from '../../../libs/libs'
 
-if(managersTemplate) {
-		managersTemplate.style.display = 'block';
-}
 
 
 
@@ -24,7 +19,6 @@ const getManagerPopup = async () => {
 		console.error(e)
 	}
 
-	initSidebarTooltip('.managers-filter-wrapper', managersTemplate)
 
 }
 

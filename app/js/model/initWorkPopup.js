@@ -13,19 +13,74 @@ function addMouseUpTrigger(e) {
 }
 
 
-function closeModal(modal, e) {
+function closeModal(id, e) {
   if(e.target.classList.contains('my-modal-wrapper')) {
-    MicroModal.close(modal.id)
+    MicroModal.close(id)
+
   }
 }
 
-const initWorkPopup = ()=> {
+
+
+
+
+function showMoreMedia(wrapWidth, count, rowsAbs) {
+        console.log('more')
+        let rows = modalRowMediaWrapper.querySelectorAll('.hidden-row-opacity')
+        let j = 0
+
+        rows.forEach((el, i, arr) => {
+          let clone = el.querySelector('img').cloneNode()
+          let mr = el.currentStyle || window.getComputedStyle(el)
+
+          clone.style.display = 'block'
+          clone.style.width = 'auto'
+          clone.style.height = '100px'
+          clone.style.marginRight = mr.marginRight
+
+          body.appendChild(clone)
+          
+          let style = clone.currentStyle || window.getComputedStyle(clone)
+          j += clone.offsetWidth + parseInt(style.marginRight)
+
+          body.removeChild(clone)
+
+
+          if(j < wrapWidth) {
+            el.classList.remove('hidden-row-opacity')
+          }
+
+          if(!el.classList.contains('hidden-row-opacity')) {
+            count++
+          }
+
+        })
+
+        if(count === rowsAbs.length) {
+          mediaShowMore.style.display = 'none'
+        }
+ 
+      
+}
+
+let flag = false
+let flagMedia = false
+
+const initWorkPopup = () => {
+
 	let show = false
 	MicroModal.init({
-  onShow: modal => {
+  onShow: (modal, node) => {
+    console.info(`${modal.id} is shown`)
+    // console.log(node)
     const wrapper = modal.querySelector('.my-modal-wrapper')
-    wrapper.addEventListener('mouseup', addMouseUpTrigger)
-    wrapper.addEventListener('mousedown', closeModal.bind(wrapper, modal))
+
+    if(!flag) {
+      wrapper.addEventListener('mouseup', addMouseUpTrigger)
+      wrapper.addEventListener('mousedown', closeModal.bind(null, modal.id))
+      flag = true
+    }
+    
 
   	if(modal.id === 'modal-1') {
   		let wrapWidth = modalRowMediaWrapper.offsetWidth
@@ -50,63 +105,30 @@ const initWorkPopup = ()=> {
   		
   		let rowsAbs = modalRowMediaWrapper.querySelectorAll('.hidden-row-opacity')
   		let count = 0
-  		mediaShowMore.addEventListener('click', function(){
-  			
-  			let rows = modalRowMediaWrapper.querySelectorAll('.hidden-row-opacity')
-  			let j = 0
 
-  			rows.forEach((el, i, arr) => {
-  				let clone = el.querySelector('img').cloneNode()
-  				let mr = el.currentStyle || window.getComputedStyle(el)
-
-  				clone.style.display = 'block'
-  				clone.style.width = 'auto'
-  				clone.style.height = '100px'
-  				clone.style.marginRight = mr.marginRight
-
-  				body.appendChild(clone)
-  				
-  				let style = clone.currentStyle || window.getComputedStyle(clone)
-  				j += clone.offsetWidth + parseInt(style.marginRight)
-
-  				body.removeChild(clone)
-
-
-  				if(j < wrapWidth) {
-  					el.classList.remove('hidden-row-opacity')
-  				}
-
-  				if(!el.classList.contains('hidden-row-opacity')) {
-  					count++
-  				}
-
-  			})
-
-  			if(count === rowsAbs.length) {
-  				mediaShowMore.style.display = 'none'
-  			}
- 
-  		})
+      if(!flagMedia) {
+        mediaShowMore.addEventListener('click', showMoreMedia.bind(this, wrapWidth, count, rowsAbs))
+        flagMedia = true
+      }
+  		
 
   	}
   	show = true
 
   },
-  onClose: modal => console.info(`${modal.id} is hidden`), // [2]
+  onClose: modal => {
+    console.info(`${modal.id} is hidden`) // [2]
+    // const wrapper = modal.querySelector('.my-modal-wrapper')
+    // console.log(wrapper)
+    // wrapper.removeEventListener('mousedown', closeModal)
+    // wrapper.removeEventListener('mouseup', addMouseUpTrigger)
+    
+  },
   openTrigger: 'data-custom-open', // [3]
   closeTrigger: 'data-custom-close', // [4]
   openClass: 'is-open'
 });
 
-	// document.querySelectorAll('.row').forEach(el => {
-	// 	el.addEventListener('click', function(){
-	// 		MicroModal.show('modal-1')
-	// 	})
-	//  })
-
-// document.querySelector('.modal__btn-1').addEventListener('click', function(){
-// 	MicroModal.show('modal-2')
-// })
 }
 
 

@@ -1,28 +1,62 @@
 import {el, setAttr} from '../../../libs/libs'
 
+
+class RadioGroup {
+	constructor() {
+			this.el = el('.input-group.radio-group-type-1', 
+			el('input#show-rbtn', {
+				type: 'radio',
+				name: "intermediaries-rbtn"
+			}),
+			el('label', 'Показать', {
+				for: 'show-rbtn'
+			}),
+			el('input#remove-rbtn', {
+				type: 'radio',
+				name: "intermediaries-rbtn"
+			}),
+			el('label', 'Исключить', {
+				for: 'remove-rbtn'
+			}),
+			)
+		}
+
+	update(data) {
+
+	}
+}
+
 export default class IntermediariesPopup {
 	constructor(){
-		this.el = el('div.input-group', 
+	
+		this.el= el('div.input-group', 
 			this.input = el('input', {
 				type: 'checkbox',
 				id: 'chbx'
 			}),
 			this.label = el('label' ,{
 				for: 'chbx'
-			}, this.tag = el('i.tag.manager-tag'))
+			})
 			)
+
 	}
 
 	 update(data, index, items, context) {
 			this.data = data
 			this.data.index = index
 			this.input.id = 'manager-chbx-' + data.id
-			setAttr(this.tag, {
-				innerText: data.name
-			})
 			setAttr(this.label, {
 				for: 'manager-chbx-' + data.id,
-				innerHTML: `<i class="tag manager-tag" style="background-color:${'#' + data.color}">${data.name.split(/\s+/).map(word => word[0].toUpperCase()).join('')}</i>${data.name}`
+				innerText: data.name
 			})
+
 	}
 }
+
+
+export {
+	RadioGroup
+}
+
+
+

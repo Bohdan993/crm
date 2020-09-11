@@ -1,7 +1,13 @@
 import {el, setAttr, svg, place} from '../../../libs/libs'
+import { initRowTooltips } from '../initToottips'
+
+
+
+
 
 export default class RowEmployer {
 	constructor(){
+		this.data = {}
 		this.attentionTag = place(el('i.attention-tag', svg('svg', svg('use', {
 							xlink: { href: "img/sprites/svg/symbol/sprite.svg#attention"}
 						}))))
@@ -42,11 +48,20 @@ export default class RowEmployer {
 					) 
 				)
 			)
+
+				this.countryInstance = initRowTooltips(this.country)
+				this.companyInstance = initRowTooltips(this.company)
+				this.nameInstance = initRowTooltips(this.name)
+
+
 	}
 
 	update(data, index, items, context){
-		this.data = data;
-    this.data.index = index;
+		const { id_employer } = data
+
+		if(id_employer !== this.data.id_employer) {
+		
+
 		setAttr(this.el, {
 			"data-id_employer": data.id_employer,
 			'data-custom-open': `modal-1`
@@ -68,6 +83,22 @@ export default class RowEmployer {
 		})
 		this.addressText.innerText = data.address
 		this.jobsText.innerText = data.production ? data.production.join(', ') : ""
+
+
+		this.countryInstance.setContent(`${data.country_name}`)
+		this.companyInstance.setContent(`${data.enterprise}`)
+		this.nameInstance.setContent(`${data.name}`)
+		// console.log('updated')
+		}
+
+		this.data = data;
+		this.data.index = index;
+
+	}
+
+	onmount() {
+		
+			// console.log('mounted')
 	}
 
 }

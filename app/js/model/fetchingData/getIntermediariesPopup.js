@@ -1,19 +1,22 @@
 import fetch from './fetchingDataClass'
-import {initSidebarTooltip} from '../initToottips'
-// import {managersTemplate} from '../../view'
-import {list, mount, el, setAttr, svg, place, setChildren} from '../../../libs/libs'
+import IntermediariesPopup, { RadioGroup } from '../Components/IntermediariesPopup'
+import {list, mount} from '../../../libs/libs'
 
 // if(managersTemplate) {
 // 		managersTemplate.style.display = 'block';
 // }
 
+const intermediariesPopup = document.querySelector('#intermediaries-popup form')
 
 
 
+const popup = list("div", IntermediariesPopup, 'id')
+const radioGroup = new RadioGroup()
 
-// const popup = list("form", ManagerPopup)
-// mount(document.querySelector('#managers-popup'), popup)
-
+if(intermediariesPopup) {
+	mount(intermediariesPopup, radioGroup)
+	mount(intermediariesPopup, popup)
+}
 
 const getIntermediariesPopup = async () => {
 
@@ -21,9 +24,7 @@ const getIntermediariesPopup = async () => {
 			const data = await fetch.getResourse('/employers/get_other/?s=2')
 			const intermediaries = data.data.intermediaries
 
-			console.log(intermediaries)
-
-			// popup.update(managers);
+			popup.update(intermediaries);
 	} catch (e) {
 		console.error(e)
 	}

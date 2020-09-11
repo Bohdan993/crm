@@ -5,6 +5,7 @@ const sidebarListItems = document.querySelectorAll('.sidebar__list-item');
 const rows = document.querySelectorAll('.row');
 const sidebarSearchInput = document.querySelector('.sidebar__search-input');
 const sidebarLayout = document.querySelector('.sidebar__layout');
+const sidebarEmployer = document.querySelector('.sidebar-employer .sidebar__list-add')
 
 
 ////Tooltips Templates
@@ -179,7 +180,8 @@ export {
 	changeDirection,
 	choiceClientTemplate2,
 	editBtns,
-	clientsModalLayer
+	clientsModalLayer,
+	sidebarEmployer
 	// mainInfoPrice
 	// statusChangeTemplate
 }

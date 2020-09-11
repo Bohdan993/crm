@@ -4,6 +4,7 @@ import playAudioHover from './playAudioHover'
 import initPopups from './initPopups'
 import initTooltips from './initToottips'
 import initWorkPopup from './initWorkPopup'
+import initToastr from './initToastr'
 import test from './testing'
 import initWorkModalSelect from './initWorkModalSelect'
 import sidebarSearchInput from './sidebarSearchInput'
@@ -36,6 +37,8 @@ import showFullClientsRow from './vacancy/showFullClientsRow'
 import getEmployersList from './fetchingData/getEmployersList'
 import getManagerPopup from './fetchingData/getManagerPopup'
 import getIntermediariesPopup from './fetchingData/getIntermediariesPopup'
+import getCountryPopup from './fetchingData/getCountryPopup'
+import addNewEmployer from './fetchingData/addNewEmployer'
 
 
 
@@ -46,6 +49,7 @@ export {
 	initPopups,
 	initTooltips,
 	initWorkPopup,
+	initToastr,
 	test,
 	initWorkModalSelect,
 	sidebarSearchInput,
@@ -73,5 +77,7 @@ export {
 	feedbackEdit,
 	getEmployersList,
 	getManagerPopup,
-	getIntermediariesPopup
+	getIntermediariesPopup,
+	addNewEmployer,
+	getCountryPopup
 }

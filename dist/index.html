@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/libs.min.css?v=1599762142319">
-    <link rel="stylesheet" href="css/main.min.css?v=1599762142319">
+    <link rel="stylesheet" href="css/libs.min.css?v=1599864007296">
+    <link rel="stylesheet" href="css/main.min.css?v=1599864007296">
   </head>
   <body>
     <main class="main">
@@ -18,17 +18,17 @@
             </div>
             <div class="sidebar__lists">
               <ul class="sidebar__list">
-                <li class="sidebar__list-item sidebar__li" tabindex="1">
+                <li class="sidebar__list-item sidebar__li">
                   <p>Вакансии</p><span class="sidebar__list-add"><span></span><span></span></span>
                 </li>
-                <li class="sidebar__list-item sidebar__li" tabindex="2">
+                <li class="sidebar__list-item sidebar__li">
                   <p>Клиенты</p><span class="sidebar__list-add"><span></span><span></span></span>
                 </li>
-                <li class="sidebar__list-item active sidebar__li" tabindex="3">
+                <li class="sidebar__list-item active sidebar__li sidebar-employer">
                   <p>
                      Работодатели</p><span class="sidebar__list-add"><span></span><span></span></span>
                 </li>
-                <li class="sidebar__list-item sidebar__li" tabindex="4">
+                <li class="sidebar__list-item sidebar__li">
                   <p>Статистика</p><span class="sidebar__list-add"><span></span><span></span></span>
                 </li>
               </ul>
@@ -112,38 +112,11 @@
           </div>
         </div>
       </div>
-      <div class="rows-wrapper"></div>
+      <div class="rows-wrapper employer-rows-wrapper"></div>
     </main>
     <div class="popup">
       <div class="popup__layer">
-        <div class="sidebar-popup" id="country-popup">
-          <form>
-            <div class="input-group">
-              <input type="checkbox" id="AT-chbx">
-              <label for="AT-chbx">Австрия</label>
-            </div>
-            <div class="input-group">
-              <input type="checkbox" id="DE-chbx">
-              <label for="DE-chbx">Германия</label>
-            </div>
-            <div class="input-group">
-              <input type="checkbox" id="DK-chbx">
-              <label for="DK-chbx">Дания</label>
-            </div>
-            <div class="input-group">
-              <input type="checkbox" id="NO-chbx">
-              <label for="NO-chbx">Норвегия</label>
-            </div>
-            <div class="input-group">
-              <input type="checkbox" id="FI-chbx">
-              <label for="FI-chbx">Финляндия</label>
-            </div>
-            <div class="input-group">
-              <input type="checkbox" id="SE-chbx">
-              <label for="SE-chbx">Швеция</label>
-            </div>
-          </form>
-        </div>
+        <div class="sidebar-popup" id="country-popup"></div>
         <div class="sidebar-popup" id="type-manufactury-popup">
           <form class="flex-form">
             <fieldset>
@@ -242,26 +215,7 @@
         </div>
         <div class="sidebar-popup" id="managers-popup"></div>
         <div class="sidebar-popup" id="intermediaries-popup">
-          <form>
-            <div class="input-group radio-group-type-1">
-              <input type="radio" id="show-rbtn" name="intermediaries-rbtn" checked="true">
-              <label for="show-rbtn">Показать</label>
-              <input type="radio" id="remove-rbtn" name="intermediaries-rbtn">
-              <label for="remove-rbtn">Исключить</label>
-            </div>
-            <div class="input-group">
-              <input type="checkbox" id="AngriNord-chbx">
-              <label for="AngriNord-chbx">AngriNord</label>
-            </div>
-            <div class="input-group">
-              <input type="checkbox" id="Victoria-chbx">
-              <label for="Victoria-chbx">Виктория</label>
-            </div>
-            <div class="input-group">
-              <input type="checkbox" id="Yanina-chbx">
-              <label for="Yanina-chbx">Янина</label>
-            </div>
-          </form>
+          <form></form>
         </div>
         <div class="sidebar-popup" id="vacancies-popup">
           <form>
@@ -1293,7 +1247,7 @@
         </div>
       </div>
     </div>
-    <script src="js/libs.min.js?v=1599762142320" defer></script>
-    <script src="js/script.min.js?v=1599762142320" async></script>
+    <script src="js/libs.min.js?v=1599864007367" defer></script>
+    <script src="js/script.min.js?v=1599864007368" async></script>
   </body>
 </html>

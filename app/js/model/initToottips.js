@@ -6,7 +6,7 @@ import {
 	typeManufacturyTemplate, 
 	contactTemplate, 
 	lastContactTemplate,
-
+	managersTemplate,
 	intermediariesTemplate,
 	vacanciesTemplate,
 	sortingTemplate,
@@ -65,6 +65,9 @@ const initTooltips = () => {
 	if(typeWorkTemplate) {
 		typeWorkTemplate.style.display = 'block'
 	}
+	if(managersTemplate) {
+		managersTemplate.style.display = 'block';
+	}
 	if(dateTermsTemplate) {
 		dateTermsTemplate.style.display = 'block'
 	}
@@ -97,7 +100,7 @@ const initTooltips = () => {
 ////////////////////////////////////////////////////////
 	initSidebarTooltip('.type-manufactury-filter-wrapper', typeManufacturyTemplate)
 /////////////////////////////////////////////////////////////////////////////////
-	
+	initSidebarTooltip('.managers-filter-wrapper', managersTemplate)
 /////////////////////////////////////////////////////////////////////////////////
 	initSidebarTooltip('.intermediaries-filter-wrapper', intermediariesTemplate)
 /////////////////////////////////////////////////////////////////////////////////
@@ -153,48 +156,48 @@ initWorkModalTooltip('.row.clients', '.clients .modal-row__controls .add-item', 
 function initVacancyTooltip(el, content){
 		let instance = tippy(el, {
 			content: `<div class="row-popup" id="status-change-popup">
-          <form>
-            <div class="input-group">
-              <p class="status choosen"><span>Подготовка CV</span></p>
-              <time></time>
-            </div>
-            <div class="input-group">
-              <p class="status choosen"><span>CV отправлено</span></p>
-              <time></time>
-            </div>
-            <div class="input-group">
-              <p class="status ready"><span>Утвержден</span></p>
-              <time></time>
-            </div>
-            <div class="input-group">
-              <p class="status ready"><span>Контракт подписан</span></p>
-              <time></time>
-            </div>
-            <div class="input-group">
-             <p class="status wait"><span>Подан в визовый центр</span></p>
-             <time></time>
-            </div>
-           	<div class="input-group">
-              <p class="status department"><span>Получил разрешение</span></p>
-              <time></time>
-            </div>
-            <div class="input-group">
-              <p class="status department"><span>Забрал разрешение</span></p>
-              <time></time>
-            </div>
-            <div class="input-group">
-              <p class="status department"><span>Билеты куплены</span></p>
-              <time></time>
-            </div>
-            <div class="input-group">
-              <p class="status busy"><span>Трудоустроен</span></p>
-              <time></time>
-            </div>
-            <div class="input-group">
-              <p class="del-status delete"><span>Исключить из вакансии</span></p>
-            </div>
-          </form>
-        </div>`,
+					<form>
+						<div class="input-group">
+							<p class="status choosen"><span>Подготовка CV</span></p>
+							<time></time>
+						</div>
+						<div class="input-group">
+							<p class="status choosen"><span>CV отправлено</span></p>
+							<time></time>
+						</div>
+						<div class="input-group">
+							<p class="status ready"><span>Утвержден</span></p>
+							<time></time>
+						</div>
+						<div class="input-group">
+							<p class="status ready"><span>Контракт подписан</span></p>
+							<time></time>
+						</div>
+						<div class="input-group">
+						 <p class="status wait"><span>Подан в визовый центр</span></p>
+						 <time></time>
+						</div>
+					 	<div class="input-group">
+							<p class="status department"><span>Получил разрешение</span></p>
+							<time></time>
+						</div>
+						<div class="input-group">
+							<p class="status department"><span>Забрал разрешение</span></p>
+							<time></time>
+						</div>
+						<div class="input-group">
+							<p class="status department"><span>Билеты куплены</span></p>
+							<time></time>
+						</div>
+						<div class="input-group">
+							<p class="status busy"><span>Трудоустроен</span></p>
+							<time></time>
+						</div>
+						<div class="input-group">
+							<p class="del-status delete"><span>Исключить из вакансии</span></p>
+						</div>
+					</form>
+				</div>`,
 			// content: content.innerHTML, 
 			allowHTML: true,
 			interactive: true,
@@ -260,57 +263,12 @@ initVacancyModalTooltip('.modal-row__layer.main-info_left .choose-product-type .
 initVacancyModalTooltip('.modal-row__layer.main-info_left .main-info__price span', pricePopupTemplate)
 
 
-function initRowTooltips(el, content){
-	let instance = tippy(el, {
-		content,
-		appendTo: 'parent',
-		onCreate(instance) {
 
-			function chechOverflow(child){
-				// console.log(child.offsetWidth === child.scrollWidth)
-			
-				if(child.tagName.toLowerCase() === 'p') {
-					console.log(child.offsetWidth < child.scrollWidth)
-						if(child.offsetWidth < child.scrollWidth){
-	    				instance.enable();
-	    				// console.log(true)
-	          }
-	          else{
-	          	instance.disable();
-	          	// console.log(false)
-	         }
-				}
-			
-			}
-
-			chechOverflow = debounce(chechOverflow, 250)
-
-			window.addEventListener('load', function(){
-				[...instance.reference.children].forEach(chechOverflow)
-			})
-			window.addEventListener('resize', function(){
-				[...instance.reference.children].forEach(chechOverflow)
-			})
-
-			// document.addEventListener('fullscreenchange', function(){
-			// 	[...instance.reference.children].forEach(chechOverflow)
-			// })
-		
-
-  	},
-	})
-	return instance
-}
-
-let countryInstance = initRowTooltips('.row__name')
-
-countryInstance.forEach(el=> {
-
-	el.setContent('Норвегия')
-
-})
 
 }
+
+
+
 
 function initSidebarTooltip(el, content){
 		let instance = tippy(el, {
@@ -324,6 +282,9 @@ function initSidebarTooltip(el, content){
 			hideOnClick: true,
 			trigger: 'click',
 			appendTo: () => document.body,
+			onCreate(instance) {
+					// console.log('created sidebar tooltip')
+			},
 			onShown(instance) {
 				document.addEventListener('keyup', function(e){
 					if(e.keyCode === 27) {
@@ -333,12 +294,11 @@ function initSidebarTooltip(el, content){
 
 				let children = instance.props.content.querySelectorAll('input')
 
-
 				children.forEach((child, ind) => {
 					child.addEventListener('change', function(){
 		
 						let check = [].every.call(children, (child) => {
-							return  !child.checked
+							return	!child.checked
 						})
 
 							if(check) {
@@ -371,9 +331,64 @@ function initSidebarTooltip(el, content){
 		// console.log(instance);
 	}
 
+
+
+
+
+function initRowTooltips(el, content) {
+		let instance = tippy(el, {
+				content,
+				appendTo: 'parent',
+				onCreate(instance) {
+						// console.log('create row tooltip')
+						function chechOverflow(child) {
+								if (child.tagName.toLowerCase() === 'p') {
+										// console.log(child.textContent)
+								
+										if (child.offsetWidth < child.scrollWidth && child.textContent !== "") {
+												instance.enable();
+										} else {
+												instance.disable();
+										}
+								}
+
+						}
+
+						chechOverflow = debounce(chechOverflow, 250)
+
+						window.addEventListener('load', function() {
+								[...instance.reference.children].forEach(chechOverflow)
+						})
+						window.addEventListener('resize', function() {
+								[...instance.reference.children].forEach(chechOverflow)
+						})
+
+						document.addEventListener('employerslistupdate', function(e){
+							
+							const detail = e.detail.id
+							const attr = instance.reference.closest('.row').getAttribute('data-id_employer')
+
+							if(attr === detail) {
+								[...instance.reference.children].forEach(chechOverflow)
+							}
+							
+						})
+
+				},
+
+				onMount(instance) {
+
+				}
+		})
+		return instance
+}
+
+
+
 export default initTooltips
 
 
 export {
-	initSidebarTooltip
+	initSidebarTooltip,
+	initRowTooltips
 }

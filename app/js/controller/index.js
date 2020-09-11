@@ -5,7 +5,8 @@ import {
 	playAudioHover,
 	initPopups,
 	initTooltips,
-	initWorkPopup,
+	// initWorkPopup,
+	initToastr,
 	test,
 	initWorkModalSelect,
 	sidebarSearchInput,
@@ -32,7 +33,9 @@ import {
 	feedbackEdit,
 	getEmployersList,
 	getManagerPopup,
-	getIntermediariesPopup
+	getIntermediariesPopup,
+	getCountryPopup,
+	addNewEmployer
 } from '../model'
 
 import {OverlayScrollbars} from '../../libs/libs'
@@ -126,6 +129,9 @@ const app = {
 		this.gel()
 		this.gmp()
 		this.gip()
+		this.gcp()
+		this.ane()
+		this.itstr()
 		// this.test()
 		// this.slt()
 	},
@@ -165,8 +171,11 @@ const app = {
 	it() {
 		initTooltips()
 	},
+	itstr() {
+		initToastr()
+	},
 	iwp() {
-		initWorkPopup()
+		// initWorkPopup()
 	},
 	t(){
 		test()
@@ -323,6 +332,12 @@ const app = {
 	},
 	gip() {
 		getIntermediariesPopup()
+	},
+	gcp() {
+		getCountryPopup()
+	},
+	ane() {
+		addNewEmployer()
 	}
 
 }
