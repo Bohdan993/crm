@@ -35,6 +35,7 @@ import {
 	getManagerPopup,
 	getIntermediariesPopup,
 	getCountryPopup,
+	getManufacturyTypePopup,
 	addNewEmployer
 } from '../model'
 
@@ -132,6 +133,7 @@ const app = {
 		this.gcp()
 		this.ane()
 		this.itstr()
+		this.gmtp()
 		// this.test()
 		// this.slt()
 	},
@@ -335,6 +337,9 @@ const app = {
 	},
 	gcp() {
 		getCountryPopup()
+	},
+	gmtp(){
+		getManufacturyTypePopup()
 	},
 	ane() {
 		addNewEmployer()

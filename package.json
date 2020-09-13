@@ -13,6 +13,7 @@
     "normalize.css": "^8.0.1",
     "overlayscrollbars": "^1.12.0",
     "redom": "^3.27.1",
+    "tingle.js": "^0.15.3",
     "tippy.js": "^6.2.5",
     "toastr": "^2.1.4"
   },

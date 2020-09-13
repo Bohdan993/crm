@@ -14,6 +14,7 @@ const getManagerPopup = async () => {
 	try {
 			const data = await fetch.getResourse('/employers/get_other/?s=1')
 			const managers = data.data.managers
+			console.log(managers)
 			popup.update(managers);
 	} catch (e) {
 		console.error(e)

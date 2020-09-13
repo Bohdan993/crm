@@ -7,18 +7,14 @@ import initWorkPopup from '../initWorkPopup'
 export default class EmployerList {
     constructor() {
     		this.show = false
+    		this.count = 0
         this.el = el("div.rows.worker-rows")
         this.list = list(this.el, RowEmployer, 'id_employer')
     }
     update(data) {
-
+    	this.count = data[data.length - 1]['id_employer']
       this.list.update(data);
-      
-      // if(!this.show) {
-      	initWorkPopup()
-      	// this.show = true
-      // }
-      
+      initWorkPopup(this.count)
     }
 
     onmount() {

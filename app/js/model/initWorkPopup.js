@@ -25,7 +25,7 @@ function closeModal(id, e) {
 
 
 function showMoreMedia(wrapWidth, count, rowsAbs) {
-        console.log('more')
+        // console.log('more')
         let rows = modalRowMediaWrapper.querySelectorAll('.hidden-row-opacity')
         let j = 0
 
@@ -66,13 +66,12 @@ function showMoreMedia(wrapWidth, count, rowsAbs) {
 let flag = false
 let flagMedia = false
 
-const initWorkPopup = () => {
+const initWorkPopup = (count) => {
 
 	let show = false
-	MicroModal.init({
+	let modal = MicroModal.init({
   onShow: (modal, node) => {
-    console.info(`${modal.id} is shown`)
-    // console.log(node)
+    // console.log(`${modal.id} is shown`)
     const wrapper = modal.querySelector('.my-modal-wrapper')
 
     if(!flag) {
@@ -117,17 +116,14 @@ const initWorkPopup = () => {
 
   },
   onClose: modal => {
-    console.info(`${modal.id} is hidden`) // [2]
-    // const wrapper = modal.querySelector('.my-modal-wrapper')
-    // console.log(wrapper)
-    // wrapper.removeEventListener('mousedown', closeModal)
-    // wrapper.removeEventListener('mouseup', addMouseUpTrigger)
-    
+    console.log(`${modal.id} is hidden`) // [2]
   },
-  openTrigger: 'data-custom-open', // [3]
+  openTrigger: 'data-custom'+ count +'-open', // [3]
   closeTrigger: 'data-custom-close', // [4]
   openClass: 'is-open'
 });
+
+
 
 }
 

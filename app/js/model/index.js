@@ -38,6 +38,7 @@ import getEmployersList from './fetchingData/getEmployersList'
 import getManagerPopup from './fetchingData/getManagerPopup'
 import getIntermediariesPopup from './fetchingData/getIntermediariesPopup'
 import getCountryPopup from './fetchingData/getCountryPopup'
+import getManufacturyTypePopup from './fetchingData/getManufacturyTypePopup'
 import addNewEmployer from './fetchingData/addNewEmployer'
 
 
@@ -79,5 +80,6 @@ export {
 	getManagerPopup,
 	getIntermediariesPopup,
 	addNewEmployer,
-	getCountryPopup
+	getCountryPopup,
+	getManufacturyTypePopup
 }

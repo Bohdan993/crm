@@ -36,9 +36,10 @@ const getEmployersList = async () => {
 			// const delay = await sleep(8000)
 			const data = await fetch.getResourse('/employers/get_all')
 			const employers = data.data
+			// console.log(employers)
 			empList.update(employers);
 			loader.update(false)
-			console.log(employers)
+			
 			// setTimeout(()=> {
 			// 	empList.update([...employers.slice(0, 2), ...employers.slice(5 + 1)]);
 			// }, 5000)

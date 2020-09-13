@@ -1,6 +1,6 @@
 import {el, setAttr, svg, place} from '../../../libs/libs'
 import { initRowTooltips } from '../initToottips'
-
+import getWorkModalInfo from '../fetchingData/getWorkModalInfo'
 
 
 
@@ -49,22 +49,22 @@ export default class RowEmployer {
 				)
 			)
 
-				this.countryInstance = initRowTooltips(this.country)
-				this.companyInstance = initRowTooltips(this.company)
-				this.nameInstance = initRowTooltips(this.name)
-
+			this.countryInstance = initRowTooltips(this.country)
+			this.companyInstance = initRowTooltips(this.company)
+			this.nameInstance = initRowTooltips(this.name)
 
 	}
 
 	update(data, index, items, context){
 		const { id_employer } = data
+		let custom = ''
 
 		if(id_employer !== this.data.id_employer) {
-		
+			custom = 'data-custom' + items[items.length - 1]['id_employer'] + '-open'
 
 		setAttr(this.el, {
 			"data-id_employer": data.id_employer,
-			'data-custom-open': `modal-1`
+			[custom]: `modal-1`
 		})
 		this.abbr.innerText = data.addr
 		this.companyText.innerText = data.enterprise
@@ -89,11 +89,20 @@ export default class RowEmployer {
 		this.companyInstance.setContent(`${data.enterprise}`)
 		this.nameInstance.setContent(`${data.name}`)
 		// console.log('updated')
+
+		this.makeRequestForModal(id_employer)
 		}
 
 		this.data = data;
 		this.data.index = index;
 
+	}
+
+
+	makeRequestForModal(id) {
+		this.el.addEventListener('click', function(e){
+			getWorkModalInfo(id)
+		})
 	}
 
 	onmount() {
