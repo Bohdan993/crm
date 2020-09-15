@@ -12,11 +12,12 @@ export default class RowEmployer {
 							xlink: { href: "img/sprites/svg/symbol/sprite.svg#attention"}
 						}))))
 		this.managerTag = place(el('i.tag.manager-tag'))
+		this.vacancyLabel = place(el('i.label', this.vacancyLabelCountry = el('span', 'NO'), this.vacancyLabelCode = el('span', '211-8')))
 		this.el = el("div.row", 
 			el(".f-container", 
 				this.country = el(".row__country.row__cell", 
 					this.flag = el("i.row__flag", 
-						this.svg = svg('svg', svg('use', {
+						this.svg = svg('svg', this.flagIco = svg('use', {
 									xlink: { href: "img/sprites/svg/symbol/sprite.svg#flag-norway"}
 								}), 
 							)
@@ -43,8 +44,9 @@ export default class RowEmployer {
 					),
 				this.address = el('.row__address.row__cell', this.addressText = el('p')),
 				this.jobs = el('.row__jobs.row__cell', this.jobsText = el('p')),
-				this.labels = el('.row__labels.row__cell', 
-					el('i.label', el('span', 'NO'), el('span', '211-8'))
+				this.labels = el('.row__labels.row__cell',
+					this.vacancyLabel
+					
 					) 
 				)
 			)
@@ -66,6 +68,10 @@ export default class RowEmployer {
 			"data-id_employer": data.id_employer,
 			[custom]: `modal-1`
 		})
+
+		setAttr(this.flagIco, {
+			xlink: {href: `img/sprites/svg/symbol/sprite.svg#${data.icon}`}
+		})
 		this.abbr.innerText = data.addr
 		this.companyText.innerText = data.enterprise
 		this.fullname.innerText = data.name
@@ -73,7 +79,8 @@ export default class RowEmployer {
 		data.manager ? (this.managerTag.update(true), 
 		setAttr(this.managerTag,{
 						style: {"background-color": "#" + data.manager_color}, 
-						innerText: data.manager.split(/\s+/).map(word => word[0].toUpperCase()).join('')
+						innerText: data.manager,
+						// innerText: data.manager.split(/\s+/).map(word => word[0].toUpperCase()).join('')
 					}
 				)
 			) : this.managerTag.update(false)
@@ -83,6 +90,18 @@ export default class RowEmployer {
 		})
 		this.addressText.innerText = data.address
 		this.jobsText.innerText = data.production ? data.production.join(', ') : ""
+		data.vacancy instanceof Array && data.vacancy.length > 0 ? 
+		(
+				this.vacancyLabel.update(true),
+				setAttr(this.vacancyLabelCountry,{
+						innerText: data.country_name,
+					}
+				),
+				setAttr(this.vacancyLabelCode, {
+						innerText: '123-12'
+					}
+				)
+			) : this.vacancyLabel.update(false)
 
 
 		this.countryInstance.setContent(`${data.country_name}`)

@@ -1,14 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
 import fetch from './fetchingDataClass'
 import TypeManufacturyPopup from '../Components/TypeManufacturyPopup'
 import {list, mount} from '../../../libs/libs'
@@ -23,7 +12,7 @@ mount(document.querySelector('#type-manufactury-popup .flex-form'), part2)
 
 
 const getManufacturyTypePopup = async () => {
-		console.log(new TypeManufacturyPopup())
+		// console.log(new TypeManufacturyPopup())
 	try {
 			const data = await fetch.getResourse('/employers/get_other/?s=3')
 			const production = data.data.production

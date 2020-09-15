@@ -26,6 +26,7 @@ mount(employersWrapper, loader)
 
 
 let flag = false
+
 const getEmployersList = async () => { 
 	if(employersWrapper) {
 		loader.update(true)
@@ -36,7 +37,7 @@ const getEmployersList = async () => {
 			// const delay = await sleep(8000)
 			const data = await fetch.getResourse('/employers/get_all')
 			const employers = data.data
-			// console.log(employers)
+			console.log(employers)
 			empList.update(employers);
 			loader.update(false)
 			
