@@ -1,14 +1,20 @@
 import fetch from './fetchingDataClass'
-import TypeManufacturyPopup from '../Components/TypeManufacturyPopup'
+import TypeManufacturyPopup from '../Components/Employer/TypeManufacturyPopup'
 import {list, mount} from '../../../libs/libs'
 
+
+const typeManufacturyPopup = document.querySelector('#type-manufactury-popup .flex-form')
 
 
 
 const part1 = list("fieldset", TypeManufacturyPopup, 'id')
 const part2 = list("fieldset", TypeManufacturyPopup, 'id')
-mount(document.querySelector('#type-manufactury-popup .flex-form'), part1)
-mount(document.querySelector('#type-manufactury-popup .flex-form'), part2)
+
+if(typeManufacturyPopup) {
+	mount(typeManufacturyPopup, part1)
+	mount(typeManufacturyPopup, part2)
+}
+
 
 
 const getManufacturyTypePopup = async () => {

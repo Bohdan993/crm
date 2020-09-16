@@ -75,7 +75,7 @@ const addfeedbackForm = document.querySelector('.work-modal .feedback .add-feedb
 const modalSwitchers = document.querySelectorAll('[data-part]')
 const modalParts = document.querySelectorAll('.my-modal-part')
 
-const socialLinks = document.querySelectorAll('.social-link')
+// const socialLinks = document.querySelectorAll('.social-link')
 
 const changeDirection = document.querySelectorAll('.change-direction')
 
@@ -176,7 +176,7 @@ export {
 	clientsRow,
 	modalParts,
 	modalSwitchers,
-	socialLinks,
+	// socialLinks,
 	changeDirection,
 	choiceClientTemplate2,
 	editBtns,

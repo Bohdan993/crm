@@ -346,6 +346,7 @@ function initRowTooltips(el, content) {
 										// console.log(child.textContent)
 								
 										if (child.offsetWidth < child.scrollWidth && child.textContent !== "") {
+												console.log(child);
 												instance.enable();
 										} else {
 												instance.disable();

@@ -28,7 +28,7 @@ import {
 	showChooseBlockFullInfo,
 	showFullClientsRow,
 	switchModalParts,
-	linkToSocial,
+	// linkToSocial,
 	changeDirection,
 	feedbackEdit,
 	getEmployersList,
@@ -87,7 +87,7 @@ import {
 	clientsRow,
 	modalParts,
 	modalSwitchers,
-	socialLinks,
+	// socialLinks,
 	changeDirection as changeDirectionArrows,
 	editBtns,
 	workModalFeedback,
@@ -187,9 +187,6 @@ const app = {
 			initWorkModalSelect(workModalManagerSelect)
 		}
 
-		if(workModalCountrySelect) {
-			initWorkModalSelect(workModalCountrySelect)
-		}
 		
 		if(modal2ManagerSelect){
 			initWorkModalSelect(modal2ManagerSelect)
@@ -315,7 +312,7 @@ const app = {
 	},
 
 	lts() {
-		linkToSocial(socialLinks)
+		// linkToSocial(socialLinks)
 	},
 
 	cd() {

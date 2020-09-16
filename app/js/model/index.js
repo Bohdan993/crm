@@ -22,7 +22,7 @@ import addFeedbackForm from './addfeedbackForm'
 import showRemoveBtnOnChecking from './showRemoveBtnOnChecking'
 import autocompleteInput from './autocompleteInput'
 import switchModalParts from './switchModalParts'
-import linkToSocial from './linkToSocial'
+// import linkToSocial from './linkToSocial'
 import changeDirection from './changeDirection'
 import feedbackEdit from './feedbackEdit'
 
@@ -73,7 +73,7 @@ export {
 	showChooseBlockFullInfo,
 	showFullClientsRow,
 	switchModalParts,
-	linkToSocial,
+	// linkToSocial,
 	changeDirection,
 	feedbackEdit,
 	getEmployersList,

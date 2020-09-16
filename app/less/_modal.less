@@ -493,7 +493,23 @@
 
   .common-info, .common-info__layer {
     height: 100%;
-    min-height: 889px;
+    // min-height: 889px;
+  }
+
+  .common-info__layer {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    height: auto;
+    cursor: default;
+    flex-wrap: wrap;
+    position: relative;
+    background: 0 0;
+    opacity: 1;
+    transition: opacity 0.25s linear;
+    &.hidden {
+      opacity: 0;
+    }
   }
 
   .common-info__left {

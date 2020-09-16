@@ -1,6 +1,6 @@
 import fetch from './fetchingDataClass'
-import EmployerList from '../Components/EmployerList'
-import Loader from '../Components/Loader'
+import EmployerList from '../Components/Employer/EmployerList'
+import Loader from '../Components/Employer/Loader'
 import {el, mount, place} from '../../../libs/libs'
 
 

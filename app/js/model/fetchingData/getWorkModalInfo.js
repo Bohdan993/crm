@@ -1,14 +1,15 @@
 import fetch from './fetchingDataClass'
-import WorkModal from '../Components/WorkModal'
-import Loader from '../Components/Loader'
+import WorkModal from '../Components/Employer/WorkModal/WorkModal'
+import Loader from '../Components/Employer/Loader'
 import {list, mount, place} from '../../../libs/libs'
 
-
+const state = {}
 
 const commonInfo = document.querySelector('.row.common-info ')
 
 const loader = place(Loader)
-const workModal = place(new WorkModal())
+// const workModal = place(new WorkModal())
+const workModal = new WorkModal()
 
 
 
@@ -16,30 +17,37 @@ if(commonInfo) {
 	mount(commonInfo, workModal);
 	mount(commonInfo, loader)
 }
-const sleep = (ms) => {
-	return new Promise(res => {
-		setTimeout(function(){
-			res('ok')
-		}, ms)
-	})
-}
+// const sleep = (ms) => {
+// 	return new Promise(res => {
+// 		setTimeout(function(){
+// 			res('ok')
+// 		}, ms)
+// 	})
+// }
 
 
 let flag = false
 
 
 const getWorkModalInfo = async (id = '1') => {
+
 	if(commonInfo) {
 		loader.update(true)
-		workModal.update(false)
+		workModal.setHiddenClass()
+		// workModal.update(false)
 	}
 
 try {
-		const delay = await sleep(4000)
+		// const delay = await sleep(3000)
 		const data = await fetch.getResourse(`/employers/get/?id=${id}`)
 		const mainPart = data.data.main
-		workModal.update(true, mainPart)
+		console.log(data.data)
+		// if(state.id !== id) {
+			workModal.update(mainPart)
+		// }
 		loader.update(false)
+		workModal.removeHiddenClass()
+		state.id = id
 	}catch(e) {
 		console.error(e)
 	}
@@ -48,4 +56,4 @@ try {
 }
 
 
-export default getWorkModalInfo
+export default getWorkModalInfo 		//to ../Components/EmployersRow.js

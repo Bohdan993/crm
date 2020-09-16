@@ -1,5 +1,5 @@
 import fetch from './fetchingDataClass'
-import IntermediariesPopup, { RadioGroup } from '../Components/IntermediariesPopup'
+import IntermediariesPopup, { RadioGroup } from '../Components/Employer/IntermediariesPopup'
 import {list, mount} from '../../../libs/libs'
 
 // if(managersTemplate) {

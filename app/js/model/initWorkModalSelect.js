@@ -49,17 +49,17 @@ const initWorkModalSelect = (elem) => {
 			value: 'Норвегия',
 		  label: `<i class="row__flag">
                 <svg>
-                  <use xlink:href="img/sprites/svg/symbol/sprite.svg#flag-norway"></use>
+                  <use xlink:href="img/sprites/svg/symbol/sprite.svg#no.png"></use>
                 </svg></i><span>Норвегия</span>`,
 		  selected: false,
 		  disabled: false,
 		},
 		{
-		  value: 'Норвегия2',
+		  value: 'Дания',
 		  label: `<i class="row__flag">
                 <svg>
-                  <use xlink:href="img/sprites/svg/symbol/sprite.svg#flag-norway"></use>
-                </svg></i><span>Норвегия</span>`,
+                  <use xlink:href="img/sprites/svg/symbol/sprite.svg#dk.png"></use>
+                </svg></i><span>Дания</span>`,
 		  selected: false,
 		  disabled: false,
 		},

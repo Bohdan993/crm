@@ -1,5 +1,5 @@
 import fetch from './fetchingDataClass'
-import CountryPopup from '../Components/CountryPopup'
+import CountryPopup from '../Components/Employer/CountryPopup'
 import {list, mount} from '../../../libs/libs'
 
 

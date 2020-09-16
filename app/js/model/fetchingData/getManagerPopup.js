@@ -1,5 +1,5 @@
 import fetch from './fetchingDataClass'
-import ManagerPopup from '../Components/ManagerPopup'
+import ManagerPopup from '../Components/Employer/ManagerPopup'
 import {list, mount} from '../../../libs/libs'
 
 

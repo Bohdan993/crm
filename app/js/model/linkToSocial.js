@@ -1,11 +1,11 @@
 
 
-const linkToSocial = (links) => {
+const linkToSocial = (links = []) => {
 	//@parametr links - ссылки на социальные сети в окне Работодателя
 
 	function setHref(el) {
 		//value инпута
-		const value = el.nextElementSibling.value
+		let value = el.nextElementSibling.value
 		//Если инпут содержит какое то значение
 		if(value) {
 			el.setAttribute('target', '_blank')
@@ -21,6 +21,7 @@ const linkToSocial = (links) => {
 			}
 		} else {
 			el.removeAttribute('target')
+			el.setAttribute('href', '#')
 		}
 	}
 
@@ -31,4 +32,4 @@ const linkToSocial = (links) => {
 	})
 }
 
-export default linkToSocial
+export default linkToSocial // to ./Components/WorkModal.js
