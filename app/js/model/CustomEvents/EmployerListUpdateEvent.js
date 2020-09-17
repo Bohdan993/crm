@@ -1,6 +1,6 @@
 
 	const employerListUpdateEvent = new CustomEvent("employerslistupdate", {
-            detail: {name: "Василий"}
+            detail: {name: 'Update'}
         });
 
 

@@ -2,8 +2,7 @@ import {
 
 	initOverlayScrollbars,
 	// sidebarListsToggle,
-	playAudioHover,
-	initPopups,
+
 	initTooltips,
 	// initWorkPopup,
 	initToastr,
@@ -11,16 +10,15 @@ import {
 	initWorkModalSelect,
 	sidebarSearchInput,
 	checkIfWrapperIsEmpty,
-	checkMediaWidth,
+
 	show5Rows,
 	addManufacturyType,
-	addContactHistory,
+
 	show1Row,
 	addNewTask,
 	deleteTask,
 	setFeedbackDate,
 	addFeedbackForm,
-	showRemoveBtnOnChecking,
 	showFullRow,
 	switchRowStatuses,
 	setDateToSlider,
@@ -99,8 +97,7 @@ import {
 const app = {
 	init() {
 		this.initOSB()
-		this.pah()
-		this.ip()
+		// this.ip()
 		this.it()
 		// this.iwp()
 		this.t()
@@ -110,13 +107,12 @@ const app = {
 		this.s5r()
 		this.s1r()
 		this.amt()
-		this.ach()
-		this.cmw()
+
 		this.ant()
 		this.dt()
 		this.sfd()
 		this.aff()
-		this.srboc()
+
 		this.sfr()
 		this.srs()
 		this.sdts()
@@ -147,29 +143,13 @@ const app = {
 		initOverlayScrollbars(workModalMediaLayer)
 		initOverlayScrollbars(workModalFeedback)
 		initOverlayScrollbars(clientsModalLayer)
-		
-		
-		// console.log(OverlayScrollbars)
-		// OverlayScrollbars([document.querySelector('.sidebar__layout')], {
-  //           paddingAbsolute: true,
-  //           scrollbars: {
-  //               autoHide: 'move',
-  //               clickScrolling: true,
-  //           },
-  //           callbacks: {
-  //           }
-  //       });
 	},
 	// slt(){
 	// 	sidebarListsToggle(sidebarListItems)
 	// }
-	pah(){
-		playAudioHover(rows)
-	},
 
-	ip(){
-		initPopups()
-	},
+
+
 	it() {
 		initTooltips()
 	},
@@ -204,13 +184,13 @@ const app = {
 		sidebarSearchInput(searchInput)
 	},
 	ciwie(){
-		checkIfWrapperIsEmpty(modalRowLayer)
+		// checkIfWrapperIsEmpty(modalRowLayer)
 	},
 	s5r() {
 
-		if(contactsHistory) {
-			show5Rows(contactsHistoryShowMore, contactsHistory)
-		}
+		// if(contactsHistory) {
+		// 	show5Rows(contactsHistoryShowMore, contactsHistory)
+		// }
 
 		if(vacanciesHistory) {
 			show5Rows(vacanciesHistoryShowMore, vacanciesHistory)
@@ -221,19 +201,14 @@ const app = {
 		show1Row(feedbackShowMore, workModalFeedback)
 	},
 	amt() {
-		if(manufacturyType) {
-			addManufacturyType(manufacturyTypeAddItem, manufacturyType)
-		}
+		// if(manufacturyType) {
+		// 	addManufacturyType(manufacturyTypeAddItem, manufacturyType)
+		// }
 		
 	},
 
-	ach() {
-		addContactHistory(contactsHistoryAddItem, contactsHistory)
-	},
 
-	cmw() {
-		checkMediaWidth(modalRowMediaWrapper,modalRowMedia)
-	},
+
 	ant() {
 		if(workModalAddTask) {
 			addNewTask(workModalAddTask)
@@ -262,9 +237,7 @@ const app = {
 		
 	},
 
-	srboc() {
-		showRemoveBtnOnChecking()
-	},
+
 
 	sfr(){
 		if(vacancyRows){

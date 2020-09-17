@@ -346,7 +346,7 @@ function initRowTooltips(el, content) {
 										// console.log(child.textContent)
 								
 										if (child.offsetWidth < child.scrollWidth && child.textContent !== "") {
-												console.log(child);
+						
 												instance.enable();
 										} else {
 												instance.disable();
@@ -364,16 +364,21 @@ function initRowTooltips(el, content) {
 								[...instance.reference.children].forEach(chechOverflow)
 						})
 
-						document.addEventListener('employerslistupdate', function(e){
+
+						//Этот момент нужно оптимизировать, чтобы не вызывать для каждой строки, а только для последней
+
+						document.addEventListener('employerslistadd', function(e){
 							
 							const detail = e.detail.id
 							const attr = instance.reference.closest('.row').getAttribute('data-id_employer')
-
+							// console.log(detail)
 							if(attr === detail) {
 								[...instance.reference.children].forEach(chechOverflow)
 							}
 							
 						})
+
+						//
 
 				},
 

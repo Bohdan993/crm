@@ -19,6 +19,7 @@ if(intermediariesPopup) {
 }
 
 const getIntermediariesPopup = async () => {
+if(intermediariesPopup) {
 
 	try {
 			const data = await fetch.getResourse('/employers/get_other/?s=2')
@@ -29,6 +30,7 @@ const getIntermediariesPopup = async () => {
 		console.error(e)
 	}
 
+}
 	// initSidebarTooltip('.managers-filter-wrapper', managersTemplate)
 
 }

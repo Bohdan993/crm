@@ -30,12 +30,13 @@ const extReplace = require("gulp-ext-replace");
 const smartgrid = require('smart-grid');
 const log = require('fancy-log');
 const critical = require('critical').stream;
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
  
 // Generate & Inline Critical-path CSS
 
 
 
-let isDev = true
+let isDev = true;
 let isProd = !isDev;
 
 let webConfig = {
@@ -54,9 +55,10 @@ let webConfig = {
     },
     mode: isDev ? 'development' : 'production',
     devtool: isDev ? 'eval-source-map' : 'none',
-	  externals: {
+	externals: {
 	    moment: 'moment'
 	  }
+    // plugins: [new BundleAnalyzerPlugin()]
 };
 
 let webConfig2 = {
@@ -240,7 +242,7 @@ function scripts() {
     return src('./app/js/main.js')
         // .pipe(sourcemap.init())
         // .pipe(conct('script.js'))
-        .pipe(gulpif(isProd, uglify({})))
+        // .pipe(gulpif(isProd, uglify({})))
 
     // .pipe(rename({suffix: '.min'}))
     .pipe(plumber())

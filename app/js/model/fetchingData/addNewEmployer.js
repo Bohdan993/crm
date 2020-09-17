@@ -2,7 +2,7 @@ import fetch from './fetchingDataClass'
 import getEmployersList from './getEmployersList'
 import { sidebarEmployer } from '../../view'
 import { toastr }from '../../../libs/libs'
-import employerListUpdateEvent from '../CustomEvents/EmployerListUpdateEvent'
+import employerListAddEvent from '../CustomEvents/EmployerListAddEvent'
 
 
 
@@ -16,8 +16,8 @@ const addNewEmployer = () => {
 				const data = await getEmployersList()
 				// console.log(data)
 
-				employerListUpdateEvent.detail.id = data.id_employer
-				document.dispatchEvent(employerListUpdateEvent)
+				employerListAddEvent.detail.id = data.id_employer
+				document.dispatchEvent(employerListAddEvent)
 
 
 				toastr.success(`ID работодателя ${employer.id}`, 'Успешно создан работодатель')

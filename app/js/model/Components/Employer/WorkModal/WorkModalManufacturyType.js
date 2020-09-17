@@ -1,14 +1,16 @@
-import {el, setAttr, svg} from '../../../../../libs/libs';
+import {el, setAttr, list} from '../../../../../libs/libs';
+import hiddenClassMixin from '../../../Mixins/hiddenClassMixin'
 
-export default class WorkModalManufacturyType {
+import checkIfWrapperIsEmpty from '../../../checkIfWrapperIsEmpty'
+
+
+
+
+class WorkModalManufacturyTypeRow {
 	constructor(){
 
-		this.controls = el('div.modal-row__controls',
-			el('p', 'Тип производства'),
-			el('div.add-item', 'добавить тип производства', el('span', '+'))
-			)
 
-		this.modalRow = el('div.modal-row__manufactury-type-row', 
+		this.el = el('div.modal-row__manufactury-type-row', 
 			el('div.input-group.modal-row__manufactury-type-select.native-select', 
 				el('select.info-area', {
 					value: ''
@@ -28,30 +30,69 @@ export default class WorkModalManufacturyType {
 				),
 			el('div.input-group', 
 				el('span.delete-manufactury-type'),
-				el('input.info-area', {
+				this.textArea = el('input.info-area', {
 					type: 'text'
 				})
 				)
 			)
+
+
+	}
+
+
+	update(data){
+		console.log(data)
+
+		this.textArea.value = data.name
+	}
+}
+
+
+export default class WorkModalManufacturyType {
+	constructor(){
+
+		this.controls = el('div.modal-row__controls',
+			el('p', 'Тип производства'),
+			el('div.add-item', el('span', '+'), 'добавить тип производства')
+			)
 		
-		this.modalLayer = el('div.modal-row__layer')
+		this.modalLayer = el('div.modal-row__layer.empty-layer')
 
 
 		this.el = el('div.manufactury-type__layer',
 				this.controls,
-				this.modalLayer
+				this.list = list(this.modalLayer, WorkModalManufacturyTypeRow, 'id')
 			)
 	}
 
 	 update(data, index, items, context) {
+
 	 		// console.log(data)
-			this.data = data
-			this.data.index = index
+	 		
+			
+	
+	 		// console.log(data)
+	
+			this.list.update(data)
 			// this.input.id = 'country-chbx-' + data.id
 			// setAttr(this.label, {
 			// 	for: 'country-chbx-' + data.id,
 			// 	innerText: data.name
 			// })
+
+			//Вызов функций которые зависят от инстанса класса
+			 checkIfWrapperIsEmpty(this.modalLayer)
+			//
+
+			this.data = data
+			this.data.index = index
 	}
+
+	 onremount() {
+        console.log("remounted App");
+    }
+
+
 }
 
+Object.assign(WorkModalManufacturyType.prototype , hiddenClassMixin)

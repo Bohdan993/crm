@@ -1,7 +1,7 @@
 
 // const sidebarWrapper = document.querySelector('.sidebar__wrapper');
 const body = document.querySelector('body');
-const sidebarListItems = document.querySelectorAll('.sidebar__list-item');
+// const sidebarListItems = document.querySelectorAll('.sidebar__list-item');
 const rows = document.querySelectorAll('.row');
 const sidebarSearchInput = document.querySelector('.sidebar__search-input');
 const sidebarLayout = document.querySelector('.sidebar__layout');
@@ -111,7 +111,7 @@ import {
 
 export {
 	// sidebarWrapper,
-	sidebarListItems,
+	// sidebarListItems,
 	rows,
 	countryTemplate,
 	typeManufacturyTemplate,

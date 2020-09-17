@@ -591,6 +591,7 @@
     padding: 0;
     border: none;
     border-top: 1px solid @main-color;
+    height: 1px!important;
   }
 
   .common-info__manufactury-area, .common-info__contact-person-area {
@@ -598,6 +599,14 @@
   }
 
   .manufactury-type {
+    .manufactury-type__layer {
+      transition: opacity 0.25s linear;
+      opacity: 1;
+      &.hidden {
+        opacity: 0;
+      }
+      width: 100%;
+    }
     .input-group {
       position: relative;
 
@@ -689,6 +698,14 @@
  }
 
  .contacts-history {
+  .contact-history__layer {
+    width: 100%;
+    transition: opacity 0.25s linear;
+    opacity: 1;
+    &.hidden {
+      opacity: 0;
+    }
+  }
   .modal-row__layer {
      max-height: 432px;
      height: 100%;
@@ -696,6 +713,14 @@
  }
 
  .vacancies-history {
+  .vacancies-history__layer {
+    width: 100%;
+    transition: opacity 0.25s linear;
+    opacity: 1;
+    &.hidden {
+      opacity: 0;
+    }
+  }
   .modal-row__layer {
      max-height: 382px;
      height: 100%;

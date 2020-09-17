@@ -1,7 +1,7 @@
 import {el, setAttr, svg} from '../../../../../libs/libs';
 import linkToSocial from '../../../linkToSocial';
 import initWorkModalSelect from '../../../initWorkModalSelect'
-
+import hiddenClassMixin from '../../../Mixins/hiddenClassMixin'
 
 // if(workModalCountrySelect) {
 // 			initWorkModalSelect(workModalCountrySelect)
@@ -256,14 +256,8 @@ export default class WorkModal {
 			this.data.index = index
 	}
 
-
-	setHiddenClass(){
-		this.el.classList.add('hidden')
-	}
-
-	removeHiddenClass(){
-		this.el.classList.remove('hidden')
-	}
 }
 
+
+Object.assign(WorkModal.prototype , hiddenClassMixin)
 

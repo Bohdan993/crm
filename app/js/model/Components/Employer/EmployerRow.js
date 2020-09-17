@@ -2,6 +2,8 @@ import {el, setAttr, svg, place} from '../../../../libs/libs'
 import { initRowTooltips } from '../../initToottips'
 import getWorkModalInfo from '../../fetchingData/getWorkModalInfo'
 
+import getWorkModalInfoOther from '../../fetchingData/Employer/WorkModal/getWorkModalInfoOther'
+
 
 
 
@@ -109,6 +111,22 @@ export default class RowEmployer {
 		this.nameInstance.setContent(`${data.name}`)
 		// console.log('updated')
 
+		// 	if(data.country_name !== null) {
+		// 	this.countryInstance = initRowTooltips(this.country)
+		// 	this.countryInstance.setContent(`${data.country_name}`)
+		// }
+
+		// if(data.enterprise !== '') {
+		// 	this.companyInstance = initRowTooltips(this.company)
+		// 	this.companyInstance.setContent(`${data.enterprise}`)
+		// }
+
+		// if(data.name !== '' ) {
+		// 	this.nameInstance = initRowTooltips(this.name)
+		// 	this.nameInstance.setContent(`${data.name}`)
+		// }
+
+
 		this.makeRequestForModal(id_employer)
 		}
 
@@ -121,6 +139,8 @@ export default class RowEmployer {
 	makeRequestForModal(id) {
 		this.el.addEventListener('click', function(e){
 			getWorkModalInfo(id)
+			getWorkModalInfoOther(id)
+			console.log(id)
 		})
 	}
 

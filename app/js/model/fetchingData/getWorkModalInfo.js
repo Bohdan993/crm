@@ -26,8 +26,6 @@ if(commonInfo) {
 // }
 
 
-let flag = false
-
 
 const getWorkModalInfo = async (id = '1') => {
 
@@ -41,7 +39,7 @@ try {
 		// const delay = await sleep(3000)
 		const data = await fetch.getResourse(`/employers/get/?id=${id}`)
 		const mainPart = data.data.main
-		console.log(data.data)
+		console.log(data.data.main)
 		// if(state.id !== id) {
 			workModal.update(mainPart)
 		// }

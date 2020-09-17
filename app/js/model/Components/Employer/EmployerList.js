@@ -12,6 +12,8 @@ export default class EmployerList {
     }
     update(data) {
 
+        // console.log(data)
+
     	this.count = data[data.length - 1]['id_employer']
         this.list.update(data);
         initWorkPopup(this.count)

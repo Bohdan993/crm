@@ -18,25 +18,28 @@ if(typeManufacturyPopup) {
 
 
 const getManufacturyTypePopup = async () => {
+	if(typeManufacturyPopup) {
 		// console.log(new TypeManufacturyPopup())
-	try {
-			const data = await fetch.getResourse('/employers/get_other/?s=3')
-			const production = data.data.production
 
-			const end = production.length
-			const middle = Math.ceil(end/2)
+		try {
+				const data = await fetch.getResourse('/employers/get_other/?s=3')
+				const production = data.data.production
+	
+				const end = production.length
+				const middle = Math.ceil(end/2)
 
-			const prod1 = production.slice(0, middle)
-			const prod2 = production.slice(middle, end)
+				const prod1 = production.slice(0, middle)
+				const prod2 = production.slice(middle, end)
 
 
-			part1.update(prod1)
-			part2.update(prod2)
+				part1.update(prod1)
+				part2.update(prod2)
 
-	} catch (e) {
-		console.error(e)
+		} catch (e) {
+			console.error(e)
+		}
+
 	}
-
 
 }
 

@@ -1,25 +1,23 @@
 import initOverlayScrollbars from './OverlayScrollbarsInit'
-import sidebarListsToggle from './sidebarListsToggle'
-import playAudioHover from './playAudioHover'
-import initPopups from './initPopups'
+// import sidebarListsToggle from './sidebarListsToggle'
+// import playAudioHover from './playAudioHover'
+
 import initTooltips from './initToottips'
 import initWorkPopup from './initWorkPopup'
 import initToastr from './initToastr'
 import test from './testing'
 import initWorkModalSelect from './initWorkModalSelect'
 import sidebarSearchInput from './sidebarSearchInput'
-import {checkMediaWidth} from './media'
+
 import checkIfWrapperIsEmpty from './checkIfWrapperIsEmpty'
 import show5Rows from './show5Rows'
 import addManufacturyType from './addManufacturyType'
-import addContactHistory from './addContactHistory'
 import show1Row from './show1rowFeedback'
-import chooseAndAddMedia from './chooseAndAddMedia'
 import addNewTask from './addNewTask'
 import deleteTask from './deleteTask'
 import setFeedbackDate from './setFeedbacklDate'
 import addFeedbackForm from './addfeedbackForm'
-import showRemoveBtnOnChecking from './showRemoveBtnOnChecking'
+// import showRemoveBtnOnChecking from './showRemoveBtnOnChecking'
 import autocompleteInput from './autocompleteInput'
 import switchModalParts from './switchModalParts'
 // import linkToSocial from './linkToSocial'
@@ -45,27 +43,26 @@ import addNewEmployer from './fetchingData/addNewEmployer'
 
 export {
 	initOverlayScrollbars,
-	sidebarListsToggle,
-	playAudioHover,
-	initPopups,
+	// sidebarListsToggle,
+	// playAudioHover,
+
 	initTooltips,
 	initWorkPopup,
 	initToastr,
 	test,
 	initWorkModalSelect,
 	sidebarSearchInput,
-	checkMediaWidth,
+
 	checkIfWrapperIsEmpty,
 	show5Rows,
 	addManufacturyType,
-	addContactHistory,
+
 	show1Row,
-	chooseAndAddMedia,
 	addNewTask,
 	deleteTask,
 	setFeedbackDate,
 	addFeedbackForm,
-	showRemoveBtnOnChecking,
+	// showRemoveBtnOnChecking,
 	showFullRow,
 	switchRowStatuses,
 	setDateToSlider,
