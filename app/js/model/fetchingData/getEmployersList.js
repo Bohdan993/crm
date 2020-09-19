@@ -2,6 +2,7 @@ import fetch from './fetchingDataClass'
 import EmployerList from '../Components/Employer/EmployerList'
 import Loader from '../Components/Employer/Loader'
 import {el, mount, place} from '../../../libs/libs'
+import { toastr }from '../../../libs/libs'
 
 
 const employersWrapper = document.querySelector('.employer-rows-wrapper')
@@ -35,7 +36,9 @@ const getEmployersList = async () => {
 			// const delay = await sleep(8000)
 			const data = await fetch.getResourse('/employers/get_all')
 			const employers = data.data
-
+			if(!employers) {
+				throw new Error('Что то пошло не так, работодателей не найдено, обновите страницу, пожалуйста')
+			}
 			empList.update(employers);
 			loader.update(false)
 			
@@ -45,10 +48,12 @@ const getEmployersList = async () => {
 			// if(!flag) {
 				// flag = true
 			// }
+
+
 		
 			return employers[employers.length - 1]
 	} catch (e) {
-		console.error(e)
+		toastr.error(`${e.message}`)
 	}
 }
 	

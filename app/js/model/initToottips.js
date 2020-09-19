@@ -343,10 +343,10 @@ function initRowTooltips(el, content) {
 						// console.log('create row tooltip')
 						function chechOverflow(child) {
 								if (child.tagName.toLowerCase() === 'p') {
-										// console.log(child.textContent)
+						
 								
 										if (child.offsetWidth < child.scrollWidth && child.textContent !== "") {
-						
+										
 												instance.enable();
 										} else {
 												instance.disable();
@@ -355,11 +355,12 @@ function initRowTooltips(el, content) {
 
 						}
 
-						chechOverflow = debounce(chechOverflow, 250)
+						chechOverflow = debounce(chechOverflow, 250);
 
-						window.addEventListener('load', function() {
-								[...instance.reference.children].forEach(chechOverflow)
-						})
+						// window.addEventListener('load', function() {
+							// console.log([...instance.reference.children]);
+						[...instance.reference.children].forEach(chechOverflow)
+						// })
 						window.addEventListener('resize', function() {
 								[...instance.reference.children].forEach(chechOverflow)
 						})

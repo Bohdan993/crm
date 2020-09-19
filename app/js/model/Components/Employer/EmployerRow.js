@@ -53,9 +53,7 @@ export default class RowEmployer {
 				)
 			)
 
-			this.countryInstance = initRowTooltips(this.country)
-			this.companyInstance = initRowTooltips(this.company)
-			this.nameInstance = initRowTooltips(this.name)
+		
 
 	}
 
@@ -106,9 +104,21 @@ export default class RowEmployer {
 			) : this.vacancyLabel.update(false)
 
 
-		this.countryInstance.setContent(`${data.country_name}`)
-		this.companyInstance.setContent(`${data.enterprise}`)
-		this.nameInstance.setContent(`${data.name}`)
+		setTimeout(() => {
+		if(data.country_name !== null) {
+			this.countryInstance = initRowTooltips(this.country)
+			this.countryInstance.setContent(`${data.country_name}`)
+		}
+
+			this.companyInstance = initRowTooltips(this.company)
+			this.nameInstance = initRowTooltips(this.name)
+
+
+	
+			this.companyInstance.setContent(`${data.enterprise}`)
+			this.nameInstance.setContent(`${data.name}`)
+		}, 0)
+	
 		// console.log('updated')
 
 		// 	if(data.country_name !== null) {
