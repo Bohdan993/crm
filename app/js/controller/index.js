@@ -1,19 +1,12 @@
 import {
-
 	initOverlayScrollbars,
-	// sidebarListsToggle,
-
 	initTooltips,
-	// initWorkPopup,
 	initToastr,
 	test,
 	initWorkModalSelect,
 	sidebarSearchInput,
-	checkIfWrapperIsEmpty,
-
 	show5Rows,
 	addManufacturyType,
-
 	show1Row,
 	addNewTask,
 	deleteTask,
@@ -26,7 +19,6 @@ import {
 	showChooseBlockFullInfo,
 	showFullClientsRow,
 	switchModalParts,
-	// linkToSocial,
 	changeDirection,
 	feedbackEdit,
 	getEmployersList,
@@ -40,7 +32,6 @@ import {
 import {OverlayScrollbars} from '../../libs/libs'
 import {
 	body,
-	sidebarListItems,
 	rows,
 	sidebarLayout,
 	workModalRows,
@@ -48,18 +39,12 @@ import {
 	workModalManagerSelect,
 	sidebarSearchInput as searchInput,
 	workModalCountrySelect,
-	workModalContactsHistory,
-	workModalVacanciesHistory,
-	modalRowMediaWrapper,
-	modalRowMedia,
-	modalRowLayer,
 	contactsHistoryShowMore,
 	contactsHistory,
 	vacanciesHistory,
 	vacanciesHistoryShowMore,
 	manufacturyTypeAddItem,
 	manufacturyType,
-	contactsHistoryAddItem,
 	workModalMediaLayer,
 	mediaShowMore,
 	workModalAddTask,
@@ -85,7 +70,6 @@ import {
 	clientsRow,
 	modalParts,
 	modalSwitchers,
-	// socialLinks,
 	changeDirection as changeDirectionArrows,
 	editBtns,
 	workModalFeedback,
@@ -97,22 +81,17 @@ import {
 const app = {
 	init() {
 		this.initOSB()
-		// this.ip()
 		this.it()
-		// this.iwp()
 		this.t()
 		this.iwms()
 		this.ssi()
-		this.ciwie()
 		this.s5r()
 		this.s1r()
 		this.amt()
-
 		this.ant()
 		this.dt()
 		this.sfd()
 		this.aff()
-
 		this.sfr()
 		this.srs()
 		this.sdts()
@@ -130,34 +109,22 @@ const app = {
 		this.ane()
 		this.itstr()
 		this.gmtp()
-		// this.test()
-		// this.slt()
+
 	},
 
 	initOSB(){
 		initOverlayScrollbars(sidebarLayout)
 		initOverlayScrollbars(workModalRows)
 		initOverlayScrollbars(workModalSidebar)
-		initOverlayScrollbars(workModalContactsHistory)
-		initOverlayScrollbars(workModalVacanciesHistory)
-		initOverlayScrollbars(workModalMediaLayer)
 		initOverlayScrollbars(workModalFeedback)
 		initOverlayScrollbars(clientsModalLayer)
 	},
-	// slt(){
-	// 	sidebarListsToggle(sidebarListItems)
-	// }
-
-
 
 	it() {
 		initTooltips()
 	},
 	itstr() {
 		initToastr()
-	},
-	iwp() {
-		// initWorkPopup()
 	},
 	t(){
 		test()
@@ -183,9 +150,7 @@ const app = {
 	ssi(){
 		sidebarSearchInput(searchInput)
 	},
-	ciwie(){
-		// checkIfWrapperIsEmpty(modalRowLayer)
-	},
+
 	s5r() {
 
 		// if(contactsHistory) {

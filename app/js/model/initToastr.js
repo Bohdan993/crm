@@ -6,6 +6,7 @@ const initToastr = () => {
 	toastr.options.progressBar = true
 	toastr.options.preventDuplicates = true
 	toastr.options.timeOut = 3000
+	toastr.options.closeButton = true
 }
 
 

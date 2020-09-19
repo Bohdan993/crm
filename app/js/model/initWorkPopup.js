@@ -24,44 +24,44 @@ function closeModal(id, e) {
 
 
 
-function showMoreMedia(wrapWidth, count, rowsAbs) {
-        // console.log('more')
-        let rows = modalRowMediaWrapper.querySelectorAll('.hidden-row-opacity')
-        let j = 0
+// function showMoreMedia(wrapWidth, count, rowsAbs) {
+//         // console.log('more')
+//         let rows = modalRowMediaWrapper.querySelectorAll('.hidden-row-opacity')
+//         let j = 0
 
-        rows.forEach((el, i, arr) => {
-          let clone = el.querySelector('img').cloneNode()
-          let mr = el.currentStyle || window.getComputedStyle(el)
+//         rows.forEach((el, i, arr) => {
+//           let clone = el.querySelector('img').cloneNode()
+//           let mr = el.currentStyle || window.getComputedStyle(el)
 
-          clone.style.display = 'block'
-          clone.style.width = 'auto'
-          clone.style.height = '100px'
-          clone.style.marginRight = mr.marginRight
+//           clone.style.display = 'block'
+//           clone.style.width = 'auto'
+//           clone.style.height = '100px'
+//           clone.style.marginRight = mr.marginRight
 
-          body.appendChild(clone)
+//           body.appendChild(clone)
           
-          let style = clone.currentStyle || window.getComputedStyle(clone)
-          j += clone.offsetWidth + parseInt(style.marginRight)
+//           let style = clone.currentStyle || window.getComputedStyle(clone)
+//           j += clone.offsetWidth + parseInt(style.marginRight)
 
-          body.removeChild(clone)
+//           body.removeChild(clone)
 
 
-          if(j < wrapWidth) {
-            el.classList.remove('hidden-row-opacity')
-          }
+//           if(j < wrapWidth) {
+//             el.classList.remove('hidden-row-opacity')
+//           }
 
-          if(!el.classList.contains('hidden-row-opacity')) {
-            count++
-          }
+//           if(!el.classList.contains('hidden-row-opacity')) {
+//             count++
+//           }
 
-        })
+//         })
 
-        if(count === rowsAbs.length) {
-          mediaShowMore.style.display = 'none'
-        }
+//         if(count === rowsAbs.length) {
+//           mediaShowMore.style.display = 'none'
+//         }
  
       
-}
+// }
 
 let flag = false
 let flagMedia = false
@@ -81,38 +81,38 @@ const initWorkPopup = (count) => {
     }
     
 
-  	if(modal.id === 'modal-1') {
-  		let wrapWidth = modalRowMediaWrapper.offsetWidth
-  		let width = 0
+  // 	if(modal.id === 'modal-1') {
+  // 		let wrapWidth = modalRowMediaWrapper.offsetWidth
+  // 		let width = 0
   		
-  //Функционал медиа
-  		modalRowMedia.forEach(el=> {
-  			let style = el.currentStyle || window.getComputedStyle(el)
-  			width += el.offsetWidth + parseInt(style.marginRight)
+  // //Функционал медиа
+  // 		modalRowMedia.forEach(el=> {
+  // 			let style = el.currentStyle || window.getComputedStyle(el)
+  // 			width += el.offsetWidth + parseInt(style.marginRight)
 
-  			if(width > wrapWidth) {
-  				// mediaShowMore.style.display = 'block'
-  				if(!show) {
-  					el.classList.add('hidden-row-opacity')
-  				}	
+  // 			if(width > wrapWidth) {
+  // 				// mediaShowMore.style.display = 'block'
+  // 				if(!show) {
+  // 					el.classList.add('hidden-row-opacity')
+  // 				}	
 
-  				mediaShowMore.style.display = 'flex'
-  			}
-  		})
+  // 				mediaShowMore.style.display = 'flex'
+  // 			}
+  // 		})
 
-  		// console.log(j)
+  // 		// console.log(j)
   		
-  		let rowsAbs = modalRowMediaWrapper.querySelectorAll('.hidden-row-opacity')
-  		let count = 0
+  // 		let rowsAbs = modalRowMediaWrapper.querySelectorAll('.hidden-row-opacity')
+  // 		let count = 0
 
-      if(!flagMedia) {
-        mediaShowMore.addEventListener('click', showMoreMedia.bind(this, wrapWidth, count, rowsAbs))
-        flagMedia = true
-      }
+  //     if(!flagMedia) {
+  //       mediaShowMore.addEventListener('click', showMoreMedia.bind(this, wrapWidth, count, rowsAbs))
+  //       flagMedia = true
+  //     }
   		
 
-  	}
-  	show = true
+  // 	}
+  // 	show = true
 
   },
   onClose: modal => {

@@ -2,7 +2,7 @@ import {el, setAttr, svg, list} from '../../../../../libs/libs';
 import hiddenClassMixin from '../../../Mixins/hiddenClassMixin'
 
 import checkIfWrapperIsEmpty from '../../../checkIfWrapperIsEmpty'
-
+import initOverlayScrollbars from '../../../OverlayScrollbarsInit'
 
 
 
@@ -73,6 +73,7 @@ export default class WorkModalVacancyHistory {
 
 			//Вызов функций которые зависят от инстанса класса
 			 checkIfWrapperIsEmpty(this.modalLayer)
+			 initOverlayScrollbars(this.modalLayer)
 			//
 
 			this.data = data

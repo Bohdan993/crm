@@ -14,6 +14,8 @@ if(managersPopup) {
 				const data = await fetch.getResourse('/employers/get_other/?s=1')
 				const managers = data.data.managers
 
+				localStorage.setItem('managers', JSON.stringify(managers))
+
 				popup.update(managers);
 		} catch (e) {
 			console.error(e)

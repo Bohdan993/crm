@@ -53,7 +53,7 @@ const getEmployersList = async () => {
 		
 			return employers[employers.length - 1]
 	} catch (e) {
-		toastr.error(`${e.message}`)
+		toastr.error(`${e.message}`, '' ,{timeOut: 0, extendedTimeOut: 0})
 	}
 }
 	

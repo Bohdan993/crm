@@ -20,7 +20,7 @@ const addNewEmployer = () => {
 				document.dispatchEvent(employerListAddEvent)
 
 
-				toastr.success(`ID работодателя ${employer.id}`, 'Успешно создан работодатель')
+				toastr.success(`ID работодателя ${employer.id}`, 'Успешно создан работодатель', {closeButton: false})
 			} catch(e) {
 				console.error(e)
 			}

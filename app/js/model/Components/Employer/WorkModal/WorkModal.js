@@ -1,4 +1,4 @@
-import {el, setAttr, svg} from '../../../../../libs/libs';
+import {el, setAttr, svg, list} from '../../../../../libs/libs';
 import linkToSocial from '../../../linkToSocial';
 import initWorkModalSelect from '../../../initWorkModalSelect'
 import hiddenClassMixin from '../../../Mixins/hiddenClassMixin'
@@ -8,11 +8,19 @@ import hiddenClassMixin from '../../../Mixins/hiddenClassMixin'
 // 		}
 let initedCountrySelect = false
 
-
+class Option {
+    constructor() {
+        this.el = el('option', "Какая то опция")
+    }
+    update(data) {
+        this.el.textContent = data.name
+    }
+}
 
 export default class WorkModal {
 	constructor(){
 		this.data = {}
+
 		this.comInfLeft = el('div.common-info__left', 
 			el('div.common-info__company.info-block', 
 				el('p', 'Предприятие'),
@@ -168,25 +176,13 @@ export default class WorkModal {
 					el('div.common-info__more-info-mediator.info-block',
 						el('p', 'Посредник'),
 						el('div.input-group.native-select',
-							el('select.info-area.mediator-select',{
-								name: ''
-							},
-								el('option', "Какая то опция"),
-								el('option', "Какая то опция"),
-								el('option', "Какая то опция"),
-								el('option', "Какая то опция"),
-								))),
+							this.intermadiariesSelect = list('select.info-area.mediator-select', Option)
+							)),
 					el('div.common-info__more-info-source.info-block',
 						el('p', 'Источник'),
 						el('div.input-group.native-select',
-							el('select.info-area.source-select',{
-								name: ''
-							}, 
-								el('option',"Какая то опция"),
-								el('option',"Какая то опция"),
-								el('option',"Какая то опция"),
-								el('option',"Какая то опция")
-								)))
+							this.sourceSelect = list('select.info-area.source-select', Option)
+							))
 					)
 				)
 			)
@@ -197,12 +193,11 @@ export default class WorkModal {
 	}
 
 	 update(data, index, items, context) {
-	 		// console.log(this.data)
+	 		// console.log(data)
 	 		const { id_employer } = data
 	 		
 			
 		
-
 			if(id_employer !== this.data.id_employer) {
 			const arrLinks = []
 			this.comManufacturyArea.innerText = data.enterprise
@@ -218,15 +213,10 @@ export default class WorkModal {
 			this.comInfFacebook.value = data.social_media_facebook
 			this.comInfInstagram.value = data.social_media_instagram
 			this.comInfNotes.value = data.note
+			this.intermadiariesSelect.update(JSON.parse(localStorage.getItem('intermediaries')))
+			this.sourceSelect.update(data.source)
 
-			// this.input.id = 'manager-chbx-' + data.id
-			// setAttr(this.tag, {
-			// 	innerText: data.name
-			// })
-			// setAttr(this.label, {
-			// 	for: 'manager-chbx-' + data.id,
-			// 	innerHTML: `<i class="tag manager-tag" style="background-color:${'#' + data.color}">${data.name.split(/\s+/).map(word => word[0].toUpperCase()).join('')}</i>${data.name}`
-			// })
+			
 
 
 			//Получаем все элементы внутри инстанса которые содержат класс 'social-link'
@@ -241,14 +231,17 @@ export default class WorkModal {
 			//
 
 
+	
+
+
 			//Вызов функций которые зависят от HTML элементов внутри инстанса
 			linkToSocial(arrLinks)
 			if(!initedCountrySelect) {
-				initWorkModalSelect(this.comCountrySelect)
+				initWorkModalSelect(this.comCountrySelect, {countries: JSON.parse(localStorage.getItem('countries'))})
 				initedCountrySelect = true
 			}
-			
 			//
+
 			this.el.classList.remove('hidden')
 			}
 

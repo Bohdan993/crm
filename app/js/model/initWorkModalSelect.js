@@ -1,6 +1,18 @@
 import {Choices} from '../../libs/libs'
 
-const initWorkModalSelect = (elem) => {
+
+
+let defaultValue = [
+	{
+			value: 'Отсутствует',
+			label: '<span>Отсутствует</span>',
+			selected:true,
+		  disabled: false,
+		}
+]
+
+
+const initWorkModalSelect = (elem, { countries } = {}) => {
  if(elem.classList.contains('manager-select')) {
  	 const choices = new Choices(elem, {
 		choices: [
@@ -37,35 +49,24 @@ const initWorkModalSelect = (elem) => {
 
  }); 
  } else if (elem.classList.contains('country-select')) {
- 	 const choices = new Choices(elem, {
-		choices: [
-			{
-			value: 'Отсутствует',
-			label: '<span>Отсутствует</span>',
-			selected:true,
-		  disabled: false,
-		},
-		{
-			value: 'Норвегия',
-		  label: `<i class="row__flag">
+ 		let choisesCountries = countries.map(country => {
+ 			return {
+ 				value: country.name,
+ 				label: `<i class="row__flag">
                 <svg>
                   <use xlink:href="img/sprites/svg/symbol/sprite.svg#no.png"></use>
-                </svg></i><span>Норвегия</span>`,
-		  selected: false,
-		  disabled: false,
-		},
-		{
-		  value: 'Дания',
-		  label: `<i class="row__flag">
-                <svg>
-                  <use xlink:href="img/sprites/svg/symbol/sprite.svg#dk.png"></use>
-                </svg></i><span>Дания</span>`,
-		  selected: false,
-		  disabled: false,
-		},
-	
+                </svg></i><span>${country.name}</span>`,
+        selected: false,
+        disabled: false
+ 			}
+ 		})
 
-		],
+
+ 		let resultArray = defaultValue.concat(choisesCountries)
+
+ 		console.log(choisesCountries)
+ 	 const choices = new Choices(elem, {
+		choices: resultArray,
 		searchEnabled: false,
 		shouldSort: false,
 		classNames: {

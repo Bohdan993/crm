@@ -25,6 +25,8 @@ if(intermediariesPopup) {
 			const data = await fetch.getResourse('/employers/get_other/?s=2')
 			const intermediaries = data.data.intermediaries
 
+			localStorage.setItem('intermediaries', JSON.stringify(intermediaries))
+
 			popup.update(intermediaries);
 	} catch (e) {
 		console.error(e)

@@ -38,8 +38,13 @@ const getWorkModalInfo = async (id = '1') => {
 try {
 		// const delay = await sleep(3000)
 		const data = await fetch.getResourse(`/employers/get/?id=${id}`)
+		const sourseData = await fetch.getResourse('/employers/get_other/?s=5')
+
 		const mainPart = data.data.main
-		console.log(data.data.main)
+		const source = sourseData.data.source
+
+
+		mainPart.source = source
 		// if(state.id !== id) {
 			workModal.update(mainPart)
 		// }

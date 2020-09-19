@@ -2,7 +2,6 @@ import fetch from './fetchingDataClass'
 import CountryPopup from '../Components/Employer/CountryPopup'
 import {list, mount} from '../../../libs/libs'
 
-
 const countryPopup = document.querySelector('#country-popup')
 const popup = list("form", CountryPopup, 'id')
 
@@ -19,6 +18,9 @@ if(countryPopup) {
 				countries.sort((a, b) => {
 					return a.name.localeCompare(b.name)
 				})
+
+				localStorage.setItem('countries', JSON.stringify(countries))
+	
 				popup.update(countries);
 		} catch (e) {
 			console.error(e)
