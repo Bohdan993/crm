@@ -4,4 +4,4 @@
         });
 
 
-	export default employerListUpdateEvent 		//to ../fetchingData/addNewEmployer.js
+	export default employerListUpdateEvent 		//to ../Components/Employer/EmployerList.js

@@ -29,6 +29,7 @@ import {
 
 
 const initTooltips = () => {
+	
 	if(countryTemplate) {
 		countryTemplate.style.display = 'block';
 	}

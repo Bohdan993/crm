@@ -150,7 +150,7 @@ export default class RowEmployer {
 		this.el.addEventListener('click', function(e){
 			getWorkModalInfo(id)
 			getWorkModalInfoOther(id)
-			console.log(id)
+			// console.log(id)
 		})
 	}
 

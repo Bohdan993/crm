@@ -16,7 +16,6 @@ function addMouseUpTrigger(e) {
 function closeModal(id, e) {
   if(e.target.classList.contains('my-modal-wrapper')) {
     MicroModal.close(id)
-
   }
 }
 
@@ -71,7 +70,7 @@ const initWorkPopup = (count) => {
 	let show = false
 	let modal = MicroModal.init({
   onShow: (modal, node) => {
-    // console.log(`${modal.id} is shown`)
+    console.log(`${modal.id} is shown`)
     const wrapper = modal.querySelector('.my-modal-wrapper')
 
     if(!flag) {

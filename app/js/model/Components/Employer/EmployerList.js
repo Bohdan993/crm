@@ -3,6 +3,8 @@ import RowEmployer from './EmployerRow'
 
 import initWorkPopup from '../../initWorkPopup'
 
+// import employerListUpdateEvent from '../../CustomEvents/EmployerListUpdateEvent'
+
 
 export default class EmployerList {
     constructor() {
@@ -12,11 +14,23 @@ export default class EmployerList {
     }
     update(data) {
 
-        // console.log(data)
+        console.log(data)
+
+        
 
     	this.count = data[data.length - 1]['id_employer']
+        localStorage.setItem('countForModals', JSON.stringify(this.count))
+
+        // console.log(this.count)
+
+        // employerListUpdateEvent.detail.count = this.count
+        // document.dispatchEvent(employerListUpdateEvent)
+
         this.list.update(data);
+
+        //Инициализация функций которые зависят от инстанса класса
         initWorkPopup(this.count)
+        //
     }
 
     onmount() {
