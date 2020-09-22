@@ -100,9 +100,9 @@ const initTooltips = () => {
     /////////////////////////////////////////
     initSidebarTooltip('.country-filter-wrapper', countryTemplate)
     ////////////////////////////////////////////////////////////
-    initSidebarTooltip('.contact-filter-wrapper', contactTemplate)
-    ////////////////////////////////////////////////////////
     initSidebarTooltip('.type-manufactury-filter-wrapper', typeManufacturyTemplate)
+    ////////////////////////////////////////////////////////
+    initSidebarTooltip('.contact-filter-wrapper', contactTemplate)
     /////////////////////////////////////////////////////////////////////////////////
     initSidebarTooltip('.managers-filter-wrapper', managersTemplate)
     /////////////////////////////////////////////////////////////////////////////////
@@ -280,9 +280,51 @@ function initSidebarTooltip(el, content) {
         hideOnClick: true,
         trigger: 'click',
         appendTo: () => document.body,
+        onCreate(instance) {
+
+        		function checkIfShowRemoveFilterButton(storageKey){
+						  sessionStorage.getItem(storageKey) ? (instance.reference.children[1].style.display = 'block',
+						  instance.reference.classList.add('active')) : null
+        		}
+
+        		switch(instance.id) {
+							case 1:
+								checkIfShowRemoveFilterButton('countryFilter')
+						    break
+						  case 2:
+						    checkIfShowRemoveFilterButton('typeManufacturyFilter')
+						    break
+						  case 3:
+						    checkIfShowRemoveFilterButton('contactDataFilter')
+						    break
+						  case 4:
+						    // alert( 'Маловато4' )
+						    break
+						  case 5:
+						    // alert( 'Маловато5' )
+						    break
+						  case 6:
+						    // alert( 'Маловато6' )
+						    break
+						  case 7:
+						    // alert( 'Маловато7' )
+						    break
+						  case 8:
+						    // alert( 'Маловато8' )
+						    break
+						 	case 9:
+						    // alert( 'Маловато9' )
+						    break
+						  case 10:
+						    // alert( 'Маловато10' )
+						    break
+						  default:
+						  	throw new Error('Возникла ошибка')
+					}
+  
+        },
         onShown(instance) {
         		let children = instance.props.content.querySelectorAll('input')
-
             document.addEventListener('keyup', function(e) {
                 if (e.keyCode === 27) {
                     instance.hide();
@@ -313,9 +355,15 @@ function initSidebarTooltip(el, content) {
 
 
 function childChangeHandler(children, child, instance, e) {
-	 let check = [].every.call(children, (child) => {
+
+	let check = [].every.call(children, (child) => {
       return !child.checked
   })
+
+	let some = [].some.call(children, (child) => {
+      return child.checked
+  })
+
 
   if (check) {
 
@@ -323,7 +371,7 @@ function childChangeHandler(children, child, instance, e) {
       instance.reference.classList.remove('active')
   }
 
-  if (child.checked) {
+  if (child.checked || some) {
       instance.reference.children[1].style.display = 'block'
       instance.reference.classList.add('active')
   }
@@ -332,10 +380,46 @@ function childChangeHandler(children, child, instance, e) {
 
 function removeCheckingHandler(children, instance, e){
 	e.stopPropagation();
-
+	// console.log(instance)
 	//Сделать блок switch case в зависимости от попапа передавать в функцию  getEmployersList разные аргументы
-	// switch()
-  getEmployersList({country: ''})
+	switch(instance.id) {
+			case 1:
+		    getEmployersList({country: ''})
+		    sessionStorage.removeItem('countryFilter')
+		    break
+		  case 2:
+		    getEmployersList({production: ''})
+		    sessionStorage.removeItem('typeManufacturyFilter')
+		    break
+		  case 3:
+		    getEmployersList({contact: ''})
+		    sessionStorage.removeItem('contactDataFilter')
+		    break
+		  case 4:
+		    alert( 'Маловато4' )
+		    break
+		  case 5:
+		    alert( 'Маловато5' )
+		    break
+		  case 6:
+		    alert( 'Маловато6' )
+		    break
+		  case 7:
+		    alert( 'Маловато7' )
+		    break
+		  case 8:
+		    alert( 'Маловато8' )
+		    break
+		 	case 9:
+		    alert( 'Маловато9' )
+		    break
+		  case 10:
+		    alert( 'Маловато10' )
+		    break
+		  default:
+		  	throw new Error('Возникла ошибка')
+	}
+  
 
   children.forEach(child => {
       child.checked = false

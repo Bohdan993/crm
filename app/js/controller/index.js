@@ -27,7 +27,8 @@ import {
 	getCountryPopup,
 	getManufacturyTypePopup,
 	addNewEmployer,
-	mountSearchInput
+	mountSearchInput,
+	mountContactDataPopup
 } from '../model'
 
 import {OverlayScrollbars} from '../../libs/libs'
@@ -111,6 +112,7 @@ const app = {
 		this.itstr()
 		this.gmtp()
 		this.msi()
+		this.msdp()
 
 
 	},
@@ -284,6 +286,9 @@ const app = {
 	},
 	msi(){
 		mountSearchInput()
+	},
+	msdp(){
+		mountContactDataPopup()
 	}
 
 }

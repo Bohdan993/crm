@@ -43,6 +43,7 @@ import addNewEmployer from './fetchingData/addNewEmployer'
 
 
 import mountSearchInput from './MountingElements/Employer/mountSearchInput'
+import mountContactDataPopup from './MountingElements/Employer/mountContactDataPopup'
 
 
 
@@ -84,6 +85,7 @@ export {
 	addNewEmployer,
 	getCountryPopup,
 	getManufacturyTypePopup,
-	mountSearchInput
+	mountSearchInput,
+	mountContactDataPopup
 	// getTextSearch
 }

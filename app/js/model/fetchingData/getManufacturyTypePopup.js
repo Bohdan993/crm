@@ -23,7 +23,18 @@ const getManufacturyTypePopup = async () => {
 
 		try {
 				const data = await fetch.getResourse('/employers/get_other/?s=3')
-				const production = data.data.production
+				let production = data.data.production
+
+				if(sessionStorage.getItem('typeManufacturyFilter')) { 
+						production = production.map(product => {
+						let checked = !!~JSON.parse(sessionStorage.getItem('typeManufacturyFilter')).split(',').indexOf(product.id)
+						return {
+							id: product.id,
+							name: product.name,
+							checked
+						}
+					})
+				}
 	
 				const end = production.length
 				const middle = Math.ceil(end/2)

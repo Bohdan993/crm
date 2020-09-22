@@ -29,10 +29,10 @@ mount(employersWrapper, loader)
 let flag = false
 
 const getEmployersList = async ({
-	search = '', 
-	country = '',
-	production = '',
-	contact = '',
+	search = JSON.parse(sessionStorage.getItem('search')) || '', 
+	country = JSON.parse(sessionStorage.getItem('countryFilter')) || '',
+	production = JSON.parse(sessionStorage.getItem('typeManufacturyFilter')) || '',
+	contact = JSON.parse(sessionStorage.getItem('contactDataFilter')) || '',
 	manager = '',
 	intermediary = '',
 	intermediaries = '',
@@ -42,15 +42,14 @@ const getEmployersList = async ({
 	last_contact = ''
 } = {}) => { 
 
+
 	if(employersWrapper) {
 		loader.update(true)
 
 	try {
 			// const delay = await sleep(8000)
-			const data = await fetch.getResourse(`/employers/get_all/?p=1&t=50&search=${search}&filter=country:${country}`)
+			const data = await fetch.getResourse(`/employers/get_all/?p=1&t=50&search=${search}&filter=country:${country}|production:${production}|contact:${contact}`)
 			const employers = data.data
-
-			// console.log(data)
 
 			if(data.success) {
 

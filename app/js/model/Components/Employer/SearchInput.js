@@ -30,13 +30,16 @@ import sidebarSearchInput from '../../sidebarSearchInput'
 
     searchFunc(){
       this.search.addEventListener('change', seachFunc)
-
+      this.search.value = JSON.parse(sessionStorage.getItem('search'))
+      
       function seachFunc(e){
         let val = e.target.value.trim()
         getEmployersList({search: val})
+        sessionStorage.setItem('search', JSON.stringify(val))
       }
 
       sidebarSearchInput(this.search)
+      this.search.dispatchEvent(new Event('input'))
     }
 
     removeHiddenClass(){
