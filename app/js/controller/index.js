@@ -26,7 +26,8 @@ import {
 	getIntermediariesPopup,
 	getCountryPopup,
 	getManufacturyTypePopup,
-	addNewEmployer
+	addNewEmployer,
+	mountSearchInput
 } from '../model'
 
 import {OverlayScrollbars} from '../../libs/libs'
@@ -109,6 +110,8 @@ const app = {
 		this.ane()
 		this.itstr()
 		this.gmtp()
+		this.msi()
+
 
 	},
 
@@ -148,7 +151,7 @@ const app = {
 		
 	},
 	ssi(){
-		sidebarSearchInput(searchInput)
+		// sidebarSearchInput(searchInput)
 	},
 
 	s5r() {
@@ -278,6 +281,9 @@ const app = {
 	},
 	ane() {
 		addNewEmployer()
+	},
+	msi(){
+		mountSearchInput()
 	}
 
 }

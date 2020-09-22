@@ -14,11 +14,11 @@ export default class EmployerList {
     }
     update(data) {
 
-        console.log(data)
+        // console.log(data)
 
         
 
-    	this.count = data[data.length - 1]['id_employer']
+    	this.count = data.length ? data[data.length - 1]['id_employer'] : ''
         localStorage.setItem('countForModals', JSON.stringify(this.count))
 
         // console.log(this.count)

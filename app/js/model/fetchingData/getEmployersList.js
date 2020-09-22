@@ -28,61 +28,60 @@ mount(employersWrapper, loader)
 
 let flag = false
 
-const getEmployersList = async () => { 
+const getEmployersList = async ({
+	search = '', 
+	country = '',
+	production = '',
+	contact = '',
+	manager = '',
+	intermediary = '',
+	intermediaries = '',
+	vacancy_active = '',
+	vacancy_type = '',
+	vacancy_term = '',
+	last_contact = ''
+} = {}) => { 
+
 	if(employersWrapper) {
 		loader.update(true)
 
 	try {
 			// const delay = await sleep(8000)
-			const data = await fetch.getResourse('/employers/get_all')
+			const data = await fetch.getResourse(`/employers/get_all/?p=1&t=50&search=${search}&filter=country:${country}`)
 			const employers = data.data
-			if(!employers) {
-				throw new Error('Что то пошло не так, работодателей не найдено, обновите страницу, пожалуйста')
+
+			// console.log(data)
+
+			if(data.success) {
+
+				if(!employers) {
+					throw new Error('Что то пошло не так, работодателей не найдено, обновите страницу, пожалуйста')
+				}
+
+					empList.update(employers);
+					loader.update(false)
+
+			} else {
+				empList.update([]);
+				loader.update(false)
+				return
 			}
-			empList.update(employers);
-			loader.update(false)
-			
-			// setTimeout(()=> {
-			// 	empList.update([...employers.slice(0, 2), ...employers.slice(5 + 1)]);
-			// }, 5000)
-			// if(!flag) {
-				// flag = true
-			// }
-
-
 		
 			return employers[employers.length - 1]
 	} catch (e) {
+		// console.error(e)
 		toastr.error(`${e.message}`, '' ,{timeOut: 0, extendedTimeOut: 0})
 	}
 }
-	
-
-
-	
 
 }
 
 
-// const getEmployersListForUpdate = async () => { 
-
-// 	try {
-// 			const data = await fetch.getResourse('/employers/get_all')
-// 			const employers = data.data
-// 			empList.update(employers);
-// 	} catch (e) {
-// 		console.error(e)
-// 	}
-
-// 	initWorkPopup()
-
-// }
 
 
 
-export default getEmployersList
+export default getEmployersList // to ../initTooltips.js
 
 export {
-	empList,
-	// getEmployersListForUpdate
+	empList
 }

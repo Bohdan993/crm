@@ -1,5 +1,4 @@
 
-
 const sidebarSearchInput = (input)=> {
 	let parent = input.parentNode,
 	searchIcon = parent.querySelector('.search-icon'),
@@ -22,10 +21,11 @@ const sidebarSearchInput = (input)=> {
 
 	removeIcon.addEventListener('click', function(e){
 		input.value = ''
+		input.dispatchEvent(new Event('change'))
 		searchIcon.classList.remove('hidden')
 		removeIcon.classList.add('hidden')
 	})
 }
 
 
-export default sidebarSearchInput
+export default sidebarSearchInput // to ./Components/Employer/SearchInput.js

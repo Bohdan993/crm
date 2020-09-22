@@ -54,7 +54,7 @@ const initWorkModalSelect = (elem, { countries } = {}) => {
  				value: country.name,
  				label: `<i class="row__flag">
                 <svg>
-                  <use xlink:href="img/sprites/svg/symbol/sprite.svg#no.png"></use>
+                  <use xlink:href="img/sprites/svg/symbol/sprite.svg#${country.icon}"></use>
                 </svg></i><span>${country.name}</span>`,
         selected: false,
         disabled: false
@@ -64,7 +64,7 @@ const initWorkModalSelect = (elem, { countries } = {}) => {
 
  		let resultArray = defaultValue.concat(choisesCountries)
 
- 		console.log(choisesCountries)
+ 		console.log(countries)
  	 const choices = new Choices(elem, {
 		choices: resultArray,
 		searchEnabled: false,

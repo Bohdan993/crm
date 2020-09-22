@@ -37,7 +37,12 @@ import getManagerPopup from './fetchingData/getManagerPopup'
 import getIntermediariesPopup from './fetchingData/getIntermediariesPopup'
 import getCountryPopup from './fetchingData/getCountryPopup'
 import getManufacturyTypePopup from './fetchingData/getManufacturyTypePopup'
+// import getTextSearch from './fetchingData/Employer/getTextSearch'
 import addNewEmployer from './fetchingData/addNewEmployer'
+
+
+
+import mountSearchInput from './MountingElements/Employer/mountSearchInput'
 
 
 
@@ -78,5 +83,7 @@ export {
 	getIntermediariesPopup,
 	addNewEmployer,
 	getCountryPopup,
-	getManufacturyTypePopup
+	getManufacturyTypePopup,
+	mountSearchInput
+	// getTextSearch
 }
