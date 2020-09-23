@@ -33,13 +33,13 @@ const getEmployersList = async ({
 	country = JSON.parse(sessionStorage.getItem('countryFilter')) || '',
 	production = JSON.parse(sessionStorage.getItem('typeManufacturyFilter')) || '',
 	contact = JSON.parse(sessionStorage.getItem('contactDataFilter')) || '',
-	manager = '',
-	intermediary = '',
-	intermediaries = '',
+	manager = JSON.parse(sessionStorage.getItem('managerFilter')) || '',
+	intermediary = JSON.parse(sessionStorage.getItem('intermediaryFilter')) || '',
+	intermediaries = JSON.parse(sessionStorage.getItem('intermediariesFilter')) || '',
 	vacancy_active = '',
 	vacancy_type = '',
 	vacancy_term = '',
-	last_contact = ''
+	last_contact = JSON.parse(sessionStorage.getItem('lastContactFilter')) || ''
 } = {}) => { 
 
 
@@ -48,7 +48,8 @@ const getEmployersList = async ({
 
 	try {
 			// const delay = await sleep(8000)
-			const data = await fetch.getResourse(`/employers/get_all/?p=1&t=50&search=${search}&filter=country:${country}|production:${production}|contact:${contact}`)
+			const data = await fetch.getResourse(`/employers/get_all/?p=1&t=50&search=${search}&filter=country:${country}|production:${production}|contact:${contact}
+				|manager:${manager}|intermediaries:${intermediaries}|intermediary:${intermediary}|last_contact:${last_contact}`)
 			const employers = data.data
 
 			if(data.success) {
@@ -80,6 +81,8 @@ const getEmployersList = async ({
 
 
 export default getEmployersList // to ../initTooltips.js
+																// to ../Components/Employer/SidebarPopupInterface.js
+																// to ../Components/Employer/ManagerPopup.js
 
 export {
 	empList

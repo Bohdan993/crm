@@ -40,10 +40,22 @@ if(contactPopup) {
 						return {
 							id: contact.id,
 							name: contact.name,
+							prefix: 'contact-data-',
 							checked
 						}
 					})
 				}
+
+
+				contacts = contacts.map(contact => {
+					return {
+							id: contact.id,
+							name: contact.name,
+							prefix: 'contact-data-',
+						}
+				})
+
+
 				popup.update(contacts);
 	}
 }

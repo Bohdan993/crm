@@ -288,8 +288,8 @@ function initSidebarTooltip(el, content) {
         		}
 
         		switch(instance.id) {
-							case 1:
-								checkIfShowRemoveFilterButton('countryFilter')
+						  case 1:
+							checkIfShowRemoveFilterButton('countryFilter')
 						    break
 						  case 2:
 						    checkIfShowRemoveFilterButton('typeManufacturyFilter')
@@ -298,10 +298,11 @@ function initSidebarTooltip(el, content) {
 						    checkIfShowRemoveFilterButton('contactDataFilter')
 						    break
 						  case 4:
-						    // alert( 'Маловато4' )
+						    checkIfShowRemoveFilterButton('managerFilter')
 						    break
 						  case 5:
-						    // alert( 'Маловато5' )
+						    checkIfShowRemoveFilterButton('intermediariesFilter')
+                            checkIfShowRemoveFilterButton('intermediaryFilter')
 						    break
 						  case 6:
 						    // alert( 'Маловато6' )
@@ -346,8 +347,6 @@ function initSidebarTooltip(el, content) {
 
             	removeCheckingHandlerFlag = true
             }
-            
-
         },
     })
 }
@@ -396,10 +395,14 @@ function removeCheckingHandler(children, instance, e){
 		    sessionStorage.removeItem('contactDataFilter')
 		    break
 		  case 4:
-		    alert( 'Маловато4' )
+		    getEmployersList({manager: ''})
+            sessionStorage.removeItem('managerFilter')
 		    break
 		  case 5:
-		    alert( 'Маловато5' )
+            getEmployersList({intermediaries: ''})
+            sessionStorage.removeItem('intermediariesFilter')
+            getEmployersList({intermediary: ''})
+            sessionStorage.removeItem('intermediaryFilter')
 		    break
 		  case 6:
 		    alert( 'Маловато6' )
@@ -438,7 +441,6 @@ function initRowTooltips(el, content) {
         content,
         appendTo: 'parent',
         onCreate(instance) {
-            // console.log('create row tooltip')
             function chechOverflow(child) {
                 if (child.tagName.toLowerCase() === 'p') {
 
@@ -452,14 +454,16 @@ function initRowTooltips(el, content) {
 
             }
 
+
             chechOverflow = debounce(chechOverflow, 250);
 
             [...instance.reference.children].forEach(chechOverflow)
+
             window.addEventListener('resize', function() {
                 [...instance.reference.children].forEach(chechOverflow)
             })
 
-            //Этот момент нужно оптимизировать, чтобы не вызывать для каждой строки, а только для последней
+            //Этот момент нужно оптимизировать, чтобы не вызывать событие для каждой строки работодателя, а только для последней (которую добавили в список)
 
             document.addEventListener('employerslistadd', function(e) {
 
@@ -487,5 +491,5 @@ export default initTooltips
 
 export {
     initSidebarTooltip,
-    initRowTooltips
+    initRowTooltips // to './Components/Employer/EmployerRow.js'
 }

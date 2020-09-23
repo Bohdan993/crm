@@ -1,4 +1,5 @@
 import {el, setAttr} from '../../../../libs/libs'
+import getEmployersList from '../../fetchingData/getEmployersList'
 
 export default class ManagerPopup {
 	constructor(){
@@ -17,7 +18,10 @@ export default class ManagerPopup {
 	 		// console.log(data)
 			this.data = data
 			this.data.index = index
-			this.input.id = 'manager-chbx-' + data.id
+			setAttr(this.input, {
+				id: 'manager-chbx-' + data.id,
+				checked: data.checked
+			})
 			setAttr(this.tag, {
 				innerText: data.name
 			})
@@ -25,5 +29,27 @@ export default class ManagerPopup {
 				for: 'manager-chbx-' + data.id,
 				innerHTML: `<i class="tag manager-tag" style="background-color:${'#' + data.color}">${data.name.split(/\s+/).map(word => word[0].toUpperCase()).join('')}</i>${data.name}`
 			})
+			this.filter(data.id, 'manager', 'managerFilter')
+	}
+
+	filter(id, str, storageKey){
+		this.input.addEventListener('change', filter)
+
+		function filter(e){
+			//В свойство класса присваиваем массив данных который находится в sessionStorage по соответствующему ключу
+			ManagerPopup.checkedArr = sessionStorage.getItem(storageKey) && JSON.parse(sessionStorage.getItem(storageKey)) !== '' ? JSON.parse(sessionStorage.getItem(storageKey)).split(',') : []
+			//this - один чекбокс в попапе
+			if(this.checked) {
+				ManagerPopup.checkedArr.push(id)
+				getEmployersList({[str]: ManagerPopup.checkedArr.join(',')})
+				
+				sessionStorage.setItem(storageKey, JSON.stringify(ManagerPopup.checkedArr.join(',')))
+			} else {
+				ManagerPopup.checkedArr = ManagerPopup.checkedArr.filter(el => el !== id)
+				getEmployersList({[str]: ManagerPopup.checkedArr.join(',')})
+				sessionStorage.setItem(storageKey, JSON.stringify(ManagerPopup.checkedArr.join(',')))
+			}
+		}
+		
 	}
 }

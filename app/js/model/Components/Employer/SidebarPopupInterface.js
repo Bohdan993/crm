@@ -17,11 +17,11 @@ export default class SidebarPopupInterface { // класс от которого
 	}
 	 update(data, index, items, context) {
 			setAttr(this.input, {
-				id: 'country-chbx-' + data.id,
+				id: data.prefix + data.id,
 				checked: data.checked
 			})
 			setAttr(this.label, {
-				for: 'country-chbx-' + data.id,
+				for: data.prefix + data.id,
 				innerText: data.name
 			})
 			this.data = data

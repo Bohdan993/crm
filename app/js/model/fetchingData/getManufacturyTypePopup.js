@@ -31,10 +31,19 @@ const getManufacturyTypePopup = async () => {
 						return {
 							id: product.id,
 							name: product.name,
+							prefix: 'type-manufactury-chbx-',
 							checked
 						}
 					})
 				}
+
+				production = production.map(product => {
+					return {
+						id: product.id,
+						name: product.name,
+						prefix: 'type-manufactury-chbx-',
+					}
+				})
 	
 				const end = production.length
 				const middle = Math.ceil(end/2)

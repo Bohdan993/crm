@@ -28,10 +28,20 @@ if(countryPopup) {
 							id: country.id,
 							name: country.name,
 							icon: country.icon,
+							prefix: 'country-chbx-',
 							checked
 						}
 					})
 				}
+
+				countries = countries.map(country => {
+					return {
+						id: country.id,
+						name: country.name,
+						icon: country.icon,
+						prefix: 'country-chbx-',
+					}
+				})
 
 				localStorage.setItem('countries', JSON.stringify(countries))
 	

@@ -12,7 +12,19 @@ const getManagerPopup = async () => {
 if(managersPopup) {
 		try {
 				const data = await fetch.getResourse('/employers/get_other/?s=1')
-				const managers = data.data.managers
+				let managers = data.data.managers
+				console.log(managers)
+				if(sessionStorage.getItem('managerFilter')) { 
+						managers = managers.map(manager => {
+						let checked = !!~JSON.parse(sessionStorage.getItem('managerFilter')).split(',').indexOf(manager.id)
+						return {
+							id: manager.id,
+							name: manager.name,
+							color: manager.color,
+							checked
+						}
+					})
+				}
 
 				localStorage.setItem('managers', JSON.stringify(managers))
 
