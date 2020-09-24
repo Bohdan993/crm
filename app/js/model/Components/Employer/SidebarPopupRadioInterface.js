@@ -16,9 +16,11 @@ export default class SidebarPopupRadioInterface { // класс от котор�
 			)
 	}
 	 update(data, index, items, context) {
+	 	console.log(data)
 			setAttr(this.input, {
 				id: data.prefix + data.id,
-				checked: data.checked
+				checked: data.checked,
+				name: data.prefix + 'name'
 			})
 			setAttr(this.label, {
 				for: data.prefix + data.id,

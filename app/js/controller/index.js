@@ -28,7 +28,10 @@ import {
 	getManufacturyTypePopup,
 	addNewEmployer,
 	mountSearchInput,
-	mountContactDataPopup
+	mountContactDataPopup,
+	mountLastContactPopup,
+	mountSortingPopup,
+	mountVacancyPopup
 } from '../model'
 
 import {OverlayScrollbars} from '../../libs/libs'
@@ -113,6 +116,9 @@ const app = {
 		this.gmtp()
 		this.msi()
 		this.msdp()
+		this.mlcp()
+		this.msp()
+		this.mvp()
 
 
 	},
@@ -289,6 +295,15 @@ const app = {
 	},
 	msdp(){
 		mountContactDataPopup()
+	},
+	mlcp(){
+		mountLastContactPopup()
+	},
+	msp(){
+		mountSortingPopup()
+	},
+	mvp() {
+		mountVacancyPopup()
 	}
 
 }

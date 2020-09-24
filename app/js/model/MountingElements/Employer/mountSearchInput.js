@@ -18,4 +18,4 @@ const mountSearchInput = () => {
 }
 
 
-export default mountSearchInput
+export default mountSearchInput // to ../../index.js

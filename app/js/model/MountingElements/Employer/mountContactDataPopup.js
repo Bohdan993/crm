@@ -34,6 +34,10 @@ if(contactPopup) {
 
 const mountContactDataPopup = () => {
 if(contactPopup) {
+
+
+
+
 				if(sessionStorage.getItem('contactDataFilter')) { 
 						contacts = contacts.map(contact => {
 						let checked = !!~JSON.parse(sessionStorage.getItem('contactDataFilter')).split(',').indexOf(contact.id)
@@ -44,16 +48,18 @@ if(contactPopup) {
 							checked
 						}
 					})
+				} else {
+					contacts = contacts.map(contact => {
+					return {
+								id: contact.id,
+								name: contact.name,
+								prefix: 'contact-data-',
+							}
+					})
 				}
 
 
-				contacts = contacts.map(contact => {
-					return {
-							id: contact.id,
-							name: contact.name,
-							prefix: 'contact-data-',
-						}
-				})
+			
 
 
 				popup.update(contacts);
@@ -63,4 +69,4 @@ if(contactPopup) {
 
 
 
-export default mountContactDataPopup
+export default mountContactDataPopup // to ../../index.js

@@ -10,11 +10,11 @@ const intermediariesPopup = document.querySelector('#intermediaries-popup form')
 
 
 let radioGroupData = [{
-	id: '0',
+	id: '1',
 	label: 'Показать',
 	'data-id': 'show-rbtn'
 },{
-	id: '1',
+	id: '0',
 	label: 'Исключить',
 	'data-id': 'remove-rbtn'
 }]
@@ -35,6 +35,9 @@ if(intermediariesPopup) {
 			const data = await fetch.getResourse('/employers/get_other/?s=2')
 			let intermediaries = data.data.intermediaries
 			// console.log(intermediaries)
+
+			
+
 			if(sessionStorage.getItem('intermediariesFilter')) { 
 						intermediaries = intermediaries.map(intermediary => {
 						let checked = !!~JSON.parse(sessionStorage.getItem('intermediariesFilter')).split(',').indexOf(intermediary.id)
@@ -44,7 +47,16 @@ if(intermediariesPopup) {
 							checked
 						}
 					})
+				} else {
+					intermediaries = intermediaries.map(intermediary=> {
+						return {
+							id: intermediary.id,
+							name: intermediary.name,
+						}
+					})
 				}
+
+				
 
 				if(sessionStorage.getItem('intermediaryFilter')) { 
 						radioGroupData = radioGroupData.map(data => {
@@ -54,6 +66,14 @@ if(intermediariesPopup) {
 							label: data.label,
 							'data-id': data['data-id'],
 							checked
+						}
+					})
+				} else {
+					radioGroupData = radioGroupData.map(data=> {
+						return {
+							id: data.id,
+							label: data.label,
+							'data-id': data['data-id'],
 						}
 					})
 				}
@@ -67,8 +87,6 @@ if(intermediariesPopup) {
 	}
 
 }
-	// initSidebarTooltip('.managers-filter-wrapper', managersTemplate)
-
 }
 
 

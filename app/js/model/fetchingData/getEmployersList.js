@@ -36,10 +36,11 @@ const getEmployersList = async ({
 	manager = JSON.parse(sessionStorage.getItem('managerFilter')) || '',
 	intermediary = JSON.parse(sessionStorage.getItem('intermediaryFilter')) || '',
 	intermediaries = JSON.parse(sessionStorage.getItem('intermediariesFilter')) || '',
-	vacancy_active = '',
-	vacancy_type = '',
-	vacancy_term = '',
-	last_contact = JSON.parse(sessionStorage.getItem('lastContactFilter')) || ''
+	vacancy_active = JSON.parse(sessionStorage.getItem('vacancyActiveFilter')) || '',
+	vacancy_type = JSON.parse(sessionStorage.getItem('vacancyTypeFilter')) || '',
+	vacancy_term = JSON.parse(sessionStorage.getItem('vacancyTermFilter')) || '',
+	last_contact = JSON.parse(sessionStorage.getItem('lastContactFilter')) || '',
+	sort = JSON.parse(sessionStorage.getItem('sortFilter')) || ''
 } = {}) => { 
 
 
@@ -49,7 +50,7 @@ const getEmployersList = async ({
 	try {
 			// const delay = await sleep(8000)
 			const data = await fetch.getResourse(`/employers/get_all/?p=1&t=50&search=${search}&filter=country:${country}|production:${production}|contact:${contact}
-				|manager:${manager}|intermediaries:${intermediaries}|intermediary:${intermediary}|last_contact:${last_contact}`)
+				|manager:${manager}|intermediaries:${intermediaries}|intermediary:${intermediary}|vacancy_active:${vacancy_active}|vacancy_type:${vacancy_type}|vacancy_term:${vacancy_term}|last_contact:${last_contact}&sort=${sort}`)
 			const employers = data.data
 
 			if(data.success) {

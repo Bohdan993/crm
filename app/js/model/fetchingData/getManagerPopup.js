@@ -13,7 +13,9 @@ if(managersPopup) {
 		try {
 				const data = await fetch.getResourse('/employers/get_other/?s=1')
 				let managers = data.data.managers
-				console.log(managers)
+
+			
+			
 				if(sessionStorage.getItem('managerFilter')) { 
 						managers = managers.map(manager => {
 						let checked = !!~JSON.parse(sessionStorage.getItem('managerFilter')).split(',').indexOf(manager.id)
@@ -22,6 +24,14 @@ if(managersPopup) {
 							name: manager.name,
 							color: manager.color,
 							checked
+						}
+					})
+				} else {
+					managers = managers.map(manager=> {
+						return {
+							id: manager.id,
+							name: manager.name,
+							color: manager.color,
 						}
 					})
 				}

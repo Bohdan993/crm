@@ -21,6 +21,10 @@ if(countryPopup) {
 					return a.name.localeCompare(b.name)
 				})
 
+
+				
+
+
 				if(sessionStorage.getItem('countryFilter')) { 
 						countries = countries.map(country => {
 						let checked = !!~JSON.parse(sessionStorage.getItem('countryFilter')).split(',').indexOf(country.id)
@@ -32,16 +36,18 @@ if(countryPopup) {
 							checked
 						}
 					})
+				} else {
+					countries = countries.map(country => {
+						return {
+							id: country.id,
+							name: country.name,
+							icon: country.icon,
+							prefix: 'country-chbx-',
+						}
+					})
 				}
 
-				countries = countries.map(country => {
-					return {
-						id: country.id,
-						name: country.name,
-						icon: country.icon,
-						prefix: 'country-chbx-',
-					}
-				})
+				
 
 				localStorage.setItem('countries', JSON.stringify(countries))
 	

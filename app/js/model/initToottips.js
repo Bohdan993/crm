@@ -283,7 +283,7 @@ function initSidebarTooltip(el, content) {
         onCreate(instance) {
 
         		function checkIfShowRemoveFilterButton(storageKey){
-						  sessionStorage.getItem(storageKey) ? (instance.reference.children[1].style.display = 'block',
+						  sessionStorage.getItem(storageKey) && JSON.parse(sessionStorage.getItem(storageKey))  !== '' ? (instance.reference.children[1].style.display = 'block',
 						  instance.reference.classList.add('active')) : null
         		}
 
@@ -305,13 +305,15 @@ function initSidebarTooltip(el, content) {
                             checkIfShowRemoveFilterButton('intermediaryFilter')
 						    break
 						  case 6:
-						    // alert( 'Маловато6' )
+					        checkIfShowRemoveFilterButton('vacancyActiveFilter')
+                            checkIfShowRemoveFilterButton('vacancyTypeFilter')
+                            checkIfShowRemoveFilterButton('vacancyTermFilter')
 						    break
 						  case 7:
-						    // alert( 'Маловато7' )
+						    checkIfShowRemoveFilterButton('lastContactFilter')
 						    break
 						  case 8:
-						    // alert( 'Маловато8' )
+						    checkIfShowRemoveFilterButton('sortFilter')
 						    break
 						 	case 9:
 						    // alert( 'Маловато9' )
@@ -325,7 +327,7 @@ function initSidebarTooltip(el, content) {
   
         },
         onShown(instance) {
-        		let children = instance.props.content.querySelectorAll('input')
+        let children = instance.props.content.querySelectorAll('input')
             document.addEventListener('keyup', function(e) {
                 if (e.keyCode === 27) {
                     instance.hide();
@@ -378,9 +380,8 @@ function childChangeHandler(children, child, instance, e) {
 
 
 function removeCheckingHandler(children, instance, e){
+    // Перенести e.stopPropagation() в файл disablePropagationOnSidebarFilterRemove
 	e.stopPropagation();
-	// console.log(instance)
-	//Сделать блок switch case в зависимости от попапа передавать в функцию  getEmployersList разные аргументы
 	switch(instance.id) {
 			case 1:
 		    getEmployersList({country: ''})
@@ -405,13 +406,20 @@ function removeCheckingHandler(children, instance, e){
             sessionStorage.removeItem('intermediaryFilter')
 		    break
 		  case 6:
-		    alert( 'Маловато6' )
+		    getEmployersList({vacancy_active: ''})
+            sessionStorage.removeItem('vacancyActiveFilter')
+            getEmployersList({vacancy_type: ''})
+            sessionStorage.removeItem('vacancyTypeFilter')
+            getEmployersList({vacancy_term: ''})
+            sessionStorage.removeItem('vacancyTermFilter')
 		    break
 		  case 7:
-		    alert( 'Маловато7' )
+		    getEmployersList({last_contact: ''})
+            sessionStorage.removeItem('lastContactFilter')
 		    break
 		  case 8:
-		    alert( 'Маловато8' )
+		    getEmployersList({sort: ''})
+            sessionStorage.removeItem('sortFilter')
 		    break
 		 	case 9:
 		    alert( 'Маловато9' )
@@ -490,6 +498,5 @@ function initRowTooltips(el, content) {
 export default initTooltips
 
 export {
-    initSidebarTooltip,
     initRowTooltips // to './Components/Employer/EmployerRow.js'
 }

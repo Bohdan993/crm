@@ -25,6 +25,8 @@ const getManufacturyTypePopup = async () => {
 				const data = await fetch.getResourse('/employers/get_other/?s=3')
 				let production = data.data.production
 
+
+
 				if(sessionStorage.getItem('typeManufacturyFilter')) { 
 						production = production.map(product => {
 						let checked = !!~JSON.parse(sessionStorage.getItem('typeManufacturyFilter')).split(',').indexOf(product.id)
@@ -35,15 +37,17 @@ const getManufacturyTypePopup = async () => {
 							checked
 						}
 					})
+				} else {
+						production = production.map(product => {
+						return {
+							id: product.id,
+							name: product.name,
+							prefix: 'type-manufactury-chbx-',
+						}
+					})
 				}
 
-				production = production.map(product => {
-					return {
-						id: product.id,
-						name: product.name,
-						prefix: 'type-manufactury-chbx-',
-					}
-				})
+				
 	
 				const end = production.length
 				const middle = Math.ceil(end/2)
