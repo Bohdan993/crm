@@ -6,6 +6,7 @@ const rows = document.querySelectorAll('.row');
 const sidebarSearchInput = document.querySelector('.sidebar__search-input');
 const sidebarLayout = document.querySelector('.sidebar__layout');
 const sidebarEmployer = document.querySelector('.sidebar-employer .sidebar__list-add')
+const employerRowsWrapper = document.querySelector('.employer-rows-wrapper')
 
 
 ////Tooltips Templates
@@ -181,7 +182,8 @@ export {
 	choiceClientTemplate2,
 	editBtns,
 	clientsModalLayer,
-	sidebarEmployer
+	sidebarEmployer,
+	employerRowsWrapper
 	// mainInfoPrice
 	// statusChangeTemplate
 }

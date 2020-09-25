@@ -6,7 +6,7 @@ import { toastr }from '../../../libs/libs'
 
 
 const employersWrapper = document.querySelector('.employer-rows-wrapper')
-// import { initRowTooltips } from '../initToottips'
+let globalEmployers = []
 
 const loader = place(Loader)
 const empList = new EmployerList()
@@ -29,6 +29,7 @@ mount(employersWrapper, loader)
 let flag = false
 
 const getEmployersList = async ({
+	p = '1',
 	search = JSON.parse(sessionStorage.getItem('search')) || '', 
 	country = JSON.parse(sessionStorage.getItem('countryFilter')) || '',
 	production = JSON.parse(sessionStorage.getItem('typeManufacturyFilter')) || '',
@@ -49,31 +50,38 @@ const getEmployersList = async ({
 
 	try {
 			// const delay = await sleep(8000)
-			const data = await fetch.getResourse(`/employers/get_all/?p=1&t=50&search=${search}&filter=country:${country}|production:${production}|contact:${contact}
+			const data = await fetch.getResourse(`/employers/get_all/?p=${p}&t=50&search=${search}&filter=country:${country}|production:${production}|contact:${contact}
 				|manager:${manager}|intermediaries:${intermediaries}|intermediary:${intermediary}|vacancy_active:${vacancy_active}|vacancy_type:${vacancy_type}|vacancy_term:${vacancy_term}|last_contact:${last_contact}&sort=${sort}`)
 			const employers = data.data
-
+		
 			if(data.success) {
 
 				if(!employers) {
 					throw new Error('Что то пошло не так, работодателей не найдено, обновите страницу, пожалуйста')
 				}
 
-					empList.update(employers);
+					globalEmployers = [
+					...globalEmployers,
+					...employers
+				]
+
+					empList.update(globalEmployers)
 					loader.update(false)
 
 			} else {
-				empList.update([]);
+				empList.update(globalEmployers)
 				loader.update(false)
 				return
 			}
 		
-			return employers[employers.length - 1]
+			// return employers[employers.length - 1]
+			return employers
 	} catch (e) {
-		// console.error(e)
 		toastr.error(`${e.message}`, '' ,{timeOut: 0, extendedTimeOut: 0})
 	}
 }
+
+
 
 }
 

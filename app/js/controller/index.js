@@ -26,6 +26,7 @@ import {
 	getIntermediariesPopup,
 	getCountryPopup,
 	getManufacturyTypePopup,
+	fetchScroll,
 	addNewEmployer,
 	mountSearchInput,
 	mountContactDataPopup,
@@ -79,7 +80,8 @@ import {
 	editBtns,
 	workModalFeedback,
 	feedbackShowMore,
-	clientsModalLayer
+	clientsModalLayer,
+	employerRowsWrapper
 
 } from '../view'
 
@@ -119,6 +121,7 @@ const app = {
 		this.mlcp()
 		this.msp()
 		this.mvp()
+		this.fs()
 
 
 	},
@@ -304,6 +307,9 @@ const app = {
 	},
 	mvp() {
 		mountVacancyPopup()
+	},
+	fs(){
+		fetchScroll(employerRowsWrapper)
 	}
 
 }

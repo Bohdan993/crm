@@ -13,10 +13,11 @@ const addNewEmployer = () => {
 		sidebarEmployer.addEventListener('click', async function(){
 			try {
 				const employer = await fetch.getResourse('/employers/create')
-				const data = await getEmployersList()
+				// const data = await getEmployersList()
+				// console.log(employer)
 				// console.log(data)
 
-				employerListAddEvent.detail.id = data.id_employer
+				employerListAddEvent.detail.id = String(employer.id)
 				document.dispatchEvent(employerListAddEvent)
 
 
