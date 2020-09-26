@@ -9,3 +9,19 @@ export default class Loader {
 
 	}
 }
+
+
+class StickyLoader {
+	constructor(){
+		this.el = el('div.lds-ring.sticky', [el('div'), el('div'), el('div'), el('div')])
+	}
+
+	update(data){
+
+	}
+}
+
+
+export {
+	StickyLoader
+}

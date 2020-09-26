@@ -1,12 +1,16 @@
 .lds-ring {
   display: inline-block;
-  position: relative;
   width: 80px;
   height: 80px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+
+  &.sticky {
+    position: sticky;
+    transform: translate(-50%, 0%);
+  }
 }
 
 .manufactury-type, .contacts-history, .vacancies-history, .media{

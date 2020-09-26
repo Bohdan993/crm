@@ -29,6 +29,8 @@ mount(employersWrapper, loader)
 let flag = false
 
 const getEmployersList = async ({
+	// t = +JSON.parse(sessionStorage.getItem('page')) * 50 || '50',
+	t = '50',
 	p = '1',
 	search = JSON.parse(sessionStorage.getItem('search')) || '', 
 	country = JSON.parse(sessionStorage.getItem('countryFilter')) || '',
@@ -49,27 +51,37 @@ const getEmployersList = async ({
 		loader.update(true)
 
 	try {
-			// const delay = await sleep(8000)
-			const data = await fetch.getResourse(`/employers/get_all/?p=${p}&t=50&search=${search}&filter=country:${country}|production:${production}|contact:${contact}
+			// const delay = await sleep(5000)
+			const data = await fetch.getResourse(`/employers/get_all/?p=${p}&t=${t}&search=${search}&filter=country:${country}|production:${production}|contact:${contact}
 				|manager:${manager}|intermediaries:${intermediaries}|intermediary:${intermediary}|vacancy_active:${vacancy_active}|vacancy_type:${vacancy_type}|vacancy_term:${vacancy_term}|last_contact:${last_contact}&sort=${sort}`)
 			const employers = data.data
-		
+			console.log(employers)
+			// console.log(data)
 			if(data.success) {
 
 				if(!employers) {
 					throw new Error('Что то пошло не так, работодателей не найдено, обновите страницу, пожалуйста')
 				}
 
+
 					globalEmployers = [
 					...globalEmployers,
 					...employers
 				]
 
+			// 	const uniqueArray = globalEmployers.filter((thing,index) => {
+			//   return index === globalEmployers.findIndex(obj => {
+			//     return JSON.stringify(obj) === JSON.stringify(thing);
+			//   });
+			// });
+
+			// 	console.log(uniqueArray)
+
 					empList.update(globalEmployers)
 					loader.update(false)
 
 			} else {
-				empList.update(globalEmployers)
+				empList.update([])
 				loader.update(false)
 				return
 			}
