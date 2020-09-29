@@ -3,6 +3,7 @@ import hiddenClassMixin from '../../../Mixins/hiddenClassMixin'
 
 import checkIfWrapperIsEmpty from '../../../checkIfWrapperIsEmpty'
 
+import addManufacturyType from '../../../fetchingData/Employer/WorkModal/addManufacturyType'
 
 
 
@@ -41,7 +42,7 @@ class WorkModalManufacturyTypeRow {
 
 
 	update(data){
-		console.log(data)
+		// console.log(data)
 
 		this.textArea.value = data.name
 	}
@@ -50,10 +51,12 @@ class WorkModalManufacturyTypeRow {
 
 export default class WorkModalManufacturyType {
 	constructor(){
-
+		this.data = {}
 		this.controls = el('div.modal-row__controls',
 			el('p', 'Тип производства'),
-			el('div.add-item', el('span', '+'), 'добавить тип производства')
+			this.addItem = el('div.add-item', el('span', '+'), 'добавить тип производства', {
+				'data-id': '111'
+			})
 			)
 		
 		this.modalLayer = el('div.modal-row__layer.empty-layer')
@@ -63,34 +66,25 @@ export default class WorkModalManufacturyType {
 				this.controls,
 				this.list = list(this.modalLayer, WorkModalManufacturyTypeRow, 'id')
 			)
+
+		this.addItem.addEventListener('click', (e) => {
+			addManufacturyType(this.data.id)
+		})
 	}
 
 	 update(data, index, items, context) {
 
-	 		// console.log(data)
-	 		
+	 		// if(data.id !== this.data.id) {
+		 		this.list.update(data.data)
+				//Вызов функций которые зависят от инстанса класса
+				 checkIfWrapperIsEmpty(this.modalLayer)
+				//
+	 		// }
+	
 			
-	
-	 		// console.log(data)
-	
-			this.list.update(data)
-			// this.input.id = 'country-chbx-' + data.id
-			// setAttr(this.label, {
-			// 	for: 'country-chbx-' + data.id,
-			// 	innerText: data.name
-			// })
-
-			//Вызов функций которые зависят от инстанса класса
-			 checkIfWrapperIsEmpty(this.modalLayer)
-			//
-
 			this.data = data
 			this.data.index = index
 	}
-
-	 onremount() {
-        console.log("remounted App");
-    }
 
 
 }

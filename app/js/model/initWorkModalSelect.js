@@ -64,7 +64,7 @@ const initWorkModalSelect = (elem, { countries } = {}) => {
 
  		let resultArray = defaultValue.concat(choisesCountries)
 
- 		console.log(countries)
+ 		// console.log(countries)
  	 const choices = new Choices(elem, {
 		choices: resultArray,
 		searchEnabled: false,

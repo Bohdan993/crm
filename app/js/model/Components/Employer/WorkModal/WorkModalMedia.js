@@ -1,16 +1,18 @@
-import {el, setAttr, svg, list} from '../../../../../libs/libs';
+import {el, setAttr, svg, list, toastr, place} from '../../../../../libs/libs';
+import ProgressBar from '../ProgressBar'
 import hiddenClassMixin from '../../../Mixins/hiddenClassMixin'
 
 import checkIfWrapperIsEmpty from '../../../checkIfWrapperIsEmpty'
 import initOverlayScrollbars from '../../../OverlayScrollbarsInit'
 
+import addMedia from '../../../fetchingData/Employer/WorkModal/addMedia'
 
 import {modalRowMediaWrapper, // this.modalRowWrapper(class WorkModalMedia)
 	modalRowMedia, // this.el (class WorkModalMediaRow)
 	mediaShowMore, 
 	body} from '../../../../view'
 
-
+const URL = 'https://crm.unicorn-exp.com/images/employer/media'
 
 
 
@@ -19,12 +21,12 @@ class WorkModalMediaRow{
 
 
 		this.el = el('div.modal-row__media', 
-			el('a.modal-row__media-link',{
+			this.link = el('a.modal-row__media-link',{
 				href: '#',
 				target: '_blank',
 				rel: 'noopen nofollow'
 			}, 
-				el('img', {
+				this.img = el('img', {
 					src: 'img/1.png',
 					alt: 'Картинка'
 				})),
@@ -36,13 +38,21 @@ class WorkModalMediaRow{
 
 	update(data){
 		console.log(data)
+		setAttr(this.link, {
+			href: URL + '/' + data.name 
+		})
+
+		setAttr(this.img, {
+			src: URL + '/' + data.name,
+			alt: data.name
+		})
 	}
 }
 
 
 export default class WorkModalMedia {
 	constructor(){
-
+		this.data = {}
 		this.controls = el('div.modal-row__controls',
 			el('p', 'Медиа'),
 			el('div.add-item', 
@@ -52,14 +62,14 @@ export default class WorkModalMedia {
 				this.addItem = el('input.add-media#add-media', {
 					type: 'file', 
 					name: '',
-					multiple: 'multiple'
 				})
 				)
 			)
 
 		this.modalRowWrapper = el('div.modal-row__media-wrapper.empty-layer')
 		this.modalLayer = el('div.modal-row__layer', 
-			this.list = list(this.modalRowWrapper, WorkModalMediaRow)
+			this.list = list(this.modalRowWrapper, WorkModalMediaRow),
+			this.progress  = place(ProgressBar)
 		)
 		
 
@@ -69,55 +79,47 @@ export default class WorkModalMedia {
 				this.modalLayer
 			)
 
-		this.addMedia = this.addMedia.bind(this)
+		// this.addMedia = this.addMedia.bind(this)
+
+		this.addItem.addEventListener('change', (e) => {
+			let files = e.target.files
+			if( typeof files === undefined ) return;
+
+			let data = new FormData();
+			try{
+				for (let i = 0; i < files.length; i++) {
+				const str = files[i].type.split('/')
+				if(/\jpe?g|png$/i.test(str[1]) === false) {
+					throw new Error("Загружаемый файл должен быть картинкой")
+					return
+				}
+					data.append('file', files[i])
+				}
+				addMedia(this.data.id, data)
+			} catch(e) {
+				toastr.error(`${e.message}`, 'Ошибка!' ,{timeOut: 0, extendedTimeOut: 0})
+			}
+		})
 	}
 
 	 update(data, index, items, context) {
 
-			this.list.update(data)
-
-			// console.log(this.list)
+			this.list.update(data.data)
+		
+			console.log(this.list)
 
 			//Вызов функций которые зависят от инстанса класса
 			 	checkIfWrapperIsEmpty(this.modalRowWrapper)
 			 	initOverlayScrollbars(this.modalLayer)
-			 	// ifMedia()
+			 	setTimeout(() => {
+			 		ifMedia(this.modalRowWrapper, this.list.views)
+			 	}, 0)
+			 	
 			//
-
-			// this.addMedia()
 
 			this.data = data
 			this.data.index = index
 	}
-
-
-	addMedia(){
-		this.addItem.addEventListener('change', function(e){
-			let files = this.files
-			console.log(typeof files)
-			if( typeof files === undefined ) return;
-
-			let data = new FormData();
-			// console.log(files)
-			for (let i = 0; i < files.length; i++) {
-				data.append('file', files[i])
-			}
-
-			// $.each( files, function( key, value ){
-			// 	data.append( key, value );
-			// });
-
-			console.log(data)
-
-			fetch('https://crm.unicorn-exp.com/employers/upload_media/?id=1',{
-				method: 'POST',
-				body: data
-			}).then(res => res).then(res => res.json()).then(res => console.log(res))
-
-
-		})
-	}
-
 
 }
 
@@ -126,7 +128,7 @@ Object.assign( WorkModalMedia.prototype , hiddenClassMixin)
 let show = false
 let flagMedia = false
 
-function showMoreMedia(wrapWidth, count, rowsAbs) {
+function showMoreMedia(modalRowMediaWrapper, wrapWidth, count, rowsAbs) {
         // console.log('more')
         let rows = modalRowMediaWrapper.querySelectorAll('.hidden-row-opacity')
         let j = 0
@@ -167,37 +169,36 @@ function showMoreMedia(wrapWidth, count, rowsAbs) {
 
 
 
-function ifMedia(){
-
+function ifMedia(modalRowMediaWrapper, modalRowMedia){
+			
   		let wrapWidth = modalRowMediaWrapper.offsetWidth
   		let width = 0
-  		
+
   //Функционал медиа
   		modalRowMedia.forEach(el=> {
+  			el = el.el
+  			let img = el.querySelector('img')
   			let style = el.currentStyle || window.getComputedStyle(el)
-  			width += el.offsetWidth + parseInt(style.marginRight)
-
-  			if(width > wrapWidth) {
-  				// mediaShowMore.style.display = 'block'
-  				if(!show) {
-  					el.classList.add('hidden-row-opacity')
-  				}	
-
-  				mediaShowMore.style.display = 'flex'
+  			img.onload = () => {
+  				width += el.offsetWidth + parseInt(style.marginRight)
+  				// console.log(width)
+  				// console.log(wrapWidth)
+	  				if(width > wrapWidth) {
+		  				el.classList.add('hidden-row-opacity')
+		  				mediaShowMore.style.display = 'flex'
+	  			}
   			}
+  			
   		})
-
+ 
   		// console.log(j)
   		
   		let rowsAbs = modalRowMediaWrapper.querySelectorAll('.hidden-row-opacity')
   		let count = 0
 
       if(!flagMedia) {
-        mediaShowMore.addEventListener('click', showMoreMedia.bind(this, wrapWidth, count, rowsAbs))
+        mediaShowMore.addEventListener('click', showMoreMedia.bind(this, modalRowMediaWrapper, wrapWidth, count, rowsAbs))
         flagMedia = true
       }
-  		
 
-  	
-  	show = true
 }

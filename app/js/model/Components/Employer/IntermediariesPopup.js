@@ -15,7 +15,7 @@ class RadioGroup {
 		}
 
 	update(data) {
-		console.log(data)
+
 		setAttr(this.input, {
 			id: data['data-id'],
 			checked: data.checked

@@ -8,8 +8,8 @@ const HEIGHT = 300
 const DATA_LENGTH = 50
 const loader = place(StickyLoader)
 // let count = +JSON.parse(sessionStorage.getItem('page')) || 2
-let count = 2
-let data = Array(50)
+let count = +JSON.parse(sessionStorage.getItem('page')) || 2
+let data = Array(DATA_LENGTH)
 let flag = false
 
 
@@ -22,7 +22,7 @@ const fetchScroll = (elem) => {
 				flag = true
 				mount(elem, loader)
 				loader.update(true)
-        data = await getEmployersList({p: count}).then((data)=> {flag = false; return data} )
+        data = await getEmployersList({t: DATA_LENGTH, p: count, scroll: true}).then((data)=> {flag = false; return data} )
         loader.update(false)
         sessionStorage.setItem('page', JSON.stringify(count))
       	count++

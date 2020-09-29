@@ -3,6 +3,9 @@ import { initRowTooltips } from '../../initToottips'
 import getWorkModalInfo from '../../fetchingData/getWorkModalInfo'
 
 import getWorkModalInfoOther from '../../fetchingData/Employer/WorkModal/getWorkModalInfoOther'
+import getWorkModalManufacturyType from '../../fetchingData/Employer/WorkModal/getWorkModalManufacturyType'
+import getWorkModalMedia from '../../fetchingData/Employer/WorkModal/getWorkModalMedia'
+
 
 
 
@@ -150,6 +153,8 @@ export default class RowEmployer {
 		this.el.addEventListener('click', function(e){
 			getWorkModalInfo(id)
 			getWorkModalInfoOther(id)
+			getWorkModalManufacturyType(id)
+			getWorkModalMedia(id)
 			// console.log(id)
 		})
 	}
@@ -158,5 +163,7 @@ export default class RowEmployer {
 		
 			// console.log('mounted')
 	}
+
+	
 
 }
