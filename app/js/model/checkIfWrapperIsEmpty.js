@@ -6,7 +6,7 @@
   			
   		} else {
   			wrapper.classList.remove('empty-layer')
-        console.log(wrapper)
+        // console.log(wrapper)
   		}
 
 

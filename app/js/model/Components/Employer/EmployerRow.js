@@ -154,7 +154,7 @@ export default class RowEmployer {
 			getWorkModalInfo(id)
 			getWorkModalInfoOther(id)
 			getWorkModalManufacturyType(id)
-			getWorkModalMedia(id)
+			getWorkModalMedia({id, loading: true})
 			// console.log(id)
 		})
 	}

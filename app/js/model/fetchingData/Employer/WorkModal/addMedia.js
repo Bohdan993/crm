@@ -13,10 +13,16 @@ const config = {
     }
 }
 
-const addMedia = async (id, data) => {
+const addMedia = async (id, data, count, total = 1) => {
 			try {
 				const medias = await fetch.postResourse(`/employers/upload_media/?id=${id}`, data, config)
-				getWorkModalMedia(id, false)
+				console.log(count)
+				console.log(total)
+				// if(count >= total) {
+					getWorkModalMedia({id, adding: true, p: 1, t: count})
+				// }
+				workModalMedia.progress.update(false)
+				
 				toastr.success(`ID работодателя ${id}`, 'Успешно загружена картинка', {closeButton: false})
 			} catch(e) {
 				console.error(e)

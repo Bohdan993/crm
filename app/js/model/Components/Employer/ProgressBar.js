@@ -6,6 +6,6 @@ export default class ProgressBar {
 	}
 
 	update(data){
-		console.log(data)
+		// console.log(data)
 	}
 }

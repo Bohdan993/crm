@@ -58,7 +58,7 @@ export default class WorkModalVacancyHistory {
 
 	 update(data, index, items, context) {
 
-	 		// console.log(data)
+	 		console.log(data)
 	 		
 			
 	

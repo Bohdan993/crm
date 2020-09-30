@@ -61,41 +61,36 @@ export default class WorkModalContactHistory {
 			)
 
 
-		this.openModal = this.openModal.bind(this)
+		// this.openModal = this.openModal.bind(this)
 
-	}
-
-
-	openModal(){
-		this.addItem.addEventListener('click', function(){
+		this.addItem.addEventListener('click', () => {
 			MicroModal.show('modal-2');
 		})
+		// initWorkContactHistoryPopup()
+
 	}
+
+
+	// openModal(){
+	// 	this.addItem.addEventListener('click', function(){
+	// 		MicroModal.show('modal-2');
+	// 	})
+	// }
 
 	 update(data, index, items, context) {
 
-	 		// console.log(data)
-	 		
-			
-	
-	 		// console.log(data)
+
+	 		console.log(data)
 	
 			this.list.update(data)
-			// this.input.id = 'country-chbx-' + data.id
-			// setAttr(this.label, {
-			// 	for: 'country-chbx-' + data.id,
-			// 	innerText: data.name
-			// })
-
+	
 			//Вызов функций которые зависят от инстанса класса
 			 checkIfWrapperIsEmpty(this.modalLayer)
 			 initOverlayScrollbars(this.modalLayer)
 			 if(!flag) {
-				this.openModal()
 			 	 initWorkContactHistoryPopup()
 			 	 flag = true
 			 }
-			
 			//
 
 			this.data = data

@@ -1,25 +1,28 @@
-import {el, setAttr, svg, list, toastr, place} from '../../../../../libs/libs';
+import {el, setAttr, list, toastr, place} from '../../../../../libs/libs';
 import ProgressBar from '../ProgressBar'
+import ShowMoreBtn from './ShowMoreBtn'
 import hiddenClassMixin from '../../../Mixins/hiddenClassMixin'
 
 import checkIfWrapperIsEmpty from '../../../checkIfWrapperIsEmpty'
 import initOverlayScrollbars from '../../../OverlayScrollbarsInit'
 
 import addMedia from '../../../fetchingData/Employer/WorkModal/addMedia'
+import deleteMedia from '../../../fetchingData/Employer/WorkModal/deleteMedia'
+import getWorkModalMedia from '../../../fetchingData/Employer/WorkModal/getWorkModalMedia'
 
 import {modalRowMediaWrapper, // this.modalRowWrapper(class WorkModalMedia)
 	modalRowMedia, // this.el (class WorkModalMediaRow)
 	mediaShowMore, 
 	body} from '../../../../view'
 
-const URL = 'https://crm.unicorn-exp.com/images/employer/media'
 
+const URL = 'https://crm.unicorn-exp.com/images/employer/media'
 
 
 class WorkModalMediaRow{
 	constructor(){
 
-
+		this.data = {}
 		this.el = el('div.modal-row__media', 
 			this.link = el('a.modal-row__media-link',{
 				href: '#',
@@ -30,13 +33,16 @@ class WorkModalMediaRow{
 					src: 'img/1.png',
 					alt: 'Картинка'
 				})),
-			el('span.modal-row__media-remove')
+			this.delete = el('span.modal-row__media-remove')
 			)
 
+		this.delete.addEventListener('click', (e) => {
+			deleteMedia(this.data.id, this.employerID, this.count)
+		})
 	}
 
 
-	update(data){
+	update(data, index, items, context){
 		console.log(data)
 		setAttr(this.link, {
 			href: URL + '/' + data.name 
@@ -46,6 +52,12 @@ class WorkModalMediaRow{
 			src: URL + '/' + data.name,
 			alt: data.name
 		})
+
+		this.data = data
+		this.employerID = context.employerID
+		this.count = context.count
+
+
 	}
 }
 
@@ -68,20 +80,24 @@ export default class WorkModalMedia {
 
 		this.modalRowWrapper = el('div.modal-row__media-wrapper.empty-layer')
 		this.modalLayer = el('div.modal-row__layer', 
-			this.list = list(this.modalRowWrapper, WorkModalMediaRow),
-			this.progress  = place(ProgressBar)
+			this.list = list(this.modalRowWrapper, WorkModalMediaRow, 'id'),
+			this.progress  = place(ProgressBar),
 		)
 		
 
 
 		this.el = el('div.media__layer',
 				this.controls,
-				this.modalLayer
+				this.modalLayer,
+				this.showMore = place(ShowMoreBtn)
 			)
 
-		// this.addMedia = this.addMedia.bind(this)
+		this.addItem.addEventListener('click', function(e) {
+			 this.value = null;
+		})
 
 		this.addItem.addEventListener('change', (e) => {
+			console.log(e.target.files)
 			let files = e.target.files
 			if( typeof files === undefined ) return;
 
@@ -95,30 +111,64 @@ export default class WorkModalMedia {
 				}
 					data.append('file', files[i])
 				}
-				addMedia(this.data.id, data)
+				addMedia(this.data.id, data, ((this.pageShow - 1) * 6), this.data.total)
 			} catch(e) {
 				toastr.error(`${e.message}`, 'Ошибка!' ,{timeOut: 0, extendedTimeOut: 0})
 			}
 		})
+
+		this.pageShow = 2
+		this.flag = false
 	}
 
 	 update(data, index, items, context) {
+	 		let {loading, deleating, adding, showing} = data
 
-			this.list.update(data.data)
-		
-			console.log(this.list)
+	 		if(showing) {
+					this.pageShow++
+			}
 
+			if(loading) {
+				this.pageShow = 2
+			}
+
+			if(adding) {
+			}
+
+			if(deleating) {
+			}
+
+			// console.log(this.pageDel)
+			console.log(data.data)
+			this.list.update(data.data, {employerID: data.id, count: (this.pageShow - 1) * 6})
+
+			//Пагинация
+			if(data.data.length < data.total) {
+				this.showMore.update(true, 'показать еще')
+
+				if(!this.flag) {
+					this.showMore.el.addEventListener('click', ()=> {
+							getWorkModalMedia({id: this.data.id, showing: true, p: this.pageShow})
+							console.log(this.pageShow)
+					})
+
+					this.flag = true
+				}
+
+				console.log(this.pageShow)
+
+			} else {
+				this.showMore.update(false)
+				this.flag = false
+			}
+			
 			//Вызов функций которые зависят от инстанса класса
 			 	checkIfWrapperIsEmpty(this.modalRowWrapper)
 			 	initOverlayScrollbars(this.modalLayer)
-			 	setTimeout(() => {
-			 		ifMedia(this.modalRowWrapper, this.list.views)
-			 	}, 0)
-			 	
-			//
 
 			this.data = data
 			this.data.index = index
+
 	}
 
 }
@@ -127,78 +177,3 @@ Object.assign( WorkModalMedia.prototype , hiddenClassMixin)
 
 let show = false
 let flagMedia = false
-
-function showMoreMedia(modalRowMediaWrapper, wrapWidth, count, rowsAbs) {
-        // console.log('more')
-        let rows = modalRowMediaWrapper.querySelectorAll('.hidden-row-opacity')
-        let j = 0
-
-        rows.forEach((el, i, arr) => {
-          let clone = el.querySelector('img').cloneNode()
-          let mr = el.currentStyle || window.getComputedStyle(el)
-
-          clone.style.display = 'block'
-          clone.style.width = 'auto'
-          clone.style.height = '100px'
-          clone.style.marginRight = mr.marginRight
-
-          body.appendChild(clone)
-          
-          let style = clone.currentStyle || window.getComputedStyle(clone)
-          j += clone.offsetWidth + parseInt(style.marginRight)
-
-          body.removeChild(clone)
-
-
-          if(j < wrapWidth) {
-            el.classList.remove('hidden-row-opacity')
-          }
-
-          if(!el.classList.contains('hidden-row-opacity')) {
-            count++
-          }
-
-        })
-
-        if(count === rowsAbs.length) {
-          mediaShowMore.style.display = 'none'
-        }
- 
-      
-}
-
-
-
-function ifMedia(modalRowMediaWrapper, modalRowMedia){
-			
-  		let wrapWidth = modalRowMediaWrapper.offsetWidth
-  		let width = 0
-
-  //Функционал медиа
-  		modalRowMedia.forEach(el=> {
-  			el = el.el
-  			let img = el.querySelector('img')
-  			let style = el.currentStyle || window.getComputedStyle(el)
-  			img.onload = () => {
-  				width += el.offsetWidth + parseInt(style.marginRight)
-  				// console.log(width)
-  				// console.log(wrapWidth)
-	  				if(width > wrapWidth) {
-		  				el.classList.add('hidden-row-opacity')
-		  				mediaShowMore.style.display = 'flex'
-	  			}
-  			}
-  			
-  		})
- 
-  		// console.log(j)
-  		
-  		let rowsAbs = modalRowMediaWrapper.querySelectorAll('.hidden-row-opacity')
-  		let count = 0
-
-      if(!flagMedia) {
-        mediaShowMore.addEventListener('click', showMoreMedia.bind(this, modalRowMediaWrapper, wrapWidth, count, rowsAbs))
-        flagMedia = true
-      }
-
-}

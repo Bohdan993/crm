@@ -70,7 +70,7 @@ const initWorkPopup = (count) => {
 	let show = false
 	let modal = MicroModal.init({
   onShow: (modal, node) => {
-    console.log(`${modal.id} is shown`)
+    // console.log(`${modal.id} is shown`)
     const wrapper = modal.querySelector('.my-modal-wrapper')
 
     if(!flag) {
@@ -115,7 +115,7 @@ const initWorkPopup = (count) => {
 
   },
   onClose: modal => {
-    console.log(`${modal.id} is hidden`) // [2]
+    // console.log(`${modal.id} is hidden`) // [2]
   },
   openTrigger: 'data-custom'+ count +'-open', // [3]
   closeTrigger: 'data-custom-close', // [4]
