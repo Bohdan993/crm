@@ -53,7 +53,7 @@ export default class ContactHistoryModal {
 							)
 						)
 					),
-				)
+				),
 			el('div.contact-history-modal__body', 
 				el('div.contact-history-modal__block', 
 					el('p', 'Содержание'),
@@ -63,9 +63,9 @@ export default class ContactHistoryModal {
 						})
 						)
 					)
-				)
+				),
 			this.confirm = el('button.confirm-btn', 
-				el('span', 'OK'))
+				el('span', 'OK')),
 			this.delete = el('button.delete-btn', 'Удалить')
 
 			)

@@ -48,6 +48,7 @@ import mountContactDataPopup from './MountingElements/Employer/mountContactDataP
 import mountLastContactPopup from './MountingElements/Employer/mountLastContactPopup'
 import mountSortingPopup from './MountingElements/Employer/mountSortingPopup'
 import mountVacancyPopup from './MountingElements/Employer/mountVacancyPopup'
+import mountContactHistoryModal from './MountingElements/Employer/WorkModal/mountContactHistoryModal'
 
 
 
@@ -94,6 +95,7 @@ export {
 	mountContactDataPopup,
 	mountLastContactPopup,
 	mountSortingPopup,
-	mountVacancyPopup
+	mountVacancyPopup,
+	mountContactHistoryModal
 	// getTextSearch
 }

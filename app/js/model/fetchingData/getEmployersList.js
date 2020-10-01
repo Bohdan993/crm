@@ -74,7 +74,7 @@ const getEmployersList = async ({
 						globalEmployers = uniq([
 					...globalEmployers,
 					...employers
-				])
+					])
 					empList.update(globalEmployers)
 				} else {
 					globalEmployers = employers
@@ -90,6 +90,7 @@ const getEmployersList = async ({
 			}
 		
 			// return employers[employers.length - 1]
+			// globalEmployers = []
 			return employers
 	} catch (e) {
 		toastr.error(`${e.message}`, '' ,{timeOut: 0, extendedTimeOut: 0})
@@ -108,6 +109,3 @@ export default getEmployersList // to ../initTooltips.js
 																// to ../Components/Employer/SidebarPopupInterface.js
 																// to ../Components/Employer/ManagerPopup.js
 
-export {
-	empList
-}

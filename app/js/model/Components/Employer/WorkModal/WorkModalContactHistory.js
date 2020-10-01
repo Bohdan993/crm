@@ -7,6 +7,9 @@ import initWorkContactHistoryPopup from '../../../initWorkContactHistoryPopup'
 
 import {MicroModal} from '../../../../../libs/libs'
 
+
+import {come} from '../../../helper'
+
 let flag = false
 
 class WorkModalContactHistoryRow {
@@ -17,27 +20,38 @@ class WorkModalContactHistoryRow {
 			'data-contact-history-open':"modal-2"
 		}, 
 			el('div.modal-row__contacts-history-manager.modal-row__cell', {},
-				el('i.tag.manager-tag.dark-blue-tag'),
-				el('i.ico', svg('svg', svg('use', {
+				this.manager = el('i.tag.manager-tag.dark-blue-tag'),
+				this.direction = el('i.ico', svg('svg', svg('use', {
 					xlink: { href: "img/sprites/svg/symbol/sprite.svg#arrow"}
 				})))
 				),
 
 			el('div.modal-row__contacts-history-date.modal-row__cell', 
-				el('time')),
+				this.date = el('time')),
 			el('div.modal-row__contacts-history-text.modal-row__cell', 
 				el('i.ico.letter-ico', svg('svg', svg('use', {
 					xlink: { href: "img/sprites/svg/symbol/sprite.svg#letter"}
 				}))),
-				el('p', 'Прислал полный пакет документов :)')
+				this.text = el('p', 'Прислал полный пакет документов :)')
 				)
 			)
+
+		this.el.addEventListener('click', (e) => {
+			MicroModal.show('modal-2');
+		})
 
 	}
 
 
 	update(data){
-		console.log(data)
+
+		setAttr(this.date, {
+			innerText: data.date
+		})
+
+		setAttr(this.text, {
+			innerText: data.message
+		})
 	}
 }
 
@@ -66,7 +80,7 @@ export default class WorkModalContactHistory {
 		this.addItem.addEventListener('click', () => {
 			MicroModal.show('modal-2');
 		})
-		// initWorkContactHistoryPopup()
+	
 
 	}
 

@@ -50,7 +50,7 @@ const getWorkModalMedia = async ({
 			// const delay = await sleep(15000)
 			const data = await fetch.getResourse(`/employers/get/?id=${id}&section=2&other=4&p=${p}&t=${t}`) //&p=1&t=6
 			const otherPart = data.data.other
-			console.log(otherPart.media)
+			// console.log(otherPart.media)
 
 			if(globalID !== id) {
 				globalMedia = [
@@ -97,7 +97,7 @@ const getWorkModalMedia = async ({
 				showing
 			}
 
-			console.log(media)
+			// console.log(media)
 
 
 

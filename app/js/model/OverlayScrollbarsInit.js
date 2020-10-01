@@ -31,6 +31,9 @@ const initOverlayScrollbars = (node)=> {
 					this.scroll({ y : "100%"})
 				}
 		},
+		onScroll: function(eventArgs){
+			// console.log('ss')
+		}
 	}
 	
 }); 

@@ -32,7 +32,8 @@ import {
 	mountContactDataPopup,
 	mountLastContactPopup,
 	mountSortingPopup,
-	mountVacancyPopup
+	mountVacancyPopup,
+	mountContactHistoryModal
 } from '../model'
 
 import {OverlayScrollbars} from '../../libs/libs'
@@ -122,6 +123,7 @@ const app = {
 		this.msp()
 		this.mvp()
 		this.fs()
+		this.mchm()
 
 
 	},
@@ -310,6 +312,9 @@ const app = {
 	},
 	fs(){
 		fetchScroll(employerRowsWrapper)
+	},
+	mchm(){
+		mountContactHistoryModal()
 	}
 
 }

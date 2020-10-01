@@ -13,19 +13,21 @@ import getWorkModalMedia from '../../fetchingData/Employer/WorkModal/getWorkModa
 export default class RowEmployer {
 	constructor(){
 		this.data = {}
-		this.attentionTag = place(el('i.attention-tag', svg('svg', svg('use', {
-							xlink: { href: "img/sprites/svg/symbol/sprite.svg#attention"}
-						}))))
+		this.attentionTag = place(el('i.attention-tag', 
+					// svg('svg', svg('use', {
+					// 		xlink: { href: "img/sprites/svg/symbol/sprite.svg#attention"}
+					// 	}))
+					))
 		this.managerTag = place(el('i.tag.manager-tag'))
 		this.vacancyLabel = place(el('i.label', this.vacancyLabelCountry = el('span', 'NO'), this.vacancyLabelCode = el('span', '211-8')))
-		this.el = el("div.row", 
+		this.el = el("div.row",
 			el(".f-container", 
 				this.country = el(".row__country.row__cell", 
-					this.flag = el("i.row__flag", 
-						this.svg = svg('svg', this.flagIco = svg('use', {
-									xlink: { href: "img/sprites/svg/symbol/sprite.svg#flag-norway"}
-								}), 
-							)
+					el("i.row__flag", 
+						// svg('svg', this.flagIco = svg('use', {
+						// 			xlink: { href: "img/sprites/svg/symbol/sprite.svg#flag-norway"}
+						// 		}), 
+						// 	)
 						),
 					this.abbr = el('p.row__abbr', 'NO')
 					),
@@ -40,9 +42,10 @@ export default class RowEmployer {
 					),
 				this.phone = el('.row__phone.row__cell', 
 					el('i', 
-						svg('svg', svg('use', {
-							xlink: { href: "img/sprites/svg/symbol/sprite.svg#phone"}
-						}))),
+						// svg('svg', svg('use', {
+						// 	xlink: { href: "img/sprites/svg/symbol/sprite.svg#phone"}
+						// }))
+						),
 					el('p', this.phoneLink = el('a', {
 						href: 'tel:#'
 					}))
@@ -56,11 +59,20 @@ export default class RowEmployer {
 				)
 			)
 
-		
+
+		// this.flag = false
+
+		this.el.addEventListener('click', (e) =>{
+			getWorkModalInfo(this.data.id_employer)
+			getWorkModalInfoOther(this.data.id_employer)
+			getWorkModalManufacturyType(this.data.id_employer)
+			getWorkModalMedia({id: this.data.id_employer, loading: true})
+		})
 
 	}
 
 	update(data, index, items, context){
+		// console.log('updated')
 		const { id_employer } = data
 		let custom = ''
 
@@ -72,9 +84,9 @@ export default class RowEmployer {
 			[custom]: `modal-1`
 		})
 
-		setAttr(this.flagIco, {
-			xlink: {href: `img/sprites/svg/symbol/sprite.svg#${data.icon}`}
-		})
+		// setAttr(this.flagIco, {
+		// 	xlink: {href: `img/sprites/svg/symbol/sprite.svg#${data.icon}`}
+		// })
 		this.abbr.innerText = data.addr
 		this.companyText.innerText = data.enterprise
 		this.fullname.innerText = data.name
@@ -122,46 +134,47 @@ export default class RowEmployer {
 			this.nameInstance.setContent(`${data.name}`)
 		}, 0)
 	
-		// console.log('updated')
+		// // console.log('updated')
 
-		// 	if(data.country_name !== null) {
-		// 	this.countryInstance = initRowTooltips(this.country)
-		// 	this.countryInstance.setContent(`${data.country_name}`)
-		// }
+		// // 	if(data.country_name !== null) {
+		// // 	this.countryInstance = initRowTooltips(this.country)
+		// // 	this.countryInstance.setContent(`${data.country_name}`)
+		// // }
 
-		// if(data.enterprise !== '') {
-		// 	this.companyInstance = initRowTooltips(this.company)
-		// 	this.companyInstance.setContent(`${data.enterprise}`)
-		// }
+		// // if(data.enterprise !== '') {
+		// // 	this.companyInstance = initRowTooltips(this.company)
+		// // 	this.companyInstance.setContent(`${data.enterprise}`)
+		// // }
 
-		// if(data.name !== '' ) {
-		// 	this.nameInstance = initRowTooltips(this.name)
-		// 	this.nameInstance.setContent(`${data.name}`)
-		// }
+		// // if(data.name !== '' ) {
+		// // 	this.nameInstance = initRowTooltips(this.name)
+		// // 	this.nameInstance.setContent(`${data.name}`)
+		// // }
 
-
-		this.makeRequestForModal(id_employer)
+		// // if(!this.flag) {
+		// // 	this.makeRequestForModal(id_employer)
+		// // 	this.flag = true
+		// // }
+		
 		}
 
-		this.data = data;
-		this.data.index = index;
+		this.data.id_employer = id_employer
+		this.data.index = index
 
 	}
 
-
-	makeRequestForModal(id) {
-		this.el.addEventListener('click', function(e){
-			getWorkModalInfo(id)
-			getWorkModalInfoOther(id)
-			getWorkModalManufacturyType(id)
-			getWorkModalMedia({id, loading: true})
-			// console.log(id)
-		})
-	}
 
 	onmount() {
-		
-			// console.log('mounted')
+		// console.log('mount')
+	}
+
+	onremount(){
+		// console.log('remount')
+	}
+
+	onunmount(){
+		// console.log(this.el)
+		this.el = this.data = this.attentionTag = this.managerTag = this.vacancyLabel =  null
 	}
 
 	

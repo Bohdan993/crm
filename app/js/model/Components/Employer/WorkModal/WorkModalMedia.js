@@ -43,7 +43,7 @@ class WorkModalMediaRow{
 
 
 	update(data, index, items, context){
-		console.log(data)
+		// console.log(data)
 		setAttr(this.link, {
 			href: URL + '/' + data.name 
 		})
@@ -97,7 +97,7 @@ export default class WorkModalMedia {
 		})
 
 		this.addItem.addEventListener('change', (e) => {
-			console.log(e.target.files)
+			// console.log(e.target.files)
 			let files = e.target.files
 			if( typeof files === undefined ) return;
 
@@ -139,7 +139,7 @@ export default class WorkModalMedia {
 			}
 
 			// console.log(this.pageDel)
-			console.log(data.data)
+			// console.log(data.data)
 			this.list.update(data.data, {employerID: data.id, count: (this.pageShow - 1) * 6})
 
 			//Пагинация
@@ -149,13 +149,13 @@ export default class WorkModalMedia {
 				if(!this.flag) {
 					this.showMore.el.addEventListener('click', ()=> {
 							getWorkModalMedia({id: this.data.id, showing: true, p: this.pageShow})
-							console.log(this.pageShow)
+							// console.log(this.pageShow)
 					})
 
 					this.flag = true
 				}
 
-				console.log(this.pageShow)
+				// console.log(this.pageShow)
 
 			} else {
 				this.showMore.update(false)

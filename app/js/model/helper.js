@@ -59,6 +59,16 @@ function debounce(f, ms) {
   }
 
 
+function come(elem) {
+  let docViewTop = window.scrollTop,
+    docViewBottom = docViewTop + window.innerHeight,
+    elemTop = elem.offsetTop,
+    elemBottom = elemTop + elem.innerHeight;
+
+  return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+}
+
+
 
 
 
@@ -66,5 +76,6 @@ function debounce(f, ms) {
 export {
 	throttle,
 	debounce,
-	isChildOf
+	isChildOf,
+	come
 }
