@@ -40,6 +40,7 @@ import getManufacturyTypePopup from './fetchingData/getManufacturyTypePopup'
 // import getTextSearch from './fetchingData/Employer/getTextSearch'
 import addNewEmployer from './fetchingData/addNewEmployer'
 import fetchScroll from './fetchingData/fetchScroll'
+import getTypeContact from './fetchingData/Employer/getTypeContact'
 
 
 
@@ -90,6 +91,7 @@ export {
 	addNewEmployer,
 	getCountryPopup,
 	getManufacturyTypePopup,
+	getTypeContact,
 	fetchScroll,
 	mountSearchInput,
 	mountContactDataPopup,

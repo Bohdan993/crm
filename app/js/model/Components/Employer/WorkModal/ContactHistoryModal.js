@@ -1,8 +1,8 @@
 import {el, setAttr, svg, list} from '../../../../../libs/libs';
+import initWorkModalSelect from '../../../initWorkModalSelect'
 
 
-
-
+let initedSelects = false
 
 export default class ContactHistoryModal {
 	constructor(){
@@ -70,12 +70,20 @@ export default class ContactHistoryModal {
 
 			)
 
+			// this.initedSelects = false
+
 	}
 
 
 	update(data){
-		console.log(data)
+		console.log(JSON.parse(localStorage.getItem('managers')))
+
+			// if(!this.initedSelects) {
+				initWorkModalSelect(this.manager, {managers: JSON.parse(localStorage.getItem('managers'))})
+				initWorkModalSelect(this.contact, {contacts: JSON.parse(localStorage.getItem('type_contact'))})
+				this.initedSelects = true
+			// }
 	}
 }
 
-
+// initWorkModalSelect(this.comCountrySelect, {countries: JSON.parse(localStorage.getItem('countries'))})

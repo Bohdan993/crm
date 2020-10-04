@@ -8,6 +8,7 @@ const modal = new ContactHistoryModal();
 const mountContactHistoryModal = () => {
 	if(contactModal) {
 		mount(contactModal, modal)
+		modal.update()
 	}
 }
 

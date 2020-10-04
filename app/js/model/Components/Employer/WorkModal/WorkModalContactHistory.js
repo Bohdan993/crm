@@ -29,7 +29,7 @@ class WorkModalContactHistoryRow {
 			el('div.modal-row__contacts-history-date.modal-row__cell', 
 				this.date = el('time')),
 			el('div.modal-row__contacts-history-text.modal-row__cell', 
-				el('i.ico.letter-ico', svg('svg', svg('use', {
+				el('i.ico.letter-ico', svg('svg', this.typeContact = svg('use', {
 					xlink: { href: "img/sprites/svg/symbol/sprite.svg#letter"}
 				}))),
 				this.text = el('p', 'Прислал полный пакет документов :)')
@@ -40,11 +40,27 @@ class WorkModalContactHistoryRow {
 			MicroModal.show('modal-2');
 		})
 
+
+		
+
 	}
 
 
-	update(data){
+	update(data, index, items, context){
 
+	
+		console.log(data)
+		// console.log(context.storage)
+
+		const currManager = context.storage.managers.filter(manager => {
+			return manager.id === data.id_manager
+		})
+
+		const currContact = context.storage.typeContact.filter(contact => {
+			return contact.id === data.id_type_contact
+		})
+
+		console.log(currManager[0].color)
 		setAttr(this.date, {
 			innerText: data.date
 		})
@@ -52,13 +68,24 @@ class WorkModalContactHistoryRow {
 		setAttr(this.text, {
 			innerText: data.message
 		})
+
+		setAttr(this.manager , {
+				style: {"background-color": "#" + (currManager[0] ? currManager[0].color : null)}, 
+				innerText: currManager[0] ? currManager[0].name.split(/\s+/).map(word => word[0].toUpperCase()).join('') : null
+			})
+
+		setAttr(this.typeContact, {
+			xlink: { href: `img/sprites/svg/symbol/sprite.svg#${currContact[0] ? currContact[0].icon : null}`}
+		})
 	}
+
+
 }
 
 
 export default class WorkModalContactHistory {
 	constructor(){
-
+		this.data = {}
 		this.controls = el('div.modal-row__controls',
 			el('p', 'История контактов'),
 			this.addItem = el('div.add-item', el('span', '+'), 'добавить контакт',{
@@ -75,28 +102,18 @@ export default class WorkModalContactHistory {
 			)
 
 
-		// this.openModal = this.openModal.bind(this)
-
 		this.addItem.addEventListener('click', () => {
 			MicroModal.show('modal-2');
 		})
-	
 
+		this.data.storage = this.getItemsLocalStorage()
 	}
 
 
-	// openModal(){
-	// 	this.addItem.addEventListener('click', function(){
-	// 		MicroModal.show('modal-2');
-	// 	})
-	// }
-
 	 update(data, index, items, context) {
 
-
-	 		console.log(data)
 	
-			this.list.update(data)
+			this.list.update(data, this.data)
 	
 			//Вызов функций которые зависят от инстанса класса
 			 checkIfWrapperIsEmpty(this.modalLayer)
@@ -107,8 +124,18 @@ export default class WorkModalContactHistory {
 			 }
 			//
 
-			this.data = data
+			this.data.data = data
 			this.data.index = index
+	}
+
+		getItemsLocalStorage(){
+		const managers = JSON.parse(localStorage.getItem('managers'))
+		const typeContact = JSON.parse(localStorage.getItem('type_contact'))
+
+		return {
+				managers,
+				typeContact
+			}
 	}
 
 

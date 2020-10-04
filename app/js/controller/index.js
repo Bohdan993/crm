@@ -26,6 +26,7 @@ import {
 	getIntermediariesPopup,
 	getCountryPopup,
 	getManufacturyTypePopup,
+	getTypeContact,
 	fetchScroll,
 	addNewEmployer,
 	mountSearchInput,
@@ -124,6 +125,7 @@ const app = {
 		this.mvp()
 		this.fs()
 		this.mchm()
+		this.gtc()
 
 
 	},
@@ -291,6 +293,9 @@ const app = {
 	},
 	gmtp(){
 		getManufacturyTypePopup()
+	},
+	gtc(){
+		getTypeContact()
 	},
 	ane() {
 		addNewEmployer()

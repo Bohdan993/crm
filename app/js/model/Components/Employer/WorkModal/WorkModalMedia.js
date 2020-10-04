@@ -1,4 +1,4 @@
-import {el, setAttr, list, toastr, place} from '../../../../../libs/libs';
+import {el, setAttr, list, toastr, place, OverlayScrollbars} from '../../../../../libs/libs';
 import ProgressBar from '../ProgressBar'
 import ShowMoreBtn from './ShowMoreBtn'
 import hiddenClassMixin from '../../../Mixins/hiddenClassMixin'
@@ -119,9 +119,12 @@ export default class WorkModalMedia {
 
 		this.pageShow = 2
 		this.flag = false
+		initOverlayScrollbars(this.modalLayer)
+		this.scrollInstance = OverlayScrollbars(this.modalLayer)
 	}
 
 	 update(data, index, items, context) {
+	 		console.log(data)
 	 		let {loading, deleating, adding, showing} = data
 
 	 		if(showing) {
@@ -164,8 +167,8 @@ export default class WorkModalMedia {
 			
 			//Вызов функций которые зависят от инстанса класса
 			 	checkIfWrapperIsEmpty(this.modalRowWrapper)
-			 	initOverlayScrollbars(this.modalLayer)
-
+			 	this.scrollInstance.update()
+			 	//
 			this.data = data
 			this.data.index = index
 

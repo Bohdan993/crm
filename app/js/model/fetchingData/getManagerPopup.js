@@ -14,8 +14,6 @@ if(managersPopup) {
 				const data = await fetch.getResourse('/employers/get_other/?s=1')
 				let managers = data.data.managers
 
-			
-			
 				if(sessionStorage.getItem('managerFilter')) { 
 						managers = managers.map(manager => {
 						let checked = !!~JSON.parse(sessionStorage.getItem('managerFilter')).split(',').indexOf(manager.id)
