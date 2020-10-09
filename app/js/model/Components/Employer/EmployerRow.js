@@ -2,9 +2,10 @@ import {el, setAttr, svg, place} from '../../../../libs/libs'
 import { initRowTooltips } from '../../initToottips'
 import getWorkModalInfo from '../../fetchingData/getWorkModalInfo'
 
-import getWorkModalInfoOther from '../../fetchingData/Employer/WorkModal/getWorkModalInfoOther'
 import getWorkModalManufacturyType from '../../fetchingData/Employer/WorkModal/getWorkModalManufacturyType'
 import getWorkModalMedia from '../../fetchingData/Employer/WorkModal/getWorkModalMedia'
+import getWorkModalContactHistory from '../../fetchingData/Employer/WorkModal/getWorkModalContactHistory'
+import getWorkModalVacancyHistory from '../../fetchingData/Employer/WorkModal/getWorkModalVacancyHistory'
 
 
 
@@ -64,9 +65,10 @@ export default class RowEmployer {
 
 		this.el.addEventListener('click', (e) =>{
 			getWorkModalInfo(this.data.id_employer)
-			getWorkModalInfoOther(this.data.id_employer)
 			getWorkModalManufacturyType(this.data.id_employer)
 			getWorkModalMedia({id: this.data.id_employer, loading: true})
+			getWorkModalContactHistory({id:this.data.id_employer, loading: true })
+			getWorkModalVacancyHistory(this.data.id_employer)
 		})
 
 	}

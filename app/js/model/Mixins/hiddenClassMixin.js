@@ -10,12 +10,12 @@ let hiddenClassMixin = {
 	},
 
 	setEmptyLayer(){
-		if(this.__proto__.constructor.name !== 'WorkModalMedia') {
-  		this.modalLayer.classList.add('empty-layer')
-  	} else {
+		// if(this.__proto__.constructor.name !== 'WorkModalMedia') {
+  		// this.modalLayer.classList.add('empty-layer')
+  	// } else {
   		// this.modalLayer.classList.add('empty-layer')
   		this.modalRowWrapper.classList.add('empty-layer')
-  	}
+  	// }
 		return this
 	}
 };

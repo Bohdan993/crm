@@ -1,6 +1,6 @@
 import {el, setAttr, svg, list} from '../../../../../libs/libs';
 import hiddenClassMixin from '../../../Mixins/hiddenClassMixin'
-
+import ShowMoreBtn from './ShowMoreBtn'
 import checkIfWrapperIsEmpty from '../../../checkIfWrapperIsEmpty'
 import initOverlayScrollbars from '../../../OverlayScrollbarsInit'
 
@@ -33,7 +33,7 @@ class WorkModalVacancyHistoryRow {
 
 
 	update(data){
-		console.log(data)
+		// console.log(data)
 	}
 }
 
@@ -44,36 +44,32 @@ export default class WorkModalVacancyHistory {
 		this.controls = el('div.modal-row__controls',
 			el('p', 'История вакансий')
 			)
-		
-		this.modalLayer = el('div.modal-row__layer.empty-layer')
+
+
+		this.modalRowWrapper = el('div.modal-row__vacancies-history-wrapper.empty-layer')
+		this.modalLayer = el('div.modal-row__layer', 
+			this.list = list(this.modalRowWrapper, WorkModalVacancyHistoryRow, 'id')
+		)
 
 
 		this.el = el('div.vacancies-history__layer',
 				this.controls,
-				this.list = list(this.modalLayer, WorkModalVacancyHistoryRow)
-			)
+				this.modalLayer,
+				// this.showMore = place(ShowMoreBtn)
+		)
 
-		
+		initOverlayScrollbars(this.modalLayer)
 	}
 
 	 update(data, index, items, context) {
 
-	 		console.log(data)
-	 		
-			
-	
-	 		// console.log(data)
-	
-			this.list.update(data)
-			// this.input.id = 'country-chbx-' + data.id
-			// setAttr(this.label, {
-			// 	for: 'country-chbx-' + data.id,
-			// 	innerText: data.name
-			// })
+
+			this.list.update(data.data)
+
 
 			//Вызов функций которые зависят от инстанса класса
-			 checkIfWrapperIsEmpty(this.modalLayer)
-			 initOverlayScrollbars(this.modalLayer)
+			 checkIfWrapperIsEmpty(this.modalRowWrapper)
+	
 			//
 
 			this.data = data

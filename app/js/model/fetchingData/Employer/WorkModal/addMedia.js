@@ -16,8 +16,8 @@ const config = {
 const addMedia = async (id, data, count, total = 1) => {
 			try {
 				const medias = await fetch.postResourse(`/employers/upload_media/?id=${id}`, data, config)
-				console.log(count)
-				console.log(total)
+				// console.log(count)
+				// console.log(total)
 				// if(count >= total) {
 					getWorkModalMedia({id, adding: true, p: 1, t: count})
 				// }

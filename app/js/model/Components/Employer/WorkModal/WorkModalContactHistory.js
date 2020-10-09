@@ -1,9 +1,13 @@
-import {el, setAttr, svg, list} from '../../../../../libs/libs';
+import {el, setAttr, svg, list, place} from '../../../../../libs/libs';
 import hiddenClassMixin from '../../../Mixins/hiddenClassMixin'
+import ShowMoreBtn from './ShowMoreBtn'
+import { modal } from '../../../MountingElements/Employer/WorkModal/mountContactHistoryModal'
 
 import checkIfWrapperIsEmpty from '../../../checkIfWrapperIsEmpty'
+// import changeDirection from '../../../changeDirection'
 import initOverlayScrollbars from '../../../OverlayScrollbarsInit'
-import initWorkContactHistoryPopup from '../../../initWorkContactHistoryPopup'
+// import initWorkContactHistoryPopup from '../../../initWorkContactHistoryPopup'
+import getWorkModalContactHistory from '../../../fetchingData/Employer/WorkModal/getWorkModalContactHistory'
 
 import {MicroModal} from '../../../../../libs/libs'
 
@@ -11,11 +15,10 @@ import {MicroModal} from '../../../../../libs/libs'
 import {come} from '../../../helper'
 
 let flag = false
-
 class WorkModalContactHistoryRow {
 	constructor(){
 
-
+		this.data = {}
 		this.el = el('div.modal-row__contacts-history-row',{
 			'data-contact-history-open':"modal-2"
 		}, 
@@ -38,29 +41,29 @@ class WorkModalContactHistoryRow {
 
 		this.el.addEventListener('click', (e) => {
 			MicroModal.show('modal-2');
+			modal.update(this.data)
+			console.log(this.data)
 		})
 
-
-		
+		// this.flag = false
 
 	}
 
 
 	update(data, index, items, context){
 
-	
-		console.log(data)
-		// console.log(context.storage)
+		// console.log(context)
 
-		const currManager = context.storage.managers.filter(manager => {
+
+		const currManager = context.data.storage.managers.filter(manager => {
 			return manager.id === data.id_manager
 		})
 
-		const currContact = context.storage.typeContact.filter(contact => {
+		const currContact = context.data.storage.typeContact.filter(contact => {
 			return contact.id === data.id_type_contact
 		})
 
-		console.log(currManager[0].color)
+
 		setAttr(this.date, {
 			innerText: data.date
 		})
@@ -77,6 +80,18 @@ class WorkModalContactHistoryRow {
 		setAttr(this.typeContact, {
 			xlink: { href: `img/sprites/svg/symbol/sprite.svg#${currContact[0] ? currContact[0].icon : null}`}
 		})
+
+		setAttr(this.direction, {
+			classList: `ico${data.type_arrow === '1' ? ' rotate' : ''}`
+		})
+
+	
+		// console.log(context.data.data)
+
+		this.data.data = data
+		this.data.id = context.data.data.id
+		this.data.count = context.count
+		this.index = index
 	}
 
 
@@ -93,39 +108,97 @@ export default class WorkModalContactHistory {
 			})
 			)
 		
-		this.modalLayer = el('div.modal-row__layer.empty-layer')
+
+		this.modalRowWrapper = el('div.modal-row__contacts-history-wrapper.empty-layer')
+		this.modalLayer = el('div.modal-row__layer', 
+			this.list = list(this.modalRowWrapper, WorkModalContactHistoryRow, 'id')
+		)
 
 
 		this.el = el('div.contact-history__layer',
 				this.controls,
-				this.list = list(this.modalLayer, WorkModalContactHistoryRow)
+				this.modalLayer,
+				this.showMore = place(ShowMoreBtn)
 			)
 
 
-		this.addItem.addEventListener('click', () => {
-			MicroModal.show('modal-2');
+		this.addItem.addEventListener('click', (e) => {
+			console.log(this.data)
+			MicroModal.show('modal-2')
+			modal.update({
+				data:{
+					message: '',
+					date: '',
+					id: '',
+					id_manager: '',
+					id_type_contact: '',
+					type_arrow: '',
+				},
+				id: this.data.data.id,
+				count: this.data.count
+			})
 		})
 
 		this.data.storage = this.getItemsLocalStorage()
+		// initWorkContactHistoryPopup()
+		this.pageShow = 2
+		this.flag = false
+		this.flagShow = false
+
+		initOverlayScrollbars(this.modalLayer)
+		// this.scrollInstance = OverlayScrollbars(this.modalLayer)
 	}
 
 
 	 update(data, index, items, context) {
+	 		let {loading, deleating, adding, showing} = data
+	 		console.log(context)
+	 		if(showing) {
+				this.pageShow++
+			}
 
-	
-			this.list.update(data, this.data)
-	
-			//Вызов функций которые зависят от инстанса класса
-			 checkIfWrapperIsEmpty(this.modalLayer)
-			 initOverlayScrollbars(this.modalLayer)
-			 if(!flag) {
-			 	 initWorkContactHistoryPopup()
-			 	 flag = true
-			 }
-			//
+			if(loading) {
+				this.pageShow = 2
+			}
 
+			if(adding) {
+			}
+
+			if(deleating) {
+			}
+	 	// 	console.log('this.flag', this.flag)
+			// console.log(this.data.id)
 			this.data.data = data
 			this.data.index = index
+			this.data.count = (this.pageShow - 1) * 5
+			this.list.update(data.data, {data: this.data, count: this.data.count})
+			// console.log(this.data.data.id)
+			//Пагинация
+			if(data.data.length < data.total) {
+				this.showMore.update(true, 'показать еще 5')
+
+				if(!this.flagShow) {
+					this.showMore.el.addEventListener('click', ()=> {
+							getWorkModalContactHistory({id: this.data.data.id, showing: true, p: this.pageShow})
+							console.log(this.pageShow)
+					})
+
+						this.flagShow = true
+				}
+
+			} else {
+				this.showMore.update(false)
+				this.flagShow = false
+			}
+	
+			//Вызов функций которые зависят от инстанса класса
+			 checkIfWrapperIsEmpty(this.modalRowWrapper)
+			 // this.scrollInstance.update()
+		
+			//
+
+			// console.log('this.flag', this.flag)
+
 	}
 
 		getItemsLocalStorage(){

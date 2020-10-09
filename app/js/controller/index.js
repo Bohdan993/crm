@@ -175,9 +175,9 @@ const app = {
 		// 	show5Rows(contactsHistoryShowMore, contactsHistory)
 		// }
 
-		if(vacanciesHistory) {
-			show5Rows(vacanciesHistoryShowMore, vacanciesHistory)
-		}
+		// if(vacanciesHistory) {
+		// 	show5Rows(vacanciesHistoryShowMore, vacanciesHistory)
+		// }
 
 	},
 	s1r() {
@@ -272,7 +272,7 @@ const app = {
 	},
 
 	cd() {
-		changeDirection(changeDirectionArrows)
+		// changeDirection(changeDirectionArrows)
 	},
 	fe() {
 		 feedbackEdit(editBtns)

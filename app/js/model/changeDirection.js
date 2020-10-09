@@ -1,13 +1,12 @@
 
 
-const changeDirection = (arrows) => {
-	//@parametr arrows - стрелки смены направления отзыва
+const changeDirection = (arrow) => {
+	//@parametr arrow - стрелки смены направления отзыва
 
-	arrows.forEach(arrow => {
 		arrow.addEventListener('click', function(){
 			this.classList.toggle('rotate')
 		})
-	})
+	
 }
 
-export default changeDirection
+export default changeDirection // to Components/Employer/WorkModal/WorkModalContactHistory.js

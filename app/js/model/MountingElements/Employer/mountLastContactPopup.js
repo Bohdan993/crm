@@ -34,7 +34,7 @@ if(lastContactPopup) {
 				if(sessionStorage.getItem('lastContactFilter')) { 
 						contacts = contacts.map(contact => {
 						let checked = JSON.parse(sessionStorage.getItem('lastContactFilter')) === contact.id
-						console.log(checked)
+						// console.log(checked)
 						return {
 							id: contact.id,
 							name: contact.name,

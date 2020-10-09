@@ -58,14 +58,26 @@ export default class WorkModalManufacturyType {
 				'data-id': '111'
 			})
 			)
-		
-		this.modalLayer = el('div.modal-row__layer.empty-layer')
+
+		this.modalRowWrapper = el('div.modal-row__manufactury-type-wrapper.empty-layer')
+		this.modalLayer = el('div.modal-row__layer', 
+			this.list = list(this.modalRowWrapper, WorkModalManufacturyTypeRow, 'id')
+		)
 
 
 		this.el = el('div.manufactury-type__layer',
 				this.controls,
-				this.list = list(this.modalLayer, WorkModalManufacturyTypeRow, 'id')
-			)
+				this.modalLayer,
+				// this.showMore = place(ShowMoreBtn)
+		)
+		
+		// this.modalLayer = el('div.modal-row__layer.empty-layer')
+
+
+		// this.el = el('div.manufactury-type__layer',
+		// 		this.controls,
+		// 		this.list = list(this.modalLayer, WorkModalManufacturyTypeRow, 'id')
+		// 	)
 
 		this.addItem.addEventListener('click', (e) => {
 			addManufacturyType(this.data.id)
@@ -77,7 +89,7 @@ export default class WorkModalManufacturyType {
 	 		// if(data.id !== this.data.id) {
 		 		this.list.update(data.data)
 				//Вызов функций которые зависят от инстанса класса
-				 checkIfWrapperIsEmpty(this.modalLayer)
+				 checkIfWrapperIsEmpty(this.modalRowWrapper)
 				//
 	 		// }
 	

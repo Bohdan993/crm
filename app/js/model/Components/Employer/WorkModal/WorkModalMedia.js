@@ -124,7 +124,7 @@ export default class WorkModalMedia {
 	}
 
 	 update(data, index, items, context) {
-	 		console.log(data)
+	 		// console.log(data)
 	 		let {loading, deleating, adding, showing} = data
 
 	 		if(showing) {
@@ -148,7 +148,7 @@ export default class WorkModalMedia {
 			//Пагинация
 			if(data.data.length < data.total) {
 				this.showMore.update(true, 'показать еще')
-
+	
 				if(!this.flag) {
 					this.showMore.el.addEventListener('click', ()=> {
 							getWorkModalMedia({id: this.data.id, showing: true, p: this.pageShow})
