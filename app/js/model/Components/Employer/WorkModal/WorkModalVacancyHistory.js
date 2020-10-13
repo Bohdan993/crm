@@ -1,9 +1,9 @@
-import {el, setAttr, svg, list} from '../../../../../libs/libs';
+import {el, setAttr, svg, list, place} from '../../../../../libs/libs';
 import hiddenClassMixin from '../../../Mixins/hiddenClassMixin'
 import ShowMoreBtn from './ShowMoreBtn'
 import checkIfWrapperIsEmpty from '../../../checkIfWrapperIsEmpty'
 import initOverlayScrollbars from '../../../OverlayScrollbarsInit'
-
+import getWorkModalVacancyHistory from '../../../fetchingData/Employer/WorkModal/getWorkModalVacancyHistory'
 
 
 class WorkModalVacancyHistoryRow {
@@ -12,20 +12,20 @@ class WorkModalVacancyHistoryRow {
 
 		this.el = el('div.modal-row__contacts-history-row',
 			el('div.modal-row__vacancies-history-labels', 
-				el('i.label.attention__label', 
-					el('span', 'NO'),
-					el('span', '293-17')
+				this.label = el('i.label', 
+					this.name = el('span', 'NO'),
+					this.total_client = el('span', '293-17')
 					),
-				el('span.number-of-people.attention-number', 'M2')
+				this.people = el('span.number-of-people.attention-number', 'M2')
 				),
 			el('div.modal-row__vacancies-history-date', 
-				el('time', '03.03.2019  -  03.09.2019')),
+				this.date = el('time', '03.03.2019  -  03.09.2019')),
 			el('div.modal-row__vacancies-history-terms',
-				el('time', '6 мес')),
+				this.period = el('time', '6 мес')),
 			el('div.modal-row__vacancies-history-type',
-				el('i.label.success-2__label', 
-					el('span', 'Рабочая')),
-				el('p', 'Свиньи')
+				this.labelType = el('i.label', 
+					this.labelTypeText = el('span', 'Рабочая')),
+				this.production = el('p', 'Свиньи')
 				)
 			)
 
@@ -34,6 +34,48 @@ class WorkModalVacancyHistoryRow {
 
 	update(data){
 		// console.log(data)
+		setAttr(this.name, {
+			innerText: data.name + ' -'
+		})
+
+		setAttr(this.total_client, {
+			innerText: data.total_client
+		})
+
+		setAttr(this.period, {
+			innerText: data.period + ' мес'
+		})
+		
+		setAttr(this.production, {
+			innerText: data.type_production
+		})
+
+		setAttr(this.date, {
+			innerText: data.start_work + ' - ' + data.finish_work
+		})
+
+		setAttr(this.people, {
+			innerText: "М" + data.total_man + ' Ж' + data.total_woman,
+			style: {
+				color: data.archive === '0' ? '#FF9966' : '#99CCCC'
+			}
+		})
+
+		setAttr(this.label, {
+			style: {
+				background: data.archive === '0' ? '#FF9966' : '#99CCCC'
+			}
+		})
+
+		setAttr(this.labelType, {
+			style : {
+				background: data.type_vacancy == '1' ? '#E37373' : data.type_vacancy === '2' ? '#99CC33' : '#3399CC'
+			}
+		})
+
+		setAttr(this.labelTypeText, {
+			innerText: data.type_vacancy === '1' ? 'Сезонная' : data.type_vacancy === '2' ? 'Практика' : 'Рабочая',
+		})
 	}
 }
 
@@ -46,34 +88,62 @@ export default class WorkModalVacancyHistory {
 			)
 
 
-		this.modalRowWrapper = el('div.modal-row__vacancies-history-wrapper.empty-layer')
-		this.modalLayer = el('div.modal-row__layer', 
-			this.list = list(this.modalRowWrapper, WorkModalVacancyHistoryRow, 'id')
+		this.modalRowWrapper = el('div.modal-row__vacancies-history-wrapper.modal-row__wrapper')
+		this.modalLayer = el('div.modal-row__layer.empty-layer', 
+			this.list = list(this.modalRowWrapper, WorkModalVacancyHistoryRow, 'id_vacancy')
 		)
 
 
 		this.el = el('div.vacancies-history__layer',
 				this.controls,
 				this.modalLayer,
-				// this.showMore = place(ShowMoreBtn)
+				this.showMore = place(ShowMoreBtn)
 		)
 
 		initOverlayScrollbars(this.modalLayer)
+
+		this.pageShow = 2
+		this.flagShow = false
 	}
 
 	 update(data, index, items, context) {
 
+	 	let {loading, showing} = data
+	 		if(showing) {
+				this.pageShow++
+			}
+
+			if(loading) {
+				this.pageShow = 2
+			}
 
 			this.list.update(data.data)
 
 
+			//Пагинация
+				if(data.data.length < data.total) {
+				this.showMore.update(true, 'показать еще 5')
+
+				if(!this.flagShow) {
+					this.showMore.el.addEventListener('click', ()=> {
+							getWorkModalVacancyHistory({id: this.data.data.id, showing: true, p: this.pageShow})
+							// console.log(this.pageShow)
+					})
+
+						this.flagShow = true
+				}
+
+			} else {
+				this.showMore.update(false)
+				this.flagShow = false
+			}
+
 			//Вызов функций которые зависят от инстанса класса
-			 checkIfWrapperIsEmpty(this.modalRowWrapper)
-	
+				checkIfWrapperIsEmpty(this.modalRowWrapper)
 			//
 
 			this.data = data
-			this.data.index = index
+			this.index = index
 	}
 
 

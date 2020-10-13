@@ -1,12 +1,10 @@
   const checkIfWrapperIsEmpty = (wrapper)=> {
       //@param wrapper - HTML <div> c классом .modal-row__layer
   		if(wrapper.innerHTML === '') {
-
-  			wrapper.classList.add('empty-layer')
+        wrapper.closest('.modal-row__layer').classList.add('empty-layer')
   			
   		} else {
-  			wrapper.classList.remove('empty-layer')
-        // console.log(wrapper)
+        wrapper.closest('.modal-row__layer').classList.remove('empty-layer')
   		}
 
 

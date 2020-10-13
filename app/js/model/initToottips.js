@@ -97,6 +97,9 @@ const initTooltips = () => {
 
     /////////////////////////////////////////////////////
 
+
+
+
     /////////////////////////////////////////
     initSidebarTooltip('.country-filter-wrapper', countryTemplate)
     ////////////////////////////////////////////////////////////
@@ -123,33 +126,12 @@ const initTooltips = () => {
     initSidebarTooltip('.date-terms-filter-wrapper', dateTermsTemplate)
     ////////////////////////////////////////////////////////////////////////////////
 
-    function initWorkModalTooltip(parent, el, content) {
-        let instance = delegate(parent, {
-            content,
-            target: el,
-            allowHTML: true,
-            interactive: true,
-            interactiveBorder: 5,
-            interactiveDebounce: 0,
-            placement: 'bottom',
-            offset: [0, 20],
-            hideOnClick: true,
-            trigger: 'click',
-            appendTo: () => document.body,
-            onShown(instance) {
-                document.addEventListener('keyup', function(e) {
-                    if (e.keyCode === 27) {
-                        instance.hide();
-                    }
-                })
-            },
-        })
 
-    }
-
-    initWorkModalTooltip('.row.feedback', '.add-feedback-form .modal-row__feedback-ico', typeFeedbackTemplate)
-    initWorkModalTooltip('.row.feedback', '.add-feedback-form .modal-row__feedback-choise', choiceClientTemplate)
-    initWorkModalTooltip('.row.clients', '.clients .modal-row__controls .add-item', choiceClientTemplate2)
+    ////////////////////////////////////////////////////////////////////////////////
+    // initWorkModalTooltip('.row.feedback', '.add-feedback-form .modal-row__feedback-ico', typeFeedbackTemplate)
+    // initWorkModalTooltip('.row.feedback', '.add-feedback-form .modal-row__feedback-choise', choiceClientTemplate)
+    // initWorkModalTooltip('.row.clients', '.clients .modal-row__controls .add-item', choiceClientTemplate2)
+    /////////////////////////////////////////////////////////////////////////////////
 
     function initVacancyTooltip(el, content) {
         let instance = tippy(el, {
@@ -281,6 +263,7 @@ function initSidebarTooltip(el, content) {
         trigger: 'click',
         appendTo: () => document.body,
         onCreate(instance) {
+                console.log(instance)
 
         		function checkIfShowRemoveFilterButton(storageKey){
 						  sessionStorage.getItem(storageKey) && JSON.parse(sessionStorage.getItem(storageKey))  !== '' ? (instance.reference.children[1].style.display = 'block',
@@ -444,6 +427,8 @@ function removeCheckingHandler(children, instance, e){
 
 //////////////////////////////END initSidebarTooltip BLOCK/////////////////////////////////
 
+
+//////////////////////////////START initRowTooltips BLOCK/////////////////////////////////
 function initRowTooltips(el, content) {
     let instance = tippy(el, {
         content,
@@ -495,8 +480,41 @@ function initRowTooltips(el, content) {
     return instance
 }
 
+//////////////////////////////END initRowTooltips BLOCK/////////////////////////////////
+
+//////////////////////////////START initWorkModalTooltip BLOCK/////////////////////////////////
+function initWorkModalTooltip(parent, el, content) {
+    let instance = delegate(parent, {
+        content,
+        target: el,
+        allowHTML: true,
+        interactive: true,
+        interactiveBorder: 5,
+        interactiveDebounce: 0,
+        placement: 'bottom',
+        offset: [0, 20],
+        hideOnClick: true,
+        trigger: 'click',
+        appendTo: () => document.body,
+        onCreate(instance){
+            console.log('dfdf')
+        },
+        onShown(instance) {
+            document.addEventListener('keyup', function(e) {
+                if (e.keyCode === 27) {
+                    instance.hide();
+                }
+            })
+        },
+    })
+
+}
+
+//////////////////////////////END initWorkModalTooltip BLOCK/////////////////////////////////
+
 export default initTooltips
 
 export {
-    initRowTooltips // to './Components/Employer/EmployerRow.js'
+    initRowTooltips, // to './Components/Employer/EmployerRow.js'
+    initWorkModalTooltip // to './Components/FeedbackComponent'
 }

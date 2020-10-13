@@ -10,7 +10,7 @@ export default class EmployerList {
     constructor() {
     	this.count = 0
         this.el = el("div.rows.worker-rows")
-        this.list = list(this.el, RowEmployer, 'id_employer')
+        this.list = list(this.el, RowEmployer)
 
         // this.flag = false
     }

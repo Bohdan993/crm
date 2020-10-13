@@ -1,8 +1,9 @@
-import {el, setAttr, svg, list} from '../../../../../libs/libs';
-import linkToSocial from '../../../linkToSocial';
+import {el, setAttr, svg, list} from '../../../../../libs/libs'
+import linkToSocial from '../../../linkToSocial'
 import initWorkModalSelect from '../../../initWorkModalSelect'
 import hiddenClassMixin from '../../../Mixins/hiddenClassMixin'
-
+import saveFieldsData from '../../../fetchingData/Employer/WorkModal/saveFieldsData'
+import Option from '../../OptionComponent'
 
 
 // if(workModalCountrySelect) {
@@ -10,14 +11,7 @@ import hiddenClassMixin from '../../../Mixins/hiddenClassMixin'
 // 		}
 let initedCountrySelect = false
 
-class Option {
-    constructor() {
-        this.el = el('option', "Какая то опция")
-    }
-    update(data) {
-        this.el.textContent = data.name
-    }
-}
+
 
 export default class WorkModal {
 	constructor(){
@@ -102,7 +96,7 @@ export default class WorkModal {
 					}, 
 						el('i.ico', 
 							svg('svg', svg('use', {
-								xlink: { href: "img/sprites/svg/symbol/sprite.svg#mail"}
+								xlink: { href: "img/sprites/svg/symbol/sprite.svg#email.svg"}
 							}))
 							)
 						),
@@ -192,22 +186,91 @@ export default class WorkModal {
 			this.comInfLeft,
 			this.comInfRight
 			)
+
+		let save = (value, field, target = 'main') => {
+			saveFieldsData({
+				id: this.data.id_employer,
+				value, 
+				field, 
+				target, 
+				id_target: ''
+			})
+		}
+
+
+		this.comManufacturyArea.addEventListener('change' , (e) => {
+			save(this.comManufacturyArea.value, 'enterprise')
+		})
+
+		this.comCountrySelect.addEventListener('change' , (e) => {
+			save(this.comCountrySelect.value, 'id_country')
+		})
+
+		this.comMapArea.addEventListener('change', (e) => {
+			save(this.comMapArea.value, 'address')
+			this.comIframe.src = `https://maps.google.com/maps?width=100%&height=200&hl=en&q=${this.comMapArea.value}&ie=UTF8&t=&z=11&iwloc=B&output=embed`
+		})
+
+		this.comInfName.addEventListener('change', (e) => {
+			save(this.comInfName.value, 'name')
+		})
+
+		this.comInfOtherNames.addEventListener('change', (e) => {
+			save(this.comInfOtherNames.value, 'other_name')
+		})
+
+		this.comInfPhone.addEventListener('change', (e) => {
+			save(this.comInfPhone.value, 'phone')
+		})
+
+		this.comInfEmail.addEventListener('change', (e) => {
+			save(this.comInfEmail.value, 'email')
+		})
+
+		this.comInfPhoneOthers.addEventListener('change', (e) => {
+			save(this.comInfPhoneOthers.value, 'other_phone')
+		})
+
+		this.comInfMailOthers.addEventListener('change', (e) => {
+			save(this.comInfMailOthers.value, 'other_email')
+		})
+
+		this.comInfSite.addEventListener('change', (e) => {
+			save(this.comInfSite.value, 'site')
+		})
+
+		this.comInfFacebook.addEventListener('change', (e) => {
+			save(this.comInfFacebook.value, 'social_media_facebook')
+		})
+
+		this.comInfInstagram.addEventListener('change', (e) => {
+			save(this.comInfInstagram.value, 'social_media_instagram')
+		})
+
+		this.comInfNotes.addEventListener('change', (e) => {
+			save(this.comInfNotes.value, 'note')
+		})
+
+
+		this.countryChoices = initWorkModalSelect(this.comCountrySelect, {countries: JSON.parse(localStorage.getItem('countries'))})
 	}
 
 	 update(data, index, items, context) {
 	 		// console.log(data)
 	 		const { id_employer } = data
 	 		
+	 		// console.log(this.countryChoices)
 			
 		
 			if(id_employer !== this.data.id_employer) {
 			const arrLinks = []
-			this.comManufacturyArea.innerText = data.enterprise
+			this.comManufacturyArea.value = data.enterprise
 			this.comMapArea.value = data.address
 			this.comIframe.src = `https://maps.google.com/maps?width=100%&height=200&hl=en&q=${data.address}&ie=UTF8&t=&z=11&iwloc=B&output=embed`
 			this.comInfName.value = data.name
 			this.comInfOtherNames.value = data.other_name
 			this.comInfPhone.value = data.phone
+			this.countryChoices.countryChoices.setChoiceByValue(data.id_country)
 			this.comInfEmail.value = data.email
 			this.comInfPhoneOthers.value = data.other_phone
 			this.comInfMailOthers.value = data.other_email
@@ -238,10 +301,10 @@ export default class WorkModal {
 
 			//Вызов функций которые зависят от HTML элементов внутри инстанса
 			linkToSocial(arrLinks)
-			if(!initedCountrySelect) {
-				initWorkModalSelect(this.comCountrySelect, {countries: JSON.parse(localStorage.getItem('countries'))})
-				initedCountrySelect = true
-			}
+			// if(!initedCountrySelect) {
+				
+			// 	initedCountrySelect = true
+			// }
 			//
 
 			this.el.classList.remove('hidden')

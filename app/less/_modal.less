@@ -599,6 +599,12 @@
 
   }
 
+  .modal-row__wrapper {
+    // border-radius: 5px;
+    // padding: 20px;
+    // border: 1px solid @main-color;
+  }
+
   .empty-layer {
     padding: 0;
     border: none;
@@ -742,7 +748,7 @@
  .feedback {
   .modal-row__layer {
      max-height: 495px;
-     height: 100%;
+     height: auto;
   }
  }
 
@@ -891,7 +897,7 @@
 
 
  .modal-row__media-wrapper {
-    border-top: 0;
+    // border-top: 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
@@ -975,6 +981,17 @@
     padding-bottom: 0;
   }
   margin-bottom: 2px;
+ }
+
+ .feedback-employer {
+  .feedback-employer__layer {
+    width: 100%;
+    opacity: 1;
+    transition: opacity 0.25s linear;
+    &.hidden {
+      opacity: 0;
+    }
+  }
  }
 
 
@@ -1087,7 +1104,7 @@
     // }
 
    .add-feedback-form, .edit-feedback-form {
-    display: none; 
+    // display: none; 
     border-bottom: 1px solid @main-color;
     padding-bottom: 26px;
     .modal-row__feedback-text {

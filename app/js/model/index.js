@@ -11,8 +11,8 @@ import sidebarSearchInput from './sidebarSearchInput'
 
 import checkIfWrapperIsEmpty from './checkIfWrapperIsEmpty'
 import show5Rows from './show5Rows'
-import addManufacturyType from './addManufacturyType'
-import show1Row from './show1rowFeedback'
+// import addManufacturyType from './addManufacturyType'
+// import show1Row from './show1rowFeedback'
 import addNewTask from './addNewTask'
 import deleteTask from './deleteTask'
 import setFeedbackDate from './setFeedbacklDate'
@@ -41,6 +41,7 @@ import getManufacturyTypePopup from './fetchingData/getManufacturyTypePopup'
 import addNewEmployer from './fetchingData/addNewEmployer'
 import fetchScroll from './fetchingData/fetchScroll'
 import getTypeContact from './fetchingData/Employer/getTypeContact'
+import getClients from './fetchingData/Employer/getClients'
 
 
 
@@ -67,9 +68,9 @@ export {
 
 	checkIfWrapperIsEmpty,
 	show5Rows,
-	addManufacturyType,
+	// addManufacturyType,
 
-	show1Row,
+	// show1Row,
 	addNewTask,
 	deleteTask,
 	setFeedbackDate,
@@ -92,6 +93,7 @@ export {
 	getCountryPopup,
 	getManufacturyTypePopup,
 	getTypeContact,
+	getClients,
 	fetchScroll,
 	mountSearchInput,
 	mountContactDataPopup,

@@ -78,8 +78,8 @@ export default class WorkModalMedia {
 				)
 			)
 
-		this.modalRowWrapper = el('div.modal-row__media-wrapper.empty-layer')
-		this.modalLayer = el('div.modal-row__layer', 
+		this.modalRowWrapper = el('div.modal-row__media-wrapper.modal-row__wrapper')
+		this.modalLayer = el('div.modal-row__layer.empty-layer', 
 			this.list = list(this.modalRowWrapper, WorkModalMediaRow, 'id'),
 			this.progress  = place(ProgressBar),
 		)

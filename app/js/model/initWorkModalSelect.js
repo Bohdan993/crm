@@ -4,7 +4,7 @@ import {Choices} from '../../libs/libs'
 
 let defaultValue = [
 	{
-			value: '',
+			value: '0',
 			label: '<span>Отсутствует</span>',
 			selected:true,
 		  disabled: false,
@@ -48,8 +48,9 @@ const initWorkModalSelect = (elem, { countries, managers, contacts } = {}) => {
 
  } else if (elem.classList.contains('country-select')) {
  		let choisesCountries = countries.map(country => {
+ 			// console.log(country)
  			return {
- 				value: country.name,
+ 				value: country.id,
  				label: `<i class="row__flag">
                 <svg>
                   <use xlink:href="img/sprites/svg/symbol/sprite.svg#${country.icon}"></use>
@@ -75,7 +76,7 @@ const initWorkModalSelect = (elem, { countries, managers, contacts } = {}) => {
 					list: 'common-info-select-modal__list',
 				}
 		 	});
-
+		 	finalResult.countryChoices = choices
 
 
  } else if (elem.classList.contains('contact-select')) {

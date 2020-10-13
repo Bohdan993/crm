@@ -1,8 +1,8 @@
 import {el, setAttr, list} from '../../../../../libs/libs';
 import hiddenClassMixin from '../../../Mixins/hiddenClassMixin'
-
+import Option from '../../OptionComponent'
 import checkIfWrapperIsEmpty from '../../../checkIfWrapperIsEmpty'
-
+import saveFieldsData from '../../../fetchingData/Employer/WorkModal/saveFieldsData'
 import addManufacturyType from '../../../fetchingData/Employer/WorkModal/addManufacturyType'
 
 
@@ -13,21 +13,7 @@ class WorkModalManufacturyTypeRow {
 
 		this.el = el('div.modal-row__manufactury-type-row', 
 			el('div.input-group.modal-row__manufactury-type-select.native-select', 
-				el('select.info-area', {
-					value: ''
-					}, 
-					el('option','Выбрать',{
-						disabled: true,
-						selected: true,
-						value: ''
-					}),
-					el('option','Коровы',{
-						value: ''
-					}),
-					el('option','Цветы',{
-						value: ''
-					}),
-					)
+					this.select = list('select.info-area', Option)
 				),
 			el('div.input-group', 
 				el('span.delete-manufactury-type'),
@@ -37,13 +23,19 @@ class WorkModalManufacturyTypeRow {
 				)
 			)
 
+			this.defaultOption = {
+				id: 0,
+				name: 'Выбрать'
+			}
 
 	}
 
 
 	update(data){
 		// console.log(data)
-
+		let arr = JSON.parse(localStorage.getItem('type_manufactury'))
+		arr.unshift(this.defaultOption)
+		this.select.update(arr)
 		this.textArea.value = data.name
 	}
 }
@@ -59,8 +51,8 @@ export default class WorkModalManufacturyType {
 			})
 			)
 
-		this.modalRowWrapper = el('div.modal-row__manufactury-type-wrapper.empty-layer')
-		this.modalLayer = el('div.modal-row__layer', 
+		this.modalRowWrapper = el('div.modal-row__manufactury-type-wrapper')
+		this.modalLayer = el('div.modal-row__layer.empty-layer', 
 			this.list = list(this.modalRowWrapper, WorkModalManufacturyTypeRow, 'id')
 		)
 

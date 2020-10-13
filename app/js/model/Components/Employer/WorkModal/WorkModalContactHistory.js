@@ -52,7 +52,7 @@ class WorkModalContactHistoryRow {
 
 	update(data, index, items, context){
 
-		// console.log(context)
+		// console.log(data)
 
 
 		const currManager = context.data.storage.managers.filter(manager => {
@@ -109,8 +109,8 @@ export default class WorkModalContactHistory {
 			)
 		
 
-		this.modalRowWrapper = el('div.modal-row__contacts-history-wrapper.empty-layer')
-		this.modalLayer = el('div.modal-row__layer', 
+		this.modalRowWrapper = el('div.modal-row__contacts-history-wrapper..modal-row__wrapper')
+		this.modalLayer = el('div.modal-row__layer.empty-layer', 
 			this.list = list(this.modalRowWrapper, WorkModalContactHistoryRow, 'id')
 		)
 
@@ -142,7 +142,7 @@ export default class WorkModalContactHistory {
 		this.data.storage = this.getItemsLocalStorage()
 		// initWorkContactHistoryPopup()
 		this.pageShow = 2
-		this.flag = false
+		// this.flag = false
 		this.flagShow = false
 
 		initOverlayScrollbars(this.modalLayer)
@@ -152,7 +152,7 @@ export default class WorkModalContactHistory {
 
 	 update(data, index, items, context) {
 	 		let {loading, deleating, adding, showing} = data
-	 		console.log(context)
+	 		// console.log(context)
 	 		if(showing) {
 				this.pageShow++
 			}
@@ -166,13 +166,13 @@ export default class WorkModalContactHistory {
 
 			if(deleating) {
 			}
-	 	// 	console.log('this.flag', this.flag)
-			// console.log(this.data.id)
+
 			this.data.data = data
 			this.data.index = index
 			this.data.count = (this.pageShow - 1) * 5
 			this.list.update(data.data, {data: this.data, count: this.data.count})
-			// console.log(this.data.data.id)
+
+
 			//Пагинация
 			if(data.data.length < data.total) {
 				this.showMore.update(true, 'показать еще 5')
@@ -194,10 +194,8 @@ export default class WorkModalContactHistory {
 			//Вызов функций которые зависят от инстанса класса
 			 checkIfWrapperIsEmpty(this.modalRowWrapper)
 			 // this.scrollInstance.update()
-		
 			//
 
-			// console.log('this.flag', this.flag)
 
 	}
 

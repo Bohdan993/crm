@@ -4,7 +4,7 @@ import WorkModalContactHistory from '../../../Components/Employer/WorkModal/Work
 import Loader from '../../../Components/Employer/Loader'
 import {list, mount, place} from '../../../../../libs/libs'
 
-const state = {}
+// const state = {}
 let globalContacts = []
 let globalID = ''
 const contactHistory = document.querySelector('.row.contacts-history')
@@ -114,7 +114,7 @@ const getWorkModalContactHistory = async ({
 				workModalContactHistory.removeHiddenClass()
 			}
 			
-			state.id = id
+			// state.id = id
 		}catch(e) {
 			console.error(e)
 		}

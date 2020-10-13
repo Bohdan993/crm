@@ -6,6 +6,7 @@ import getWorkModalManufacturyType from '../../fetchingData/Employer/WorkModal/g
 import getWorkModalMedia from '../../fetchingData/Employer/WorkModal/getWorkModalMedia'
 import getWorkModalContactHistory from '../../fetchingData/Employer/WorkModal/getWorkModalContactHistory'
 import getWorkModalVacancyHistory from '../../fetchingData/Employer/WorkModal/getWorkModalVacancyHistory'
+import getWorkModalFeedback from '../../fetchingData/Employer/WorkModal/getWorkModalFeedback'
 
 
 
@@ -68,15 +69,26 @@ export default class RowEmployer {
 			getWorkModalManufacturyType(this.data.id_employer)
 			getWorkModalMedia({id: this.data.id_employer, loading: true})
 			getWorkModalContactHistory({id:this.data.id_employer, loading: true })
-			getWorkModalVacancyHistory(this.data.id_employer)
+			getWorkModalVacancyHistory({id:this.data.id_employer, loading: true })
+			getWorkModalFeedback({id:this.data.id_employer, loading: true })
 		})
 
 	}
 
 	update(data, index, items, context){
-		// console.log('updated')
+		// console.log(data)
 		const { id_employer } = data
 		let custom = ''
+
+
+		this.companyText.innerText = data.enterprise
+		this.abbr.innerText = data.addr
+		this.addressText.innerText = data.address
+		this.fullname.innerText = data.name
+		setAttr(this.phoneLink , {
+			href: 'tel:' + data.phone,
+			innerText: data.phone
+		})
 
 		if(id_employer !== this.data.id_employer) {
 			custom = 'data-custom' + items[items.length - 1]['id_employer'] + '-open'
@@ -89,9 +101,9 @@ export default class RowEmployer {
 		// setAttr(this.flagIco, {
 		// 	xlink: {href: `img/sprites/svg/symbol/sprite.svg#${data.icon}`}
 		// })
-		this.abbr.innerText = data.addr
-		this.companyText.innerText = data.enterprise
-		this.fullname.innerText = data.name
+		// this.abbr.innerText = data.addr
+		
+		
 		data.task ? this.attentionTag.update(true) : this.attentionTag.update(false)
 		data.manager ? (this.managerTag.update(true), 
 		setAttr(this.managerTag,{
@@ -101,11 +113,8 @@ export default class RowEmployer {
 					}
 				)
 			) : this.managerTag.update(false)
-		setAttr(this.phoneLink , {
-			href: 'tel:' + data.phone,
-			innerText: data.phone
-		})
-		this.addressText.innerText = data.address
+		
+		// this.addressText.innerText = data.address
 		this.jobsText.innerText = data.production ? data.production.join(', ') : ""
 		data.vacancy instanceof Array && data.vacancy.length > 0 ? 
 		(

@@ -55,6 +55,7 @@ const getManufacturyTypePopup = async () => {
 				const prod1 = production.slice(0, middle)
 				const prod2 = production.slice(middle, end)
 
+				localStorage.setItem('type_manufactury', JSON.stringify(production))
 
 				part1.update(prod1)
 				part2.update(prod2)

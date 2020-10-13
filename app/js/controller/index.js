@@ -6,8 +6,8 @@ import {
 	initWorkModalSelect,
 	sidebarSearchInput,
 	show5Rows,
-	addManufacturyType,
-	show1Row,
+	// addManufacturyType,
+	// show1Row,
 	addNewTask,
 	deleteTask,
 	setFeedbackDate,
@@ -27,6 +27,7 @@ import {
 	getCountryPopup,
 	getManufacturyTypePopup,
 	getTypeContact,
+	getClients,
 	fetchScroll,
 	addNewEmployer,
 	mountSearchInput,
@@ -126,6 +127,7 @@ const app = {
 		this.fs()
 		this.mchm()
 		this.gtc()
+		this.gc()
 
 
 	},
@@ -181,7 +183,7 @@ const app = {
 
 	},
 	s1r() {
-		show1Row(feedbackShowMore, workModalFeedback)
+		// show1Row(feedbackShowMore, workModalFeedback)
 	},
 	amt() {
 		// if(manufacturyType) {
@@ -296,6 +298,9 @@ const app = {
 	},
 	gtc(){
 		getTypeContact()
+	},
+	gc(){
+		getClients()
 	},
 	ane() {
 		addNewEmployer()

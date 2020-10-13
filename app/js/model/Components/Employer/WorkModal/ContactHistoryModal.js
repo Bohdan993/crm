@@ -83,7 +83,7 @@ export default class ContactHistoryModal {
 		)	
 
 			this.confirm.addEventListener('click', (e) => {
-				console.log(this.data)
+				console.log(this.date.value)
 				addContactHistory({
 					id_contact: this.data.data.id !== '' ? this.data.data.id : 0,
 					message: this.textarea.value,
