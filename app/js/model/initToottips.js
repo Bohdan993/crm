@@ -19,8 +19,8 @@ import {
     intermediariesTemplate,
     vacanciesTemplate,
     sortingTemplate,
-    typeFeedbackTemplate,
-    choiceClientTemplate,
+    // typeFeedbackTemplate,
+    // choiceClientTemplate,
     body,
     selectingTemplate,
     statusTemplate,
@@ -58,12 +58,12 @@ const initTooltips = () => {
     if (sortingTemplate) {
         sortingTemplate.style.display = 'block';
     }
-    if (typeFeedbackTemplate) {
-        typeFeedbackTemplate.style.display = 'block'
-    }
-    if (choiceClientTemplate) {
-        choiceClientTemplate.style.display = 'block'
-    }
+    // if (typeFeedbackTemplate) {
+    //     typeFeedbackTemplate.style.display = 'block'
+    // }
+    // if (choiceClientTemplate) {
+    //     choiceClientTemplate.style.display = 'block'
+    // }
     if (statusTemplate) {
         statusTemplate.style.display = 'block'
     }

@@ -32,14 +32,12 @@ const getWorkModalInfo = async (id = '1') => {
 	if(commonInfo) {
 		loader.update(true)
 		workModal.setHiddenClass()
-		// workModal.update(false)
 	}
 
 try {
-		// const delay = await sleep(3000)
 		const data = await fetch.getResourse(`/employers/get/?id=${id}`)
 		const sourseData = await fetch.getResourse('/employers/get_other/?s=5')
-
+		// console.log(data.data.main.name)
 		const mainPart = data.data.main
 		const source = sourseData.data.source
 
@@ -50,6 +48,9 @@ try {
 		// }
 		loader.update(false)
 		workModal.removeHiddenClass()
+
+		sessionStorage.setItem('currEmployerName', JSON.stringify(data.data.main.name))
+
 		state.id = id
 	}catch(e) {
 		console.error(e)

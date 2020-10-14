@@ -6,9 +6,7 @@ import saveFieldsData from '../../../fetchingData/Employer/WorkModal/saveFieldsD
 import Option from '../../OptionComponent'
 
 
-// if(workModalCountrySelect) {
-// 			initWorkModalSelect(workModalCountrySelect)
-// 		}
+
 let initedCountrySelect = false
 
 
@@ -197,7 +195,6 @@ export default class WorkModal {
 			})
 		}
 
-
 		this.comManufacturyArea.addEventListener('change' , (e) => {
 			save(this.comManufacturyArea.value, 'enterprise')
 		})
@@ -296,16 +293,8 @@ export default class WorkModal {
 			//
 
 
-	
-
-
 			//Вызов функций которые зависят от HTML элементов внутри инстанса
 			linkToSocial(arrLinks)
-			// if(!initedCountrySelect) {
-				
-			// 	initedCountrySelect = true
-			// }
-			//
 
 			this.el.classList.remove('hidden')
 			}

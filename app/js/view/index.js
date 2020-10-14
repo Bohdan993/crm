@@ -18,8 +18,8 @@ const intermediariesTemplate = document.querySelector('#intermediaries-popup');
 const lastContactTemplate = document.querySelector('#last-contact-popup');
 const vacanciesTemplate = document.querySelector('#vacancies-popup');
 const sortingTemplate = document.querySelector('#sorting-popup');
-const typeFeedbackTemplate = document.querySelector('#type-feedback-popup')
-const choiceClientTemplate = document.querySelector('#choice-client-feedback-popup')
+// const typeFeedbackTemplate = document.querySelector('#type-feedback-popup')
+// const choiceClientTemplate = document.querySelector('#choice-client-feedback-popup')
 const choiceClientTemplate2 = document.querySelector('#choice-client-popup')
 const statusTemplate = document.querySelector('#status-popup')
 const selectingTemplate = document.querySelector('#selecting-popup')
@@ -122,8 +122,8 @@ export {
 	intermediariesTemplate,
 	vacanciesTemplate,
 	sortingTemplate,
-	typeFeedbackTemplate,
-	choiceClientTemplate,
+	// typeFeedbackTemplate,
+	// choiceClientTemplate,
 	workModalRows,
 	workModalSidebar,
 	body,
