@@ -1,4 +1,4 @@
-import {el, setAttr, list, place, svg} from '../../../libs/libs';
+import {el, setAttr, list, place, svg, unmount, Autocomplete, toastr} from '../../../libs/libs';
 import hiddenClassMixin from '../Mixins/hiddenClassMixin'
 import ShowMoreBtn from './Employer/WorkModal/ShowMoreBtn'
 import checkIfWrapperIsEmpty from '../checkIfWrapperIsEmpty'
@@ -8,7 +8,6 @@ import addFeedback from '../fetchingData/Employer/WorkModal/addFeedback'
 import deleteFeedback from '../fetchingData/Employer/WorkModal/deleteFeedback'
 import changeDirection from '../changeDirection'
 import { initWorkModalTooltip } from '../initToottips'
-import { typeFeedbackTemplate, choiceClientTemplate } from '../../view'
 
 
 
@@ -24,17 +23,16 @@ class FeedbackTypeRow {
 				this.text = el('span', 'Информационный'))
 		)
 
-		this.input.addEventListener('change', function (e) {
-			feedbackEditPlace.changeTypeFeedbackIco(this.getAttribute('data-id'))
-		})
 	}
 	update(data){
-		console.log(data['data-id'])
+
+		// console.log(data['data-id'])
 		setAttr(this.input, {
 			'data-id': data['data-id'],
 			id: data.id, 
 			name: data.name,
-			type: 'radio'
+			type: 'radio',
+			checked: data.checked
 		})
 
 		setAttr(this.label, {
@@ -54,68 +52,189 @@ class FeedbackTypeRow {
 
 class FeedbackClient {
 	constructor(){
-		this.el = el('div.work-modal-popup#choice-client-feedback-popup', 
-			el('form',
-				el('div.input-group',
-					el('input#client-feedback-rbtn', {type: 'radio', name: 'client-feedback-rbtn', checked: false}),
-					el('label', 'Выберите клиента', {for: 'client-feedback-rbtn'}),
-					el('input.find-client')
-					),
-				el('div.input-group',
-					el('input#uamf-feedback-rbtn', {type: 'radio', name: 'client-feedback-rbtn', checked: false}),
-					el('label', 'УАМФ', {for: 'uamf-feedback-rbtn'}),
-					),
-				el('button.confirm-bnt', 
-					el('span', 'ОК'))
+		this.data =  JSON.parse(localStorage.getItem('clients'))
+		this.el = el('div', 
+				this.main = el('div.work-modal-popup#choice-client-feedback-popup', 
+				this.form = el('form',
+					el('div.input-group',
+						this.inputClient = el('input#client-feedback-rbtn', {type: 'radio', name: 'client-feedback-rbtn', checked: true}),
+						el('label', 'Выберите клиента', {for: 'client-feedback-rbtn'}),
+						this.searchGroup = el('div.autocomplete',
+									this.findClient = el('input.find-client', {
+										disabled: false
+									}),
+									this.resultList = el('ul.autocomplete-result-list')
+							)
+						),
+					el('div.input-group',
+						this.inputUAMF = el('input#uamf-feedback-rbtn', {type: 'radio', name: 'client-feedback-rbtn', checked: false}),
+						el('label', 'УАМФ', {for: 'uamf-feedback-rbtn'}),
+						),
+					this.confirm = el('button.confirm-bnt', 
+						el('span', 'ОК'))
+					)
 				)
 			)
+
+
+		this.autocomplete = new Autocomplete(this.searchGroup, {
+			search: input => {
+			  try {
+							 if (input.length < 1) {
+					        return []
+					     }
+
+					     return this.data.filter(client => {
+						      return client.snp.toLowerCase()
+						        .includes(input.toLowerCase())
+						    })
+
+			    	}
+			    catch(err) {
+			    		console.error(err)
+			    }
+
+		  },
+		  renderResult(result, props) {
+		  	return `
+				    <li ${props}>
+				      <div class="wiki-title">
+				        ${result.snp}
+				      </div>
+				    </li>
+				  `
+		  },
+		  
+		  // // We want to display the title
+		  getResultValue: result => {
+		  	sessionStorage.setItem('currClient', JSON.stringify(result.id))
+		  	return result.snp
+		  },
+		  autoSelect: true
+
+		})
+
+		this.inputClient.addEventListener('change', (e) => {
+			if(this.inputClient.checked) {
+				setAttr(this.findClient, {
+					disabled: false
+				})
+			}
+		})
+
+		this.inputUAMF.addEventListener('change', (e) => {
+			if(this.inputUAMF.checked) {
+				setAttr(this.findClient, {
+					disabled: true
+				})
+			}
+			
+		})
+
+		// console.log(this)
+
+		this.form.addEventListener('submit', (e) => {
+			e.preventDefault()
+			// console.log(this.parent)
+			if(this.inputClient.checked) {
+				if(this.findClient.value.trim() === '') {
+					toastr.error(`Выберите клиента`, 'Ошибка!')
+					this.parent.changechoiseClientText('Выбрать')
+					return
+				}
+				this.parent.changechoiseClientText(this.findClient.value.trim())
+			}
+
+			if(this.inputUAMF.checked) {
+				this.parent.changechoiseClientText('УАМФ')
+			}
+		})
 	}
 
 	update(data){
-		
+		if(data.from === 'УАМФ') {
+			this.inputUAMF.checked = true
+			this.inputClient.checked = false
+			this.findClient.disabled = true
+		} else if (data.from === 'Выбрать') {
+			this.inputUAMF.checked = false
+			this.inputClient.checked = true
+			this.findClient.disabled = false
+		} else {
+			this.inputUAMF.checked = false
+			this.inputClient.checked = true
+			this.findClient.disabled = false
+			this.findClient.value = data.type_arrow === '0' ? data.from : data.to
+		}
 	}
 }
 
+
+
+
 class FeedbackType {
 	constructor(){
-		this.el = el('div.work-modal-popup#type-feedback-popup', 
-			el('form', 
-				el('p', 'Тип отзыва'),
-				this.list = list('div', FeedbackTypeRow),
-				el('button.confirm-bnt', 
-					el('span', 'ОК'))
+		this.el = el('div', 
+				this.main = el('div.work-modal-popup#type-feedback-popup', 
+				this.form = el('form.feedbackType-form', 
+					el('p', 'Тип отзыва'),
+					this.list = list('div', FeedbackTypeRow),
+					this.confirm = el('button.confirm-bnt', 
+						el('span', 'ОК'))
+					)
 				)
 			)
-
 		this.feedbackTypeData = [
 			{
-				'data-id': 1,
+				'data-id': 0,
 				id: 'inf-feedback-rbtn',
 				name: 'type-feedback-rbtn',
 				label: 'Информационный',
-				ico: 'inf-feedback'
+				ico: 'inf-feedback',
+				checked: true
 			},
 			{
-				'data-id': 2,
+				'data-id': 1,
 				id: 'pos-feedback-rbtn',
 				name: 'type-feedback-rbtn',
 				label: 'Хороший отзыв',
-				ico: 'pos-feedback'
+				ico: 'pos-feedback',
+				checked: false
 			},
 			{
-				'data-id': 3,
+				'data-id': 2,
 				id: 'neg-feedback-rbtn',
 				name: 'type-feedback-rbtn',
 				label: 'Плохой отзыв',
-				ico: 'neg-feedback'
+				ico: 'neg-feedback',
+				checked: false
 			}
 		]
-	}
+
+
+		this.form.onsubmit = (e) => {
+			e.preventDefault()
+
+			this.list.views.forEach(view => {
+				if(view.input.checked) {
+						this.parent.changeTypeFeedbackIco(view.input.getAttribute('data-id'))
+					}
+				})
+			}
+
+		}
 
 	update(data){
+		this.feedbackTypeData = this.feedbackTypeData.map(el => {
+			el.checked = false
+			if(String(el['data-id']) === data.typeFeedback) {
+				el.checked = true
+			}
+
+			return el
+		})
 
 		this.list.update(this.feedbackTypeData)
-
 	}
 
 }
@@ -127,6 +246,7 @@ class FeedbackType {
 class FeedbackEdit {
 	constructor(){
 		this.data = {}
+
 		this.el = el('form.modal-row__feedback-row.add-feedback-form', 
 			el('div.modal-row__feedback-speakers', 
 				this.typeFeedback = el('i.modal-row__feedback-ico', 
@@ -162,104 +282,172 @@ class FeedbackEdit {
 				)
 			)
 
+		this.parent = this.el.parentNode
+
 		this.saveFeedback.addEventListener('click', (e) => {
 			e.preventDefault()
-			console.log(this.data)
+
 			if(this.data.type === 'employer') {
+				console.log(this.data)
 				addFeedback({
 					str: 'employers/feedback',
-					id_feedback: 0, 
+					id_feedback: this.data.id_feedback, 
 					feedback: this.textarea.value.trim(), 
-					type_feedback: 2, 
-					id_author: 23, 
-					type_author: 'user',
-					type_arrow: this.direction.classList.contains('rotate') ? true : false, 
+					type_feedback: this.typeFeedback.getAttribute('data-id') || '0', 
+					id_author: this.choiseClient.getAttribute('data-author') === '1' ? +JSON.parse(sessionStorage.getItem('currClient')) : '1', 
+					type_author: this.choiseClient.getAttribute('data-author') || '2',
+					type_arrow: this.direction.classList.contains('rotate') ? '1' : '0', 
 					date: this.date.value.trim(), 
 					id_employer: this.data.id,
 					count: this.data.count
 				})
-				// console.log(this.data)
 			}
+
+			this.feedbackEditPlace.update(false)
+			this.rowPlace.update(true)
 			
 		})
 
 		this.cancel.addEventListener('click', (e) => {
 			e.preventDefault()
-			feedbackEditPlace.update(false)
+			// console.log(this)
+			this.feedbackEditPlace.update(false)
+			this.rowPlace.update(true)
 		})
 
 		this.delete.addEventListener('click' , (e) => {
 
-
 		})
-		// console.log(this.typeFeedback.className)
 
 		this.feedbackType = new FeedbackType()
-		this.feedbackType.update()
-		this.feedbackType.el.style.display = "block"
+		this.feedbackType.main.style.display = "block"
 		this.feedbackClient = new FeedbackClient()
-		this.feedbackClient.update()
-		this.feedbackClient.el.style.display = "block"
+		this.feedbackClient.main.style.display = "block"
 
+		this.feedbackType.parent = this
+		this.feedbackClient.parent = this
 
+		
 		changeDirection(this.direction)
-		initWorkModalTooltip('.row.feedback', '.' + this.typeFeedback.className, this.feedbackType.el)
-		initWorkModalTooltip('.row.feedback', '.' + this.choiseClient.className, this.feedbackClient.el)
+
+		this.typeFeedbackInstance = initWorkModalTooltip(this.typeFeedback)
+		this.choiseClientInstance = initWorkModalTooltip(this.choiseClient)
+
+		// console.log(this.typeFeedbackInstance)
+
+		this.typeFeedbackInstance.setContent(this.feedbackType.el)
+		this.choiseClientInstance.setContent(this.feedbackClient.el)
+
 	}
 
 	update(data){
 		console.log(data)
-
 		setAttr(this.to, {
 			innerText: JSON.parse(sessionStorage.getItem('currEmployerName'))
 		})
+
+		setAttr(this.choiseClient, {
+			innerText: data.type_arrow === '0' ? data.from : data.to
+		})
+
+		this.changechoiseClientText(data.type_arrow === '0' ? data.from : data.to)
+		this.changeTypeFeedbackIco(data.typeFeedback)
+
+		setAttr(this.direction, {
+			classList: data.type_arrow === '0' ? 'modal-row__feedback-direction-edit change-direction' : 'modal-row__feedback-direction-edit change-direction rotate'
+		})
+
+		setAttr(this.textarea, {
+			value: data.text
+		})
+
+		setAttr(this.typeFeedbackIco, {
+			xlink: {
+				href: `img/sprites/svg/symbol/sprite.svg#${data.type_feedback === '0' ? 'inf-feedback-white' : data.type_feedback === '1' ? 'pos-feedback-white' : 'neg-feedback-white'}`
+			}
+		})
+
+		setAttr(this.date, {
+			value: data.date
+		})
+		// console.log(this.data)
+
+
 		this.data = data
+		this.feedbackType.update(this.data)
+		this.feedbackClient.update(this.data)
+
+	}
+
+	changeTypeFeedbackIco(id){
+		setAttr(this.typeFeedbackIco, {
+			xlink: {href: `img/sprites/svg/symbol/sprite.svg#${id === '0' ? 'inf-feedback-white' : id === '1' ? 'pos-feedback-white' : 'neg-feedback-white'}`}
+		})
+
+		setAttr(this.typeFeedback, {
+			'data-id': id
+		})
+	}
+
+
+	changechoiseClientText(text){
+		setAttr(this.choiseClient, {
+			innerText: text,
+			'data-author': text === 'УАМФ' ? '2' : '1'
+		})
 	}
 
 }
 
 
-const feedbackEditPlace = place(FeedbackEdit)
-
-feedbackEditPlace.changeTypeFeedbackIco = function(id){
-	setAttr(this.view.typeFeedbackIco, {
-		xlink: {href: `img/sprites/svg/symbol/sprite.svg#${id === '1' ? 'inf-feedback-white' : id === '2' ? 'pos-feedback-white' : 'neg-feedback-white'}`}
-	})
-}
-
-
-// feedbackEditPlace.changechoiseClientText = function(id){
-// 	setAttr(this.view.choiseClient, {
-// 		innerText: 
-// 	})
-// }
 
 class FeedbackRow {
 	constructor(){
-
-		this.el = el('div.modal-row__feedback-row', 
-			el('div.modal-row__feedback-speakers',
-				el('i.modal-row__feedback-ico', 
-					svg('svg', this.typeFeedback = svg('use', {
-						xlink: {href: 'img/sprites/svg/symbol/sprite.svg#pos-feedback'}
-					}))
+		this.data = {}
+		this.el = el('div', 
+				this.row = place(el('div.modal-row__feedback-row', 
+				el('div.modal-row__feedback-speakers',
+					el('i.modal-row__feedback-ico', 
+						svg('svg', this.typeFeedback = svg('use', {
+							xlink: {href: 'img/sprites/svg/symbol/sprite.svg#pos-feedback'}
+						}))
+						),
+					this.from = el('p.modal-row__feedback-from', 'УАМФ'),
+					this.direction = el('i.modal-row__feedback-direction.rotate', 
+						svg('svg', this.arrow = svg('use', {
+							xlink: {href: 'img/sprites/svg/symbol/sprite.svg#arrow'}
+						}))),
+					this.to = el('p.modal-row__feedback-to', 'Thompson Equestrian Partners')
 					),
-				this.from = el('p.modal-row__feedback-from', 'УАМФ'),
-				this.direction = el('i.modal-row__feedback-direction.rotate', 
-					svg('svg', this.arrow = svg('use', {
-						xlink: {href: 'img/sprites/svg/symbol/sprite.svg#arrow'}
-					}))),
-				this.to = el('p.modal-row__feedback-to', 'Thompson Equestrian Partners')
-				),
-			el('div.modal-row__feedback-date', 
-				this.date = el('time', '09.10.2018'), 
-				this.edit = el('button.modal-row__feedback-edit.edit-btn', 'Редактировать')
-				),
-			this.text = el('div.modal-row__feedback-text', 
-				el('p', 'text')),
+				el('div.modal-row__feedback-date', 
+					this.date = el('time', '09.10.2018'), 
+					this.edit = el('button.modal-row__feedback-edit.edit-btn', 'Редактировать')
+					),
+				this.text = el('div.modal-row__feedback-text', 
+					el('p', 'text'))
+				)),
+				this.feedbackEdit = place(FeedbackEdit)
 			)
+		this.row.update(true)
 
 		this.edit.addEventListener('click', (e) => {
+			this.row.update(false)
+			// console.log(this.data)
+			this.feedbackEdit.update(true, {
+				id_feedback: this.data.data.id,
+				type: this.data.context.type,
+				id: this.data.context.id,
+				count: this.data.context.count,
+				text: this.text.innerText,
+				date: this.date.innerText,
+				typeFeedback: this.data.data.type_feedback,
+				from: this.from.innerText,
+				to: this.to.innerText,
+				type_arrow: this.data.data.type_arrow,
+			})
+
+			this.feedbackEdit.view.feedbackEditPlace = this.feedbackEdit
+			this.feedbackEdit.view.rowPlace = this.row
 
 		})
 
@@ -268,7 +456,8 @@ class FeedbackRow {
 
 	update(data, index, items, context){
 
-		console.log(context.storage.clients)
+		console.log(data)
+		console.log(context)
 
 		setAttr(this.text, {
 			innerText: data.feedback
@@ -284,6 +473,11 @@ class FeedbackRow {
 			}
 		})
 
+
+		// setAttr(this.direction, {
+		// 	classList: data.type_arrow === 1 ? '' : 'rotate'
+		// })
+
 		setAttr(this.from, {
 			innerText: data.type_arrow === '0' ? data.type_author === '2' ? 'УАМФ' : context.storage.clients.filter(el => el.id === data.id_author)[0].snp : JSON.parse(sessionStorage.getItem('currEmployerName'))
 		})
@@ -293,9 +487,9 @@ class FeedbackRow {
 			innerText: data.type_arrow === '1' ? data.type_author === '2' ? 'УАМФ' : context.storage.clients.filter(el => el.id === data.id_author)[0].snp : JSON.parse(sessionStorage.getItem('currEmployerName'))
 		})
 
-		// setAttr(this.direction, {
-		// 	classList: `ico${data.type_arrow === '1' ? ' rotate' : ''}`
-		// })
+
+		this.data.context = context
+		this.data.data = data
 
 	}
 }
@@ -324,36 +518,39 @@ export default class Feedback {
 
 		this.el = el(`div.feedback-${type}__layer`,
 				this.controls,
-				this.feedbackEdit = feedbackEditPlace,
+				this.feedbackEdit = place(FeedbackEdit),
 				this.modalLayer,
 				this.showMore = place(ShowMoreBtn)
 			)
 
 		this.addItem.addEventListener('click', (e)=> {
-			// console.log(this.data)
 
 			this.feedbackEdit.update(true, {
+				id_feedback: '0',
 				type,
 				id: this.data.data.id,
-				count: this.data.count
+				count: this.data.count,
+				text: '',
+				date: '',
+				typeFeedback: '0',
+				from: 'Выбрать',
+				to: '',
+				type_arrow: '0'
 			})
 
+			this.feedbackEdit.view.feedbackEditPlace = this.feedbackEdit
 
-			console.log(this.feedbackEdit)
-			// console.log(this.feedbackEdit)
-			// console.log('df')
 		})
 
 		initOverlayScrollbars(this.modalLayer)
 
 		this.data.storage = this.getItemsLocalStorage()
+		this.data.type = type
 		this.pageShow = 2
 		this.flagShow = false
 	}
 
 	 update(data, index, items, context) {
-
-	 	console.log(data)
 
 	 		let {loading, showing} = data
 	 		if(showing) {
@@ -368,7 +565,7 @@ export default class Feedback {
 			this.data.data = data
 			this.data.index = index
 			this.data.count = (this.pageShow - 1) * 5
-			this.list.update(data.data, {storage: this.data.storage})
+			this.list.update(data.data, {storage: this.data.storage, id:this.data.data.id, count: this.data.count, type: this.data.type})
 
 
 			//Пагинация
@@ -378,7 +575,7 @@ export default class Feedback {
 				if(!this.flagShow) {
 					this.showMore.el.addEventListener('click', ()=> {
 							getWorkModalFeedback({id: this.data.data.id, showing: true, p: this.pageShow})
-							console.log(this.pageShow)
+							// console.log(this.pageShow)
 					})
 
 						this.flagShow = true

@@ -7,7 +7,7 @@ import tippy, {createSingleton, sticky, delegate} from 'tippy.js'
 import Choices from 'choices.js'
 import Autocomplete from '@trevoreyre/autocomplete-js'
 import axios from 'axios'
-import { el, mount, text, list, setAttr, svg, place, setChildren} from "redom"
+import { el, mount, text, list, setAttr, svg, place, setChildren, unmount} from "redom"
 import toastr from 'toastr'
 // import { detectOverflow } from '@popperjs/core'
 
@@ -27,6 +27,7 @@ export {
 	axios,
 	el, 
 	mount,
+	unmount,
 	list,
 	setAttr,
 	svg,

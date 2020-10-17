@@ -483,10 +483,10 @@ function initRowTooltips(el, content) {
 //////////////////////////////END initRowTooltips BLOCK/////////////////////////////////
 
 //////////////////////////////START initWorkModalTooltip BLOCK/////////////////////////////////
-function initWorkModalTooltip(parent, el, content) {
-    let instance = delegate(parent, {
-        content,
-        target: el,
+function initWorkModalTooltip(el, content) {    
+    let instance = tippy(el, {
+        content: content,
+        // target: el,
         allowHTML: true,
         interactive: true,
         interactiveBorder: 5,
@@ -497,7 +497,7 @@ function initWorkModalTooltip(parent, el, content) {
         trigger: 'click',
         appendTo: () => document.body,
         onCreate(instance){
-            console.log('dfdf')
+            // console.log('dfdf')
         },
         onShown(instance) {
             document.addEventListener('keyup', function(e) {
@@ -507,7 +507,7 @@ function initWorkModalTooltip(parent, el, content) {
             })
         },
     })
-
+    return instance
 }
 
 //////////////////////////////END initWorkModalTooltip BLOCK/////////////////////////////////
