@@ -12,7 +12,8 @@ export default class EmployerList {
         this.el = el("div.rows.worker-rows")
         this.list = list(this.el, RowEmployer)
 
-        // this.flag = false
+        this.flag = false
+
     }
     update(data) {
 
@@ -31,10 +32,11 @@ export default class EmployerList {
         this.list.update(data);
 
         //Инициализация функций которые зависят от инстанса класса
-        // if(!this.flag) {
+         if(!this.flag) {
+            console.log('ddfdfdfvdfverv')
            initWorkPopup(this.count)
-           // this.flag = true
-        // }
+            this.flag = true
+        }
         
         //
     }

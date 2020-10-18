@@ -55,4 +55,4 @@ const initWorkPopup = (count) => {
 }
 
 
-export default initWorkPopup
+export default initWorkPopup // to Components/Employer/EmployerList.js

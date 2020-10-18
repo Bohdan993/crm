@@ -4,19 +4,20 @@ import Option from '../../OptionComponent'
 import checkIfWrapperIsEmpty from '../../../checkIfWrapperIsEmpty'
 import saveFieldsData from '../../../fetchingData/Employer/WorkModal/saveFieldsData'
 import addManufacturyType from '../../../fetchingData/Employer/WorkModal/addManufacturyType'
+import deleteManufacturyType from '../../../fetchingData/Employer/WorkModal/deleteManufacturyType'
 
 
 
 class WorkModalManufacturyTypeRow {
 	constructor(){
 
-
+		this.data = {}
 		this.el = el('div.modal-row__manufactury-type-row', 
 			el('div.input-group.modal-row__manufactury-type-select.native-select', 
 					this.select = list('select.info-area', Option)
 				),
 			el('div.input-group', 
-				el('span.delete-manufactury-type'),
+				this.delete = el('span.delete-manufactury-type'),
 				this.textArea = el('input.info-area', {
 					type: 'text'
 				})
@@ -28,15 +29,21 @@ class WorkModalManufacturyTypeRow {
 				name: 'Выбрать'
 			}
 
+		this.delete.addEventListener('click', e => {
+			deleteManufacturyType(this.data.data.id, this.data.context.id_employer)
+		})
+
 	}
 
 
-	update(data){
-		// console.log(data)
+	update(data, index, items, context){
+		console.log(data)
 		let arr = JSON.parse(localStorage.getItem('type_manufactury'))
 		arr.unshift(this.defaultOption)
 		this.select.update(arr)
 		this.textArea.value = data.name
+		this.data.data = data
+		this.data.context = context
 	}
 }
 
@@ -62,14 +69,6 @@ export default class WorkModalManufacturyType {
 				this.modalLayer,
 				// this.showMore = place(ShowMoreBtn)
 		)
-		
-		// this.modalLayer = el('div.modal-row__layer.empty-layer')
-
-
-		// this.el = el('div.manufactury-type__layer',
-		// 		this.controls,
-		// 		this.list = list(this.modalLayer, WorkModalManufacturyTypeRow, 'id')
-		// 	)
 
 		this.addItem.addEventListener('click', (e) => {
 			addManufacturyType(this.data.id)
@@ -77,9 +76,9 @@ export default class WorkModalManufacturyType {
 	}
 
 	 update(data, index, items, context) {
-
+	 			console.log(data)
 	 		// if(data.id !== this.data.id) {
-		 		this.list.update(data.data)
+		 		this.list.update(data.data, {id_employer: data.id})
 				//Вызов функций которые зависят от инстанса класса
 				 checkIfWrapperIsEmpty(this.modalRowWrapper)
 				//

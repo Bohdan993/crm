@@ -107,6 +107,7 @@ class FeedbackClient {
 		  
 		  // // We want to display the title
 		  getResultValue: result => {
+
 		  	sessionStorage.setItem('currClient', JSON.stringify(result.id))
 		  	return result.snp
 		  },
@@ -143,6 +144,7 @@ class FeedbackClient {
 					return
 				}
 				this.parent.changechoiseClientText(this.findClient.value.trim())
+				this.parent.choiseClient.setAttribute('data-currClient', JSON.parse(sessionStorage.getItem('currClient')))
 			}
 
 			if(this.inputUAMF.checked) {
@@ -286,7 +288,7 @@ class FeedbackEdit {
 
 		this.saveFeedback.addEventListener('click', (e) => {
 			e.preventDefault()
-
+			console.log(+JSON.parse(sessionStorage.getItem('currClient')))
 			if(this.data.type === 'employer') {
 				console.log(this.data)
 				addFeedback({
@@ -294,7 +296,7 @@ class FeedbackEdit {
 					id_feedback: this.data.id_feedback, 
 					feedback: this.textarea.value.trim(), 
 					type_feedback: this.typeFeedback.getAttribute('data-id') || '0', 
-					id_author: this.choiseClient.getAttribute('data-author') === '1' ? +JSON.parse(sessionStorage.getItem('currClient')) : '1', 
+					id_author: this.choiseClient.getAttribute('data-author') === '1' ? this.choiseClient.getAttribute('data-currClient') : '1', 
 					type_author: this.choiseClient.getAttribute('data-author') || '2',
 					type_arrow: this.direction.classList.contains('rotate') ? '1' : '0', 
 					date: this.date.value.trim(), 
@@ -310,13 +312,20 @@ class FeedbackEdit {
 
 		this.cancel.addEventListener('click', (e) => {
 			e.preventDefault()
-			// console.log(this)
 			this.feedbackEditPlace.update(false)
 			this.rowPlace.update(true)
 		})
 
 		this.delete.addEventListener('click' , (e) => {
-
+				e.preventDefault()
+				if(this.data.type === 'employer') {
+					deleteFeedback({
+						str: 'employers',
+						id: this.data.id_feedback, 
+						id_employer: this.data.id, 
+						count: this.data.count
+					})
+				}
 		})
 
 		this.feedbackType = new FeedbackType()
@@ -346,8 +355,12 @@ class FeedbackEdit {
 			innerText: JSON.parse(sessionStorage.getItem('currEmployerName'))
 		})
 
+
+		console.log(data.type_arrow)
+		console.log(data.clients)
 		setAttr(this.choiseClient, {
-			innerText: data.type_arrow === '0' ? data.from : data.to
+			innerText: data.type_arrow === '0' ? data.from : data.to,
+			'data-currClient': data.type_arrow === '0' ? data.clients && data.from !== 'УАМФ' && data.clients.filter(client => client.snp.trim() === data.from)[0].id : data.clients && data.to !== 'УАМФ' && data.clients.filter(client => client.snp.trim() === data.to)[0].id
 		})
 
 		this.changechoiseClientText(data.type_arrow === '0' ? data.from : data.to)
@@ -444,6 +457,7 @@ class FeedbackRow {
 				from: this.from.innerText,
 				to: this.to.innerText,
 				type_arrow: this.data.data.type_arrow,
+				clients: this.data.context.storage.clients
 			})
 
 			this.feedbackEdit.view.feedbackEditPlace = this.feedbackEdit
@@ -500,9 +514,9 @@ export default class Feedback {
 		this.data = {}
 		this.controls = el('div.modal-row__controls',
 			el('p', 'Отзывы', 
-				el('span', ' 4'),
+				this.feedbackCount = el('span', ' 4'),
 				el('span', ' ('),
-				el('span.negative', 'негативных - 2'),
+				this.feedbackCountNeg = el('span.negative', 'негативных - 2'),
 				el('span', ')')
 				),
 			this.addItem = el('div.add-item', el('span', '+'), 'добавить отзыв')
@@ -511,7 +525,7 @@ export default class Feedback {
 
 		this.modalRowWrapper = el(`div.modal-row__feedback-${type}-wrapper.modal-row__wrapper`)
 
-		this.modalLayer = el('div.modal-row__layer.empty-layer', 
+		this.modalLayer = el('div.modal-row__layer.feedback-row__layer.empty-layer', 
 			this.list = list(this.modalRowWrapper, FeedbackRow, 'id')
 		)
 
@@ -535,7 +549,8 @@ export default class Feedback {
 				typeFeedback: '0',
 				from: 'Выбрать',
 				to: '',
-				type_arrow: '0'
+				type_arrow: '0',
+				clients: null
 			})
 
 			this.feedbackEdit.view.feedbackEditPlace = this.feedbackEdit
@@ -551,7 +566,7 @@ export default class Feedback {
 	}
 
 	 update(data, index, items, context) {
-
+	 		console.log(data)
 	 		let {loading, showing} = data
 	 		if(showing) {
 				this.pageShow++
@@ -585,6 +600,14 @@ export default class Feedback {
 				this.showMore.update(false)
 				this.flagShow = false
 			}
+
+			setAttr(this.feedbackCount, {
+				innerText: " " + data.total
+			})
+
+			setAttr(this.feedbackCountNeg, {
+				// innerText: data.total
+			})
 
 			//Вызов функций которые зависят от инстанса класса
 			 checkIfWrapperIsEmpty(this.modalRowWrapper)

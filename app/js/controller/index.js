@@ -8,6 +8,7 @@ import {
 	show5Rows,
 	// addManufacturyType,
 	// show1Row,
+	initWorkPopup,
 	addNewTask,
 	deleteTask,
 	setFeedbackDate,
@@ -128,7 +129,7 @@ const app = {
 		this.mchm()
 		this.gtc()
 		this.gc()
-
+		initWorkPopup(2)
 
 	},
 
@@ -321,7 +322,10 @@ const app = {
 		mountVacancyPopup()
 	},
 	fs(){
-		fetchScroll(employerRowsWrapper)
+		if(employerRowsWrapper) {
+			fetchScroll(employerRowsWrapper)
+		}
+		
 	},
 	mchm(){
 		mountContactHistoryModal()
