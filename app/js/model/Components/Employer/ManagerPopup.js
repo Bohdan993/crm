@@ -1,8 +1,10 @@
 import {el, setAttr} from '../../../../libs/libs'
 import getEmployersList from '../../fetchingData/getEmployersList'
+import getVacancyList from '../../fetchingData/Vacancy/getVacancyList'
 
 export default class ManagerPopup {
-	constructor(){
+	constructor(type = 'employer'){
+		this.type = type
 		this.el = el('div.input-group', 
 			this.input = el('input', {
 				type: 'checkbox',
@@ -29,7 +31,13 @@ export default class ManagerPopup {
 				for: 'manager-chbx-' + data.id,
 				innerHTML: `<i class="tag manager-tag" style="background-color:${'#' + data.color}">${data.name.split(/\s+/).map(word => word[0].toUpperCase()).join('')}</i>${data.name}`
 			})
-			this.filter(data.id, 'manager', 'managerFilter')
+
+			if(this.type === 'employer') {
+				this.filter(data.id, 'manager', 'managerFilter')
+			} else {
+				this.filter(data.id, 'manager', 'managerFilterVacancy')
+			}
+			
 	}
 
 	filter(id, str, storageKey){
@@ -41,12 +49,23 @@ export default class ManagerPopup {
 			//this - один чекбокс в попапе
 			if(this.checked) {
 				ManagerPopup.checkedArr.push(id)
-				getEmployersList({[str]: ManagerPopup.checkedArr.join(',')})
+
+				if(this.type === 'employer') {
+					getEmployersList({[str]: ManagerPopup.checkedArr.join(',')})
+				} else {
+					getVacancyList({[str]: ManagerPopup.checkedArr.join(',')})
+				}
 				
 				sessionStorage.setItem(storageKey, JSON.stringify(ManagerPopup.checkedArr.join(',')))
 			} else {
 				ManagerPopup.checkedArr = ManagerPopup.checkedArr.filter(el => el !== id)
-				getEmployersList({[str]: ManagerPopup.checkedArr.join(',')})
+
+				if(this.type === 'employer') {
+					getEmployersList({[str]: ManagerPopup.checkedArr.join(',')})
+				} else {
+					getVacancyList({[str]: ManagerPopup.checkedArr.join(',')})
+				}
+
 				sessionStorage.setItem(storageKey, JSON.stringify(ManagerPopup.checkedArr.join(',')))
 			}
 		}

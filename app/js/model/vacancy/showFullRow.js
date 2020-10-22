@@ -1,12 +1,12 @@
 import {isChildOf} from '../helper'
 
-const showFullRow = (rows) => {
-	slideToggle(rows)
+const showFullRow = (row) => {
+	slideToggle(row)
 	
 	function slideToggle(linkToggle) {
-	for(let i = 0; i < linkToggle.length; i++){
+	// for(let i = 0; i < linkToggle.length; i++){
 
-	  linkToggle[i].addEventListener('click', function(event){
+	  linkToggle.addEventListener('click', function(event){
 
 	  		let container  = this.querySelector('.table-full')
 	  		
@@ -46,7 +46,7 @@ const showFullRow = (rows) => {
 	    
 	  });
 
-	}
+	// }
 }
 }
 

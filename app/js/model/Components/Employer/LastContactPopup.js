@@ -1,4 +1,4 @@
-import SidebarPopupRadioInterface from './SidebarPopupRadioInterface'
+import SidebarPopupRadioInterface from '../SidebarPopupRadioInterface'
 
 
 export default class LastContactPopup extends SidebarPopupRadioInterface {

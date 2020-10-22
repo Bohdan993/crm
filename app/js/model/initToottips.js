@@ -12,6 +12,7 @@ import {
 import {
 
     countryTemplate,
+    countryTemplateVacancy,
     typeManufacturyTemplate,
     contactTemplate,
     lastContactTemplate,
@@ -39,6 +40,9 @@ const initTooltips = () => {
 
     if (countryTemplate) {
         countryTemplate.style.display = 'block';
+    }
+    if (countryTemplateVacancy) {
+        countryTemplateVacancy.style.display = 'block';
     }
     if (typeManufacturyTemplate) {
         typeManufacturyTemplate.style.display = 'block';
@@ -102,6 +106,8 @@ const initTooltips = () => {
 
     /////////////////////////////////////////
     initSidebarTooltip('.country-filter-wrapper', countryTemplate)
+    ////////////////////////////////////////////////////////////
+    initSidebarTooltip('.country-filter-wrapper-vacancy', countryTemplateVacancy)
     ////////////////////////////////////////////////////////////
     initSidebarTooltip('.type-manufactury-filter-wrapper', typeManufacturyTemplate)
     ////////////////////////////////////////////////////////
@@ -310,6 +316,7 @@ function initSidebarTooltip(el, content) {
   
         },
         onShown(instance) {
+        console.log(instance.props)
         let children = instance.props.content.querySelectorAll('input')
             document.addEventListener('keyup', function(e) {
                 if (e.keyCode === 27) {

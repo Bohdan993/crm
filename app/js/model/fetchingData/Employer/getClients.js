@@ -8,7 +8,7 @@ const getClients = async () => {
 			// console.log(typeContact)
 			localStorage.setItem('clients', JSON.stringify(clients))
 		}catch(e) {
-			console.erroe(e)
+			console.error(e)
 		}
 	}
 }

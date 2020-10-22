@@ -1,8 +1,7 @@
 import fetch from './fetchingDataClass'
 import EmployerList from '../Components/Employer/EmployerList'
 import Loader from '../Components/Employer/Loader'
-import {el, mount, place} from '../../../libs/libs'
-import { toastr }from '../../../libs/libs'
+import {el, mount, place, toastr} from '../../../libs/libs'
 
 
 const employersWrapper = document.querySelector('.employer-rows-wrapper')
@@ -54,7 +53,7 @@ const getEmployersList = async ({
 	scroll = false
 } = {}) => { 
 
-
+	console.log('employerList')
 	if(employersWrapper) {
 		loader.update(true)
 
@@ -63,7 +62,6 @@ const getEmployersList = async ({
 			const data = await fetch.getResourse(`/employers/get_all/?p=${p}&t=${t}&search=${search}&filter=country:${country}|production:${production}|contact:${contact}
 				|manager:${manager}|intermediaries:${intermediaries}|intermediary:${intermediary}|vacancy_active:${vacancy_active}|vacancy_type:${vacancy_type}|vacancy_term:${vacancy_term}|last_contact:${last_contact}&sort=${sort}`)
 			const employers = data.data
-
 			if(data.success) {
 
 				if(!employers) {

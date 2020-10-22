@@ -36,7 +36,12 @@ import {
 	mountLastContactPopup,
 	mountSortingPopup,
 	mountVacancyPopup,
-	mountContactHistoryModal
+	mountContactHistoryModal,
+	mountManagerSelect,
+	getVacancyList,
+	getCountryVacancyPopup,
+	mountSortingVacancyPopup,
+	getVacancyWorkType
 } from '../model'
 
 import {OverlayScrollbars} from '../../libs/libs'
@@ -129,7 +134,12 @@ const app = {
 		this.mchm()
 		this.gtc()
 		this.gc()
-		initWorkPopup(2)
+		this.mms()
+		this.gvl()
+		this.gcvp()
+		this.msvp()
+		this.gvwt()
+		// initWorkPopup(2)
 
 	},
 
@@ -226,9 +236,9 @@ const app = {
 
 
 	sfr(){
-		if(vacancyRows){
-			showFullRow(vacancyRows)
-		}
+		// if(vacancyRows){
+		// 	showFullRow(vacancyRows)
+		// }
 	},
 
 	srs() {
@@ -325,10 +335,25 @@ const app = {
 		if(employerRowsWrapper) {
 			fetchScroll(employerRowsWrapper)
 		}
-		
 	},
 	mchm(){
 		mountContactHistoryModal()
+	},
+	mms(){
+		mountManagerSelect()
+	},
+	gvl(){
+		console.log(getVacancyList)
+		getVacancyList()
+	},
+	gcvp(){
+		getCountryVacancyPopup()
+	},
+	msvp(){
+		mountSortingVacancyPopup(	)
+	},
+	gvwt(){
+		getVacancyWorkType()
 	}
 
 }

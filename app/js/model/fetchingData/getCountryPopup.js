@@ -1,11 +1,13 @@
 import fetch from './fetchingDataClass'
-import CountryPopup from '../Components/Employer/CountryPopup'
-import {list, mount, tippy} from '../../../libs/libs'
+import CountryPopup from '../Components/CountryPopup'
+import {list, mount} from '../../../libs/libs'
 
 const countryPopup = document.querySelector('#country-popup')
 
-// console.log(countryPopup._tippy)
-const popup = list("form", CountryPopup, 'id')
+
+const popup = list("form", CountryPopup, 'id', 'employer')
+
+console.log(popup)
 
 if(countryPopup) {
 	mount(countryPopup, popup)
@@ -62,4 +64,4 @@ if(countryPopup) {
 
 
 
-export default getCountryPopup
+export default getCountryPopup // to ../index.js

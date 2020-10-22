@@ -78,7 +78,7 @@ export default class RowEmployer {
 	update(data, index, items, context){
 		// console.log(data)
 		const { id_employer } = data
-		let custom = ''
+		
 
 
 		this.companyText.innerText = data.enterprise
@@ -90,13 +90,15 @@ export default class RowEmployer {
 			innerText: data.phone
 		})
 
-		if(id_employer !== this.data.id_employer) {
-			custom = 'data-custom' + items[items.length - 1]['id_employer'] + '-open'
+		let custom = 'data-custom' + items[items.length - 1]['id_employer'] + '-open'
 
 		setAttr(this.el, {
 			"data-id_employer": data.id_employer,
 			[custom]: `modal-1`
 		})
+
+		if(id_employer !== this.data.id_employer) {
+		
 
 		// setAttr(this.flagIco, {
 		// 	xlink: {href: `img/sprites/svg/symbol/sprite.svg#${data.icon}`}

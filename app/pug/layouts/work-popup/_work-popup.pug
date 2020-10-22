@@ -9,34 +9,24 @@
 					.sidebar__layout
 						.f-container
 							.sidebar__info
-								form(action="")
-									.input-group
-										p
-											|Менеджер
-										select.manager-select(name="manager-select")
-											//- option(value="" disabled selected)
-											//- 	|Отсутствует
-											//- option(value="AK")
-											//- 	i.tag.manager-tag.dark-blue-tag
-											//- 		|AK
-											//- 	|Алексей
-											//- option(value="CK")
-											//- 	i.tag.manager-tag.light-green-tag
-											//- 		|CK
-											//- 	|Светлана
-									.input-group.add-task-group
-										.input-group__control
-											p
-												|Задачи
-											.add-item
-												span
-													|+ 
-												| добавить
-										.add-task-item
-											i.ico
-												+svg2('attention')
-											textarea(type="text" class="sidebar__task-input" rows="1" data-elastic="true")
-											span.delete-task-item
+								form.work-modal__sidebar-employer-form
+									//- .input-group
+									//- 	p
+									//- 		|Менеджер
+									//- 	select.manager-select(name="manager-select")
+									//- .input-group.add-task-group
+									//- 	.input-group__control
+									//- 		p
+									//- 			|Задачи
+									//- 		.add-item
+									//- 			span
+									//- 				|+ 
+									//- 			| добавить
+									//- 	.add-task-item
+									//- 		i.ico
+									//- 			+svg2('attention')
+									//- 		textarea(type="text" class="sidebar__task-input" rows="1" data-elastic="true")
+									//- 		span.delete-task-item
 							.sidebar__notes
 								.input-group
 									p

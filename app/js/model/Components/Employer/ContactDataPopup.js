@@ -1,4 +1,4 @@
-import SidebarPopupInterface from './SidebarPopupInterface'
+import SidebarPopupInterface from '../SidebarPopupInterface'
 
 
 export default class ContactDataPopup extends SidebarPopupInterface {

@@ -11,6 +11,7 @@ const employerRowsWrapper = document.querySelector('.employer-rows-wrapper')
 
 ////Tooltips Templates
 const countryTemplate = document.querySelector('#country-popup');
+const countryTemplateVacancy = document.querySelector('#country-popup-vacancy');
 const typeManufacturyTemplate = document.querySelector('#type-manufactury-popup');
 const contactTemplate = document.querySelector('#contact-popup');
 const managersTemplate = document.querySelector('#managers-popup');
@@ -84,6 +85,7 @@ const editBtns = document.querySelectorAll('.modal-row__feedback-edit')
 // Popups elements
 
 const confirmBtnTypeFeedback = document.querySelector('#type-feedback-popup .confirm-btn')
+const sidebarEmployerForm = document.querySelector('.work-modal__sidebar-employer-form')
 
 
 
@@ -183,7 +185,9 @@ export {
 	editBtns,
 	clientsModalLayer,
 	sidebarEmployer,
-	employerRowsWrapper
+	employerRowsWrapper,
+	sidebarEmployerForm,
+	countryTemplateVacancy
 	// mainInfoPrice
 	// statusChangeTemplate
 }

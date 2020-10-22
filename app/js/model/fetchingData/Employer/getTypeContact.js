@@ -8,7 +8,7 @@ const getTypeContact = async () => {
 			// console.log(typeContact)
 			localStorage.setItem('type_contact', JSON.stringify(typeContact))
 		}catch(e) {
-			console.erroe(e)
+			console.error(e)
 		}
 	}
 }

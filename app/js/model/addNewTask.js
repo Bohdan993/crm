@@ -8,7 +8,7 @@ let html = `<div class="add-task-item"><i class="ico">
             <textarea class="sidebar__task-input" type="text" rows="1" data-elastic="true"></textarea><span class="delete-task-item"></span>
           </div>`
 	btn.addEventListener('click', function(){
-		this.parentNode.parentNode.insertAdjacentHTML('beforeend', html)
+		this.closest('.add-task-group').querySelector('.tasks-layer').insertAdjacentHTML('beforeend', html)
 	})
 }
 

@@ -1,9 +1,9 @@
-import SidebarPopupInterface from './SidebarPopupInterface'
+import SidebarPopupInterface from '../SidebarPopupInterface'
 
 
 export default class TypeManufacturyPopup extends SidebarPopupInterface {
-  constructor(){
-    super()
+  constructor(type){
+    super(type)
   }
 
   update(data, index, items, context) {
