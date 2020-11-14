@@ -47,6 +47,7 @@ const initWorkModalSelect = (elem, { countries, managers, contacts } = {}) => {
 
 
  } else if (elem.classList.contains('country-select')) {
+ 		console.log(countries)
  		let choisesCountries = countries.map(country => {
  			// console.log(country)
  			return {

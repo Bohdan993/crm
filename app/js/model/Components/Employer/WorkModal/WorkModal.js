@@ -2,7 +2,7 @@ import {el, setAttr, svg, list} from '../../../../../libs/libs'
 import linkToSocial from '../../../linkToSocial'
 import initWorkModalSelect from '../../../initWorkModalSelect'
 import hiddenClassMixin from '../../../Mixins/hiddenClassMixin'
-import saveFieldsData from '../../../fetchingData/Employer/WorkModal/saveFieldsData'
+import saveFieldsData from '../../../fetchingData/saveFieldsData'
 import Option from '../../OptionComponent'
 
 
@@ -187,6 +187,7 @@ export default class WorkModal {
 
 		let save = (value, field, target = 'main') => {
 			saveFieldsData({
+				str: 'employers',
 				id: this.data.id_employer,
 				value, 
 				field, 
@@ -248,17 +249,24 @@ export default class WorkModal {
 			save(this.comInfNotes.value, 'note')
 		})
 
+		this.intermadiariesSelect.el.addEventListener('change', (e) => {
+			save(this.intermadiariesSelect.el.value, 'id_employer_intermediator_list')
+		})
 
-		this.countryChoices = initWorkModalSelect(this.comCountrySelect, {countries: JSON.parse(localStorage.getItem('countries'))})
+
+		this.sourceSelect.el.addEventListener('change', (e) => {
+			save(this.sourceSelect.el.value, 'id_employer_source_list')
+		})
+
+
+		this.countryChoices = initWorkModalSelect(this.comCountrySelect, {countries: this.getItemsFromLocalStorage().countries})
 	}
 
 	 update(data, index, items, context) {
-	 		// console.log(data)
+	 		console.log(data)
 	 		const { id_employer } = data
 	 		
-	 		// console.log(this.countryChoices)
-			
-		
+
 			if(id_employer !== this.data.id_employer) {
 			const arrLinks = []
 			this.comManufacturyArea.value = data.enterprise
@@ -274,9 +282,11 @@ export default class WorkModal {
 			this.comInfSite.value = data.site
 			this.comInfFacebook.value = data.social_media_facebook
 			this.comInfInstagram.value = data.social_media_instagram
-			this.comInfNotes.value = data.note
-			this.intermadiariesSelect.update(JSON.parse(localStorage.getItem('intermediaries')))
+			this.comInfNotes.value = data.other_information
+			this.intermadiariesSelect.update(this.getItemsFromLocalStorage().intermediaries)
+			this.intermadiariesSelect.el.value = data.id_employer_intermediator_list
 			this.sourceSelect.update(data.source)
+			this.sourceSelect.el.value = data.id_employer_source_list
 
 			
 
@@ -301,6 +311,18 @@ export default class WorkModal {
 
 			this.data = data
 			this.data.index = index
+	}
+
+	getItemsFromLocalStorage(){
+
+		let intermediaries = JSON.parse(localStorage.getItem('intermediaries')) || []
+		intermediaries.unshift({id: 0, name: 'Отсутствует'})
+		let countries = JSON.parse(localStorage.getItem('countries')) || []
+
+		return {
+			intermediaries,
+			countries
+		}
 	}
 
 }

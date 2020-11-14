@@ -3,12 +3,13 @@
 import addNewTask from '../addNewTask'
 import addTask from '../fetchingData/Employer/WorkModal/addTask'
 import deleteTask from '../fetchingData/Employer/WorkModal/deleteTask'
-
+import saveFieldsData from '../fetchingData/saveFieldsData'
 import {el, svg, list, setAttr} from '../../../libs/libs'
-
+import initElasticArea from '../initElasticArea'
 
 class TaskItem {
-	constructor(){
+	constructor(type){
+        this.type = type
 		this.el = el('div.add-task-item', 
         		el('i.ico', 
         			svg('svg', svg('use', {
@@ -19,24 +20,59 @@ class TaskItem {
         			'data-elastic': true
         		}),
         		this.delete = el('span.delete-task-item'))
+
 			this.delete.addEventListener('click', e => {
-				deleteTask({
-					id: this.data.id_employer_task, 
-					id_employer: this.context.id,
-					str: 'employers'
-				})
+                if(this.type === 'employer') {
+                    deleteTask({
+                        id: this.data.id_employer_task, 
+                        id_employer: this.context.id,
+                        str: 'employers'
+                    })
+                } else {
+
+                }
+				
 			})
+
+            this.textarea.addEventListener('change', e=> {
+                
+                if(this.type === 'employer') {
+                   saveFieldsData({
+                    str: 'employers',
+                    id: this.context.id,
+                    value: this.textarea.value, 
+                    field: 'name', 
+                    target: 'task', 
+                    id_target: this.data.id_employer_task
+                   })
+                } else {
+
+                }
+            })
+
+            this.textarea.addEventListener('input', e => {
+                initElasticArea(this.textarea)
+            })
+            
+
+
 	}
 
 	update(data, index, items, context) {
-		console.log(data)
+        
+		console.log(context)
 		setAttr(this.textarea, {
 			value: data.name
 		})
 
 		this.data = data
+        console.log(this.data)
 		this.context = context
 	}
+
+    onmount (){
+        initElasticArea(this.textarea)
+    }
 }
 
 export default class Task { // to ../fetchingData/Employer/WorkModal
@@ -47,21 +83,25 @@ export default class Task { // to ../fetchingData/Employer/WorkModal
         		this.addTask = el('div.add-item', 
         			el('span', '+'), 'добавить')
         	),
-        	this.list = list('div.tasks-layer', TaskItem, 'id_employer_task')
+        	this.list = list('div.tasks-layer', TaskItem, 'id_employer_task', type)
         )
         
         addNewTask(this.addTask)
 
+        // console.log(this.list)
+
         this.addTask.addEventListener('click', e => {
-        	console.log('yes')
+        	// console.log('yes')
         	if(type === 'employer') {
         		console.log('yes')
         		addTask(
         			{
-        			id: this.data.id,
-							str:'employers'
-							})
-        	}
+            			id: this.data.id,
+        				str:'employers'
+    				})
+        	} else {
+
+            }
         	
         })
         

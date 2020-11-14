@@ -5,6 +5,7 @@ import {el, setAttr, place, list} from '../../../../libs/libs'
 import TableVacancyClient from './VacancyClients'
 import showFullRow from '../../vacancy/showFullRow'
 import getVacancyClients from '../../fetchingData/Vacancy/getVacancyClients'
+import { makeCaching } from '../../helper'
 // import getWorkModalInfo from '../../fetchingData/getWorkModalInfo'
 
 // import getWorkModalManufacturyType from '../../fetchingData/Employer/WorkModal/getWorkModalManufacturyType'
@@ -32,6 +33,7 @@ class Indicator {
 export default class RowVacancy {
 	constructor(){
 		this.data = {}
+		this.showed = false
 		this.el = el("div.row.no-open",
 				el('div.f-container', 
 					el('div.row__terms.row__cell hot'), 
@@ -56,24 +58,26 @@ export default class RowVacancy {
 						el('p', 'Поля')),
 					el('div.row__notes row__cell',
 						this.term = el('p')),
-					
 					),
 				this.vacancyClientsTable = place(TableVacancyClient)
 			)
 
 			this.el.addEventListener('click', (e) => {
-				getVacancyClients(1).then(res => {
-					console.log(res)
-				})
-				this.vacancyClientsTable.update(true)
+				if(!this.showed) {
+					getVacancyClients(this.data.id_vacancy)
+					.then(res => {
+						this.vacancyClientsTable.update(true, res)
+						showFullRow(this.el, e)
+					})
+					this.showed = true
+				}
+				showFullRow(this.el, e)
 			})
-			
-			showFullRow(this.el)
-
 	}
 
 	update(data, index, items, context){
 		console.log(context)
+		console.log(data)
 
 		this.indicatorsArr = data.status.map((el, i) =>{
 			return {

@@ -1,4 +1,4 @@
-import {el, setAttr, svg, place} from '../../../../libs/libs'
+import {el, setAttr, svg, place, list} from '../../../../libs/libs'
 import { initRowTooltips } from '../../initToottips'
 import getWorkModalInfo from '../../fetchingData/getWorkModalInfo'
 
@@ -9,28 +9,49 @@ import getWorkModalVacancyHistory from '../../fetchingData/Employer/WorkModal/ge
 import getWorkModalFeedback from '../../fetchingData/Employer/WorkModal/getWorkModalFeedback'
 
 
+class VacancyLabel {
+	constructor(){
+		this.el = el('i.label', 
+			this.vacancyLabelCountry = el('span', 'NO'), 
+			this.vacancyLabelCode = el('span', '211-8'))
+	}
 
+	update(data){
+
+		console.log(data)
+
+		setAttr(this.el, {
+			style:  {
+				background: data.archive === '0' ? '#9c3' : 'rgb(255, 153, 102)'
+			}
+		})
+
+		setAttr(this.vacancyLabelCountry, {
+			innerText: data.name
+		})
+
+		setAttr(this.vacancyLabelCode, {
+			innerText: `${data.id_vacancy}-${data.total_client}`
+		})
+		
+	}
+}
 
 
 export default class RowEmployer {
 	constructor(){
 		this.data = {}
-		this.attentionTag = place(el('i.attention-tag', 
-					// svg('svg', svg('use', {
-					// 		xlink: { href: "img/sprites/svg/symbol/sprite.svg#attention"}
-					// 	}))
+		this.attentionTag = place(el('i.attention-tag',
+				el('i.s-attention')
 					))
 		this.managerTag = place(el('i.tag.manager-tag'))
-		this.vacancyLabel = place(el('i.label', this.vacancyLabelCountry = el('span', 'NO'), this.vacancyLabelCode = el('span', '211-8')))
+		// this.vacancyLabel = place(el('i.label', this.vacancyLabelCountry = el('span', 'NO'), this.vacancyLabelCode = el('span', '211-8')))
 		this.el = el("div.row",
 			el(".f-container", 
 				this.country = el(".row__country.row__cell", 
-					el("i.row__flag", 
-						// svg('svg', this.flagIco = svg('use', {
-						// 			xlink: { href: "img/sprites/svg/symbol/sprite.svg#flag-norway"}
-						// 		}), 
-						// 	)
-						),
+		
+					this.flagIco = el('i.s-au.row__flag'),
+			
 					this.abbr = el('p.row__abbr', 'NO')
 					),
 				this.company = el(".row__company.row__cell", this.companyText = el("p")
@@ -43,11 +64,7 @@ export default class RowEmployer {
 						)
 					),
 				this.phone = el('.row__phone.row__cell', 
-					el('i', 
-						// svg('svg', svg('use', {
-						// 	xlink: { href: "img/sprites/svg/symbol/sprite.svg#phone"}
-						// }))
-						),
+					this.phoneIco = place(el('i.s-phone')),
 					el('p', this.phoneLink = el('a', {
 						href: 'tel:#'
 					}))
@@ -55,7 +72,7 @@ export default class RowEmployer {
 				this.address = el('.row__address.row__cell', this.addressText = el('p')),
 				this.jobs = el('.row__jobs.row__cell', this.jobsText = el('p')),
 				this.labels = el('.row__labels.row__cell',
-					this.vacancyLabel
+					this.vacancyLabel = list('div.row__labels-layer', VacancyLabel, 'id_vacancy')
 					
 					) 
 				)
@@ -76,7 +93,7 @@ export default class RowEmployer {
 	}
 
 	update(data, index, items, context){
-		// console.log(data)
+		console.log(data)
 		const { id_employer } = data
 		
 
@@ -89,6 +106,10 @@ export default class RowEmployer {
 			href: 'tel:' + data.phone,
 			innerText: data.phone
 		})
+		data.task ? this.attentionTag.update(true) : this.attentionTag.update(false)
+
+
+		data.phone ? this.phoneIco.update(true) : this.phoneIco.update(false)
 
 		let custom = 'data-custom' + items[items.length - 1]['id_employer'] + '-open'
 
@@ -100,13 +121,13 @@ export default class RowEmployer {
 		if(id_employer !== this.data.id_employer) {
 		
 
-		// setAttr(this.flagIco, {
-		// 	xlink: {href: `img/sprites/svg/symbol/sprite.svg#${data.icon}`}
-		// })
+		setAttr(this.flagIco, {
+			classList: `row__flag ${data.icon ? 's-' + data.icon.split('.')[0] : ''}`
+		})
 		// this.abbr.innerText = data.addr
 		
 		
-		data.task ? this.attentionTag.update(true) : this.attentionTag.update(false)
+	
 		data.manager ? (this.managerTag.update(true), 
 		setAttr(this.managerTag,{
 						style: {"background-color": "#" + data.manager_color}, 
@@ -118,18 +139,19 @@ export default class RowEmployer {
 		
 		// this.addressText.innerText = data.address
 		this.jobsText.innerText = data.production ? data.production.join(', ') : ""
-		data.vacancy instanceof Array && data.vacancy.length > 0 ? 
-		(
-				this.vacancyLabel.update(true),
-				setAttr(this.vacancyLabelCountry,{
-						innerText: data.country_name,
-					}
-				),
-				setAttr(this.vacancyLabelCode, {
-						innerText: '123-12'
-					}
-				)
-			) : this.vacancyLabel.update(false)
+		this.vacancyLabel.update(data.vacancy)
+		// data.vacancy instanceof Array && data.vacancy.length > 0 ? 
+		// (
+		// 		this.vacancyLabel.update(data.vacancy),
+		// 		setAttr(this.vacancyLabelCountry,{
+		// 				innerText: data.country_name,
+		// 			}
+		// 		),
+		// 		setAttr(this.vacancyLabelCode, {
+		// 				innerText: '123-12'
+		// 			}
+		// 		)
+		// 	) : this.vacancyLabel.update([{}])
 
 
 		setTimeout(() => {

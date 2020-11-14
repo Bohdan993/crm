@@ -10,7 +10,7 @@ import {list, mount} from '../../../../libs/libs'
 // }
 
 const typeWorkPopup = document.querySelector('#type-work-popup form')
-const typeWorkPopupGroup = typeWorkPopup.querySelector('.form-group')
+// const typeWorkPopupGroup = typeWorkPopup.querySelector('.form-group')
 
 
 

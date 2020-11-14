@@ -1,9 +1,10 @@
-import fetch from '../../fetchingDataClass'
+import fetch from './fetchingDataClass'
 // import getWorkModalFeedback from './getWorkModalFeedback'
-import { toastr } from '../../../../../libs/libs'
+import { toastr } from '../../../libs/libs'
 
 
 const saveFieldsData = async ({
+	str,
 	id,
 	value, 
 	field, 
@@ -12,7 +13,7 @@ const saveFieldsData = async ({
 } = {}) => {
 			// console.log(id_employer, message)
 			try {
-				const fields = await fetch.getResourse(`/employers/save/?id=${id}&value=${value}&field=${field}&target=${target}&id_target=${id_target}`)
+				const fields = await fetch.getResourse(`/${str}/save/?id=${id}&value=${value}&field=${field}&target=${target}&id_target=${id_target}`)
 
 				toastr.success(`ID работодателя ${id}`, 'Успешно сохранено поле', {closeButton: false})
 			} catch(e) {

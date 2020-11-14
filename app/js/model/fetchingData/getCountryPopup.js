@@ -15,6 +15,7 @@ if(countryPopup) {
 
 
 const getCountryPopup = async () => {
+	// console.log('dd')
 if(countryPopup) {
 		try {
 				const data = await fetch.getResourse('/employers/get_other/?s=4')
@@ -50,10 +51,10 @@ if(countryPopup) {
 				}
 
 				
-
+				console.log(countries)
 				localStorage.setItem('countries', JSON.stringify(countries))
 	
-				popup.update(countries);
+				popup.update(countries)
 		} catch (e) {
 			console.error(e)
 		}

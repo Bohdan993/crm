@@ -57,16 +57,45 @@ class CellStatusSlider {
 	}
 }
 
+
+
+class LanguageStars {
+	constructor(){
+		this.el = el('i.ico.s-star')
+	}
+
+	update(data){
+	}
+}
+
+
+class Language {
+	constructor(){
+		this.el = el('i.label.blue__label', 
+			this.languageName = el('span.language'),
+			this.languageStars = list('span.language-stars', LanguageStars)
+		)
+	}
+
+
+	update(data) {
+			setAttr(this.languageName,{
+				innerText: data.addr
+			})
+			this.languageStars.update(Array(data.level).fill(0))
+	}
+}
+
 export default class RowVacancyClient {
 	constructor(){
 		this.data = {}
 		this.el = el("div.table-full__row.f-container",
 				el('div.table-full__cell.row__cell.cell-names', 
-					el('a', {
+					this.name = el('a', {
 						href: '#'
 					}),
-					el('span.row__indicator.indicator.department', 
-						el('span'))),
+					this.group = place(el('span.row__indicator.indicator.department', 
+						this.groupNum = el('span')))),
 				el('div.table-full__cell.row__cell.cell-status', 
 					el('div.cell-status__left', 
 						this.statusSlider = list('div.cell-status__slider', CellStatusSlider)),
@@ -77,27 +106,66 @@ export default class RowVacancyClient {
 								el('i.ico'))
 							),
 					el('div.cell-status__right',
-						el('i.ico'),
-						el('i.ico'),
-						el('i.ico'),
+						this.phone = place(el('i.ico.s-phone-red')),
+						this.documents = place(el('i.ico.s-documents')),
+						this.anket = place(el('i.ico.s-anket')),
 						el('div.tag.manager-tag.purple-tag'))),
 				el('div.table-full__cell.row__cell.cell-exp', 
-					el('i.label.hot__label',
-						el('span')),
-					el('p')),
+					this.labelCourse = place(el('i.label',
+						this.labelCourseText = el('span'))),
+					this.speciality = el('p'),
+					this.language = list('div.language__wrapper', Language),
+					
+					),
 				el('div.table-full__cell.row__cell.cell-notes', 
-					el('input', {
+					this.notes = el('input', {
 						type: 'text'
 					}))
 			)
 
-
-
 	}
 
 	update(data, index, items, context){
-
+		console.log(data)
 		this.statusSlider.update(dataArr)
+
+		setAttr(this.name, {
+			innerText: data.main.snp
+		})
+
+		data.main.task_document === '0' ? this.documents.update(false) : this.documents.update(true)
+		data.main.task_phone === '0' ? this.phone.update(false) : this.phone.update(true)
+		data.main.task_questionnaire === '0' ? this.anket.update(false) : this.anket.update(true)
+		data.main._group !== '0' ? (
+			this.group.update(true),
+			setAttr(this.groupNum, {
+				innerText: data.main._group
+			})
+			) : this.group.update(false)
+		this.language.update(data.language)
+
+
+		setAttr(this.notes, {
+			value: data.vacancy.note
+		})
+
+		setAttr(this.speciality, {
+			innerText: data.education ? data.education.prof_specialty ? data.education.prof_specialty : data.education.user_specialty : ''
+		})
+
+
+		data.education ? data.education.form || data.education.course ? (
+			this.labelCourse.update(true),
+			setAttr(this.labelCourse.el, {
+				style: {
+					'background-color': data.education ? data.education.form === '1' ? '#99cc33' : '#99cccc' : ''
+				}
+			}),
+			setAttr(this.labelCourseText, {
+				innerText: `${data.education ? data.education.form === '1' ? 'Д' : 'З' : ''} ${data.education ? data.education.course : ""}`
+			})
+			) : this.labelCourse.update(false) : null
+
 		this.data = data
 	}
 

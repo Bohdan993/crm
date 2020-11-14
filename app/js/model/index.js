@@ -5,7 +5,7 @@ import initOverlayScrollbars from './OverlayScrollbarsInit'
 import initTooltips from './initToottips'
 import initWorkPopup from './initWorkPopup'
 import initToastr from './initToastr'
-import test from './testing'
+import initElasticArea from './initElasticArea'
 import initWorkModalSelect from './initWorkModalSelect'
 import sidebarSearchInput from './sidebarSearchInput'
 
@@ -33,7 +33,8 @@ import showFullClientsRow from './vacancy/showFullClientsRow'
 
 
 import getEmployersList from './fetchingData/getEmployersList'
-import getManagerPopup from './fetchingData/getManagerPopup'
+import getManagerPopup from './fetchingData/Employer/getManagerPopup'
+import getManagerVacancyPopup from './fetchingData/Vacancy/getManagerVacancyPopup'
 import getIntermediariesPopup from './fetchingData/getIntermediariesPopup'
 import getCountryPopup from './fetchingData/getCountryPopup'
 import getManufacturyTypePopup from './fetchingData/getManufacturyTypePopup'
@@ -51,7 +52,7 @@ import mountLastContactPopup from './MountingElements/Employer/mountLastContactP
 import mountSortingPopup from './MountingElements/Employer/mountSortingPopup'
 import mountVacancyPopup from './MountingElements/Employer/mountVacancyPopup'
 import mountContactHistoryModal from './MountingElements/Employer/WorkModal/mountContactHistoryModal'
-import mountManagerSelect from './MountingElements/Employer/WorkModal/mountManagerSelect'
+// import mountManagerSelect from './MountingElements/Employer/WorkModal/mountManagerSelect'
 
 
 
@@ -73,7 +74,7 @@ export {
 	initTooltips,
 	initWorkPopup,
 	initToastr,
-	test,
+	initElasticArea,
 	initWorkModalSelect,
 	sidebarSearchInput,
 
@@ -99,6 +100,7 @@ export {
 	feedbackEdit,
 	getEmployersList,
 	getManagerPopup,
+	getManagerVacancyPopup,
 	getIntermediariesPopup,
 	addNewEmployer,
 	getCountryPopup,
@@ -112,7 +114,7 @@ export {
 	mountSortingPopup,
 	mountVacancyPopup,
 	mountContactHistoryModal,
-	mountManagerSelect,
+	// mountManagerSelect,
 	getVacancyList,
 	getCountryVacancyPopup,
 	mountSortingVacancyPopup,

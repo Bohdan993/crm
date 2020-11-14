@@ -86,6 +86,7 @@ const editBtns = document.querySelectorAll('.modal-row__feedback-edit')
 
 const confirmBtnTypeFeedback = document.querySelector('#type-feedback-popup .confirm-btn')
 const sidebarEmployerForm = document.querySelector('.work-modal__sidebar-employer-form')
+const workModalSidebarNotes = document.querySelector('.work-modal__sidebar-notes')
 
 
 
@@ -187,7 +188,8 @@ export {
 	sidebarEmployer,
 	employerRowsWrapper,
 	sidebarEmployerForm,
-	countryTemplateVacancy
+	countryTemplateVacancy,
+	workModalSidebarNotes
 	// mainInfoPrice
 	// statusChangeTemplate
 }

@@ -2,7 +2,7 @@ import {
 	initOverlayScrollbars,
 	initTooltips,
 	initToastr,
-	test,
+	// initElasticArea,
 	initWorkModalSelect,
 	sidebarSearchInput,
 	show5Rows,
@@ -13,7 +13,7 @@ import {
 	deleteTask,
 	setFeedbackDate,
 	addFeedbackForm,
-	showFullRow,
+	// showFullRow,
 	switchRowStatuses,
 	setDateToSlider,
 	autocompleteInput,
@@ -24,6 +24,7 @@ import {
 	feedbackEdit,
 	getEmployersList,
 	getManagerPopup,
+	getManagerVacancyPopup,
 	getIntermediariesPopup,
 	getCountryPopup,
 	getManufacturyTypePopup,
@@ -37,7 +38,7 @@ import {
 	mountSortingPopup,
 	mountVacancyPopup,
 	mountContactHistoryModal,
-	mountManagerSelect,
+	// mountManagerSelect,
 	getVacancyList,
 	getCountryVacancyPopup,
 	mountSortingVacancyPopup,
@@ -98,7 +99,7 @@ const app = {
 	init() {
 		this.initOSB()
 		this.it()
-		this.t()
+		// this.t()
 		this.iwms()
 		this.ssi()
 		this.s5r()
@@ -134,11 +135,11 @@ const app = {
 		this.mchm()
 		this.gtc()
 		this.gc()
-		this.mms()
 		this.gvl()
 		this.gcvp()
 		this.msvp()
 		this.gvwt()
+		this.gmvp()
 		// initWorkPopup(2)
 
 	},
@@ -157,9 +158,9 @@ const app = {
 	itstr() {
 		initToastr()
 	},
-	t(){
-		test()
-	},
+	// t(){
+	// 	// test()
+	// },
 	iwms(){
 		if(workModalManagerSelect) {
 			initWorkModalSelect(workModalManagerSelect)
@@ -298,10 +299,14 @@ const app = {
 	gmp() {
 		getManagerPopup()
 	},
+	gmvp(){
+		getManagerVacancyPopup()
+	},
 	gip() {
 		getIntermediariesPopup()
 	},
 	gcp() {
+		// console.log('ddfdf')
 		getCountryPopup()
 	},
 	gmtp(){
@@ -339,11 +344,8 @@ const app = {
 	mchm(){
 		mountContactHistoryModal()
 	},
-	mms(){
-		mountManagerSelect()
-	},
 	gvl(){
-		console.log(getVacancyList)
+		// console.log(getVacancyList)
 		getVacancyList()
 	},
 	gcvp(){

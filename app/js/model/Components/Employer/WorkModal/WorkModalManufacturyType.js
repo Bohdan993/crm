@@ -2,7 +2,7 @@ import {el, setAttr, list} from '../../../../../libs/libs';
 import hiddenClassMixin from '../../../Mixins/hiddenClassMixin'
 import Option from '../../OptionComponent'
 import checkIfWrapperIsEmpty from '../../../checkIfWrapperIsEmpty'
-import saveFieldsData from '../../../fetchingData/Employer/WorkModal/saveFieldsData'
+import saveFieldsData from '../../../fetchingData/saveFieldsData'
 import addManufacturyType from '../../../fetchingData/Employer/WorkModal/addManufacturyType'
 import deleteManufacturyType from '../../../fetchingData/Employer/WorkModal/deleteManufacturyType'
 
@@ -29,8 +29,31 @@ class WorkModalManufacturyTypeRow {
 				name: 'Выбрать'
 			}
 
+
+		this.textArea.addEventListener('change', e=> {
+             saveFieldsData({
+              str: 'employers',
+              id: this.data.context.id_employer,
+              value: this.textArea.value, 
+              field: 'name', 
+              target: 'production', 
+              id_target: this.data.data.id
+             })
+      })
+
 		this.delete.addEventListener('click', e => {
 			deleteManufacturyType(this.data.data.id, this.data.context.id_employer)
+		})
+
+		this.select.el.addEventListener('change', (e) => {
+					saveFieldsData({
+			      str: 'employers',
+			      id: this.data.context.id_employer,
+			      value: this.select.el.value, 
+			      field: 'id_spec_job_list', 
+			      target: 'production', 
+			      id_target: this.data.data.id
+		     })
 		})
 
 	}
@@ -44,6 +67,7 @@ class WorkModalManufacturyTypeRow {
 		this.textArea.value = data.name
 		this.data.data = data
 		this.data.context = context
+		this.select.el.value = data.id_spec_job_list
 	}
 }
 

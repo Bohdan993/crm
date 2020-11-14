@@ -80,7 +80,6 @@ const getVacancyList = async ({
 				} else {
 					globalVacancies = vacanciesData
 					vacancyList.update(vacanciesData)
-					
 				}
 				loader.update(false)
 

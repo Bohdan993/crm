@@ -1,14 +1,15 @@
 import {isChildOf} from '../helper'
 
-const showFullRow = (row) => {
-	slideToggle(row)
+const showFullRow = (row, event) => {
+	slideToggle(row, event)
 	
-	function slideToggle(linkToggle) {
-	// for(let i = 0; i < linkToggle.length; i++){
 
-	  linkToggle.addEventListener('click', function(event){
+}
 
-	  		let container  = this.querySelector('.table-full')
+
+	function slideToggle(linkToggle, event) {
+
+	  		let container  = linkToggle.querySelector('.table-full')
 	  		
 	  		if(event.target.classList.contains('no-open')) {
 					return
@@ -20,6 +21,7 @@ const showFullRow = (row) => {
 		    
 
 		    if (container && !container.classList.contains('active')) {
+		    	// console.log(container)
 		      
 		      container.classList.add('active');
 		      container.style.height = 'auto';
@@ -33,21 +35,15 @@ const showFullRow = (row) => {
 		      }, 0);
 		      
 		    } else {
-		      
+		      	// console.log(container)
 		      container.style.height = '0px';
 
-		      this.addEventListener('transitionend', function () {
+		      linkToggle.addEventListener('transitionend', function () {
 		        container.classList.remove('active');
 		      }, {
 		        once: true
 		      });
 		      
 		    }
-	    
-	  });
-
-	// }
 }
-}
-
 export default showFullRow

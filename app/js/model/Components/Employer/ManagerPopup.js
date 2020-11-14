@@ -42,15 +42,16 @@ export default class ManagerPopup {
 
 	filter(id, str, storageKey){
 		this.input.addEventListener('change', filter)
-
+		let $this = this
 		function filter(e){
 			//В свойство класса присваиваем массив данных который находится в sessionStorage по соответствующему ключу
 			ManagerPopup.checkedArr = sessionStorage.getItem(storageKey) && JSON.parse(sessionStorage.getItem(storageKey)) !== '' ? JSON.parse(sessionStorage.getItem(storageKey)).split(',') : []
 			//this - один чекбокс в попапе
 			if(this.checked) {
 				ManagerPopup.checkedArr.push(id)
+	
+				if($this.type === 'employer') {
 
-				if(this.type === 'employer') {
 					getEmployersList({[str]: ManagerPopup.checkedArr.join(',')})
 				} else {
 					getVacancyList({[str]: ManagerPopup.checkedArr.join(',')})
@@ -60,7 +61,7 @@ export default class ManagerPopup {
 			} else {
 				ManagerPopup.checkedArr = ManagerPopup.checkedArr.filter(el => el !== id)
 
-				if(this.type === 'employer') {
+				if($this.type === 'employer') {
 					getEmployersList({[str]: ManagerPopup.checkedArr.join(',')})
 				} else {
 					getVacancyList({[str]: ManagerPopup.checkedArr.join(',')})

@@ -81,8 +81,8 @@ class VacancyPopupType {
 
 
 class TypeManufactury extends SidebarPopupInterface {
-  constructor(){
-    super()
+  constructor(type){
+    super(type)
   }
 
   update(data, index, items, context) {
@@ -96,6 +96,23 @@ class TypeManufactury extends SidebarPopupInterface {
   }
 }
 
+
+
+// class TypeManufactury {
+// 	constructor(){
+// 		this.el = el('div.form-group',
+// 			el('fieldset',
+// 				el('p', 'Тип производства'),
+// 				this.list1 = list('div', TypeManufacturyRow),
+// 				this.list2 = list('div', TypeManufacturyRow)
+// 				) 
+// 			)
+// 	}
+
+// 	update(){
+
+// 	}
+// }
 
 
 

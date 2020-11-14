@@ -14,26 +14,31 @@ function firstRow(title){
 export default class TableVacancyClient {
 	constructor(){
 		this.data = {}
+		this.choosenArr = []
+		this.readyArr = []
+		this.waitArr = []
+		this.departmentArr = []
+		this.busyArr = []
 		this.el = el("div.row__full-info.table-full",
 			el('div.table-full__choosen.choosen',
 				firstRow('Отобраны'),
-				list('div', RowVacancyClient)),
+				this.choosenList = list('div', RowVacancyClient)),
 				
 			el('div.table-full__ready.ready',
 				firstRow('Готовятся к подаче'),
-				list('div', RowVacancyClient)),
+				this.readyList = list('div', RowVacancyClient)),
 				
 			el('div.table-full__wait.wait',
 				firstRow('Ждут разрешения'),
-				list('div', RowVacancyClient)),
+				this.waitList = list('div', RowVacancyClient)),
 
 			el('div.table-full__department.department',
 				firstRow('Готовятся к отъезду'),
-				list('div', RowVacancyClient)),
+				this.departmentList = list('div', RowVacancyClient)),
 	
 			el('div.table-full__busy.busy',
 				firstRow('Трудоустроены'),
-				list('div', RowVacancyClient)),
+				this.busyList = list('div', RowVacancyClient)),
 
 			)
 
@@ -41,7 +46,14 @@ export default class TableVacancyClient {
 
 	}
 
-	update(data){
+	update(data, r, t, y){
+		console.log(data, r, t, y)
+		data.forEach(el => {
+			if(el.vacancy.id_status === '1') {
+				this.choosenArr.push(el)
+			}
+		})
+		this.choosenList.update(this.choosenArr)
 		this.data = data
 	}
 
