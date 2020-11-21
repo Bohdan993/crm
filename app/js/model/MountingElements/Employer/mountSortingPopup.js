@@ -1,4 +1,4 @@
-import  SortingPopup from '../../Components/Employer/SortingPopup'
+import  SortingPopup from '../../Components/SortingPopup'
 import {list, mount} from '../../../../libs/libs'
 
 const sortPopup = document.querySelector('#sorting-popup')
@@ -19,7 +19,7 @@ let filters = [
 ]
 
 
-const popup = list("form", SortingPopup, 'id')
+const popup = list("form", SortingPopup, 'id', 'employer')
 
 if(sortPopup) {
 	mount(sortPopup, popup)

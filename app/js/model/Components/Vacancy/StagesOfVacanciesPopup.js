@@ -2,13 +2,14 @@ import SidebarPopupInterface from '../SidebarPopupInterface'
 
 
 export default class StagesOfVacanciesPopup extends SidebarPopupInterface {
-	constructor(){
-		super()
+	constructor(type = 'employer'){
+		super(type)
+		this.type = type
 	}
 
 	update(data, index, items, context) {
 		super.update(data, index, items, context)
-		this.filter(data.id, 'country', 'stagesOfVacancies')
+		this.filter(data.id, 'status', 'stagesOfVacancies')
 	}
 
 

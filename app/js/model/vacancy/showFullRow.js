@@ -21,25 +21,25 @@ const showFullRow = (row, event) => {
 		    
 
 		    if (container && !container.classList.contains('active')) {
-		    	// console.log(container)
+		    	console.log(container)
 		      
-		      container.classList.add('active');
-		      container.style.height = 'auto';
+		      container.classList.add('active')
+		      container.style.height = 'auto'
 
-		      let height = container.clientHeight + 'px';
+		      let height = container.clientHeight + 'px'
 
-		      container.style.height = '0px';
+		      container.style.height = '0px'
 
 		      setTimeout(function () {
-		        container.style.height = height;
-		      }, 0);
+		        container.style.height = height
+		      }, 0)
 		      
 		    } else {
-		      	// console.log(container)
-		      container.style.height = '0px';
+		      	console.log(container)
+		      container.style.height = '0px'
 
 		      linkToggle.addEventListener('transitionend', function () {
-		        container.classList.remove('active');
+		        container.classList.remove('active')
 		      }, {
 		        once: true
 		      });

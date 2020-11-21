@@ -38,11 +38,13 @@ import {
 	mountSortingPopup,
 	mountVacancyPopup,
 	mountContactHistoryModal,
+	mountSearchInputVacancy,
 	// mountManagerSelect,
 	getVacancyList,
 	getCountryVacancyPopup,
 	mountSortingVacancyPopup,
-	getVacancyWorkType
+	getVacancyWorkType,
+	getStatusesVacancyPopup
 } from '../model'
 
 import {OverlayScrollbars} from '../../libs/libs'
@@ -140,6 +142,8 @@ const app = {
 		this.msvp()
 		this.gvwt()
 		this.gmvp()
+		this.gsvp()
+		this.msiv()
 		// initWorkPopup(2)
 
 	},
@@ -243,7 +247,7 @@ const app = {
 	},
 
 	srs() {
-		switchRowStatuses(statusLeft)
+		// switchRowStatuses(statusLeft)
 	},
 	sdts() {
 		setDateToSlider(sliders)
@@ -356,6 +360,12 @@ const app = {
 	},
 	gvwt(){
 		getVacancyWorkType()
+	},
+	gsvp(){
+		getStatusesVacancyPopup()
+	},
+	msiv() {
+		mountSearchInputVacancy()
 	}
 
 }

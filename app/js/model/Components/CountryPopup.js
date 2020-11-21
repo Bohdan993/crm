@@ -8,7 +8,7 @@ export default class CountryPopup extends SidebarPopupInterface {
 	}
 
 	update(data, index, items, context) {
-		console.log(data)
+		// console.log(data)
 		super.update(data, index, items, context)
 		if(this.type === 'employer') {
 			this.filter(data.id, 'country', 'countryFilter')

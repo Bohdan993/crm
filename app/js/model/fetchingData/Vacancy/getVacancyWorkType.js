@@ -19,35 +19,35 @@ let checkboxData = [
 		id: 'season-chbx',
 		label: 'Сезонная',
 		name: 'season',
-		str: 'vacancy_type',
-		filter: 'vacancyTypeFilter'
+		str: 'type_vacancy',
+		filter: 'v-vacancyTypeFilter'
 	},
 	{
 		id: 'practice-chbx',
 		label: 'Практика',
 		name: 'practics',
-		str: 'vacancy_type',
-		filter: 'vacancyTypeFilter'
+		str: 'type_vacancy',
+		filter: 'v-vacancyTypeFilter'
 	},
 	{
 		id: 'work-chbx',
 		label: 'Рабочая',
 		name: 'job',
-		str: 'vacancy_type',
-		filter: 'vacancyTypeFilter'
+		str: 'type_vacancy',
+		filter: 'v-vacancyTypeFilter'
 	}
 ]
 
 
 const popupPart1 = new VacancyPopupType()
-const popupPart2 = list('fieldset', TypeManufactury, 'id', 'vacancy')
-const popupPart3 = list("fieldset", TypeManufactury, 'id', 'vacancy')
+const popupPart2 = new TypeManufactury('vacancy')
+// const popupPart2 = list('div.form-group', TypeManufactury, 'id', 'vacancy')
+// const popupPart3 = list("fieldset", TypeManufactury, 'id', 'vacancy')
 
 
 if(typeWorkPopup) {
 	mount(typeWorkPopup, popupPart1)
 	mount(typeWorkPopup, popupPart2)
-	mount(typeWorkPopup, popupPart3)
 }
 
 const getVacancyWorkType = async () => {
@@ -102,15 +102,15 @@ if(typeWorkPopup) {
 			// 			}
 			// 		})
 			// 	}
-			const end = production.length
-			const middle = Math.ceil(end/2)
+			// const end = production.length
+			// const middle = Math.ceil(end/2)
 
-			const prod1 = production.slice(0, middle)
-			const prod2 = production.slice(middle, end)
+			// const prod1 = production.slice(0, middle)
+			// const prod2 = production.slice(middle, end)
 
 			popupPart1.update(checkboxData)
-			popupPart2.update(prod1)
-			popupPart3.update(prod2)
+			popupPart2.update(production)
+			// popupPart3.update(prod2)
 
 
 }

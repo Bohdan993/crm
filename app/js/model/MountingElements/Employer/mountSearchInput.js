@@ -1,10 +1,10 @@
-import SearchInput from '../../Components/Employer/SearchInput'
+import SearchInput from '../../Components/SearchInput'
 import {el, mount, place} from '../../../../libs/libs'
 
 
 const mountSearchInput = () => {
-	const inputWrapper = document.querySelector('.sidebar__input-wrapper')
-	const searchInput = place(SearchInput)
+	const inputWrapper = document.querySelector('#employer-search-input-wrapper')
+	const searchInput = place(SearchInput, 'employer')
 
 	if(inputWrapper) {
 		mount(inputWrapper, searchInput)

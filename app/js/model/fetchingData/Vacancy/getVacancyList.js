@@ -41,22 +41,22 @@ const getVacancyList = async ({
 	t = +JSON.parse(sessionStorage.getItem('page')) * 50 || '50',
 	// t = '50',
 	p = '1',
-	search = JSON.parse(sessionStorage.getItem('search')) || '', 
-	country = JSON.parse(sessionStorage.getItem('countryFilter')) || '',
-	manager = JSON.parse(sessionStorage.getItem('managerFilter')) || '',
-	sort = JSON.parse(sessionStorage.getItem('sortFilter')) || '',
+	search = JSON.parse(sessionStorage.getItem('searchVacancy')) || '', 
+	country = JSON.parse(sessionStorage.getItem('countryFilterVacancy')) || '',
+	manager = JSON.parse(sessionStorage.getItem('managerFilterVacancy')) || '',
+	sort = JSON.parse(sessionStorage.getItem('sortFilterVacancy')) || '',
 	archive = '0',
 	active = '1',
-	type_vacancy = '',
-	type_production = '',
+	type_vacancy = JSON.parse(sessionStorage.getItem('v-vacancyTypeFilter')) || '',
+	type_production = JSON.parse(sessionStorage.getItem('typeManufacturyVacancyFilter')) || '',
 	job_start = '',
 	job_period = '',
-	status = '',
+	status = JSON.parse(sessionStorage.getItem('stagesOfVacancies')) || '',
 
 	scroll = false
 } = {}) => { 
 
-	console.log('vacancyList')
+	console.log(type_vacancy)
 	if(vacanciesWrapper) {
 		loader.update(true)
 

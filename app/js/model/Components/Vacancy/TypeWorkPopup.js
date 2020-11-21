@@ -42,6 +42,7 @@ class CheckBoxVacancy {
 			CheckBoxVacancy.checkedArr = sessionStorage.getItem(storageKey) && JSON.parse(sessionStorage.getItem(storageKey)) !== '' ? JSON.parse(sessionStorage.getItem(storageKey)).split(',') : []
 			//this - один чекбокс в попапе
 			if(this.checked) {
+				console.log(id, str, storageKey)
 				CheckBoxVacancy.checkedArr.push(id)
 				getVacancyList({[str]: CheckBoxVacancy.checkedArr.join(',')})
 				
@@ -80,7 +81,7 @@ class VacancyPopupType {
 }
 
 
-class TypeManufactury extends SidebarPopupInterface {
+class TypeManufacturyRow extends SidebarPopupInterface {
   constructor(type){
     super(type)
   }
@@ -98,21 +99,31 @@ class TypeManufactury extends SidebarPopupInterface {
 
 
 
-// class TypeManufactury {
-// 	constructor(){
-// 		this.el = el('div.form-group',
-// 			el('fieldset',
-// 				el('p', 'Тип производства'),
-// 				this.list1 = list('div', TypeManufacturyRow),
-// 				this.list2 = list('div', TypeManufacturyRow)
-// 				) 
-// 			)
-// 	}
+class TypeManufactury {
+	constructor(type){
+		this.type = type
+		this.el = el('div.form-group',
+			el('fieldset',
+				el('p', 'Тип производства'),
+				this.list = list('div', TypeManufacturyRow, 'id', this.type)
+				),
+				el('fieldset', 
+					this.list2 = list('div', TypeManufacturyRow, 'id', this.type)
+					) 
+			)
+	}
 
-// 	update(){
+	update(data){
 
-// 	}
-// }
+		const end = data.length
+		const middle = Math.ceil(end/2)
+		const prod1 = data.slice(0, middle)
+		const prod2 = data.slice(middle, end)
+
+		this.list.update(prod1)
+		this.list2.update(prod2)
+	}
+}
 
 
 

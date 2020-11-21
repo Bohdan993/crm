@@ -47,6 +47,7 @@ import getClients from './fetchingData/Employer/getClients'
 
 
 import mountSearchInput from './MountingElements/Employer/mountSearchInput'
+
 import mountContactDataPopup from './MountingElements/Employer/mountContactDataPopup'
 import mountLastContactPopup from './MountingElements/Employer/mountLastContactPopup'
 import mountSortingPopup from './MountingElements/Employer/mountSortingPopup'
@@ -58,12 +59,13 @@ import mountContactHistoryModal from './MountingElements/Employer/WorkModal/moun
 
 import getVacancyList from './fetchingData/Vacancy/getVacancyList'
 import getCountryVacancyPopup from './fetchingData/Vacancy/getCountryPopup'
+import getStatusesVacancyPopup from './fetchingData/Vacancy/getVacancyStatuses'
 import getVacancyWorkType from './fetchingData/Vacancy/getVacancyWorkType'
-
 import mountSortingVacancyPopup from './MountingElements/Vacancy/mountSortingPopup'
+import mountSearchInputVacancy from './MountingElements/Vacancy/mountSearch'
 
 
-console.log(getVacancyList)
+// console.log(getVacancyList)
 
 
 export {
@@ -114,10 +116,12 @@ export {
 	mountSortingPopup,
 	mountVacancyPopup,
 	mountContactHistoryModal,
+	mountSearchInputVacancy,
 	// mountManagerSelect,
 	getVacancyList,
 	getCountryVacancyPopup,
 	mountSortingVacancyPopup,
-	getVacancyWorkType
+	getVacancyWorkType,
+	getStatusesVacancyPopup
 	// getTextSearch
 }

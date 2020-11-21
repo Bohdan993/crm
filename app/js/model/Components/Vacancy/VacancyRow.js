@@ -34,6 +34,7 @@ export default class RowVacancy {
 	constructor(){
 		this.data = {}
 		this.showed = false
+		this.active = false
 		this.el = el("div.row.no-open",
 				el('div.f-container', 
 					el('div.row__terms.row__cell hot'), 
@@ -63,15 +64,29 @@ export default class RowVacancy {
 			)
 
 			this.el.addEventListener('click', (e) => {
+
+				if(e.target.classList.contains('no-open')) {
+					return
+				}
+
 				if(!this.showed) {
 					getVacancyClients(this.data.id_vacancy)
 					.then(res => {
 						this.vacancyClientsTable.update(true, res)
-						showFullRow(this.el, e)
+						if(res) {
+							showFullRow(this.el, e)
+							this.active = true
+						} else {
+							this.active = false
+						}
 					})
 					this.showed = true
 				}
-				showFullRow(this.el, e)
+
+				if(this.active) {
+					showFullRow(this.el, e)
+				}
+				// showFullRow(this.el, e)
 			})
 	}
 
@@ -143,5 +158,7 @@ export default class RowVacancy {
 
 		this.data = data
 	}
+
+	
 
 }

@@ -1,4 +1,5 @@
 import getEmployersList from './fetchingData/getEmployersList'
+import getVacancyList from './fetchingData/Vacancy/getVacancyList'
 import {
     tippy,
     createSingleton,
@@ -139,83 +140,9 @@ const initTooltips = () => {
     // initWorkModalTooltip('.row.clients', '.clients .modal-row__controls .add-item', choiceClientTemplate2)
     /////////////////////////////////////////////////////////////////////////////////
 
-    function initVacancyTooltip(el, content) {
-        let instance = tippy(el, {
-            content: `<div class="row-popup" id="status-change-popup">
-					<form>
-						<div class="input-group">
-							<p class="status choosen"><span>Подготовка CV</span></p>
-							<time></time>
-						</div>
-						<div class="input-group">
-							<p class="status choosen"><span>CV отправлено</span></p>
-							<time></time>
-						</div>
-						<div class="input-group">
-							<p class="status ready"><span>Утвержден</span></p>
-							<time></time>
-						</div>
-						<div class="input-group">
-							<p class="status ready"><span>Контракт подписан</span></p>
-							<time></time>
-						</div>
-						<div class="input-group">
-						 <p class="status wait"><span>Подан в визовый центр</span></p>
-						 <time></time>
-						</div>
-					 	<div class="input-group">
-							<p class="status department"><span>Получил разрешение</span></p>
-							<time></time>
-						</div>
-						<div class="input-group">
-							<p class="status department"><span>Забрал разрешение</span></p>
-							<time></time>
-						</div>
-						<div class="input-group">
-							<p class="status department"><span>Билеты куплены</span></p>
-							<time></time>
-						</div>
-						<div class="input-group">
-							<p class="status busy"><span>Трудоустроен</span></p>
-							<time></time>
-						</div>
-						<div class="input-group">
-							<p class="del-status delete"><span>Исключить из вакансии</span></p>
-						</div>
-					</form>
-				</div>`,
-            // content: content.innerHTML, 
-            allowHTML: true,
-            interactive: true,
-            interactiveBorder: 5,
-            interactiveDebounce: 0,
-            placement: 'right',
-            offset: [0, 20],
-            hideOnClick: true,
-            trigger: 'click',
-            sticky: 'reference',
-            moveTransition: 'transform 0.2s ease-out',
-            plugins: [sticky],
-            onCreate(instance) {
+   
 
-            },
-            onShown(instance) {
-                document.addEventListener('keyup', function(e) {
-                    if (e.keyCode === 27) {
-                        instance.hide();
-                    }
-                })
 
-                // status(instance)
-
-            },
-            appendTo: () => document.body,
-        })
-
-        // let singleton = createSingleton(instance, {delay: 1000});
-    }
-
-    initVacancyTooltip('.cell-status__slider')
 
     function initVacancyModalTooltip(el, content) {
         let instance = tippy(el, {
@@ -252,6 +179,11 @@ const initTooltips = () => {
 
 ///////////////////////////////////initSidebarTooltip BLOCK////////////////////////////
 
+function checkIfShowRemoveFilterButton(storageKey, instance){
+      sessionStorage.getItem(storageKey) && JSON.parse(sessionStorage.getItem(storageKey))  !== '' ? (instance.reference.children[1].style.display = 'block',
+      instance.reference.classList.add('active')) : null
+}
+
 function initSidebarTooltip(el, content) {
 
 		let removeCheckingHandlerFlag = false
@@ -269,47 +201,50 @@ function initSidebarTooltip(el, content) {
         trigger: 'click',
         appendTo: () => document.body,
         onCreate(instance) {
-                console.log(instance)
-
-        		function checkIfShowRemoveFilterButton(storageKey){
-						  sessionStorage.getItem(storageKey) && JSON.parse(sessionStorage.getItem(storageKey))  !== '' ? (instance.reference.children[1].style.display = 'block',
-						  instance.reference.classList.add('active')) : null
-        		}
-
+                 console.log(instance.id)
         		switch(instance.id) {
 						  case 1:
-							checkIfShowRemoveFilterButton('countryFilter')
+                          console.log('dfdefewrfewr')
+						  checkIfShowRemoveFilterButton('countryFilter', instance)
+                          checkIfShowRemoveFilterButton('countryFilterVacancy', instance)
 						    break
 						  case 2:
-						    checkIfShowRemoveFilterButton('typeManufacturyFilter')
+						    checkIfShowRemoveFilterButton('typeManufacturyFilter', instance)
+                            checkIfShowRemoveFilterButton('managerFilterVacancy', instance)
 						    break
 						  case 3:
-						    checkIfShowRemoveFilterButton('contactDataFilter')
+						    checkIfShowRemoveFilterButton('contactDataFilter', instance)
+                            checkIfShowRemoveFilterButton('stagesOfVacancies', instance)
 						    break
 						  case 4:
-						    checkIfShowRemoveFilterButton('managerFilter')
+						    checkIfShowRemoveFilterButton('managerFilter', instance)
+                            checkIfShowRemoveFilterButton('sortFilterVacancy', instance)
 						    break
 						  case 5:
-						    checkIfShowRemoveFilterButton('intermediariesFilter')
-                            checkIfShowRemoveFilterButton('intermediaryFilter')
+						    checkIfShowRemoveFilterButton('intermediariesFilter', instance)
+                            checkIfShowRemoveFilterButton('intermediaryFilter', instance)
+                            
+                            checkIfShowRemoveFilterButton('v-vacancyTypeFilter', instance)
+                            checkIfShowRemoveFilterButton('typeManufacturyVacancyFilter', instance)
 						    break
 						  case 6:
-					        checkIfShowRemoveFilterButton('vacancyActiveFilter')
-                            checkIfShowRemoveFilterButton('vacancyTypeFilter')
-                            checkIfShowRemoveFilterButton('vacancyTermFilter')
+					        checkIfShowRemoveFilterButton('vacancyActiveFilter', instance)
+                            checkIfShowRemoveFilterButton('vacancyTypeFilter', instance)
+                            checkIfShowRemoveFilterButton('vacancyTermFilter', instance)
+
 						    break
 						  case 7:
-						    checkIfShowRemoveFilterButton('lastContactFilter')
+						    checkIfShowRemoveFilterButton('lastContactFilter', instance)
 						    break
 						  case 8:
-						    checkIfShowRemoveFilterButton('sortFilter')
+						    checkIfShowRemoveFilterButton('sortFilter', instance)
 						    break
-						 	case 9:
-						    // alert( 'Маловато9' )
-						    break
-						  case 10:
-						    // alert( 'Маловато10' )
-						    break
+						 	// case 9:
+						  //   // alert( 'Маловато9' )
+						  //   break
+						  // case 10:
+						  //   // alert( 'Маловато10' )
+						  //   break
 						  default:
 						  	throw new Error('Возникла ошибка')
 					}
@@ -376,6 +311,8 @@ function removeCheckingHandler(children, instance, e){
 			case 1:
 		    getEmployersList({country: ''})
 		    sessionStorage.removeItem('countryFilter')
+            getVacancyList({country: ''})
+            sessionStorage.removeItem('countryFilterVacancy')
 		    break
 		  case 2:
 		    getEmployersList({production: ''})
@@ -411,12 +348,12 @@ function removeCheckingHandler(children, instance, e){
 		    getEmployersList({sort: ''})
             sessionStorage.removeItem('sortFilter')
 		    break
-		 	case 9:
-		    alert( 'Маловато9' )
-		    break
-		  case 10:
-		    alert( 'Маловато10' )
-		    break
+		 	// case 9:
+		  //   alert( 'Маловато9' )
+		  //   break
+		  // case 10:
+		  //   alert( 'Маловато10' )
+		  //   break
 		  default:
 		  	throw new Error('Возникла ошибка')
 	}
@@ -519,9 +456,93 @@ function initWorkModalTooltip(el, content) {
 
 //////////////////////////////END initWorkModalTooltip BLOCK/////////////////////////////////
 
+
+
+//////////////////////////////START initVacancyTooltip BLOCK/////////////////////////////////
+
+ function initVacancyTooltip(el, content) {
+        let instance = tippy(el, {
+            content: `<div class="row-popup" id="status-change-popup">
+                    <form>
+                        <div class="input-group">
+                            <p class="status choosen"><span>Подготовка CV</span></p>
+                            <time></time>
+                        </div>
+                        <div class="input-group">
+                            <p class="status choosen"><span>CV отправлено</span></p>
+                            <time></time>
+                        </div>
+                        <div class="input-group">
+                            <p class="status ready"><span>Утвержден</span></p>
+                            <time></time>
+                        </div>
+                        <div class="input-group">
+                            <p class="status ready"><span>Контракт подписан</span></p>
+                            <time></time>
+                        </div>
+                        <div class="input-group">
+                         <p class="status wait"><span>Подан в визовый центр</span></p>
+                         <time></time>
+                        </div>
+                        <div class="input-group">
+                            <p class="status department"><span>Получил разрешение</span></p>
+                            <time></time>
+                        </div>
+                        <div class="input-group">
+                            <p class="status department"><span>Забрал разрешение</span></p>
+                            <time></time>
+                        </div>
+                        <div class="input-group">
+                            <p class="status department"><span>Билеты куплены</span></p>
+                            <time></time>
+                        </div>
+                        <div class="input-group">
+                            <p class="status busy"><span>Трудоустроен</span></p>
+                            <time></time>
+                        </div>
+                        <div class="input-group">
+                            <p class="del-status delete"><span>Исключить из вакансии</span></p>
+                        </div>
+                    </form>
+                </div>`,
+            // content: content.innerHTML, 
+            allowHTML: true,
+            interactive: true,
+            interactiveBorder: 5,
+            interactiveDebounce: 0,
+            placement: 'right',
+            offset: [0, 20],
+            hideOnClick: true,
+            trigger: 'click',
+            sticky: 'reference',
+            moveTransition: 'transform 0.2s ease-out',
+            plugins: [sticky],
+            onCreate(instance) {
+
+            },
+            onShown(instance) {
+                document.addEventListener('keyup', function(e) {
+                    if (e.keyCode === 27) {
+                        instance.hide();
+                    }
+                })
+
+                // status(instance)
+
+            },
+            appendTo: () => document.body,
+        })
+
+        // let singleton = createSingleton(instance, {delay: 1000});
+    }
+
+//////////////////////////////END initVacancyTooltip BLOCK/////////////////////////////////
+
+
 export default initTooltips
 
 export {
     initRowTooltips, // to './Components/Employer/EmployerRow.js'
-    initWorkModalTooltip // to './Components/FeedbackComponent'
+    initWorkModalTooltip, // to './Components/FeedbackComponent'
+    initVacancyTooltip
 }

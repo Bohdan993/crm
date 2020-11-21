@@ -9,7 +9,7 @@ const managersObj = new GetManagers('vacancies', '.managers-popup-vacancy', Mana
 
 const getManagerVacancyPopup = function (){
 	console.log(managersObj)
-	managersObj.fetchData('managerFilterVacancy','managersVacany')
+	managersObj.fetchData('managerFilterVacancy','managersVacancy')
 }
 
 

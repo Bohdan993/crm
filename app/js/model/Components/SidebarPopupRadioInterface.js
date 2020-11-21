@@ -1,10 +1,12 @@
 import {el, setAttr} from '../../../libs/libs'
 import getEmployersList from '../fetchingData/getEmployersList'
+import getVacancyList from '../fetchingData/Vacancy/getVacancyList'
 
 
 
 export default class SidebarPopupRadioInterface { // класс от которого наследутся LastContactPopup,SortingPopup
 	constructor(type = 'employer'){
+		this.type = type
 		this.el = el('div.input-group', 
 			this.input = el('input', {
 				type: 'radio',
@@ -32,11 +34,19 @@ export default class SidebarPopupRadioInterface { // класс от котор�
 
 
 	filter(id, str, storageKey){
+		let type = this.type
+
 		this.input.addEventListener('change', filter)
 		function filter(e){
 			//this - один чекбокс в попапе
 			if(this.checked) {
-				getEmployersList({[str]: id})
+				if(type === 'employer') {
+					getEmployersList({[str]: id})
+				} else {
+
+					getVacancyList({[str]: id})
+				}
+				
 				sessionStorage.setItem(storageKey, JSON.stringify(id))
 			}
 		}

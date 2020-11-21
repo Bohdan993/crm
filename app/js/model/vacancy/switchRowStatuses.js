@@ -1,5 +1,5 @@
-const switchRowStatuses = (statuses) => {
-
+const switchRowStatuses = (el) => {
+    console.log(el)
     // class StatusSwitcher {
     // 	constructor(selector){
 
@@ -24,7 +24,7 @@ const switchRowStatuses = (statuses) => {
     // }
 
     // console.log(statuses)
-    statuses.forEach(el => {
+    // statuses.forEach(el => {
         let timeArray = Array(9).fill({
             text: '',
             date: ''
@@ -56,7 +56,7 @@ const switchRowStatuses = (statuses) => {
             // console.log(table)
 
             slider.forEach((elem, ind, arr) => {
-
+                console.log(elem)
                 if (elem.classList.contains('active') && !flag) {
 
                     elem.classList.remove('active')
@@ -110,41 +110,6 @@ const switchRowStatuses = (statuses) => {
 		          </form>
 		        </div>`);
 
-                    // if(arr[ind].classList.contains('choosen')) {
-                    // 	if(!table.classList.contains('choosen')) {
-                    // 		let oldChild = table.removeChild(row)
-                    // 		tableParent.querySelector('.table-full__choosen').appendChild(oldChild)
-                    // 		this.parentNode.classList.remove('ready')
-                    // 		this.parentNode.classList.add('choosen')
-                    // 	}
-                    // } else if(arr[ind].classList.contains('ready')) {
-                    // 	if(!table.classList.contains('ready')) {
-                    // 		let oldChild = table.removeChild(row)
-                    // 		tableParent.querySelector('.table-full__ready').appendChild(oldChild)
-                    // 		this.parentNode.classList.remove('wait')
-                    // 		this.parentNode.classList.add('ready')
-                    // 	}
-                    // } else if(arr[ind].classList.contains('wait')) {
-                    // 	if(!table.classList.contains('wait')) {
-                    // 		let oldChild = table.removeChild(row)
-                    // 		tableParent.querySelector('.table-full__wait').appendChild(oldChild)
-                    // 		this.parentNode.classList.remove('department')
-                    // 		this.parentNode.classList.add('wait')
-                    // 	}
-                    // } else if(arr[ind].classList.contains('department')) {
-                    // 	if(!table.classList.contains('department')) {
-                    // 		let oldChild = table.removeChild(row)
-                    // 		tableParent.querySelector('.table-full__department').appendChild(oldChild)
-                    // 		this.parentNode.classList.remove('busy')
-                    // 		this.parentNode.classList.add('department')
-                    // 	}
-                    // } else if(arr[ind].classList.contains('busy')) {
-                    // 	if(!table.classList.contains('busy')) {
-                    // 		let oldChild = table.removeChild(row)
-                    // 		tableParent.querySelector('.table-full__busy').appendChild(oldChild)
-
-                    // 	}
-                    // }
 
                     let oldChild = table.removeChild(row)
 
@@ -161,8 +126,8 @@ const switchRowStatuses = (statuses) => {
                         if (node) {
                             node.after(oldChild)
                         } else {
-                            let node = tableParent.querySelector('.table-full__choosen').querySelector('.table-full__row')
-                            node.after(oldChild)
+                            let node = tableParent.querySelector('.table-full__choosen').querySelector('.table-full__layer')
+                            node.prepend(oldChild)
                         }
 
                     } else if (arr[ind].textContent === 'CV отправлено') {
@@ -185,8 +150,8 @@ const switchRowStatuses = (statuses) => {
                             if(node) {
                                 node.after(oldChild)
                             }else {
-                                let node = tableParent.querySelector('.table-full__choosen').querySelector('.table-full__row')
-                                node.after(oldChild)
+                                let node = tableParent.querySelector('.table-full__choosen').querySelector('.table-full__layer')
+                                node.prepend(oldChild)
                             }
                             
                         }
@@ -205,8 +170,8 @@ const switchRowStatuses = (statuses) => {
                         if (node) {
                             node.after(oldChild)
                         } else {
-                            let node = tableParent.querySelector('.table-full__ready').querySelector('.table-full__row')
-                            node.after(oldChild)
+                            let node = tableParent.querySelector('.table-full__ready').querySelector('.table-full__layer')
+                            node.prepend(oldChild)
                         }
 
                     } else if (arr[ind].textContent === 'Контракт подписан') {
@@ -230,8 +195,8 @@ const switchRowStatuses = (statuses) => {
                             if(node) {
                                 node.after(oldChild) 
                             }else {
-                            let node = tableParent.querySelector('.table-full__ready').querySelector('.table-full__row')
-                            node.after(oldChild)
+                            let node = tableParent.querySelector('.table-full__ready').querySelector('.table-full__layer')
+                            node.prepend(oldChild)
                             }
                            
                         }
@@ -242,7 +207,7 @@ const switchRowStatuses = (statuses) => {
                         this.parentNode.classList.add('wait')
 
                         oldChild.dataset.count = '1'
-                        tableParent.querySelector('.table-full__wait').append(oldChild)
+                        tableParent.querySelector('.table-full__wait').querySelector('.table-full__layer').append(oldChild)
                     } else if (arr[ind].textContent === 'Получил разрешение') {
 
                         let nodes = tableParent.querySelector('.table-full__department').querySelectorAll('[data-count="1"]')
@@ -255,8 +220,8 @@ const switchRowStatuses = (statuses) => {
                         if (node) {
                             node.after(oldChild)
                         } else {
-                            let node = tableParent.querySelector('.table-full__department').querySelector('.table-full__row')
-                            node.after(oldChild)
+                            let node = tableParent.querySelector('.table-full__department').querySelector('.table-full__layer')
+                            node.prepend(oldChild)
                         }
 
                     } else if (arr[ind].textContent === 'Забрал разрешение') {
@@ -277,8 +242,8 @@ const switchRowStatuses = (statuses) => {
                             if(node) {
                                node.after(oldChild) 
                            }else {
-                            let node = tableParent.querySelector('.table-full__department').querySelector('.table-full__row')
-                            node.after(oldChild)
+                            let node = tableParent.querySelector('.table-full__department').querySelector('.table-full__layer')
+                            node.prepend(oldChild)
                            }
                             
                         }
@@ -308,8 +273,8 @@ const switchRowStatuses = (statuses) => {
                                     node.after(oldChild)
                                 }
                                 else {
-                                    let node = tableParent.querySelector('.table-full__department').querySelector('.table-full__row')
-                                    node.after(oldChild)
+                                    let node = tableParent.querySelector('.table-full__department').querySelector('.table-full__layer')
+                                    node.prepend(oldChild)
                                 }
                                 
                             }
@@ -410,44 +375,6 @@ const switchRowStatuses = (statuses) => {
 		            </div>
 		          </form>
 		        </div>`);
-                    // if(arr[ind].classList.contains('choosen')) {
-                    // 	if(!table.classList.contains('choosen')) {
-                    // 		console.log(arr[ind].textContent)
-                    // 		let oldChild = table.removeChild(row)
-                    // 		tableParent.querySelector('.table-full__choosen').appendChild(oldChild)
-                    // 		this.parentNode.classList.add('choosen')
-                    // 	}
-                    // } else if(arr[ind].classList.contains('ready')) {
-                    // 	if(!table.classList.contains('ready')) {
-                    // 		console.log(arr[ind].textContent)
-                    // 		let oldChild = table.removeChild(row)
-                    // 		tableParent.querySelector('.table-full__ready').appendChild(oldChild)
-                    // 		this.parentNode.classList.remove('choosen')
-                    // 		this.parentNode.classList.add('ready')
-                    // 	}
-                    // } else if(arr[ind].classList.contains('wait')) {
-                    // 	if(!table.classList.contains('wait')) {
-                    // 		let oldChild = table.removeChild(row)
-                    // 		tableParent.querySelector('.table-full__wait').appendChild(oldChild)
-                    // 		this.parentNode.classList.remove('ready')
-                    // 		this.parentNode.classList.add('wait')
-                    // 	}
-                    // } else if(arr[ind].classList.contains('department')) {
-                    // 	if(!table.classList.contains('department')) {
-                    // 		let oldChild = table.removeChild(row)
-                    // 		tableParent.querySelector('.table-full__department').appendChild(oldChild)
-                    // 		this.parentNode.classList.remove('wait')
-                    // 		this.parentNode.classList.add('department')
-                    // 	}
-                    // } else if(arr[ind].classList.contains('busy')) {
-                    // 	if(!table.classList.contains('busy')) {
-                    // 		let oldChild = table.removeChild(row)
-                    // 		tableParent.querySelector('.table-full__busy').appendChild(oldChild)
-                    // 		this.parentNode.classList.remove('department')
-                    // 		this.parentNode.classList.add('busy')
-                    // 	}
-                    // }
-
                     //Получаем строку, позицию которой будем менять
                     let oldChild = table.removeChild(row)
 
@@ -486,8 +413,8 @@ const switchRowStatuses = (statuses) => {
                         if (node) {
                             node.after(oldChild)
                         } else {
-                            let node = tableParent.querySelector('.table-full__ready').querySelector('.table-full__row')
-                            node.after(oldChild)
+                            let node = tableParent.querySelector('.table-full__ready').querySelector('.table-full__layer')
+                            node.prepend(oldChild)
                         }
 
                     } else if (arr[ind].textContent === 'Контракт подписан') {
@@ -509,8 +436,8 @@ const switchRowStatuses = (statuses) => {
                             if(node) {
                                 node.after(oldChild) 
                             } else {
-                                let node = tableParent.querySelector('.table-full__ready').querySelector('.table-full__row')
-                                node.after(oldChild)
+                                let node = tableParent.querySelector('.table-full__ready').querySelector('.table-full__layer')
+                                node.prepend(oldChild)
                             }
                         }
 
@@ -520,7 +447,7 @@ const switchRowStatuses = (statuses) => {
                         this.parentNode.classList.add('wait')
 
                         oldChild.dataset.count = '1'
-                        tableParent.querySelector('.table-full__wait').append(oldChild)
+                        tableParent.querySelector('.table-full__wait').querySelector('.table-full__layer').append(oldChild)
                     } else if (arr[ind].textContent === 'Получил разрешение') {
 
                         // Присваиваем класс родительскому элементу стрелки переключения
@@ -537,8 +464,8 @@ const switchRowStatuses = (statuses) => {
                         if (node) {
                             node.after(oldChild)
                         } else {
-                            let node = tableParent.querySelector('.table-full__department').querySelector('.table-full__row')
-                            node.after(oldChild)
+                            let node = tableParent.querySelector('.table-full__department').querySelector('.table-full__layer')
+                            node.prepend(oldChild)
                         }
 
                     } else if (arr[ind].textContent === 'Забрал разрешение') {
@@ -559,8 +486,8 @@ const switchRowStatuses = (statuses) => {
                             if(node) {
                                 node.after(oldChild)
                             } else  {
-                                let node = tableParent.querySelector('.table-full__department').querySelector('.table-full__row')
-                                node.after(oldChild)
+                                let node = tableParent.querySelector('.table-full__department').querySelector('.table-full__layer')
+                                node.prepend(oldChild)
                             }
                         }
 
@@ -586,8 +513,8 @@ const switchRowStatuses = (statuses) => {
                                 if(node) {
                                    node.after(oldChild) 
                                 } else {
-                                    let node = tableParent.querySelector('.table-full__department').querySelector('.table-full__row')
-                                    node.after(oldChild)
+                                    let node = tableParent.querySelector('.table-full__department').querySelector('.table-full__layer')
+                                    node.prepend(oldChild)
                                 }
                                 
                             }
@@ -601,7 +528,7 @@ const switchRowStatuses = (statuses) => {
 
 
                         oldChild.dataset.count = '1'
-                        tableParent.querySelector('.table-full__busy').append(oldChild)
+                        tableParent.querySelector('.table-full__busy').querySelector('.table-full__layer').append(oldChild)
 
                     }
 
@@ -611,7 +538,7 @@ const switchRowStatuses = (statuses) => {
 
         })
 
-    })
+    // })
 }
 
 
@@ -620,7 +547,9 @@ function forEachStatus(timeArray, tippy) {
     // let tippy = this.closest('.tippy-box').parentNode._tippy
     let row = tippy.reference.closest('.table-full__row')
     let parentRow = row.parentNode
-    let parentTable = parentRow.parentNode
+    let parentTable = parentRow.parentNode.parentNode
+
+    console.log(parentTable)
 
     let statuses = row.querySelectorAll('.status')
     let controls = row.querySelector('.cell-status__controls')
@@ -648,57 +577,12 @@ function forEachStatus(timeArray, tippy) {
     })
 
    
-
-    // if (this.classList.contains('choosen') && !parentRow.classList.contains('choosen')) {
-    //     let oldChild = parentRow.removeChild(row)
-    //     parentTable.querySelector('.table-full__choosen').appendChild(oldChild)
-    //     controls.classList.add('choosen')
-    // } else if (this.classList.contains('ready') && !parentRow.classList.contains('ready')) {
-    //     let oldChild = parentRow.removeChild(row)
-    //     parentTable.querySelector('.table-full__ready').appendChild(oldChild)
-    //     controls.classList.add('ready')
-    // } else if (this.classList.contains('wait') && !parentRow.classList.contains('wait')) {
-    //     let oldChild = parentRow.removeChild(row)
-    //     parentTable.querySelector('.table-full__wait').appendChild(oldChild)
-    //     controls.classList.add('wait')
-    // } else if (this.classList.contains('department') && !parentRow.classList.contains('department')) {
-    //     let oldChild = parentRow.removeChild(row)
-    //     parentTable.querySelector('.table-full__department').appendChild(oldChild)
-    //     controls.classList.add('department')
-    // } else if (this.classList.contains('busy') && !parentRow.classList.contains('busy')) {
-    //     let oldChild = parentRow.removeChild(row)
-    //     parentTable.querySelector('.table-full__busy').appendChild(oldChild)
-    //     controls.classList.add('busy')
-    // }
-
-	  //   row.animate([
-			//   // keyframes
-			//   { transform: 'translateX(0px)', opacity: }, 
-			//   { transform: 'translateX(-200px)', opacity: 0 }
-			// ], { 
-			//   // timing options
-			//   duration: 1000,
-			//   // iterations: Infinity
-			// });
-
-			// row.addEventListener('transitionend', function(){
-				
-			// })
-			let oldChild = parentRow.removeChild(row)
-    	
-
-			// let promise  = new Promise(function(resolve, reject){
-
-			// })
-
-
-			// promise.then((res)=> {
-
-			// })
+	let oldChild = parentRow.removeChild(row)
 
      if (this.textContent === 'Подготовка CV') {
         // Присваиваем класс родительскому элементу стрелки переключения
         controls.classList.add('choosen')
+        console.log(parentTable)
         //Получаем все елементы после которого будем вставлять строку
         let nodes = parentTable.querySelector('.table-full__choosen').querySelectorAll('[data-count="1"]')
         let node = nodes[nodes.length - 1]
@@ -709,22 +593,33 @@ function forEachStatus(timeArray, tippy) {
         if(node) {
         	node.after(oldChild)
         } else {
-        	let node = parentTable.querySelector('.table-full__choosen').querySelector('.table-full__row')
-           node.after(oldChild)
+            let node = parentTable.querySelector('.table-full__choosen').querySelector('.table-full__layer')
+           node.prepend(oldChild)
         }
         
 
     } else if (this.textContent === 'CV отправлено') {
-        // Присваиваем класс родительскому элементу стрелки переключения
-        controls.classList.add('choosen')
+         controls.classList.add('choosen')
         //Получаем все елементы после которого будем вставлять строку
         let nodes = parentTable.querySelector('.table-full__choosen').querySelectorAll('[data-count="2"]')
         let node = nodes[nodes.length - 1]
 
-        //Меняем селектор для строки
         oldChild.dataset.count = '2'
-        //Вставляем строку в DOM
-        node.after(oldChild)
+
+        if (node) {
+            node.after(oldChild)
+        } else {
+            let nodes = parentTable.querySelector('.table-full__choosen').querySelectorAll('[data-count="1"]')
+            let node = nodes[nodes.length - 1]
+          if(node) {
+               node.after(oldChild) 
+           } else {
+                let node = parentTable.querySelector('.table-full__choosen').querySelector('.table-full__layer')
+                 node.prepend(oldChild)
+           }
+
+
+        }
 
     } else if (this.textContent === 'Утвержден') {
         // Присваиваем класс родительскому элементу стрелки переключения
@@ -741,13 +636,13 @@ function forEachStatus(timeArray, tippy) {
             node.after(oldChild)
         } else {
 
-            let node = parentTable.querySelector('.table-full__ready').querySelector('.table-full__row')
-            node.after(oldChild)
+            let node = parentTable.querySelector('.table-full__ready').querySelector('.table-full__layer')
+            node.prepend(oldChild)
         }
 
     } else if (this.textContent === 'Контракт подписан') {
 
-    		controls.classList.add('ready')
+    	controls.classList.add('ready')
         //Получаем все елементы после которого будем вставлять строку
         let nodes = parentTable.querySelector('.table-full__ready').querySelectorAll('[data-count="2"]')
         let node = nodes[nodes.length - 1]
@@ -759,17 +654,24 @@ function forEachStatus(timeArray, tippy) {
         } else {
             let nodes = parentTable.querySelector('.table-full__ready').querySelectorAll('[data-count="1"]')
             let node = nodes[nodes.length - 1]
-            node.after(oldChild)
+          if(node) {
+               node.after(oldChild) 
+           } else {
+                let node = parentTable.querySelector('.table-full__ready').querySelector('.table-full__layer')
+                node.prepend(oldChild)
+           }
+
+
         }
 
     } else if (this.textContent === 'Подан в визовый центр') {
 
         controls.classList.add('wait')
         oldChild.dataset.count = '1'
-       	parentTable.querySelector('.table-full__wait').append(oldChild)
+       	parentTable.querySelector('.table-full__wait').querySelector('.table-full__layer').append(oldChild)
 
     } else if (this.textContent === 'Получил разрешение') {
-    		controls.classList.add('department')
+    	controls.classList.add('department')
     
         //Получаем все елементы после которого будем вставлять строку
         let nodes = parentTable.querySelector('.table-full__department').querySelectorAll('[data-count="1"]')
@@ -782,15 +684,14 @@ function forEachStatus(timeArray, tippy) {
         if(node) {
         	node.after(oldChild)
         } else {
-        	let node = parentTable.querySelector('.table-full__department').querySelector('.table-full__row')
-        	console.log(node)
-          node.after(oldChild)
+        	let node = parentTable.querySelector('.table-full__department').querySelector('.table-full__layer')
+          node.prepend(oldChild)
         }
 
     } else if (this.textContent === 'Забрал разрешение') {
-    		controls.classList.add('department')
+    	controls.classList.add('department')
         //Получаем все елементы после которого будем вставлять строку
-        let nodes = parentTable.querySelector('.table-full__department').querySelectorAll('[data-count="2"]')
+        let nodes = parentTable.querySelector('.table-full__department').querySelectorAll('[data-count="2"]') || []
         let node = nodes[nodes.length - 1]
 
         oldChild.dataset.count = '2'
@@ -803,8 +704,8 @@ function forEachStatus(timeArray, tippy) {
             if(node) {
                node.after(oldChild) 
            } else {
-                let node = parentTable.querySelector('.table-full__department').querySelector('.table-full__row')
-                node.after(oldChild)
+                let node = parentTable.querySelector('.table-full__department').querySelector('.table-full__layer')
+                node.prepend(oldChild)
            }
             
         }
@@ -831,8 +732,8 @@ function forEachStatus(timeArray, tippy) {
                 if(node) {
                    node.after(oldChild) 
                } else {
-                    let node = parentTable.querySelector('.table-full__department').querySelector('.table-full__row')
-                    node.after(oldChild)
+                    let node = parentTable.querySelector('.table-full__department').querySelector('.table-full__layer')
+                    node.prepend(oldChild)
                     
                }
                 
@@ -844,7 +745,7 @@ function forEachStatus(timeArray, tippy) {
         
         controls.classList.add('busy')
         oldChild.dataset.count = '1'
-        parentTable.querySelector('.table-full__busy').append(oldChild)
+        parentTable.querySelector('.table-full__busy').querySelector('.table-full__layer').append(oldChild)
 
     }
 }

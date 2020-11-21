@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/libs.min.css?v=1605379511040">
-    <link rel="stylesheet" href="css/main.min.css?v=1605379511040">
+    <link rel="stylesheet" href="css/libs.min.css?v=1605969568209">
+    <link rel="stylesheet" href="css/main.min.css?v=1605969568209">
   </head>
   <body>
     <main class="main">
@@ -44,7 +44,7 @@
               </div>
             </div>
             <div class="sidebar__filters">
-              <div class="sidebar__input-wrapper"></div>
+              <div class="sidebar__input-wrapper" id="vacancy-search-input-wrapper"></div>
               <ul class="sidebar__filter">
                 <li class="sidebar__filter-item sidebar__li">
                   <div class="sidebar__filter-wrapper country-filter-wrapper-vacancy">
@@ -121,34 +121,7 @@
       <div class="popup__layer">
         <div class="sidebar-popup" id="country-popup-vacancy"></div>
         <div class="sidebar-popup managers-popup-vacancy" id="managers-popup"></div>
-        <div class="sidebar-popup" id="status-popup">
-          <form>
-            <div class="input-group">
-              <input type="checkbox" id="shortfall-chbx">
-              <label for="shortfall-chbx">Недоборы</label>
-            </div>
-            <div class="input-group">
-              <input type="checkbox" id="selected-chbx">
-              <label for="selected-chbx">Отобраны</label>
-            </div>
-            <div class="input-group">
-              <input type="checkbox" id="supply-chbx">
-              <label for="supply-chbx">Готовятся к подаче</label>
-            </div>
-            <div class="input-group">
-              <input type="checkbox" id="wait-chbx">
-              <label for="wait-chbx">Ждут разрешения</label>
-            </div>
-            <div class="input-group">
-              <input type="checkbox" id="department-chbx">
-              <label for="department-chbx">Готовятся к отъезду</label>
-            </div>
-            <div class="input-group">
-              <input type="checkbox" id="busy-chbx">
-              <label for="busy-chbx">Трудоустроены</label>
-            </div>
-          </form>
-        </div>
+        <div class="sidebar-popup" id="status-popup"></div>
         <div class="sidebar-popup" id="selecting-popup"></div>
         <div class="sidebar-popup" id="type-work-popup">
           <form></form>
@@ -1068,7 +1041,7 @@
         </div>
       </div>
     </div>
-    <script src="js/libs.min.js?v=1605379511040" defer></script>
-    <script src="js/script.min.js?v=1605379511040" async></script>
+    <script src="js/libs.min.js?v=1605969568209" defer></script>
+    <script src="js/script.min.js?v=1605969568209" async></script>
   </body>
 </html>

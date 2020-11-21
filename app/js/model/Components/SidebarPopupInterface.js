@@ -33,6 +33,7 @@ export default class SidebarPopupInterface { // класс от которого
 
 	filter(id, str, storageKey){
 		let type = this.type
+		
 		//@param id - id соответствующего чекбокса, который прилетает с сервака
 		//@param str - поле объекта параметра функции getEmployersList, которая выводит список работодателей
 		//@param storageKey - ключ в sessionStorage по которому хранится список checked чекбоксов из попапа
@@ -49,6 +50,7 @@ export default class SidebarPopupInterface { // класс от которого
 				if(type === 'employer') {
 					getEmployersList({[str]: SidebarPopupInterface.checkedArr.join(',')})
 				} else {
+
 					getVacancyList({[str]: SidebarPopupInterface.checkedArr.join(',')})
 				}
 				
