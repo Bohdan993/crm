@@ -22,6 +22,8 @@ let clientsModalLayer = document.querySelector('.clients .modal-row__layer')
 let switcher  = document.querySelector('.switcher')
 let clientsRow = document.querySelector('.row.clients')
 
+const datePopup = document.querySelector('#date-terms-popup')
+
 export {
 
 	rows,
@@ -37,7 +39,8 @@ export {
 	chooseEmployer2,
 	chooseProductType2,
 	clientsRow,
-	clientsModalLayer
+	clientsModalLayer,
+	datePopup
 	// mainInfoPrice
 	
 }

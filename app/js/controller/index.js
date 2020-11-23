@@ -44,7 +44,8 @@ import {
 	getCountryVacancyPopup,
 	mountSortingVacancyPopup,
 	getVacancyWorkType,
-	getStatusesVacancyPopup
+	getStatusesVacancyPopup,
+	mountDateAndTermsPopup
 } from '../model'
 
 import {OverlayScrollbars} from '../../libs/libs'
@@ -144,6 +145,7 @@ const app = {
 		this.gmvp()
 		this.gsvp()
 		this.msiv()
+		this.mdatp()
 		// initWorkPopup(2)
 
 	},
@@ -155,6 +157,8 @@ const app = {
 		initOverlayScrollbars(workModalFeedback)
 		initOverlayScrollbars(clientsModalLayer)
 	},
+
+
 
 	it() {
 		initTooltips()
@@ -366,6 +370,9 @@ const app = {
 	},
 	msiv() {
 		mountSearchInputVacancy()
+	},
+	mdatp(){
+		mountDateAndTermsPopup()
 	}
 
 }

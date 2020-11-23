@@ -7,17 +7,20 @@ import {throttle} from '../helper'
 const HEIGHT = 300
 const DATA_LENGTH = 50
 const loader = place(StickyLoader)
-// let count = +JSON.parse(sessionStorage.getItem('page')) || 2
 let count = +JSON.parse(sessionStorage.getItem('page')) || 2
 let data = Array(DATA_LENGTH)
 let flag = false
 
 
 
-const fetchScroll = (elem) => {
+const fetchScroll = (elem, type) => {
 	//@param elem - HTML node <div class="employer-rows-wrapper"></div>
-	
-	async function ajaxEmployers(){
+
+// let count = +JSON.parse(sessionStorage.getItem('page')) || 2
+// let data = Array(DATA_LENGTH)
+// let flag = false
+		
+	async function ajaxData(){
 		if (this.scrollTop + this.clientHeight >= this.scrollHeight - HEIGHT && data.length === DATA_LENGTH && !flag) {
 				flag = true
 				mount(elem, loader)
@@ -27,11 +30,18 @@ const fetchScroll = (elem) => {
         sessionStorage.setItem('page', JSON.stringify(count))
       	count++
 
+
+      	// if(type === 'employer') {
+
+      	// } else {
+      		
+      	// }
+
     }
 	}
 
-	ajaxEmployers = throttle(ajaxEmployers, 1000)
-	elem.addEventListener('scroll', ajaxEmployers)
+	ajaxData = throttle(ajaxData, 1000)
+	elem.addEventListener('scroll', ajaxData)
 	
 }
 

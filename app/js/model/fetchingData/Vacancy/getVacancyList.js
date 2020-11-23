@@ -49,8 +49,8 @@ const getVacancyList = async ({
 	active = '1',
 	type_vacancy = JSON.parse(sessionStorage.getItem('v-vacancyTypeFilter')) || '',
 	type_production = JSON.parse(sessionStorage.getItem('typeManufacturyVacancyFilter')) || '',
-	job_start = '',
-	job_period = '',
+	job_start = JSON.parse(sessionStorage.getItem('jobStartFilter')) || '',
+	job_period = JSON.parse(sessionStorage.getItem('jobPeriodFilter')) || '',
 	status = JSON.parse(sessionStorage.getItem('stagesOfVacancies')) || '',
 
 	scroll = false

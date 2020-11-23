@@ -204,7 +204,7 @@ function initSidebarTooltip(el, content) {
                  console.log(instance.id)
         		switch(instance.id) {
 						  case 1:
-                          console.log('dfdefewrfewr')
+                          // console.log('dfdefewrfewr')
 						  checkIfShowRemoveFilterButton('countryFilter', instance)
                           checkIfShowRemoveFilterButton('countryFilterVacancy', instance)
 						    break
@@ -231,6 +231,9 @@ function initSidebarTooltip(el, content) {
 					        checkIfShowRemoveFilterButton('vacancyActiveFilter', instance)
                             checkIfShowRemoveFilterButton('vacancyTypeFilter', instance)
                             checkIfShowRemoveFilterButton('vacancyTermFilter', instance)
+
+                            checkIfShowRemoveFilterButton('jobStartFilter', instance)
+                            checkIfShowRemoveFilterButton('jobPeriodFilter', instance)
 
 						    break
 						  case 7:
@@ -290,6 +293,11 @@ function childChangeHandler(children, child, instance, e) {
       return child.checked
   })
 
+    let val = [].some.call(children, (child) => {
+    // console.log(child.getAttribute('type'))
+      return child.getAttribute('type') === 'text' && child.value !== ''
+  })
+
 
   if (check) {
 
@@ -301,6 +309,15 @@ function childChangeHandler(children, child, instance, e) {
       instance.reference.children[1].style.display = 'block'
       instance.reference.classList.add('active')
   }
+
+
+  if(val) {
+    instance.reference.children[1].style.display = 'block'
+    instance.reference.classList.add('active')
+  }
+
+
+  console.log(val)
 }
 
 
@@ -317,28 +334,40 @@ function removeCheckingHandler(children, instance, e){
 		  case 2:
 		    getEmployersList({production: ''})
 		    sessionStorage.removeItem('typeManufacturyFilter')
+            getVacancyList({manager: ''})
+            sessionStorage.removeItem('managerFilterVacancy')
 		    break
 		  case 3:
 		    getEmployersList({contact: ''})
 		    sessionStorage.removeItem('contactDataFilter')
+            getVacancyList({status: ''})
+            sessionStorage.removeItem('stagesOfVacancies')
 		    break
 		  case 4:
 		    getEmployersList({manager: ''})
             sessionStorage.removeItem('managerFilter')
+            getVacancyList({'sort': ''})
+            sessionStorage.removeItem('sortFilterVacancy')
 		    break
 		  case 5:
-            getEmployersList({intermediaries: ''})
+            getEmployersList({intermediaries: '', intermediary: ''})
             sessionStorage.removeItem('intermediariesFilter')
-            getEmployersList({intermediary: ''})
             sessionStorage.removeItem('intermediaryFilter')
+            getVacancyList({'type_vacancy': '', 'type_production': ''})
+            sessionStorage.removeItem('v-vacancyTypeFilter')
+            sessionStorage.removeItem('typeManufacturyVacancyFilter')
 		    break
 		  case 6:
-		    getEmployersList({vacancy_active: ''})
+		    getEmployersList({vacancy_active: '', vacancy_type: '', vacancy_term: ''})
             sessionStorage.removeItem('vacancyActiveFilter')
-            getEmployersList({vacancy_type: ''})
             sessionStorage.removeItem('vacancyTypeFilter')
-            getEmployersList({vacancy_term: ''})
             sessionStorage.removeItem('vacancyTermFilter')
+
+            getVacancyList({job_start: '', job_period: ''})
+            sessionStorage.removeItem('jobStartFilter')
+            sessionStorage.removeItem('jobPeriodFilter')
+
+
 		    break
 		  case 7:
 		    getEmployersList({last_contact: ''})
@@ -361,6 +390,7 @@ function removeCheckingHandler(children, instance, e){
 
   children.forEach(child => {
       child.checked = false
+      child.getAttribute('type') === 'text' ? child.value = '' : null
       // child.dispatchEvent(new Event('change'))
   })
 
