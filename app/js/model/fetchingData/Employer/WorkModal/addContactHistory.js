@@ -13,25 +13,32 @@ const addContactHistory = async ({
 	id_employer,
 	count
 } = {}) => {
-			// console.log(id_employer, message)
+
 			try {
-				if(id_login === '') {
+
+				if(id_login === '0') {
 					throw new Error('Нужно выбрать менеджера')
 				}
-				if(id_type === '') {
+				if(id_type === '0') {
 					throw new Error('Нужно выбрать тип контакта')
 				}
-				const contacts = await fetch.getResourse(`/employers/contact/?id_contact=${id_contact}&message=${message}&date=${date}&type_arrow=${type_arrow}&id_login=${id_login}&id_type=${id_type}&id_employer=${id_employer}`)
-				getWorkModalContactHistory({id:id_employer , adding: true, p: 1, t: count})
-				// console.log(production)
 
-				toastr.success(`ID работодателя ${id_employer}`, 'Успешно создан контакт', {closeButton: false})
+				const contacts = await fetch.getResourse(`/employers/contact/?id_contact=${id_contact}&message=${message}&date=${date}&type_arrow=${type_arrow}&id_login=${id_login}&id_type=${id_type}&id_employer=${id_employer}`)
+
+				if(contacts.success === true) {
+					toastr.success(`ID работодателя ${id_employer}`, 'Успешно создан контакт', {closeButton: false})
+					getWorkModalContactHistory({id:id_employer , adding: true, p: 1, t: count})
+				} else {
+					throw new Error('Не возможно создать контакт')
+				}
+
 				return Promise.resolve('ok')
 			} catch(e) {
-				toastr.error(e.message)
+				toastr.error(e.message, 'Возникла ошибка', {closeButton: true})
+				return Promise.resolve('fail')
 			}
 
-			return Promise.resolve('fail')
+			
 
 }
 

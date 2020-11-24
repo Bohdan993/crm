@@ -1,9 +1,8 @@
-import {el, setAttr, svg, list} from '../../../../../libs/libs';
+import {el, setAttr, svg, list, MicroModal} from '../../../../../libs/libs'
 import initWorkModalSelect from '../../../initWorkModalSelect'
 import changeDirection from '../../../changeDirection'
 import addContactHistory from '../../../fetchingData/Employer/WorkModal/addContactHistory'
 import deleteContactHistory from '../../../fetchingData/Employer/WorkModal/deleteContactHistory'
-import {MicroModal} from '../../../../../libs/libs'
 
 let initedSelects = false
 

@@ -88,8 +88,8 @@ const confirmBtnTypeFeedback = document.querySelector('#type-feedback-popup .con
 const sidebarEmployerForm = document.querySelector('.work-modal__sidebar-employer-form')
 const workModalSidebarNotes = document.querySelector('.work-modal__sidebar-notes')
 
-
-
+const employerDelete = document.querySelector('#employer-delete')
+const employerStatNums = document.querySelector('#sidebar__stat-nums')
 
 
 
@@ -107,7 +107,9 @@ import {
 	chooseEmployer2,
 	chooseProductType2,
 	clientsRow,
-	clientsModalLayer
+	clientsModalLayer,
+	demandsRow,
+	termsRow
 	// mainInfoPrice
 } from './vacancy'
 
@@ -189,7 +191,11 @@ export {
 	employerRowsWrapper,
 	sidebarEmployerForm,
 	countryTemplateVacancy,
-	workModalSidebarNotes
+	workModalSidebarNotes,
+	employerDelete,
+	demandsRow,
+	termsRow,
+	employerStatNums
 	// mainInfoPrice
 	// statusChangeTemplate
 }

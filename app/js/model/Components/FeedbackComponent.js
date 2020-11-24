@@ -288,7 +288,7 @@ class FeedbackEdit {
 
 		this.saveFeedback.addEventListener('click', (e) => {
 			e.preventDefault()
-			console.log(+JSON.parse(sessionStorage.getItem('currClient')))
+			// console.log(+JSON.parse(sessionStorage.getItem('currClient')))
 			if(this.data.type === 'employer') {
 				console.log(this.data)
 				addFeedback({
@@ -302,11 +302,20 @@ class FeedbackEdit {
 					date: this.date.value.trim(), 
 					id_employer: this.data.id,
 					count: this.data.count
+				}).then(res => {
+					if(res === 'ok') {
+						this.feedbackEditPlace.update(false)
+						this.rowPlace.update(true)
+					}
+
+					if(res === 'fail') {
+
+					}
+
 				})
 			}
 
-			this.feedbackEditPlace.update(false)
-			this.rowPlace.update(true)
+			
 			
 		})
 
@@ -516,7 +525,7 @@ export default class Feedback {
 			el('p', 'Отзывы', 
 				this.feedbackCount = el('span', ' 4'),
 				el('span', ' ('),
-				this.feedbackCountNeg = el('span.negative', 'негативных - 2'),
+				this.feedbackCountNeg = el('span.negative'),
 				el('span', ')')
 				),
 			this.addItem = el('div.add-item', el('span', '+'), 'добавить отзыв')
@@ -566,7 +575,7 @@ export default class Feedback {
 	}
 
 	 update(data, index, items, context) {
-	 		console.log(data)
+	 	console.log(data)
 	 		let {loading, showing} = data
 	 		if(showing) {
 				this.pageShow++
@@ -603,6 +612,10 @@ export default class Feedback {
 
 			setAttr(this.feedbackCount, {
 				innerText: " " + data.total
+			})
+
+			setAttr(this.feedbackCountNeg, {
+				innerText: `негативных - ${data.badFeedback}`
 			})
 
 			setAttr(this.feedbackCountNeg, {

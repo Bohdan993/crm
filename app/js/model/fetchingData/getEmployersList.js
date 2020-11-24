@@ -2,12 +2,15 @@ import fetch from './fetchingDataClass'
 import EmployerList from '../Components/Employer/EmployerList'
 import Loader from '../Components/Employer/Loader'
 import {el, mount, place, toastr} from '../../../libs/libs'
+import Numbers from '../Components/Employer/SidebarNumbersComponent'
+import {employerStatNums} from '../../view'
 
 
 const employersWrapper = document.querySelector('.employer-rows-wrapper')
 let globalEmployers = []
 const loader = place(Loader)
 const empList = new EmployerList()
+const numbers = new Numbers()
 
 let uniq = function(xs) {
 	    let seen = {};
@@ -22,6 +25,11 @@ let uniq = function(xs) {
 if(employersWrapper) {
 mount(employersWrapper, empList);
 mount(employersWrapper, loader)
+}
+
+
+if(employerStatNums) {
+	mount(employerStatNums, numbers)
 }
 // const sleep = (ms) => {
 // 	return new Promise(res => {
@@ -62,10 +70,19 @@ const getEmployersList = async ({
 			const data = await fetch.getResourse(`/employers/get_all/?p=${p}&t=${t}&search=${search}&filter=country:${country}|production:${production}|contact:${contact}
 				|manager:${manager}|intermediaries:${intermediaries}|intermediary:${intermediary}|vacancy_active:${vacancy_active}|vacancy_type:${vacancy_type}|vacancy_term:${vacancy_term}|last_contact:${last_contact}&sort=${sort}`)
 			const employers = data.data
+
+			const total = data.total
+			const totalR = data.total_r
+
 			if(data.success) {
 
 				if(!employers) {
 					throw new Error('Что то пошло не так, работодателей не найдено, обновите страницу, пожалуйста')
+				}
+
+				const numsData = {
+					total, 
+					totalR
 				}
 
 				if(scroll) {
@@ -79,6 +96,7 @@ const getEmployersList = async ({
 					empList.update(employers)
 					
 				}
+				numbers.update(numsData)
 				loader.update(false)
 
 			} else {

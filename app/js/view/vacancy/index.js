@@ -24,6 +24,9 @@ let clientsRow = document.querySelector('.row.clients')
 
 const datePopup = document.querySelector('#date-terms-popup')
 
+const demandsRow = document.querySelector('.row.demands.modal-row')
+const termsRow = document.querySelector('.row.terms.modal-row')
+
 export {
 
 	rows,
@@ -40,7 +43,9 @@ export {
 	chooseProductType2,
 	clientsRow,
 	clientsModalLayer,
-	datePopup
+	datePopup,
+	demandsRow,
+	termsRow
 	// mainInfoPrice
 	
 }

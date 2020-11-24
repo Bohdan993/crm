@@ -1,11 +1,11 @@
-import {el, setAttr, place} from '../../../../../libs/libs';
-import saveFieldsData from '../fetchingData/saveFieldsData'
+import {el, setAttr, place} from '../../../../../libs/libs'
+import saveFieldsData from '../../../fetchingData/saveFieldsData'
 
 export default class TermsComponent {
 	constructor(){
 
 		this.data = {}
-		this.el = el('div.row.terms.modal-row', 
+		this.el = el('div.terms-layer', 
 			el('div.modal-row__controls',
 				el('p', 'Условия')),
 			el('div.modal-row__layer',

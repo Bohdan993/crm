@@ -11,11 +11,12 @@ const addTask = async ({
 				if(tasks.success === true) {
 					toastr.success(`ID работодателя ${id}`, 'Успешно удалена задача', {closeButton: false})
 				} else {
-					toastr.error(`Не возможно удалить задачу`, 'Возникла ошибка', {closeButton: true})
+					throw new Error('Не возможно удалить задачу')
+				
 				}
 
 			} catch(e) {
-				console.error(e)
+					toastr.error(e, 'Возникла ошибка', {closeButton: true})
 			}
 }
 

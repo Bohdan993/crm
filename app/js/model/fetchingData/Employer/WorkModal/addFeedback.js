@@ -15,7 +15,7 @@ const addFeedback = async ({
 	id_employer,
 	count
 } = {}) => {
-			// console.log(id_employer, message)
+			console.log(type_feedback, type_author)
 			try {
 				if(feedback === '') {
 					throw new Error('Введите текст отзыва')
@@ -26,7 +26,7 @@ const addFeedback = async ({
 				if(date === '') {
 					throw new Error('Введите дату добавления отзыва')
 				}
-				if(type_author === '') {
+				if(type_author === '1' && !id_author) {
 					throw new Error('Выберите автора отзыва')
 				}
 				const feedbacks = await fetch.getResourse(`/${str}/?id_feedback=${id_feedback}&feedback=${feedback}&type_feedback=${type_feedback}&id_author=${id_author}&type_author=${type_author}&type_arrow=${type_arrow}&date=${date}&id_employer=${id_employer}`)
@@ -34,12 +34,13 @@ const addFeedback = async ({
 				// console.log(production)
 
 				toastr.success(`ID работодателя ${id_employer}`, 'Успешно создан новый отзыв', {closeButton: false})
-				// return Promise.resolve('ok')
+				return Promise.resolve('ok')
 			} catch(e) {
 				toastr.error(e.message)
+				return Promise.resolve('fail')
 			}
 
-			// return Promise.resolve('fail')
+		
 
 }
 

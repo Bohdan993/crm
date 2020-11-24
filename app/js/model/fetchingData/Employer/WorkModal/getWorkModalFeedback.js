@@ -97,6 +97,7 @@ const getWorkModalFeedback = async ({
 
 			const feedbackData = {
 				id: id, 
+				badFeedback: JSON.parse(sessionStorage.getItem('employerNegFeedback')),
 				data: globalFeedback, 
 				total: data.data.total !== undefined ? data.data.total.feedback : otherPart.feedback.length, 
 				loading, 

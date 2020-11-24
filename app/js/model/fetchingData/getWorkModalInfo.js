@@ -2,10 +2,11 @@ import fetch from './fetchingDataClass'
 import WorkModal from '../Components/Employer/WorkModal/WorkModal'
 import Task from '../Components/TaskComponent'
 import Note from '../Components/ModalSidebarNoteComponent'
+import Delete from '../Components/DeleteComponent'
 import ManagerSelect from '../Components/ManagerSelectComponent'
 import Loader from '../Components/Employer/Loader'
 import {list, mount, place} from '../../../libs/libs'
-import {sidebarEmployerForm, workModalSidebarNotes} from '../../view'
+import {sidebarEmployerForm, workModalSidebarNotes, employerDelete} from '../../view'
 
 
 
@@ -23,6 +24,7 @@ const workModal = new WorkModal()
 const task = new Task('employer')
 const note = new Note('employer')
 const select = new ManagerSelect('employer')
+const deleteComponent = new Delete('employer')
 
 if(commonInfo) {
 	mount(commonInfo, workModal);
@@ -41,6 +43,10 @@ if(managerSelectWrap) {
 
 if(workModalSidebarNotes) {
 	mount(workModalSidebarNotes, note)
+}
+
+if(employerDelete) {
+	mount(employerDelete, deleteComponent)
 }
 // const sleep = (ms) => {
 // 	return new Promise(res => {
@@ -74,6 +80,8 @@ try {
 		const tasks = mainPart.task
 		const notes = mainPart.note
 		const id_login = mainPart.id_login
+		const date = mainPart.date
+		const badFeedback = mainPart.total_bad_feedback
 
 		const tasksData = {
 			tasks,
@@ -85,19 +93,26 @@ try {
 			id
 		}
 
+
+		const deleteData = {
+			date, 
+			id
+		}
+
 			mainPart.source = source
 		// if(state.id !== id) {
 			workModal.update(mainPart)
 			task.update(tasksData)
 			select.update(id_login)
 			note.update(notesData)
+			deleteComponent.update(deleteData)
 		// }
 		loader2.update(false)
 		loader.update(false)
 		workModal.removeHiddenClass()
 
 		sessionStorage.setItem('currEmployerName', JSON.stringify(data.data.main.name))
-
+		sessionStorage.setItem('employerNegFeedback', JSON.stringify(badFeedback))
 		state.id = id
 	}catch(e) {
 		console.error(e)
@@ -108,3 +123,7 @@ try {
 
 
 export default getWorkModalInfo 		//to ../Components/EmployersRow.js
+
+// export {
+// 	state
+// }
