@@ -46,8 +46,6 @@ import {
 	getVacancyWorkType,
 	getStatusesVacancyPopup,
 	mountDateAndTermsPopup,
-	mountDemandsComponent,
-	mountTermsComponent
 	// mountEmployerDelete
 } from '../model'
 
@@ -149,8 +147,6 @@ const app = {
 		this.gsvp()
 		this.msiv()
 		this.mdatp()
-		this.mdc()
-		this.mtc()
 		// this.med()
 		// initWorkPopup(2)
 
@@ -380,13 +376,6 @@ const app = {
 	mdatp(){
 		mountDateAndTermsPopup()
 	},
-	mdc(){
-			mountDemandsComponent()
-
-	},
-	mtc(){
-			mountTermsComponent()
-	}
 
 }
 

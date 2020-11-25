@@ -1,5 +1,5 @@
 import fetch from './fetchingDataClass'
-import {StickyLoader} from '../Components/Employer/Loader'
+import {StickyLoader} from '../Components/Loader'
 import getEmployersList from './getEmployersList'
 import {place, mount} from '../../../libs/libs'
 import {throttle} from '../helper'

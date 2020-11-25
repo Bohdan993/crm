@@ -1,6 +1,6 @@
 import {el, setAttr, svg, place, list} from '../../../../libs/libs'
 import { initRowTooltips } from '../../initToottips'
-import getWorkModalInfo from '../../fetchingData/getWorkModalInfo'
+import getWorkModalInfo from '../../fetchingData/Employer/WorkModal/getWorkModalInfo'
 
 import getWorkModalManufacturyType from '../../fetchingData/Employer/WorkModal/getWorkModalManufacturyType'
 import getWorkModalMedia from '../../fetchingData/Employer/WorkModal/getWorkModalMedia'

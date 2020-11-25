@@ -6,7 +6,7 @@ import TableVacancyClient from './VacancyClients'
 import showFullRow from '../../vacancy/showFullRow'
 import getVacancyClients from '../../fetchingData/Vacancy/getVacancyClients'
 import { makeCaching } from '../../helper'
-// import getWorkModalInfo from '../../fetchingData/getWorkModalInfo'
+import getVacancyModalInfo from '../../fetchingData/Vacancy/VacancyModal/getVacancyModalInfo'
 
 // import getWorkModalManufacturyType from '../../fetchingData/Employer/WorkModal/getWorkModalManufacturyType'
 // import getWorkModalMedia from '../../fetchingData/Employer/WorkModal/getWorkModalMedia'
@@ -86,7 +86,12 @@ export default class RowVacancy {
 				if(this.active) {
 					showFullRow(this.el, e)
 				}
-				// showFullRow(this.el, e)
+
+				
+			})
+
+			this.labelsLayer.addEventListener('click', (e)=> {
+				getVacancyModalInfo(this.data.id_vacancy)
 			})
 	}
 

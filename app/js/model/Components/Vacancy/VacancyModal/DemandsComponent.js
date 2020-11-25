@@ -1,10 +1,10 @@
 import {el, setAttr, place} from '../../../../../libs/libs'
-import saveFieldsData from '../../../fetchingData/saveFieldsData'
-
+import {save} from '../../../helper'
 export default class DemandComponent {
 	constructor(){
 
 		this.data = {}
+		this.save = save.bind(this)
 		this.el = el('div.demands-layer', 
 			el('div.modal-row__controls', 
 				el('p', 'Требования')),
@@ -50,47 +50,88 @@ export default class DemandComponent {
 					)))
 
 
-		let save = (value, field, target = 'main') => {
-			saveFieldsData({
-				str: 'vacancies',
-				id: this.data.id_employer,
-				value, 
-				field, 
-				target, 
-				id_target: ''
-			})
-		}
-
 
 		this.clientsNumber.addEventListener('change', (e) => {
-			// save(this.intermadiariesSelect.el.value, 'id_employer_intermediator_list')
+			this.save({
+				id: this.data.id, 
+				value: this.clientsNumber.value, 
+				field: 'total_client'
+			})
 		})
 
 		this.men.addEventListener('change', (e) => {
-			// save(this.intermadiariesSelect.el.value, 'id_employer_intermediator_list')
+			this.save({
+				id: this.data.id, 
+				value: this.men.value, 
+				field: 'total_man'
+			})
 		})
 
 		this.women.addEventListener('change', (e) => {
-			// save(this.intermadiariesSelect.el.value, 'id_employer_intermediator_list')
+			this.save({
+				id: this.data.id, 
+				value: this.women.value, 
+				field: 'total_woman'
+			})
 		})
 
 		this.languageLevel.addEventListener('change', (e) => {
-			// save(this.intermadiariesSelect.el.value, 'id_employer_intermediator_list')
+			this.save({
+				id: this.data.id, 
+				value: this.languageLevel.value, 
+				field: 'language_skill'
+			})
 		})
 
 		this.workExp.addEventListener('change', (e) => {
-			// save(this.intermadiariesSelect.el.value, 'id_employer_intermediator_list')
+			this.save({
+				id: this.data.id, 
+				value: this.workExp.value, 
+				field: 'experience_work'
+			})
 		})
 
 		this.specReq.addEventListener('change', (e) => {
-			// save(this.intermadiariesSelect.el.value, 'id_employer_intermediator_list')
+			this.save({
+				id: this.data.id, 
+				value: this.specReq.value, 
+				field: 'special_requirement'
+			})
 		})
 
 	}
 
 
 	update(data, index, items, context){
+		// console.log(data)
 
+
+		setAttr(this.clientsNumber , {
+			value: data.clients
+		})
+
+		setAttr(this.men , {
+			value: data.men
+		})
+
+		setAttr(this.women , {
+			value: data.women
+		})
+
+		setAttr(this.languageLevel , {
+			value: data.languageSkill
+		})
+
+		setAttr(this.workExp , {
+			value:  data.workExp
+		})
+
+		setAttr(this.specReq , {
+			value:  data.specialReq
+		})
+
+
+		this.data = data
 	}
 
 

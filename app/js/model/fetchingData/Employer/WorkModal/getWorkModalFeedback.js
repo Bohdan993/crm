@@ -1,7 +1,7 @@
 import fetch from '../../fetchingDataClass'
 import Feedback from '../../../Components/FeedbackComponent'
 
-import Loader from '../../../Components/Employer/Loader'
+import Loader from '../../../Components/Loader'
 import {list, mount, place} from '../../../../../libs/libs'
 
 // const state = {}
@@ -105,6 +105,8 @@ const getWorkModalFeedback = async ({
 				adding, 
 				showing
 			}
+
+			// console.log(JSON.parse(sessionStorage.getItem('employerNegFeedback')))
 
 			// if(state.id !== id) {
 				feedback.update(feedbackData)

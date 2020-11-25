@@ -1,7 +1,7 @@
 import fetch from '../../fetchingDataClass'
 import WorkModalContactHistory from '../../../Components/Employer/WorkModal/WorkModalContactHistory'
 
-import Loader from '../../../Components/Employer/Loader'
+import Loader from '../../../Components/Loader'
 import {list, mount, place} from '../../../../../libs/libs'
 
 // const state = {}

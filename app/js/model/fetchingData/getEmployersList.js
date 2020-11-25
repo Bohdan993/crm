@@ -1,6 +1,6 @@
 import fetch from './fetchingDataClass'
 import EmployerList from '../Components/Employer/EmployerList'
-import Loader from '../Components/Employer/Loader'
+import Loader from '../Components/Loader'
 import {el, mount, place, toastr} from '../../../libs/libs'
 import Numbers from '../Components/Employer/SidebarNumbersComponent'
 import {employerStatNums} from '../../view'

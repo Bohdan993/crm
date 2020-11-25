@@ -2,7 +2,7 @@
 
 import fetch from '../fetchingDataClass'
 import VacancyList from '../../Components/Vacancy/VacancyList'
-import Loader from '../../Components/Employer/Loader'
+import Loader from '../../Components/Loader'
 import {el, mount, place, toastr} from '../../../../libs/libs'
 
 

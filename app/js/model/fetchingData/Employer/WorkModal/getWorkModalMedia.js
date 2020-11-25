@@ -1,7 +1,7 @@
 import fetch from '../../fetchingDataClass'
 import WorkModalMedia from '../../../Components/Employer/WorkModal/WorkModalMedia'
 
-import Loader from '../../../Components/Employer/Loader'
+import Loader from '../../../Components/Loader'
 import {list, mount, place} from '../../../../../libs/libs'
 
 const state = {}

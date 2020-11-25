@@ -1,3 +1,6 @@
+import saveFieldsData from './fetchingData/saveFieldsData'
+
+
 function throttle(f, ms){
 	
 	let isThrottled = false,
@@ -59,6 +62,9 @@ function debounce(f, ms) {
   }
 
 
+
+
+
 function come(elem) {
   let docViewTop = window.scrollTop,
     docViewBottom = docViewTop + window.innerHeight,
@@ -83,6 +89,25 @@ function makeCaching(f) {
 }
 
 
+  let save = function ({
+    id, 
+    value, 
+    field, 
+    target = 'main', 
+    str = 'vacancies',
+    id_target = ''
+  }) {
+      saveFieldsData({
+        str,
+        id,
+        value, 
+        field, 
+        target, 
+        id_target
+      })
+    }
+
+
 
 
 
@@ -92,5 +117,6 @@ export {
 	debounce,
 	isChildOf,
 	come,
-	makeCaching
+	makeCaching,
+  save
 }

@@ -36,10 +36,10 @@ import getEmployersList from './fetchingData/getEmployersList'
 import getManagerPopup from './fetchingData/Employer/getManagerPopup'
 import getManagerVacancyPopup from './fetchingData/Vacancy/getManagerVacancyPopup'
 import getIntermediariesPopup from './fetchingData/getIntermediariesPopup'
-import getCountryPopup from './fetchingData/getCountryPopup'
-import getManufacturyTypePopup from './fetchingData/getManufacturyTypePopup'
+import getCountryPopup from './fetchingData/Employer/getCountryPopup'
+import getManufacturyTypePopup from './fetchingData/Employer/getManufacturyTypePopup'
 // import getTextSearch from './fetchingData/Employer/getTextSearch'
-import addNewEmployer from './fetchingData/addNewEmployer'
+import addNewEmployer from './fetchingData/Employer/addNewEmployer'
 import fetchScroll from './fetchingData/fetchScroll'
 import getTypeContact from './fetchingData/Employer/getTypeContact'
 import getClients from './fetchingData/Employer/getClients'
@@ -65,8 +65,7 @@ import getVacancyWorkType from './fetchingData/Vacancy/getVacancyWorkType'
 import mountSortingVacancyPopup from './MountingElements/Vacancy/mountSortingPopup'
 import mountSearchInputVacancy from './MountingElements/Vacancy/mountSearch'
 import mountDateAndTermsPopup from './MountingElements/Vacancy/mountDateAndTermsPopup'
-import mountDemandsComponent from './MountingElements/Vacancy/VacancyModal/mountDemandsComponent'
-import mountTermsComponent from './MountingElements/Vacancy/VacancyModal/mountTermsComponent'
+// 
 
 
 // console.log(getVacancyList)
@@ -128,8 +127,6 @@ export {
 	getVacancyWorkType,
 	getStatusesVacancyPopup,
 	mountDateAndTermsPopup,
-	mountDemandsComponent,
-	mountTermsComponent
 	// mountEmployerDelete
 	// getTextSearch
 }
