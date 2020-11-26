@@ -7,23 +7,35 @@ import {list, mount, place} from '../../../../../libs/libs'
 // const state = {}
 let globalFeedback = []
 let globalID = ''
+
+
+
 const feedbackEmployer = document.querySelector('.row.feedback-employer')
+const feedbackVacancy = document.querySelector('.row.feedback-vacancy')
 
 
 const loader = place(Loader)
+const loader2 = place(Loader)
 
 
+console.log(Feedback)
 
-
-const feedback = new Feedback('employer')
+const feedbackEmp = new Feedback('employer')
+const feedbackVac = new Feedback('vacancy')
 
 
 
 
 
 if(feedbackEmployer) {
-	mount(feedbackEmployer, feedback)
+	mount(feedbackEmployer, feedbackEmp)
 	mount(feedbackEmployer, loader)
+}
+
+
+if(feedbackVacancy) {
+	mount(feedbackVacancy, feedbackVac)
+	mount(feedbackVacancy, loader2)
 }
 
 
@@ -38,13 +50,15 @@ const getWorkModalFeedback = async ({
 	showing,
 	deleating, 
 	adding,
+	str = '',
+	other = ''
 } = {}) => {
 
 	if(feedbackEmployer) {
 
 		if(loading) {
 			loader.update(true)
-			feedback.setHiddenClass().setEmptyLayer()
+			feedbackEmp.setHiddenClass().setEmptyLayer()
 		}
 		
 		
@@ -52,7 +66,7 @@ const getWorkModalFeedback = async ({
 	try {
 
 			// const delay = await sleep(15000)
-			const data = await fetch.getResourse(`/employers/get/?id=${id}&section=2&other=5&p=${p}&t=${t}`)
+			const data = await fetch.getResourse(`/${str}/get/?id=${id}&section=2&other=${other}&p=${p}&t=${t}`)
 			const otherPart = data.data.other
 			console.log(otherPart)
 			console.log(data)
@@ -109,12 +123,12 @@ const getWorkModalFeedback = async ({
 			// console.log(JSON.parse(sessionStorage.getItem('employerNegFeedback')))
 
 			// if(state.id !== id) {
-				feedback.update(feedbackData)
+				feedbackEmp.update(feedbackData)
 			// }
 
 			if(loading) {
 				loader.update(false)
-				feedback.removeHiddenClass()
+				feedbackEmp.removeHiddenClass()
 			}
 			
 			// state.id = id
@@ -122,6 +136,88 @@ const getWorkModalFeedback = async ({
 			console.error(e)
 		}
 }	
+
+if(feedbackVacancy) {
+			if(loading) {
+			loader2.update(true)
+			feedbackVac.setHiddenClass().setEmptyLayer()
+		}
+		
+		
+
+	try {
+
+			// const delay = await sleep(15000)
+			const data = await fetch.getResourse(`/${str}/get/?id=${id}&section=2&other=${other}&p=${p}&t=${t}`)
+			const otherPart = data.data.other
+			console.log(otherPart)
+			console.log(data)
+
+			if(globalID !== id) {
+				globalFeedback = [
+					...otherPart.feedback 
+				]
+			} else {
+
+				if(loading) {
+						globalFeedback = [
+						...otherPart.feedback 
+					]
+				}
+
+				if(showing) {
+						globalFeedback = [
+						...globalFeedback,
+						...otherPart.feedback
+					]
+				}
+
+				if(deleating) {
+						globalFeedback = [
+						...otherPart.feedback 
+					]
+				}
+
+				if(adding) {
+						globalFeedback = [
+						...otherPart.feedback 
+					]
+				}
+			}
+
+
+			// const feedbackData = {
+			// 	id: id, 
+			// 	data: otherPart.feedback 
+			// }
+
+			const feedbackData = {
+				id: id, 
+				badFeedback: JSON.parse(sessionStorage.getItem('employerNegFeedback')),
+				data: globalFeedback, 
+				total: data.data.total !== undefined ? data.data.total.feedback : otherPart.feedback.length, 
+				loading, 
+				deleating, 
+				adding, 
+				showing
+			}
+
+			// console.log(JSON.parse(sessionStorage.getItem('employerNegFeedback')))
+
+			// if(state.id !== id) {
+				feedbackVac.update(feedbackData)
+			// }
+
+			if(loading) {
+				loader2.update(false)
+				feedbackVac.removeHiddenClass()
+			}
+			
+			// state.id = id
+		}catch(e) {
+			console.error(e)
+		}
+}
 
 	globalID = id
 

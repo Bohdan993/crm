@@ -109,7 +109,9 @@ import {
 	clientsRow,
 	clientsModalLayer,
 	demandsRow,
-	termsRow
+	termsRow,
+	sidebarVacancyForm,
+	vacancyModalSidebarNotes
 	// mainInfoPrice
 } from './vacancy'
 
@@ -195,7 +197,9 @@ export {
 	employerDelete,
 	demandsRow,
 	termsRow,
-	employerStatNums
+	employerStatNums,
+	sidebarVacancyForm,
+	vacancyModalSidebarNotes
 	// mainInfoPrice
 	// statusChangeTemplate
 }

@@ -13,7 +13,7 @@ export default class ManagerSelect { // to ../MountingElements/Employer/WorkModa
 			)
 
 		this.manager.addEventListener('change' , (e) => {
-			if(this.type === 'employer') {
+				if(this.type === 'employer') {
                    saveFieldsData({
                     str: 'employers',
                     id: this.context.id,
@@ -26,7 +26,13 @@ export default class ManagerSelect { // to ../MountingElements/Employer/WorkModa
 
                 }
 		})
-		this.managerChoices = initWorkModalSelect(this.manager, {managers: JSON.parse(localStorage.getItem('managers'))})
+
+		if(this.type === 'employer') {
+			this.managerChoices = initWorkModalSelect(this.manager, {managers: JSON.parse(localStorage.getItem('managers'))})
+		} else {
+			this.managerChoices = initWorkModalSelect(this.manager, {managers: JSON.parse(localStorage.getItem('managersVacancy'))})
+		}
+		
 	}
 
 	update(data){

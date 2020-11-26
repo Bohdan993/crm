@@ -96,7 +96,7 @@ function makeCaching(f) {
     target = 'main', 
     str = 'vacancies',
     id_target = ''
-  }) {
+  } = {}) {
       saveFieldsData({
         str,
         id,

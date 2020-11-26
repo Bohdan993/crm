@@ -13,7 +13,9 @@ const addFeedback = async ({
 	type_arrow, 
 	date, 
 	id_employer,
-	count
+	count,
+	other, 
+	string
 } = {}) => {
 			console.log(type_feedback, type_author)
 			try {
@@ -30,7 +32,7 @@ const addFeedback = async ({
 					throw new Error('Выберите автора отзыва')
 				}
 				const feedbacks = await fetch.getResourse(`/${str}/?id_feedback=${id_feedback}&feedback=${feedback}&type_feedback=${type_feedback}&id_author=${id_author}&type_author=${type_author}&type_arrow=${type_arrow}&date=${date}&id_employer=${id_employer}`)
-				getWorkModalFeedback({id:id_employer , adding: true, p: 1, t: count})
+				getWorkModalFeedback({id:id_employer , adding: true, p: 1, t: count, other, str: string})
 				// console.log(production)
 
 				toastr.success(`ID работодателя ${id_employer}`, 'Успешно создан новый отзыв', {closeButton: false})

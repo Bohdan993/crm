@@ -11,6 +11,17 @@ The large array-like variables contain all information about a single icon
 At the bottom of this section, we provide information about the spritesheet itself
 @spritesheet: width height image @spritesheet-sprites;
 */
+@s-union-name: 's-Union';
+@s-union-x: 131px;
+@s-union-y: 89px;
+@s-union-offset-x: -131px;
+@s-union-offset-y: -89px;
+@s-union-width: 8px;
+@s-union-height: 6px;
+@s-union-total-width: 145px;
+@s-union-total-height: 114px;
+@s-union-image: 'sprite.png';
+@s-union: 131px 89px -131px -89px 8px 6px 145px 114px 'sprite.png' 's-Union';
 @s-anket-name: 's-anket';
 @s-anket-x: 125px;
 @s-anket-y: 40px;
@@ -388,7 +399,7 @@ At the bottom of this section, we provide information about the spritesheet itse
 @spritesheet-width: 145px;
 @spritesheet-height: 114px;
 @spritesheet-image: 'sprite.png';
-@spritesheet-sprites: @s-anket @s-arr-left @s-arr-right @s-at @s-attention @s-au @s-be @s-ca @s-ch @s-cy @s-cz @s-de @s-dk @s-documents @s-es @s-fi @s-fr @s-gb @s-gr @s-hu @s-il @s-is @s-lv @s-nl @s-no @s-nz @s-phone-red @s-phone @s-pl @s-pt @s-se @s-star @s-ua @s-us;
+@spritesheet-sprites: @s-union @s-anket @s-arr-left @s-arr-right @s-at @s-attention @s-au @s-be @s-ca @s-ch @s-cy @s-cz @s-de @s-dk @s-documents @s-es @s-fi @s-fr @s-gb @s-gr @s-hu @s-il @s-is @s-lv @s-nl @s-no @s-nz @s-phone-red @s-phone @s-pl @s-pt @s-se @s-star @s-ua @s-us;
 @spritesheet: 145px 114px 'sprite.png' @spritesheet-sprites;
 
 /*

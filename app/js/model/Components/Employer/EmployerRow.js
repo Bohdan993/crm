@@ -87,7 +87,7 @@ export default class RowEmployer {
 			getWorkModalMedia({id: this.data.id_employer, loading: true})
 			getWorkModalContactHistory({id:this.data.id_employer, loading: true })
 			getWorkModalVacancyHistory({id:this.data.id_employer, loading: true })
-			getWorkModalFeedback({id:this.data.id_employer, loading: true })
+			getWorkModalFeedback({id:this.data.id_employer, loading: true, other: 5, str: 'employers' })
 		})
 
 	}

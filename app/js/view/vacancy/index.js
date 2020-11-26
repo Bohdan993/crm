@@ -20,12 +20,15 @@ let mainInfoChooseBlock = document.querySelector('.main-info_left .main-info__ch
 let clientsModalLayer = document.querySelector('.clients .modal-row__layer')
 
 let switcher  = document.querySelector('.switcher')
-let clientsRow = document.querySelector('.row.clients')
+let clientsRow = document.querySelector('.row.clients.modal-row')
 
 const datePopup = document.querySelector('#date-terms-popup')
 
 const demandsRow = document.querySelector('.row.demands.modal-row')
 const termsRow = document.querySelector('.row.terms.modal-row')
+
+const sidebarVacancyForm = document.querySelector('.vacancy-modal__sidebar-vacancy-form')
+const vacancyModalSidebarNotes = document.querySelector('.vacancy-modal__sidebar-notes')
 
 export {
 
@@ -45,7 +48,9 @@ export {
 	clientsModalLayer,
 	datePopup,
 	demandsRow,
-	termsRow
+	termsRow,
+	sidebarVacancyForm,
+	vacancyModalSidebarNotes
 	// mainInfoPrice
 	
 }

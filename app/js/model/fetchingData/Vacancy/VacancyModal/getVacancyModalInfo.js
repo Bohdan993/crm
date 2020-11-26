@@ -8,13 +8,13 @@ import Loader from '../../../Components/Loader'
 import TermsComponent from '../../../Components/Vacancy/VacancyModal/TermsComponent'
 import DemandComponent from '../../../Components/Vacancy/VacancyModal/DemandsComponent'
 import {list, mount, place} from '../../../../../libs/libs'
-import {demandsRow, termsRow} from '../../../../view'
+import {demandsRow, termsRow, sidebarVacancyForm, vacancyModalSidebarNotes} from '../../../../view'
 
 
 
 const state = {}
 
-
+const managerSelectWrap = sidebarVacancyForm ? sidebarVacancyForm.querySelector('.manager-select-wrap') : null
 
 const loader = place(Loader)
 const loader2 = place(Loader)
@@ -39,11 +39,19 @@ if(termsRow) {
 	mount(termsRow, terms)
 }
 
-// if(sidebarEmployerForm) {
-// 	mount(sidebarEmployerForm, task)
-// 	mount(sidebarEmployerForm, loader2)
+if(managerSelectWrap) {
+	mount(managerSelectWrap, select)
+}
+
+if(sidebarVacancyForm) {
+	mount(sidebarVacancyForm, task)
+	mount(sidebarVacancyForm, loader2)
 	
-// }
+}
+
+if(vacancyModalSidebarNotes) {
+	mount(vacancyModalSidebarNotes, note)
+}
 
 // if(managerSelectWrap) {
 // 	mount(managerSelectWrap, select)
@@ -116,6 +124,15 @@ try {
 			workTime: mainPart.work_time
 		}
 
+
+		const vacancyEmployerData = {
+			id: mainPart.id_employer,
+			data: mainPart.employer
+		}
+
+
+		console.log(vacancyEmployerData)
+
 		// const tasksData = {
 		// 	tasks,
 		// 	id
@@ -147,6 +164,8 @@ try {
 
 		sessionStorage.setItem('currVacancyName', JSON.stringify(mainPart.name))
 		// sessionStorage.setItem('vacancyNegFeedback', JSON.stringify(badFeedback))
+
+		sessionStorage.setItem('currVacancyEmployer', JSON.stringify(vacancyEmployerData))
 
 		state.id = id
 	}catch(e) {

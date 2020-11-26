@@ -7,12 +7,13 @@ import showFullRow from '../../vacancy/showFullRow'
 import getVacancyClients from '../../fetchingData/Vacancy/getVacancyClients'
 import { makeCaching } from '../../helper'
 import getVacancyModalInfo from '../../fetchingData/Vacancy/VacancyModal/getVacancyModalInfo'
+import getWorkModalFeedback from '../../fetchingData/Employer/WorkModal/getWorkModalFeedback'
 
 // import getWorkModalManufacturyType from '../../fetchingData/Employer/WorkModal/getWorkModalManufacturyType'
 // import getWorkModalMedia from '../../fetchingData/Employer/WorkModal/getWorkModalMedia'
 // import getWorkModalContactHistory from '../../fetchingData/Employer/WorkModal/getWorkModalContactHistory'
 // import getWorkModalVacancyHistory from '../../fetchingData/Employer/WorkModal/getWorkModalVacancyHistory'
-// import getWorkModalFeedback from '../../fetchingData/Employer/WorkModal/getWorkModalFeedback'
+
 
 class Indicator {
 	constructor(){
@@ -52,7 +53,7 @@ export default class RowVacancy {
 							this.employer = el('a.no-open',{
 								href: '#'
 							})),
-						this.manager = el('i.tag.manager-tag')),
+						this.manager = place(el('i.tag.manager-tag'))),
 					el('div.row__vacancies row__cell',
 						this.typeVacancy = el('i.label green__label',
 							this.typeVacancyName = el('span')),
@@ -91,7 +92,10 @@ export default class RowVacancy {
 			})
 
 			this.labelsLayer.addEventListener('click', (e)=> {
-				getVacancyModalInfo(this.data.id_vacancy)
+				getVacancyModalInfo(this.data.id_vacancy).then(res => {
+					getWorkModalFeedback({id:JSON.parse(sessionStorage.getItem('currVacancyEmployer')).id, loading: true, str: 'vacancies', other: 1 })
+				})
+				
 			})
 	}
 
@@ -127,13 +131,14 @@ export default class RowVacancy {
 		setAttr(this.employer, {
 			innerText: data.employer
 		})
-
-		setAttr(this.manager, {
+		data.manager ? (
+		this.manager.update(true),
+		setAttr(this.manager.el, {
 			innerText: data.manager,
 			style: {
 				'background-color': `#${data.manager_color }`
 			}
-		})
+		})) : this.manager.update(false)
 
 		setAttr(this.term, {
 			innerText: `${data.start_work} - ${data.finish_work} (${data.period} мес)`

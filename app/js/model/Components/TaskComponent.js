@@ -60,13 +60,11 @@ class TaskItem {
 
 	update(data, index, items, context) {
         
-		console.log(context)
 		setAttr(this.textarea, {
 			value: data.name
 		})
 
 		this.data = data
-        console.log(this.data)
 		this.context = context
 	}
 
@@ -86,14 +84,10 @@ export default class Task { // to ../fetchingData/Employer/WorkModal
         	this.list = list('div.tasks-layer', TaskItem, 'id_employer_task', type)
         )
         
-        addNewTask(this.addTask)
-
-        // console.log(this.list)
 
         this.addTask.addEventListener('click', e => {
         	// console.log('yes')
         	if(type === 'employer') {
-        		console.log('yes')
         		addTask(
         			{
             			id: this.data.id,
@@ -110,6 +104,11 @@ export default class Task { // to ../fetchingData/Employer/WorkModal
     	console.log(data)
     	this.list.update(data.tasks, {id: data.id})
      	this.data = data
+    }
+
+
+    onmount() {
+        addNewTask(this.addTask)
     }
 }
 

@@ -1,47 +1,48 @@
 #modal-3.modal.micromodal-slide(aria-hidden='true')
 	.modal__overlay(tabindex='-1')
 		.modal__wrapper.my-modal-wrapper
-			.modal__container.work-modal.my-modal(role='dialog' aria-modal='true' aria-labelledby='modal-2-title')
-				span.modal__close(data-custom-close="modal-1")
+			.modal__container.work-modal.my-modal(role='dialog' aria-modal='true' aria-labelledby='modal-3-title')
+				span.modal__close(data-custom-close="modal-3")
 					span
 					span
 				.sidebar
 					.sidebar__layout
 						.f-container
 							.sidebar__info
-								form(action="")
-									.input-group
-										p
-											|Менеджер
-										select.manager-select(name="manager-select")
-											//- option(value="" disabled selected)
-											//- 	|Отсутствует
-											//- option(value="AK")
-											//- 	i.tag.manager-tag.dark-blue-tag
-											//- 		|AK
-											//- 	|Алексей
-											//- option(value="CK")
-											//- 	i.tag.manager-tag.light-green-tag
-											//- 		|CK
-											//- 	|Светлана
-									.input-group.add-task-group
-										.input-group__control
-											p
-												|Задачи
-											.add-item
-												span
-													|+ 
-												| добавить
-										.add-task-item
-											i.ico
-												+svg2('attention')
-											textarea(type="text" class="sidebar__task-input" rows="1" data-elastic="true")
-											span.delete-task-item
-							.sidebar__notes
-								.input-group
-									p
-										|Заметки
-									textarea(rows="5" class="sidebar__area-notes" data-elastic="true")
+								form.vacancy-modal__sidebar-vacancy-form
+									.manager-select-wrap
+										//- .input-group
+										//- 	p
+										//- 		|Менеджер
+										//- 	select.manager-select(name="manager-select")
+										//- 		//- option(value="" disabled selected)
+										//- 		//- 	|Отсутствует
+										//- 		//- option(value="AK")
+										//- 		//- 	i.tag.manager-tag.dark-blue-tag
+										//- 		//- 		|AK
+										//- 		//- 	|Алексей
+										//- 		//- option(value="CK")
+										//- 		//- 	i.tag.manager-tag.light-green-tag
+										//- 		//- 		|CK
+										//- 		//- 	|Светлана
+									//- .input-group.add-task-group
+									//- 	.input-group__control
+									//- 		p
+									//- 			|Задачи
+									//- 		.add-item
+									//- 			span
+									//- 				|+ 
+									//- 			| добавить
+									//- 	.add-task-item
+									//- 		i.ico
+									//- 			+svg2('attention')
+									//- 		textarea(type="text" class="sidebar__task-input" rows="1" data-elastic="true")
+									//- 		span.delete-task-item
+							.sidebar__notes.vacancy-modal__sidebar-notes
+								//- .input-group
+								//- 	p
+								//- 		|Заметки
+								//- 	textarea(rows="5" class="sidebar__area-notes" data-elastic="true")
 							.sidebar__actions
 								ul.sidebar__action
 									li.sidebar__action-item
@@ -82,7 +83,7 @@
 						include _clients
 						include _demands
 						include _terms
-						include ../../work-popup/_feedback
+						include _feedback
 					#check-list.check-list.my-modal-part
 						p
 							|Чек лист

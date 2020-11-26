@@ -1,6 +1,3 @@
-
-
-
 import {el, setAttr, place, list} from '../../../../libs/libs'
 import switchRowStatuses from '../../vacancy/switchRowStatuses'
 import { initVacancyTooltip } from '../../initToottips'

@@ -404,6 +404,9 @@
     padding-top: 21px;
     background: @secondary;
   }
+  // .rows.vacancy-rows {
+    
+  // }
   .sidebar__filter-item {
 
     &:last-child {
@@ -986,6 +989,17 @@
 
  .feedback-employer {
   .feedback-employer__layer {
+    width: 100%;
+    opacity: 1;
+    transition: opacity 0.25s linear;
+    &.hidden {
+      opacity: 0;
+    }
+  }
+ }
+
+ .feedback-vacancy {
+  .feedback-vacancy__layer {
     width: 100%;
     opacity: 1;
     transition: opacity 0.25s linear;

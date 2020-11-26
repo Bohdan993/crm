@@ -2,7 +2,7 @@ import {OverlayScrollbars} from '../../libs/libs'
 
 
 
-const initOverlayScrollbars = (node)=> {
+const initOverlayScrollbars = (node, type = '')=> {
 	let flag = false
 	let instance = OverlayScrollbars(node, {
 	className       : "os-theme-dark",
@@ -25,11 +25,16 @@ const initOverlayScrollbars = (node)=> {
 						$this.scroll({ y : "-100%"})
 					}, {once: true})
 
-					target.closest('.feedback-employer__layer').addEventListener('click', function(e){
+					if(type === 'employer') {
+						target.closest('.feedback-employer__layer').addEventListener('click', function(e){
 						if(e.target.parentNode.classList.contains('show-more')) {
 							$this.scroll({ y : "100%"})
 						}
-					}, {once: true})
+						}, {once: true})
+					} else {
+						
+					}
+					
 					
 				}
 				else if(target.classList.contains('modal-row__layer')) {
