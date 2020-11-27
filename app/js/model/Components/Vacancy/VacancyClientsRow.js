@@ -204,11 +204,14 @@ export default class RowVacancyClient {
 			) : this.labelCourse.update(false) : null
 
 		this.data = data
+
+		// console.log(this.data)
 	}
 
 
 	onmount(){
-		switchRowStatuses(this.statusLeft)
+		// console.log(this.data.)
+		switchRowStatuses(this.statusLeft, this.data.main.id_trainees)
 		initVacancyTooltip(this.statusSlider.el)
 	}
 

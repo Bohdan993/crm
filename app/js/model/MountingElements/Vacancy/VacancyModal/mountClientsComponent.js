@@ -15,3 +15,7 @@ const mountClientsVacancy = () => {
 
 
 export default mountClientsVacancy // to ../../../index.js
+
+export {
+	clients
+}

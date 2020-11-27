@@ -12,16 +12,22 @@ const addNewVacancy = () => {
 
 		sidebarEmployer.addEventListener('click', async function(){
 			try {
-				const employer = await fetch.getResourse('/vacancies/create')
-				getEmployersList()
+				const vacancy = await fetch.getResourse('/vacancies/create')
+
+
+				if(vacancy.success === true) {
+					toastr.success(`ID вакансии ${employer.id}`, 'Успешно создана вакансия', {closeButton: false})
+					getEmployersList()
+				} else {
+
+				}
+				
 				// console.log(employer)
 				// console.log(data)
 
 				// employerListAddEvent.detail.id = String(employer.id)
 				// document.dispatchEvent(employerListAddEvent)
 
-
-				toastr.success(`ID вакансии ${employer.id}`, 'Успешно создана вакансия', {closeButton: false})
 			} catch(e) {
 				console.error(e)
 			}

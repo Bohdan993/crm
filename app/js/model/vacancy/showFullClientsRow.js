@@ -32,7 +32,7 @@ const showFullClientsRow = (switcher, row) => {
 	switcher.addEventListener('click', function(){
 			this.classList.toggle('rotate')
 			names.classList.toggle('active')
-			container.classList.toggle('active');
+			container.classList.toggle('active')
 		 // toggleRow()
 	})
 	names.addEventListener('click', function(){

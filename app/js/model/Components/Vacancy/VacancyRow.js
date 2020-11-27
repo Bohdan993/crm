@@ -8,7 +8,7 @@ import getVacancyClients from '../../fetchingData/Vacancy/getVacancyClients'
 import { makeCaching } from '../../helper'
 import getVacancyModalInfo from '../../fetchingData/Vacancy/VacancyModal/getVacancyModalInfo'
 import getWorkModalFeedback from '../../fetchingData/Employer/WorkModal/getWorkModalFeedback'
-
+import  {clients} from '../../MountingElements/Vacancy/VacancyModal/mountClientsComponent'
 // import getWorkModalManufacturyType from '../../fetchingData/Employer/WorkModal/getWorkModalManufacturyType'
 // import getWorkModalMedia from '../../fetchingData/Employer/WorkModal/getWorkModalMedia'
 // import getWorkModalContactHistory from '../../fetchingData/Employer/WorkModal/getWorkModalContactHistory'
@@ -73,8 +73,9 @@ export default class RowVacancy {
 				if(!this.showed) {
 					getVacancyClients(this.data.id_vacancy)
 					.then(res => {
-						this.vacancyClientsTable.update(true, res)
 						if(res) {
+							this.vacancyClientsTable.update(true, res)
+							clients.update(res)
 							showFullRow(this.el, e)
 							this.active = true
 						} else {
@@ -87,8 +88,6 @@ export default class RowVacancy {
 				if(this.active) {
 					showFullRow(this.el, e)
 				}
-
-				
 			})
 
 			this.labelsLayer.addEventListener('click', (e)=> {

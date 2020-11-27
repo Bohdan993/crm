@@ -18,16 +18,17 @@ export default class ClientsComponent {
 							el('p', `Гурківський Олександр, Лемешко Аліна, Романов Валентин, Тарасюк Віталій, Бичківська Алла, Червінський Йосип, Шащук Іван, Іванчик Олесандр, Гурківський Олександр, 
 								Лемешко Аліна, Романов Валентин, Тарасюк Віталій, Бичківська
 								Алла, Червінський Йосип, Шащук Іван, Іванчик Олесандр`)),
-						this.vacancyClientsTable = place(TableVacancyClient)) 
+						this.vacancyClientsTable = new TableVacancyClient()) 
 			)
-		this.vacancyClientsTable.update(true)
+
 
 
 	}
 
 
-	update() {
-		this.vacancyClientsTable.update(true)
+	update(data) {
+		// console.log(data)
+		this.vacancyClientsTable.update(data)
 	}
 
 

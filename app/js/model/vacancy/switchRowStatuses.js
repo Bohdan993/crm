@@ -1,30 +1,6 @@
-const switchRowStatuses = (el) => {
-    console.log(el)
-    // class StatusSwitcher {
-    // 	constructor(selector){
+const switchRowStatuses = (el, client_id) => {
+    console.log(el, client_id)
 
-    // 		this.timeArray = Array(9).fill({text: '', date: ''})
-    // 		this.prevArrow = selector.querySelector('.cell-status__control-left')
-    // 		this.rightArrow = selector.querySelector('.cell-status__control-right')
-
-    // 	}
-
-
-    // 	clickNextBtn() {
-    // 		this.rightArrow.addEventListener('click', function(){
-
-    // 		})
-    // 	}
-
-
-    // 	clickPrevBtn() {
-
-    // 	}
-
-    // }
-
-    // console.log(statuses)
-    // statuses.forEach(el => {
         let timeArray = Array(9).fill({
             text: '',
             date: ''
