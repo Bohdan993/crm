@@ -13,7 +13,7 @@ import  {clients} from '../../MountingElements/Vacancy/VacancyModal/mountClients
 // import getWorkModalMedia from '../../fetchingData/Employer/WorkModal/getWorkModalMedia'
 // import getWorkModalContactHistory from '../../fetchingData/Employer/WorkModal/getWorkModalContactHistory'
 // import getWorkModalVacancyHistory from '../../fetchingData/Employer/WorkModal/getWorkModalVacancyHistory'
-
+import storage from '../../Storage'
 
 class Indicator {
 	constructor(){

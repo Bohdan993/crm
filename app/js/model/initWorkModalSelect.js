@@ -52,10 +52,8 @@ const initWorkModalSelect = (elem, { countries, managers, contacts } = {}) => {
  			// console.log(country)
  			return {
  				value: country.id,
- 				label: `<i class="row__flag">
-                <svg>
-                  <use xlink:href="img/sprites/svg/symbol/sprite.svg#${country.icon}"></use>
-                </svg></i><span>${country.name}</span>`,
+ 				label: `<i class="row__flag s-${country.icon.split('.')[0]}">
+               </i><span>${country.name}</span>`,
         selected: false,
         disabled: false
  			}

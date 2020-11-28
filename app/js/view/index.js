@@ -111,7 +111,8 @@ import {
 	demandsRow,
 	termsRow,
 	sidebarVacancyForm,
-	vacancyModalSidebarNotes
+	vacancyModalSidebarNotes,
+	archiveActive
 	// mainInfoPrice
 } from './vacancy'
 
@@ -199,7 +200,8 @@ export {
 	termsRow,
 	employerStatNums,
 	sidebarVacancyForm,
-	vacancyModalSidebarNotes
+	vacancyModalSidebarNotes,
+	archiveActive
 	// mainInfoPrice
 	// statusChangeTemplate
 }

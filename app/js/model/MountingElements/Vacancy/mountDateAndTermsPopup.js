@@ -4,14 +4,10 @@ import {datePopup} from '../../../view/vacancy'
 
 const popup = new DateAndTerms()
 
-if(datePopup) {
-	mount(datePopup, popup)
-}
-
 
 const mountDateAndTermsPopup = () => {
 if(datePopup) {
-
+	mount(datePopup, popup)
 				
 
 				// if(sessionStorage.getItem('sortFilterVacancy')) { 

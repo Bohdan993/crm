@@ -118,12 +118,14 @@ export default class RowEmployer {
 			[custom]: `modal-1`
 		})
 
-		if(id_employer !== this.data.id_employer) {
-		
-
 		setAttr(this.flagIco, {
 			classList: `row__flag ${data.icon ? 's-' + data.icon.split('.')[0] : ''}`
 		})
+
+		if(id_employer !== this.data.id_employer) {
+		
+
+
 		// this.abbr.innerText = data.addr
 		
 		

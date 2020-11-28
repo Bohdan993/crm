@@ -77,10 +77,10 @@ export default class WorkModal {
 				el('div.common-info__contact-info_curr.common-info__group_small.info-block', 
 					el('p', 'Контактная информация'),
 					el('div.input-group.info-group-ico.phone-group', 
-					el('i.ico', 
-						svg('svg', svg('use', {
-							xlink: { href: "img/sprites/svg/symbol/sprite.svg#phone"}
-						}))
+					el('i.ico.s-phone', 
+						// svg('svg', svg('use', {
+						// 	xlink: { href: "img/sprites/svg/symbol/sprite.svg#phone"}
+						// }))
 						),
 					this.comInfPhone = el('input.info-area', {
 						type: 'text'
@@ -92,10 +92,10 @@ export default class WorkModal {
 						rel: 'nofollow noopener noreferrer',
 						target: "_blank"
 					}, 
-						el('i.ico', 
-							svg('svg', svg('use', {
-								xlink: { href: "img/sprites/svg/symbol/sprite.svg#email.svg"}
-							}))
+						el('i.ico.s-mail', 
+							// svg('svg', svg('use', {
+							// 	xlink: { href: "img/sprites/svg/symbol/sprite.svg#email.svg"}
+							// }))
 							)
 						),
 					this.comInfEmail = el('input.info-area', {
@@ -124,22 +124,26 @@ export default class WorkModal {
 						rel: 'nofollow noreferrer noopener',
 						target: '_blank'
 					},
-						el('i.ico', svg('svg', svg('use', {
-							xlink: { href: "img/sprites/svg/symbol/sprite.svg#web"}
-						})))),
+						el('i.ico.s-web', 
+						// 	svg('svg', svg('use', {
+						// 	xlink: { href: "img/sprites/svg/symbol/sprite.svg#web"}
+						// }))
+							)),
 					this.comInfSite = el('input.info-area',{
 							type: 'text'
 						})
 					),
-				el('div.input-group.info-group-ico',
+				el('div.input-group.info-group-ico.fb-group',
 					this.comInfFacebookLink = el('a.social-link',{
 						href: '',
 						rel: 'nofollow noreferrer noopener',
 						target: '_blank'
 					},
-						el('i.ico', svg('svg', svg('use', {
-							xlink: { href: "img/sprites/svg/symbol/sprite.svg#facebook"}
-						})))),
+						el('i.ico.s-fb', 
+						// 	svg('svg', svg('use', {
+						// 	xlink: { href: "img/sprites/svg/symbol/sprite.svg#facebook"}
+						// }))
+						)),
 					this.comInfFacebook = el('input.info-area',{
 							type: 'text'
 						})),
@@ -149,9 +153,11 @@ export default class WorkModal {
 						rel: 'nofollow noreferrer noopener',
 						target: '_blank'
 					},
-						el('i.ico', svg('svg', svg('use', {
-							xlink: { href: "img/sprites/svg/symbol/sprite.svg#instagram"}
-						})))),
+						el('i.ico.s-inst', 
+						// 	svg('svg', svg('use', {
+						// 	xlink: { href: "img/sprites/svg/symbol/sprite.svg#instagram"}
+						// }))
+						)),
 					this.comInfInstagram = el('input.info-area',{
 							type: 'text'
 						}))

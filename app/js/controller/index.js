@@ -42,7 +42,8 @@ import {
 	getStatusesVacancyPopup,
 	mountDateAndTermsPopup,
 	getClientsVacancy,
-	mountClientsVacancy
+	mountClientsVacancy,
+	mountActiveArchive
 } from '../model'
 
 import {OverlayScrollbars} from '../../libs/libs'
@@ -136,6 +137,7 @@ const app = {
 		this.mdatp()
 		this.gcv()
 		this.mcv()
+		this.maa()
 	},
 
 	initOSB(){
@@ -302,6 +304,9 @@ const app = {
 	},
 	mcv() {
 		mountClientsVacancy()
+	},
+	maa(){
+		mountActiveArchive()
 	}
 
 }

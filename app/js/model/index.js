@@ -67,7 +67,7 @@ import mountSortingVacancyPopup from './MountingElements/Vacancy/mountSortingPop
 import mountSearchInputVacancy from './MountingElements/Vacancy/mountSearch'
 import mountDateAndTermsPopup from './MountingElements/Vacancy/mountDateAndTermsPopup'
 import mountClientsVacancy from './MountingElements/Vacancy/VacancyModal/mountClientsComponent'
-
+import mountActiveArchive from './MountingElements/Vacancy/mountActiveArchiveComponent'
 
 // console.log(getVacancyList)
 
@@ -129,7 +129,8 @@ export {
 	getStatusesVacancyPopup,
 	mountDateAndTermsPopup,
 	getClientsVacancy,
-	mountClientsVacancy
+	mountClientsVacancy,
+	mountActiveArchive
 	// mountEmployerDelete
 	// getTextSearch
 }

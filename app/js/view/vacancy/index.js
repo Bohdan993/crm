@@ -29,7 +29,7 @@ const termsRow = document.querySelector('.row.terms.modal-row')
 
 const sidebarVacancyForm = document.querySelector('.vacancy-modal__sidebar-vacancy-form')
 const vacancyModalSidebarNotes = document.querySelector('.vacancy-modal__sidebar-notes')
-
+const archiveActive = document.querySelector('.active-archive__statuses')
 export {
 
 	rows,
@@ -50,7 +50,8 @@ export {
 	demandsRow,
 	termsRow,
 	sidebarVacancyForm,
-	vacancyModalSidebarNotes
+	vacancyModalSidebarNotes,
+	archiveActive
 	// mainInfoPrice
 	
 }

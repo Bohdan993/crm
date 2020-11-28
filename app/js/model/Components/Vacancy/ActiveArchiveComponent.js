@@ -1,48 +1,107 @@
-import {el, setAttr} from '../../../libs/libs'
-import getVacancyList from '../fetchingData/Vacancy/getVacancyList'
+import {el, setAttr, list} from '../../../../libs/libs'
+import getVacancyList from '../../fetchingData/Vacancy/getVacancyList'
+
+
+class ArchiveActiveRow {
+	constructor(){
+		this.el = el('div.btn-group',
+			this.btn = el('input'),
+			this.label = el('label') 
+			)
+	}
+
+	update(data){
+
+		setAttr(this.btn, {
+			type: data.type,
+			id: data.id,
+			name: data.id,
+			checked: data.checked
+		})
+
+		setAttr(this.label, {
+			for: data.id,
+			innerText: data.text
+		})
+			this.filter(data.filter, 'active', 'archive', 'activeVacancyFilter', 'archiveVacancyFilter')
+		// this.filter(data.name, data.str, data.filter)
+	}
 
 
 
+	filter(id, str, str2, storageKey, storageKey2){
+		//@param id - id соответствующего чекбокса, который прилетает с сервака
+		//@param str - поле объекта параметра функции getVacancyList, которая выводит список работодателей
+		//@param storageKey - ключ в sessionStorage по которому хранится список checked чекбоксов из попапа
+		sessionStorage.setItem(storageKey, JSON.stringify(id))
+
+		this.btn.addEventListener('change', filter)
+
+		function filter(e){
+
+			if(this.checked) {
+				if(this.id === 'current-chbx') {
+					sessionStorage.setItem(storageKey, JSON.stringify(id))
+					getVacancyList({[str]: id})
+				} else if(this.id === 'archive-chbx') {
+					sessionStorage.setItem(storageKey2, JSON.stringify(id))
+					getVacancyList({[str2]: id})
+				}
+				
+			} else {
+				if(this.id === 'current-chbx') {
+					console.log('current-chbx')
+					sessionStorage.setItem(storageKey, JSON.stringify(0))
+					getVacancyList({[str]: 0})
+				} else if(this.id === 'archive-chbx') {
+					console.log('archive-chbx')
+					sessionStorage.setItem(storageKey2, JSON.stringify(0))
+					getVacancyList({[str2]: 0})
+				}
+			}
+		}
+		
+	}
+}
 
 
 export default class ArchiveActive {
 	constructor(){
+		this.data = [
+			{
+				type: 'checkbox',
+				id: 'current-chbx',
+				checked: true,
+				text: 'Текущие',
+				filter: 1
+			},
+			{
+				type: 'checkbox',
+				id: 'archive-chbx',
+				checked: false,
+				text: 'Архивные',
+				filter: 1
+			}
+		]
 		this.el = el('div.input-group.radio-group-type-2.blue', 
-			el('div.group',
-				this.activeBtn = el('input', {
-					type: 'checkbox',
-					id: 'current-chbx',
-					name: 'current-chbx',
-					cheched: true
-				}),
-				el('label', {
-					for: 'current-chbx',
-					innerText: "Текущие"
-				}),
-				this.archiveBtn = el('input', {
-					type: 'checkbox',
-					id: 'archive-chbx',
-					name: 'archive-chbx'
-				}),
-				el('label', {
-					for: 'archive-chbx',
-					innerText: "Архивные"
-				})
-				)
+				this.list = list('div.group', ArchiveActiveRow)
 			)
 
+		this.list.update(this.data)
 
-		this.activeBtn.addEventListener('click', (e) => {
 
-		})
+		// this.activeBtn.addEventListener('click', (e) => {
 
-		this.archiveBtn.addEventListener('click', (e) => {
+		// })
+
+		// this.archiveBtn.addEventListener('click', (e) => {
 			
-		})
+		// })
 	}
 
 
 	update(data){
 
 	}
+
 }

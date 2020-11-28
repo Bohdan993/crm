@@ -2,6 +2,7 @@ import {el, setAttr, place} from '../../../../../libs/libs'
 import TableVacancyClient from '../VacancyClients'
 import showFullClientsRow from '../../../vacancy/showFullClientsRow'
 import initOverlayScrollbars from '../../../OverlayScrollbarsInit'
+import storage from '../../../Storage'
 
 export default class ClientsComponent {
 	constructor() {
