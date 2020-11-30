@@ -32,10 +32,11 @@ import {
     employerTypeTemplate2,
     workTypeTemplate,
     pricePopupTemplate,
-    choiceClientTemplate2
+    // choiceClientTemplate2
     // statusChangeTemplate	
 
 } from '../view'
+
 
 const initTooltips = () => {
 
@@ -96,9 +97,9 @@ const initTooltips = () => {
     if (employerTypeTemplate2) {
         employerTypeTemplate2.style.display = 'block'
     }
-    if (choiceClientTemplate2) {
-        choiceClientTemplate2.style.display = 'block'
-    }
+    // if (choiceClientTemplate2) {
+    //     choiceClientTemplate2.style.display = 'block'
+    // }
 
     /////////////////////////////////////////////////////
 
@@ -144,35 +145,7 @@ const initTooltips = () => {
 
 
 
-    function initVacancyModalTooltip(el, content) {
-        let instance = tippy(el, {
-            content,
-            allowHTML: true,
-            maxWidth: 364,
-            // content: ``,
-            interactive: true,
-            interactiveBorder: 5,
-            interactiveDebounce: 0,
-            placement: 'bottom',
-            offset: [0, 8],
-            hideOnClick: true,
-            trigger: 'click',
-            appendTo: () => document.body,
-            onShown(instance) {
-                document.addEventListener('keyup', function(e) {
-                    if (e.keyCode === 27) {
-                        instance.hide();
-                    }
-                })
-            },
-        })
 
-    }
-
-    initVacancyModalTooltip('.modal-row__layer.main-info_left .choose-employer', employerTypeTemplate)
-    initVacancyModalTooltip('.modal-row__layer.main-info_right .choose-employer', employerTypeTemplate2)
-    initVacancyModalTooltip('.modal-row__layer.main-info_left .choose-product-type .type-product', workTypeTemplate)
-    initVacancyModalTooltip('.modal-row__layer.main-info_left .main-info__price span', pricePopupTemplate)
 
 }
 
@@ -458,6 +431,7 @@ function initRowTooltips(el, content) {
 
 //////////////////////////////START initWorkModalTooltip BLOCK/////////////////////////////////
 function initWorkModalTooltip(el, content) {    
+    console.log(tippy)
     let instance = tippy(el, {
         content: content,
         // target: el,
@@ -471,7 +445,7 @@ function initWorkModalTooltip(el, content) {
         trigger: 'click',
         appendTo: () => document.body,
         onCreate(instance){
-            // console.log('dfdf')
+          
         },
         onShown(instance) {
             document.addEventListener('keyup', function(e) {
@@ -569,10 +543,46 @@ function initWorkModalTooltip(el, content) {
 //////////////////////////////END initVacancyTooltip BLOCK/////////////////////////////////
 
 
+
+   function initVacancyModalTooltip(el, content, tippy) {
+        console.log(tippy)
+        let instance = tippy(el, {
+            content,
+            allowHTML: true,
+            maxWidth: 364,
+            // content: ``,
+            interactive: true,
+            interactiveBorder: 5,
+            interactiveDebounce: 0,
+            placement: 'bottom',
+            offset: [0, 8],
+            hideOnClick: true,
+            trigger: 'click',
+            appendTo: () => document.body,
+            onShown(instance) {
+                document.addEventListener('keyup', function(e) {
+                    if (e.keyCode === 27) {
+                        instance.hide();
+                    }
+                })
+            },
+        })
+
+        return instance
+
+    }
+
+    // initVacancyModalTooltip('.modal-row__layer.main-info_left .choose-employer', employerTypeTemplate)
+    // initVacancyModalTooltip('.modal-row__layer.main-info_right .choose-employer', employerTypeTemplate2)
+    // initVacancyModalTooltip('.modal-row__layer.main-info_left .choose-product-type .type-product', workTypeTemplate)
+    // initVacancyModalTooltip('.modal-row__layer.main-info_left .main-info__price span', pricePopupTemplate)
+
 export default initTooltips
 
 export {
+    initVacancyModalTooltip,
     initRowTooltips, // to './Components/Employer/EmployerRow.js'
     initWorkModalTooltip, // to './Components/FeedbackComponent'
-    initVacancyTooltip
+    initVacancyTooltip,
+    // initVacancyModalTooltip
 }

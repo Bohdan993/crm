@@ -18,8 +18,6 @@ const loader = place(Loader)
 const loader2 = place(Loader)
 
 
-console.log(Feedback)
-
 const feedbackEmp = new Feedback('employer')
 const feedbackVac = new Feedback('vacancy')
 

@@ -38,7 +38,7 @@
 		border-right: 1px solid @white;
 	}
 
-	.table-full__row {
+	.table-full__layer .table-full__row {
 
 		// &:nth-child(2) {
 		// 	.indicator {
@@ -48,10 +48,10 @@
 		// 	}
 		// }
 	
-
-		&:not(:first-child) {
-			border-bottom: 1px solid @white;
-		}
+		border-bottom: 1px solid @white;
+		// &:not(:first-child) {
+		// 	border-bottom: 1px solid @white;
+		// }
 
 			&:last-child {
 				border-bottom: none;
@@ -59,7 +59,7 @@
 
 
 		&:first-child {
-			padding-bottom: 0;
+			// padding-bottom: 0;
 			.table-full__title {
 				flex-basis: 211/989 * 100%;
 				border-right: 1px solid @white;

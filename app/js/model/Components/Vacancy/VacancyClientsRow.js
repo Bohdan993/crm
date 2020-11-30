@@ -3,7 +3,7 @@ import switchRowStatuses from '../../vacancy/switchRowStatuses'
 import { initVacancyTooltip } from '../../initToottips'
 
 
-console.log(initVacancyTooltip)
+// console.log(initVacancyTooltip)
 
 const dataArr = [
 {

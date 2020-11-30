@@ -8,7 +8,7 @@ import getVacancyClients from '../../fetchingData/Vacancy/getVacancyClients'
 import { makeCaching } from '../../helper'
 import getVacancyModalInfo from '../../fetchingData/Vacancy/VacancyModal/getVacancyModalInfo'
 import getWorkModalFeedback from '../../fetchingData/Employer/WorkModal/getWorkModalFeedback'
-import  {clients} from '../../MountingElements/Vacancy/VacancyModal/mountClientsComponent'
+// import  {clients} from '../../MountingElements/Vacancy/VacancyModal/mountClientsComponent'
 // import getWorkModalManufacturyType from '../../fetchingData/Employer/WorkModal/getWorkModalManufacturyType'
 // import getWorkModalMedia from '../../fetchingData/Employer/WorkModal/getWorkModalMedia'
 // import getWorkModalContactHistory from '../../fetchingData/Employer/WorkModal/getWorkModalContactHistory'
@@ -36,6 +36,7 @@ export default class RowVacancy {
 		this.data = {}
 		this.showed = false
 		this.active = false
+		// this.updated = false
 		this.el = el("div.row.no-open",
 				el('div.f-container', 
 					el('div.row__terms.row__cell hot'), 
@@ -70,24 +71,56 @@ export default class RowVacancy {
 					return
 				}
 
+				// console.log(this.data.id_vacancy)
+				// console.log(storage)
+				// console.log(storage.isSet(this.data.id_vacancy))
+
+				// if(storage.isSet(this.data.id_vacancy)) {
+				// 	if(!this.updated) {
+				// 		this.vacancyClientsTable.update(true, storage.getState(this.data.id_vacancy))
+				// 	}
+				// 	this.updated = true
+				// } else {
+				// 	// console.log('no storage')
+				// 	getVacancyClients(this.data.id_vacancy)
+				// 	.then(res => {
+				// 		if(res) {
+				// 			storage.setState(this.data.id_vacancy, res)
+				// 			this.vacancyClientsTable.update(true, res)
+				// 			showFullRow(this.el, e)
+				// 			this.active = true
+				// 		} else {
+				// 			this.active = false
+				// 		}
+				// 	})
+				// }
+
 				if(!this.showed) {
-					getVacancyClients(this.data.id_vacancy)
-					.then(res => {
-						if(res) {
-							this.vacancyClientsTable.update(true, res)
-							clients.update(res)
-							showFullRow(this.el, e)
-							this.active = true
-						} else {
-							this.active = false
-						}
-					})
+					if(storage.isSet(this.data.id_vacancy)) {
+						this.vacancyClientsTable.update(true, storage.getState(this.data.id_vacancy))
+						this.active = true
+					} 
+
+					if(!storage.isSet(this.data.id_vacancy)) {
+						getVacancyClients(this.data.id_vacancy)
+						.then(res => {
+							if(res) {
+								storage.setState(this.data.id_vacancy, res)
+								this.vacancyClientsTable.update(true, res)
+								showFullRow(this.el, e)
+								this.active = true
+							} else {
+								this.active = false
+							}
+						})
+					}
 					this.showed = true
 				}
 
 				if(this.active) {
 					showFullRow(this.el, e)
 				}
+
 			})
 
 			this.labelsLayer.addEventListener('click', (e)=> {
@@ -99,8 +132,6 @@ export default class RowVacancy {
 	}
 
 	update(data, index, items, context){
-		console.log(context)
-		console.log(data)
 
 		this.indicatorsArr = data.status.map((el, i) =>{
 			return {

@@ -14,7 +14,7 @@ const getVacancyClients = async (id) => {
 					throw new Error('Не возможно загрузить список клиентов')
 				}
 		} catch (e) {
-			toastr.error(e, 'Возникла ошибка', {closeButton: true})
+			toastr.error(e.message, 'Возникла ошибка', {closeButton: true})
 			return false
 		}
 	

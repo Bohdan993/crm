@@ -1,5 +1,5 @@
 const switchRowStatuses = (el, client_id) => {
-    console.log(el, client_id)
+    // console.log(el, client_id)
 
         let timeArray = Array(9).fill({
             text: '',

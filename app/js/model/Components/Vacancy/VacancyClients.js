@@ -14,11 +14,12 @@ function firstRow(title){
 export default class TableVacancyClient {
 	constructor(){
 		this.data = {}
-		this.choosenArr = []
-		this.readyArr = []
-		this.waitArr = []
-		this.departmentArr = []
-		this.busyArr = []
+		this.choosenObj = {}
+		this.readyObj = {}
+		this.waitObj = {}
+		this.departmentObj = {}
+		this.busyObj = {}
+
 		this.el = el("div.row__full-info.table-full",
 			el('div.table-full__choosen.choosen',
 				firstRow('Отобраны'),
@@ -47,27 +48,33 @@ export default class TableVacancyClient {
 	}
 
 	update(data, r, t, y){
-		console.log(data, r, t, y)
+		console.log(data)
 		data && data.forEach(el => {
-			// el.vacancy.id_status = '5'
 			if(el.vacancy.id_status === '1' || el.vacancy.id_status === '2') {
-				this.choosenArr.push(el)
+				this.choosenObj[el.main.id_trainees] = el
 			} else if (el.vacancy.id_status === '3' || el.vacancy.id_status === '4') {
-				this.readyArr.push(el)
+				this.readyObj[el.main.id_trainees] = el
 			} else if (el.vacancy.id_status === '5')  {
-				this.waitArr.push(el)
+				this.waitObj[el.main.id_trainees] = el
 			} else if (el.vacancy.id_status === '6' || el.vacancy.id_status === '7' || el.vacancy.id_status === '8') {
-				this.departmentArr.push(el)
+				this.departmentObj[el.main.id_trainees] = el
 			} else if(el.vacancy.id_status === '9') {
-				this.busyArr.push(el)
+				this.busyObj[el.main.id_trainees] = el
 			}
 		})
 
-		this.choosenList.update(this.choosenArr)
-		this.readyList.update(this.readyArr)
-		this.waitList.update(this.waitArr)
-		this.departmentList.update(this.departmentArr)
-		this.busyList.update(this.busyArr)
+
+		this.choosenList.update(Object.values(this.choosenObj))
+		this.readyList.update(Object.values(this.readyObj))
+		this.waitList.update(Object.values(this.waitObj))
+		this.departmentList.update(Object.values(this.departmentObj))
+		this.busyList.update(Object.values(this.busyObj))
+
+		this.choosenObj = {}
+		this.readyObj = {}
+		this.waitObj = {}
+		this.departmentObj = {}
+		this.busyObj = {}
 
 		this.data = data
 	}

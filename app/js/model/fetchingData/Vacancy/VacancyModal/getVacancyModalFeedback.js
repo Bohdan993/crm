@@ -11,7 +11,6 @@ const feedbackVacancy = document.querySelector('.row.feedback-vacancy')
 
 
 const loader = place(Loader)
-console.log(Feedback)
 const feedback = new Feedback('vacancy')
 const feedback2 = new Feedback('employer')
 

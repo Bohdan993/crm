@@ -1,4 +1,4 @@
-import {el, setAttr, list, place, svg, unmount, Autocomplete, toastr} from '../../../libs/libs';
+import {el, setAttr, list, place, svg, Autocomplete, toastr} from '../../../libs/libs';
 import hiddenClassMixin from '../Mixins/hiddenClassMixin'
 import ShowMoreBtn from './Employer/WorkModal/ShowMoreBtn'
 import checkIfWrapperIsEmpty from '../checkIfWrapperIsEmpty'
@@ -18,10 +18,11 @@ class FeedbackTypeRow {
 		this.el = el('div.input-group',
 		this.input = el('input', {id: 'inf-feedback-rbtn', type: 'radio', name: 'type-feedback-rbtn'}),
 		this.label = el('label', {for: 'inf-feedback-rbtn'}, 
-			el('i.ico',
-				svg('svg', this.svg = svg('use', {
-					xlink: {href: "img/sprites/svg/symbol/sprite.svg#inf-feedback"}
-				}))),
+			this.ico = el('i.ico.s-info-feedback',
+				// svg('svg', this.svg = svg('use', {
+				// 	xlink: {href: "img/sprites/svg/symbol/sprite.svg#inf-feedback"}
+				// }))
+				),
 				this.text = el('span', 'Информационный'))
 		)
 
@@ -45,8 +46,12 @@ class FeedbackTypeRow {
 			innerText: data.label
 		})
 
-		setAttr(this.svg, {
-			xlink: {href: `img/sprites/svg/symbol/sprite.svg#${data.ico}`}
+		// setAttr(this.svg, {
+		// 	xlink: {href: `img/sprites/svg/symbol/sprite.svg#${data.ico}`}
+		// })
+
+		setAttr(this.ico, {
+			classList: `ico s-${data.ico}`
 		})
 		
 	}
@@ -194,7 +199,7 @@ class FeedbackType {
 				id: 'inf-feedback-rbtn',
 				name: 'type-feedback-rbtn',
 				label: 'Информационный',
-				ico: 'inf-feedback',
+				ico: 'info-feedback-white',
 				checked: true
 			},
 			{
@@ -202,7 +207,7 @@ class FeedbackType {
 				id: 'pos-feedback-rbtn',
 				name: 'type-feedback-rbtn',
 				label: 'Хороший отзыв',
-				ico: 'pos-feedback',
+				ico: 'pos-feedback-white',
 				checked: false
 			},
 			{
@@ -210,7 +215,7 @@ class FeedbackType {
 				id: 'neg-feedback-rbtn',
 				name: 'type-feedback-rbtn',
 				label: 'Плохой отзыв',
-				ico: 'neg-feedback',
+				ico: 'neg-feedback-white',
 				checked: false
 			}
 		]
@@ -254,9 +259,11 @@ class FeedbackEdit {
 		this.el = el('form.modal-row__feedback-row.add-feedback-form', 
 			el('div.modal-row__feedback-speakers', 
 				this.typeFeedback = el('i.modal-row__feedback-ico', 
-					svg('svg', this.typeFeedbackIco = svg('use', {
-						xlink: {href: 'img/sprites/svg/symbol/sprite.svg#pos-feedback-white'}
-					}))),
+					this.typeFeedbackIco = el('i.ico')
+					// svg('svg', this.typeFeedbackIco = svg('use', {
+					// 	xlink: {href: 'img/sprites/svg/symbol/sprite.svg#pos-feedback-white'}
+					// }))
+					),
 				this.choiseClient = el('a.modal-row__feedback-choise', 'Выбрать'),
 				this.direction = el('i.modal-row__feedback-direction-edit.change-direction', 
 					svg('svg', svg('use', {
@@ -389,16 +396,6 @@ class FeedbackEdit {
 		this.feedbackType.parent = this
 		this.feedbackClient.parent = this
 
-		
-		changeDirection(this.direction)
-
-		this.typeFeedbackInstance = initWorkModalTooltip(this.typeFeedback)
-		this.choiseClientInstance = initWorkModalTooltip(this.choiseClient)
-
-		// console.log(this.typeFeedbackInstance)
-
-		this.typeFeedbackInstance.setContent(this.feedbackType.el)
-		this.choiseClientInstance.setContent(this.feedbackClient.el)
 
 	}
 
@@ -428,10 +425,11 @@ class FeedbackEdit {
 		})
 
 		setAttr(this.typeFeedbackIco, {
-			xlink: {
-				href: `img/sprites/svg/symbol/sprite.svg#${data.type_feedback === '0' ? 'inf-feedback-white' : data.type_feedback === '1' ? 'pos-feedback-white' : 'neg-feedback-white'}`
-			}
+			classList: `ico ${data.typeFeedback === '0' ? 's-info-feedback-white' : data.typeFeedback === '1' ? 's-pos-feedback-white' : 's-neg-feedback-white'}`
 		})
+
+
+		// console.log(data)
 
 		setAttr(this.date, {
 			value: data.date
@@ -447,7 +445,7 @@ class FeedbackEdit {
 
 	changeTypeFeedbackIco(id){
 		setAttr(this.typeFeedbackIco, {
-			xlink: {href: `img/sprites/svg/symbol/sprite.svg#${id === '0' ? 'inf-feedback-white' : id === '1' ? 'pos-feedback-white' : 'neg-feedback-white'}`}
+			classList: `ico ${id === '0' ? 's-info-feedback-white' : id === '1' ? 's-pos-feedback-white' : 's-neg-feedback-white'}`
 		})
 
 		setAttr(this.typeFeedback, {
@@ -461,6 +459,15 @@ class FeedbackEdit {
 			innerText: text,
 			'data-author': text === 'УАМФ' ? '2' : '1'
 		})
+	}
+
+
+	onmount(){
+		changeDirection(this.direction)
+		this.typeFeedbackInstance = initWorkModalTooltip(this.typeFeedback)
+		this.choiseClientInstance = initWorkModalTooltip(this.choiseClient)
+		this.typeFeedbackInstance.setContent(this.feedbackType.el)
+		this.choiseClientInstance.setContent(this.feedbackClient.el)
 	}
 
 }
@@ -567,6 +574,7 @@ class FeedbackRow {
 
 export default class Feedback {
 	constructor(type){
+		// console.log(arguments)
 		this.data = {}
 		this.type = type
 		this.controls = el('div.modal-row__controls',

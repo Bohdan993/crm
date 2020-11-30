@@ -42,7 +42,7 @@ import {
 	getStatusesVacancyPopup,
 	mountDateAndTermsPopup,
 	getClientsVacancy,
-	mountClientsVacancy,
+	// mountClientsVacancy,
 	mountActiveArchive
 } from '../model'
 
@@ -136,7 +136,7 @@ const app = {
 		this.msiv()
 		this.mdatp()
 		this.gcv()
-		this.mcv()
+		// this.mcv()
 		this.maa()
 	},
 
@@ -302,9 +302,9 @@ const app = {
 	gcv(){
 		getClientsVacancy()
 	},
-	mcv() {
-		mountClientsVacancy()
-	},
+	// mcv() {
+	// 	mountClientsVacancy()
+	// },
 	maa(){
 		mountActiveArchive()
 	}

@@ -1,16 +1,16 @@
 import fetch from '../../fetchingDataClass'
-
+import getVacancyClients from '../getVacancyClients'
 import Task from '../../../Components/TaskComponent'
 import Note from '../../../Components/ModalSidebarNoteComponent'
 import Delete from '../../../Components/DeleteComponent'
 import ManagerSelect from '../../../Components/ManagerSelectComponent'
 import Loader from '../../../Components/Loader'
+import ClientsComponent from '../../../Components/Vacancy/VacancyModal/ClientsComponent'
 import TermsComponent from '../../../Components/Vacancy/VacancyModal/TermsComponent'
 import DemandComponent from '../../../Components/Vacancy/VacancyModal/DemandsComponent'
 import {list, mount, place} from '../../../../../libs/libs'
-import {demandsRow, termsRow, sidebarVacancyForm, vacancyModalSidebarNotes} from '../../../../view'
-
-
+import {demandsRow, termsRow, sidebarVacancyForm, vacancyModalSidebarNotes, clientsRow} from '../../../../view'
+import storage from '../../../Storage'
 
 const state = {}
 
@@ -27,6 +27,7 @@ const task = new Task('vacancy')
 const note = new Note('vacancy')
 const select = new ManagerSelect('vacancy')
 const deleteComponent = new Delete('vacancy')
+const clients = new ClientsComponent()
 
 
 
@@ -48,6 +49,11 @@ if(sidebarVacancyForm) {
 	mount(sidebarVacancyForm, loader2)
 	
 }
+
+if(clientsRow) {
+	mount(clientsRow, clients)
+}
+
 
 if(vacancyModalSidebarNotes) {
 	mount(vacancyModalSidebarNotes, note)
@@ -87,6 +93,27 @@ const getVacancyModalInfo = async (id = '1') => {
 
 try {
 		const data = await fetch.getResourse(`/vacancies/get/?id=${id}&section=1`)
+
+
+			if(storage.isSet(id)) {
+				clients.update(storage.getState(id))
+			} 
+
+
+			console.log(storage)
+
+			if(!storage.isSet(id)) {
+				getVacancyClients(id)
+					.then(res => {
+						if(res) {
+							storage.setState(id, res)
+							clients.update(res)
+						} else {
+							storage.setState(id, [])
+							clients.update([])
+						}
+					})
+			}
 		console.log(data)
 		// const sourseData = await fetch.getResourse('/employers/get_other/?s=5')
 
@@ -151,8 +178,8 @@ try {
 
 			// mainPart.source = source
 
-			demand.update(demandsData)
-			terms.update(termsData)
+		demand.update(demandsData)
+		terms.update(termsData)
 		// task.update(tasksData)
 		// select.update(id_login)
 		// note.update(notesData)
