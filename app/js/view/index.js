@@ -1,26 +1,21 @@
-
-// const sidebarWrapper = document.querySelector('.sidebar__wrapper');
-const body = document.querySelector('body');
-// const sidebarListItems = document.querySelectorAll('.sidebar__list-item');
-const rows = document.querySelectorAll('.row');
-const sidebarSearchInput = document.querySelector('.sidebar__search-input');
-const sidebarLayout = document.querySelector('.sidebar__layout');
+const body = document.querySelector('body')
+const rows = document.querySelectorAll('.row')
+const sidebarSearchInput = document.querySelector('.sidebar__search-input')
+const sidebarLayout = document.querySelector('.sidebar__layout')
 const sidebarEmployer = document.querySelector('.sidebar-employer .sidebar__list-add')
 const employerRowsWrapper = document.querySelector('.employer-rows-wrapper')
 
 
 ////Tooltips Templates
-const countryTemplate = document.querySelector('#country-popup');
-const countryTemplateVacancy = document.querySelector('#country-popup-vacancy');
-const typeManufacturyTemplate = document.querySelector('#type-manufactury-popup');
-const contactTemplate = document.querySelector('#contact-popup');
-const managersTemplate = document.querySelector('#managers-popup');
-const intermediariesTemplate = document.querySelector('#intermediaries-popup');
-const lastContactTemplate = document.querySelector('#last-contact-popup');
-const vacanciesTemplate = document.querySelector('#vacancies-popup');
-const sortingTemplate = document.querySelector('#sorting-popup');
-// const typeFeedbackTemplate = document.querySelector('#type-feedback-popup')
-// const choiceClientTemplate = document.querySelector('#choice-client-feedback-popup')
+const countryTemplate = document.querySelector('#country-popup')
+const countryTemplateVacancy = document.querySelector('#country-popup-vacancy')
+const typeManufacturyTemplate = document.querySelector('#type-manufactury-popup')
+const contactTemplate = document.querySelector('#contact-popup')
+const managersTemplate = document.querySelector('#managers-popup')
+const intermediariesTemplate = document.querySelector('#intermediaries-popup')
+const lastContactTemplate = document.querySelector('#last-contact-popup')
+const vacanciesTemplate = document.querySelector('#vacancies-popup')
+const sortingTemplate = document.querySelector('#sorting-popup')
 const choiceClientTemplate2 = document.querySelector('#choice-client-popup')
 const statusTemplate = document.querySelector('#status-popup')
 const selectingTemplate = document.querySelector('#selecting-popup')
@@ -30,7 +25,6 @@ const employerTypeTemplate = document.querySelector('#employer-type-popup')
 const employerTypeTemplate2 = document.querySelector('#employer-type-popup2')
 const workTypeTemplate = document.querySelector('#work-type-popup')
 const pricePopupTemplate = document.querySelector('#price-popup')
-// const statusChangeTemplate = document.querySelector('#status-change-popup')
 
 
 
@@ -44,46 +38,40 @@ const workModalManagerSelect = document.querySelector('.work-modal .manager-sele
 const modal2ManagerSelect = document.querySelector('#modal-2 .manager-select')
 const modal2ContactSelect = document.querySelector('#modal-2 .contact-select')
 const workModalCountrySelect = document.querySelector('.work-modal .country-select')
-const workModalContactsHistory = document.querySelector('.work-modal .contacts-history .modal-row__layer');
-const workModalVacanciesHistory = document.querySelector('.work-modal .vacancies-history .modal-row__layer');
-const modalRowMediaWrapper = document.querySelector('.work-modal .modal-row__media-wrapper');
-const modalRowMedia = document.querySelectorAll('.work-modal .modal-row__media');
-const workModalMediaLayer = document.querySelector('.work-modal .media .modal-row__layer');
-const workModalFeedback = document.querySelector('.work-modal .feedback .modal-row__layer');
-const feedbackShowMore = document.querySelector('.work-modal .feedback .show-more');
-const mediaShowMore = document.querySelector('.work-modal .media .show-more');
-const modalRowLayer = document.querySelectorAll('.work-modal .modal-row__layer');
-const contactsHistory = document.querySelector('.work-modal .contacts-history');
-const contactsHistoryShowMore = document.querySelector('.work-modal .contacts-history .show-more');
+const workModalContactsHistory = document.querySelector('.work-modal .contacts-history .modal-row__layer')
+const workModalVacanciesHistory = document.querySelector('.work-modal .vacancies-history .modal-row__layer')
+const modalRowMediaWrapper = document.querySelector('.work-modal .modal-row__media-wrapper')
+const modalRowMedia = document.querySelectorAll('.work-modal .modal-row__media')
+const workModalMediaLayer = document.querySelector('.work-modal .media .modal-row__layer')
+const workModalFeedback = document.querySelector('.work-modal .feedback .modal-row__layer')
+const feedbackShowMore = document.querySelector('.work-modal .feedback .show-more')
+const mediaShowMore = document.querySelector('.work-modal .media .show-more')
+const modalRowLayer = document.querySelectorAll('.work-modal .modal-row__layer')
+const contactsHistory = document.querySelector('.work-modal .contacts-history')
+const contactsHistoryShowMore = document.querySelector('.work-modal .contacts-history .show-more')
 
-const vacanciesHistory = document.querySelector('.work-modal .vacancies-history');
-const vacanciesHistoryShowMore = document.querySelector('.work-modal .vacancies-history .show-more');
+const vacanciesHistory = document.querySelector('.work-modal .vacancies-history')
+const vacanciesHistoryShowMore = document.querySelector('.work-modal .vacancies-history .show-more')
 
-const manufacturyTypeAddItem = document.querySelector('.work-modal .manufactury-type .add-item');
-const manufacturyType = document.querySelector('.work-modal .manufactury-type');
+const manufacturyTypeAddItem = document.querySelector('.work-modal .manufactury-type .add-item')
+const manufacturyType = document.querySelector('.work-modal .manufactury-type')
 
-
-const contactsHistoryAddItem = document.querySelector('.work-modal .contacts-history .add-item');
-
+const contactsHistoryAddItem = document.querySelector('.work-modal .contacts-history .add-item')
 
 const workModalFeedbackDate = document.querySelector('.work-modal .modal-row__feedback-date input')
 const modal2ContactDate = document.querySelector('#modal-2 .date-block input')
 
-
 const feedbackAddItem = document.querySelector('.work-modal .feedback .add-item')
 const addfeedbackForm = document.querySelector('.work-modal .feedback .add-feedback-form')
-
 
 const modalSwitchers = document.querySelectorAll('[data-part]')
 const modalParts = document.querySelectorAll('.my-modal-part')
 
-// const socialLinks = document.querySelectorAll('.social-link')
-
 const changeDirection = document.querySelectorAll('.change-direction')
 
 const editBtns = document.querySelectorAll('.modal-row__feedback-edit')
-// Popups elements
 
+// Popups elements
 const confirmBtnTypeFeedback = document.querySelector('#type-feedback-popup .confirm-btn')
 const sidebarEmployerForm = document.querySelector('.work-modal__sidebar-employer-form')
 const workModalSidebarNotes = document.querySelector('.work-modal__sidebar-notes')
@@ -112,15 +100,15 @@ import {
 	termsRow,
 	sidebarVacancyForm,
 	vacancyModalSidebarNotes,
-	archiveActive
-	// mainInfoPrice
+	archiveActive,
+	sidebarVacancy,
+	modalLayerLeft,
+	modalLayerRight
 } from './vacancy'
 
 
 
 export {
-	// sidebarWrapper,
-	// sidebarListItems,
 	rows,
 	countryTemplate,
 	typeManufacturyTemplate,
@@ -130,8 +118,6 @@ export {
 	intermediariesTemplate,
 	vacanciesTemplate,
 	sortingTemplate,
-	// typeFeedbackTemplate,
-	// choiceClientTemplate,
 	workModalRows,
 	workModalSidebar,
 	body,
@@ -185,7 +171,6 @@ export {
 	clientsRow,
 	modalParts,
 	modalSwitchers,
-	// socialLinks,
 	changeDirection,
 	choiceClientTemplate2,
 	editBtns,
@@ -201,7 +186,8 @@ export {
 	employerStatNums,
 	sidebarVacancyForm,
 	vacancyModalSidebarNotes,
-	archiveActive
-	// mainInfoPrice
-	// statusChangeTemplate
+	archiveActive,
+	sidebarVacancy,
+	modalLayerLeft,
+	modalLayerRight
 }

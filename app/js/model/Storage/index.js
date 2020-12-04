@@ -5,7 +5,37 @@ class Storage {
 
 	setState(id, data){
 		this.state[id] = data
-		return
+		return this.state
+	}
+
+
+	setPartialState(id, data, key){
+		this.getState(id)[key].push(data)
+		return this.state
+		
+	}
+
+
+	setAndUpdatePartialState(id, data, key, prop){
+		// let arr = this.getState(id)[key].filter(el => el.vacancy.id !== prop)
+			this.getState(id)[key].forEach(el => {
+			if(el.vacancy.id === prop) {
+				el.vacancy.id_status = data
+			}
+			// return el
+		})
+
+		// console.log(arr)
+
+		console.log(this.state)
+		return this.state
+	}
+
+
+	deletePartialState(id, key, prop){
+		let arr = this.getState(id)[key].filter(el => el.vacancy.id !== prop)
+		return this.state[id][key] = arr
+		
 	}
 
 	getState(id){

@@ -127,14 +127,10 @@ export default class TermsComponent {
 					field: 'work_time'
 				})
 		})
-
-
 	}
 
 
 	update(data, index, items, context){
-		// console.log(data)
-
 
 		setAttr(this.startWork , {
 			value: data.startWork
@@ -170,6 +166,5 @@ export default class TermsComponent {
 
 		this.data = data
 	}
-
 
 }

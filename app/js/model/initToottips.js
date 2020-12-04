@@ -174,60 +174,126 @@ function initSidebarTooltip(el, content) {
         trigger: 'click',
         appendTo: () => document.body,
         onCreate(instance) {
-                 console.log(instance.id)
-        		switch(instance.id) {
-						  case 1:
-                          // console.log('dfdefewrfewr')
-						  checkIfShowRemoveFilterButton('countryFilter', instance)
-                          checkIfShowRemoveFilterButton('countryFilterVacancy', instance)
-						    break
-						  case 2:
-						    checkIfShowRemoveFilterButton('typeManufacturyFilter', instance)
-                            checkIfShowRemoveFilterButton('managerFilterVacancy', instance)
-						    break
-						  case 3:
-						    checkIfShowRemoveFilterButton('contactDataFilter', instance)
-                            checkIfShowRemoveFilterButton('stagesOfVacancies', instance)
-						    break
-						  case 4:
-						    checkIfShowRemoveFilterButton('managerFilter', instance)
-                            checkIfShowRemoveFilterButton('sortFilterVacancy', instance)
-						    break
-						  case 5:
-						    checkIfShowRemoveFilterButton('intermediariesFilter', instance)
-                            checkIfShowRemoveFilterButton('intermediaryFilter', instance)
+                 console.log(instance)
+                if(instance.reference.classList.contains('country-filter-wrapper-vacancy')){
+
+                    checkIfShowRemoveFilterButton('countryFilterVacancy', instance)
+
+                } else if(instance.reference.classList.contains('type-work-filter-wrapper')){
+
+                    checkIfShowRemoveFilterButton('v-vacancyTypeFilter', instance)
+                    checkIfShowRemoveFilterButton('typeManufacturyVacancyFilter', instance)
+
+                } else if(instance.reference.classList.contains('date-terms-filter-wrapper')){
+
+                    checkIfShowRemoveFilterButton('jobStartFilter', instance)
+                    checkIfShowRemoveFilterButton('jobPeriodFilter', instance)
+
+                } else if(instance.reference.classList.contains('managers-filter-wrapper-vacancy')){
+
+                    checkIfShowRemoveFilterButton('managerFilterVacancy', instance)
+
+                } else if(instance.reference.classList.contains('managers-filter-wrapper')){
+
+                    checkIfShowRemoveFilterButton('managerFilter', instance)
+
+                } else if(instance.reference.classList.contains('stages-vacancies-filter-wrapper')){
+
+                    checkIfShowRemoveFilterButton('stagesOfVacancies', instance)
+
+                } else if(instance.reference.classList.contains('selecting-stats-wrapper')){
+
+                    checkIfShowRemoveFilterButton('sortFilterVacancy', instance)
+
+                } else if(instance.reference.classList.contains('country-filter-wrapper')){
+
+                    checkIfShowRemoveFilterButton('countryFilter', instance)
+
+                } else if(instance.reference.classList.contains('type-manufactury-filter-wrapper')){
+
+                    checkIfShowRemoveFilterButton('typeManufacturyFilter', instance)
+
+                }  else if(instance.reference.classList.contains('contact-filter-wrapper')){
+
+                    checkIfShowRemoveFilterButton('contactDataFilter', instance)
+
+                } else if(instance.reference.classList.contains('intermediaries-filter-wrapper')){
+
+                    checkIfShowRemoveFilterButton('intermediariesFilter', instance)
+                    checkIfShowRemoveFilterButton('intermediaryFilter', instance)
+
+                } else if(instance.reference.classList.contains('vacancies-filter-wrapper')){
+
+                    checkIfShowRemoveFilterButton('vacancyActiveFilter', instance)
+                    checkIfShowRemoveFilterButton('vacancyTypeFilter', instance)
+                    checkIfShowRemoveFilterButton('vacancyTermFilter', instance)
+
+                } else if(instance.reference.classList.contains('last-contact-filter-wrapper')){
+
+                    checkIfShowRemoveFilterButton('lastContactFilter', instance)
+
+                } else if(instance.reference.classList.contains('sorting-stats-wrapper')){
+
+                    checkIfShowRemoveFilterButton('sortFilter', instance)
+
+                } else {
+
+                    throw new Error('Возникла ошибка')
+
+                }
+
+     //    		switch(instance.id) {
+					// 	  case 1:
+     //                      // console.log('dfdefewrfewr')
+					// 	  // checkIfShowRemoveFilterButton('countryFilter', instance)
+     //                      // checkIfShowRemoveFilterButton('countryFilterVacancy', instance)
+					// 	    break
+					// 	  case 2:
+					// 	    // checkIfShowRemoveFilterButton('typeManufacturyFilter', instance)
+     //                        // checkIfShowRemoveFilterButton('managerFilterVacancy', instance)
+					// 	    break
+					// 	  case 3:
+					// 	    // checkIfShowRemoveFilterButton('contactDataFilter', instance)
+     //                        // checkIfShowRemoveFilterButton('stagesOfVacancies', instance)
+					// 	    break
+					// 	  case 4:
+					// 	    // checkIfShowRemoveFilterButton('managerFilter', instance)
+     //                        // checkIfShowRemoveFilterButton('sortFilterVacancy', instance)
+					// 	    break
+					// 	  case 5:
+					// 	    // checkIfShowRemoveFilterButton('intermediariesFilter', instance)
+     //                        // checkIfShowRemoveFilterButton('intermediaryFilter', instance)
                             
-                            checkIfShowRemoveFilterButton('v-vacancyTypeFilter', instance)
-                            checkIfShowRemoveFilterButton('typeManufacturyVacancyFilter', instance)
-						    break
-						  case 6:
-					        checkIfShowRemoveFilterButton('vacancyActiveFilter', instance)
-                            checkIfShowRemoveFilterButton('vacancyTypeFilter', instance)
-                            checkIfShowRemoveFilterButton('vacancyTermFilter', instance)
+                            
+					// 	    break
+					// 	  case 6:
+					//         // checkIfShowRemoveFilterButton('vacancyActiveFilter', instance)
+     //         //                checkIfShowRemoveFilterButton('vacancyTypeFilter', instance)
+     //         //                checkIfShowRemoveFilterButton('vacancyTermFilter', instance)
 
-                            checkIfShowRemoveFilterButton('jobStartFilter', instance)
-                            checkIfShowRemoveFilterButton('jobPeriodFilter', instance)
+     //                        // checkIfShowRemoveFilterButton('jobStartFilter', instance)
+     //                        // checkIfShowRemoveFilterButton('jobPeriodFilter', instance)
 
-						    break
-						  case 7:
-						    checkIfShowRemoveFilterButton('lastContactFilter', instance)
-						    break
-						  case 8:
-						    checkIfShowRemoveFilterButton('sortFilter', instance)
-						    break
-						 	// case 9:
-						  //   // alert( 'Маловато9' )
-						  //   break
-						  // case 10:
-						  //   // alert( 'Маловато10' )
-						  //   break
-						  default:
-						  	throw new Error('Возникла ошибка')
-					}
+					// 	    break
+					// 	  case 7:
+					// 	    // checkIfShowRemoveFilterButton('lastContactFilter', instance)
+					// 	    break
+					// 	  case 8:
+					// 	    checkIfShowRemoveFilterButton('sortFilter', instance)
+					// 	    break
+					// 	 	case 9:
+					// 	    // alert( 'Маловато9' )
+					// 	    break
+					// 	  case 10:
+					// 	    // alert( 'Маловато10' )
+					// 	    break
+					// 	  default:
+					// 	  	throw new Error('Возникла ошибка')
+					// }
   
         },
         onShown(instance) {
-        console.log(instance.props)
+        // console.log(instance.props)
         let children = instance.props.content.querySelectorAll('input')
             document.addEventListener('keyup', function(e) {
                 if (e.keyCode === 27) {
@@ -290,75 +356,156 @@ function childChangeHandler(children, child, instance, e) {
   }
 
 
-  console.log(val)
+  // console.log(val)
 }
 
 
 function removeCheckingHandler(children, instance, e){
     // Перенести e.stopPropagation() в файл disablePropagationOnSidebarFilterRemove
 	e.stopPropagation();
-	switch(instance.id) {
-			case 1:
-		    getEmployersList({country: ''})
-		    sessionStorage.removeItem('countryFilter')
-            getVacancyList({country: ''})
-            sessionStorage.removeItem('countryFilterVacancy')
-		    break
-		  case 2:
-		    getEmployersList({production: ''})
-		    sessionStorage.removeItem('typeManufacturyFilter')
-            getVacancyList({manager: ''})
-            sessionStorage.removeItem('managerFilterVacancy')
-		    break
-		  case 3:
-		    getEmployersList({contact: ''})
-		    sessionStorage.removeItem('contactDataFilter')
-            getVacancyList({status: ''})
-            sessionStorage.removeItem('stagesOfVacancies')
-		    break
-		  case 4:
-		    getEmployersList({manager: ''})
-            sessionStorage.removeItem('managerFilter')
-            getVacancyList({'sort': ''})
-            sessionStorage.removeItem('sortFilterVacancy')
-		    break
-		  case 5:
-            getEmployersList({intermediaries: '', intermediary: ''})
-            sessionStorage.removeItem('intermediariesFilter')
-            sessionStorage.removeItem('intermediaryFilter')
-            getVacancyList({'type_vacancy': '', 'type_production': ''})
-            sessionStorage.removeItem('v-vacancyTypeFilter')
-            sessionStorage.removeItem('typeManufacturyVacancyFilter')
-		    break
-		  case 6:
-		    getEmployersList({vacancy_active: '', vacancy_type: '', vacancy_term: ''})
-            sessionStorage.removeItem('vacancyActiveFilter')
-            sessionStorage.removeItem('vacancyTypeFilter')
-            sessionStorage.removeItem('vacancyTermFilter')
 
-            getVacancyList({job_start: '', job_period: ''})
-            sessionStorage.removeItem('jobStartFilter')
-            sessionStorage.removeItem('jobPeriodFilter')
+      if(instance.reference.classList.contains('country-filter-wrapper-vacancy')){
+
+                    getVacancyList({country: ''})
+                    sessionStorage.removeItem('countryFilterVacancy')
+
+                } else if(instance.reference.classList.contains('type-work-filter-wrapper')){
+
+                    getVacancyList({'type_vacancy': '', 'type_production': ''})
+                    sessionStorage.removeItem('v-vacancyTypeFilter')
+                    sessionStorage.removeItem('typeManufacturyVacancyFilter')
+
+                } else if(instance.reference.classList.contains('date-terms-filter-wrapper')){
+
+                    getVacancyList({job_start: '', job_period: ''})
+                    sessionStorage.removeItem('jobStartFilter')
+                    sessionStorage.removeItem('jobPeriodFilter')
+
+                } else if(instance.reference.classList.contains('managers-filter-wrapper-vacancy')){
+
+                    getVacancyList({manager: ''})
+                    sessionStorage.removeItem('managerFilterVacancy')
+
+                } else if(instance.reference.classList.contains('managers-filter-wrapper')){
+
+                    getEmployersList({manager: ''})
+                    sessionStorage.removeItem('managerFilter')
+
+                } else if(instance.reference.classList.contains('stages-vacancies-filter-wrapper')){
+
+                    getVacancyList({status: ''})
+                    sessionStorage.removeItem('stagesOfVacancies')
+
+                } else if(instance.reference.classList.contains('selecting-stats-wrapper')){
+
+                    getVacancyList({'sort': ''})
+                    sessionStorage.removeItem('sortFilterVacancy')
+
+                } else if(instance.reference.classList.contains('country-filter-wrapper')){
+
+                    getEmployersList({country: ''})
+                    sessionStorage.removeItem('countryFilter')
+
+                } else if(instance.reference.classList.contains('type-manufactury-filter-wrapper')){
+
+                    getEmployersList({production: ''})
+                    sessionStorage.removeItem('typeManufacturyFilter')
+
+                }  else if(instance.reference.classList.contains('contact-filter-wrapper')){
+
+                    getEmployersList({contact: ''})
+                    sessionStorage.removeItem('contactDataFilter')
+
+                } else if(instance.reference.classList.contains('intermediaries-filter-wrapper')){
+
+                    getEmployersList({intermediaries: '', intermediary: ''})
+                    sessionStorage.removeItem('intermediariesFilter')
+                    sessionStorage.removeItem('intermediaryFilter')
+
+                } else if(instance.reference.classList.contains('vacancies-filter-wrapper')){
+
+                    getEmployersList({vacancy_active: '', vacancy_type: '', vacancy_term: ''})
+                    sessionStorage.removeItem('vacancyActiveFilter')
+                    sessionStorage.removeItem('vacancyTypeFilter')
+                    sessionStorage.removeItem('vacancyTermFilter')
+
+                } else if(instance.reference.classList.contains('last-contact-filter-wrapper')){
+
+                    getEmployersList({last_contact: ''})
+                    sessionStorage.removeItem('lastContactFilter')
+
+                } else if(instance.reference.classList.contains('sorting-stats-wrapper')){
+
+                    getEmployersList({sort: ''})
+                    sessionStorage.removeItem('sortFilter')
+
+                } else {
+
+                    throw new Error('Возникла ошибка')
+
+                }
+	// switch(instance.id) {
+	// 		case 1:
+	// 	    // getEmployersList({country: ''})
+	// 	    // sessionStorage.removeItem('countryFilter')
+ //            // getVacancyList({country: ''})
+ //            // sessionStorage.removeItem('countryFilterVacancy')
+	// 	    break
+	// 	  case 2:
+	// 	    // getEmployersList({production: ''})
+	// 	    // sessionStorage.removeItem('typeManufacturyFilter')
+ //            // getVacancyList({manager: ''})
+ //            // sessionStorage.removeItem('managerFilterVacancy')
+	// 	    break
+	// 	  case 3:
+	// 	    // getEmployersList({contact: ''})
+	// 	    // sessionStorage.removeItem('contactDataFilter')
+ //            // getVacancyList({status: ''})
+ //            // sessionStorage.removeItem('stagesOfVacancies')
+	// 	    break
+	// 	  case 4:
+	// 	    // getEmployersList({manager: ''})
+ //      //       sessionStorage.removeItem('managerFilter')
+ //            // getVacancyList({'sort': ''})
+ //            // sessionStorage.removeItem('sortFilterVacancy')
+	// 	    break
+	// 	  case 5:
+ //            // getEmployersList({intermediaries: '', intermediary: ''})
+ //            // sessionStorage.removeItem('intermediariesFilter')
+ //            // sessionStorage.removeItem('intermediaryFilter')
+ //            // getVacancyList({'type_vacancy': '', 'type_production': ''})
+ //            // sessionStorage.removeItem('v-vacancyTypeFilter')
+ //            // sessionStorage.removeItem('typeManufacturyVacancyFilter')
+	// 	    break
+	// 	  case 6:
+	// 	    // getEmployersList({vacancy_active: '', vacancy_type: '', vacancy_term: ''})
+ //      //       sessionStorage.removeItem('vacancyActiveFilter')
+ //      //       sessionStorage.removeItem('vacancyTypeFilter')
+ //      //       sessionStorage.removeItem('vacancyTermFilter')
+
+ //            // getVacancyList({job_start: '', job_period: ''})
+ //            // sessionStorage.removeItem('jobStartFilter')
+ //            // sessionStorage.removeItem('jobPeriodFilter')
 
 
-		    break
-		  case 7:
-		    getEmployersList({last_contact: ''})
-            sessionStorage.removeItem('lastContactFilter')
-		    break
-		  case 8:
-		    getEmployersList({sort: ''})
-            sessionStorage.removeItem('sortFilter')
-		    break
-		 	// case 9:
-		  //   alert( 'Маловато9' )
-		  //   break
-		  // case 10:
-		  //   alert( 'Маловато10' )
-		  //   break
-		  default:
-		  	throw new Error('Возникла ошибка')
-	}
+	// 	    break
+	// 	  case 7:
+	// 	    // getEmployersList({last_contact: ''})
+ //      //       sessionStorage.removeItem('lastContactFilter')
+	// 	    break
+	// 	  case 8:
+	// 	    getEmployersList({sort: ''})
+ //            sessionStorage.removeItem('sortFilter')
+	// 	    break
+	// 	 	// case 9:
+	// 	  //   alert( 'Маловато9' )
+	// 	  //   break
+	// 	  // case 10:
+	// 	  //   alert( 'Маловато10' )
+	// 	  //   break
+	// 	  default:
+	// 	  	throw new Error('Возникла ошибка')
+	// }
   
 
   children.forEach(child => {
@@ -431,7 +578,7 @@ function initRowTooltips(el, content) {
 
 //////////////////////////////START initWorkModalTooltip BLOCK/////////////////////////////////
 function initWorkModalTooltip(el, content) {    
-    console.log(tippy)
+    // console.log(tippy)
     let instance = tippy(el, {
         content: content,
         // target: el,
@@ -505,11 +652,10 @@ function initWorkModalTooltip(el, content) {
                             <time></time>
                         </div>
                         <div class="input-group">
-                            <p class="del-status delete"><span>Исключить из вакансии</span></p>
+                            <p class="del-status status delete"><span>Исключить из вакансии</span></p>
                         </div>
                     </form>
                 </div>`,
-            // content: content.innerHTML, 
             allowHTML: true,
             interactive: true,
             interactiveBorder: 5,
@@ -531,13 +677,9 @@ function initWorkModalTooltip(el, content) {
                     }
                 })
 
-                // status(instance)
-
             },
             appendTo: () => document.body,
         })
-
-        // let singleton = createSingleton(instance, {delay: 1000});
     }
 
 //////////////////////////////END initVacancyTooltip BLOCK/////////////////////////////////
@@ -545,12 +687,11 @@ function initWorkModalTooltip(el, content) {
 
 
    function initVacancyModalTooltip(el, content, tippy) {
-        console.log(tippy)
+        // console.log(tippy)
         let instance = tippy(el, {
             content,
             allowHTML: true,
             maxWidth: 364,
-            // content: ``,
             interactive: true,
             interactiveBorder: 5,
             interactiveDebounce: 0,
@@ -569,7 +710,6 @@ function initWorkModalTooltip(el, content) {
         })
 
         return instance
-
     }
 
     // initVacancyModalTooltip('.modal-row__layer.main-info_left .choose-employer', employerTypeTemplate)
@@ -583,6 +723,6 @@ export {
     initVacancyModalTooltip,
     initRowTooltips, // to './Components/Employer/EmployerRow.js'
     initWorkModalTooltip, // to './Components/FeedbackComponent'
-    initVacancyTooltip,
+    initVacancyTooltip
     // initVacancyModalTooltip
 }

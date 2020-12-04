@@ -6,7 +6,7 @@ const countryPopup = document.querySelector('#country-popup-vacancy')
 
 const popup = list("form", CountryPopup, 'id', 'vacancy')
 
-console.log(popup)
+// console.log(popup)
 
 if(countryPopup) {
 	mount(countryPopup, popup)
@@ -17,7 +17,7 @@ const getCountryVacancyPopup = async () => {
 if(countryPopup) {
 		try {
 				const data = await fetch.getResourse('/vacancies/get_other/?s=3')
-				console.log(data)
+				// console.log(data)
 				let countries = data.data.country
 				countries.sort((a, b) => {
 					return a.name.localeCompare(b.name)

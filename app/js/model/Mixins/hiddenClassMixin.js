@@ -14,7 +14,7 @@ let hiddenClassMixin = {
   		// this.modalLayer.classList.add('empty-layer')
   	// } else {
   		// this.modalLayer.classList.add('empty-layer')
-  		console.log(this.modalLayer)
+  		// console.log(this.modalLayer)
   		this.modalLayer.classList.add('empty-layer')
   	// }
 		return this

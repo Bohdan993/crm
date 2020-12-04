@@ -42,8 +42,11 @@ import {
 	getStatusesVacancyPopup,
 	mountDateAndTermsPopup,
 	getClientsVacancy,
+	addNewVacancy,
 	// mountClientsVacancy,
-	mountActiveArchive
+	mountActiveArchive,
+	mountModalRowLayerLeft,
+	mountModalRowLayerRight
 } from '../model'
 
 import {OverlayScrollbars} from '../../libs/libs'
@@ -138,6 +141,9 @@ const app = {
 		this.gcv()
 		// this.mcv()
 		this.maa()
+		this.anv()
+		// this.mrll()
+		// this.mrlr()
 	},
 
 	initOSB(){
@@ -307,7 +313,16 @@ const app = {
 	// },
 	maa(){
 		mountActiveArchive()
-	}
+	},
+	anv(){
+		addNewVacancy()
+	},
+	// mrll(){
+	// 	mountModalRowLayerLeft()
+	// },
+	// mrlr(){
+	// 	mountModalRowLayerRight()
+	// }
 
 }
 

@@ -556,7 +556,7 @@ class FeedbackRow {
 	console.log(context)
 	// console.log(context.storage.clients.filter(el =>el.id === data.id_author), 'dfdierhfjuiw3equj2be2u')
 		setAttr(this.from, {
-			innerText: data.type_arrow === '0' ? data.type_author === '2' ? 'УАМФ' : context.storage.clients.filter(el => el.id === data.id_author).length > 0 && context.storage.clients.filter(el => el.id === data.id_author)[0].snp : context.type === 'employer' ? JSON.parse(sessionStorage.getItem('currEmployerName')) : JSON.parse(sessionStorage.getItem('currVacancyEmployer')).data.name
+			innerText: data.type_arrow === '0' ? data.type_author === '2' ? 'УАМФ' : context.storage.clients.filter(el => el.id === data.id_author).length > 0 && context.storage.clients.filter(el => el.id === data.id_author)[0].snp : context.type === 'employer' ? JSON.parse(sessionStorage.getItem('currEmployerName')) : JSON.parse(sessionStorage.getItem('currVacancyEmployer')).data && JSON.parse(sessionStorage.getItem('currVacancyEmployer')).data.name
 		})
 
 
@@ -579,9 +579,9 @@ export default class Feedback {
 		this.type = type
 		this.controls = el('div.modal-row__controls',
 			el('p', 'Отзывы', 
-				this.feedbackCount = el('span', ' 4'),
+				this.feedbackCount = el('span', ' 0'),
 				el('span', ' ('),
-				this.feedbackCountNeg = el('span.negative'),
+				this.feedbackCountNeg = el('span.negative', 'негативных - 0'),
 				el('span', ')')
 				),
 			this.addItem = el('div.add-item', el('span', '+'), 'добавить отзыв')
@@ -603,6 +603,7 @@ export default class Feedback {
 			)
 
 		this.addItem.addEventListener('click', (e)=> {
+			console.log(this.data)
 
 			this.feedbackEdit.update(true, {
 				id_feedback: '0',
@@ -649,7 +650,7 @@ export default class Feedback {
 
 
 			//Пагинация
-				if(data.data.length < data.total) {
+				if(data.data && data.data.length < data.total) {
 				this.showMore.update(true, 'показать еще')
 
 				if(!this.flagShow) {

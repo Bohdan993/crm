@@ -1,5 +1,3 @@
-
-
 import {el, setAttr, list} from '../../../../libs/libs'
 import RowVacancy from './VacancyRow'
 import initWorkPopup from '../../initWorkPopup'
@@ -26,16 +24,15 @@ export default class VacancyList {
 
     }
     update(data) {
-    console.log(data)
-         this.count = data.length ? data[data.length - 1]['id_vacancy'] : ''
-        //  localStorage.setItem('countForModals', JSON.stringify(this.count))
+        // this.count = data.length ? data[data.length - 1]['id_vacancy'] : ''
+
 
         this.list.update(data, this.indicatorsClasses)
-
+        // console.log(this.count)
+        // console.log(data[data.length - 1])
         //Инициализация функций которые зависят от инстанса класса
          if(!this.flag) {
-            // console.log('ddfdfdfvdfverv')
-            initWorkPopup(this.count)
+            initWorkPopup()
             this.flag = true
         }
         //

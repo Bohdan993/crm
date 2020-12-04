@@ -12,7 +12,8 @@ function firstRow(title){
 
 
 export default class TableVacancyClient {
-	constructor(){
+	constructor(type){
+		this.type = type
 		this.data = {}
 		this.choosenObj = {}
 		this.readyObj = {}
@@ -23,23 +24,23 @@ export default class TableVacancyClient {
 		this.el = el("div.row__full-info.table-full",
 			el('div.table-full__choosen.choosen',
 				firstRow('Отобраны'),
-				this.choosenList = list('div.table-full__layer', RowVacancyClient)),
+				this.choosenList = list('div.table-full__layer', RowVacancyClient, undefined, this.type)),
 				
 			el('div.table-full__ready.ready',
 				firstRow('Готовятся к подаче'),
-				this.readyList = list('div.table-full__layer', RowVacancyClient)),
+				this.readyList = list('div.table-full__layer', RowVacancyClient, undefined, this.type)),
 				
 			el('div.table-full__wait.wait',
 				firstRow('Ждут разрешения'),
-				this.waitList = list('div.table-full__layer', RowVacancyClient)),
+				this.waitList = list('div.table-full__layer', RowVacancyClient, undefined, this.type)),
 
 			el('div.table-full__department.department',
 				firstRow('Готовятся к отъезду'),
-				this.departmentList = list('div.table-full__layer', RowVacancyClient)),
+				this.departmentList = list('div.table-full__layer', RowVacancyClient, undefined, this.type)),
 	
 			el('div.table-full__busy.busy',
 				firstRow('Трудоустроены'),
-				this.busyList = list('div.table-full__layer', RowVacancyClient)),
+				this.busyList = list('div.table-full__layer', RowVacancyClient, undefined, this.type)),
 
 			)
 
@@ -48,8 +49,8 @@ export default class TableVacancyClient {
 	}
 
 	update(data, r, t, y){
-		console.log(data)
-		data && data.forEach(el => {
+		// console.log(data)
+		data.data && data.data.forEach(el => {
 			if(el.vacancy.id_status === '1' || el.vacancy.id_status === '2') {
 				this.choosenObj[el.main.id_trainees] = el
 			} else if (el.vacancy.id_status === '3' || el.vacancy.id_status === '4') {
@@ -64,11 +65,18 @@ export default class TableVacancyClient {
 		})
 
 
-		this.choosenList.update(Object.values(this.choosenObj))
-		this.readyList.update(Object.values(this.readyObj))
-		this.waitList.update(Object.values(this.waitObj))
-		this.departmentList.update(Object.values(this.departmentObj))
-		this.busyList.update(Object.values(this.busyObj))
+		// console.log(this.choosenObj)
+		// console.log(this.readyObj)
+		// console.log(this.waitObj)
+		// console.log(this.departmentObj)
+		// console.log(this.busyObj)
+
+		this.choosenList.update(Object.values(this.choosenObj), data.id)
+		// console.log(Object.values(this.choosenObj))
+		this.readyList.update(Object.values(this.readyObj), data.id)
+		this.waitList.update(Object.values(this.waitObj), data.id)
+		this.departmentList.update(Object.values(this.departmentObj), data.id)
+		this.busyList.update(Object.values(this.busyObj), data.id)
 
 		this.choosenObj = {}
 		this.readyObj = {}

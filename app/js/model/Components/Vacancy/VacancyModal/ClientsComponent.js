@@ -6,7 +6,7 @@ import getVacancyClients from '../../../fetchingData/Vacancy/getVacancyClients'
 import addClientToVacancy from '../../../fetchingData/Vacancy/VacancyModal/addClientToVacancy'
 import storage from '../../../Storage'
 import { initVacancyModalTooltip } from '../../../initToottips'
-
+import storageVacancyClientsUpdate from '../../../CustomEvents/StorageVacancyClientsUpdate'
 
 
 class AddClientPopup {
@@ -69,11 +69,23 @@ class AddClientPopup {
 
 		this.form.onsubmit = (e) => {
 			e.preventDefault()
-			console.log(this.parent)
+			// console.log(storage)
+			// console.log(storage.setPartialState(this.parent.data.id, res, 'data'))
 			addClientToVacancy({
-				vacancy: '',
+				vacancy: this.parent.data.id,
 				client: this.result.id
+			}).then(res => {
+				if(res !== 'fail') {
+					this.parent.update(storage.setPartialState(this.parent.data.id, res, 'data')[this.parent.data.id])
+					this.findClient.value = ''
+					storageVacancyClientsUpdate.detail.id = String(this.parent.data.id)
+					document.dispatchEvent(storageVacancyClientsUpdate)
+					this.parent.add._tippy.hide()
+				} else {
+					return
+				}
 			})
+
 			}
 
 		}
@@ -98,7 +110,7 @@ export default class ClientsComponent {
 					this.modalLayer = el('div.modal-row__layer', 
 						el('div.modal-row__clients-row.active',
 							this.names = el('p')),
-						this.vacancyClientsTable = new TableVacancyClient()) 
+						this.vacancyClientsTable = new TableVacancyClient('vacancy-modal')) 
 			)
 
 		this.addClientPopup = new AddClientPopup()
@@ -110,6 +122,19 @@ export default class ClientsComponent {
    //      content: this.addClientPopup.el,
    //    });
 
+   document.addEventListener('storageupdate', (e) => {
+   	
+		if(e.detail.id === this.data.id) {
+			if(e.detail.clazz === 'vacancy-row') {
+						console.log('Vacancy-row:', storage)
+						let data = storage.getState(this.data.id)
+						// console.log(storage)
+						this.vacancyClientsTable.update(data)
+					}
+		}
+		
+	})
+
 	
 
 
@@ -117,10 +142,11 @@ export default class ClientsComponent {
 
 
 	update(data) {
+		console.log(data)
 		this.vacancyClientsTable.update(data)
 
 		setAttr(this.names, {
-				innerText: `${data.map(el => el.main.snp).join(', ')}`
+				innerText: `${data.data.map(el => el.main.snp).join(', ')}`
 			})
 
 		this.data = data

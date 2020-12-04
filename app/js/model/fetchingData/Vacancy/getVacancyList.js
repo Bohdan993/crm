@@ -56,7 +56,7 @@ const getVacancyList = async ({
 	scroll = false
 } = {}) => { 
 
-	console.log(type_vacancy)
+	// console.log(type_vacancy)
 	if(vacanciesWrapper) {
 		loader.update(true)
 
@@ -64,7 +64,7 @@ const getVacancyList = async ({
 			// const delay = await sleep(5000)
 			const data = await fetch.getResourse(`/vacancies/get_all/?p=${p}&t=${t}&search=${search}&filter=manager:${manager}|archive:${archive}|active:${active}|country:${country}|type_vacancy:${type_vacancy}|type_production:${type_production}|job_start:${job_start}|job_period:${job_period}|status:${status}&sort=${sort}`)
 			const vacanciesData = data.data
-			console.log(data)
+			// console.log(data)
 			if(data.success) {
 
 				if(!vacanciesData) {

@@ -18,9 +18,19 @@ const loader = place(Loader)
 const loader2 = place(Loader)
 
 
+
 const feedbackEmp = new Feedback('employer')
 const feedbackVac = new Feedback('vacancy')
-
+const nulledFeedbackData = {
+			id: 0, 
+			badFeedback: 0,
+			data: [], 
+			total: 0, 
+			loading: true, 
+			deleating: false, 
+			adding: false, 
+			showing: false
+		}
 
 
 
@@ -147,6 +157,12 @@ if(feedbackVacancy) {
 
 			// const delay = await sleep(15000)
 			const data = await fetch.getResourse(`/${str}/get/?id=${id}&section=2&other=${other}&p=${p}&t=${t}`)
+			console.log(str, id, other, p,)
+
+
+			if(data.data) {
+
+
 			const otherPart = data.data.other
 			console.log(otherPart)
 			console.log(data)
@@ -205,6 +221,13 @@ if(feedbackVacancy) {
 			// if(state.id !== id) {
 				feedbackVac.update(feedbackData)
 			// }
+			} else {
+				feedbackVac.update(nulledFeedbackData)
+			}
+
+
+			
+
 
 			if(loading) {
 				loader2.update(false)

@@ -8,7 +8,7 @@ import GetManagers from '../getManagersClass'
 const managersObj = new GetManagers('vacancies', '.managers-popup-vacancy', ManagerPopup, 'vacancy')
 
 const getManagerVacancyPopup = function (){
-	console.log(managersObj)
+	// console.log(managersObj)
 	managersObj.fetchData('managerFilterVacancy','managersVacancy')
 }
 

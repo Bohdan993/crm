@@ -1,4 +1,4 @@
-import {el, setAttr, svg, place, list} from '../../../../libs/libs'
+import {el, setAttr, svg, place, list, MicroModal} from '../../../../libs/libs'
 import { initRowTooltips } from '../../initToottips'
 import getWorkModalInfo from '../../fetchingData/Employer/WorkModal/getWorkModalInfo'
 
@@ -82,6 +82,7 @@ export default class RowEmployer {
 		// this.flag = false
 
 		this.el.addEventListener('click', (e) =>{
+			MicroModal.show('modal-1')
 			getWorkModalInfo(this.data.id_employer)
 			getWorkModalManufacturyType(this.data.id_employer)
 			getWorkModalMedia({id: this.data.id_employer, loading: true})
@@ -111,11 +112,12 @@ export default class RowEmployer {
 
 		data.phone ? this.phoneIco.update(true) : this.phoneIco.update(false)
 
-		let custom = 'data-custom' + items[items.length - 1]['id_employer'] + '-open'
+		// let custom = 'data-custom' + items[items.length - 1]['id_employer'] + '-open'
+		// console.log(custom)
 
 		setAttr(this.el, {
 			"data-id_employer": data.id_employer,
-			[custom]: `modal-1`
+			'data-custom-open': `modal-1`
 		})
 
 		setAttr(this.flagIco, {

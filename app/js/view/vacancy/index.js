@@ -30,6 +30,9 @@ const termsRow = document.querySelector('.row.terms.modal-row')
 const sidebarVacancyForm = document.querySelector('.vacancy-modal__sidebar-vacancy-form')
 const vacancyModalSidebarNotes = document.querySelector('.vacancy-modal__sidebar-notes')
 const archiveActive = document.querySelector('.active-archive__statuses')
+const modalLayerLeft = document.querySelector('.modal-row__layer.main-info_left')
+const modalLayerRight = document.querySelector('.modal-row__layer.main-info_right')
+const sidebarVacancy = document.querySelector('.vacancy-sidebar .sidebar__list-add')
 export {
 
 	rows,
@@ -51,7 +54,10 @@ export {
 	termsRow,
 	sidebarVacancyForm,
 	vacancyModalSidebarNotes,
-	archiveActive
+	archiveActive,
+	sidebarVacancy,
+	modalLayerLeft,
+	modalLayerRight
 	// mainInfoPrice
 	
 }

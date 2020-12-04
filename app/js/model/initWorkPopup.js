@@ -5,6 +5,7 @@ import {MicroModal} from '../../libs/libs'
 import {modalRowMediaWrapper,modalRowMedia,mediaShowMore, body} from '../view'
 
 import getEmployersList from './fetchingData/getEmployersList'
+import getVacancyList from './fetchingData/Vacancy/getVacancyList'
 
 
 function addMouseUpTrigger(e) {
@@ -43,9 +44,11 @@ const initWorkPopup = (count) => {
   },
   onClose: modal => {
     getEmployersList()
+    getVacancyList()
+    console.log(count)
     console.log(`${modal.id} is hidden`) // [2]
   },
-  openTrigger: 'data-custom'+ count +'-open', // [3]
+  openTrigger: 'data-custom-open', // [3]
   closeTrigger: 'data-custom-close', // [4]
   openClass: 'is-open'
 });

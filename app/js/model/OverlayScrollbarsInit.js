@@ -16,15 +16,12 @@ const initOverlayScrollbars = (node, type = '')=> {
 
 	callbacks : {
 			onContentSizeChanged: function(eventArgs) {
-				// if(!flag) {
 				let target = this.getElements().target
 				let $this = this
 				if(target.classList.contains('feedback-row__layer')) {
-				
 					target.parentNode.querySelector('.add-item').addEventListener('click', function(){
 						$this.scroll({ y : "-100%"})
 					}, {once: true})
-
 					if(type === 'employer') {
 						target.closest('.feedback-employer__layer').addEventListener('click', function(e){
 						if(e.target.parentNode.classList.contains('show-more')) {
@@ -32,29 +29,20 @@ const initOverlayScrollbars = (node, type = '')=> {
 						}
 						}, {once: true})
 					} else {
-						
 					}
-					
-					
 				}
 				else if(target.classList.contains('modal-row__layer')) {
-					console.log(false)
+					// console.log(false)
 					this.scroll({ y : "100%"})
 				}
-
 				flag = true
-			// }
 		},
 		onScroll: function(eventArgs){
-			// console.log('ss')
+
 		}
 	}
-	
 }); 
-
 }
-
-
 
 
 export default initOverlayScrollbars

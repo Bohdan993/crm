@@ -40,9 +40,8 @@ class WorkModalContactHistoryRow {
 			)
 
 		this.el.addEventListener('click', (e) => {
-			MicroModal.show('modal-2');
+			MicroModal.show('modal-2')
 			modal.update(this.data)
-			console.log(this.data)
 		})
 
 		// this.flag = false

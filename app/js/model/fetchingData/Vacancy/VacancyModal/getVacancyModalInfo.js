@@ -9,8 +9,12 @@ import ClientsComponent from '../../../Components/Vacancy/VacancyModal/ClientsCo
 import TermsComponent from '../../../Components/Vacancy/VacancyModal/TermsComponent'
 import DemandComponent from '../../../Components/Vacancy/VacancyModal/DemandsComponent'
 import {list, mount, place} from '../../../../../libs/libs'
-import {demandsRow, termsRow, sidebarVacancyForm, vacancyModalSidebarNotes, clientsRow} from '../../../../view'
+import {modalLayerRight, modalLayerLeft, demandsRow, termsRow, sidebarVacancyForm, vacancyModalSidebarNotes, clientsRow} from '../../../../view'
 import storage from '../../../Storage'
+import  ModalRowLayerLeft from '../../../Components/Vacancy/VacancyModal/ModalRowLayerLeft'
+import  ModalRowLayerRight from '../../../Components/Vacancy/VacancyModal/ModalRowLayerRight'
+
+
 
 const state = {}
 
@@ -28,7 +32,8 @@ const note = new Note('vacancy')
 const select = new ManagerSelect('vacancy')
 const deleteComponent = new Delete('vacancy')
 const clients = new ClientsComponent()
-
+const mrll = new ModalRowLayerLeft()
+const mrlr = new ModalRowLayerRight()
 
 
 
@@ -58,6 +63,14 @@ if(clientsRow) {
 if(vacancyModalSidebarNotes) {
 	mount(vacancyModalSidebarNotes, note)
 }
+
+if(modalLayerLeft) {
+	mount(modalLayerLeft, mrll)
+}
+
+if(modalLayerRight) {
+	mount(modalLayerRight, mrlr)
+	}
 
 // if(managerSelectWrap) {
 // 	mount(managerSelectWrap, select)
@@ -100,21 +113,21 @@ try {
 			} 
 
 
-			console.log(storage)
+			// console.log(storage)
 
 			if(!storage.isSet(id)) {
 				getVacancyClients(id)
 					.then(res => {
 						if(res) {
-							storage.setState(id, res)
-							clients.update(res)
+							storage.setState(id, {id, data: res})
+							clients.update({id, data: res})
 						} else {
-							storage.setState(id, [])
-							clients.update([])
+							storage.setState(id, {id, data: []})
+							clients.update({id, data: []})
 						}
 					})
 			}
-		console.log(data)
+		// console.log(data)
 		// const sourseData = await fetch.getResourse('/employers/get_other/?s=5')
 
 		const mainPart = data.data.main
@@ -126,7 +139,7 @@ try {
 		// const date = mainPart.date
 		// const badFeedback = mainPart.total_bad_feedback
 
-		console.log(mainPart)
+		// console.log(mainPart)
 
 		const demandsData = {
 			id,
@@ -157,8 +170,13 @@ try {
 			data: mainPart.employer
 		}
 
+		const vacancyAndEmployerId = {
+			idEmp: mainPart.id_employer,
+			idVac: id
+		}
 
-		console.log(vacancyEmployerData)
+
+		// console.log(vacancyEmployerData)
 
 		// const tasksData = {
 		// 	tasks,
@@ -180,6 +198,8 @@ try {
 
 		demand.update(demandsData)
 		terms.update(termsData)
+		mrll.update(vacancyAndEmployerId)
+		mrlr.update(vacancyAndEmployerId)
 		// task.update(tasksData)
 		// select.update(id_login)
 		// note.update(notesData)

@@ -10,7 +10,7 @@ export default class GetManagers {
 		this.__mountElement(this.selector, this.element)
 
 		// console.log(selector)
-		console.log(this.element)
+		// console.log(this.element)
 	}
 
 
@@ -27,7 +27,7 @@ export default class GetManagers {
 	}
 
 	__mountElement(selector, el){
-		console.log(selector)
+		// console.log(selector)
 		if(selector) {
 			console.log(selector)
 			mount(selector, el)
@@ -36,7 +36,7 @@ export default class GetManagers {
 
 
 	async fetchData(filter, key) {
-		console.log(this.selector)
+		// console.log(this.selector)
 		if(this.selector) {
 
 			try{

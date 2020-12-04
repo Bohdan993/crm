@@ -57,7 +57,7 @@ import mountContactHistoryModal from './MountingElements/Employer/WorkModal/moun
 // import mountEmployerDelete from './MountingElements/Employer/WorkModal/mountDeleteComponent'
 
 
-
+import addNewVacancy from './fetchingData/Vacancy/addNewVacancy'
 import getVacancyList from './fetchingData/Vacancy/getVacancyList'
 import getCountryVacancyPopup from './fetchingData/Vacancy/getCountryPopup'
 import getStatusesVacancyPopup from './fetchingData/Vacancy/getVacancyStatuses'
@@ -68,7 +68,8 @@ import mountSearchInputVacancy from './MountingElements/Vacancy/mountSearch'
 import mountDateAndTermsPopup from './MountingElements/Vacancy/mountDateAndTermsPopup'
 // import mountClientsVacancy from './MountingElements/Vacancy/VacancyModal/mountClientsComponent'
 import mountActiveArchive from './MountingElements/Vacancy/mountActiveArchiveComponent'
-
+import mountModalRowLayerLeft from './MountingElements/Vacancy/VacancyModal/mountModalRowLayerLeft'
+import mountModalRowLayerRight from './MountingElements/Vacancy/VacancyModal/mountModalRowLayerRight'
 // console.log(getVacancyList)
 
 
@@ -130,7 +131,10 @@ export {
 	mountDateAndTermsPopup,
 	getClientsVacancy,
 	// mountClientsVacancy,
-	mountActiveArchive
+	mountActiveArchive,
+	addNewVacancy,
+	mountModalRowLayerLeft,
+	mountModalRowLayerRight
 	// mountEmployerDelete
 	// getTextSearch
 }

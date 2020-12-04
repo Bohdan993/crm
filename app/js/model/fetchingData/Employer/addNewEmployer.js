@@ -11,24 +11,24 @@ const addNewEmployer = () => {
 
 
 		sidebarEmployer.addEventListener('click', async function(){
+	
 			try {
 				const employer = await fetch.getResourse('/employers/create')
-				getEmployersList()
-				// console.log(employer)
-				// console.log(data)
+
+				if(employer.success === true) {
+					toastr.success(`ID работодателя ${employer.id}`, 'Успешно создан работодатель', {closeButton: false})
+					getEmployersList()
+				} else {
+					throw new Error('Не возможно cоздать работодателя')
+				}
 
 				employerListAddEvent.detail.id = String(employer.id)
 				document.dispatchEvent(employerListAddEvent)
 
-
-				toastr.success(`ID работодателя ${employer.id}`, 'Успешно создан работодатель', {closeButton: false})
 			} catch(e) {
-				console.error(e)
+				toastr.error(e.message, 'Возникла ошибка', {closeButton: true})
 			}
 
-		
-
-      
 		})
 	}
 }

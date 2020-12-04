@@ -55,12 +55,12 @@ const dataArr = [
 
 class CellStatusSlider {
 	constructor(){
-		this.el = el('p.status')
+		this.el = el('p.status.no-open')
 	}
 
 	update(data){
 		setAttr(this.el, {
-			classList: `status ${data.class}`,
+			classList: `status no-open ${data.class}`,
 			innerText: data.text
 		})
 	}
@@ -70,7 +70,7 @@ class CellStatusSlider {
 
 class LanguageStars {
 	constructor(){
-		this.el = el('i.ico.s-star')
+		this.el = el('i.ico.s-star.no-open')
 	}
 
 	update(data){
@@ -80,9 +80,9 @@ class LanguageStars {
 
 class Language {
 	constructor(){
-		this.el = el('i.label.blue__label', 
-			this.languageName = el('span.language'),
-			this.languageStars = list('span.language-stars', LanguageStars)
+		this.el = el('i.label.blue__label.no-open', 
+			this.languageName = el('span.language.no-open'),
+			this.languageStars = list('span.language-stars.no-open', LanguageStars)
 		)
 	}
 
@@ -96,40 +96,43 @@ class Language {
 }
 
 export default class RowVacancyClient {
-	constructor(){
+	constructor(type){
+		this.type = type
+		// console.log(this.type)
 		this.data = {}
-		this.el = el("div.table-full__row.f-container", {
+		this.context = ''
+		this.el = el("div.table-full__row.f-container.no-open", {
 			'data-count': '2'
 		},
-				el('div.table-full__cell.row__cell.cell-names', 
-					this.name = el('a', {
+				el('div.table-full__cell.row__cell.cell-names.no-open', 
+					this.name = el('a.no-open', {
 						href: '#'
 					}),
-					this.group = place(el('span.row__indicator.indicator.department', 
-						this.groupNum = el('span')))),
-				el('div.table-full__cell.row__cell.cell-status', 
-					this.statusLeft = el('div.cell-status__left', 
-						this.statusSlider = list('div.cell-status__slider', CellStatusSlider),
-						this.statusArrows = el('div.cell-status__controls.choosen',
-							el('div.cell-status__control-left', 
-								el('i.ico.s-arr-left')),
-							el('div.cell-status__control-right',
-								el('i.ico.s-arr-right'))
+					this.group = place(el('span.row__indicator.indicator.department.no-open', 
+						this.groupNum = el('span.no-open')))),
+				el('div.table-full__cell.row__cell.cell-status.no-open', 
+					this.statusLeft = el('div.cell-status__left.no-open', 
+						this.statusSlider = list(`div.cell-status__slider.no-open.${this.type}`, CellStatusSlider),
+						this.statusArrows = el('div.cell-status__controls.choosen.no-open',
+							el('div.cell-status__control-left.no-open', 
+								el('i.ico.s-arr-left.no-open')),
+							el('div.cell-status__control-right.no-open',
+								el('i.ico.s-arr-right.no-open'))
 							)),
-					el('div.cell-status__right',
-						this.phone = place(el('i.ico.s-phone-red')),
-						this.documents = place(el('i.ico.s-documents')),
-						this.anket = place(el('i.ico.s-anket')),
-						this.manager = place(el('div.tag.manager-tag.purple-tag')))),
-				el('div.table-full__cell.row__cell.cell-exp', 
-					this.labelCourse = place(el('i.label',
-					this.labelCourseText = el('span'))),
-					this.speciality = el('p'),
-					this.language = list('div.language__wrapper', Language),
+					el('div.cell-status__right.no-open',
+						this.phone = place(el('i.ico.s-phone-red.no-open')),
+						this.documents = place(el('i.ico.s-documents.no-open')),
+						this.anket = place(el('i.ico.s-anket.no-open')),
+						this.manager = place(el('div.tag.manager-tag.purple-tag.no-open')))),
+				el('div.table-full__cell.row__cell.cell-exp.no-open', 
+					this.labelCourse = place(el('i.label.no-open',
+					this.labelCourseText = el('span.no-open'))),
+					this.speciality = el('p.no-open'),
+					this.language = list('div.language__wrapper.no-open', Language),
 					
 					),
-				el('div.table-full__cell.row__cell.cell-notes', 
-					this.notes = el('input', {
+				el('div.table-full__cell.row__cell.cell-notes.no-open', 
+					this.notes = el('input.no-open', {
 						type: 'text'
 					}))
 			)
@@ -139,11 +142,32 @@ export default class RowVacancyClient {
 	}
 
 	update(data, index, items, context){
+		// console.log(this.type)
+		// console.log(data)
 
 		dataArr.forEach(el => {
+
+			if(el.id === '1' || el.id === '2') {
+				el.class = 'choosen'
+			}
+			else if(el.id === '3' || el.id === '4') {
+				el.class = 'ready'
+			}
+			else if(el.id === '5') {
+				el.class = 'wait'
+			}
+			else if(el.id === '6' || el.id === '7' || el.id === '8') {
+				el.class = 'department'
+			}
+			else if(el.id === '9') {
+				el.class = 'busy'
+			}
+
+			
 			if(el.id === data.vacancy.id_status) {
+				
 				setAttr(this.statusArrows,{
-					classList: `cell-status__controls ${el.class}`
+					classList: `cell-status__controls no-open ${el.class}`
 				})
 				el.class += ' active'
 			}
@@ -204,14 +228,15 @@ export default class RowVacancyClient {
 			) : this.labelCourse.update(false) : null
 
 		this.data = data
+		this.context = context
 
-		// console.log(this.data)
+		// console.log(this.data,  this.context)
 	}
 
 
 	onmount(){
-		// console.log(this.data.)
-		switchRowStatuses(this.statusLeft, this.data.main.id_trainees)
+		// console.log(this.data.vacancy.id)
+		switchRowStatuses(this.statusLeft, this.data.vacancy.id, this.context)
 		initVacancyTooltip(this.statusSlider.el)
 	}
 

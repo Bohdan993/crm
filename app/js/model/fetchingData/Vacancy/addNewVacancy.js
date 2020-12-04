@@ -1,40 +1,34 @@
 import fetch from '../fetchingDataClass'
 import getVacancyList from './getVacancyList'
-import { sidebarEmployer } from '../../../view'
+import { sidebarVacancy } from '../../../view'
 import { toastr }from '../../../../libs/libs'
-// import employerListAddEvent from '../CustomEvents/EmployerListAddEvent'
+import vacancyListAddEvent from '../../CustomEvents/VacancyListAddEvent'
 
 
 
 const addNewVacancy = () => {
-		if(sidebarEmployer) {
+		if(sidebarVacancy) {
 
 
-		sidebarEmployer.addEventListener('click', async function(){
+		sidebarVacancy.addEventListener('click', async function(){
 			try {
 				const vacancy = await fetch.getResourse('/vacancies/create')
 
-
 				if(vacancy.success === true) {
-					toastr.success(`ID вакансии ${employer.id}`, 'Успешно создана вакансия', {closeButton: false})
-					getEmployersList()
+					toastr.success(`ID вакансии ${vacancy.id}`, 'Успешно создана вакансия', {closeButton: false})
+					getVacancyList()
 				} else {
-
+					throw new Error('Не возможно cоздать вакансию')
 				}
-				
-				// console.log(employer)
-				// console.log(data)
 
-				// employerListAddEvent.detail.id = String(employer.id)
-				// document.dispatchEvent(employerListAddEvent)
+
+				vacancyListAddEvent.detail.id = String(vacancy.id)
+				document.dispatchEvent(vacancyListAddEvent)
 
 			} catch(e) {
-				console.error(e)
+				toastr.error(e.message, 'Возникла ошибка', {closeButton: true})
 			}
 
-		
-
-      
 		})
 	}
 }
