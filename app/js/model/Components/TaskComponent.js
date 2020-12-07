@@ -6,6 +6,7 @@ import deleteTask from '../fetchingData/Employer/WorkModal/deleteTask'
 import saveFieldsData from '../fetchingData/saveFieldsData'
 import {el, svg, list, setAttr} from '../../../libs/libs'
 import initElasticArea from '../initElasticArea'
+import storage from '../Storage'
 
 class TaskItem {
 	constructor(type){
@@ -22,15 +23,15 @@ class TaskItem {
         		this.delete = el('span.delete-task-item'))
 
 			this.delete.addEventListener('click', e => {
-                if(this.type === 'employer') {
+                // if(this.type === 'employer') {
                     deleteTask({
                         id: this.data.id_employer_task, 
                         id_employer: this.context.id,
                         str: 'employers'
                     })
-                } else {
+                // } else {
 
-                }
+                // }
 				
 			})
 
@@ -46,7 +47,14 @@ class TaskItem {
                     id_target: this.data.id_employer_task
                    })
                 } else {
-
+                    saveFieldsData({
+                    str: 'employers',
+                    id: this.context.id,
+                    value: this.textarea.value, 
+                    field: 'name', 
+                    target: 'task', 
+                    id_target: this.data.id_employer_task
+                   })
                 }
             })
 
@@ -87,15 +95,19 @@ export default class Task { // to ../fetchingData/Employer/WorkModal
 
         this.addTask.addEventListener('click', e => {
         	// console.log('yes')
-        	if(type === 'employer') {
+        	// if(type === 'employer') {
         		addTask(
         			{
             			id: this.data.id,
         				str:'employers'
     				})
-        	} else {
-
-            }
+        	// } else {
+         //        addTask(
+         //            {
+         //                id: this.data.id,
+         //                str:'employers'
+         //            })
+         //    }
         	
         })
         
@@ -109,6 +121,10 @@ export default class Task { // to ../fetchingData/Employer/WorkModal
 
     onmount() {
         addNewTask(this.addTask)
+
+        document.addEventListener('storageemployeradd', (e) => {
+            this.list.update(storage.getState(e.detail.id).task)
+        })
     }
 }
 

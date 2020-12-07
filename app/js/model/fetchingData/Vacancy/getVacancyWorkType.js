@@ -41,8 +41,6 @@ let checkboxData = [
 
 const popupPart1 = new VacancyPopupType()
 const popupPart2 = new TypeManufactury('vacancy')
-// const popupPart2 = list('div.form-group', TypeManufactury, 'id', 'vacancy')
-// const popupPart3 = list("fieldset", TypeManufactury, 'id', 'vacancy')
 
 
 if(typeWorkPopup) {
@@ -57,51 +55,50 @@ if(typeWorkPopup) {
 			let production = data.data.production
 			// console.log(data)
 
-			// if(sessionStorage.getItem('vacancyTypeFilter')) { 
-			// 			part1Data = part1Data.map(data => {
-			// 			let checked = !!~JSON.parse(sessionStorage.getItem('vacancyTypeFilter')).split(',').indexOf(data.name)
-			// 			return {
-			// 				label: data.label,
-			// 				id: data.id,
-			// 				name: data.name,
-			// 				str: 'vacancy_type',
-			// 				filter: 'vacancyTypeFilter',
-			// 				checked
-			// 			}
-			// 		})
-			// 	} else {
-			// 		part1Data = part1Data.map(data=> {
-			// 			return {
-			// 				label: data.label,
-			// 				id: data.id,
-			// 				name: data.name,
-			// 				str: 'vacancy_type',
-			// 				filter: 'vacancyTypeFilter',
-			// 			}
-			// 		})
-			// 	}
+			if(sessionStorage.getItem('v-vacancyTypeFilter')) { 
+						checkboxData = checkboxData.map(data => {
+						let checked = !!~JSON.parse(sessionStorage.getItem('v-vacancyTypeFilter')).split(',').indexOf(data.name)
+						return {
+							label: data.label,
+							id: data.id,
+							name: data.name,
+							str: 'type_vacancy',
+							filter: 'v-vacancyTypeFilter',
+							checked
+						}
+					})
+				} else {
+					checkboxData = checkboxData.map(data=> {
+						return {
+							label: data.label,
+							id: data.id,
+							name: data.name,
+							str: 'type_vacancy',
+							filter: 'v-vacancyTypeFilter',
+						}
+					})
+				}
 
-				
 
-			// if(sessionStorage.getItem('typeManufacturyFilter')) { 
-			// 			production = production.map(product => {
-			// 			let checked = !!~JSON.parse(sessionStorage.getItem('typeManufacturyFilter')).split(',').indexOf(product.id)
-			// 			return {
-			// 				id: product.id,
-			// 				name: product.name,
-			// 				prefix: 'type-manufactury-chbx-',
-			// 				checked
-			// 			}
-			// 		})
-			// 	} else {
-			// 			production = production.map(product => {
-			// 			return {
-			// 				id: product.id,
-			// 				name: product.name,
-			// 				prefix: 'type-manufactury-chbx-',
-			// 			}
-			// 		})
-			// 	}
+			if(sessionStorage.getItem('typeManufacturyVacancyFilter')) { 
+						production = production.map(product => {
+						let checked = !!~JSON.parse(sessionStorage.getItem('typeManufacturyVacancyFilter')).split(',').indexOf(product.id)
+						return {
+							id: product.id,
+							name: product.name,
+							prefix: 'type-manufactury-chbx-',
+							checked
+						}
+					})
+				} else {
+						production = production.map(product => {
+						return {
+							id: product.id,
+							name: product.name,
+							prefix: 'type-manufactury-chbx-',
+						}
+					})
+				}
 			// const end = production.length
 			// const middle = Math.ceil(end/2)
 

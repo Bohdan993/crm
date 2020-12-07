@@ -1,16 +1,20 @@
 import fetch from '../fetchingDataClass'
-
+import { toastr }from '../../../../libs/libs'
 const getClientsVacancy = async () => {
-	if(true) {
+	// if(true) {
 		try{
 			const data = await fetch.getResourse('/vacancies/get_other/?s=4')
-			let clients = data.data.client
-			// console.log(typeContact)
-			localStorage.setItem('clientsVacancy', JSON.stringify(clients))
-		}catch(e) {
-			console.error(e)
+			
+			if(data.success === true) {
+				let clients = data.data.client
+				localStorage.setItem('clientsVacancy', JSON.stringify(clients))
+			} else {
+				throw new Erroe('Не возможно загрузить список клиентов')
+			}
+		} catch(e) {
+			toastr.error(e.message, 'Возникла ошибка', {closeButton: true})
 		}
-	}
+	// }
 }
 
 export default getClientsVacancy // to ../../index.js

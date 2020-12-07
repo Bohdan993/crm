@@ -1,5 +1,5 @@
 let rows = document.querySelectorAll('.vacancy-rows .row')
-
+const vacancyRowsWrapper = document.querySelector('.vacancy-rows-wrapper')
 let statusLeft = document.querySelectorAll('.cell-status__left') 
 
 let sliders = document.querySelectorAll('.cell-status__slider')
@@ -57,7 +57,8 @@ export {
 	archiveActive,
 	sidebarVacancy,
 	modalLayerLeft,
-	modalLayerRight
+	modalLayerRight,
+	vacancyRowsWrapper
 	// mainInfoPrice
 	
 }

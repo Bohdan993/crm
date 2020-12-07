@@ -1,16 +1,19 @@
 import {el, setAttr, place, Autocomplete} from '../../../../../libs/libs'
 import loadEmployerInfo from '../../../fetchingData/Vacancy/VacancyModal/loadEmployerInfo.js'
+import storage from '../../../Storage'
+import storageVacancyEmployerDataAdd from '../../../CustomEvents/storageVacancyEmployerDataAdd'
 
 export default class FindEmployerPopupComponent {
 
-	constructor(){
+	constructor(type){
+		this.data =  JSON.parse(localStorage.getItem('employersVacancy'))
 		this.el = el('div.vacancy-modal-popup#employer-type-popup', 
 				this.form = el('form', 
 					el('p.vacancy-modal__title', `Введите имя работодателя 
 						или название организации`),
 					this.searchGroup = el('div.input-group', 
-						el('input.find-employer.info-area#find-employer'), 
-						el('ul.autocomolete-result-list')
+						this.findEmployer = el('input.find-employer.info-area#find-employer'), 
+						el('ul.autocomplete-result-list')
 						),
 					this.btn = el('button.confirm-bnt', 
 						el('span', 'ОК')
@@ -19,24 +22,40 @@ export default class FindEmployerPopupComponent {
 			)
 
 		this.autocomplete = new Autocomplete(this.searchGroup, {
-		 search: input => {
-			    return new Promise(resolve => {
-			      if (input.length < 3) {
-			        return resolve([])
-			      }
+		//  search: input => {
+		// 	    return new Promise(resolve => {
+		// 	      if (input.length < 3) {
+		// 	        return resolve([])
+		// 	      }
 
-			      loadEmployerInfo({})
-			        .then(response => console.log(response))
-			        // .then(data => {
-			        //   resolve(data.query.search)
-			        // })
-			    })
-  },
+		// 	      loadEmployerInfo({})
+		// 	        .then(response => console.log(response))
+		// 	        // .then(data => {
+		// 	        //   resolve(data.query.search)
+		// 	        // })
+		// 	    })
+  // },
+
+  search: input => {
+			  try {
+							 if (input.length < 1) {
+					        return []
+					     }
+					     return this.data.filter(employer => {
+						      return employer.name.toLowerCase()
+						        .includes(input.toLowerCase())
+						    })
+			    	}
+			  catch(err) {
+			    		console.error(err)
+			    }
+
+		  },
 		  renderResult(result, props) {
 		  	return `
 				    <li ${props}>
 				      <div class="wiki-title">
-				        ${result.snp}
+				        ${result.name}
 				      </div>
 				    </li>
 				  `
@@ -46,7 +65,7 @@ export default class FindEmployerPopupComponent {
 		  getResultValue: result => {
 		  	this.result = result
 		  	
-		  	return result.snp
+		  	return result.name
 		  },
 		  autoSelect: true
 
@@ -54,8 +73,21 @@ export default class FindEmployerPopupComponent {
 
 		this.form.addEventListener('submit', (e) => {
 			e.preventDefault()
-
-			
+			// console.log(this.result.id)
+			loadEmployerInfo({
+				vacancy: this.parent.data.idVac,
+				employer: this.result.id
+			}).then(res => {
+				if(res !== 'fail') {
+					this.parent.chooseEmployer._el._tippy.hide()
+					storage.setState('vacancyEmployerData', res)
+					storageVacancyEmployerDataAdd.detail.id = 'vacancyEmployerData'
+					document.dispatchEvent(storageVacancyEmployerDataAdd)
+					this.findEmployer.value = ''
+				} else {
+					return
+				}
+			})
 		})
 	}
 

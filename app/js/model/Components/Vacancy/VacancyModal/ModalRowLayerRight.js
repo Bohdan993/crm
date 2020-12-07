@@ -1,17 +1,18 @@
 import {el, setAttr, place, tippy, Autocomplete} from '../../../../../libs/libs'
 import FindEmployerPopupComponent from './FindEmployerPopupComponent'
 import { initVacancyModalTooltip } from '../../../initToottips'
+import storage from '../../../Storage'
 
 export default class ModalRowLayerRight {
 	constructor(){
 		this.el = el('div.modal-row__wrapper', 
 			el('div.main-info__choose-block', 
-				this.chooseEmployer = el('div.choose-employer', 
+				this.chooseEmployer = place(el('div.choose-employer', 
 					el('p', 
-						el('span', 'Выберите работодателя'))),
-				el('div.employer-name',
+						el('span', 'Выберите работодателя')))),
+				this.employerName = place(el('div.employer-name',
 					el('p',
-						el('span', 'Thompson Equestrian Partners'))),
+						this.employerNameText = el('span', 'Thompson Equestrian Partners')))),
 				el('div.full-info', 
 					el('p.country-vacancy', 
 						el('span', 'NO 293')),
@@ -21,15 +22,15 @@ export default class ModalRowLayerRight {
 			el('div.main-info__layer_left', 
 				el('div.main-info__contact-person', 
 					el('p', 'Контактное лицо'),
-					el('span', '')),
+					this.name = el('span', '')),
 				el('div.main-info__phones', 
 					el('p', 'Телефоны'),
-					el('a', {
+					this.phone = el('a', {
 						href: 'tel:+444'
 					})),
 				el('div.main-info__email', 
 					el('p', 'E-Mail'),
-					el('a', {
+					this.email = el('a', {
 						href: 'mailto:'
 					}))),
 			el('div.main-info__layer_right',
@@ -50,16 +51,58 @@ export default class ModalRowLayerRight {
 						)))
 			)
 
-		this.findEmployerPopup = new FindEmployerPopupComponent()
+		this.findEmployerPopup = new FindEmployerPopupComponent('Right')
 		this.findEmployerPopup.el.style.display = "block"
 		this.findEmployerPopup.parent = this
 	}
 
 	update(data){
 		console.log(data)
+
+
+		// if(data.employer && Object.keys(data.employer).length) {
+
+		setAttr(this.email, {
+			innerText: data.employer.email ? data.employer.email : '',
+			href: `mailto:${data.employer.email ? data.employer.email : ''}`
+		})
+
+
+		setAttr(this.phone, {
+			innerText: data.employer.phone ? data.employer.phone : '',
+			href: `tel:${data.employer.phone ? data.employer.phone : ''}`
+		})
+
+
+		setAttr(this.name, {
+			innerText: data.employer.name ? data.employer.name : ''
+		})
+
+
+		setAttr(this.comIframe, {
+			src: `https://maps.google.com/maps?width=100%&height=200&hl=en&q=${data.employer.address ? data.employer.address : ''}&ie=UTF8&t=&z=11&iwloc=B&output=embed`
+		})
+
+
+		setAttr(this.employerNameText, {
+			innerText: data.employer.enterprise ? data.employer.enterprise : ''
+		})
+	// }
+		this.data = data
 	}
 
 	onmount() {
-		this.findEmployerInstance = initVacancyModalTooltip(this.chooseEmployer, this.findEmployerPopup.el, tippy)
+		this.chooseEmployer.update(true)
+		this.findEmployerInstance = initVacancyModalTooltip(this.chooseEmployer._el, this.findEmployerPopup.el, tippy)
+
+		document.addEventListener('storageemployeradd', (e) => {
+			this.update(storage.getState(e.detail.id))
+			this.chooseEmployer.update(false)
+			this.employerName.update(true)
+			this.employerName._el.style.display = "flex"
+		})
 	}
+
+
+
 }

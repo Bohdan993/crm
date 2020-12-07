@@ -111,7 +111,7 @@ export default class RowVacancy {
 
 				if(e.detail.id === this.data.id_vacancy) {
 					if(e.detail.clazz === 'vacancy-modal') {
-						console.log('Vacancy-modal:', storage)
+						// console.log('Vacancy-modal:', storage)
 						let data = storage.getState(this.data.id_vacancy)
 						this.vacancyClientsTable.update(true, data)
 					}
@@ -130,7 +130,7 @@ export default class RowVacancy {
 			}
 		})
 
-		data.archive !== '0' ? (this.archive.update(true), setAttr(this.archiveText, {innerText: data.arhive_date})) : this.indicators.update(true, this.indicatorsArr)
+		data.archive !== '0' ? (this.archive.update(true), setAttr(this.archiveText, {innerText: 'Архив - ' + data.arhive_date})) : this.indicators.update(true, this.indicatorsArr)
 
 		// let custom = 'data-custom' + items[items.length - 1]['id_vacancy'] + '-open'
 

@@ -103,7 +103,8 @@ import {
 	archiveActive,
 	sidebarVacancy,
 	modalLayerLeft,
-	modalLayerRight
+	modalLayerRight,
+	vacancyRowsWrapper
 } from './vacancy'
 
 
@@ -189,5 +190,6 @@ export {
 	archiveActive,
 	sidebarVacancy,
 	modalLayerLeft,
-	modalLayerRight
+	modalLayerRight,
+	vacancyRowsWrapper
 }

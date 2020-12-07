@@ -107,7 +107,7 @@ const getVacancyModalInfo = async (id = '1') => {
 try {
 		const data = await fetch.getResourse(`/vacancies/get/?id=${id}&section=1`)
 
-
+		console.log(data)
 			if(storage.isSet(id)) {
 				clients.update(storage.getState(id))
 			} 
@@ -130,16 +130,17 @@ try {
 		// console.log(data)
 		// const sourseData = await fetch.getResourse('/employers/get_other/?s=5')
 
-		const mainPart = data.data.main
+		const mainPart = data.data ? data.data.main : []
 		// const source = sourseData.data.source
 		// source.unshift({id: 0, name: 'Отсутствует'})
-		// const tasks = mainPart.task
-		// const notes = mainPart.note
-		// const id_login = mainPart.id_login
+		const tasks = mainPart.task
+		const notes = mainPart.employer ? mainPart.employer.note : ''
+		const id_manager = mainPart.employer ? mainPart.employer.id_manager : '0'
+		const employer = mainPart.employer ? mainPart.employer : {}
 		// const date = mainPart.date
 		// const badFeedback = mainPart.total_bad_feedback
 
-		// console.log(mainPart)
+		console.log(mainPart)
 
 		const demandsData = {
 			id,
@@ -170,18 +171,27 @@ try {
 			data: mainPart.employer
 		}
 
-		const vacancyAndEmployerId = {
+		const employerData = {
 			idEmp: mainPart.id_employer,
-			idVac: id
+			idVac: id,
+			employer
+		}
+
+		const notesData = {
+			notes,
+			id: mainPart.id_employer
+		}
+
+		const managersData = {
+			id_manager,
+			id
 		}
 
 
-		// console.log(vacancyEmployerData)
-
-		// const tasksData = {
-		// 	tasks,
-		// 	id
-		// }
+		const tasksData = {
+			tasks,
+			id
+		}
 
 		// const notesData = {
 		// 	notes,
@@ -198,11 +208,11 @@ try {
 
 		demand.update(demandsData)
 		terms.update(termsData)
-		mrll.update(vacancyAndEmployerId)
-		mrlr.update(vacancyAndEmployerId)
-		// task.update(tasksData)
-		// select.update(id_login)
-		// note.update(notesData)
+		mrll.update(employerData)
+		mrlr.update(employerData)
+		select.update(managersData)
+		task.update(tasksData)
+		note.update(notesData)
 		// deleteComponent.update(deleteData)
 
 		// loader2.update(false)

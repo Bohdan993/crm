@@ -38,7 +38,6 @@ import sidebarSearchInput from '../sidebarSearchInput'
         this.search.value = JSON.parse(sessionStorage.getItem('searchVacancy'))
       }
       
-      
       function seachFunc(e){
         let val = e.target.value.trim()
 

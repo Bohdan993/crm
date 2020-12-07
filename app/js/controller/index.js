@@ -42,6 +42,7 @@ import {
 	getStatusesVacancyPopup,
 	mountDateAndTermsPopup,
 	getClientsVacancy,
+	getVacancyEmployers,
 	addNewVacancy,
 	// mountClientsVacancy,
 	mountActiveArchive,
@@ -95,7 +96,8 @@ import {
 	workModalFeedback,
 	feedbackShowMore,
 	clientsModalLayer,
-	employerRowsWrapper
+	employerRowsWrapper,
+	vacancyRowsWrapper
 
 } from '../view'
 
@@ -142,6 +144,7 @@ const app = {
 		// this.mcv()
 		this.maa()
 		this.anv()
+		this.gve()
 		// this.mrll()
 		// this.mrlr()
 	},
@@ -277,7 +280,11 @@ const app = {
 	},
 	fs(){
 		if(employerRowsWrapper) {
-			fetchScroll(employerRowsWrapper)
+			fetchScroll(employerRowsWrapper, 'employer')
+		}
+
+		if(vacancyRowsWrapper) {
+			fetchScroll(vacancyRowsWrapper, 'vacancy')
 		}
 	},
 	mchm(){
@@ -317,6 +324,9 @@ const app = {
 	anv(){
 		addNewVacancy()
 	},
+	gve(){
+		getVacancyEmployers()
+	}
 	// mrll(){
 	// 	mountModalRowLayerLeft()
 	// },

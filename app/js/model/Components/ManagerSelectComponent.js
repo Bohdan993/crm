@@ -23,7 +23,14 @@ export default class ManagerSelect { // to ../MountingElements/Employer/WorkModa
                     id_target: ''
                    })
                 } else {
-
+                	saveFieldsData({
+                    str: 'vacancies',
+                    id: this.context.id,
+                    value: this.textarea.value, 
+                    field: 'name', 
+                    target: 'main', 
+                    id_target: ''
+                   })
                 }
 		})
 

@@ -13,8 +13,13 @@ const saveFieldsData = async ({
 } = {}) => {
 			try {
 				const fields = await fetch.getResourse(`/${str}/save/?id=${id}&value=${value}&field=${field}&target=${target}&id_target=${id_target}`)
-				console.log(fields)
-				toastr.success(`ID ${str === 'employers' ? 'работодателя' : 'вакансии'} ${id}`, 'Успешно сохранено поле', {closeButton: false})
+
+				if(fields.success === true) {
+					toastr.success(`ID ${str === 'employers' ? 'работодателя' : 'вакансии'} ${id}`, 'Успешно сохранено поле', {closeButton: false})
+				} else {
+					throw new Error('Не возможно cохранить значение поля')
+				}
+				
 			} catch(e) {
 				toastr.error(e.message)
 			}

@@ -38,8 +38,7 @@ mount(vacanciesWrapper, loader)
 let flag = false
 
 const getVacancyList = async ({
-	t = +JSON.parse(sessionStorage.getItem('page')) * 50 || '50',
-	// t = '50',
+	t = +JSON.parse(sessionStorage.getItem('pageVacancy')) * 50 || '50',
 	p = '1',
 	search = JSON.parse(sessionStorage.getItem('searchVacancy')) || '', 
 	country = JSON.parse(sessionStorage.getItem('countryFilterVacancy')) || '',

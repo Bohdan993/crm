@@ -11,7 +11,7 @@ import storageVacancyClientsUpdate from '../../../CustomEvents/StorageVacancyCli
 
 class AddClientPopup {
 	constructor(){
-		this.data =  JSON.parse(localStorage.getItem('clients'))
+		this.data =  JSON.parse(localStorage.getItem('clientsVacancy'))
 		this.result = ''
 		this.el = el('div', 
 				this.main = el('div#choice-client-popup.vacancy-modal-popup', 

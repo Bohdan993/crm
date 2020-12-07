@@ -62,6 +62,7 @@ import getVacancyList from './fetchingData/Vacancy/getVacancyList'
 import getCountryVacancyPopup from './fetchingData/Vacancy/getCountryPopup'
 import getStatusesVacancyPopup from './fetchingData/Vacancy/getVacancyStatuses'
 import getClientsVacancy from './fetchingData/Vacancy/getClients'
+import getVacancyEmployers from './fetchingData/Vacancy/getVacancyEmployers'
 import getVacancyWorkType from './fetchingData/Vacancy/getVacancyWorkType'
 import mountSortingVacancyPopup from './MountingElements/Vacancy/mountSortingPopup'
 import mountSearchInputVacancy from './MountingElements/Vacancy/mountSearch'
@@ -134,7 +135,8 @@ export {
 	mountActiveArchive,
 	addNewVacancy,
 	mountModalRowLayerLeft,
-	mountModalRowLayerRight
+	mountModalRowLayerRight,
+	getVacancyEmployers
 	// mountEmployerDelete
 	// getTextSearch
 }

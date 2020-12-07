@@ -1,6 +1,7 @@
 import fetch from './fetchingDataClass'
 import {StickyLoader} from '../Components/Loader'
 import getEmployersList from './getEmployersList'
+import getVacancyList from './Vacancy/getVacancyList'
 import {place, mount} from '../../../libs/libs'
 import {throttle} from '../helper'
 
@@ -22,21 +23,22 @@ const fetchScroll = (elem, type) => {
 		
 	async function ajaxData(){
 		if (this.scrollTop + this.clientHeight >= this.scrollHeight - HEIGHT && data.length === DATA_LENGTH && !flag) {
-				flag = true
-				mount(elem, loader)
-				loader.update(true)
-        data = await getEmployersList({t: DATA_LENGTH, p: count, scroll: true}).then((data)=> {flag = false; return data} )
-        loader.update(false)
-        sessionStorage.setItem('page', JSON.stringify(count))
-      	count++
+					flag = true
+					mount(elem, loader)
+					loader.update(true)
 
-
-      	// if(type === 'employer') {
-
-      	// } else {
-      		
-      	// }
-
+      	if(type === 'employer') {
+      			let count = +JSON.parse(sessionStorage.getItem('page')) || 2
+		        data = await getEmployersList({t: DATA_LENGTH, p: count, scroll: true}).then((data)=> {flag = false; return data} )
+		        sessionStorage.setItem('page', JSON.stringify(count))
+		      	count++
+      	} else {
+      				let count = +JSON.parse(sessionStorage.getItem('pageVacancy')) || 2
+			        data = await getVacancyList({t: DATA_LENGTH, p: count, scroll: true}).then((data)=> {flag = false; return data} )
+			        sessionStorage.setItem('pageVacancy', JSON.stringify(count))
+			      	count++
+      	}
+      		loader.update(false)
     }
 	}
 

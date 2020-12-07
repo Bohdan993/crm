@@ -3,7 +3,7 @@
 import saveFieldsData from '../fetchingData/saveFieldsData'
 import {el, svg, list, setAttr} from '../../../libs/libs'
 import initElasticArea from '../initElasticArea'
-
+import storage from '../Storage'
 
 
 export default class Note { // to ../fetchingData/Employer/WorkModal
@@ -27,19 +27,28 @@ export default class Note { // to ../fetchingData/Employer/WorkModal
                     id_target: ''
                    })
         	} else {
+                // console.log(this.data.id)
+                saveFieldsData({
+                    str: 'vacancies',
+                    id: this.data.id,
+                    value: this.textArea.value, 
+                    field: 'note', 
+                    target: 'employer', 
+                    id_target: ''
+                   })
             }
         	
         })
 
         this.textArea.addEventListener('input', e => {
-              initElasticArea(this.textArea)
+            initElasticArea(this.textArea)
           })
         
     }
     update(data) {
-
+        console.log(data.notes)
     	setAttr(this.textArea, {
-    		value: data.notes
+    		value: data.notes || data.notes === '' ? data.notes : data
     	})
 
      	this.data = data
@@ -47,5 +56,8 @@ export default class Note { // to ../fetchingData/Employer/WorkModal
 
     onmount(){
     	initElasticArea(this.textArea)
+        document.addEventListener('storageemployeradd', (e) => {
+            this.update(storage.getState(e.detail.id).employer.note)
+        })
     }
 }
