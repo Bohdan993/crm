@@ -1,9 +1,12 @@
 import {el} from '../../../libs/libs'
-import saveFieldsData from '../fetchingData/saveFieldsData'
+// import saveFieldsData from '../fetchingData/saveFieldsData'
 import initWorkModalSelect from '../initWorkModalSelect'
+import storage from '../Storage'
+import {save} from '../helper'
 export default class ManagerSelect { // to ../MountingElements/Employer/WorkModal/mountManagerSelect.js
 	constructor(type){
 		this.type = type
+		this.save = save.bind(this)
 		this.el = el('div.input-group', 
 			el('p', "Менеджер"),
 			this.manager = el('select.manager-select', {
@@ -14,23 +17,35 @@ export default class ManagerSelect { // to ../MountingElements/Employer/WorkModa
 
 		this.manager.addEventListener('change' , (e) => {
 				if(this.type === 'employer') {
-                   saveFieldsData({
-                    str: 'employers',
-                    id: this.context.id,
-                    value: this.textarea.value, 
-                    field: 'name', 
-                    target: 'main', 
-                    id_target: ''
-                   })
+									this.save({
+										str: 'employers',
+										id: this.data.id,
+										value: this.manager.value, 
+										field: 'id_login'
+									})
+                   // saveFieldsData({
+                   //  str: 'employers',
+                   //  id: this.data.id,
+                   //  value: this.manager.value, 
+                   //  field: 'id_login', 
+                   //  target: 'main', 
+                   //  id_target: ''
+                   // })
                 } else {
-                	saveFieldsData({
-                    str: 'vacancies',
-                    id: this.context.id,
-                    value: this.textarea.value, 
-                    field: 'name', 
-                    target: 'main', 
-                    id_target: ''
-                   })
+                	this.save({
+										id: this.data.id,
+										value: this.manager.value, 
+										field: 'id_manager',
+										target: 'employer'
+									})
+                	// saveFieldsData({
+                 //    str: 'vacancies',
+                 //    id:  this.data.id,
+                 //    value:this.manager.value, 
+                 //    field: 'id_manager', 
+                 //    target: 'employer', 
+                 //    id_target: ''
+                 //   })
                 }
 		})
 
@@ -43,7 +58,15 @@ export default class ManagerSelect { // to ../MountingElements/Employer/WorkModa
 	}
 
 	update(data){
+		console.log(data)
+		this.managerChoices.managersChoises.setChoiceByValue(data.id_manager)
 
-		this.managerChoices.managersChoises.setChoiceByValue(data)
+		this.data = data
+	}
+
+	onmount() {
+		document.addEventListener('storageemployeradd', (e) => {
+            this.update(storage.getState(e.detail.id).employer.id_manager)
+        })
 	}
 }

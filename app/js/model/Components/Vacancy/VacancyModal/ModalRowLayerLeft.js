@@ -34,10 +34,11 @@ import storage from '../../../Storage'
 
 
 class CheckBoxVacancy {
-	constructor() {
-			this.el = el('div.input-group', 
+	constructor(type) {
+		this.type = type
+			this.el = el('div.checkbox-group', 
 			this.input = el('input', {
-				type: 'checkbox',
+				type,
 				id: "#"
 			}),
 			this.label = el('label', 'Чекбокс', {
@@ -47,35 +48,99 @@ class CheckBoxVacancy {
 		}
 
 	update(data, index, items, context){
-		// console.log(data)
+
 		setAttr(this.input, {
 			id: data.id,
-			checked: data.checked
+			checked: data.checked,
+			name: this.type === 'radio' ? 'wt-radio-btn' : ''
 		})
+
 		setAttr(this.label, {
 			for: data.id,
-			innerText: data.label
+			innerText: data.name
 		})
+
 	}
 }
 
 class ChooseProductTypePopup {
 	constructor(){
+	this.checkBoxData = [
+			{
+			id: 'season-rbtn-1',
+			name: 'Сезонная',
+
+		},
+		{
+			id: 'practice-rbtn-1',
+			name: 'Практика',
+		},
+		{
+			id: 'work-rbtn-1',
+			name: 'Рабочая',
+		}
+	]
 		this.el = el('div.vacancy-modal-popup#work-type-popup', 
 			this.form = el('form',
 				el('div.form-group', 
 					this.employerName = el('p'),
 					el('div.input-group.radio-group-type-2.hot.top-group',
-						this.list1 = list('div.group', CheckBoxVacancy)),
+						this.list1 = list('div.group', CheckBoxVacancy, undefined, 'radio')),
 					el('div.input-group.radio-group-type-2.hot.bottom-group',
-						this.list2 = list('div.group', CheckBoxVacancy)),
+						this.list2 = list('div.group', CheckBoxVacancy, undefined, 'checkbox')),
+					this.btn = el('button.confirm-bnt', 
+						el('span', 'OK'))
 					)
 				)
 			)
+
+
+		this.list1.update(this.checkBoxData)
+		this.list2.update(this.getItemsFromLocalStorage().workTypes)
+
+
+		this.form.addEventListener('submit', (e) =>{
+			e.preventDefault()
+			this.parent.choooseProduct._tippy.hide()
+			this.parent.chooseProductType.update(false)
+			this.parent.fullInfo.update(true)
+			this.parent.fullInfo._el.style.display = "flex"
+
+			let text = this.list1.views.filter(el => el.input.checked)[0].label.innerText
+
+			setAttr(this.parent.visaType, {
+				innerText: `${text} - `
+			})
+			setAttr(this.parent.types, {
+				innerText: `${this.list2.views.filter(el => el.input.checked).map(el => el.label.innerText).join(', ')}`
+			})
+
+			setAttr(this.parent.products, {
+				style: {
+					backgroundColor: text === 'Практика' ? '#9c3' : text === 'Сезонная' ? '#e37373' : '#39c'
+				}
+			})
+
+
+
+		})
 	}
 
 	update(){
 
+	}
+
+
+	onmount(){
+	}
+
+	getItemsFromLocalStorage(){
+
+		let workTypes = JSON.parse(localStorage.getItem('type_manufacturyVacancy')) || []
+
+		return {
+			workTypes
+		}
 	}
 }
 
@@ -90,15 +155,15 @@ export default class ModalRowLayerLeft {
 					el('p.country-vacancy',
 						this.abbrVacancy = el('span', 'NO 293')),
 					this.choooseProduct = el('p.type-product', 
-						el('span', 'Выберите тип продукции'))
+						 el('span', 'Выберите тип продукции'))
 					)),
-				el('div.full-info',
+				this.fullInfo = place(el('div.full-info',
 					el('p.country-vacancy', 
-						el('span', 'NO 293')),
-					el('p.products', 
-						el('span.visa-type', 'Сезонная - '),
-						el('span.types', 'Цветы, Теплицы, Молочные коровы, Мясные коровы')
-						))
+						this.fullInfoAbbrVacancy = el('span', 'NO 293')),
+					this.products = el('p.products', 
+						this.visaType = el('span.visa-type', 'Сезонная - '),
+						this.types = el('span.types', 'Цветы, Теплицы, Молочные коровы, Мясные коровы')
+						)))
 				),
 			el('div.main-info__layer_left',
 				el('div.main-info__country', 
@@ -146,9 +211,29 @@ export default class ModalRowLayerLeft {
 		this.chooseProductTypePopup.parent = this
 	}
 
-	update(data){
-		console.log(data)
-		
+	update(data, context){
+		console.log(data, context)
+
+		if(context === 'storage') {
+			this.chooseEmployer.update(false)
+			this.chooseProductType.update(true)
+			this.chooseProductType._el.style.display = "flex"
+		}
+
+
+		if(context === 'nulledEmployer') {
+			this.chooseEmployer.update(true)
+			this.chooseProductType.update(false)
+			this.fullInfo.update(false)
+			this.chooseProductType._el.style.display = "none"
+			this.fullInfo._el.style.display = "none"
+		}
+
+
+		if(context === 'employer') {
+
+		}
+
 		setAttr(this.countries, {
 
 			innerText: data.employer.id_country ? this.getItemsFromLocalStorage().countries.filter(el=> el.id === data.employer.id_country)[0].name : ''
@@ -159,7 +244,9 @@ export default class ModalRowLayerLeft {
 			innerText: data.vacancy ? data.vacancy : ''
 		})
 
-
+		setAttr(this.fullInfoAbbrVacancy, {
+			innerText: data.vacancy ? data.vacancy : ''
+		})
 
 		setAttr(this.price, {
 			innerText: data.employer.price ? data.employer.price : 'не достаточно данных'
@@ -180,13 +267,13 @@ export default class ModalRowLayerLeft {
 			this.chooseEmployer.update(false)
 			this.chooseProductType.update(true)
 			this.chooseProductType._el.style.display = "flex"
-			this.update(storage.getState(e.detail.id))
+			this.update(storage.getState(e.detail.id), 'storage')
 			
 		})
 	}
 
 
-		getItemsFromLocalStorage(){
+	getItemsFromLocalStorage(){
 
 		let countries = JSON.parse(localStorage.getItem('countriesVacancy')) || []
 

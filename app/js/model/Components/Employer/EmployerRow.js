@@ -124,14 +124,7 @@ export default class RowEmployer {
 			classList: `row__flag ${data.icon ? 's-' + data.icon.split('.')[0] : ''}`
 		})
 
-		if(id_employer !== this.data.id_employer) {
-		
 
-
-		// this.abbr.innerText = data.addr
-		
-		
-	
 		data.manager ? (this.managerTag.update(true), 
 		setAttr(this.managerTag,{
 						style: {"background-color": "#" + data.manager_color}, 
@@ -140,6 +133,16 @@ export default class RowEmployer {
 					}
 				)
 			) : this.managerTag.update(false)
+
+		if(id_employer !== this.data.id_employer) {
+		
+
+
+		// this.abbr.innerText = data.addr
+		
+		
+	
+		
 		
 		// this.addressText.innerText = data.address
 		this.jobsText.innerText = data.production ? data.production.join(', ') : ""

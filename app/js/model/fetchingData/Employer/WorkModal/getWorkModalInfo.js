@@ -79,7 +79,7 @@ try {
 		source.unshift({id: 0, name: 'Отсутствует'})
 		const tasks = mainPart.task
 		const notes = mainPart.note
-		const id_login = mainPart.id_login
+		const id_manager = mainPart.id_login
 		const date = mainPart.date
 		const badFeedback = mainPart.total_bad_feedback
 
@@ -102,11 +102,16 @@ try {
 			id
 		}
 
+		const managersData = {
+			id_manager,
+			id
+		}
+
 		mainPart.source = source
 		// if(state.id !== id) {
 		workModal.update(mainPart)
 		task.update(tasksData)
-		select.update(id_login)
+		select.update(managersData)
 		note.update(notesData)
 		deleteComponent.update(deleteData)
 		// }

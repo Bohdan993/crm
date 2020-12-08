@@ -137,6 +137,8 @@ try {
 		const notes = mainPart.employer ? mainPart.employer.note : ''
 		const id_manager = mainPart.employer ? mainPart.employer.id_manager : '0'
 		const employer = mainPart.employer ? mainPart.employer : {}
+		const employerContext = mainPart.employer ? 'employer' : 'nulledEmployer'
+		const id_employer = mainPart.id_employer
 		// const date = mainPart.date
 		// const badFeedback = mainPart.total_bad_feedback
 
@@ -184,7 +186,7 @@ try {
 
 		const managersData = {
 			id_manager,
-			id
+			id: id_employer
 		}
 
 
@@ -208,8 +210,8 @@ try {
 
 		demand.update(demandsData)
 		terms.update(termsData)
-		mrll.update(employerData)
-		mrlr.update(employerData)
+		mrll.update(employerData, employerContext)
+		mrlr.update(employerData, employerContext)
 		select.update(managersData)
 		task.update(tasksData)
 		note.update(notesData)

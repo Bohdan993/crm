@@ -56,10 +56,27 @@ export default class ModalRowLayerRight {
 		this.findEmployerPopup.parent = this
 	}
 
-	update(data){
-		console.log(data)
+	update(data, context){
+		console.log(data, context)
+
+		if(context === 'storage') {
+			this.chooseEmployer.update(false)
+			this.employerName.update(true)
+			this.employerName._el.style.display = "flex"
+		}
+
+		if(context === 'nulledEmployer') {
+			this.chooseEmployer.update(true)
+			this.employerName.update(false)
+			this.employerName._el.style.display = "none"
+		}
 
 
+		if(context === 'employer') {
+			this.chooseEmployer.update(false)
+			this.employerName.update(true)
+			this.employerName._el.style.display = "flex"
+		}
 		// if(data.employer && Object.keys(data.employer).length) {
 
 		setAttr(this.email, {
@@ -96,7 +113,7 @@ export default class ModalRowLayerRight {
 		this.findEmployerInstance = initVacancyModalTooltip(this.chooseEmployer._el, this.findEmployerPopup.el, tippy)
 
 		document.addEventListener('storageemployeradd', (e) => {
-			this.update(storage.getState(e.detail.id))
+			this.update(storage.getState(e.detail.id), 'storage')
 			this.chooseEmployer.update(false)
 			this.employerName.update(true)
 			this.employerName._el.style.display = "flex"

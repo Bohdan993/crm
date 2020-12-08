@@ -109,7 +109,7 @@ if(typeWorkPopup) {
 			popupPart2.update(production)
 			// popupPart3.update(prod2)
 
-
+			localStorage.setItem('type_manufacturyVacancy', JSON.stringify(production))
 }
 }
 

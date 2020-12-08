@@ -239,3 +239,63 @@
 		}
 	}
 }
+
+
+
+#work-type-popup {
+
+
+    
+       .input-group {
+        &:not(:last-child) {
+            border-bottom: 1px solid #fff;
+            padding-bottom: 12px;
+        }
+
+         &:not(:first-of-type) {
+            padding-top: 12px;
+
+            input+label {
+                width: auto;
+                padding-left: 7px;
+                padding-right: 7px;
+            }
+        }
+
+        input+label {
+            width: 77px;
+        }
+
+        input:checked + [for="practice-rbtn-1"] {
+            background: @grass-green;
+        }
+
+        input:checked + [for="work-rbtn-1"] {
+            background: @blue;
+        }
+
+
+    }
+
+    	.top-group .group {
+				.checkbox-group {
+					&:not(:last-child) {
+						margin-right: 10px;
+					}
+				}
+			}
+
+			.bottom-group .group{
+				flex-wrap: wrap;
+
+				.checkbox-group {
+					padding-bottom: 12px;
+					&:not(:last-child) {
+						margin-right: 10px;
+					}
+				}
+			}
+    
+}
+
+

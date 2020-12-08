@@ -9,9 +9,9 @@ const addTask = async ({
 			try {
 				const tasks = await fetch.getResourse(`/${str}/create_section/?id=${id}&target=task`)
 				if(tasks.success === true) {
-					toastr.success(`ID работодателя ${id}`, 'Успешно удалена задача', {closeButton: false})
+					toastr.success(`ID работодателя ${id}`, 'Успешно добавлена задача', {closeButton: false})
 				} else {
-					throw new Error('Не возможно удалить задачу')
+					throw new Error('Не возможно добавить задачу')
 				
 				}
 

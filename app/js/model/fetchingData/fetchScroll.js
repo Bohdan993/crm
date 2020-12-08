@@ -28,12 +28,13 @@ const fetchScroll = (elem, type) => {
 					loader.update(true)
 
       	if(type === 'employer') {
-      			let count = +JSON.parse(sessionStorage.getItem('page')) || 2
+      			// let count = +JSON.parse(sessionStorage.getItem('page')) || 2
 		        data = await getEmployersList({t: DATA_LENGTH, p: count, scroll: true}).then((data)=> {flag = false; return data} )
 		        sessionStorage.setItem('page', JSON.stringify(count))
+		        console.log(count)
 		      	count++
       	} else {
-      				let count = +JSON.parse(sessionStorage.getItem('pageVacancy')) || 2
+      				// let count = +JSON.parse(sessionStorage.getItem('pageVacancy')) || 2
 			        data = await getVacancyList({t: DATA_LENGTH, p: count, scroll: true}).then((data)=> {flag = false; return data} )
 			        sessionStorage.setItem('pageVacancy', JSON.stringify(count))
 			      	count++
