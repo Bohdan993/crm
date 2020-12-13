@@ -44,10 +44,10 @@ import {
 	getClientsVacancy,
 	getVacancyEmployers,
 	addNewVacancy,
-	// mountClientsVacancy,
 	mountActiveArchive,
-	mountModalRowLayerLeft,
-	mountModalRowLayerRight
+	mountVacancyStatusesPopup,
+	// mountArchiveComponent,
+	// mountCopyComponent
 } from '../model'
 
 import {OverlayScrollbars} from '../../libs/libs'
@@ -145,6 +145,9 @@ const app = {
 		this.maa()
 		this.anv()
 		this.gve()
+		this.mvsp()
+		// this.mac()
+		// this.mcc()
 		// this.mrll()
 		// this.mrlr()
 	},
@@ -326,12 +329,16 @@ const app = {
 	},
 	gve(){
 		getVacancyEmployers()
-	}
-	// mrll(){
-	// 	mountModalRowLayerLeft()
+	},
+	mvsp(){
+		mountVacancyStatusesPopup()
+	},
+	// mac(){
+	// 		mountArchiveComponent()
+		
 	// },
-	// mrlr(){
-	// 	mountModalRowLayerRight()
+	// mcc(){
+	// 		mountCopyComponent()
 	// }
 
 }

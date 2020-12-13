@@ -54,31 +54,43 @@ export default class DemandComponent {
 		this.clientsNumber.addEventListener('change', (e) => {
 			this.save({
 				id: this.data.id, 
-				value: this.clientsNumber.value, 
+				value: this.clientsNumber.value.trim(), 
 				field: 'total_client'
+			})
+
+			setAttr(this.sibling.totalClients, {
+				innerText: this.clientsNumber.value + ' - '
 			})
 		})
 
 		this.men.addEventListener('change', (e) => {
 			this.save({
 				id: this.data.id, 
-				value: this.men.value, 
+				value: this.men.value.trim(), 
 				field: 'total_man'
+			})
+
+			setAttr(this.sibling.numberClients, {
+				innerText: `${'\u00A0'}М${this.men.value} Ж${this.women.value}`
 			})
 		})
 
 		this.women.addEventListener('change', (e) => {
 			this.save({
 				id: this.data.id, 
-				value: this.women.value, 
+				value: this.women.value.trim(), 
 				field: 'total_woman'
+			})
+
+			setAttr(this.sibling.numberClients, {
+				innerText: `${'\u00A0'}М${this.men.value} Ж${this.women.value}`
 			})
 		})
 
 		this.languageLevel.addEventListener('change', (e) => {
 			this.save({
 				id: this.data.id, 
-				value: this.languageLevel.value, 
+				value: this.languageLevel.value.trim(), 
 				field: 'language_skill'
 			})
 		})
@@ -86,7 +98,7 @@ export default class DemandComponent {
 		this.workExp.addEventListener('change', (e) => {
 			this.save({
 				id: this.data.id, 
-				value: this.workExp.value, 
+				value: this.workExp.value.trim(), 
 				field: 'experience_work'
 			})
 		})
@@ -94,7 +106,7 @@ export default class DemandComponent {
 		this.specReq.addEventListener('change', (e) => {
 			this.save({
 				id: this.data.id, 
-				value: this.specReq.value, 
+				value: this.specReq.value.trim(), 
 				field: 'special_requirement'
 			})
 		})
@@ -102,8 +114,8 @@ export default class DemandComponent {
 	}
 
 
-	update(data, index, items, context){
-		// console.log(data)
+	update(data, context){
+		// console.log(context)
 
 
 		setAttr(this.clientsNumber , {
@@ -132,6 +144,7 @@ export default class DemandComponent {
 
 
 		this.data = data
+		this.sibling = context
 	}
 
 

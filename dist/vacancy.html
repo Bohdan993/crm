@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/libs.min.css?v=1607379725700">
-    <link rel="stylesheet" href="css/main.min.css?v=1607379725700">
+    <link rel="stylesheet" href="css/libs.min.css?v=1607816329287">
+    <link rel="stylesheet" href="css/main.min.css?v=1607816329287">
   </head>
   <body>
     <main class="main">
@@ -213,21 +213,9 @@
                               <p>Распечатать ПТ</p>
                             </div>
                           </li>
-                          <li class="sidebar__filter-item" data-part="archive-vacancy">
-                            <div class="sidebar__filter-wrapper">
-                              <p>Архивировать вакансию</p>
-                            </div>
-                          </li>
-                          <li class="sidebar__filter-item" data-part="create-vacancy-copy">
-                            <div class="sidebar__filter-wrapper">
-                              <p>Создать копию вакансии</p>
-                            </div>
-                          </li>
-                          <li class="sidebar__filter-item">
-                            <div class="sidebar__filter-wrapper">
-                              <p>Удалить</p><span>20.04.2019</span>
-                            </div>
-                          </li>
+                          <li class="sidebar__filter-item archive-item" data-part="archive-vacancy" id="vacancy-archive"></li>
+                          <li class="sidebar__filter-item copy-item" data-part="create-vacancy-copy" id="vacancy-copy"></li>
+                          <li class="sidebar__filter-item delete-item" id="vacancy-delete"></li>
                         </ul>
                       </div>
                     </div>
@@ -263,7 +251,7 @@
         </div>
       </div>
     </div>
-    <script src="js/libs.min.js?v=1607379725700" defer></script>
-    <script src="js/script.min.js?v=1607379725700" async></script>
+    <script src="js/libs.min.js?v=1607816329287" defer></script>
+    <script src="js/script.min.js?v=1607816329287" async></script>
   </body>
 </html>

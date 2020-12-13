@@ -33,6 +33,10 @@ const archiveActive = document.querySelector('.active-archive__statuses')
 const modalLayerLeft = document.querySelector('.modal-row__layer.main-info_left')
 const modalLayerRight = document.querySelector('.modal-row__layer.main-info_right')
 const sidebarVacancy = document.querySelector('.vacancy-sidebar .sidebar__list-add')
+
+const vacancyDelete = document.querySelector('#vacancy-delete')
+const vacancyCopy = document.querySelector('#vacancy-copy')
+const vacancyArchive = document.querySelector('#vacancy-archive')
 export {
 
 	rows,
@@ -58,7 +62,10 @@ export {
 	sidebarVacancy,
 	modalLayerLeft,
 	modalLayerRight,
-	vacancyRowsWrapper
+	vacancyRowsWrapper,
+	vacancyDelete,
+	vacancyCopy,
+	vacancyArchive
 	// mainInfoPrice
 	
 }

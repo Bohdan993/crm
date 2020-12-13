@@ -16,6 +16,19 @@ class Storage {
 	}
 
 
+	updateStatePartialData({id, data, key, field, fieldKey, targetKey, prop}){
+		this.getState(id)[key].forEach(el => {
+			console.log(el[field][fieldKey])
+			if(el[field][fieldKey] === prop) {
+				el[field][targetKey] = data
+			}
+		})
+
+		console.log(this.state)
+		return this.state
+	}
+
+
 	setAndUpdatePartialState(id, data, key, prop){
 		// let arr = this.getState(id)[key].filter(el => el.vacancy.id !== prop)
 			this.getState(id)[key].forEach(el => {
@@ -27,7 +40,7 @@ class Storage {
 
 		// console.log(arr)
 
-		console.log(this.state)
+		// console.log(this.state)
 		return this.state
 	}
 

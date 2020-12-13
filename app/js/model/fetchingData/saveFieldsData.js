@@ -19,9 +19,12 @@ const saveFieldsData = async ({
 				} else {
 					throw new Error('Не возможно cохранить значение поля')
 				}
+
+				return Promise.resolve('ok')
 				
 			} catch(e) {
 				toastr.error(e.message)
+				return Promise.resolve('fail')
 			}
 
 }

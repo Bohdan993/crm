@@ -67,7 +67,7 @@ export default class TermsComponent {
 		this.startWork.addEventListener('change', (e) => {
 			this.save({
 				id: this.data.id, 
-				value: this.startWork.value, 
+				value: this.startWork.value.trim(), 
 				field: 'start_work'
 			})
 		})
@@ -75,15 +75,19 @@ export default class TermsComponent {
 		this.period.addEventListener('change', (e) => {
 			this.save({
 					id: this.data.id, 
-					value: this.period.value, 
+					value: this.period.value.trim(), 
 					field: 'period'
 				})
+
+			setAttr(this.sibling.period, {
+				innerText: `${this.period.value} мес.`
+			})
 		})
 
 		this.salary.addEventListener('change', (e) => {
 			this.save({
 				id: this.data.id, 
-				value: this.salary.value, 
+				value: this.salary.value.trim(), 
 				field: 'salary'
 			})
 		})
@@ -91,7 +95,7 @@ export default class TermsComponent {
 		this.accomodation.addEventListener('change', (e) => {
 			this.save({
 					id: this.data.id, 
-					value: this.accomodation.value, 
+					value: this.accomodation.value.trim(), 
 					field: 'residency'
 				})
 		})
@@ -99,7 +103,7 @@ export default class TermsComponent {
 		this.feeding.addEventListener('change', (e) => {
 			this.save({
 					id: this.data.id, 
-					value: this.feeding.value, 
+					value: this.feeding.value.trim(), 
 					field: 'feeding'
 				})
 		})
@@ -107,7 +111,7 @@ export default class TermsComponent {
 		this.taxes.addEventListener('change', (e) => {
 				this.save({
 					id: this.data.id, 
-					value: this.taxes.value, 
+					value: this.taxes.value.trim(), 
 					field: 'tax'
 				})
 		})
@@ -115,7 +119,7 @@ export default class TermsComponent {
 		this.workResp.addEventListener('change', (e) => {
 				this.save({
 					id: this.data.id, 
-					value: this.workResp.value, 
+					value: this.workResp.value.trim(), 
 					field: 'responsibilities_work'
 				})
 		})
@@ -123,14 +127,14 @@ export default class TermsComponent {
 		this.workTime.addEventListener('change', (e) => {
 				this.save({
 					id: this.data.id, 
-					value: this.workTime.value, 
+					value: this.workTime.value.trim(), 
 					field: 'work_time'
 				})
 		})
 	}
 
 
-	update(data, index, items, context){
+	update(data, context){
 
 		setAttr(this.startWork , {
 			value: data.startWork
@@ -165,6 +169,7 @@ export default class TermsComponent {
 		})
 
 		this.data = data
+		this.sibling = context
 	}
 
 }

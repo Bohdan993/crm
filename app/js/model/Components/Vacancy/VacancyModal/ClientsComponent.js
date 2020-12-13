@@ -6,7 +6,7 @@ import getVacancyClients from '../../../fetchingData/Vacancy/getVacancyClients'
 import addClientToVacancy from '../../../fetchingData/Vacancy/VacancyModal/addClientToVacancy'
 import storage from '../../../Storage'
 import { initVacancyModalTooltip } from '../../../initToottips'
-import storageVacancyClientsUpdate from '../../../CustomEvents/StorageVacancyClientsUpdate'
+import storageVacancyClientsUpdate from '../../../CustomEvents/storageVacancyClientsUpdate'
 
 
 class AddClientPopup {
@@ -69,8 +69,6 @@ class AddClientPopup {
 
 		this.form.onsubmit = (e) => {
 			e.preventDefault()
-			// console.log(storage)
-			// console.log(storage.setPartialState(this.parent.data.id, res, 'data'))
 			addClientToVacancy({
 				vacancy: this.parent.data.id,
 				client: this.result.id
@@ -79,6 +77,7 @@ class AddClientPopup {
 					this.parent.update(storage.setPartialState(this.parent.data.id, res, 'data')[this.parent.data.id])
 					this.findClient.value = ''
 					storageVacancyClientsUpdate.detail.id = String(this.parent.data.id)
+					storageVacancyClientsUpdate.detail.clazz = 'vacancy-modal'
 					document.dispatchEvent(storageVacancyClientsUpdate)
 					this.parent.add._tippy.hide()
 				} else {
@@ -126,14 +125,19 @@ export default class ClientsComponent {
    	
 		if(e.detail.id === this.data.id) {
 			if(e.detail.clazz === 'vacancy-row') {
-						console.log('Vacancy-row:', storage)
 						let data = storage.getState(this.data.id)
-						// console.log(storage)
 						this.vacancyClientsTable.update(data)
 					}
-		}
-		
+				}
 	})
+
+
+   document.addEventListener('storagedelete', (e) => {
+			if(e.detail.id === this.data.id) {
+					let data = storage.getState(this.data.id)
+					this.vacancyClientsTable.update(data)
+			}
+		})
 
 	
 

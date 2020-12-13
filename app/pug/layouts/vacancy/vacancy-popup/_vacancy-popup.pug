@@ -61,22 +61,22 @@
 											p
 												|Распечатать ПТ
 									
-									li.sidebar__filter-item(data-part="archive-vacancy")
-										.sidebar__filter-wrapper
-											p
-												|Архивировать вакансию
+									li.sidebar__filter-item(data-part="archive-vacancy").archive-item#vacancy-archive
+										//- .sidebar__filter-wrapper
+										//- 	p
+										//- 		|Архивировать вакансию
 									
-									li.sidebar__filter-item(data-part="create-vacancy-copy")
-										.sidebar__filter-wrapper
-											p
-												|Создать копию вакансии
+									li.sidebar__filter-item(data-part="create-vacancy-copy").copy-item#vacancy-copy
+										//- .sidebar__filter-wrapper
+										//- 	p
+										//- 		|Создать копию вакансии
 										
-									li.sidebar__filter-item
-										.sidebar__filter-wrapper
-											p
-												|Удалить
-											span
-												|20.04.2019
+									li.sidebar__filter-item.delete-item#vacancy-delete
+										//- .sidebar__filter-wrapper
+										//- 	p
+										//- 		|Удалить
+										//- 	span
+										//- 		|20.04.2019
 				.rows
 					#vacancy-data.vacancy-data.my-modal-part.active
 						include _main-info

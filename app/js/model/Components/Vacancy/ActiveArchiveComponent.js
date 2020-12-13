@@ -12,6 +12,8 @@ class ArchiveActiveRow {
 
 	update(data){
 
+		console.log(data)
+
 		setAttr(this.btn, {
 			type: data.type,
 			id: data.id,
@@ -67,41 +69,33 @@ class ArchiveActiveRow {
 
 export default class ArchiveActive {
 	constructor(){
-		this.data = [
-			{
-				type: 'checkbox',
-				id: 'current-chbx',
-				checked: true,
-				text: 'Текущие',
-				filter: 1
-			},
-			{
-				type: 'checkbox',
-				id: 'archive-chbx',
-				checked: false,
-				text: 'Архивные',
-				filter: 1
-			}
-		]
+		// this.data = [
+		// 	{
+		// 		type: 'checkbox',
+		// 		id: 'current-chbx',
+		// 		checked: true,
+		// 		text: 'Текущие',
+		// 		filter: 1
+		// 	},
+		// 	{
+		// 		type: 'checkbox',
+		// 		id: 'archive-chbx',
+		// 		checked: false,
+		// 		text: 'Архивные',
+		// 		filter: 1
+		// 	}
+		// ]
 		this.el = el('div.input-group.radio-group-type-2.blue', 
 				this.list = list('div.group', ArchiveActiveRow)
 			)
 
-		this.list.update(this.data)
+		// this.list.update(this.data)
 
-
-		// this.activeBtn.addEventListener('click', (e) => {
-
-		// })
-
-		// this.archiveBtn.addEventListener('click', (e) => {
-			
-		// })
 	}
 
 
 	update(data){
-
+		this.list.update(data)
 	}
 
 }

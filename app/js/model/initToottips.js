@@ -242,55 +242,6 @@ function initSidebarTooltip(el, content) {
                     throw new Error('Возникла ошибка')
 
                 }
-
-     //    		switch(instance.id) {
-					// 	  case 1:
-     //                      // console.log('dfdefewrfewr')
-					// 	  // checkIfShowRemoveFilterButton('countryFilter', instance)
-     //                      // checkIfShowRemoveFilterButton('countryFilterVacancy', instance)
-					// 	    break
-					// 	  case 2:
-					// 	    // checkIfShowRemoveFilterButton('typeManufacturyFilter', instance)
-     //                        // checkIfShowRemoveFilterButton('managerFilterVacancy', instance)
-					// 	    break
-					// 	  case 3:
-					// 	    // checkIfShowRemoveFilterButton('contactDataFilter', instance)
-     //                        // checkIfShowRemoveFilterButton('stagesOfVacancies', instance)
-					// 	    break
-					// 	  case 4:
-					// 	    // checkIfShowRemoveFilterButton('managerFilter', instance)
-     //                        // checkIfShowRemoveFilterButton('sortFilterVacancy', instance)
-					// 	    break
-					// 	  case 5:
-					// 	    // checkIfShowRemoveFilterButton('intermediariesFilter', instance)
-     //                        // checkIfShowRemoveFilterButton('intermediaryFilter', instance)
-                            
-                            
-					// 	    break
-					// 	  case 6:
-					//         // checkIfShowRemoveFilterButton('vacancyActiveFilter', instance)
-     //         //                checkIfShowRemoveFilterButton('vacancyTypeFilter', instance)
-     //         //                checkIfShowRemoveFilterButton('vacancyTermFilter', instance)
-
-     //                        // checkIfShowRemoveFilterButton('jobStartFilter', instance)
-     //                        // checkIfShowRemoveFilterButton('jobPeriodFilter', instance)
-
-					// 	    break
-					// 	  case 7:
-					// 	    // checkIfShowRemoveFilterButton('lastContactFilter', instance)
-					// 	    break
-					// 	  case 8:
-					// 	    checkIfShowRemoveFilterButton('sortFilter', instance)
-					// 	    break
-					// 	 	case 9:
-					// 	    // alert( 'Маловато9' )
-					// 	    break
-					// 	  case 10:
-					// 	    // alert( 'Маловато10' )
-					// 	    break
-					// 	  default:
-					// 	  	throw new Error('Возникла ошибка')
-					// }
   
         },
         onShown(instance) {
@@ -445,69 +396,7 @@ function removeCheckingHandler(children, instance, e){
                     throw new Error('Возникла ошибка')
 
                 }
-	// switch(instance.id) {
-	// 		case 1:
-	// 	    // getEmployersList({country: ''})
-	// 	    // sessionStorage.removeItem('countryFilter')
- //            // getVacancyList({country: ''})
- //            // sessionStorage.removeItem('countryFilterVacancy')
-	// 	    break
-	// 	  case 2:
-	// 	    // getEmployersList({production: ''})
-	// 	    // sessionStorage.removeItem('typeManufacturyFilter')
- //            // getVacancyList({manager: ''})
- //            // sessionStorage.removeItem('managerFilterVacancy')
-	// 	    break
-	// 	  case 3:
-	// 	    // getEmployersList({contact: ''})
-	// 	    // sessionStorage.removeItem('contactDataFilter')
- //            // getVacancyList({status: ''})
- //            // sessionStorage.removeItem('stagesOfVacancies')
-	// 	    break
-	// 	  case 4:
-	// 	    // getEmployersList({manager: ''})
- //      //       sessionStorage.removeItem('managerFilter')
- //            // getVacancyList({'sort': ''})
- //            // sessionStorage.removeItem('sortFilterVacancy')
-	// 	    break
-	// 	  case 5:
- //            // getEmployersList({intermediaries: '', intermediary: ''})
- //            // sessionStorage.removeItem('intermediariesFilter')
- //            // sessionStorage.removeItem('intermediaryFilter')
- //            // getVacancyList({'type_vacancy': '', 'type_production': ''})
- //            // sessionStorage.removeItem('v-vacancyTypeFilter')
- //            // sessionStorage.removeItem('typeManufacturyVacancyFilter')
-	// 	    break
-	// 	  case 6:
-	// 	    // getEmployersList({vacancy_active: '', vacancy_type: '', vacancy_term: ''})
- //      //       sessionStorage.removeItem('vacancyActiveFilter')
- //      //       sessionStorage.removeItem('vacancyTypeFilter')
- //      //       sessionStorage.removeItem('vacancyTermFilter')
 
- //            // getVacancyList({job_start: '', job_period: ''})
- //            // sessionStorage.removeItem('jobStartFilter')
- //            // sessionStorage.removeItem('jobPeriodFilter')
-
-
-	// 	    break
-	// 	  case 7:
-	// 	    // getEmployersList({last_contact: ''})
- //      //       sessionStorage.removeItem('lastContactFilter')
-	// 	    break
-	// 	  case 8:
-	// 	    getEmployersList({sort: ''})
- //            sessionStorage.removeItem('sortFilter')
-	// 	    break
-	// 	 	// case 9:
-	// 	  //   alert( 'Маловато9' )
-	// 	  //   break
-	// 	  // case 10:
-	// 	  //   alert( 'Маловато10' )
-	// 	  //   break
-	// 	  default:
-	// 	  	throw new Error('Возникла ошибка')
-	// }
-  
 
   children.forEach(child => {
       child.checked = false
@@ -612,51 +501,9 @@ function initWorkModalTooltip(el, content) {
 
 //////////////////////////////START initVacancyTooltip BLOCK/////////////////////////////////
 
- function initVacancyTooltip(el, content) {
+ function initVacancyTooltip(el, content = '') {
         let instance = tippy(el, {
-            content: `<div class="row-popup" id="status-change-popup">
-                    <form>
-                        <div class="input-group">
-                            <p class="status choosen"><span>Подготовка CV</span></p>
-                            <time></time>
-                        </div>
-                        <div class="input-group">
-                            <p class="status choosen"><span>CV отправлено</span></p>
-                            <time></time>
-                        </div>
-                        <div class="input-group">
-                            <p class="status ready"><span>Утвержден</span></p>
-                            <time></time>
-                        </div>
-                        <div class="input-group">
-                            <p class="status ready"><span>Контракт подписан</span></p>
-                            <time></time>
-                        </div>
-                        <div class="input-group">
-                         <p class="status wait"><span>Подан в визовый центр</span></p>
-                         <time></time>
-                        </div>
-                        <div class="input-group">
-                            <p class="status department"><span>Получил разрешение</span></p>
-                            <time></time>
-                        </div>
-                        <div class="input-group">
-                            <p class="status department"><span>Забрал разрешение</span></p>
-                            <time></time>
-                        </div>
-                        <div class="input-group">
-                            <p class="status department"><span>Билеты куплены</span></p>
-                            <time></time>
-                        </div>
-                        <div class="input-group">
-                            <p class="status busy"><span>Трудоустроен</span></p>
-                            <time></time>
-                        </div>
-                        <div class="input-group">
-                            <p class="del-status status delete"><span>Исключить из вакансии</span></p>
-                        </div>
-                    </form>
-                </div>`,
+            content,
             allowHTML: true,
             interactive: true,
             interactiveBorder: 5,
@@ -681,6 +528,8 @@ function initWorkModalTooltip(el, content) {
             },
             appendTo: () => document.body,
         })
+
+        return instance
     }
 
 //////////////////////////////END initVacancyTooltip BLOCK/////////////////////////////////

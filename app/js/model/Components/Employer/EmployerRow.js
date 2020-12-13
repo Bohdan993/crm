@@ -7,7 +7,7 @@ import getWorkModalMedia from '../../fetchingData/Employer/WorkModal/getWorkModa
 import getWorkModalContactHistory from '../../fetchingData/Employer/WorkModal/getWorkModalContactHistory'
 import getWorkModalVacancyHistory from '../../fetchingData/Employer/WorkModal/getWorkModalVacancyHistory'
 import getWorkModalFeedback from '../../fetchingData/Employer/WorkModal/getWorkModalFeedback'
-
+import getEmployersList from '../../fetchingData/getEmployersList'
 
 class VacancyLabel {
 	constructor(){
@@ -18,7 +18,7 @@ class VacancyLabel {
 
 	update(data){
 
-		console.log(data)
+		// console.log(data)
 
 		setAttr(this.el, {
 			style:  {
@@ -82,7 +82,11 @@ export default class RowEmployer {
 		// this.flag = false
 
 		this.el.addEventListener('click', (e) =>{
-			MicroModal.show('modal-1')
+			MicroModal.show('modal-1', {
+	      onClose: modal => {
+	      	getEmployersList()
+	      }
+    })
 			getWorkModalInfo(this.data.id_employer)
 			getWorkModalManufacturyType(this.data.id_employer)
 			getWorkModalMedia({id: this.data.id_employer, loading: true})
@@ -94,7 +98,7 @@ export default class RowEmployer {
 	}
 
 	update(data, index, items, context){
-		console.log(data)
+		// console.log(data)
 		const { id_employer } = data
 		
 

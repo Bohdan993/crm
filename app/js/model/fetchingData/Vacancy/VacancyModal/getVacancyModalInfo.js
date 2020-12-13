@@ -1,5 +1,7 @@
 import fetch from '../../fetchingDataClass'
 import getVacancyClients from '../getVacancyClients'
+import ModalRowLayerLeft from '../../../Components/Vacancy/VacancyModal/ModalRowLayerLeft'
+import ModalRowLayerRight from '../../../Components/Vacancy/VacancyModal/ModalRowLayerRight'
 import Task from '../../../Components/TaskComponent'
 import Note from '../../../Components/ModalSidebarNoteComponent'
 import Delete from '../../../Components/DeleteComponent'
@@ -8,14 +10,13 @@ import Loader from '../../../Components/Loader'
 import ClientsComponent from '../../../Components/Vacancy/VacancyModal/ClientsComponent'
 import TermsComponent from '../../../Components/Vacancy/VacancyModal/TermsComponent'
 import DemandComponent from '../../../Components/Vacancy/VacancyModal/DemandsComponent'
+import  ArchiveCopyVacancyComponent from '../../../Components/Vacancy/VacancyModal/ArchiveCopyVacancy'
 import {list, mount, place} from '../../../../../libs/libs'
-import {modalLayerRight, modalLayerLeft, demandsRow, termsRow, sidebarVacancyForm, vacancyModalSidebarNotes, clientsRow} from '../../../../view'
+import {vacancyCopy, vacancyArchive, modalLayerRight, modalLayerLeft, demandsRow, termsRow, sidebarVacancyForm, vacancyModalSidebarNotes, clientsRow, vacancyDelete} from '../../../../view'
 import storage from '../../../Storage'
-import  ModalRowLayerLeft from '../../../Components/Vacancy/VacancyModal/ModalRowLayerLeft'
-import  ModalRowLayerRight from '../../../Components/Vacancy/VacancyModal/ModalRowLayerRight'
 
 
-
+// import('../../../Components/DeleteComponent').then(module => console.log(module)) 
 const state = {}
 
 const managerSelectWrap = sidebarVacancyForm ? sidebarVacancyForm.querySelector('.manager-select-wrap') : null
@@ -34,8 +35,8 @@ const deleteComponent = new Delete('vacancy')
 const clients = new ClientsComponent()
 const mrll = new ModalRowLayerLeft()
 const mrlr = new ModalRowLayerRight()
-
-
+const acvccop = new ArchiveCopyVacancyComponent('copy')
+const acvcarc = new ArchiveCopyVacancyComponent('archive')
 
 if(demandsRow) {
 	mount(demandsRow, demand)
@@ -72,24 +73,17 @@ if(modalLayerRight) {
 	mount(modalLayerRight, mrlr)
 	}
 
-// if(managerSelectWrap) {
-// 	mount(managerSelectWrap, select)
-// }
+if(vacancyDelete) {
+	mount(vacancyDelete, deleteComponent)
+}
 
-// if(workModalSidebarNotes) {
-// 	mount(workModalSidebarNotes, note)
-// }
+if(vacancyCopy) {
+	mount(vacancyCopy, acvccop)
+	}
 
-// if(employerDelete) {
-// 	mount(employerDelete, deleteComponent)
-// }
-// const sleep = (ms) => {
-// 	return new Promise(res => {
-// 		setTimeout(function(){
-// 			res('ok')
-// 		}, ms)
-// 	})
-// }
+if(vacancyArchive) {
+	mount(vacancyArchive, acvcarc)
+	}
 
 
 
@@ -139,7 +133,9 @@ try {
 		const employer = mainPart.employer ? mainPart.employer : {}
 		const employerContext = mainPart.employer ? 'employer' : 'nulledEmployer'
 		const id_employer = mainPart.id_employer
-		// const date = mainPart.date
+		const date = mainPart.date
+		const type_production = mainPart.type_production
+		const type_vacancy = mainPart.type_vacancy
 		// const badFeedback = mainPart.total_bad_feedback
 
 		console.log(mainPart)
@@ -169,19 +165,27 @@ try {
 
 
 		const vacancyEmployerData = {
-			id: mainPart.id_employer,
-			data: mainPart.employer
+			id: id_employer,
+			data: employer
 		}
 
 		const employerData = {
-			idEmp: mainPart.id_employer,
+			idEmp: id_employer,
 			idVac: id,
+			type_production,
+			type_vacancy,
+			vacancyName: mainPart.name,
+			period: mainPart.period,
+			clients: mainPart.total_client,
+			men: mainPart.total_man,
+			women: mainPart.total_woman,
+			date,
 			employer
 		}
 
 		const notesData = {
 			notes,
-			id: mainPart.id_employer
+			id: id_employer
 		}
 
 		const managersData = {
@@ -192,31 +196,28 @@ try {
 
 		const tasksData = {
 			tasks,
+			id: id_employer
+		}
+
+
+
+		const deleteData = {
+			date, 
 			id
 		}
 
-		// const notesData = {
-		// 	notes,
-		// 	id
-		// }
-
-
-		// const deleteData = {
-		// 	date, 
-		// 	id
-		// }
-
 			// mainPart.source = source
 
-		demand.update(demandsData)
-		terms.update(termsData)
+		demand.update(demandsData, mrll)
+		terms.update(termsData, mrll)
 		mrll.update(employerData, employerContext)
 		mrlr.update(employerData, employerContext)
 		select.update(managersData)
 		task.update(tasksData)
 		note.update(notesData)
-		// deleteComponent.update(deleteData)
-
+		deleteComponent.update(deleteData)
+		acvccop.update(id)
+		acvcarc.update(id)
 		// loader2.update(false)
 		loader.update(false)
 

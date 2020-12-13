@@ -100,9 +100,15 @@ const getEmployersList = async ({
 				loader.update(false)
 
 			} else {
-				empList.update([])
 				loader.update(false)
-				return
+
+				if(scroll) {
+					empList.update(globalEmployers)
+					return Array(1)
+				} else {
+					empList.update([])
+					throw new Error('Что то пошло не так, список работодателей пуст, обновите страницу, пожалуйста')
+				}
 			}
 		
 			// return employers[employers.length - 1]
@@ -110,6 +116,7 @@ const getEmployersList = async ({
 			return employers
 	} catch (e) {
 		toastr.error(`${e.message}`, '' ,{timeOut: 0, extendedTimeOut: 0})
+		return
 	}
 }
 

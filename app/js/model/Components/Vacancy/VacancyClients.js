@@ -3,11 +3,11 @@ import RowVacancyClient from './VacancyClientsRow'
 
 
 function firstRow(title){
-	return el('div.table-full__row',
-					el('p.table-full__title', title),
-					el('div.table-full__placeholder.first'),
-					el('div.table-full__placeholder.second'),
-					el('div.table-full__placeholder.third'))
+	return el('div.table-full__row.no-open',
+					el('p.table-full__title.no-open', title),
+					el('div.table-full__placeholder.first.no-open'),
+					el('div.table-full__placeholder.second.no-open'),
+					el('div.table-full__placeholder.third.no-open'))
 }
 
 
@@ -21,26 +21,26 @@ export default class TableVacancyClient {
 		this.departmentObj = {}
 		this.busyObj = {}
 
-		this.el = el("div.row__full-info.table-full",
-			el('div.table-full__choosen.choosen',
+		this.el = el("div.row__full-info.table-full.no-open",
+			el('div.table-full__choosen.choosen.no-open',
 				firstRow('Отобраны'),
-				this.choosenList = list('div.table-full__layer', RowVacancyClient, undefined, this.type)),
+				this.choosenList = list('div.table-full__layer.no-open', RowVacancyClient, undefined, this.type)),
 				
-			el('div.table-full__ready.ready',
+			el('div.table-full__ready.ready.no-open',
 				firstRow('Готовятся к подаче'),
-				this.readyList = list('div.table-full__layer', RowVacancyClient, undefined, this.type)),
+				this.readyList = list('div.table-full__layer.no-open', RowVacancyClient, undefined, this.type)),
 				
-			el('div.table-full__wait.wait',
+			el('div.table-full__wait.wait.no-open',
 				firstRow('Ждут разрешения'),
-				this.waitList = list('div.table-full__layer', RowVacancyClient, undefined, this.type)),
+				this.waitList = list('div.table-full__layer.no-open', RowVacancyClient, undefined, this.type)),
 
-			el('div.table-full__department.department',
+			el('div.table-full__department.department.no-open',
 				firstRow('Готовятся к отъезду'),
-				this.departmentList = list('div.table-full__layer', RowVacancyClient, undefined, this.type)),
+				this.departmentList = list('div.table-full__layer.no-open', RowVacancyClient, undefined, this.type)),
 	
-			el('div.table-full__busy.busy',
+			el('div.table-full__busy.busy.no-open',
 				firstRow('Трудоустроены'),
-				this.busyList = list('div.table-full__layer', RowVacancyClient, undefined, this.type)),
+				this.busyList = list('div.table-full__layer.no-open', RowVacancyClient, undefined, this.type)),
 
 			)
 
@@ -49,7 +49,7 @@ export default class TableVacancyClient {
 	}
 
 	update(data, r, t, y){
-		// console.log(data)
+		console.log(data.id)
 		data.data && data.data.forEach(el => {
 			if(el.vacancy.id_status === '1' || el.vacancy.id_status === '2') {
 				this.choosenObj[el.main.id_trainees] = el

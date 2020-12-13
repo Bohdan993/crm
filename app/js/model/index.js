@@ -69,10 +69,10 @@ import mountSearchInputVacancy from './MountingElements/Vacancy/mountSearch'
 import mountDateAndTermsPopup from './MountingElements/Vacancy/mountDateAndTermsPopup'
 // import mountClientsVacancy from './MountingElements/Vacancy/VacancyModal/mountClientsComponent'
 import mountActiveArchive from './MountingElements/Vacancy/mountActiveArchiveComponent'
-import mountModalRowLayerLeft from './MountingElements/Vacancy/VacancyModal/mountModalRowLayerLeft'
-import mountModalRowLayerRight from './MountingElements/Vacancy/VacancyModal/mountModalRowLayerRight'
-// console.log(getVacancyList)
 
+import mountVacancyStatusesPopup from './MountingElements/Vacancy/mountVacancyStatusesPopup'
+// import mountCopyComponent from './MountingElements/Vacancy/VacancyModal/mountCopyComponent'
+// import mountArchiveComponent from './MountingElements/Vacancy/VacancyModal/mountArchiveComponent'
 
 export {
 	initOverlayScrollbars,
@@ -134,9 +134,10 @@ export {
 	// mountClientsVacancy,
 	mountActiveArchive,
 	addNewVacancy,
-	mountModalRowLayerLeft,
-	mountModalRowLayerRight,
-	getVacancyEmployers
+	getVacancyEmployers,
+	mountVacancyStatusesPopup,
+	// mountCopyComponent,
+	// mountArchiveComponent
 	// mountEmployerDelete
 	// getTextSearch
 }

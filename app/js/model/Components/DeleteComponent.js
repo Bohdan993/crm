@@ -27,6 +27,16 @@ export default class Delete { // to ../fetchingData/Employer/WorkModal
                 
             } else {
                 deleteElement({str: 'vacancies', id: this.data.id})
+                .then(res => {
+                    if(res === 'ok') {
+                        MicroModal.close('modal-3')
+                    }
+
+
+                    if(res === 'fail') {
+                        return
+                    }
+                })
             }
             
         })

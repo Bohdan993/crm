@@ -1,6 +1,8 @@
 import fetch from './fetchingDataClass'
 // import getWorkModalFeedback from './getWorkModalFeedback'
 import { toastr } from '../../../libs/libs'
+// import getEmployersList from './getEmployersList'
+
 
 
 const deleteElement = async ({
@@ -12,6 +14,7 @@ const deleteElement = async ({
 				const fields = await fetch.getResourse(`/${str}/delete/?id=${id}`)
 
 				if(fields.success === true) {
+					// str === 'employers' ? getEmployersList() : ''
 					toastr.success(`ID ${str === 'employers' ? 'работодателя' : 'вакансии'} ${id}`, 'Успешно удалена запись', {closeButton: false})
 				} else {
 					throw new Error('Не возможно удалить запись')
@@ -28,3 +31,5 @@ const deleteElement = async ({
 
 
 export default deleteElement  //to ../../../Components/DeleteComponent
+
+// import getVacancyList from './Vacancy/getVacancyList'

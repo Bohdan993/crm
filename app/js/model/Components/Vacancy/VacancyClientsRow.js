@@ -1,9 +1,66 @@
 import {el, setAttr, place, list} from '../../../../libs/libs'
 import switchRowStatuses from '../../vacancy/switchRowStatuses'
 import { initVacancyTooltip } from '../../initToottips'
+import { save } from '../../helper'
+import storage from '../../Storage'
 
 
-// console.log(initVacancyTooltip)
+const tooltipContentFunc = ({
+	firstStatus = '',
+	secondStatus = '',
+	thirdStatus = '',
+	fourthStatus = '',
+	fifthStatus = '',
+	sixthStatus = '',
+	seventhStatus = '',
+	eighthStatus = '',
+	ninethStatus = ''
+} = {}) => {
+	return `<div class="row-popup" id="status-change-popup">
+                    <form>
+                        <div class="input-group">
+                            <p class="status choosen"><span>Подготовка CV</span></p>
+                            <time>${firstStatus}</time>
+                        </div>
+                        <div class="input-group">
+                            <p class="status choosen"><span>CV отправлено</span></p>
+                            <time>${secondStatus}</time>
+                        </div>
+                        <div class="input-group">
+                            <p class="status ready"><span>Утвержден</span></p>
+                            <time>${thirdStatus}</time>
+                        </div>
+                        <div class="input-group">
+                            <p class="status ready"><span>Контракт подписан</span></p>
+                            <time>${fourthStatus}</time>
+                        </div>
+                        <div class="input-group">
+                         <p class="status wait"><span>Подан в визовый центр</span></p>
+                         <time>${fifthStatus}</time>
+                        </div>
+                        <div class="input-group">
+                            <p class="status department"><span>Получил разрешение</span></p>
+                            <time>${sixthStatus}</time>
+                        </div>
+                        <div class="input-group">
+                            <p class="status department"><span>Забрал разрешение</span></p>
+                            <time>${seventhStatus}</time>
+                        </div>
+                        <div class="input-group">
+                            <p class="status department"><span>Билеты куплены</span></p>
+                            <time>${eighthStatus}</time>
+                        </div>
+                        <div class="input-group">
+                            <p class="status busy"><span>Трудоустроен</span></p>
+                            <time>${ninethStatus}</time>
+                        </div>
+                        <div class="input-group">
+                            <p class="del-status status delete"><span>Исключить из вакансии</span></p>
+                        </div>
+                    </form>
+                </div>`
+} 
+
 
 const dataArr = [
 {
@@ -98,9 +155,11 @@ class Language {
 export default class RowVacancyClient {
 	constructor(type){
 		this.type = type
-		// console.log(this.type)
+		this.timesArr = []
+		this.save = save.bind(this)
 		this.data = {}
 		this.context = ''
+		let $this = this
 		this.el = el("div.table-full__row.f-container.no-open", {
 			'data-count': '2'
 		},
@@ -137,6 +196,35 @@ export default class RowVacancyClient {
 					}))
 			)
 
+
+		this.vacancyTooltipInstance = initVacancyTooltip(this.statusSlider.el)
+		this.statusSlider.el.addEventListener('click', function (e) {3
+			switchRowStatuses.call(this, $this.statusLeft, $this.data.vacancy.id, $this.context)
+		}, {once: true})
+
+
+		this.notes.addEventListener('change', e => {
+			// console.log(storage)
+			this.save({
+				id: $this.data.vacancy.id, 
+				value: this.notes.value.trim(), 
+				field: 'note',
+				target: 'client'
+			})
+
+			storage.updateStatePartialData({
+				id: $this.context,
+				key: 'data',
+				field: 'vacancy',
+				fieldKey: 'id',
+				targetKey: 'note',
+				prop: $this.data.vacancy.id,
+				data: this.notes.value.trim()
+			})
+
+			
+		})
+
 		
 
 	}
@@ -144,6 +232,20 @@ export default class RowVacancyClient {
 	update(data, index, items, context){
 		// console.log(this.type)
 		// console.log(data)
+		this.timesArr = data.status_history
+
+		this.vacancyTooltipInstance.setContent(tooltipContentFunc({
+			firstStatus: this.timesArr.filter(el => el.id_status === '1')[0] ? this.timesArr.filter(el => el.id_status === '1')[0].date : '',
+			secondStatus: this.timesArr.filter(el => el.id_status === '2')[0] ? this.timesArr.filter(el => el.id_status === '2')[0].date : '',
+			thirdStatus: this.timesArr.filter(el => el.id_status === '3')[0] ? this.timesArr.filter(el => el.id_status === '3')[0].date : '',
+			fourthStatus: this.timesArr.filter(el => el.id_status === '4')[0] ? this.timesArr.filter(el => el.id_status === '4')[0].date : '',
+			fifthStatus: this.timesArr.filter(el => el.id_status === '5')[0] ? this.timesArr.filter(el => el.id_status === '5')[0].date : '',
+			sixthStatus: this.timesArr.filter(el => el.id_status === '6')[0] ? this.timesArr.filter(el => el.id_status === '6')[0].date : '',
+			seventhStatus: this.timesArr.filter(el => el.id_status === '7')[0] ? this.timesArr.filter(el => el.id_status === '7')[0].date : '',
+			eighthStatus: this.timesArr.filter(el => el.id_status === '8')[0] ? this.timesArr.filter(el => el.id_status === '8')[0].date : '',
+			ninethStatus: this.timesArr.filter(el => el.id_status === '9')[0] ? this.timesArr.filter(el => el.id_status === '9')[0].date : ''
+		}))
+
 
 		dataArr.forEach(el => {
 
@@ -230,14 +332,12 @@ export default class RowVacancyClient {
 		this.data = data
 		this.context = context
 
-		// console.log(this.data,  this.context)
+		// console.log(this.data)
 	}
 
 
 	onmount(){
-		// console.log(this.data.vacancy.id)
-		switchRowStatuses(this.statusLeft, this.data.vacancy.id, this.context)
-		initVacancyTooltip(this.statusSlider.el)
+		// switchRowStatuses(this.statusLeft, this.data.vacancy.id, this.context)
 	}
 
 	getItemsFromLocalStorage(){

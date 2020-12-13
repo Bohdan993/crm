@@ -5,11 +5,12 @@ import getVacancyList from './Vacancy/getVacancyList'
 import {place, mount} from '../../../libs/libs'
 import {throttle} from '../helper'
 
-const HEIGHT = 300
+const HEIGHT = 600
 const DATA_LENGTH = 50
 const loader = place(StickyLoader)
 let count = +JSON.parse(sessionStorage.getItem('page')) || 2
-let data = Array(DATA_LENGTH)
+let countVacancy = +JSON.parse(sessionStorage.getItem('pageVacancy')) || 2
+let data
 let flag = false
 
 
@@ -17,10 +18,13 @@ let flag = false
 const fetchScroll = (elem, type) => {
 	//@param elem - HTML node <div class="employer-rows-wrapper"></div>
 
-// let count = +JSON.parse(sessionStorage.getItem('page')) || 2
-// let data = Array(DATA_LENGTH)
-// let flag = false
-		
+		if(type === 'employer') {
+			data = JSON.parse(sessionStorage.getItem('pageDataLength')) && Array(JSON.parse(sessionStorage.getItem('pageDataLength'))) || Array(DATA_LENGTH)
+		} else {
+			data = JSON.parse(sessionStorage.getItem('pageVacancyDataLength')) && Array(JSON.parse(sessionStorage.getItem('pageVacancyDataLength'))) || Array(DATA_LENGTH)
+		}
+
+		// console.log(data)
 	async function ajaxData(){
 		if (this.scrollTop + this.clientHeight >= this.scrollHeight - HEIGHT && data.length === DATA_LENGTH && !flag) {
 					flag = true
@@ -28,16 +32,17 @@ const fetchScroll = (elem, type) => {
 					loader.update(true)
 
       	if(type === 'employer') {
-      			// let count = +JSON.parse(sessionStorage.getItem('page')) || 2
 		        data = await getEmployersList({t: DATA_LENGTH, p: count, scroll: true}).then((data)=> {flag = false; return data} )
+		        console.log(data)
 		        sessionStorage.setItem('page', JSON.stringify(count))
-		        console.log(count)
+		        sessionStorage.setItem('pageDataLength', JSON.stringify(data.length))
 		      	count++
       	} else {
-      				// let count = +JSON.parse(sessionStorage.getItem('pageVacancy')) || 2
-			        data = await getVacancyList({t: DATA_LENGTH, p: count, scroll: true}).then((data)=> {flag = false; return data} )
-			        sessionStorage.setItem('pageVacancy', JSON.stringify(count))
-			      	count++
+		        data = await getVacancyList({t: DATA_LENGTH, p: countVacancy, scroll: true}).then((data)=> {flag = false; console.log(data); return data} )
+		        sessionStorage.setItem('pageVacancy', JSON.stringify(countVacancy))
+		        console.log(data)
+		        sessionStorage.setItem('pageVacancyDataLength', JSON.stringify(data.length))
+		      	countVacancy++
       	}
       		loader.update(false)
     }

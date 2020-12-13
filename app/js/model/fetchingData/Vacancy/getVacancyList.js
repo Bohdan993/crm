@@ -45,7 +45,7 @@ const getVacancyList = async ({
 	manager = JSON.parse(sessionStorage.getItem('managerFilterVacancy')) || '',
 	sort = JSON.parse(sessionStorage.getItem('sortFilterVacancy')) || '',
 	archive = JSON.parse(sessionStorage.getItem('archiveVacancyFilter')) || '0',
-	active = JSON.parse(sessionStorage.getItem('activeVacancyFilter')) || '0',
+	active = JSON.parse(sessionStorage.getItem('activeVacancyFilter')) || '1',
 	type_vacancy = JSON.parse(sessionStorage.getItem('v-vacancyTypeFilter')) || '',
 	type_production = JSON.parse(sessionStorage.getItem('typeManufacturyVacancyFilter')) || '',
 	job_start = JSON.parse(sessionStorage.getItem('jobStartFilter')) || '',
@@ -67,7 +67,7 @@ const getVacancyList = async ({
 			if(data.success) {
 
 				if(!vacanciesData) {
-					throw new Error('Что то пошло не так, работодателей не найдено, обновите страницу, пожалуйста')
+					throw new Error('Что то пошло не так, вакансий не найдено, обновите страницу, пожалуйста')
 				}
 
 				if(scroll) {
@@ -83,17 +83,25 @@ const getVacancyList = async ({
 				loader.update(false)
 
 			} else {
-				vacancyList.update([])
+
 				loader.update(false)
-				return
+
+				if(scroll) {
+					vacancyList.update(globalVacancies)
+					return Array(1)
+				} else {
+					vacancyList.update([])
+					throw new Error('Что то пошло не так, список вакансий пуст, обновите страницу, пожалуйста')
+
+				}
 			}
 		
 			// return vacanciesData[vacanciesData.length - 1]
 			// globalVacancies = []
 			return vacanciesData
 	} catch (e) {
-		console.error(e)
-		// toastr.error(`${e.message}`, '' ,{timeOut: 0, extendedTimeOut: 0})
+		toastr.error(`${e.message}`, '' ,{timeOut: 0, extendedTimeOut: 0})
+		return
 	}
 }
 

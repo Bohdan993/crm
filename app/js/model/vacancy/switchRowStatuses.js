@@ -1,28 +1,36 @@
 import changeClientStatus from '../fetchingData/Vacancy/changeClientStatus'
 import deleteClientFromVacancy from '../fetchingData/Vacancy/deleteClientFromVacancy'
 import storage from '../Storage'
-import storageVacancyClientsUpdate from '../CustomEvents/StorageVacancyClientsUpdate'
+import storageVacancyClientsUpdate from '../CustomEvents/storageVacancyClientsUpdate'
+import storageVacancyClientDelete from '../CustomEvents/storageVacancyClientDelete'
 
-const switchRowStatuses = (el, client_id, vacancy_id) => {
-    // console.log(el, client_id, vacancy_id)
+const switchRowStatuses = function(el, client_id, vacancy_id) {
+    // console.log(client_id)
 
-        // let timeArray = Array(9).fill({
-        //     text: '',
-        //     date: ''
-        // })
+        let timeArray = Array(9).fill({
+            text: '',
+            date: ''
+        })
         let leftArrow = el.querySelector('.cell-status__control-left')
         let rightArrow = el.querySelector('.cell-status__control-right')
         let slider = el.querySelector('.cell-status__slider')
+        let instance = this._tippy
+        let instanseStatuses = instance.popper.querySelectorAll('.status')
+        
+        instanseStatuses.forEach(status => {
+            status.addEventListener('click', forEachStatus.bind(status, timeArray, instance, client_id, vacancy_id, storage))
+        })
+        // slider._tippy.popper.setAttribute('data-client', client_id)
 
-        slider.addEventListener('click', function() {
-            let instance = this._tippy
-             // console.log(el, client_id, vacancy_id)
-            let instanseStatuses = instance.popper.querySelectorAll('.status')
-            // console.log(this)
-            instanseStatuses.forEach(status => {
-                status.addEventListener('click', forEachStatus.bind(status, [], instance, client_id, vacancy_id, storage))
-            })
-        }, {once: true})
+        // slider.addEventListener('click', function() {
+        //     let instance = this._tippy
+        //      // console.log(el, client_id, vacancy_id)
+        //     let instanseStatuses = instance.popper.querySelectorAll('.status')
+        //     // console.log(this)
+        //     instanseStatuses.forEach(status => {
+        //         status.addEventListener('click', forEachStatus.bind(status, timeArray, instance, client_id, vacancy_id, storage))
+        //     })
+        // }, {once: true})
         // // console.log(slider)
         leftArrow.addEventListener('click', function() {
             // console.log(storage, client_id)
@@ -44,64 +52,65 @@ const switchRowStatuses = (el, client_id, vacancy_id) => {
                     elem.classList.remove('active')
                     ind = ind === 0 ? 0 : ind - 1
                     arr[ind].classList.add('active')
-                    // timeArray[ind] = {
-                    //     text: arr[ind].textContent,
-                    //     date: new Date().toLocaleDateString()
-                    // }
+                    timeArray[ind] = {
+                        text: arr[ind].textContent,
+                        date: new Date().toLocaleDateString()
+                    }
+                    // console.log(arr[ind])
                     instance.setContent(`<div class="row-popup" id="status-change-popup">
 		          <form>
 		            <div class="input-group">
 		              <p class="status choosen"><span>Подготовка CV</span></p>
 		              <time>
-                      
+                      ${timeArray[ind].text === 'Подготовка CV' ? timeArray[ind].date : timeArray[0].date}
                       </time>
 		            </div>
 		            <div class="input-group">
 		              <p class="status choosen"><span>CV отправлено</span></p>
 		              <time>
-                      
+                      ${timeArray[ind].text === 'CV отправлено' ? timeArray[ind].date : timeArray[1].date}
                       </time>
 		            </div>
 		            <div class="input-group">
 		              <p class="status ready"><span>Утвержден</span></p>
 		              <time>
-                      
+                      ${timeArray[ind].text === 'Утвержден' ? timeArray[ind].date : timeArray[2].date}
                       </time>
 		            </div>
 		            <div class="input-group">
 		              <p class="status ready"><span>Контракт подписан</span></p>
 		              <time>
-                      
+                      ${timeArray[ind].text === 'Контракт подписан' ? timeArray[ind].date : timeArray[3].date}
                       </time>
 		            </div>
 		            <div class="input-group">
 		             <p class="status wait"><span>Подан в визовый центр</span></p>
 		             <time>
-                     
+                     ${timeArray[ind].text === 'Подан в визовый центр' ? timeArray[ind].date : timeArray[4].date}
                      </time>
 		            </div>
 		           	<div class="input-group">
 		              <p class="status department"><span>Получил разрешение</span></p>
 		              <time>
-                      
+                      ${timeArray[ind].text === 'Получил разрешение' ? timeArray[ind].date : timeArray[5].date}
                       </time>
 		            </div>
 		            <div class="input-group">
 		              <p class="status department"><span>Забрал разрешение</span></p>
 		              <time>
-                      
+                      ${timeArray[ind].text === 'Забрал разрешение' ? timeArray[ind].date : timeArray[6].date}
                       </time>
 		            </div>
 		            <div class="input-group">
 		              <p class="status department"><span>Билеты куплены</span></p>
 		              <time>
-                      
+                      ${timeArray[ind].text === 'Билеты куплены' ? timeArray[ind].date : timeArray[7].date}
                       </time>
 		            </div>
 		            <div class="input-group">
 		              <p class="status busy"><span>Трудоустроен</span></p>
 		              <time>
-                      
+                      ${timeArray[ind].text === 'Трудоустроен' ? timeArray[ind].date : timeArray[8].date}
                       </time>
 		            </div>
 		            <div class="input-group">
@@ -323,61 +332,65 @@ const switchRowStatuses = (el, client_id, vacancy_id) => {
 
                     ind = ind === arr.length - 1 ? arr.length - 1 : ind + 1
                     arr[ind].classList.add('active')
-                    // timeArray[ind] = {
-                    //     text: arr[ind].textContent,
-                    //     date: new Date().toLocaleDateString()
-                    // }
+                    timeArray[ind] = {
+                        text: arr[ind].textContent,
+                        date: new Date().toLocaleDateString()
+                    }
                     // console.log(arr[ind])
                     instance.setContent(`<div class="row-popup" id="status-change-popup">
 		          <form>
 		            <div class="input-group">
 		              <p class="status choosen"><span>Подготовка CV</span></p>
 		              <time>
-                      
+                      ${timeArray[ind].text === 'Подготовка CV' ? timeArray[ind].date : timeArray[0].date}
                       </time>
 		            </div>
 		            <div class="input-group">
 		              <p class="status choosen"><span>CV отправлено</span></p>
 		              <time>
-                      
+                      ${timeArray[ind].text === 'CV отправлено' ? timeArray[ind].date : timeArray[1].date}
                       </time>
 		            </div>
 		            <div class="input-group">
 		              <p class="status ready"><span>Утвержден</span></p>
 		              <time>
-                      
+                      ${timeArray[ind].text === 'Утвержден' ? timeArray[ind].date : timeArray[2].date}
                       </time>
 		            </div>
 		            <div class="input-group">
 		              <p class="status ready"><span>Контракт подписан</span></p>
 		              <time>
-                      
+                      ${timeArray[ind].text === 'Контракт подписан' ? timeArray[ind].date : timeArray[3].date}
                       </time>
 		            </div>
 		            <div class="input-group">
 		             <p class="status wait"><span>Подан в визовый центр</span></p>
 		             <time>
-                     
+                     ${timeArray[ind].text === 'Подан в визовый центр' ? timeArray[ind].date : timeArray[4].date}
                      </time>
 		            </div>
 		           	<div class="input-group">
 		              <p class="status department"><span>Получил разрешение</span></p>
 		              <time>
+                      ${timeArray[ind].text === 'Получил разрешение' ? timeArray[ind].date : timeArray[5].date}
                       </time>
 		            </div>
 		            <div class="input-group">
 		              <p class="status department"><span>Забрал разрешение</span></p>
 		              <time>
+                      ${timeArray[ind].text === 'Забрал разрешение' ? timeArray[ind].date : timeArray[6].date}
                       </time>
 		            </div>
 		            <div class="input-group">
 		              <p class="status department"><span>Билеты куплены</span></p>
 		              <time>
+                      ${timeArray[ind].text === 'Билеты куплены' ? timeArray[ind].date : timeArray[7].date}
                       </time>
 		            </div>
 		            <div class="input-group">
 		              <p class="status busy"><span>Трудоустроен</span></p>
 		              <time>
+                      ${timeArray[ind].text === 'Трудоустроен' ? timeArray[ind].date : timeArray[8].date}
                      </time>
 		            </div>
 		            <div class="input-group">
@@ -558,8 +571,9 @@ const switchRowStatuses = (el, client_id, vacancy_id) => {
 function forEachStatus(timeArray, tippy, client_id, vacancy_id, storage) {
 	// console.log(this, client_id)
 
-
+    // let cl_id = tippy.popper.getAttribute('data-client')
     let sliderClazz = tippy.reference.classList[2]
+    // console.log(tippy)
 
     // console.log(sliderClazz)
     // let tippy = this.closest('.tippy-box').parentNode._tippy
@@ -589,13 +603,13 @@ function forEachStatus(timeArray, tippy, client_id, vacancy_id, storage) {
         if (this.textContent === el.textContent) {
             el.classList.add('active')
             
-            /*timeArray[ind] = {
+            timeArray[ind] = {
                           text: this.textContent,
                           date: new Date().toLocaleDateString()
                         }
 
                         //Добавляем дату утановки статуса в попапе
-                    this.nextElementSibling.textContent = timeArray[ind].date*/
+                    this.nextElementSibling.textContent = timeArray[ind].date
         }
     })
 
@@ -604,6 +618,7 @@ function forEachStatus(timeArray, tippy, client_id, vacancy_id, storage) {
 
      if (this.textContent === 'Подготовка CV') {
         changeClientStatus({id: client_id, status: '1'}).then(res => {
+                            // console.log(res)
                             storage.setAndUpdatePartialState(vacancy_id, '1', 'data', client_id)
                             storageVacancyClientsUpdate.detail.id = String(vacancy_id)
                             storageVacancyClientsUpdate.detail.clazz = sliderClazz
@@ -812,21 +827,22 @@ function forEachStatus(timeArray, tippy, client_id, vacancy_id, storage) {
                             storageVacancyClientsUpdate.detail.id = String(vacancy_id)
                             storageVacancyClientsUpdate.detail.clazz = sliderClazz
                             document.dispatchEvent(storageVacancyClientsUpdate)
-                            // console.log(storage)
                         })
         controls.classList.add('busy')
         oldChild.dataset.count = '1'
         parentTable.querySelector('.table-full__busy').querySelector('.table-full__layer').append(oldChild)
         }
     } else {
+        
         deleteClientFromVacancy({
                 id: client_id,
             }).then(res => {
                 if(res !== 'fail') {
                     storage.deletePartialState(vacancy_id, 'data', client_id)
-                    storageVacancyClientsUpdate.detail.id = String(vacancy_id)
-                    document.dispatchEvent(storageVacancyClientsUpdate)
+                    storageVacancyClientDelete.detail.id = String(vacancy_id)
+                    document.dispatchEvent(storageVacancyClientDelete)
                     tippy.unmount()
+                    // tippy.destroy()
                 } else {
                     return
                 }

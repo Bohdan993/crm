@@ -37,7 +37,7 @@ class TaskItem {
 
             this.textarea.addEventListener('change', e=> {
                 
-                if(this.type === 'employer') {
+                // if(this.type === 'employer') {
                    saveFieldsData({
                     str: 'employers',
                     id: this.context.id,
@@ -46,16 +46,8 @@ class TaskItem {
                     target: 'task', 
                     id_target: this.data.id_employer_task
                    })
-                } else {
-                    saveFieldsData({
-                    str: 'employers',
-                    id: this.context.id,
-                    value: this.textarea.value, 
-                    field: 'name', 
-                    target: 'task', 
-                    id_target: this.data.id_employer_task
-                   })
-                }
+                // } else {
+                // }
             })
 
             this.textarea.addEventListener('input', e => {

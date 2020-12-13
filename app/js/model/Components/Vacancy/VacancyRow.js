@@ -104,7 +104,13 @@ export default class RowVacancy {
 				getVacancyModalInfo(this.data.id_vacancy).then(res => {
 					getWorkModalFeedback({id:JSON.parse(sessionStorage.getItem('currVacancyEmployer')).id, loading: true, str: 'vacancies', other: 1 })
 				})
-				MicroModal.show('modal-3')
+
+				MicroModal.show('modal-3', {
+		      onClose: modal => {
+		      	getVacancyList()
+		      }
+   			})
+   			
 			})
 
 			document.addEventListener('storageupdate', (e) => {
@@ -112,12 +118,33 @@ export default class RowVacancy {
 				if(e.detail.id === this.data.id_vacancy) {
 					if(e.detail.clazz === 'vacancy-modal') {
 						// console.log('Vacancy-modal:', storage)
+						console.log(this.vacancyClientsTable)
 						let data = storage.getState(this.data.id_vacancy)
 						this.vacancyClientsTable.update(true, data)
+
+						setAttr(this.vacancyClientsTable.el, {
+							style: {
+								height: 'auto'
+							}
+						})
 					}
 					
 				}
 				
+			})
+
+
+			document.addEventListener('storagedelete', (e) => {
+				if(e.detail.id === this.data.id_vacancy) {
+						let data = storage.getState(this.data.id_vacancy)
+						this.vacancyClientsTable.update(true, data)
+
+						setAttr(this.vacancyClientsTable.el, {
+							style: {
+								height: 'auto'
+							}
+						})
+				}
 			})
 	}
 

@@ -104,7 +104,10 @@ import {
 	sidebarVacancy,
 	modalLayerLeft,
 	modalLayerRight,
-	vacancyRowsWrapper
+	vacancyRowsWrapper,
+	vacancyDelete,
+	vacancyArchive,
+	vacancyCopy
 } from './vacancy'
 
 
@@ -191,5 +194,8 @@ export {
 	sidebarVacancy,
 	modalLayerLeft,
 	modalLayerRight,
-	vacancyRowsWrapper
+	vacancyRowsWrapper,
+	vacancyDelete,
+	vacancyArchive,
+	vacancyCopy
 }
