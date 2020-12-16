@@ -360,7 +360,8 @@ class FeedbackEdit {
 		this.cancel.addEventListener('click', (e) => {
 			e.preventDefault()
 			this.feedbackEditPlace.update(false)
-			this.rowPlace.update(true)
+			this.rowPlace ? this.rowPlace.update(true) : null
+			this.parent ? checkIfWrapperIsEmpty(this.parent.modalRowWrapper) : null
 		})
 
 		this.delete.addEventListener('click' , (e) => {
@@ -421,7 +422,7 @@ class FeedbackEdit {
 		})
 
 		setAttr(this.textarea, {
-			value: data.text
+			value: data.text || 'введите текст отзыва'
 		})
 
 		setAttr(this.typeFeedbackIco, {
@@ -432,7 +433,7 @@ class FeedbackEdit {
 		// console.log(data)
 
 		setAttr(this.date, {
-			value: data.date
+			value: data.date || new Date().toLocaleDateString()
 		})
 		// console.log(this.data)
 
@@ -591,13 +592,14 @@ export default class Feedback {
 		this.modalRowWrapper = el(`div.modal-row__feedback-${type}-wrapper.modal-row__wrapper`)
 
 		this.modalLayer = el('div.modal-row__layer.feedback-row__layer.empty-layer', 
+			this.feedbackEdit = place(FeedbackEdit),
 			this.list = list(this.modalRowWrapper, FeedbackRow, 'id')
 		)
 
 
 		this.el = el(`div.feedback-${type}__layer`,
 				this.controls,
-				this.feedbackEdit = place(FeedbackEdit),
+				// this.feedbackEdit = place(FeedbackEdit),
 				this.modalLayer,
 				this.showMore = place(ShowMoreBtn)
 			)
@@ -618,10 +620,13 @@ export default class Feedback {
 				type_arrow: '0',
 				clients: null
 			})
-
+			checkIfWrapperIsEmpty(this.modalRowWrapper)
 			this.feedbackEdit.view.feedbackEditPlace = this.feedbackEdit
+			this.feedbackEdit.view.parent = this
 
 		})
+
+
 
 		initOverlayScrollbars(this.modalLayer, type)
 

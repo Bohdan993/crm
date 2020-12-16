@@ -123,6 +123,14 @@ function formatDate(date) {
 }
 
 
+let uniq = function(xs) {
+    let seen = {};
+    return xs.filter(function(x) {
+        let key = JSON.stringify(x.id_vacancy);
+        return !(key in seen) && (seen[key] = x.id_vacancy);
+    });
+  }
+
 
 
 
@@ -133,5 +141,6 @@ export {
 	come,
 	makeCaching,
   save,
-  formatDate
+  formatDate,
+  uniq
 }

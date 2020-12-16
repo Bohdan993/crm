@@ -4,7 +4,7 @@ import Loader from '../Components/Loader'
 import {el, mount, place, toastr} from '../../../libs/libs'
 import Numbers from '../Components/Employer/SidebarNumbersComponent'
 import {employerStatNums} from '../../view'
-
+import {uniq} from '../helper'
 
 const employersWrapper = document.querySelector('.employer-rows-wrapper')
 let globalEmployers = []
@@ -12,13 +12,7 @@ const loader = place(Loader)
 const empList = new EmployerList()
 const numbers = new Numbers()
 
-let uniq = function(xs) {
-	    let seen = {};
-	    return xs.filter(function(x) {
-	        let key = JSON.stringify(x.id_employer);
-	        return !(key in seen) && (seen[key] = x.id_employer);
-	    });
-		}
+
 
 
 

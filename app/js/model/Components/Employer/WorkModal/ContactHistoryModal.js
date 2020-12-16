@@ -47,7 +47,8 @@ export default class ContactHistoryModal {
 					el('p', 'Дата'),
 					el('div.input-group', 
 						this.date = el('input', {
-							type: 'text'
+							type: 'text',
+							// value: new Date().toLocaleDateString()
 								}
 							)
 						)
@@ -104,13 +105,18 @@ export default class ContactHistoryModal {
 			})
 
 			this.delete.addEventListener('click', (e) => {
-				// console.log(this.textarea.value)
-				deleteContactHistory({
-					id: this.data.data.id !== '' ? this.data.data.id : 0,
-					id_employer: this.data.id,
-					count: this.data.count
-				})
+				let conf = confirm(`Подтвердите удаление контакта`)
+				if(conf) {
+					deleteContactHistory({
+						id: this.data.data.id !== '' ? this.data.data.id : 0,
+						id_employer: this.data.id,
+						count: this.data.count
+					})
 				MicroModal.close('modal-2')
+				} else {
+					return
+				}
+				
 			})
 
 			this.el.addEventListener('click', (e) => {
@@ -140,7 +146,7 @@ export default class ContactHistoryModal {
 			})
 
 			setAttr(this.date, {
-				value: data.data.date
+				value: data.data.date ||  new Date().toLocaleDateString()
 			})
 			this.managerChoices.managersChoises.setChoiceByValue(data.data.id_manager)
 			this.contactChoices.contactChoices.setChoiceByValue(data.data.id_type_contact)

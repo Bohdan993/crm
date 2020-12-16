@@ -4,27 +4,27 @@ import fetch from '../fetchingDataClass'
 import VacancyList from '../../Components/Vacancy/VacancyList'
 import Loader from '../../Components/Loader'
 import {el, mount, place, toastr} from '../../../../libs/libs'
-
+import Numbers from '../../Components/Vacancy/SidebarNumbersComponent'
+import {sidebarStatNumsVacancy} from '../../../view'
+import {uniq} from '../../helper'
 
 
 const vacanciesWrapper = document.querySelector('.vacancy-rows-wrapper')
 let globalVacancies = []
 const loader = place(Loader)
 const vacancyList = new VacancyList()
+const numbers = new Numbers()
 
-let uniq = function(xs) {
-	    let seen = {};
-	    return xs.filter(function(x) {
-	        let key = JSON.stringify(x.id_vacancy);
-	        return !(key in seen) && (seen[key] = x.id_vacancy);
-	    });
-		}
 
 
 
 if(vacanciesWrapper) {
-mount(vacanciesWrapper, vacancyList);
-mount(vacanciesWrapper, loader)
+	mount(vacanciesWrapper, vacancyList);
+	mount(vacanciesWrapper, loader)
+}
+
+if(sidebarStatNumsVacancy) {
+	mount(sidebarStatNumsVacancy, numbers)
 }
 // const sleep = (ms) => {
 // 	return new Promise(res => {
@@ -63,6 +63,12 @@ const getVacancyList = async ({
 			// const delay = await sleep(5000)
 			const data = await fetch.getResourse(`/vacancies/get_all/?p=${p}&t=${t}&search=${search}&filter=manager:${manager}|archive:${archive}|active:${active}|country:${country}|type_vacancy:${type_vacancy}|type_production:${type_production}|job_start:${job_start}|job_period:${job_period}|status:${status}&sort=${sort}`)
 			const vacanciesData = data.data
+
+			const numsData = {
+				total: data.total_work,
+				totalN: data.need_employers,
+				totalC: data.current_vacancy
+			}
 			// console.log(data)
 			if(data.success) {
 
@@ -80,6 +86,7 @@ const getVacancyList = async ({
 					globalVacancies = vacanciesData
 					vacancyList.update(vacanciesData)
 				}
+				numbers.update(numsData)
 				loader.update(false)
 
 			} else {

@@ -37,6 +37,8 @@ const sidebarVacancy = document.querySelector('.vacancy-sidebar .sidebar__list-a
 const vacancyDelete = document.querySelector('#vacancy-delete')
 const vacancyCopy = document.querySelector('#vacancy-copy')
 const vacancyArchive = document.querySelector('#vacancy-archive')
+
+const sidebarStatNumsVacancy = document.querySelector('.sidebar__stat-nums_vacancy')
 export {
 
 	rows,
@@ -65,7 +67,8 @@ export {
 	vacancyRowsWrapper,
 	vacancyDelete,
 	vacancyCopy,
-	vacancyArchive
+	vacancyArchive,
+	sidebarStatNumsVacancy
 	// mainInfoPrice
 	
 }

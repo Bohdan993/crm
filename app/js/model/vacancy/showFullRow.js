@@ -2,8 +2,6 @@ import {isChildOf} from '../helper'
 
 const showFullRow = (row, event) => {
 	slideToggle(row, event)
-	
-
 }
 
 

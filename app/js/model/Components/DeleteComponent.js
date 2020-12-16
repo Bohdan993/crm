@@ -12,7 +12,8 @@ export default class Delete { // to ../fetchingData/Employer/WorkModal
             this.date = el('span'))
 
         this.delete.addEventListener('click', (e)=> {
-
+            let conf = confirm(`Подтвердите удаление ${this.type === 'employer' ? 'работодателя' : 'вакансии'}`)
+            if(conf) {
             if(this.type === 'employer') {
                 deleteElement({str: 'employers', id: this.data.id})
                 .then(res => {
@@ -24,7 +25,6 @@ export default class Delete { // to ../fetchingData/Employer/WorkModal
                         return
                     }
                 })
-                
             } else {
                 deleteElement({str: 'vacancies', id: this.data.id})
                 .then(res => {
@@ -32,11 +32,13 @@ export default class Delete { // to ../fetchingData/Employer/WorkModal
                         MicroModal.close('modal-3')
                     }
 
-
                     if(res === 'fail') {
                         return
                     }
                 })
+                }
+            } else {
+                return
             }
             
         })

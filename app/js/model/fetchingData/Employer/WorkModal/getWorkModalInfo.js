@@ -71,20 +71,20 @@ const getWorkModalInfo = async (id = '1') => {
 
 try {
 		const data = await fetch.getResourse(`/employers/get/?id=${id}&section=1`)
-		console.log(data)
+		// console.log(data)
 		const sourseData = await fetch.getResourse('/employers/get_other/?s=5')
 
 		const mainPart = data.data.main
 		const source = sourseData.data.source
 		source.unshift({id: 0, name: 'Отсутствует'})
 		const tasks = mainPart.task
-		const notes = mainPart.note
+		const notes = mainPart.note ? mainPart.note : ''
 		const id_manager = mainPart.id_login
 		const date = mainPart.date
 		const badFeedback = mainPart.total_bad_feedback
 
 
-		console.log(badFeedback)
+		// console.log(badFeedback)
 
 		const tasksData = {
 			tasks,

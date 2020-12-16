@@ -46,7 +46,7 @@ export default class Note { // to ../fetchingData/Employer/WorkModal
         
     }
     update(data) {
-        console.log(data.notes)
+        console.log(data)
     	setAttr(this.textArea, {
     		value: data.notes || data.notes === '' ? data.notes : data
     	})

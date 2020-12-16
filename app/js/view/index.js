@@ -107,7 +107,8 @@ import {
 	vacancyRowsWrapper,
 	vacancyDelete,
 	vacancyArchive,
-	vacancyCopy
+	vacancyCopy,
+	sidebarStatNumsVacancy
 } from './vacancy'
 
 
@@ -197,5 +198,6 @@ export {
 	vacancyRowsWrapper,
 	vacancyDelete,
 	vacancyArchive,
-	vacancyCopy
+	vacancyCopy,
+	sidebarStatNumsVacancy
 }
