@@ -76,17 +76,17 @@ function come(elem) {
 
 
 
-function makeCaching(f) {
-  var cache = {};
+// function makeCaching(f) {
+//   var cache = {};
 
-  return function(x) {
-    if (!(x in cache)) {
-      cache[x] = f.call(this, x);
-    }
-    return cache[x];
-  };
+//   return function(x) {
+//     if (!(x in cache)) {
+//       cache[x] = f.call(this, x);
+//     }
+//     return cache[x];
+//   };
 
-}
+// }
 
 
   let save = function ({
@@ -123,13 +123,40 @@ function formatDate(date) {
 }
 
 
-let uniq = function(xs) {
+
+let uniq = function(xs, id) {
     let seen = {};
     return xs.filter(function(x) {
-        let key = JSON.stringify(x.id_vacancy);
-        return !(key in seen) && (seen[key] = x.id_vacancy);
+        let key = JSON.stringify(x[id]);
+        return !(key in seen) && (seen[key] = x[id]);
     });
   }
+
+
+
+
+class EmptyError extends Error {
+  constructor(message) {
+    super(message)
+    this.name = 'EmptyError'
+  }
+}
+
+
+
+function addMouseUpTrigger(e) {
+  if(e.target.classList.contains('my-modal-wrapper')) {
+    return
+  }
+
+}
+
+
+function closeModal(id, e) {
+  if(e.target.classList.contains('my-modal-wrapper')) {
+    MicroModal.close(id)
+  }
+}
 
 
 
@@ -139,8 +166,11 @@ export {
 	debounce,
 	isChildOf,
 	come,
-	makeCaching,
+	// makeCaching,
   save,
   formatDate,
-  uniq
+  uniq,
+  EmptyError,
+  addMouseUpTrigger,
+  closeModal
 }

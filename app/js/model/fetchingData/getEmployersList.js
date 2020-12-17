@@ -4,15 +4,13 @@ import Loader from '../Components/Loader'
 import {el, mount, place, toastr} from '../../../libs/libs'
 import Numbers from '../Components/Employer/SidebarNumbersComponent'
 import {employerStatNums} from '../../view'
-import {uniq} from '../helper'
+import {uniq, EmptyError} from '../helper'
 
 const employersWrapper = document.querySelector('.employer-rows-wrapper')
 let globalEmployers = []
 const loader = place(Loader)
 const empList = new EmployerList()
 const numbers = new Numbers()
-
-
 
 
 
@@ -37,8 +35,8 @@ if(employerStatNums) {
 let flag = false
 
 const getEmployersList = async ({
-	t = +JSON.parse(sessionStorage.getItem('page')) * 50 || '50',
-	// t = '50',
+	// t = +JSON.parse(sessionStorage.getItem('page')) * 50 || '50',
+	t = '50',
 	p = '1',
 	search = JSON.parse(sessionStorage.getItem('search')) || '', 
 	country = JSON.parse(sessionStorage.getItem('countryFilter')) || '',
@@ -52,7 +50,8 @@ const getEmployersList = async ({
 	vacancy_term = JSON.parse(sessionStorage.getItem('vacancyTermFilter')) || '',
 	last_contact = JSON.parse(sessionStorage.getItem('lastContactFilter')) || '',
 	sort = JSON.parse(sessionStorage.getItem('sortFilter')) || '',
-	scroll = false
+	scroll = false,
+	// filtered = false
 } = {}) => { 
 
 	console.log('employerList')
@@ -70,6 +69,8 @@ const getEmployersList = async ({
 
 			if(data.success) {
 
+				// console.log(data.success)
+
 				if(!employers) {
 					throw new Error('Что то пошло не так, работодателей не найдено, обновите страницу, пожалуйста')
 				}
@@ -83,7 +84,7 @@ const getEmployersList = async ({
 						globalEmployers = uniq([
 					...globalEmployers,
 					...employers
-					])
+					], 'id_employer')
 					empList.update(globalEmployers)
 				} else {
 					globalEmployers = employers
@@ -98,17 +99,23 @@ const getEmployersList = async ({
 
 				if(scroll) {
 					empList.update(globalEmployers)
+					// console.log(globalEmployers)
 					return Array(1)
 				} else {
+					// console.log(globalEmployers)
 					empList.update([])
-					throw new Error('Что то пошло не так, список работодателей пуст, обновите страницу, пожалуйста')
+					throw new EmptyError('Список работодателей пуст')
 				}
 			}
 		
-			// return employers[employers.length - 1]
-			// globalEmployers = []
 			return employers
 	} catch (e) {
+
+		if(e.name === 'EmptyError') {
+			toastr.warning(`${e.message}`)
+			return
+		}
+
 		toastr.error(`${e.message}`, '' ,{timeOut: 0, extendedTimeOut: 0})
 		return
 	}

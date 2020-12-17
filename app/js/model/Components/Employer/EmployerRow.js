@@ -8,6 +8,11 @@ import getWorkModalContactHistory from '../../fetchingData/Employer/WorkModal/ge
 import getWorkModalVacancyHistory from '../../fetchingData/Employer/WorkModal/getWorkModalVacancyHistory'
 import getWorkModalFeedback from '../../fetchingData/Employer/WorkModal/getWorkModalFeedback'
 import getEmployersList from '../../fetchingData/getEmployersList'
+import {addMouseUpTrigger, closeModal} from '../../helper'
+
+
+
+let flag = false
 
 class VacancyLabel {
 	constructor(){
@@ -41,6 +46,7 @@ class VacancyLabel {
 export default class RowEmployer {
 	constructor(){
 		this.data = {}
+		
 		this.attentionTag = place(el('i.attention-tag',
 				el('i.s-attention')
 					))
@@ -85,7 +91,20 @@ export default class RowEmployer {
 			MicroModal.show('modal-1', {
 	      onClose: modal => {
 	      	getEmployersList()
-	      }
+	      },
+	      onShow: (modal, node) => {
+			    const wrapper = modal.querySelector('.my-modal-wrapper')
+			    const modalClose = modal.querySelector('.modal__close')
+
+			    if(!flag) {
+			      wrapper.addEventListener('mouseup', addMouseUpTrigger)
+			      wrapper.addEventListener('mousedown', closeModal.bind(null, modal.id))
+			      modalClose.addEventListener('click', function(){
+			        MicroModal.close(modal.id)
+			      })
+			      flag = true
+			    }
+			  }
     })
 			getWorkModalInfo(this.data.id_employer)
 			getWorkModalManufacturyType(this.data.id_employer)
@@ -138,6 +157,9 @@ export default class RowEmployer {
 				)
 			) : this.managerTag.update(false)
 
+		this.jobsText.innerText = data.production ? data.production.join(', ') : ""
+		this.vacancyLabel.update(data.vacancy)
+
 		if(id_employer !== this.data.id_employer) {
 		
 
@@ -149,8 +171,7 @@ export default class RowEmployer {
 		
 		
 		// this.addressText.innerText = data.address
-		this.jobsText.innerText = data.production ? data.production.join(', ') : ""
-		this.vacancyLabel.update(data.vacancy)
+	
 		// data.vacancy instanceof Array && data.vacancy.length > 0 ? 
 		// (
 		// 		this.vacancyLabel.update(data.vacancy),

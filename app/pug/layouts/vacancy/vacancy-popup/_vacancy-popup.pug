@@ -1,8 +1,8 @@
-#modal-3.modal.micromodal-slide(aria-hidden='true')
-	.modal__overlay(tabindex='-1')
+#modal-3.modal.micromodal-slide()
+	.modal__overlay()
 		.modal__wrapper.my-modal-wrapper
-			.modal__container.work-modal.my-modal(role='dialog' aria-modal='true' aria-labelledby='modal-3-title')
-				span.modal__close(data-custom-close="modal-3")
+			.modal__container.work-modal.my-modal()
+				span.modal__close()
 					span
 					span
 				.sidebar
@@ -11,38 +11,7 @@
 							.sidebar__info
 								form.vacancy-modal__sidebar-vacancy-form
 									.manager-select-wrap
-										//- .input-group
-										//- 	p
-										//- 		|Менеджер
-										//- 	select.manager-select(name="manager-select")
-										//- 		//- option(value="" disabled selected)
-										//- 		//- 	|Отсутствует
-										//- 		//- option(value="AK")
-										//- 		//- 	i.tag.manager-tag.dark-blue-tag
-										//- 		//- 		|AK
-										//- 		//- 	|Алексей
-										//- 		//- option(value="CK")
-										//- 		//- 	i.tag.manager-tag.light-green-tag
-										//- 		//- 		|CK
-										//- 		//- 	|Светлана
-									//- .input-group.add-task-group
-									//- 	.input-group__control
-									//- 		p
-									//- 			|Задачи
-									//- 		.add-item
-									//- 			span
-									//- 				|+ 
-									//- 			| добавить
-									//- 	.add-task-item
-									//- 		i.ico
-									//- 			+svg2('attention')
-									//- 		textarea(type="text" class="sidebar__task-input" rows="1" data-elastic="true")
-									//- 		span.delete-task-item
 							.sidebar__notes.vacancy-modal__sidebar-notes
-								//- .input-group
-								//- 	p
-								//- 		|Заметки
-								//- 	textarea(rows="5" class="sidebar__area-notes" data-elastic="true")
 							.sidebar__actions
 								ul.sidebar__action
 									li.sidebar__action-item
@@ -62,21 +31,8 @@
 												|Распечатать ПТ
 									
 									li.sidebar__filter-item(data-part="archive-vacancy").archive-item#vacancy-archive
-										//- .sidebar__filter-wrapper
-										//- 	p
-										//- 		|Архивировать вакансию
-									
 									li.sidebar__filter-item(data-part="create-vacancy-copy").copy-item#vacancy-copy
-										//- .sidebar__filter-wrapper
-										//- 	p
-										//- 		|Создать копию вакансии
-										
 									li.sidebar__filter-item.delete-item#vacancy-delete
-										//- .sidebar__filter-wrapper
-										//- 	p
-										//- 		|Удалить
-										//- 	span
-										//- 		|20.04.2019
 				.rows
 					#vacancy-data.vacancy-data.my-modal-part.active
 						include _main-info

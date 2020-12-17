@@ -6,7 +6,7 @@ import Loader from '../../Components/Loader'
 import {el, mount, place, toastr} from '../../../../libs/libs'
 import Numbers from '../../Components/Vacancy/SidebarNumbersComponent'
 import {sidebarStatNumsVacancy} from '../../../view'
-import {uniq} from '../../helper'
+import {uniq, EmptyError} from '../../helper'
 
 
 const vacanciesWrapper = document.querySelector('.vacancy-rows-wrapper')
@@ -69,7 +69,7 @@ const getVacancyList = async ({
 				totalN: data.need_employers,
 				totalC: data.current_vacancy
 			}
-			// console.log(data)
+
 			if(data.success) {
 
 				if(!vacanciesData) {
@@ -80,7 +80,7 @@ const getVacancyList = async ({
 						globalVacancies = uniq([
 					...globalVacancies,
 					...vacanciesData
-					])
+					], 'id_vacancy')
 					vacancyList.update(globalVacancies)
 				} else {
 					globalVacancies = vacanciesData
@@ -98,15 +98,18 @@ const getVacancyList = async ({
 					return Array(1)
 				} else {
 					vacancyList.update([])
-					throw new Error('Что то пошло не так, список вакансий пуст, обновите страницу, пожалуйста')
+					throw new EmptyError('Список вакансий пуст')
 
 				}
 			}
 		
-			// return vacanciesData[vacanciesData.length - 1]
-			// globalVacancies = []
 			return vacanciesData
 	} catch (e) {
+		if(e.name === 'EmptyError') {
+			toastr.warning(`${e.message}`)
+			return
+		}
+
 		toastr.error(`${e.message}`, '' ,{timeOut: 0, extendedTimeOut: 0})
 		return
 	}

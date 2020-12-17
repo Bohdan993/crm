@@ -62,6 +62,7 @@ export default class ManagerPopup {
 				ManagerPopup.checkedArr = ManagerPopup.checkedArr.filter(el => el !== id)
 
 				if($this.type === 'employer') {
+
 					getEmployersList({[str]: ManagerPopup.checkedArr.join(',')})
 				} else {
 					getVacancyList({[str]: ManagerPopup.checkedArr.join(',')})

@@ -1,17 +1,15 @@
-
-
-
-
 import {el, setAttr, place, list, MicroModal} from '../../../../libs/libs'
 import TableVacancyClient from './VacancyClients'
 import showFullRow from '../../vacancy/showFullRow'
 import getVacancyClients from '../../fetchingData/Vacancy/getVacancyClients'
 import getVacancyList from '../../fetchingData/Vacancy/getVacancyList'
-import { makeCaching } from '../../helper'
+import {addMouseUpTrigger, closeModal } from '../../helper'
 import getVacancyModalInfo from '../../fetchingData/Vacancy/VacancyModal/getVacancyModalInfo'
 import getWorkModalFeedback from '../../fetchingData/Employer/WorkModal/getWorkModalFeedback'
 import storage from '../../Storage'
 
+
+let flag = false
 
 class Indicator {
 	constructor(){
@@ -108,9 +106,21 @@ export default class RowVacancy {
 				MicroModal.show('modal-3', {
 		      onClose: modal => {
 		      	getVacancyList()
-		      }
+		      },
+		       onShow: (modal, node) => {
+				    const wrapper = modal.querySelector('.my-modal-wrapper')
+				    const modalClose = modal.querySelector('.modal__close')
+
+				    if(!flag) {
+				      wrapper.addEventListener('mouseup', addMouseUpTrigger)
+				      wrapper.addEventListener('mousedown', closeModal.bind(null, modal.id))
+				      modalClose.addEventListener('click', function(){
+				        MicroModal.close(modal.id)
+				      })
+				      flag = true
+				    }
+			  	}
    			})
-   			
 			})
 
 			document.addEventListener('storageupdate', (e) => {
