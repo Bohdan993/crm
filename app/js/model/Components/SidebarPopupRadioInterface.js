@@ -41,10 +41,10 @@ export default class SidebarPopupRadioInterface { // класс от котор�
 			//this - один чекбокс в попапе
 			if(this.checked) {
 				if(type === 'employer') {
-					getEmployersList({[str]: id})
+					getEmployersList({[str]: id, filtered: true})
 				} else {
 
-					getVacancyList({[str]: id})
+					getVacancyList({[str]: id, filtered: true})
 				}
 				
 				sessionStorage.setItem(storageKey, JSON.stringify(id))

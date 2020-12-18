@@ -23,14 +23,6 @@ export default class ManagerSelect { // to ../MountingElements/Employer/WorkModa
 										value: this.manager.value, 
 										field: 'id_login'
 									})
-                   // saveFieldsData({
-                   //  str: 'employers',
-                   //  id: this.data.id,
-                   //  value: this.manager.value, 
-                   //  field: 'id_login', 
-                   //  target: 'main', 
-                   //  id_target: ''
-                   // })
                 } else {
                 	this.save({
 										id: this.data.id,
@@ -38,14 +30,6 @@ export default class ManagerSelect { // to ../MountingElements/Employer/WorkModa
 										field: 'id_manager',
 										target: 'employer'
 									})
-                	// saveFieldsData({
-                 //    str: 'vacancies',
-                 //    id:  this.data.id,
-                 //    value:this.manager.value, 
-                 //    field: 'id_manager', 
-                 //    target: 'employer', 
-                 //    id_target: ''
-                 //   })
                 }
 		})
 

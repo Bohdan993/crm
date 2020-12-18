@@ -61,25 +61,25 @@ import getVacancyList from '../../fetchingData/Vacancy/getVacancyList'
         const val = e.target.value.trim()
         this.data.beforeDate = val || this.data.beforeDate
         sessionStorage.setItem('jobStartFilter', JSON.stringify(`${this.data.beforeDate || ''}-${this.data.afterDate || ''}`))
-        getVacancyList({job_start: `${this.data.beforeDate || ''}-${this.data.afterDate || ''}`})
+        getVacancyList({job_start: `${this.data.beforeDate || ''}-${this.data.afterDate || ''}`, filtered: true})
       })
       this.afterDate.addEventListener('change', (e)=> {
         const val = e.target.value.trim()
         this.data.afterDate = val || this.data.afterDate
         sessionStorage.setItem('jobStartFilter', JSON.stringify(`${this.data.beforeDate || ''}-${this.data.afterDate || ''}`))
-        getVacancyList({job_start: `${this.data.beforeDate || ''}-${this.data.afterDate || ''}`})
+        getVacancyList({job_start: `${this.data.beforeDate || ''}-${this.data.afterDate || ''}`, filtered: true})
       })
       this.fromDate.addEventListener('change', (e)=> {
         const val = e.target.value.trim()
         this.data.fromDate = val ||  this.data.fromDate
         sessionStorage.setItem('jobPeriodFilter', JSON.stringify(`${this.data.fromDate || ''}-${this.data.toDate || ''}`))
-        getVacancyList({job_period: `${this.data.fromDate || '' }-${this.data.toDate || ''}`})
+        getVacancyList({job_period: `${this.data.fromDate || '' }-${this.data.toDate || ''}`, filtered: true})
       })
       this.toDate.addEventListener('change', (e)=> {
         const val = e.target.value.trim()
         this.data.toDate = val || this.data.toDate
         sessionStorage.setItem('jobPeriodFilter', JSON.stringify(`${this.data.fromDate || ''}-${this.data.toDate || ''}`))
-        getVacancyList({job_period: `${this.data.fromDate || '' }-${this.data.toDate || ''}`})
+        getVacancyList({job_period: `${this.data.fromDate || '' }-${this.data.toDate || ''}`, filtered: true})
       })
   	}
 

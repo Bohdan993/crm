@@ -159,6 +159,15 @@ function closeModal(id, e) {
 }
 
 
+const sleep = (ms) => {
+  return new Promise(res => {
+    setTimeout(function(){
+      res('ok')
+    }, ms)
+  })
+}
+
+
 
 
 export {
@@ -167,6 +176,7 @@ export {
 	isChildOf,
 	come,
 	// makeCaching,
+  sleep,
   save,
   formatDate,
   uniq,

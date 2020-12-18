@@ -32,10 +32,10 @@ class CheckBoxVacancyEarlier {
 		this.input.addEventListener('change', filter)
 		function filter(e){
 			if(!this.checked) {
-				getEmployersList({[str]: '0'})
+				getEmployersList({[str]: '0', filtered: true})
 				sessionStorage.setItem(storageKey, JSON.stringify(''))
 			} else {
-				getEmployersList({[str]: '1'})
+				getEmployersList({[str]: '1', filtered: true})
 				sessionStorage.setItem(storageKey, JSON.stringify('1'))
 			}
 		}
@@ -82,12 +82,12 @@ class CheckBoxVacancy {
 			//this - один чекбокс в попапе
 			if(this.checked) {
 				CheckBoxVacancy.checkedArr.push(id)
-				getEmployersList({[str]: CheckBoxVacancy.checkedArr.join(',')})
+				getEmployersList({[str]: CheckBoxVacancy.checkedArr.join(','), filtered: true})
 				
 				sessionStorage.setItem(storageKey, JSON.stringify(CheckBoxVacancy.checkedArr.join(',')))
 			} else {
 				CheckBoxVacancy.checkedArr = CheckBoxVacancy.checkedArr.filter(el => el !== id)
-				getEmployersList({[str]: CheckBoxVacancy.checkedArr.join(',')})
+				getEmployersList({[str]: CheckBoxVacancy.checkedArr.join(','), filtered: true})
 				sessionStorage.setItem(storageKey, JSON.stringify(CheckBoxVacancy.checkedArr.join(',')))
 			}
 		}

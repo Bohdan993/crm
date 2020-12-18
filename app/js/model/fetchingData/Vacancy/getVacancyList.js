@@ -11,6 +11,7 @@ import {uniq, EmptyError} from '../../helper'
 
 const vacanciesWrapper = document.querySelector('.vacancy-rows-wrapper')
 let globalVacancies = []
+let cachedVacancies = []
 const loader = place(Loader)
 const vacancyList = new VacancyList()
 const numbers = new Numbers()
@@ -35,7 +36,7 @@ if(sidebarStatNumsVacancy) {
 // }
 
 
-let flag = false
+// let flag = false
 
 const getVacancyList = async ({
 	t = +JSON.parse(sessionStorage.getItem('pageVacancy')) * 50 || '50',
@@ -51,10 +52,10 @@ const getVacancyList = async ({
 	job_start = JSON.parse(sessionStorage.getItem('jobStartFilter')) || '',
 	job_period = JSON.parse(sessionStorage.getItem('jobPeriodFilter')) || '',
 	status = JSON.parse(sessionStorage.getItem('stagesOfVacancies')) || '',
-
-	scroll = false
+	scroll = false,
+	filtered = false
 } = {}) => { 
-
+	let flag = false
 	// console.log(type_vacancy)
 	if(vacanciesWrapper) {
 		loader.update(true)
@@ -63,6 +64,16 @@ const getVacancyList = async ({
 			// const delay = await sleep(5000)
 			const data = await fetch.getResourse(`/vacancies/get_all/?p=${p}&t=${t}&search=${search}&filter=manager:${manager}|archive:${archive}|active:${active}|country:${country}|type_vacancy:${type_vacancy}|type_production:${type_production}|job_start:${job_start}|job_period:${job_period}|status:${status}&sort=${sort}`)
 			const vacanciesData = data.data
+
+
+			if(search === '' && country === '' && manager === ''   
+				&& sort === ''  && archive === '0'  && active === '1'   
+				&& type_vacancy === '' && type_production === '' 
+				&& job_start === '' && job_period === ''
+				&& status === '' 
+				) {
+					flag = true
+				}
 
 			const numsData = {
 				total: data.total_work,
@@ -81,10 +92,23 @@ const getVacancyList = async ({
 					...globalVacancies,
 					...vacanciesData
 					], 'id_vacancy')
-					vacancyList.update(globalVacancies)
+
+						cachedVacancies = uniq([
+					...cachedVacancies,
+					...globalVacancies
+					], 'id_vacancy')
+
+
+					vacancyList.update(cachedVacancies)
 				} else {
 					globalVacancies = vacanciesData
-					vacancyList.update(vacanciesData)
+					cachedVacancies.length && !filtered ? vacancyList.update(cachedVacancies) : 
+					!flag ? 
+					vacancyList.update(vacanciesData) :
+					(vacancyList.update(uniq([
+					...vacanciesData,
+					...cachedVacancies
+					], 'id_vacancy')))
 				}
 				numbers.update(numsData)
 				loader.update(false)

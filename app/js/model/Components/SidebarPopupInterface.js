@@ -48,10 +48,10 @@ export default class SidebarPopupInterface { // класс от которого
 				SidebarPopupInterface.checkedArr.push(id)
 				
 				if(type === 'employer') {
-					getEmployersList({[str]: SidebarPopupInterface.checkedArr.join(',')})
+					getEmployersList({[str]: SidebarPopupInterface.checkedArr.join(','), filtered: true})
 				} else {
 
-					getVacancyList({[str]: SidebarPopupInterface.checkedArr.join(',')})
+					getVacancyList({[str]: SidebarPopupInterface.checkedArr.join(','), filtered: true})
 				}
 				
 				sessionStorage.setItem(storageKey, JSON.stringify(SidebarPopupInterface.checkedArr.join(',')))
@@ -59,9 +59,9 @@ export default class SidebarPopupInterface { // класс от которого
 				SidebarPopupInterface.checkedArr = SidebarPopupInterface.checkedArr.filter(el => el !== id)
 
 				if(type === 'employer') {
-					getEmployersList({[str]: SidebarPopupInterface.checkedArr.join(',')})
+					getEmployersList({[str]: SidebarPopupInterface.checkedArr.join(','), filtered: true})
 				} else {
-					getVacancyList({[str]: SidebarPopupInterface.checkedArr.join(',')})
+					getVacancyList({[str]: SidebarPopupInterface.checkedArr.join(','), filtered: true})
 				}
 				sessionStorage.setItem(storageKey, JSON.stringify(SidebarPopupInterface.checkedArr.join(',')))
 			}

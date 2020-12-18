@@ -178,7 +178,7 @@
 }
 
 
-#type-manufactury-popup {
+#type-manufactury-popup, #country-popup {
       fieldset {
                 border: none;
                 margin: 0;
@@ -214,12 +214,33 @@
 
 
 #vacancies-popup {
+    max-width: 277px;
     .radio-group-type-2 {
         .input-group {
             width: auto;
             &:not(:last-child) {
                 margin-right: 10px;
             }
+        }
+    }
+
+    input:checked {
+        & + [for="season-chbx"] {
+            background: @hot
+        }
+
+
+        & + [for="work-chbx"] {
+            background: @blue
+        }
+    }
+}
+
+
+#intermediaries-popup {
+    .radio-group-type-1 {
+        div:not(:last-child) {
+            margin-right: 10px;
         }
     }
 }

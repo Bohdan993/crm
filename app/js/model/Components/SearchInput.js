@@ -42,10 +42,10 @@ import sidebarSearchInput from '../sidebarSearchInput'
         let val = e.target.value.trim()
 
         if(type === 'employer') {
-          getEmployersList({search: val})
+          getEmployersList({search: val, filtered: true})
           sessionStorage.setItem('search', JSON.stringify(val))
         } else {
-          getVacancyList({search: val})
+          getVacancyList({search: val, filtered: true })
           sessionStorage.setItem('searchVacancy', JSON.stringify(val))
         }
         

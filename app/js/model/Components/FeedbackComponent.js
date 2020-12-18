@@ -231,6 +231,8 @@ class FeedbackType {
 				})
 			}
 
+			
+
 		}
 
 	update(data){

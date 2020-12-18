@@ -44,21 +44,21 @@ class ArchiveActiveRow {
 			if(this.checked) {
 				if(this.id === 'current-chbx') {
 					sessionStorage.setItem(storageKey, JSON.stringify(id))
-					getVacancyList({[str]: id})
+					getVacancyList({[str]: id, filtered: true})
 				} else if(this.id === 'archive-chbx') {
 					sessionStorage.setItem(storageKey2, JSON.stringify(id))
-					getVacancyList({[str2]: id})
+					getVacancyList({[str2]: id, filtered: true})
 				}
 				
 			} else {
 				if(this.id === 'current-chbx') {
 					console.log('current-chbx')
 					sessionStorage.setItem(storageKey, JSON.stringify(0))
-					getVacancyList({[str]: 0})
+					getVacancyList({[str]: 0, filtered: true})
 				} else if(this.id === 'archive-chbx') {
 					console.log('archive-chbx')
 					sessionStorage.setItem(storageKey2, JSON.stringify(0))
-					getVacancyList({[str2]: 0})
+					getVacancyList({[str2]: 0, filtered: true})
 				}
 			}
 		}

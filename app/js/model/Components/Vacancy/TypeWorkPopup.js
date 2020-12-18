@@ -44,12 +44,12 @@ class CheckBoxVacancy {
 			if(this.checked) {
 				console.log(id, str, storageKey)
 				CheckBoxVacancy.checkedArr.push(id)
-				getVacancyList({[str]: CheckBoxVacancy.checkedArr.join(',')})
+				getVacancyList({[str]: CheckBoxVacancy.checkedArr.join(','), filtered: true})
 				
 				sessionStorage.setItem(storageKey, JSON.stringify(CheckBoxVacancy.checkedArr.join(',')))
 			} else {
 				CheckBoxVacancy.checkedArr = CheckBoxVacancy.checkedArr.filter(el => el !== id)
-				getVacancyList({[str]: CheckBoxVacancy.checkedArr.join(',')})
+				getVacancyList({[str]: CheckBoxVacancy.checkedArr.join(','), filtered: true})
 				sessionStorage.setItem(storageKey, JSON.stringify(CheckBoxVacancy.checkedArr.join(',')))
 			}
 		}

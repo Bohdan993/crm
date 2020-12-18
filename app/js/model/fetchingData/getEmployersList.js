@@ -8,6 +8,7 @@ import {uniq, EmptyError} from '../helper'
 
 const employersWrapper = document.querySelector('.employer-rows-wrapper')
 let globalEmployers = []
+let cachedEmployers = []
 const loader = place(Loader)
 const empList = new EmployerList()
 const numbers = new Numbers()
@@ -32,7 +33,7 @@ if(employerStatNums) {
 // }
 
 
-let flag = false
+// let flag = false
 
 const getEmployersList = async ({
 	// t = +JSON.parse(sessionStorage.getItem('page')) * 50 || '50',
@@ -51,10 +52,10 @@ const getEmployersList = async ({
 	last_contact = JSON.parse(sessionStorage.getItem('lastContactFilter')) || '',
 	sort = JSON.parse(sessionStorage.getItem('sortFilter')) || '',
 	scroll = false,
-	// filtered = false
+	filtered = false
 } = {}) => { 
-
-	console.log('employerList')
+	let flag = false
+	// console.log('employerList')
 	if(employersWrapper) {
 		loader.update(true)
 
@@ -63,6 +64,19 @@ const getEmployersList = async ({
 			const data = await fetch.getResourse(`/employers/get_all/?p=${p}&t=${t}&search=${search}&filter=country:${country}|production:${production}|contact:${contact}
 				|manager:${manager}|intermediaries:${intermediaries}|intermediary:${intermediary}|vacancy_active:${vacancy_active}|vacancy_type:${vacancy_type}|vacancy_term:${vacancy_term}|last_contact:${last_contact}&sort=${sort}`)
 			const employers = data.data
+
+			if(search === '' && country === '' && production === ''   
+				&& contact === ''  && manager === ''  && intermediary === ''   
+				&& intermediaries === '' && vacancy_active === '' 
+				&& vacancy_type === '' && vacancy_term === ''
+				&& last_contact === '' 
+				) {
+					flag = true
+				}
+
+
+			// console.log(filtered)
+			// console.log(flag)
 
 			const total = data.total
 			const totalR = data.total_r
@@ -85,12 +99,37 @@ const getEmployersList = async ({
 					...globalEmployers,
 					...employers
 					], 'id_employer')
-					empList.update(globalEmployers)
+
+					cachedEmployers = uniq([
+					...cachedEmployers,
+					...globalEmployers
+					], 'id_employer')
+
+					empList.update(cachedEmployers)
 				} else {
 					globalEmployers = employers
-					empList.update(employers)
-					
+					cachedEmployers.length && !filtered ? empList.update(cachedEmployers) : 
+					!flag ? 
+					empList.update(employers) :
+					(empList.update(uniq([
+					...employers,
+					...cachedEmployers
+					], 'id_employer')))
 				}
+
+
+				// console.log(employers.length)
+				// console.log(p)
+				// let uniq = function(xs, id) {
+			 //    let seen = {};
+			 //    return xs.filter(function(x) {
+			 //        let key = JSON.stringify(x[id]);
+			 //        return !(key in seen) && (seen[key] = x[id]);
+			 //    });
+			 //  }
+
+				// console.log('globalEmployers', globalEmployers)
+				// console.log('cachedEmployers', cachedEmployers)
 				numbers.update(numsData)
 				loader.update(false)
 
@@ -99,7 +138,7 @@ const getEmployersList = async ({
 
 				if(scroll) {
 					empList.update(globalEmployers)
-					// console.log(globalEmployers)
+					
 					return Array(1)
 				} else {
 					// console.log(globalEmployers)

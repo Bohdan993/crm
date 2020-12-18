@@ -1,12 +1,12 @@
 import fetch from './fetchingDataClass'
-import IntermediariesPopup, { RadioGroup } from '../Components/Employer/IntermediariesPopup'
+import IntermediariesPopup from '../Components/Employer/IntermediariesPopup'
 import {list, mount} from '../../../libs/libs'
 
 // if(managersTemplate) {
 // 		managersTemplate.style.display = 'block';
 // }
 
-const intermediariesPopup = document.querySelector('#intermediaries-popup form')
+const intermediariesPopup = document.querySelector('#intermediaries-popup')
 
 
 let radioGroupData = [{
@@ -19,12 +19,12 @@ let radioGroupData = [{
 	'data-id': 'remove-rbtn'
 }]
 
+// const radioGroup = list(".input-group.radio-group-type-1", RadioGroup, 'id')
+const popup = new IntermediariesPopup()
 
-const popup = list("div", IntermediariesPopup, 'id')
-const radioGroup = list(".input-group.radio-group-type-1", RadioGroup, 'id')
 
 if(intermediariesPopup) {
-	mount(intermediariesPopup, radioGroup)
+	// mount(intermediariesPopup, radioGroup)
 	mount(intermediariesPopup, popup)
 }
 
@@ -78,10 +78,16 @@ if(intermediariesPopup) {
 					})
 				}
 
+
+			const popupData = {
+				intermediaries, 
+				radioGroupData
+			}
+
 			localStorage.setItem('intermediaries', JSON.stringify(intermediaries))
 
-			popup.update(intermediaries)
-			radioGroup.update(radioGroupData)
+			popup.update(popupData)
+			// radioGroup.update(radioGroupData)
 	} catch (e) {
 		console.error(e)
 	}

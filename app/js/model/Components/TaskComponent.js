@@ -37,7 +37,6 @@ class TaskItem {
 
             this.textarea.addEventListener('change', e=> {
                 
-                // if(this.type === 'employer') {
                    saveFieldsData({
                     str: 'employers',
                     id: this.context.id,
@@ -46,8 +45,6 @@ class TaskItem {
                     target: 'task', 
                     id_target: this.data.id_employer_task
                    })
-                // } else {
-                // }
             })
 
             this.textarea.addEventListener('input', e => {
@@ -86,23 +83,12 @@ export default class Task { // to ../fetchingData/Employer/WorkModal
         
 
         this.addTask.addEventListener('click', e => {
-        	// console.log('yes')
-        	// if(type === 'employer') {
         		addTask(
         			{
             			id: this.data.id,
         				str:'employers'
     				})
-        	// } else {
-         //        addTask(
-         //            {
-         //                id: this.data.id,
-         //                str:'employers'
-         //            })
-         //    }
-        	
-        })
-        
+            })
     }
     update(data) {
     	console.log(data)
