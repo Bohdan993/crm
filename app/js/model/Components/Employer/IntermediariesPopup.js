@@ -3,6 +3,7 @@ import getEmployersList from '../../fetchingData/getEmployersList'
 
 class RadioGroup {
 	constructor() {
+			this.data = ''
 			this.el = el('div', 
 			this.input = el('input#show-rbtn', {
 				type: 'radio',
@@ -12,6 +13,7 @@ class RadioGroup {
 				for: 'show-rbtn'
 			}),
 			)
+
 		}
 
 	update(data) {
@@ -25,17 +27,28 @@ class RadioGroup {
 			innerText: data.label
 		})
 
-		this.filter(data.id, 'intermediary', 'intermediaryFilter')
+		this.data = data.id
 	}
-	filter(id, str, storageKey){
-		this.input.addEventListener('change', filter)
-		function filter(e){
+	filter(id, str, storageKey, e){
+		let $this = this
+		filter()
+		
+		function filter() {
 			//this - один чекбокс в попапе
-			if(this.checked) {
+			if($this.input.checked) {
 				getEmployersList({[str]: id})
-				sessionStorage.setItem(storageKey, JSON.stringify(id))
+				if(id !== '') {
+					sessionStorage.setItem(storageKey, JSON.stringify(id))
+				} else {
+					sessionStorage.removeItem(storageKey)
+				}
+				
 			}
 		}
+	}
+
+	onmount(){
+		this.input.addEventListener('change', this.filter.bind(this, this.data, 'intermediary', 'intermediaryFilter'))
 	}
 }
 
@@ -85,47 +98,81 @@ class IntermediariesCheckbox {
 				sessionStorage.setItem(storageKey, JSON.stringify(IntermediariesPopup.checkedArr.join(',')))
 			}
 		}
-		
 	}
 }
 
 
 export default class IntermediariesPopup {
 	constructor(){
-		this.checkedArr = []
+		
 		this.el = el('form', 
 			this.list1 = list(".input-group.radio-group-type-1", RadioGroup, 'id'),
 			this.list2 = list("div", IntermediariesCheckbox, 'id'))
 
+		
+
 	}
 
 	update(data){
+
 		let $this = this
 		this.list1.update(data.radioGroupData)
 		this.list2.update(data.intermediaries)
 
+		this.checkedArr = Array(this.list2.views.length).fill('')
+		this.getItemsLocalStorage().intermediaries.forEach(el => {
+			if(el !== '') {
+				console.log(el)
+				this.checkedArr[+el - 1] = '1'
+			}
+		})
+
+
 		this.list2.views.forEach((view, ind) => {
 			view.input.addEventListener('change', function(e){
+
+
 				if(this.checked) {
-					$this.checkedArr[ind] = true
+					$this.checkedArr[ind] = '1'
 				} else {
-					$this.checkedArr[ind] = false
+					$this.checkedArr[ind] = ''
 				}
 
 
 				let flag = $this.checkedArr.some(el => {
-					return el === true
+					return el !== ''
 				})
 
 
-				// if(flag && !$this.list1.views[1].input.checked) {
-				// 	$this.list1.views[0].input.checked = true
-				// } else if (flag && $this.list1.views[1].input.checked) {
-				// 	$this.list1.views[0].input.checked = false
-				// 	$this.list1.views[1].input.checked = false
-				// }
+				let flag2 = $this.list1.views.some(el => {
+					return el.input.checked
+				})
+
+
+				if(!flag2 && flag) {
+					$this.list1.views[0].input.checked = true
+					$this.list1.views[0].filter('1', 'intermediary', 'intermediaryFilter')
+				}
+
+				if(!flag) {
+					$this.list1.views[0].filter('', 'intermediary', 'intermediaryFilter')
+					$this.list1.views.forEach(el => {
+						el.input.checked = false
+					})
+				}
+
+
 			})
 		})
+	}
+
+	getItemsLocalStorage(){
+		let intermediaries = JSON.parse(sessionStorage.getItem('intermediariesFilter')) || ''
+		intermediaries = intermediaries.split(',')
+
+		return {
+			intermediaries
+		}
 	}
 
 }

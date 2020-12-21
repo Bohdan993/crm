@@ -27,8 +27,6 @@ export default class EmployerList {
            initWorkPopup()
             this.flag = true
         }
-        
-        //
     }
 
     onmount() {
