@@ -114,7 +114,7 @@ export default class WorkModalContactHistory {
 		)
 
 
-		this.el = el('div.contact-history__layer',
+		this.el = el('div.contact-history__layer.modal-row__inner-layer',
 				this.controls,
 				this.modalLayer,
 				this.showMore = place(ShowMoreBtn)

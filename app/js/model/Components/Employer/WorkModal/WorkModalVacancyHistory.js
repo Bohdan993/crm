@@ -94,11 +94,13 @@ export default class WorkModalVacancyHistory {
 		)
 
 
-		this.el = el('div.vacancies-history__layer',
+		this.el = el('div.vacancies-history__layer.modal-row__inner-layer',
 				this.controls,
 				this.modalLayer,
 				this.showMore = place(ShowMoreBtn)
 		)
+
+		console.log(this.el)
 
 		initOverlayScrollbars(this.modalLayer)
 
@@ -108,6 +110,20 @@ export default class WorkModalVacancyHistory {
 
 	 update(data, index, items, context) {
 
+	 	if(data.data.length) {
+	 		setAttr(this.el, {
+	 			style: {
+	 				display: 'block'
+	 			}
+	 		})
+	 	} else {
+ 			setAttr(this.el, {
+ 				style: {
+	 				display: 'none'
+	 			}
+ 			})
+	 	}
+	 	
 	 	let {loading, showing} = data
 	 		if(showing) {
 				this.pageShow++

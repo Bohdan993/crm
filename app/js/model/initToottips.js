@@ -451,7 +451,7 @@ function initRowTooltips(el, content) {
                     [...instance.reference.children].forEach(chechOverflow)
                 }
 
-            })
+            }, {once: true})
 
             //
 

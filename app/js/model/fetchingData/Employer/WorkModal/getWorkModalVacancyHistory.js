@@ -5,7 +5,7 @@ import Loader from '../../../Components/Loader'
 import {list, mount, place} from '../../../../../libs/libs'
 
 // const state = {}
-let globalVacancies = []
+let globalVacancies = [{}, {}]
 let globalID = ''
 
 

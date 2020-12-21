@@ -94,7 +94,7 @@ export default class WorkModalMedia {
 		)
 
 
-		this.el = el('div.media__layer',
+		this.el = el('div.media__layer.modal-row__inner-layer',
 			this.controls,
 			this.modalLayer,
 			this.showMore = place(ShowMoreBtn)

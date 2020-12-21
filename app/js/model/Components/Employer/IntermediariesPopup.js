@@ -66,38 +66,47 @@ class IntermediariesCheckbox {
 	}
 
 	 update(data, index, items, context) {
-			this.data = data
-			this.data.index = index
+			
 			setAttr(this.input, {
 				id: 'intermediary-chbx-' + data.id,
-				checked: data.checked
+				checked: data.checked,
+				'data-id': data.id
 			})
 			setAttr(this.label, {
 				for: 'intermediary-chbx-' + data.id,
 				innerText: data.name
 			})
-			this.filter(data.id, 'intermediaries', 'intermediariesFilter')
+			// this.filter({id: data.id, str: 'intermediaries', storageKey: 'intermediariesFilter'})
+
+			this.data = data
+			this.data.index = index
 	}
 
-	filter(id, str, storageKey){
-		this.input.addEventListener('change', filter)
-
+	filter({id, str, storageKey, id2, str2, storageKey2}){
+		let $this = this
+		// console.log($this)
+		filter()
 		function filter(e){
+			console.log(id, str, storageKey)
 			//В свойство класса присваиваем массив данных который находится в sessionStorage по соответствующему ключу
 			IntermediariesPopup.checkedArr = sessionStorage.getItem(storageKey) && JSON.parse(sessionStorage.getItem(storageKey)) !== '' ? JSON.parse(sessionStorage.getItem(storageKey)).split(',') : []
 			//this - один чекбокс в попапе
-			if(this.checked) {
+			if($this.input.checked) {
 				IntermediariesPopup.checkedArr.push(id)
-				getEmployersList({[str]: IntermediariesPopup.checkedArr.join(','), filtered: true})
-				
+				getEmployersList({[str]: IntermediariesPopup.checkedArr.join(','), filtered: true, [str2 ? str2 : '']: id2})
 				sessionStorage.setItem(storageKey, JSON.stringify(IntermediariesPopup.checkedArr.join(',')))
-
+				storageKey2 ? sessionStorage.setItem(storageKey2, JSON.stringify(id2)) : null
 			} else {
 				IntermediariesPopup.checkedArr = IntermediariesPopup.checkedArr.filter(el => el !== id)
-				getEmployersList({[str]: IntermediariesPopup.checkedArr.join(','), filtered: true})
+				getEmployersList({[str]: IntermediariesPopup.checkedArr.join(','), filtered: true, [str2 ? str2 : '']: id2})
 				sessionStorage.setItem(storageKey, JSON.stringify(IntermediariesPopup.checkedArr.join(',')))
+				storageKey2 ? sessionStorage.setItem(storageKey2, JSON.stringify(id2)) : null
 			}
 		}
+	}
+
+	onmount(){
+			// this.input.addEventListener('change', this.filter.bind(this, {id: this.data.id, str: 'intermediaries', storageKey: 'intermediariesFilter'}))
 	}
 }
 
@@ -108,8 +117,6 @@ export default class IntermediariesPopup {
 		this.el = el('form', 
 			this.list1 = list(".input-group.radio-group-type-1", RadioGroup, 'id'),
 			this.list2 = list("div", IntermediariesCheckbox, 'id'))
-
-		
 
 	}
 
@@ -122,7 +129,7 @@ export default class IntermediariesPopup {
 		this.checkedArr = Array(this.list2.views.length).fill('')
 		this.getItemsLocalStorage().intermediaries.forEach(el => {
 			if(el !== '') {
-				console.log(el)
+				// console.log(el)
 				this.checkedArr[+el - 1] = '1'
 			}
 		})
@@ -131,6 +138,9 @@ export default class IntermediariesPopup {
 		this.list2.views.forEach((view, ind) => {
 			view.input.addEventListener('change', function(e){
 
+			let dataAttr = this.getAttribute('data-id')
+
+			
 
 				if(this.checked) {
 					$this.checkedArr[ind] = '1'
@@ -151,11 +161,14 @@ export default class IntermediariesPopup {
 
 				if(!flag2 && flag) {
 					$this.list1.views[0].input.checked = true
-					$this.list1.views[0].filter('1', 'intermediary', 'intermediaryFilter')
+					// $this.list1.views[0].filter('1', 'intermediary', 'intermediaryFilter')
+					view.filter({id: dataAttr, str: 'intermediaries', storageKey: 'intermediariesFilter', id2: '1', str2: 'intermediary', storageKey2: 'intermediaryFilter'})
+				} else {
+					view.filter({id: dataAttr, str: 'intermediaries', storageKey: 'intermediariesFilter'})
 				}
 
 				if(!flag) {
-					$this.list1.views[0].filter('', 'intermediary', 'intermediaryFilter')
+					// $this.list1.views[0].filter('', 'intermediary', 'intermediaryFilter')
 					$this.list1.views.forEach(el => {
 						el.input.checked = false
 					})
@@ -164,6 +177,9 @@ export default class IntermediariesPopup {
 
 			})
 		})
+
+
+		this.data = data
 	}
 
 	getItemsLocalStorage(){

@@ -9,7 +9,8 @@ import getWorkModalVacancyHistory from '../../fetchingData/Employer/WorkModal/ge
 import getWorkModalFeedback from '../../fetchingData/Employer/WorkModal/getWorkModalFeedback'
 import getEmployersList from '../../fetchingData/getEmployersList'
 import {addMouseUpTrigger, closeModal} from '../../helper'
-
+import switchModalParts from '../../switchModalParts'
+import {modalSwitchers, modalParts} from '../../../view'
 
 
 let flag = false
@@ -79,8 +80,7 @@ export default class RowEmployer {
 				this.jobs = el('.row__jobs.row__cell', this.jobsText = el('p')),
 				this.labels = el('.row__labels.row__cell',
 					this.vacancyLabel = list('div.row__labels-layer', VacancyLabel, 'id_vacancy')
-					
-					) 
+					)
 				)
 			)
 
@@ -104,6 +104,8 @@ export default class RowEmployer {
 			      })
 			      flag = true
 			    }
+
+			    switchModalParts(modalSwitchers, modalParts, false)('#employer-data', '[data-part="employer-data"]')
 			  }
     })
 			getWorkModalInfo(this.data.id_employer)
@@ -117,11 +119,9 @@ export default class RowEmployer {
 	}
 
 	update(data, index, items, context){
-		// console.log(data)
+		console.log(data)
 		const { id_employer } = data
 		
-
-
 		this.companyText.innerText = data.enterprise
 		this.abbr.innerText = data.addr
 		this.addressText.innerText = data.address

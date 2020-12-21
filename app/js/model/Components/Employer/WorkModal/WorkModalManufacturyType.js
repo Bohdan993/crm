@@ -88,7 +88,7 @@ export default class WorkModalManufacturyType {
 		)
 
 
-		this.el = el('div.manufactury-type__layer',
+		this.el = el('div.manufactury-type__layer.modal-row__inner-layer',
 				this.controls,
 				this.modalLayer,
 				// this.showMore = place(ShowMoreBtn)

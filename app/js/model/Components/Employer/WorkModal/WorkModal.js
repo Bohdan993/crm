@@ -186,7 +186,7 @@ export default class WorkModal {
 					)
 				)
 			)
-		this.el = el('div.common-info__layer',
+		this.el = el('div.common-info__layer.modal-row__inner-layer',
 			this.comInfLeft,
 			this.comInfRight
 			)
