@@ -139,7 +139,7 @@ class FeedbackClient {
 			
 		})
 
-		// console.log(this)
+		// console.log(this.el.closest('[data-tippy-root]'))
 
 		this.form.addEventListener('submit', (e) => {
 			e.preventDefault()
@@ -157,10 +157,13 @@ class FeedbackClient {
 			if(this.inputUAMF.checked) {
 				this.parent.changechoiseClientText('УАМФ')
 			}
+
+			this.instancePopup.hide()
 		})
 	}
 
-	update(data){
+	update(data, context){
+		this.instancePopup = context
 		if(data.from === 'УАМФ') {
 			this.inputUAMF.checked = true
 			this.inputClient.checked = false
@@ -229,13 +232,16 @@ class FeedbackType {
 						this.parent.changeTypeFeedbackIco(view.input.getAttribute('data-id'))
 					}
 				})
+
+			this.instancePopup.hide()
 			}
 
 			
 
 		}
 
-	update(data){
+	update(data, context){
+		this.instancePopup = context
 		this.feedbackTypeData = this.feedbackTypeData.map(el => {
 			el.checked = false
 			if(String(el['data-id']) === data.typeFeedback) {
@@ -268,9 +274,11 @@ class FeedbackEdit {
 					),
 				this.choiseClient = el('a.modal-row__feedback-choise', 'Выбрать'),
 				this.direction = el('i.modal-row__feedback-direction-edit.change-direction', 
-					svg('svg', svg('use', {
-						xlink: {href:"img/sprites/svg/symbol/sprite.svg#arrow-white"}
-					}))),
+					// svg('svg', svg('use', {
+					// 	xlink: {href:"img/sprites/svg/symbol/sprite.svg#arrow-white"}
+					// }))
+					el('span.s-arrow-white')
+					),
 				this.to = el('p.modal-row__feedback-to', 'Thompson Equestrian Partners')
 				),
 			el('div.modal-row__feedback-date',
@@ -441,8 +449,8 @@ class FeedbackEdit {
 
 
 		this.data = data
-		this.feedbackType.update(this.data)
-		this.feedbackClient.update(this.data)
+		this.feedbackType.update(this.data, this.typeFeedbackInstance)
+		this.feedbackClient.update(this.data, this.choiseClientInstance)
 
 	}
 
@@ -471,6 +479,8 @@ class FeedbackEdit {
 		this.choiseClientInstance = initWorkModalTooltip(this.choiseClient)
 		this.typeFeedbackInstance.setContent(this.feedbackType.el)
 		this.choiseClientInstance.setContent(this.feedbackClient.el)
+
+		console.log(this.choiseClientInstance)
 	}
 
 }

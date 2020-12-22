@@ -105,16 +105,13 @@ const getWorkModalContactHistory = async ({
 				showing
 			}
 
-			// if(state.id !== id) {
-				workModalContactHistory.update(contacts)
-			// }
+			
+			workModalContactHistory.update(contacts)
 
 			if(loading) {
 				loader.update(false)
 				workModalContactHistory.removeHiddenClass()
 			}
-			
-			// state.id = id
 		}catch(e) {
 			console.error(e)
 		}

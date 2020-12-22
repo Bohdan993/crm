@@ -42,6 +42,7 @@ class WorkModalContactHistoryRow {
 		this.el.addEventListener('click', (e) => {
 			MicroModal.show('modal-2')
 			modal.update(this.data)
+			console.log(this.data)
 		})
 
 		// this.flag = false
@@ -51,7 +52,7 @@ class WorkModalContactHistoryRow {
 
 	update(data, index, items, context){
 
-		// console.log(data)
+		console.log(data)
 
 
 		const currManager = context.data.storage.managers.filter(manager => {
@@ -81,7 +82,7 @@ class WorkModalContactHistoryRow {
 		})
 
 		setAttr(this.direction, {
-			classList: `ico${data.type_arrow === '1' ? ' rotate' : ''}`
+			classList: `ico${data.type_arrow === '0' ? ' rotate' : ''}`
 		})
 
 	
@@ -129,8 +130,8 @@ export default class WorkModalContactHistory {
 					message: '',
 					date: '',
 					id: '',
-					id_manager: '',
-					id_type_contact: '',
+					id_manager: JSON.parse(sessionStorage.getItem('currActiveManagerId')),
+					id_type_contact: '0',
 					type_arrow: '',
 				},
 				id: this.data.data.id,
@@ -150,6 +151,7 @@ export default class WorkModalContactHistory {
 
 
 	 update(data, index, items, context) {
+	 		console.log(data)
 	 		let {loading, deleating, adding, showing} = data
 	 		// console.log(context)
 	 		if(showing) {
@@ -198,7 +200,7 @@ export default class WorkModalContactHistory {
 
 	}
 
-		getItemsLocalStorage(){
+	getItemsLocalStorage(){
 		const managers = JSON.parse(localStorage.getItem('managers'))
 		const typeContact = JSON.parse(localStorage.getItem('type_contact'))
 

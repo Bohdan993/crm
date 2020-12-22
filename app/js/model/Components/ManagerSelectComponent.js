@@ -42,7 +42,7 @@ export default class ManagerSelect { // to ../MountingElements/Employer/WorkModa
 	}
 
 	update(data){
-		console.log(data)
+		// console.log(data)
 		this.managerChoices.managersChoises.setChoiceByValue(data.id_manager)
 
 		this.data = data

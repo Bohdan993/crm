@@ -108,19 +108,22 @@ try {
 		}
 
 		mainPart.source = source
-		// if(state.id !== id) {
+
+
 		workModal.update(mainPart)
 		task.update(tasksData)
 		select.update(managersData)
 		note.update(notesData)
 		deleteComponent.update(deleteData)
-		// }
+
 		loader2.update(false)
 		loader.update(false)
 		workModal.removeHiddenClass()
 
 		sessionStorage.setItem('currEmployerName', JSON.stringify(mainPart.name))
 		sessionStorage.setItem('employerNegFeedback', JSON.stringify(badFeedback))
+		sessionStorage.setItem('currActiveManagerId', JSON.stringify(id_manager))
+		
 		state.id = id
 
 	}

@@ -1,9 +1,9 @@
-import {el, setAttr, svg, list, MicroModal} from '../../../../../libs/libs'
+import {el, setAttr, list, MicroModal} from '../../../../../libs/libs'
 import initWorkModalSelect from '../../../initWorkModalSelect'
 import changeDirection from '../../../changeDirection'
 import addContactHistory from '../../../fetchingData/Employer/WorkModal/addContactHistory'
 import deleteContactHistory from '../../../fetchingData/Employer/WorkModal/deleteContactHistory'
-
+import { dateInputChange } from '../../../helper.js'
 let initedSelects = false
 
 export default class ContactHistoryModal {
@@ -37,9 +37,7 @@ export default class ContactHistoryModal {
 					el('p', 'Направление'),
 					el('div.input-group', 
 						this.direction = el('i.ico.change-direction', 
-							svg('svg', svg('use', {
-								xlink: { href: "img/sprites/svg/symbol/sprite.svg#arrow"}
-							}))
+							el('span.s-arrow')
 							)
 						)
 					),
@@ -130,6 +128,9 @@ export default class ContactHistoryModal {
 				MicroModal.close('modal-2')
 			})
 
+
+			this.date.addEventListener('change', dateInputChange.bind(null, this.date))
+
 			changeDirection(this.direction)
 
 			this.managerChoices = initWorkModalSelect(this.manager, {managers: JSON.parse(localStorage.getItem('managers'))})
@@ -148,6 +149,11 @@ export default class ContactHistoryModal {
 			setAttr(this.date, {
 				value: data.data.date ||  new Date().toLocaleDateString()
 			})
+
+			setAttr(this.direction, {
+				classList: data.data.type_arrow === '1' ? 'ico change-direction rotate' : 'ico change-direction'
+			})
+
 			this.managerChoices.managersChoises.setChoiceByValue(data.data.id_manager)
 			this.contactChoices.contactChoices.setChoiceByValue(data.data.id_type_contact)
 			this.data = data

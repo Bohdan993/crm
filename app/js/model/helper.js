@@ -167,6 +167,32 @@ const sleep = (ms) => {
   })
 }
 
+function dateInputChange(element) {
+    let value = element.value;
+    let reg_g = value.match(/(\b\d{1,2})\W+(\d{1,2})\W+(\d{1,4}\b)/g)
+    if (reg_g != null) {
+        for (let i = 0; i < reg_g.length; i++) {
+            let reg = reg_g[i].match(/(\b\d{1,2})\W+(\d{1,2})\W+(\d{1,4}\b)/)
+            let day = reg[1] < 10 ? '0' + +reg[1].toString() : reg[1]
+            let month = reg[2] < 10 ? '0' + +reg[2].toString() : reg[2]
+            let year = reg[3] < 10 && reg[3] >= 0 ? '200' + reg[3].toString() :
+                reg[3] <= 30 && reg[3] >= 10 ? '20' + reg[3].toString() :
+                    reg[3] > 30 && reg[3] <= 99 ? '19' + reg[3].toString() :
+                        reg[3] >= 100 && reg[3] <= 999 ? '2' + reg[3].toString() :
+                            reg[3].toString()
+            if (+day <= 31 && month <= 12 && year <= 9999) {
+                value = day + '.' + month + '.' + year
+                if(i === 0) {
+                    element.value = element.value.replace(/^(\b\d{1,2})\W+(\d{1,2})\W+(\d{1,4}\b)/, value)
+                }
+                else {
+                    element.value = element.value.replace(/(\b\d{1,2})\W+(\d{1,2})\W+(\d{1,4}\b)$/, value)
+                }
+            }
+        }
+    }
+}
+
 
 
 
@@ -182,5 +208,6 @@ export {
   uniq,
   EmptyError,
   addMouseUpTrigger,
-  closeModal
+  closeModal,
+  dateInputChange
 }
