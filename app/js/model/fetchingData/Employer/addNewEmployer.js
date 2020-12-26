@@ -17,7 +17,7 @@ const addNewEmployer = () => {
 
 				if(employer.success === true) {
 					toastr.success(`ID работодателя ${employer.id}`, 'Успешно создан работодатель', {closeButton: false})
-					getEmployersList()
+					getEmployersList({added: true})
 				} else {
 					throw new Error('Не возможно cоздать работодателя')
 				}

@@ -119,7 +119,7 @@ export default class RowEmployer {
 	}
 
 	update(data, index, items, context){
-		console.log(data)
+		// console.log(data)
 		const { id_employer } = data
 		
 		this.companyText.innerText = data.enterprise
@@ -160,7 +160,7 @@ export default class RowEmployer {
 		this.jobsText.innerText = data.production ? data.production.join(', ') : ""
 		this.vacancyLabel.update(data.vacancy)
 
-		if(id_employer !== this.data.id_employer) {
+		// if(id_employer !== this.data.id_employer) {
 		
 
 
@@ -187,13 +187,14 @@ export default class RowEmployer {
 
 
 		setTimeout(() => {
+		// console.log(data.country_name)
 		if(data.country_name !== null) {
-			this.countryInstance = initRowTooltips(this.country)
+			// this.countryInstance = initRowTooltips(this.country)
 			this.countryInstance.setContent(`${data.country_name}`)
 		}
 
-			this.companyInstance = initRowTooltips(this.company)
-			this.nameInstance = initRowTooltips(this.name)
+			// this.companyInstance = initRowTooltips(this.company)
+			// this.nameInstance = initRowTooltips(this.name)
 
 
 	
@@ -223,8 +224,8 @@ export default class RowEmployer {
 		// // 	this.flag = true
 		// // }
 		
-		}
-
+		// }
+		this.data = data
 		this.data.id_employer = id_employer
 		this.data.index = index
 
@@ -232,7 +233,12 @@ export default class RowEmployer {
 
 
 	onmount() {
-		// console.log('mount')
+		// console.log(this.data.country_name)
+		if(this.data.country_name !== null) {
+			this.countryInstance = initRowTooltips(this.country)
+		}
+		this.companyInstance = initRowTooltips(this.company)
+		this.nameInstance = initRowTooltips(this.name)
 	}
 
 	onremount(){

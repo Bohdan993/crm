@@ -6,6 +6,9 @@ import Numbers from '../Components/Employer/SidebarNumbersComponent'
 import {employerStatNums} from '../../view'
 import {uniq, EmptyError} from '../helper'
 
+import storage from '../Storage/globalEmployers'
+
+
 const employersWrapper = document.querySelector('.employer-rows-wrapper')
 let globalEmployers = []
 let cachedEmployers = []
@@ -52,7 +55,9 @@ const getEmployersList = async ({
 	last_contact = JSON.parse(sessionStorage.getItem('lastContactFilter')) || '',
 	sort = JSON.parse(sessionStorage.getItem('sortFilter')) || '',
 	scroll = false,
-	filtered = false
+	filtered = false,
+	added = false,
+	deleated = false
 } = {}) => { 
 	let flag = false
 	// console.log('employerList')
@@ -94,8 +99,8 @@ const getEmployersList = async ({
 					totalR
 				}
 
-				if(scroll) {
-						globalEmployers = uniq([
+				if( scroll ) {
+					globalEmployers = uniq([
 					...globalEmployers,
 					...employers
 					], 'id_employer')
@@ -106,30 +111,42 @@ const getEmployersList = async ({
 					], 'id_employer')
 
 					empList.update(cachedEmployers)
-				} else {
+
+				} else if(added){
+
+					globalEmployers = uniq([
+					...employers,
+					...globalEmployers
+					], 'id_employer')
+
+					cachedEmployers = uniq([
+					...globalEmployers,	
+					...cachedEmployers
+					], 'id_employer')
+
+					empList.update(cachedEmployers)
+
+				} else if(deleated) {
+
+				}
+				 else {
 					globalEmployers = employers
-					cachedEmployers.length && !filtered ? empList.update(cachedEmployers) : 
-					!flag ? 
-					empList.update(employers) :
-					(empList.update(uniq([
+					cachedEmployers.length && !filtered ? (console.log(employers, cachedEmployers), empList.update(uniq([
 					...employers,
 					...cachedEmployers
-					], 'id_employer')))
+					], 'id_employer'))) : 
+					!flag ? 
+					(console.log('second'),
+					empList.update(employers)) :
+					(console.log('third'),
+					(empList.update(uniq([
+					...cachedEmployers,
+					...employers
+					], 'id_employer'))))
 				}
 
 
-				// console.log(employers.length)
-				// console.log(p)
-				// let uniq = function(xs, id) {
-			 //    let seen = {};
-			 //    return xs.filter(function(x) {
-			 //        let key = JSON.stringify(x[id]);
-			 //        return !(key in seen) && (seen[key] = x[id]);
-			 //    });
-			 //  }
 
-				// console.log('globalEmployers', globalEmployers)
-				// console.log('cachedEmployers', cachedEmployers)
 				numbers.update(numsData)
 				loader.update(false)
 
@@ -141,7 +158,6 @@ const getEmployersList = async ({
 					
 					return Array(1)
 				} else {
-					// console.log(globalEmployers)
 					empList.update([])
 					throw new EmptyError('Список работодателей пуст')
 				}

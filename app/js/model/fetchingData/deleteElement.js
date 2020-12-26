@@ -2,7 +2,7 @@ import fetch from './fetchingDataClass'
 // import getWorkModalFeedback from './getWorkModalFeedback'
 import { toastr } from '../../../libs/libs'
 // import getEmployersList from './getEmployersList'
-
+import storage from '../Storage/globalEmployers'
 
 
 const deleteElement = async ({

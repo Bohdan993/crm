@@ -4,7 +4,7 @@ import initWorkModalSelect from '../../../initWorkModalSelect'
 import hiddenClassMixin from '../../../Mixins/hiddenClassMixin'
 import saveFieldsData from '../../../fetchingData/saveFieldsData'
 import Option from '../../OptionComponent'
-
+import storage from '../../../Storage/globalEmployers'
 
 
 let initedCountrySelect = false

@@ -1,4 +1,4 @@
-class Storage {
+class StorageClients {
 	constructor(){
 		this.state = {}
 	}
@@ -63,7 +63,7 @@ class Storage {
 
 
 
-const storage = new Storage()
+const storage = new StorageClients()
 
 
 export default storage

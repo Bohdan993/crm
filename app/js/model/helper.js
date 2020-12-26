@@ -76,19 +76,6 @@ function come(elem) {
 
 
 
-// function makeCaching(f) {
-//   var cache = {};
-
-//   return function(x) {
-//     if (!(x in cache)) {
-//       cache[x] = f.call(this, x);
-//     }
-//     return cache[x];
-//   };
-
-// }
-
-
   let save = function ({
     id, 
     value, 
@@ -124,12 +111,21 @@ function formatDate(date) {
 
 
 
-let uniq = function(xs, id) {
+let uniq = function(xs, id, arr) {
     let seen = {};
-    return xs.filter(function(x) {
+
+    let res = xs.filter(function(x) {
         let key = JSON.stringify(x[id]);
+        // console.log(seen)
         return !(key in seen) && (seen[key] = x[id]);
     });
+
+    // let final = res.filter(function(el){
+    //   let key = JSON.stringify(el[id]);
+    //   return (key in seen) && (seen[key] = el[id]);
+    // })
+
+    return res
   }
 
 
