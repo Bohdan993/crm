@@ -119,7 +119,7 @@ export default class RowEmployer {
 	}
 
 	update(data, index, items, context){
-		// console.log(data)
+		console.log(data)
 		const { id_employer } = data
 		
 		this.companyText.innerText = data.enterprise

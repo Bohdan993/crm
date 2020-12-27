@@ -10,8 +10,11 @@ import storage from '../Storage/globalEmployers'
 
 
 const employersWrapper = document.querySelector('.employer-rows-wrapper')
+
 let globalEmployers = []
 let cachedEmployers = []
+let inited = false
+
 const loader = place(Loader)
 const empList = new EmployerList()
 const numbers = new Numbers()
@@ -27,20 +30,10 @@ mount(employersWrapper, loader)
 if(employerStatNums) {
 	mount(employerStatNums, numbers)
 }
-// const sleep = (ms) => {
-// 	return new Promise(res => {
-// 		setTimeout(function(){
-// 			res('ok')
-// 		}, ms)
-// 	})
-// }
 
 
-// let flag = false
 
 const getEmployersList = async ({
-	// t = +JSON.parse(sessionStorage.getItem('page')) * 50 || '50',
-	t = '50',
 	p = '1',
 	search = JSON.parse(sessionStorage.getItem('search')) || '', 
 	country = JSON.parse(sessionStorage.getItem('countryFilter')) || '',
@@ -57,38 +50,37 @@ const getEmployersList = async ({
 	scroll = false,
 	filtered = false,
 	added = false,
-	deleated = false
+	deleated = false,
+	t = '50',
 } = {}) => { 
 	let flag = false
-	// console.log('employerList')
 	if(employersWrapper) {
 		loader.update(true)
 
 	try {
-			// const delay = await sleep(5000)
+			if(search === '' && country === '' && production === ''
+			&& contact === ''  && manager === ''  && intermediary === ''
+			&& intermediaries === '' && vacancy_active === ''
+			&& vacancy_type === '' && vacancy_term === ''
+			&& last_contact === ''
+			) {
+				flag = true
+			}
+
+			t = filtered && !flag ? +JSON.parse(sessionStorage.getItem('page')) * 50 || '50' : '50'
+
 			const data = await fetch.getResourse(`/employers/get_all/?p=${p}&t=${t}&search=${search}&filter=country:${country}|production:${production}|contact:${contact}
 				|manager:${manager}|intermediaries:${intermediaries}|intermediary:${intermediary}|vacancy_active:${vacancy_active}|vacancy_type:${vacancy_type}|vacancy_term:${vacancy_term}|last_contact:${last_contact}&sort=${sort}`)
 			const employers = data.data
 
-			if(search === '' && country === '' && production === ''   
-				&& contact === ''  && manager === ''  && intermediary === ''   
-				&& intermediaries === '' && vacancy_active === '' 
-				&& vacancy_type === '' && vacancy_term === ''
-				&& last_contact === '' 
-				) {
-					flag = true
-				}
 
+			sessionStorage.setItem('employersArguments', JSON.stringify(flag))
 
-			// console.log(filtered)
-			// console.log(flag)
 
 			const total = data.total
 			const totalR = data.total_r
 
 			if(data.success) {
-
-				// console.log(data.success)
 
 				if(!employers) {
 					throw new Error('Что то пошло не так, работодателей не найдено, обновите страницу, пожалуйста')
@@ -100,49 +92,35 @@ const getEmployersList = async ({
 				}
 
 				if( scroll ) {
-					globalEmployers = uniq([
-					...globalEmployers,
-					...employers
-					], 'id_employer')
 
-					cachedEmployers = uniq([
-					...cachedEmployers,
-					...globalEmployers
-					], 'id_employer')
-
-					empList.update(cachedEmployers)
+					storage.setState(employers, 'id_employer')
+					empList.update(storage.getState())
 
 				} else if(added){
 
-					globalEmployers = uniq([
-					...employers,
-					...globalEmployers
-					], 'id_employer')
-
-					cachedEmployers = uniq([
-					...globalEmployers,	
-					...cachedEmployers
-					], 'id_employer')
-
-					empList.update(cachedEmployers)
+					storage.setState(employers, 'id_employer', 'top')
+					empList.update(storage.getState())
 
 				} else if(deleated) {
 
+
 				}
-				 else {
-					globalEmployers = employers
-					cachedEmployers.length && !filtered ? (console.log(employers, cachedEmployers), empList.update(uniq([
-					...employers,
-					...cachedEmployers
-					], 'id_employer'))) : 
+
+				 	else {
+
+				 	if(!inited) {
+				 		storage.initState(employers)
+				 		inited = true
+				 	}
+					storage.getState().length && !filtered ?
+					(console.log('first'),
+					empList.update(storage.getState())) : 
 					!flag ? 
 					(console.log('second'),
-					empList.update(employers)) :
-					(console.log('third'),
-					(empList.update(uniq([
-					...cachedEmployers,
-					...employers
-					], 'id_employer'))))
+					empList.update(employers)):
+					(console.log(storage.getState()),
+					empList.update(storage.getState()))
+
 				}
 
 

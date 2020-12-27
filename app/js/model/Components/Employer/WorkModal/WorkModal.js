@@ -14,7 +14,7 @@ let initedCountrySelect = false
 export default class WorkModal {
 	constructor(){
 		this.data = {}
-
+		this.countriesData = this.getItemsFromLocalStorage().countries
 		this.comInfLeft = el('div.common-info__left', 
 			el('div.common-info__company.info-block', 
 				el('p', 'Предприятие'),
@@ -204,19 +204,31 @@ export default class WorkModal {
 
 		this.comManufacturyArea.addEventListener('change' , (e) => {
 			save(this.comManufacturyArea.value, 'enterprise')
+
+			storage.setPartialState(this.data.id_employer, 'id_employer', 'enterprise', this.comManufacturyArea.value)
 		})
 
 		this.comCountrySelect.addEventListener('change' , (e) => {
 			save(this.comCountrySelect.value, 'id_country')
+			
+			let currCountry = this.countriesData.filter(el=> el.id === this.comCountrySelect.value)[0]
+
+			storage.setPartialState(this.data.id_employer, 'id_employer', 'country_name', currCountry.name)
+			storage.setPartialState(this.data.id_employer, 'id_employer', 'addr', currCountry.icon.split('.')[0].toUpperCase())
+			storage.setPartialState(this.data.id_employer, 'id_employer', 'icon', currCountry.icon)
 		})
 
 		this.comMapArea.addEventListener('change', (e) => {
 			save(this.comMapArea.value, 'address')
 			this.comIframe.src = `https://maps.google.com/maps?width=100%&height=200&hl=en&q=${this.comMapArea.value}&ie=UTF8&t=&z=11&iwloc=B&output=embed`
+
+			storage.setPartialState(this.data.id_employer, 'id_employer', 'address', this.comMapArea.value)
 		})
 
 		this.comInfName.addEventListener('change', (e) => {
 			save(this.comInfName.value, 'name')
+
+			storage.setPartialState(this.data.id_employer, 'id_employer', 'name', this.comInfName.value)
 		})
 
 		this.comInfOtherNames.addEventListener('change', (e) => {
@@ -225,6 +237,8 @@ export default class WorkModal {
 
 		this.comInfPhone.addEventListener('change', (e) => {
 			save(this.comInfPhone.value, 'phone')
+
+			storage.setPartialState(this.data.id_employer, 'id_employer', 'phone', this.comInfPhone.value)
 		})
 
 		this.comInfEmail.addEventListener('change', (e) => {

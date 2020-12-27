@@ -3,6 +3,8 @@ import {el} from '../../../libs/libs'
 import initWorkModalSelect from '../initWorkModalSelect'
 import storage from '../Storage'
 import {save} from '../helper'
+import {default as employersStorage} from '../Storage/globalEmployers'
+
 export default class ManagerSelect { // to ../MountingElements/Employer/WorkModal/mountManagerSelect.js
 	constructor(type){
 		this.type = type
@@ -23,6 +25,10 @@ export default class ManagerSelect { // to ../MountingElements/Employer/WorkModa
 										value: this.manager.value, 
 										field: 'id_login'
 									})
+					let currManager = JSON.parse(localStorage.getItem('managers')).filter(el=> el.id === this.manager.value)[0]
+					employersStorage.setPartialState(this.data.id, 'id_employer', 'manager', currManager ? currManager.name.split(' ').map(el => el[0]).join('') : '')
+					employersStorage.setPartialState(this.data.id, 'id_employer', 'manager_color', currManager ? currManager.color: '')
+					 
                 } else {
                 	this.save({
 										id: this.data.id,

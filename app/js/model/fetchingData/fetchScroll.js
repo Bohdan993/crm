@@ -30,22 +30,28 @@ const fetchScroll = (elem, type) => {
 
 		// console.log(data)
 	async function ajaxData(e){
-
+	console.log(flag)
   let vertical = e.target.scrollTop
 
     if(vertical) {
 		// console.log('scrolled ajax')
 			if (this.scrollTop + this.clientHeight >= this.scrollHeight - HEIGHT && data.length === DATA_LENGTH && !flag) {
 						flag = true
-						mount(elem, loader)
-						loader.update(true)
+						// mount(elem, loader)
+						// loader.update(true)
 
 	      	if(type === 'employer') {
 	      			await sleep(1000)
-			        data = await getEmployersList({t: DATA_LENGTH, p: count, scroll: true}).then((data)=> {flag = false; return data} )
-			        // sessionStorage.setItem('page', JSON.stringify(count))
-			        // sessionStorage.setItem('pageDataLength', JSON.stringify(data.length))
-			      	count++
+	      			// console.log(JSON.parse(sessionStorage.getItem('employersArguments')))
+	      			if(JSON.parse(sessionStorage.getItem('employersArguments'))) {
+	      				mount(elem, loader)
+								loader.update(true)
+				        data = await getEmployersList({t: DATA_LENGTH, p: count, scroll: true}).then((data)=> {flag = false; return data} )
+				        sessionStorage.setItem('page', JSON.stringify(count))
+				      	count++
+			      	} else {
+			      		flag = false
+			      	}
 	      	} else {
 	      			await sleep(1000)
 			        data = await getVacancyList({t: DATA_LENGTH, p: countVacancy, scroll: true}).then((data)=> {flag = false; return data} )

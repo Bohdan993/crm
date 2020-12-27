@@ -7,9 +7,14 @@ import saveFieldsData from '../fetchingData/saveFieldsData'
 import {el, svg, list, setAttr} from '../../../libs/libs'
 import initElasticArea from '../initElasticArea'
 import storage from '../Storage'
+import {default as employersStorage} from '../Storage/globalEmployers'
 
+
+// console.log(employersStorage)
 class TaskItem {
 	constructor(type){
+        // console.log(employersStorage)
+
         this.type = type
 		this.el = el('div.add-task-item', 
         		el('i.ico', 
@@ -24,14 +29,16 @@ class TaskItem {
 
 			this.delete.addEventListener('click', e => {
                 // if(this.type === 'employer') {
+                    this.context.count--
                     deleteTask({
                         id: this.data.id_employer_task, 
                         id_employer: this.context.id,
                         str: 'employers'
                     })
-                // } else {
 
-                // }
+                    if(this.type === 'employer') {
+                        employersStorage.setPartialState(this.context.id, 'id_employer', 'task', (this.context.count > 0))
+                    }
 				
 			})
 
@@ -63,6 +70,8 @@ class TaskItem {
 
 		this.data = data
 		this.context = context
+
+        console.log(this.context)
 	}
 
     onmount (){
@@ -81,25 +90,33 @@ export default class Task { // to ../fetchingData/Employer/WorkModal
         	this.list = list('div.tasks-layer', TaskItem, 'id_employer_task', type)
         )
         
+        
 
         this.addTask.addEventListener('click', e => {
+                this.count++
         		addTask(
         			{
             			id: this.data.id,
         				str:'employers'
     				})
+                employersStorage.setPartialState(this.data.id, 'id_employer', 'task', (this.count > 0))
+                // console.log((this.count > 0))
             })
     }
     update(data) {
     	console.log(data)
-    	this.list.update(data.tasks, {id: data.id})
+        this.count = data.tasks.length
+    	this.list.update(data.tasks, {id: data.id, count: this.count})
      	this.data = data
+        
     }
 
 
     onmount() {
         addNewTask(this.addTask)
 
+
+        //Обновить список задач при загрузке информации о работодателе на странице вакансий
         document.addEventListener('storageemployeradd', (e) => {
             this.list.update(storage.getState(e.detail.id).task)
         })

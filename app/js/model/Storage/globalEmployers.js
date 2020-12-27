@@ -3,11 +3,25 @@ class StorageGlobalEmployers {
 		this.state = []
 	}
 
-	setState(data){
-		this.state = [...this.state, ...data]
+
+
+	initState(data){
+		this.state = data
 		return this.state
 	}
 
+
+	setState(data, id, direction = 'bottom'){
+		if(direction === 'bottom') {
+			this.state = this.uniq([...this.state, ...data], id)
+		}
+
+		if(direction === 'top') {
+			this.state = this.uniq([...data, ...this.state], id)
+		}
+		
+		return this.state
+	}
 
 	getState(){
 		return this.state
@@ -31,6 +45,17 @@ class StorageGlobalEmployers {
 		this.state = this.getState().filter(el => el[key] !== id)
 		return this.state
 	}
+	
+
+	uniq(xs, id) {
+    let seen = {};
+    let res = xs.filter(function(x) {
+        let key = JSON.stringify(x[id]);
+        // console.log(seen)
+        return !(key in seen) && (seen[key] = x[id]);
+    });
+    return res
+  }
 
 }
 

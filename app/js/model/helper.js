@@ -120,11 +120,6 @@ let uniq = function(xs, id, arr) {
         return !(key in seen) && (seen[key] = x[id]);
     });
 
-    // let final = res.filter(function(el){
-    //   let key = JSON.stringify(el[id]);
-    //   return (key in seen) && (seen[key] = el[id]);
-    // })
-
     return res
   }
 
