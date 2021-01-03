@@ -219,54 +219,54 @@ export default class WorkModal {
 		})
 
 		this.comMapArea.addEventListener('change', (e) => {
-			save(this.comMapArea.value, 'address')
+			save(encodeURIComponent(this.comMapArea.value), 'address')
 			this.comIframe.src = `https://maps.google.com/maps?width=100%&height=200&hl=en&q=${this.comMapArea.value}&ie=UTF8&t=&z=11&iwloc=B&output=embed`
 
 			storage.setPartialState(this.data.id_employer, 'id_employer', 'address', this.comMapArea.value)
 		})
 
 		this.comInfName.addEventListener('change', (e) => {
-			save(this.comInfName.value, 'name')
+			save(encodeURIComponent(this.comInfName.value), 'name')
 
 			storage.setPartialState(this.data.id_employer, 'id_employer', 'name', this.comInfName.value)
 		})
 
 		this.comInfOtherNames.addEventListener('change', (e) => {
-			save(this.comInfOtherNames.value, 'other_name')
+			save(encodeURIComponent(this.comInfOtherNames.value), 'other_name')
 		})
 
 		this.comInfPhone.addEventListener('change', (e) => {
-			save(this.comInfPhone.value, 'phone')
+			save(encodeURIComponent(this.comInfPhone.value), 'phone')
 
 			storage.setPartialState(this.data.id_employer, 'id_employer', 'phone', this.comInfPhone.value)
 		})
 
 		this.comInfEmail.addEventListener('change', (e) => {
-			save(this.comInfEmail.value, 'email')
+			save(encodeURIComponent(this.comInfEmail.value), 'email')
 		})
 
 		this.comInfPhoneOthers.addEventListener('change', (e) => {
-			save(this.comInfPhoneOthers.value, 'other_phone')
+			save(encodeURIComponent(this.comInfPhoneOthers.value), 'other_phone')
 		})
 
 		this.comInfMailOthers.addEventListener('change', (e) => {
-			save(this.comInfMailOthers.value, 'other_email')
+			save(encodeURIComponent(this.comInfMailOthers.value), 'other_email')
 		})
 
 		this.comInfSite.addEventListener('change', (e) => {
-			save(this.comInfSite.value, 'site')
+			save(encodeURIComponent(this.comInfSite.value), 'site')
 		})
 
 		this.comInfFacebook.addEventListener('change', (e) => {
-			save(this.comInfFacebook.value, 'social_media_facebook')
+			save(encodeURIComponent(this.comInfFacebook.value), 'social_media_facebook')
 		})
 
 		this.comInfInstagram.addEventListener('change', (e) => {
-			save(this.comInfInstagram.value, 'social_media_instagram')
+			save(encodeURIComponent(this.comInfInstagram.value), 'social_media_instagram')
 		})
 
 		this.comInfNotes.addEventListener('change', (e) => {
-			save(this.comInfNotes.value, 'note')
+			save(encodeURIComponent(this.comInfNotes.value), 'note')
 		})
 
 		this.intermadiariesSelect.el.addEventListener('change', (e) => {

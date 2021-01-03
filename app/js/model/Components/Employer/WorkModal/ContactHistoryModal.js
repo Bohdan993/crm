@@ -84,9 +84,9 @@ export default class ContactHistoryModal {
 				console.log(this.date.value)
 				addContactHistory({
 					id_contact: this.data.data.id !== '' ? this.data.data.id : 0,
-					message: this.textarea.value,
+					message: encodeURIComponent(this.textarea.value),
 					type_arrow: this.direction.classList.contains('rotate') ? 1 : 0,
-					date: this.date.value,
+					date: encodeURIComponent(this.date.value),
 					id_login: this.managerChoices.managersChoises.getValue(true),
 					id_type: this.contactChoices.contactChoices.getValue(true),
 					id_employer: this.data.id,
