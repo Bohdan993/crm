@@ -10,7 +10,7 @@ import initWorkModalSelect from './initWorkModalSelect'
 import sidebarSearchInput from './sidebarSearchInput'
 
 import checkIfWrapperIsEmpty from './checkIfWrapperIsEmpty'
-import show5Rows from './show5Rows'
+// import show5Rows from './show5Rows'
 // import addManufacturyType from './addManufacturyType'
 // import show1Row from './show1rowFeedback'
 import addNewTask from './addNewTask'
@@ -87,7 +87,7 @@ export {
 	sidebarSearchInput,
 
 	checkIfWrapperIsEmpty,
-	show5Rows,
+	// show5Rows,
 	// addManufacturyType,
 
 	// show1Row,

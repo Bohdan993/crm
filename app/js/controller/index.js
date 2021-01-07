@@ -4,7 +4,7 @@ import {
 	initToastr,
 	initWorkModalSelect,
 	sidebarSearchInput,
-	show5Rows,
+	// show5Rows,
 	initWorkPopup,
 	addNewTask,
 	deleteTask,

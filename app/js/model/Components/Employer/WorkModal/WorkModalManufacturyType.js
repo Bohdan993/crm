@@ -129,7 +129,7 @@ export default class WorkModalManufacturyType {
             initData: this.getItemsFromLocalStorage().products
         })
 
-        
+
         //Вызов функций которые зависят от инстанса класса
         checkIfWrapperIsEmpty(this.modalRowWrapper)
         //

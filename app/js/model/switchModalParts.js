@@ -1,4 +1,4 @@
-const switchModalParts = (switchers, parts, permission = true) => {
+const switchModalParts = (switchers, parts) => {
 	function addActiveClass() {
 		let id = this.dataset.part
 		
@@ -38,7 +38,7 @@ const switchModalParts = (switchers, parts, permission = true) => {
 			el.classList.remove('active')
 		})
 
-		console.log(targetPart)
+		// console.log(targetPart)
 
 		document.querySelector(targetPart).classList.add('active')
 	}
