@@ -13,19 +13,24 @@ const config = {
     }
 }
 
+
+
 const addMedia = async (id, data, count, total = 1) => {
+			console.log(count)
 			try {
 				const medias = await fetch.postResourse(`/employers/upload_media/?id=${id}`, data, config)
-				// console.log(count)
-				// console.log(total)
-				// if(count >= total) {
+
+				if(medias.success === true) {
+					toastr.success(`ID работодателя ${id}`, 'Успешно загружена картинка', {closeButton: false})
 					getWorkModalMedia({id, adding: true, p: 1, t: count})
-				// }
+				} else {
+					throw new Error('Не возможно загрузить картинку')
+				}
 				workModalMedia.progress.update(false)
 				
-				toastr.success(`ID работодателя ${id}`, 'Успешно загружена картинка', {closeButton: false})
+				
 			} catch(e) {
-				console.error(e)
+				toastr.error(e.message, 'Возникла ошибка', {closeButton: true})
 			}
 }
 

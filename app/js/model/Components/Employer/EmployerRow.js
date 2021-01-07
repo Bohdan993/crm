@@ -90,7 +90,7 @@ export default class RowEmployer {
 		this.el.addEventListener('click', (e) =>{
 			MicroModal.show('modal-1', {
 	      onClose: modal => {
-	      	getEmployersList()
+	      	getEmployersList({filtered: JSON.parse(sessionStorage.getItem('employersFiltered'))})
 	      },
 	      onShow: (modal, node) => {
 			    const wrapper = modal.querySelector('.my-modal-wrapper')
@@ -119,7 +119,7 @@ export default class RowEmployer {
 	}
 
 	update(data, index, items, context){
-		console.log(data)
+		// console.log(data)
 		const { id_employer } = data
 		
 		this.companyText.innerText = data.enterprise

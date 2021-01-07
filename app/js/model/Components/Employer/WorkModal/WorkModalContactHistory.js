@@ -68,8 +68,9 @@ class WorkModalContactHistoryRow {
 			innerText: data.date
 		})
 
+
 		setAttr(this.text, {
-			innerText: data.message
+			innerText: data.message.split('\n')[0]
 		})
 
 		setAttr(this.manager , {

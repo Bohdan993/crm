@@ -5,9 +5,11 @@ import {
 	toastr,
 	place,
 	OverlayScrollbars
-} from '../../../../../libs/libs';
+} from '../../../../../libs/libs'
+
 import ProgressBar from '../ProgressBar'
 import ShowMoreBtn from './ShowMoreBtn'
+import ShowLessBtn from './ShowLessBtn'
 import hiddenClassMixin from '../../../Mixins/hiddenClassMixin'
 
 import checkIfWrapperIsEmpty from '../../../checkIfWrapperIsEmpty'
@@ -97,7 +99,8 @@ export default class WorkModalMedia {
 		this.el = el('div.media__layer.modal-row__inner-layer',
 			this.controls,
 			this.modalLayer,
-			this.showMore = place(ShowMoreBtn)
+			this.showMore = place(ShowMoreBtn),
+			this.showLess = place(ShowLessBtn)
 		)
 
 		this.addItem.addEventListener('click', function (e) {
@@ -136,19 +139,21 @@ export default class WorkModalMedia {
 	}
 
 	update(data, index, items, context) {
-		// console.log(data)
+		console.log(data.data)
+		console.log(data.total)
 		let {
 			loading,
 			deleating,
 			adding,
-			showing
+			showing,
+			showingLess
 		} = data
 
 		if (showing) {
 			this.pageShow++
 		}
 
-		if (loading) {
+		if (loading || showingLess) {
 			this.pageShow = 2
 		}
 
@@ -166,6 +171,7 @@ export default class WorkModalMedia {
 		//Пагинация
 		if (data.data.length < data.total) {
 			this.showMore.update(true, 'показать еще')
+			this.showLess.update(false)
 
 			if (!this.flag) {
 				this.showMore.el.addEventListener('click', () => {
@@ -184,6 +190,19 @@ export default class WorkModalMedia {
 
 		} else {
 			this.showMore.update(false)
+			if(data.data.length > 6) {
+				this.showLess.update(true, 'скрыть')
+			}
+			
+			this.showLess.el.addEventListener('click', () => {
+					getWorkModalMedia({
+						id: this.data.id,
+						showingLess: true,
+						p: 1
+					})
+					// console.log(this.pageShow)
+				}, {once: true})
+
 			this.flag = false
 		}
 

@@ -1,10 +1,20 @@
 import fetch from './fetchingDataClass'
 import EmployerList from '../Components/Employer/EmployerList'
 import Loader from '../Components/Loader'
-import {el, mount, place, toastr} from '../../../libs/libs'
+import {
+	el,
+	mount,
+	place,
+	toastr
+} from '../../../libs/libs'
 import Numbers from '../Components/Employer/SidebarNumbersComponent'
-import {employerStatNums} from '../../view'
-import {uniq, EmptyError} from '../helper'
+import {
+	employerStatNums
+} from '../../view'
+import {
+	uniq,
+	EmptyError
+} from '../helper'
 
 import storage from '../Storage/globalEmployers'
 
@@ -20,22 +30,20 @@ const empList = new EmployerList()
 const numbers = new Numbers()
 
 
-
-if(employersWrapper) {
-mount(employersWrapper, empList);
-mount(employersWrapper, loader)
+if (employersWrapper) {
+	mount(employersWrapper, empList);
+	mount(employersWrapper, loader)
 }
 
 
-if(employerStatNums) {
+if (employerStatNums) {
 	mount(employerStatNums, numbers)
 }
 
 
-
-const getEmployersList = async ({
+const getEmployersList = async({
 	p = '1',
-	search = JSON.parse(sessionStorage.getItem('search')) || '', 
+	search = JSON.parse(sessionStorage.getItem('search')) || '',
 	country = JSON.parse(sessionStorage.getItem('countryFilter')) || '',
 	production = JSON.parse(sessionStorage.getItem('typeManufacturyFilter')) || '',
 	contact = JSON.parse(sessionStorage.getItem('contactDataFilter')) || '',
@@ -52,17 +60,18 @@ const getEmployersList = async ({
 	added = false,
 	deleated = false,
 	t = '50',
-} = {}) => { 
+} = {}) => {
 	let flag = false
-	if(employersWrapper) {
+	if (employersWrapper) {
 		loader.update(true)
 
-	try {
-			if(search === '' && country === '' && production === ''
-			&& contact === ''  && manager === ''  && intermediary === ''
-			&& intermediaries === '' && vacancy_active === ''
-			&& vacancy_type === '' && vacancy_term === ''
-			&& last_contact === ''
+		try {
+			
+			if (search === '' && country === '' && production === '' &&
+				contact === '' && manager === '' && intermediary === '' &&
+				intermediaries === '' && vacancy_active === '' &&
+				vacancy_type === '' && vacancy_term === '' &&
+				last_contact === ''
 			) {
 				flag = true
 			}
@@ -75,54 +84,52 @@ const getEmployersList = async ({
 
 
 			sessionStorage.setItem('employersArguments', JSON.stringify(flag))
+			sessionStorage.setItem('employersFiltered', JSON.stringify(filtered && !flag))
 
 
 			const total = data.total
 			const totalR = data.total_r
 
-			if(data.success) {
+			if (data.success) {
 
-				if(!employers) {
+				if (!employers) {
 					throw new Error('Что то пошло не так, работодателей не найдено, обновите страницу, пожалуйста')
 				}
 
 				const numsData = {
-					total, 
+					total,
 					totalR
 				}
 
-				if( scroll ) {
+				if (scroll) {
 
 					storage.setState(employers, 'id_employer')
 					empList.update(storage.getState())
 
-				} else if(added){
+				} else if (added) {
 
 					storage.setState(employers, 'id_employer', 'top')
 					empList.update(storage.getState())
 
-				} else if(deleated) {
+				} else if (deleated) {
 
 
-				}
+				} else {
 
-				 	else {
-
-				 	if(!inited) {
-				 		storage.initState(employers)
-				 		inited = true
-				 	}
+					if (!inited) {
+						storage.initState(employers)
+						inited = true
+					}
 					storage.getState().length && !filtered ?
-					(console.log('first'),
-					empList.update(storage.getState())) : 
-					!flag ? 
-					(console.log('second'),
-					empList.update(employers)):
-					(console.log(storage.getState()),
-					empList.update(storage.getState()))
+						(console.log('first'),
+							empList.update(storage.getState())) :
+						!flag ?
+						(console.log('second'),
+							empList.update(employers)) :
+						(console.log(storage.getState()),
+							empList.update(storage.getState()))
 
 				}
-
 
 
 				numbers.update(numsData)
@@ -131,39 +138,37 @@ const getEmployersList = async ({
 			} else {
 				loader.update(false)
 
-				if(scroll) {
+				if (scroll) {
 					empList.update(globalEmployers)
-					
+
 					return Array(1)
 				} else {
 					empList.update([])
 					throw new EmptyError('Список работодателей пуст')
 				}
 			}
-		
-			return employers
-	} catch (e) {
 
-		if(e.name === 'EmptyError') {
-			toastr.warning(`${e.message}`)
+			return employers
+		} catch (e) {
+
+			if (e.name === 'EmptyError') {
+				toastr.warning(`${e.message}`)
+				return
+			}
+
+			toastr.error(`${e.message}`, '', {
+				timeOut: 0,
+				extendedTimeOut: 0
+			})
 			return
 		}
-
-		toastr.error(`${e.message}`, '' ,{timeOut: 0, extendedTimeOut: 0})
-		return
 	}
-}
-
 
 
 }
-
-
-
 
 
 export default getEmployersList // to ../initTooltips.js
-																// to ../Components/Employer/SidebarPopupInterface.js
-																// to ../Components/Employer/ManagerPopup.js
-																// to ../initWorkPopup.js
-
+// to ../Components/Employer/SidebarPopupInterface.js
+// to ../Components/Employer/ManagerPopup.js
+// to ../initWorkPopup.js

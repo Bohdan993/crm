@@ -432,7 +432,8 @@ class FeedbackEdit {
 		})
 
 		setAttr(this.textarea, {
-			value: data.text || 'введите текст отзыва'
+			value: data.text,
+			placeholder: 'введите текст отзыва'
 		})
 
 		setAttr(this.typeFeedbackIco, {

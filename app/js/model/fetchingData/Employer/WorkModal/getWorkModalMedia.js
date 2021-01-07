@@ -34,7 +34,8 @@ const getWorkModalMedia = async ({
 	t = 6, 
 	deleating, 
 	adding,
-	showing
+	showing,
+	showingLess
 } = {}) => {
 	if(media) {
 
@@ -59,6 +60,12 @@ const getWorkModalMedia = async ({
 			}else {
 
 				if(loading) {
+						globalMedia = [
+						...otherPart.media
+					]
+				}
+
+				if(showingLess) {
 						globalMedia = [
 						...otherPart.media
 					]
@@ -93,6 +100,7 @@ const getWorkModalMedia = async ({
 				total: data.data.total !== undefined ? data.data.total.media : otherPart.media.length, 
 				loading, 
 				deleating, 
+				showingLess,
 				adding, 
 				showing
 			}
