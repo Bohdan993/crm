@@ -105,7 +105,7 @@ export default class Task { // to ../fetchingData/Employer/WorkModal
     }
     update(data) {
     	console.log(data)
-        this.count = data.tasks.length
+        this.count = data.tasks ? data.tasks.length : 0
     	this.list.update(data.tasks, {id: data.id, count: this.count})
      	this.data = data
         

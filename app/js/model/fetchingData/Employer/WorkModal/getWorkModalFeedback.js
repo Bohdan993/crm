@@ -119,7 +119,7 @@ const getWorkModalFeedback = async ({
 
 			const feedbackData = {
 				id: id, 
-				badFeedback: JSON.parse(sessionStorage.getItem('employerNegFeedback')),
+				// badFeedback: JSON.parse(sessionStorage.getItem('employerNegFeedback')),
 				data: globalFeedback, 
 				total: data.data.total !== undefined ? data.data.total.feedback : otherPart.feedback.length, 
 				loading, 
@@ -144,8 +144,9 @@ const getWorkModalFeedback = async ({
 			console.error(e)
 		}
 }	
-
+console.log('feedback')
 if(feedbackVacancy) {
+		console.log('feedback')
 			if(loading) {
 			loader2.update(true)
 			feedbackVac.setHiddenClass().setEmptyLayer()
@@ -200,14 +201,10 @@ if(feedbackVacancy) {
 			}
 
 
-			// const feedbackData = {
-			// 	id: id, 
-			// 	data: otherPart.feedback 
-			// }
 
 			const feedbackData = {
 				id: id, 
-				badFeedback: JSON.parse(sessionStorage.getItem('employerNegFeedback')),
+				// badFeedback: JSON.parse(sessionStorage.getItem('employerNegFeedback')),
 				data: globalFeedback, 
 				total: data.data.total !== undefined ? data.data.total.feedback : otherPart.feedback.length, 
 				loading, 
@@ -216,11 +213,7 @@ if(feedbackVacancy) {
 				showing
 			}
 
-			// console.log(JSON.parse(sessionStorage.getItem('employerNegFeedback')))
-
-			// if(state.id !== id) {
 				feedbackVac.update(feedbackData)
-			// }
 			} else {
 				feedbackVac.update(nulledFeedbackData)
 			}
@@ -234,7 +227,6 @@ if(feedbackVacancy) {
 				feedbackVac.removeHiddenClass()
 			}
 			
-			// state.id = id
 		}catch(e) {
 			console.error(e)
 		}
@@ -246,3 +238,8 @@ if(feedbackVacancy) {
 
 
 export default getWorkModalFeedback 		//to ../../../Components/EmployersRow.js
+
+export {
+	feedbackEmp,
+	feedbackVac
+}

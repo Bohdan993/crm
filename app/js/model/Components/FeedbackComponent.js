@@ -1,4 +1,12 @@
-import {el, setAttr, list, place, svg, Autocomplete, toastr} from '../../../libs/libs';
+import {
+	el,
+	setAttr,
+	list,
+	place,
+	svg,
+	Autocomplete,
+	toastr
+} from '../../../libs/libs';
 import hiddenClassMixin from '../Mixins/hiddenClassMixin'
 import ShowMoreBtn from './Employer/WorkModal/ShowMoreBtn'
 import checkIfWrapperIsEmpty from '../checkIfWrapperIsEmpty'
@@ -9,30 +17,38 @@ import getWorkModalFeedback from '../fetchingData/Employer/WorkModal/getWorkModa
 import addFeedback from '../fetchingData/Employer/WorkModal/addFeedback'
 import deleteFeedback from '../fetchingData/Employer/WorkModal/deleteFeedback'
 import changeDirection from '../changeDirection'
-import { initWorkModalTooltip } from '../initToottips'
-
+import {
+	initWorkModalTooltip
+} from '../initToottips'
+import storage from '../Storage/globalEmployers'
 
 
 class FeedbackTypeRow {
-	constructor(){
+	constructor() {
 		this.el = el('div.input-group',
-		this.input = el('input', {id: 'inf-feedback-rbtn', type: 'radio', name: 'type-feedback-rbtn'}),
-		this.label = el('label', {for: 'inf-feedback-rbtn'}, 
-			this.ico = el('i.ico.s-info-feedback',
-				// svg('svg', this.svg = svg('use', {
-				// 	xlink: {href: "img/sprites/svg/symbol/sprite.svg#inf-feedback"}
-				// }))
+			this.input = el('input', {
+				id: 'inf-feedback-rbtn',
+				type: 'radio',
+				name: 'type-feedback-rbtn'
+			}),
+			this.label = el('label', {
+					for: 'inf-feedback-rbtn'
+				},
+				this.ico = el('i.ico.s-info-feedback',
+					// svg('svg', this.svg = svg('use', {
+					// 	xlink: {href: "img/sprites/svg/symbol/sprite.svg#inf-feedback"}
+					// }))
 				),
 				this.text = el('span', 'Информационный'))
 		)
 
 	}
-	update(data){
+	update(data) {
 
 		// console.log(data['data-id'])
 		setAttr(this.input, {
 			'data-id': data['data-id'],
-			id: data.id, 
+			id: data.id,
 			name: data.name,
 			type: 'radio',
 			checked: data.checked
@@ -53,77 +69,88 @@ class FeedbackTypeRow {
 		setAttr(this.ico, {
 			classList: `ico s-${data.ico}`
 		})
-		
+
 	}
 }
 
 class FeedbackClient {
-	constructor(){
-		this.data =  JSON.parse(localStorage.getItem('clients'))
-		this.el = el('div', 
-				this.main = el('div.work-modal-popup#choice-client-feedback-popup', 
+	constructor() {
+		this.data = JSON.parse(localStorage.getItem('clients'))
+		this.el = el('div',
+			this.main = el('div.work-modal-popup#choice-client-feedback-popup',
 				this.form = el('form',
 					el('div.input-group',
-						this.inputClient = el('input#client-feedback-rbtn', {type: 'radio', name: 'client-feedback-rbtn', checked: true}),
-						el('label', 'Выберите клиента', {for: 'client-feedback-rbtn'}),
+						this.inputClient = el('input#client-feedback-rbtn', {
+							type: 'radio',
+							name: 'client-feedback-rbtn',
+							checked: true
+						}),
+						el('label', 'Выберите клиента', {
+							for: 'client-feedback-rbtn'
+						}),
 						this.searchGroup = el('div.autocomplete',
-									this.findClient = el('input.find-client', {
-										disabled: false
-									}),
-									this.resultList = el('ul.autocomplete-result-list')
-							)
-						),
+							this.findClient = el('input.find-client', {
+								disabled: false
+							}),
+							this.resultList = el('ul.autocomplete-result-list')
+						)
+					),
 					el('div.input-group',
-						this.inputUAMF = el('input#uamf-feedback-rbtn', {type: 'radio', name: 'client-feedback-rbtn', checked: false}),
-						el('label', 'УАМФ', {for: 'uamf-feedback-rbtn'}),
-						),
-					this.confirm = el('button.confirm-bnt', 
+						this.inputUAMF = el('input#uamf-feedback-rbtn', {
+							type: 'radio',
+							name: 'client-feedback-rbtn',
+							checked: false
+						}),
+						el('label', 'УАМФ', {
+							for: 'uamf-feedback-rbtn'
+						}),
+					),
+					this.confirm = el('button.confirm-bnt',
 						el('span', 'ОК'))
-					)
 				)
 			)
+		)
 
 
 		this.autocomplete = new Autocomplete(this.searchGroup, {
 			search: input => {
-			  try {
-							 if (input.length < 1) {
-					        return []
-					     }
+				try {
+					if (input.length < 1) {
+						return []
+					}
 
-					     return this.data.filter(client => {
-						      return client.snp.toLowerCase()
-						        .includes(input.toLowerCase())
-						    })
+					return this.data.filter(client => {
+						return client.snp.toLowerCase()
+							.includes(input.toLowerCase())
+					})
 
-			    	}
-			    catch(err) {
-			    		console.error(err)
-			    }
+				} catch (err) {
+					console.error(err)
+				}
 
-		  },
-		  renderResult(result, props) {
-		  	return `
+			},
+			renderResult(result, props) {
+				return `
 				    <li ${props}>
 				      <div class="wiki-title">
 				        ${result.snp}
 				      </div>
 				    </li>
 				  `
-		  },
-		  
-		  // // We want to display the title
-		  getResultValue: result => {
+			},
 
-		  	sessionStorage.setItem('currClient', JSON.stringify(result.id))
-		  	return result.snp
-		  },
-		  autoSelect: true
+			// // We want to display the title
+			getResultValue: result => {
+
+				sessionStorage.setItem('currClient', JSON.stringify(result.id))
+				return result.snp
+			},
+			autoSelect: true
 
 		})
 
 		this.inputClient.addEventListener('change', (e) => {
-			if(this.inputClient.checked) {
+			if (this.inputClient.checked) {
 				setAttr(this.findClient, {
 					disabled: false
 				})
@@ -131,12 +158,12 @@ class FeedbackClient {
 		})
 
 		this.inputUAMF.addEventListener('change', (e) => {
-			if(this.inputUAMF.checked) {
+			if (this.inputUAMF.checked) {
 				setAttr(this.findClient, {
 					disabled: true
 				})
 			}
-			
+
 		})
 
 		// console.log(this.el.closest('[data-tippy-root]'))
@@ -144,8 +171,8 @@ class FeedbackClient {
 		this.form.addEventListener('submit', (e) => {
 			e.preventDefault()
 			// console.log(this.parent)
-			if(this.inputClient.checked) {
-				if(this.findClient.value.trim() === '') {
+			if (this.inputClient.checked) {
+				if (this.findClient.value.trim() === '') {
 					toastr.error(`Выберите клиента`, 'Ошибка!')
 					this.parent.changechoiseClientText('Выбрать')
 					return
@@ -154,7 +181,7 @@ class FeedbackClient {
 				this.parent.choiseClient.setAttribute('data-currClient', JSON.parse(sessionStorage.getItem('currClient')))
 			}
 
-			if(this.inputUAMF.checked) {
+			if (this.inputUAMF.checked) {
 				this.parent.changechoiseClientText('УАМФ')
 			}
 
@@ -162,9 +189,9 @@ class FeedbackClient {
 		})
 	}
 
-	update(data, context){
+	update(data, context) {
 		this.instancePopup = context
-		if(data.from === 'УАМФ') {
+		if (data.from === 'УАМФ') {
 			this.inputUAMF.checked = true
 			this.inputClient.checked = false
 			this.findClient.disabled = true
@@ -182,22 +209,19 @@ class FeedbackClient {
 }
 
 
-
-
 class FeedbackType {
-	constructor(){
-		this.el = el('div', 
-				this.main = el('div.work-modal-popup#type-feedback-popup', 
-				this.form = el('form.feedbackType-form', 
+	constructor() {
+		this.el = el('div',
+			this.main = el('div.work-modal-popup#type-feedback-popup',
+				this.form = el('form.feedbackType-form',
 					el('p', 'Тип отзыва'),
 					this.list = list('div', FeedbackTypeRow),
-					this.confirm = el('button.confirm-bnt', 
+					this.confirm = el('button.confirm-bnt',
 						el('span', 'ОК'))
-					)
 				)
 			)
-		this.feedbackTypeData = [
-			{
+		)
+		this.feedbackTypeData = [{
 				'data-id': 0,
 				id: 'inf-feedback-rbtn',
 				name: 'type-feedback-rbtn',
@@ -228,23 +252,21 @@ class FeedbackType {
 			e.preventDefault()
 
 			this.list.views.forEach(view => {
-				if(view.input.checked) {
-						this.parent.changeTypeFeedbackIco(view.input.getAttribute('data-id'))
-					}
-				})
+				if (view.input.checked) {
+					this.parent.changeTypeFeedbackIco(view.input.getAttribute('data-id'))
+				}
+			})
 
 			this.instancePopup.hide()
-			}
-
-			
-
 		}
 
-	update(data, context){
+	}
+
+	update(data, context) {
 		this.instancePopup = context
 		this.feedbackTypeData = this.feedbackTypeData.map(el => {
 			el.checked = false
-			if(String(el['data-id']) === data.typeFeedback) {
+			if (String(el['data-id']) === data.typeFeedback) {
 				el.checked = true
 			}
 
@@ -257,30 +279,27 @@ class FeedbackType {
 }
 
 
-
-
-
 class FeedbackEdit {
-	constructor(){
+	constructor() {
 		this.data = {}
 
-		this.el = el('form.modal-row__feedback-row.add-feedback-form', 
-			el('div.modal-row__feedback-speakers', 
-				this.typeFeedback = el('i.modal-row__feedback-ico', 
+		this.el = el('form.modal-row__feedback-row.add-feedback-form',
+			el('div.modal-row__feedback-speakers',
+				this.typeFeedback = el('i.modal-row__feedback-ico',
 					this.typeFeedbackIco = el('i.ico')
 					// svg('svg', this.typeFeedbackIco = svg('use', {
 					// 	xlink: {href: 'img/sprites/svg/symbol/sprite.svg#pos-feedback-white'}
 					// }))
-					),
+				),
 				this.choiseClient = el('a.modal-row__feedback-choise', 'Выбрать'),
-				this.direction = el('i.modal-row__feedback-direction-edit.change-direction', 
+				this.direction = el('i.modal-row__feedback-direction-edit.change-direction',
 					// svg('svg', svg('use', {
 					// 	xlink: {href:"img/sprites/svg/symbol/sprite.svg#arrow-white"}
 					// }))
 					el('span.s-arrow-white')
-					),
-				this.to = el('p.modal-row__feedback-to', 'Thompson Equestrian Partners')
 				),
+				this.to = el('p.modal-row__feedback-to', 'Thompson Equestrian Partners')
+			),
 			el('div.modal-row__feedback-date',
 				this.date = el('input', {
 					type: 'text'
@@ -291,45 +310,45 @@ class FeedbackEdit {
 					rows: 3,
 					value: 'text'
 				})
-				),
+			),
 			el('div.modal-row__feedback-controls',
 				el('div.modal-row__feedback-controls_left',
 					this.cancel = el('button.modal-row__feedback-cancel.feedback-btn', 'Отменить'),
 					this.saveFeedback = el('button.modal-row__feedback-save.feedback-btn', 'Сохранить')
-					),
+				),
 				el('div.modal-row__feedback-controls_right',
 					this.delete = el('button.modal-row__feedback-delete.delete-btn', 'Удалить')
-					)
 				)
 			)
+		)
 
 		this.parent = this.el.parentNode
 
 		this.saveFeedback.addEventListener('click', (e) => {
 			e.preventDefault()
 			// console.log(+JSON.parse(sessionStorage.getItem('currClient')))
-			if(this.data.type === 'employer') {
-		
+			if (this.data.type === 'employer') {
+
 				addFeedback({
 					str: 'employers/feedback',
-					id_feedback: this.data.id_feedback, 
-					feedback: this.textarea.value.trim(), 
-					type_feedback: this.typeFeedback.getAttribute('data-id') || '0', 
-					id_author: this.choiseClient.getAttribute('data-author') === '1' ? this.choiseClient.getAttribute('data-currClient') : '1', 
+					id_feedback: this.data.id_feedback,
+					feedback: this.textarea.value.trim(),
+					type_feedback: this.typeFeedback.getAttribute('data-id') || '0',
+					id_author: this.choiseClient.getAttribute('data-author') === '1' ? this.choiseClient.getAttribute('data-currClient') : '1',
 					type_author: this.choiseClient.getAttribute('data-author') || '2',
-					type_arrow: this.direction.classList.contains('rotate') ? '1' : '0', 
-					date: this.date.value.trim(), 
+					type_arrow: this.direction.classList.contains('rotate') ? '1' : '0',
+					date: this.date.value.trim(),
 					id_employer: this.data.id,
 					count: this.data.count,
-					other: 5, 
+					other: 5,
 					string: 'employers'
 				}).then(res => {
-					if(res === 'ok') {
+					if (res === 'ok') {
 						this.feedbackEditPlace.update(false)
 						this.rowPlace ? this.rowPlace.update(true) : null
 					}
 
-					if(res === 'fail') {
+					if (res === 'fail') {
 
 					}
 
@@ -338,24 +357,24 @@ class FeedbackEdit {
 
 				addFeedback({
 					str: 'employers/feedback',
-					id_feedback: this.data.id_feedback, 
-					feedback: this.textarea.value.trim(), 
-					type_feedback: this.typeFeedback.getAttribute('data-id') || '0', 
-					id_author: this.choiseClient.getAttribute('data-author') === '1' ? this.choiseClient.getAttribute('data-currClient') : '1', 
+					id_feedback: this.data.id_feedback,
+					feedback: this.textarea.value.trim(),
+					type_feedback: this.typeFeedback.getAttribute('data-id') || '0',
+					id_author: this.choiseClient.getAttribute('data-author') === '1' ? this.choiseClient.getAttribute('data-currClient') : '1',
 					type_author: this.choiseClient.getAttribute('data-author') || '2',
-					type_arrow: this.direction.classList.contains('rotate') ? '1' : '0', 
-					date: this.date.value.trim(), 
+					type_arrow: this.direction.classList.contains('rotate') ? '1' : '0',
+					date: this.date.value.trim(),
 					id_employer: this.data.id,
 					count: this.data.count,
-					other: 1, 
+					other: 1,
 					string: 'vacancies'
 				}).then(res => {
-					if(res === 'ok') {
+					if (res === 'ok') {
 						this.feedbackEditPlace.update(false)
 						this.rowPlace ? this.rowPlace.update(true) : null
 					}
 
-					if(res === 'fail') {
+					if (res === 'fail') {
 
 					}
 
@@ -363,8 +382,7 @@ class FeedbackEdit {
 
 			}
 
-			
-			
+
 		})
 
 		this.cancel.addEventListener('click', (e) => {
@@ -374,29 +392,29 @@ class FeedbackEdit {
 			this.parent ? checkIfWrapperIsEmpty(this.parent.modalRowWrapper) : null
 		})
 
-		this.delete.addEventListener('click' , (e) => {
-				e.preventDefault()
-				if(this.data.type === 'employer') {
-					// alert(this.data.type)
-					deleteFeedback({
-						str: 'employers',
-						id: this.data.id_feedback, 
-						id_employer: this.data.id, 
-						count: this.data.count,
-						string: 'employers',
-						other: 5
-					})
-				} else {
-					// alert(this.data.type)
-					deleteFeedback({
-						str: 'employers',
-						id: this.data.id_feedback, 
-						id_employer: this.data.id, 
-						count: this.data.count,
-						string: 'vacancies',
-						other: 1
-					})
-				}
+		this.delete.addEventListener('click', (e) => {
+			e.preventDefault()
+			if (this.data.type === 'employer') {
+				// alert(this.data.type)
+				deleteFeedback({
+					str: 'employers',
+					id: this.data.id_feedback,
+					id_employer: this.data.id,
+					count: this.data.count,
+					string: 'employers',
+					other: 5
+				})
+			} else {
+				// alert(this.data.type)
+				deleteFeedback({
+					str: 'employers',
+					id: this.data.id_feedback,
+					id_employer: this.data.id,
+					count: this.data.count,
+					string: 'vacancies',
+					other: 1
+				})
+			}
 		})
 
 		this.feedbackType = new FeedbackType()
@@ -410,10 +428,11 @@ class FeedbackEdit {
 
 	}
 
-	update(data){
+	update(data) {
 		console.log(data)
+		// console.log(storage.getPartialState(data.id, 'id_employer', 'name'))
 		setAttr(this.to, {
-			innerText: JSON.parse(sessionStorage.getItem('currEmployerName'))
+			innerText: storage.getPartialState(data.id, 'id_employer', 'name')
 		})
 
 
@@ -455,7 +474,7 @@ class FeedbackEdit {
 
 	}
 
-	changeTypeFeedbackIco(id){
+	changeTypeFeedbackIco(id) {
 		setAttr(this.typeFeedbackIco, {
 			classList: `ico ${id === '0' ? 's-info-feedback-white' : id === '1' ? 's-pos-feedback-white' : 's-neg-feedback-white'}`
 		})
@@ -466,7 +485,7 @@ class FeedbackEdit {
 	}
 
 
-	changechoiseClientText(text){
+	changechoiseClientText(text) {
 		setAttr(this.choiseClient, {
 			innerText: text,
 			'data-author': text === 'УАМФ' ? '2' : '1'
@@ -474,7 +493,7 @@ class FeedbackEdit {
 	}
 
 
-	onmount(){
+	onmount() {
 		changeDirection(this.direction)
 		this.typeFeedbackInstance = initWorkModalTooltip(this.typeFeedback)
 		this.choiseClientInstance = initWorkModalTooltip(this.choiseClient)
@@ -487,34 +506,37 @@ class FeedbackEdit {
 }
 
 
-
 class FeedbackRow {
-	constructor(){
+	constructor() {
 		this.data = {}
-		this.el = el('div', 
-				this.row = place(el('div.modal-row__feedback-row', 
+		this.el = el('div',
+			this.row = place(el('div.modal-row__feedback-row',
 				el('div.modal-row__feedback-speakers',
-					el('i.modal-row__feedback-ico', 
+					el('i.modal-row__feedback-ico',
 						svg('svg', this.typeFeedback = svg('use', {
-							xlink: {href: 'img/sprites/svg/symbol/sprite.svg#pos-feedback'}
+							xlink: {
+								href: 'img/sprites/svg/symbol/sprite.svg#pos-feedback'
+							}
 						}))
-						),
+					),
 					this.from = el('p.modal-row__feedback-from', 'УАМФ'),
-					this.direction = el('i.modal-row__feedback-direction.rotate', 
+					this.direction = el('i.modal-row__feedback-direction.rotate',
 						svg('svg', this.arrow = svg('use', {
-							xlink: {href: 'img/sprites/svg/symbol/sprite.svg#arrow'}
+							xlink: {
+								href: 'img/sprites/svg/symbol/sprite.svg#arrow'
+							}
 						}))),
 					this.to = el('p.modal-row__feedback-to', 'Thompson Equestrian Partners')
-					),
-				el('div.modal-row__feedback-date', 
-					this.date = el('time', '09.10.2018'), 
+				),
+				el('div.modal-row__feedback-date',
+					this.date = el('time', '09.10.2018'),
 					this.edit = el('button.modal-row__feedback-edit.edit-btn', 'Редактировать')
-					),
-				this.text = el('div.modal-row__feedback-text', 
+				),
+				this.text = el('div.modal-row__feedback-text',
 					el('p', 'text'))
-				)),
-				this.feedbackEdit = place(FeedbackEdit)
-			)
+			)),
+			this.feedbackEdit = place(FeedbackEdit)
+		)
 		this.row.update(true)
 
 		this.edit.addEventListener('click', (e) => {
@@ -538,14 +560,12 @@ class FeedbackRow {
 			this.feedbackEdit.view.rowPlace = this.row
 
 
-
-
 		})
 
 	}
 
 
-	update(data, index, items, context){
+	update(data, index, items, context) {
 
 		console.log(data)
 		console.log(context)
@@ -567,15 +587,26 @@ class FeedbackRow {
 
 		// setAttr(this.direction, {
 		// 	classList: data.type_arrow === 1 ? '' : 'rotate'
-	console.log(context)
-	// console.log(context.storage.clients.filter(el =>el.id === data.id_author), 'dfdierhfjuiw3equj2be2u')
+		console.log(context)
+		// console.log(context.storage.clients.filter(el =>el.id === data.id_author), 'dfdierhfjuiw3equj2be2u')
 		setAttr(this.from, {
-			innerText: data.type_arrow === '0' ? data.type_author === '2' ? 'УАМФ' : context.storage.clients.filter(el => el.id === data.id_author).length > 0 && context.storage.clients.filter(el => el.id === data.id_author)[0].snp : context.type === 'employer' ? JSON.parse(sessionStorage.getItem('currEmployerName')) : JSON.parse(sessionStorage.getItem('currVacancyEmployer')).data && JSON.parse(sessionStorage.getItem('currVacancyEmployer')).data.name
+			innerText: data.type_arrow === '0' ?
+				data.type_author === '2' ?
+				'УАМФ' :
+				context.storage.clients.filter(el => el.id === data.id_author).length > 0 && context.storage.clients.filter(el => el.id === data.id_author)[0].snp : context.type === 'employer' ?
+				storage.getPartialState(context.id, 'id_employer', 'name') : JSON.parse(sessionStorage.getItem('currVacancyEmployer')).data && JSON.parse(sessionStorage.getItem('currVacancyEmployer')).data.name
 		})
 
+		// document.addEventListener('employerfeedbacknamechange', (e)=>{
+		// 	console.log(e)
 
+		// }, {once: true})
 		setAttr(this.to, {
-			innerText: data.type_arrow === '1' ? data.type_author === '2' ? 'УАМФ' : context.storage.clients.filter(el => el.id === data.id_author)[0].snp : context.type === 'employer' ? JSON.parse(sessionStorage.getItem('currEmployerName')) : JSON.parse(sessionStorage.getItem('currVacancyEmployer')).data.name
+			innerText: data.type_arrow === '1' ?
+				data.type_author === '2' ?
+				'УАМФ' :
+				context.storage.clients.filter(el => el.id === data.id_author)[0].snp : context.type === 'employer' ?
+				storage.getPartialState(context.id, 'id_employer', 'name') : JSON.parse(sessionStorage.getItem('currVacancyEmployer')).data.name
 		})
 
 
@@ -587,37 +618,37 @@ class FeedbackRow {
 
 
 export default class Feedback {
-	constructor(type){
+	constructor(type) {
 		// console.log(arguments)
 		this.data = {}
 		this.type = type
 		this.controls = el('div.modal-row__controls',
-			el('p', 'Отзывы', 
+			el('p', 'Отзывы',
 				this.feedbackCount = el('span', ' 0'),
 				el('span', ' ('),
 				this.feedbackCountNeg = el('span.negative', 'негативных - 0'),
 				el('span', ')')
-				),
+			),
 			this.addItem = el('div.add-item', el('span', '+'), 'добавить отзыв')
-			)
-		
+		)
+
 
 		this.modalRowWrapper = el(`div.modal-row__feedback-${type}-wrapper.modal-row__wrapper`)
 
-		this.modalLayer = el('div.modal-row__layer.feedback-row__layer.empty-layer', 
+		this.modalLayer = el('div.modal-row__layer.feedback-row__layer.empty-layer',
 			this.feedbackEdit = place(FeedbackEdit),
 			this.list = list(this.modalRowWrapper, FeedbackRow, 'id')
 		)
 
 
 		this.el = el(`div.feedback-${type}__layer`,
-				this.controls,
-				// this.feedbackEdit = place(FeedbackEdit),
-				this.modalLayer,
-				this.showMore = place(ShowMoreBtn)
-			)
+			this.controls,
+			// this.feedbackEdit = place(FeedbackEdit),
+			this.modalLayer,
+			this.showMore = place(ShowMoreBtn)
+		)
 
-		this.addItem.addEventListener('click', (e)=> {
+		this.addItem.addEventListener('click', (e) => {
 			console.log(this.data)
 
 			this.feedbackEdit.update(true, {
@@ -640,7 +671,6 @@ export default class Feedback {
 		})
 
 
-
 		initOverlayScrollbars(this.modalLayer, type)
 
 		this.data.storage = this.getItemsLocalStorage()
@@ -649,73 +679,94 @@ export default class Feedback {
 		this.flagShow = false
 	}
 
-	 update(data, index, items, context) {
-	 	console.log(data)
-	 		let {loading, showing} = data
-	 		if(showing) {
-				this.pageShow++
+	update(data, index, items, context) {
+		console.log(data)
+		let {
+			loading,
+			showing
+		} = data
+		if (showing) {
+			this.pageShow++
+		}
+
+		if (loading) {
+			this.pageShow = 2
+			this.feedbackEdit.update(false)
+		}
+
+		this.data.data = data
+		this.data.index = index
+		this.data.count = (this.pageShow - 1) * 5
+		this.list.update(data.data, {
+			storage: this.data.storage,
+			id: this.data.data.id,
+			count: this.data.count,
+			type: this.data.type
+		})
+
+
+		//Пагинация
+		if (data.data && data.data.length < data.total) {
+			this.showMore.update(true, 'показать еще')
+
+			if (!this.flagShow) {
+				this.showMore.el.addEventListener('click', (e) => {
+					console.log(this.type)
+					if (this.type === 'employer') {
+						getWorkModalFeedback({
+							id: this.data.data.id,
+							showing: true,
+							p: this.pageShow,
+							other: 5,
+							str: 'employers'
+						})
+					} else {
+						getWorkModalFeedback({
+							id: this.data.data.id,
+							showing: true,
+							p: this.pageShow,
+							other: 1,
+							str: 'vacancies'
+						})
+					}
+					// console.log(this.pageShow)
+				})
+
+				this.flagShow = true
 			}
 
-			if(loading) {
-				this.pageShow = 2
-				this.feedbackEdit.update(false)
-			}
+		} else {
+			this.showMore.update(false)
+			this.flagShow = false
+		}
 
-			this.data.data = data
-			this.data.index = index
-			this.data.count = (this.pageShow - 1) * 5
-			this.list.update(data.data, {storage: this.data.storage, id:this.data.data.id, count: this.data.count, type: this.data.type})
+		setAttr(this.feedbackCount, {
+			innerText: " " + data.total
+		})
+
+		setAttr(this.feedbackCountNeg, {
+			innerText: `негативных - ${data.badFeedback || 0}`
+		})
 
 
-			//Пагинация
-				if(data.data && data.data.length < data.total) {
-				this.showMore.update(true, 'показать еще')
+		setAttr(this.feedbackCountNeg, {
+			// innerText: data.total
+		})
 
-				if(!this.flagShow) {
-					this.showMore.el.addEventListener('click', (e)=> {
-						console.log(this.type)
-							if(this.type === 'employer') {
-								getWorkModalFeedback({id: this.data.data.id, showing: true, p: this.pageShow, other: 5, str: 'employers' })
-							} else {
-								getWorkModalFeedback({id: this.data.data.id, showing: true, p: this.pageShow, other: 1, str: 'vacancies'})
-							}
-							// console.log(this.pageShow)
-					})
-
-						this.flagShow = true
-				}
-
-			} else {
-				this.showMore.update(false)
-				this.flagShow = false
-			}
-
-			setAttr(this.feedbackCount, {
-				innerText: " " + data.total
-			})
-
-			setAttr(this.feedbackCountNeg, {
-				innerText: `негативных - ${data.badFeedback}`
-			})
-
-			setAttr(this.feedbackCountNeg, {
-				// innerText: data.total
-			})
-
-			//Вызов функций которые зависят от инстанса класса
-			 checkIfWrapperIsEmpty(this.modalRowWrapper)
-			//
+		//Вызов функций которые зависят от инстанса класса
+		checkIfWrapperIsEmpty(this.modalRowWrapper)
+		//
 
 	}
 
-	getItemsLocalStorage(){
+	getItemsLocalStorage() {
 		const clients = JSON.parse(localStorage.getItem('clients'))
 		const clientsVacancy = JSON.parse(localStorage.getItem('clientsVacancy'))
 
 		return {
-				clients,
-				clientsVacancy
-			}
+			clients,
+			clientsVacancy
+		}
 	}
 
 
@@ -726,4 +777,4 @@ export {
 	FeedbackTypeRow
 }
 
-Object.assign(Feedback.prototype , hiddenClassMixin)
+Object.assign(Feedback.prototype, hiddenClassMixin)

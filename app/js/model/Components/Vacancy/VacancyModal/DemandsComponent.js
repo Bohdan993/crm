@@ -5,7 +5,7 @@ export default class DemandComponent {
 
 		this.data = {}
 		this.save = save.bind(this)
-		this.el = el('div.demands-layer', 
+		this.el = el('div.demands-layer.modal-row__inner-layer', 
 			el('div.modal-row__controls', 
 				el('p', 'Требования')),
 			el('div.modal-row__layer',

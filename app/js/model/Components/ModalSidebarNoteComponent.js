@@ -48,7 +48,7 @@ export default class Note { // to ../fetchingData/Employer/WorkModal
     update(data) {
         console.log(data)
     	setAttr(this.textArea, {
-    		value: data.notes || data.notes === '' ? data.notes : data
+    		value: data && data.notes || data && data.notes === ''  ? data.notes : data
     	})
 
      	this.data = data
@@ -57,6 +57,7 @@ export default class Note { // to ../fetchingData/Employer/WorkModal
     onmount(){
     	initElasticArea(this.textArea)
         document.addEventListener('storageemployeradd', (e) => {
+            console.log(storage.getState(e.detail.id).employer.note)
             this.update(storage.getState(e.detail.id).employer.note)
         })
     }

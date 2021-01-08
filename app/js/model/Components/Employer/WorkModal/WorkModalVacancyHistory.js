@@ -57,7 +57,7 @@ class WorkModalVacancyHistoryRow {
 		})
 
 		setAttr(this.date, {
-			innerText: data.start_work + ' - ' + data.finish_work
+			innerText: data.start_work ?  data.start_work : '' + ' - ' + data.finish_work ? data.finish_work : ''
 		})
 
 		setAttr(this.people, {

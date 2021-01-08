@@ -46,11 +46,7 @@ class WorkModalContactHistoryRow {
 			el('div.modal-row__contacts-history-date.modal-row__cell',
 				this.date = el('time')),
 			el('div.modal-row__contacts-history-text.modal-row__cell',
-				el('i.ico.letter-ico', svg('svg', this.typeContact = svg('use', {
-					xlink: {
-						href: "img/sprites/svg/symbol/sprite.svg#letter"
-					}
-				}))),
+				el('span.ico__layer', this.typeContact = el('i.ico.letter-ico')),
 				this.text = el('p', 'Прислал полный пакет документов :)')
 			)
 		)
@@ -104,9 +100,10 @@ class WorkModalContactHistoryRow {
 		})
 
 		setAttr(this.typeContact, {
-			xlink: {
-				href: `img/sprites/svg/symbol/sprite.svg#${currContact[0] ? currContact[0].icon : null}`
-			}
+			// xlink: {
+			// 	href: `img/sprites/svg/symbol/sprite.svg#${currContact[0] ? currContact[0].icon : null}`
+			// }
+			classList: `ico-s s-${currContact[0] ? currContact[0].icon.split('.')[0] : null}`
 		})
 
 		setAttr(this.direction, {

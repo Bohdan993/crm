@@ -1,4 +1,4 @@
-import {OverlayScrollbars} from '../../libs/libs'
+import { OverlayScrollbars } from '../../libs/libs'
 
 
 

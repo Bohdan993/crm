@@ -5,7 +5,7 @@ export default class TermsComponent {
 
 		this.data = {}
 		this.save = save.bind(this)
-		this.el = el('div.terms-layer', 
+		this.el = el('div.terms-layer.modal-row__inner-layer', 
 			el('div.modal-row__controls',
 				el('p', 'Условия')),
 			el('div.modal-row__layer',

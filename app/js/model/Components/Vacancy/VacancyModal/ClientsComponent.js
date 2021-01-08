@@ -99,7 +99,7 @@ export default class ClientsComponent {
 	constructor() {
 		this.data = {}
 		this.showed = false
-		this.el = el('div.clients-layer',
+		this.el = el('div.clients-layer.modal-row__inner-layer',
 				this.switcher = el('i.switcher', 
 					el('i.s-union')),
 				el('div.modal-row__controls', 

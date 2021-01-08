@@ -7,8 +7,9 @@ import ManagerSelect from '../../../Components/ManagerSelectComponent'
 import Loader from '../../../Components/Loader'
 import {list, mount, place} from '../../../../../libs/libs'
 import {sidebarEmployerForm, workModalSidebarNotes, employerDelete} from '../../../../view'
-
-
+import { feedbackEmp, feedbackVac } from './getWorkModalFeedback'
+// import negativeFeedbackCountChange from '../../../CustomEvents/negativeFeedbackCountChange'
+// import employerFeedbackNameChange from '../../../CustomEvents/employerFeedbackNameChange'
 
 const state = {}
 
@@ -83,6 +84,10 @@ try {
 		const date = mainPart.date
 		const badFeedback = mainPart.total_bad_feedback
 
+		// negativeFeedbackCountChange.detail.count = String(badFeedback)
+		// document.dispatchEvent(negativeFeedbackCountChange)
+		// employerFeedbackNameChange.detail.name = String(mainPart.name)
+		// document.dispatchEvent(employerFeedbackNameChange)
 
 		// console.log(badFeedback)
 
@@ -110,7 +115,7 @@ try {
 		mainPart.source = source
 
 
-		workModal.update(mainPart)
+		workModal.update(mainPart, feedbackEmp)
 		task.update(tasksData)
 		select.update(managersData)
 		note.update(notesData)
@@ -121,7 +126,6 @@ try {
 		workModal.removeHiddenClass()
 
 		sessionStorage.setItem('currEmployerName', JSON.stringify(mainPart.name))
-		sessionStorage.setItem('employerNegFeedback', JSON.stringify(badFeedback))
 		sessionStorage.setItem('currActiveManagerId', JSON.stringify(id_manager))
 		
 		state.id = id

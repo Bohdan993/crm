@@ -200,7 +200,6 @@ try {
 		}
 
 
-
 		const deleteData = {
 			date, 
 			id

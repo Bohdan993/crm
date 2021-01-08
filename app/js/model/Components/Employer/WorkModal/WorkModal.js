@@ -100,7 +100,7 @@ export default class WorkModal {
 								rel: 'nofollow noopener noreferrer',
 								target: "_blank"
 							},
-							el('i.ico.s-mail',
+							el('i.ico.s-email',
 								// svg('svg', svg('use', {
 								// 	xlink: { href: "img/sprites/svg/symbol/sprite.svg#email.svg"}
 								// }))
@@ -237,6 +237,19 @@ export default class WorkModal {
 			save(encodeURIComponent(this.comInfName.value), 'name')
 
 			storage.setPartialState(this.data.id_employer, 'id_employer', 'name', this.comInfName.value)
+
+			this.feedback.list.views.forEach(view=> {
+				if(view.data.data.type_arrow === '0') {
+					setAttr(view.to, {
+						innerText: this.comInfName.value
+					})
+				} else {
+					setAttr(view.from, {
+						innerText: this.comInfName.value
+					})
+				}
+				
+			})
 		})
 
 		this.comInfOtherNames.addEventListener('change', (e) => {
@@ -292,8 +305,9 @@ export default class WorkModal {
 		})
 	}
 
-	update(data, index, items, context) {
+	update(data, context) {
 		console.log(data)
+		console.log(context)
 		const {
 			id_employer
 		} = data
@@ -340,7 +354,8 @@ export default class WorkModal {
 		}
 
 		this.data = data
-		this.data.index = index
+		// this.data.index = index
+		this.feedback = context
 	}
 
 	getItemsFromLocalStorage() {

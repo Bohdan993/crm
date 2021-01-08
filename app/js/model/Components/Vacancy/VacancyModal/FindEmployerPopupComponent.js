@@ -22,21 +22,8 @@ export default class FindEmployerPopupComponent {
 			)
 
 		this.autocomplete = new Autocomplete(this.searchGroup, {
-		//  search: input => {
-		// 	    return new Promise(resolve => {
-		// 	      if (input.length < 3) {
-		// 	        return resolve([])
-		// 	      }
 
-		// 	      loadEmployerInfo({})
-		// 	        .then(response => console.log(response))
-		// 	        // .then(data => {
-		// 	        //   resolve(data.query.search)
-		// 	        // })
-		// 	    })
-  // },
-
-  search: input => {
+	search: input => {
 			  try {
 							 if (input.length < 1) {
 					        return []
