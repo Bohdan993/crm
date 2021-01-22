@@ -1,4 +1,4 @@
-import {el, setAttr, svg, place, list, MicroModal} from '../../../../libs/libs'
+import {el, setAttr, place, list, MicroModal} from '../../../../libs/libs'
 import { initRowTooltips } from '../../initToottips'
 import getWorkModalInfo from '../../fetchingData/Employer/WorkModal/getWorkModalInfo'
 

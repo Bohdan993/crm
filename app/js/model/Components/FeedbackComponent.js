@@ -191,7 +191,7 @@ class FeedbackClient {
 
 	update(data, context) {
 		this.instancePopup = context
-		if (data.from === 'УАМФ') {
+		if (data.from === 'УАМФ' || data.to === 'УАМФ') {
 			this.inputUAMF.checked = true
 			this.inputClient.checked = false
 			this.findClient.disabled = true
@@ -585,28 +585,27 @@ class FeedbackRow {
 		})
 
 
-		// setAttr(this.direction, {
-		// 	classList: data.type_arrow === 1 ? '' : 'rotate'
 		console.log(context)
-		// console.log(context.storage.clients.filter(el =>el.id === data.id_author), 'dfdierhfjuiw3equj2be2u')
 		setAttr(this.from, {
 			innerText: data.type_arrow === '0' ?
 				data.type_author === '2' ?
 				'УАМФ' :
 				context.storage.clients.filter(el => el.id === data.id_author).length > 0 && context.storage.clients.filter(el => el.id === data.id_author)[0].snp : context.type === 'employer' ?
-				storage.getPartialState(context.id, 'id_employer', 'name') : JSON.parse(sessionStorage.getItem('currVacancyEmployer')).data && JSON.parse(sessionStorage.getItem('currVacancyEmployer')).data.name
+				//Если имя работодателя пустое, то выводим название организации
+				storage.getPartialState(context.id, 'id_employer', 'name') !== "" ? storage.getPartialState(context.id, 'id_employer', 'name') : storage.getPartialState(context.id, 'id_employer', 'enterprise') :
+				//Выводим имя работодателя на странице вакансий
+				JSON.parse(sessionStorage.getItem('currVacancyEmployer')).data && JSON.parse(sessionStorage.getItem('currVacancyEmployer')).data.name
 		})
 
-		// document.addEventListener('employerfeedbacknamechange', (e)=>{
-		// 	console.log(e)
-
-		// }, {once: true})
 		setAttr(this.to, {
 			innerText: data.type_arrow === '1' ?
 				data.type_author === '2' ?
 				'УАМФ' :
 				context.storage.clients.filter(el => el.id === data.id_author)[0].snp : context.type === 'employer' ?
-				storage.getPartialState(context.id, 'id_employer', 'name') : JSON.parse(sessionStorage.getItem('currVacancyEmployer')).data.name
+				//Если имя работодателя пустое, то выводим название организации
+				storage.getPartialState(context.id, 'id_employer', 'name') !== "" ? storage.getPartialState(context.id, 'id_employer', 'name') : storage.getPartialState(context.id, 'id_employer', 'enterprise') :
+				//Выводим имя работодателя на странице вакансий
+				JSON.parse(sessionStorage.getItem('currVacancyEmployer')).data.name
 		})
 
 
@@ -619,7 +618,6 @@ class FeedbackRow {
 
 export default class Feedback {
 	constructor(type) {
-		// console.log(arguments)
 		this.data = {}
 		this.type = type
 		this.controls = el('div.modal-row__controls',
@@ -643,7 +641,6 @@ export default class Feedback {
 
 		this.el = el(`div.feedback-${type}__layer`,
 			this.controls,
-			// this.feedbackEdit = place(FeedbackEdit),
 			this.modalLayer,
 			this.showMore = place(ShowMoreBtn)
 		)
@@ -685,6 +682,7 @@ export default class Feedback {
 			loading,
 			showing
 		} = data
+		
 		if (showing) {
 			this.pageShow++
 		}

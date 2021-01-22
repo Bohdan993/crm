@@ -15,6 +15,33 @@ import storage from '../../../Storage/globalEmployers'
 let initedCountrySelect = false
 
 
+function checkIfEmployerNameIsEmpty () {
+	return this.comInfName.value === ''
+}
+
+
+function printFeedbackName(){
+
+	this.feedback.list.views.forEach(view=> {
+			if(view.data.data.type_arrow === '0') {
+				console.log(this)
+				setAttr(view.to, {
+					//Если пустое имя работодателя, тогда в отзывах выводим название организации
+					innerText: !checkIfEmployerNameIsEmpty.call(this) ? this.comInfName.value : this.comManufacturyArea.value
+				})
+			} else {
+				setAttr(view.from, {
+					//Если пустое имя работодателя, тогда в отзывах выводим название организации
+					innerText: !checkIfEmployerNameIsEmpty.call(this) ? this.comInfName.value : this.comManufacturyArea.value
+				})
+			}
+
+		})
+}
+
+
+
+
 export default class WorkModal {
 	constructor() {
 		this.data = {}
@@ -214,6 +241,9 @@ export default class WorkModal {
 			save(this.comManufacturyArea.value, 'enterprise')
 
 			storage.setPartialState(this.data.id_employer, 'id_employer', 'enterprise', this.comManufacturyArea.value)
+
+			printFeedbackName.call(this)
+
 		})
 
 		this.comCountrySelect.addEventListener('change', (e) => {
@@ -232,24 +262,14 @@ export default class WorkModal {
 
 			storage.setPartialState(this.data.id_employer, 'id_employer', 'address', this.comMapArea.value)
 		})
+		
 
 		this.comInfName.addEventListener('change', (e) => {
 			save(encodeURIComponent(this.comInfName.value), 'name')
 
 			storage.setPartialState(this.data.id_employer, 'id_employer', 'name', this.comInfName.value)
 
-			this.feedback.list.views.forEach(view=> {
-				if(view.data.data.type_arrow === '0') {
-					setAttr(view.to, {
-						innerText: this.comInfName.value
-					})
-				} else {
-					setAttr(view.from, {
-						innerText: this.comInfName.value
-					})
-				}
-				
-			})
+			printFeedbackName.call(this)
 		})
 
 		this.comInfOtherNames.addEventListener('change', (e) => {

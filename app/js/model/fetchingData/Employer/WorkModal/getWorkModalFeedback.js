@@ -85,7 +85,7 @@ const getWorkModalFeedback = async ({
 				]
 			} else {
 
-				if(loading) {
+				if(loading || deleating || adding) {
 						globalFeedback = [
 						...otherPart.feedback 
 					]
@@ -98,28 +98,23 @@ const getWorkModalFeedback = async ({
 					]
 				}
 
-				if(deleating) {
-						globalFeedback = [
-						...otherPart.feedback 
-					]
-				}
+				// if(deleating) {
+				// 		globalFeedback = [
+				// 		...otherPart.feedback 
+				// 	]
+				// }
 
-				if(adding) {
-						globalFeedback = [
-						...otherPart.feedback 
-					]
-				}
+				// if(adding) {
+				// 		globalFeedback = [
+				// 		...otherPart.feedback 
+				// 	]
+				// }
 			}
 
 
-			// const feedbackData = {
-			// 	id: id, 
-			// 	data: otherPart.feedback 
-			// }
-
 			const feedbackData = {
 				id: id, 
-				// badFeedback: JSON.parse(sessionStorage.getItem('employerNegFeedback')),
+				badFeedback: data.data.total !== undefined ? data.data.total.total_bad_feedback : 0,
 				data: globalFeedback, 
 				total: data.data.total !== undefined ? data.data.total.feedback : otherPart.feedback.length, 
 				loading, 
@@ -144,9 +139,8 @@ const getWorkModalFeedback = async ({
 			console.error(e)
 		}
 }	
-console.log('feedback')
+
 if(feedbackVacancy) {
-		console.log('feedback')
 			if(loading) {
 			loader2.update(true)
 			feedbackVac.setHiddenClass().setEmptyLayer()
@@ -174,7 +168,7 @@ if(feedbackVacancy) {
 				]
 			} else {
 
-				if(loading) {
+				if(loading || deleating || adding) {
 						globalFeedback = [
 						...otherPart.feedback 
 					]
@@ -187,24 +181,24 @@ if(feedbackVacancy) {
 					]
 				}
 
-				if(deleating) {
-						globalFeedback = [
-						...otherPart.feedback 
-					]
-				}
+				// if(deleating) {
+				// 		globalFeedback = [
+				// 		...otherPart.feedback 
+				// 	]
+				// }
 
-				if(adding) {
-						globalFeedback = [
-						...otherPart.feedback 
-					]
-				}
+				// if(adding) {
+				// 		globalFeedback = [
+				// 		...otherPart.feedback 
+				// 	]
+				// }
 			}
 
 
 
 			const feedbackData = {
 				id: id, 
-				// badFeedback: JSON.parse(sessionStorage.getItem('employerNegFeedback')),
+				badFeedback: data.data.total !== undefined ? data.data.total.total_bad_feedback : 0,
 				data: globalFeedback, 
 				total: data.data.total !== undefined ? data.data.total.feedback : otherPart.feedback.length, 
 				loading, 
