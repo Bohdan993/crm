@@ -12,10 +12,6 @@ const part2 = list("fieldset", CountryPopup,  'id', 'employer')
 
 
 
-// const popup = list("form", CountryPopup, 'id', 'employer')
-
-// console.log(popup)
-
 if(countryPopup) {
 	mount(countryPopup, part1)
 	mount(countryPopup, part2)
@@ -57,9 +53,6 @@ if(countryPopup) {
 						}
 					})
 				}
-
-				
-				// console.log(countries)
 
 
 				const end = countries.length

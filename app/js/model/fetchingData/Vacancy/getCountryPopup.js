@@ -2,14 +2,17 @@ import fetch from '../fetchingDataClass'
 import CountryPopup from '../../Components/CountryPopup'
 import {list, mount} from '../../../../libs/libs'
 
-const countryPopup = document.querySelector('#country-popup-vacancy')
+const countryPopup = document.querySelector('#country-popup-vacancy .flex-form')
 
-const popup = list("form", CountryPopup, 'id', 'vacancy')
+// const popup = list("form", CountryPopup, 'id', 'vacancy')
 
-// console.log(popup)
+const part1 = list("fieldset", CountryPopup,  'id', 'vacancy')
+const part2 = list("fieldset", CountryPopup,  'id', 'vacancy')
+
 
 if(countryPopup) {
-	mount(countryPopup, popup)
+	mount(countryPopup, part1)
+	mount(countryPopup, part2)
 }
 
 
@@ -49,11 +52,21 @@ if(countryPopup) {
 					})
 				}
 
+
+				const end = countries.length
+				const middle = Math.ceil(end/2)
+
+				const cont1 = countries.slice(0, middle)
+				const cont2 = countries.slice(middle, end)
+
 				
 
 				localStorage.setItem('countriesVacancy', JSON.stringify(countries))
 	
-				popup.update(countries);
+				part1.update(cont1)
+				part2.update(cont2)
+
+				
 		} catch (e) {
 			console.error(e)
 		}

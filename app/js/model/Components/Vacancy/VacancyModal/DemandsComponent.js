@@ -116,18 +116,18 @@ export default class DemandComponent {
 
 	update(data, context){
 		// console.log(context)
-
+		console.log(data)
 
 		setAttr(this.clientsNumber , {
-			value: data.clients
+			value: data.clients === '0' ? '' : data.clients
 		})
 
 		setAttr(this.men , {
-			value: data.men
+			value: data.men === '0' ? '' : data.men
 		})
 
 		setAttr(this.women , {
-			value: data.women
+			value: data.women === '0' ? '' : data.women
 		})
 
 		setAttr(this.languageLevel , {

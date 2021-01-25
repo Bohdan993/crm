@@ -166,8 +166,8 @@ export default class WorkModalManufacturyType {
         this.data.index = index
     }
 
-    getItemsFromLocalStorage() {
-        let products = JSON.parse(localStorage.getItem('type_manufactury'))
+    getItemsFromLocalStorage() { 
+        let products = JSON.parse(localStorage.getItem('type_manufactury')) || []
 
         return {
             products

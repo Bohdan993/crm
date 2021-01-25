@@ -15,14 +15,18 @@ const config = {
 
 
 
-const addMedia = async (id, data, count, total = 1) => {
-			console.log(count)
+const addMedia = async ({
+	id, 
+	data, 
+	w = 1000
+}) => {
+			// console.log(count)
 			try {
 				const medias = await fetch.postResourse(`/employers/upload_media/?id=${id}`, data, config)
 
 				if(medias.success === true) {
 					toastr.success(`ID работодателя ${id}`, 'Успешно загружена картинка', {closeButton: false})
-					getWorkModalMedia({id, adding: true, p: 1, t: count})
+					getWorkModalMedia({id, adding: true, w})
 				} else {
 					throw new Error('Не возможно загрузить картинку')
 				}

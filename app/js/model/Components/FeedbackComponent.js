@@ -623,9 +623,9 @@ export default class Feedback {
 		this.controls = el('div.modal-row__controls',
 			el('p', 'Отзывы',
 				this.feedbackCount = el('span', ' 0'),
-				el('span', ' ('),
+				this.openBraket = place(el('span', ' (')),
 				this.feedbackCountNeg = el('span.negative', 'негативных - 0'),
-				el('span', ')')
+				this.closeBraket = place(el('span', ')'))
 			),
 			this.addItem = el('div.add-item', el('span', '+'), 'добавить отзыв')
 		)
@@ -739,11 +739,19 @@ export default class Feedback {
 		}
 
 		setAttr(this.feedbackCount, {
-			innerText: " " + data.total
+			innerText: data.total !== 0 ? " " + data.total : ''
 		})
 
+
+		data.badFeedback !== 0 ? (
+			this.openBraket.update(true), this.closeBraket.update(true)
+			) : (
+			this.openBraket.update(false), this.closeBraket.update(false)
+			)
+
+
 		setAttr(this.feedbackCountNeg, {
-			innerText: `негативных - ${data.badFeedback || 0}`
+			innerText: data.badFeedback !== 0 ? `негативных - ${data.badFeedback || 0}`: ''
 		})
 
 

@@ -48,7 +48,7 @@ class WorkModalMediaRow {
 		)
 
 		this.delete.addEventListener('click', (e) => {
-			deleteMedia(this.data.id, this.employerID, this.count)
+			deleteMedia({idimg: this.data.id, idemp: this.employerID, w: 1000})
 		})
 	}
 
@@ -122,7 +122,7 @@ export default class WorkModalMedia {
 					}
 					data.append('file', files[i])
 				}
-				addMedia(this.data.id, data, ((this.pageShow - 1) * 6), this.data.total)
+				addMedia({id: this.data.id, data, w: 1000})
 			} catch (e) {
 				toastr.error(`${e.message}`, 'Ошибка!', {
 					timeOut: 0,
@@ -141,6 +141,7 @@ export default class WorkModalMedia {
 	update(data, index, items, context) {
 		console.log(data.data)
 		console.log(data.total)
+		console.log(data)
 		let {
 			loading,
 			deleating,
@@ -169,7 +170,7 @@ export default class WorkModalMedia {
 		})
 
 		//Пагинация
-		if (data.data.length < data.total) {
+		// if (data.data.length < data.total) {
 			this.showMore.update(true, 'показать еще')
 			this.showLess.update(false)
 
@@ -178,33 +179,31 @@ export default class WorkModalMedia {
 					getWorkModalMedia({
 						id: this.data.id,
 						showing: true,
-						p: this.pageShow
+						w: 0
 					})
-					// console.log(this.pageShow)
 				})
 
 				this.flag = true
 			}
 
-			// console.log(this.pageShow)
 
-		} else {
-			this.showMore.update(false)
-			if(data.data.length > 6) {
-				this.showLess.update(true, 'скрыть')
-			}
+		// } else {
+		// 	this.showMore.update(false)
+		// 	if(data.data.length > 6) {
+		// 		this.showLess.update(true, 'скрыть')
+		// 	}
 			
-			this.showLess.el.addEventListener('click', () => {
-					getWorkModalMedia({
-						id: this.data.id,
-						showingLess: true,
-						p: 1
-					})
-					// console.log(this.pageShow)
-				}, {once: true})
+		// 	this.showLess.el.addEventListener('click', () => {
+		// 			getWorkModalMedia({
+		// 				id: this.data.id,
+		// 				showingLess: true,
+		// 				w: 1000
+		// 			})
+		// 			// console.log(this.pageShow)
+		// 		}, {once: true})
 
-			this.flag = false
-		}
+		// 	this.flag = false
+		// }
 
 		//Вызов функций которые зависят от инстанса класса
 		checkIfWrapperIsEmpty(this.modalRowWrapper)

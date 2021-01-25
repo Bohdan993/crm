@@ -30,8 +30,7 @@ if(media) {
 const getWorkModalMedia = async ({
 	id = '1', 
 	loading, 
-	p = 1, 
-	t = 6, 
+	w = 1000,
 	deleating, 
 	adding,
 	showing,
@@ -48,8 +47,9 @@ const getWorkModalMedia = async ({
 
 	try {
 
+
 			// const delay = await sleep(15000)
-			const data = await fetch.getResourse(`/employers/get/?id=${id}&section=2&other=4&p=${p}&t=${t}`) //&p=1&t=6
+			const data = await fetch.getResourse(`/employers/get/?id=${id}&section=2&other=4&width_image=${w}`) //&p=1&t=6
 			const otherPart = data.data.other
 			// console.log(otherPart.media)
 
@@ -59,13 +59,7 @@ const getWorkModalMedia = async ({
 				]
 			}else {
 
-				if(loading) {
-						globalMedia = [
-						...otherPart.media
-					]
-				}
-
-				if(showingLess) {
+				if(loading || showingLess || deleating || adding) {
 						globalMedia = [
 						...otherPart.media
 					]
@@ -77,21 +71,13 @@ const getWorkModalMedia = async ({
 						...otherPart.media
 					]
 				}
-			
-				if(deleating) {
-						globalMedia = [
-						...otherPart.media
-					]
-				}
-
-				
-				if(adding) {
-						globalMedia = [
-						...otherPart.media
-					]
-				}
 
 			}
+
+			console.log(data.data.total !== undefined ? data.data.total.media : otherPart.media.length)
+			// console.log(data.data.total)
+			// console.log(data.data.total.media)
+			// console.log(otherPart.media.length)
 
 
 			const media = {
@@ -105,13 +91,8 @@ const getWorkModalMedia = async ({
 				showing
 			}
 
-			// console.log(media)
 
-
-
-			// if(state.id !== id) {
-				workModalMedia.update(media)
-			// }
+			workModalMedia.update(media)
 
 			if(loading) {
 				loader.update(false)

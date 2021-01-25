@@ -40,10 +40,11 @@ export default class RowVacancy {
 	constructor() {
 		this.data = {}
 		this.active = false
+		this.productNamesArr = []
 		// this.updated = false
 		this.el = el("div.row.no-open",
 			el('div.f-container',
-				el('div.row__terms.row__cell hot'),
+				this.terms = el('div.row__terms.row__cell hot'),
 				el('div.row__labels-2.row__cell',
 					this.labelsLayer = el('div.row__labels-2-layer.no-open',
 						el('i.label.attention__label.no-open',
@@ -62,7 +63,7 @@ export default class RowVacancy {
 				el('div.row__vacancies.row__cell',
 					this.typeVacancy = el('i.label.green__label',
 						this.typeVacancyName = el('span')),
-					el('p', 'Поля')),
+					this.jobsText = el('p', 'Поля')),
 				el('div.row__notes.row__cell',
 					this.term = el('p')),
 			),
@@ -89,7 +90,7 @@ export default class RowVacancy {
 				getVacancyClients(this.data.id_vacancy)
 					.then(res => {
 						if (res) {
-							console.log(res)
+							// console.log(res)
 							storage.setState(this.data.id_vacancy, {
 								id: this.data.id_vacancy,
 								data: res
@@ -147,20 +148,22 @@ export default class RowVacancy {
 		})
 
 		document.addEventListener('storageupdate', (e) => {
-
+			// console.log('storageUpdated')
 			if (e.detail.id === this.data.id_vacancy) {
-				if (e.detail.clazz === 'vacancy-modal') {
+				console.log(e.detail)
+				// if (e.detail.clazz === 'vacancy-modal') {
+					// console.log('storageUpdated')
 					// console.log('Vacancy-modal:', storage)
-					console.log(this.vacancyClientsTable)
+					// console.log(this.vacancyClientsTable)
 					let data = storage.getState(this.data.id_vacancy)
 					this.vacancyClientsTable.update(true, data)
 
-					setAttr(this.vacancyClientsTable.el, {
-						style: {
-							height: 'auto'
-						}
-					})
-				}
+					// setAttr(this.vacancyClientsTable.el, {
+					// 	style: {
+					// 		height: 'auto'
+					// 	}
+					// })
+				// }
 
 			}
 
@@ -172,27 +175,37 @@ export default class RowVacancy {
 				let data = storage.getState(this.data.id_vacancy)
 				this.vacancyClientsTable.update(true, data)
 
-				setAttr(this.vacancyClientsTable.el, {
-					style: {
-						height: 'auto'
-					}
-				})
+				// setAttr(this.vacancyClientsTable.el, {
+				// 	style: {
+				// 		height: 'auto'
+				// 	}
+				// })
 			}
 		})
 	}
 
 	update(data, index, items, context) {
 
+
+		console.log(data)
 		this.indicatorsArr = data.status.map((el, i) => {
 			return {
 				number: el,
-				class: context[i]
+				class: context.classes[i]
 			}
 		})
 
-		data.archive !== '0' ? (this.archive.update(true), setAttr(this.archiveText, {
-			innerText: 'Архив - ' + data.arhive_date
-		})) : this.indicators.update(true, this.indicatorsArr)
+		data.archive !== '0' ? (
+			this.archive.update(true), 
+			this.indicators.update(false),
+			setAttr(this.archiveText, {
+				innerText: 'Архив - ' + data.archive_date
+			})
+		) : 
+		(
+			this.indicators.update(true, this.indicatorsArr),
+			this.archive.update(false)
+		)
 
 		// let custom = 'data-custom' + items[items.length - 1]['id_vacancy'] + '-open'
 
@@ -229,8 +242,11 @@ export default class RowVacancy {
 		})
 
 		setAttr(this.numberPeople, {
-			innerText: `М${data.total_man} Ж${data.total_woman}`
+			innerText: `${data.total_man !== "0" ? 'М'+data.total_man : ''} ${data.total_woman !== "0" ? 'Ж'+data.total_woman : ''}`
 		})
+
+
+		// `${data.total_man ? 'М'+data.total_man}` 
 
 		setAttr(this.vacancyName, {
 			innerText: data.name + ' - '
@@ -246,6 +262,20 @@ export default class RowVacancy {
 
 		setAttr(this.typeVacancyName, {
 			innerText: data.type_vacancy === '1' ? 'Сезонная' : data.type_vacancy === '2' ? 'Практика' : 'Рабочая'
+		})
+
+		const prod = data.type_production.split(',')
+
+		context.productsData.forEach(el => {
+			prod.forEach((elem, ind) => {
+				if(el.id === elem) {
+					this.productNamesArr[ind] = el.name
+				}
+			})
+		})
+
+		setAttr(this.jobsText, {
+			innerText: this.productNamesArr.join(', ')
 		})
 
 		// this.indicators.update(this.indicatorsArr)

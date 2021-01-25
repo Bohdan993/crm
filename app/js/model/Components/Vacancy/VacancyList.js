@@ -3,6 +3,10 @@ import RowVacancy from './VacancyRow'
 import initWorkPopup from '../../initWorkPopup'
 
 
+function byField(field) {
+  return (a, b) => +a[field] > +b[field] ? 1 : -1;
+}
+
 
 export default class VacancyList {
     constructor() {
@@ -24,12 +28,13 @@ export default class VacancyList {
 
     }
     update(data) {
-        // this.count = data.length ? data[data.length - 1]['id_vacancy'] : ''
 
+        data.sort(byField('id_vacancy')).sort(byField('archive'))
 
-        this.list.update(data, this.indicatorsClasses)
-        // console.log(this.count)
-        // console.log(data[data.length - 1])
+        this.list.update(data, {
+            classes: this.indicatorsClasses,
+            productsData: this.getItemsFromLocalStorage().products
+        })
         //Инициализация функций которые зависят от инстанса класса
          if(!this.flag) {
             initWorkPopup()
@@ -40,5 +45,14 @@ export default class VacancyList {
 
     onmount() {
   
+    }
+
+
+    getItemsFromLocalStorage() {
+        let products = JSON.parse(localStorage.getItem('type_manufacturyVacancy')) || []
+
+        return {
+            products
+        }
     }
 }

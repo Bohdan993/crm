@@ -29,18 +29,19 @@ const showFullRow = (row, event) => {
 		      container.style.height = '0px'
 
 		      setTimeout(function () {
-		        container.style.height = height
+		        container.style.height = 'auto'
 		      }, 0)
 		      
 		    } else {
 		      	// console.log(container)
 		      container.style.height = '0px'
-
-		      linkToggle.addEventListener('transitionend', function () {
-		        container.classList.remove('active')
-		      }, {
-		        once: true
-		      });
+		      container.classList.remove('active')
+		      
+		      // linkToggle.addEventListener('transitionend', function () {
+		      //   container.classList.remove('active')
+		      // }, {
+		      //   once: true
+		      // });
 		      
 		    }
 }

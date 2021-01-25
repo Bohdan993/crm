@@ -1,5 +1,6 @@
 import {el, setAttr, place} from '../../../../../libs/libs'
-import {save} from '../../../helper'
+import {save, dateInputChange} from '../../../helper'
+
 export default class TermsComponent {
 	constructor(){
 
@@ -65,6 +66,7 @@ export default class TermsComponent {
 
 
 		this.startWork.addEventListener('change', (e) => {
+		dateInputChange(this.startWork)
 			this.save({
 				id: this.data.id, 
 				value: this.startWork.value.trim(), 

@@ -31,6 +31,7 @@ export {
 	list,
 	setAttr,
 	svg,
+	text,
 	place,
 	setChildren,
 	toastr

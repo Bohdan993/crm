@@ -41,12 +41,12 @@ const fetchScroll = (elem, type) => {
 						
 
 	      	if(type === 'employer') {
-	      			// await sleep(1000)
+	      			// await sleep(10000)
 	      			// console.log(JSON.parse(sessionStorage.getItem('employersArguments')))
 	      			if(JSON.parse(sessionStorage.getItem('employersArguments'))) {
 	      				mount(elem, loader)
 								loader.update(true)
-								// await sleep(1000)
+								// await sleep(100000)
 				        data = await getEmployersList({t: DATA_LENGTH, p: count, scroll: true}).then((data)=> {flag = false; return data} )
 				        sessionStorage.setItem('page', JSON.stringify(count))
 				      	count++

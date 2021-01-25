@@ -1,6 +1,7 @@
 import fetch from '../fetchingDataClass'
 import {list, mount, toastr} from '../../../../libs/libs'
-
+import {EmptyError} from '../../helper'
+ 
 
 const getVacancyClients = async (id) => {
 
@@ -11,10 +12,15 @@ const getVacancyClients = async (id) => {
 					return clients
 				}
 				else {
-					throw new Error('Не возможно загрузить список клиентов')
+					throw new EmptyError('В данной вакансии ещё нет клиентов')
 				}
 		} catch (e) {
-			toastr.error(e.message, 'Возникла ошибка', {closeButton: true})
+			if(e.name === 'EmptyError') {
+				toastr.warning(e.message, 'Предупреждение', {closeButton: true})
+			} else {
+				toastr.error(e.message, 'Возникла ошибка', {closeButton: true})
+			}
+			
 			return false
 		}
 	

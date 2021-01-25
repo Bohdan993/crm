@@ -17,6 +17,21 @@
 		
 	}
 
+	 input:checked {
+        & + [for="season-chbx"] {
+            background: @hot
+        }
+
+         & + [for="practice-chbx"] {
+            background: @green
+        }
+
+
+        & + [for="work-chbx"] {
+            background: @blue
+        }
+    }
+
 }
 
 #date-terms-popup {
@@ -84,6 +99,17 @@
 	}
 }
 
+#country-popup-vacancy {
+      fieldset {
+                border: none;
+                margin: 0;
+                padding: 0;
+            }
+            fieldset:not(:last-child) {
+            margin-right:   53px;
+        }
+}
+
 .row-popup {
 	form {
 		height: 100%;
@@ -126,8 +152,8 @@
    
 
     &.choosen {
-    	color: @main-color;
-    	background: @secondary;
+    	// color: @main-color;
+    	background: @grass-green;
     }
 
     &.ready {
@@ -135,8 +161,8 @@
     }
 
     &.wait {
-				background: @teal;
-			}
+			background: @teal;
+		}
 
 		&.department {
 			background: @blue;
@@ -149,6 +175,12 @@
 		&.delete {
 			background: @hot;
 		}
+
+		&.taken {
+			color: @main-color;
+			background: @secondary;
+		}
+
 	}
 }
 

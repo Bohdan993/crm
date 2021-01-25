@@ -11,6 +11,8 @@ const switchRowStatuses = function (el, client_id, vacancy_id) {
         text: '',
         date: ''
     })
+
+
     let leftArrow = el.querySelector('.cell-status__control-left')
     let rightArrow = el.querySelector('.cell-status__control-right')
     let slider = el.querySelector('.cell-status__slider')
@@ -20,18 +22,7 @@ const switchRowStatuses = function (el, client_id, vacancy_id) {
     instanseStatuses.forEach(status => {
         status.addEventListener('click', forEachStatus.bind(status, timeArray, instance, client_id, vacancy_id, storage))
     })
-    // slider._tippy.popper.setAttribute('data-client', client_id)
 
-    // slider.addEventListener('click', function() {
-    //     let instance = this._tippy
-    //      // console.log(el, client_id, vacancy_id)
-    //     let instanseStatuses = instance.popper.querySelectorAll('.status')
-    //     // console.log(this)
-    //     instanseStatuses.forEach(status => {
-    //         status.addEventListener('click', forEachStatus.bind(status, timeArray, instance, client_id, vacancy_id, storage))
-    //     })
-    // }, {once: true})
-    // // console.log(slider)
     leftArrow.addEventListener('click', function () {
         // console.log(storage, client_id)
         let parent = this.parentNode.parentNode
@@ -42,6 +33,12 @@ const switchRowStatuses = function (el, client_id, vacancy_id) {
         let row = parent.parentNode.parentNode
         let table = row.parentNode
         let tableParent = table.parentNode.parentNode
+
+
+        let sliderClazz = instance.reference.classList[2]
+
+
+        console.log(instance)
         // console.log(row)
         // console.log(table)
 
@@ -52,27 +49,31 @@ const switchRowStatuses = function (el, client_id, vacancy_id) {
                 elem.classList.remove('active')
                 ind = ind === 0 ? 0 : ind - 1
                 arr[ind].classList.add('active')
+
                 timeArray[ind] = {
                     text: arr[ind].textContent,
                     date: new Date().toLocaleDateString()
                 }
                 // console.log(arr[ind])
-                setNewContent(instance, timeArray)
+                // setNewContent(instance, timeArray, ind)
 
 
                 let oldChild = table.removeChild(row)
 
                 if (arr[ind].textContent === 'Подготовка CV') {
+
+                    console.log(instance.popper.querySelector('.status.choosen'))
+
+
                     changeClientStatus({
                         id: client_id,
                         status: '1'
                     }).then(res => {
                         // console.log(res)
-                        storage.setPartialState(vacancy_id, res, 'data')
-                        // storage.deletePartialState(vacancy_id, 'data', client_id)
+                        storage.setAndUpdatePartialState(vacancy_id, '1', 'data', client_id)
                         storageVacancyClientsUpdate.detail.id = String(vacancy_id)
+                        storageVacancyClientsUpdate.detail.clazz = sliderClazz
                         document.dispatchEvent(storageVacancyClientsUpdate)
-                        // console.log(storage)
                     })
                     // storage.setPartialState()
                     //Получаем все елементы после которого будем вставлять строку
@@ -94,6 +95,12 @@ const switchRowStatuses = function (el, client_id, vacancy_id) {
                     changeClientStatus({
                         id: client_id,
                         status: '2'
+                    }).then(res => {
+                        // console.log(res)
+                        storage.setAndUpdatePartialState(vacancy_id, '2', 'data', client_id)
+                        storageVacancyClientsUpdate.detail.id = String(vacancy_id)
+                        storageVacancyClientsUpdate.detail.clazz = sliderClazz
+                        document.dispatchEvent(storageVacancyClientsUpdate)
                     })
                     // Присваиваем класс родительскому элементу стрелки переключения
                     this.parentNode.classList.remove('ready')
@@ -126,7 +133,15 @@ const switchRowStatuses = function (el, client_id, vacancy_id) {
                     changeClientStatus({
                         id: client_id,
                         status: '3'
+                    }).then(res => {
+                        // console.log(res)
+                        storage.setAndUpdatePartialState(vacancy_id, '3', 'data', client_id)
+                        storageVacancyClientsUpdate.detail.id = String(vacancy_id)
+                        storageVacancyClientsUpdate.detail.clazz = sliderClazz
+                        document.dispatchEvent(storageVacancyClientsUpdate)
                     })
+
+
                     let nodes = tableParent.querySelector('.table-full__ready').querySelectorAll('[data-count="1"]')
                     let node = nodes[nodes.length - 1]
 
@@ -142,10 +157,19 @@ const switchRowStatuses = function (el, client_id, vacancy_id) {
                     }
 
                 } else if (arr[ind].textContent === 'Контракт подписан') {
+
                     changeClientStatus({
                         id: client_id,
                         status: '4'
+                    }).then(res => {
+                        // console.log(res)
+                        storage.setAndUpdatePartialState(vacancy_id, '4', 'data', client_id)
+                        storageVacancyClientsUpdate.detail.id = String(vacancy_id)
+                        storageVacancyClientsUpdate.detail.clazz = sliderClazz
+                        document.dispatchEvent(storageVacancyClientsUpdate)
                     })
+
+
                     this.parentNode.classList.remove('wait')
                     this.parentNode.classList.add('ready')
 
@@ -172,10 +196,20 @@ const switchRowStatuses = function (el, client_id, vacancy_id) {
                     }
 
                 } else if (arr[ind].textContent === 'Подан в визовый центр') {
+
+
                     changeClientStatus({
                         id: client_id,
                         status: '5'
+                    }).then(res => {
+                        // console.log(res)
+                        storage.setAndUpdatePartialState(vacancy_id, '5', 'data', client_id)
+                        storageVacancyClientsUpdate.detail.id = String(vacancy_id)
+                        storageVacancyClientsUpdate.detail.clazz = sliderClazz
+                        document.dispatchEvent(storageVacancyClientsUpdate)
                     })
+
+
                     this.parentNode.classList.remove('department')
                     this.parentNode.classList.add('wait')
 
@@ -198,10 +232,18 @@ const switchRowStatuses = function (el, client_id, vacancy_id) {
                     }
 
                 } else if (arr[ind].textContent === 'Забрал разрешение') {
+
                     changeClientStatus({
                         id: client_id,
                         status: '7'
+                    }).then(res => {
+                        // console.log(res)
+                        storage.setAndUpdatePartialState(vacancy_id, '7', 'data', client_id)
+                        storageVacancyClientsUpdate.detail.id = String(vacancy_id)
+                        storageVacancyClientsUpdate.detail.clazz = sliderClazz
+                        document.dispatchEvent(storageVacancyClientsUpdate)
                     })
+
                     //Получаем все елементы после которого будем вставлять строку
                     let nodes = tableParent.querySelector('.table-full__department').querySelectorAll('[data-count="2"]')
                     let node = nodes[nodes.length - 1]
@@ -225,10 +267,18 @@ const switchRowStatuses = function (el, client_id, vacancy_id) {
                     }
 
                 } else if (arr[ind].textContent === 'Билеты куплены') {
+
                     changeClientStatus({
                         id: client_id,
                         status: '8'
+                    }).then(res => {
+                        // console.log(res)
+                        storage.setAndUpdatePartialState(vacancy_id, '8', 'data', client_id)
+                        storageVacancyClientsUpdate.detail.id = String(vacancy_id)
+                        storageVacancyClientsUpdate.detail.clazz = sliderClazz
+                        document.dispatchEvent(storageVacancyClientsUpdate)
                     })
+
                     this.parentNode.classList.remove('busy')
                     this.parentNode.classList.add('department')
                     //Получаем все елементы после которого будем вставлять строку
@@ -282,6 +332,8 @@ const switchRowStatuses = function (el, client_id, vacancy_id) {
         // console.log(row)
         // console.log(table)
 
+        let sliderClazz = instance.reference.classList[2]
+
         slider.forEach((elem, ind, arr) => {
 
             if (elem.classList.contains('active') && !flag) {
@@ -295,7 +347,7 @@ const switchRowStatuses = function (el, client_id, vacancy_id) {
                     date: new Date().toLocaleDateString()
                 }
                 // console.log(arr[ind])
-                setNewContent(instance, timeArray)
+                // setNewContent(instance, timeArray, ind)
                 //Получаем строку, позицию которой будем менять
                 let oldChild = table.removeChild(row)
 
@@ -304,6 +356,12 @@ const switchRowStatuses = function (el, client_id, vacancy_id) {
                     changeClientStatus({
                         id: client_id,
                         status: '2'
+                    }).then(res => {
+                        // console.log(res)
+                        storage.setAndUpdatePartialState(vacancy_id, '2', 'data', client_id)
+                        storageVacancyClientsUpdate.detail.id = String(vacancy_id)
+                        storageVacancyClientsUpdate.detail.clazz = sliderClazz
+                        document.dispatchEvent(storageVacancyClientsUpdate)
                     })
                     // Присваиваем класс родительскому элементу стрелки переключения
                     this.parentNode.classList.add('choosen')
@@ -327,6 +385,12 @@ const switchRowStatuses = function (el, client_id, vacancy_id) {
                     changeClientStatus({
                         id: client_id,
                         status: '3'
+                    }).then(res => {
+                        // console.log(res)
+                        storage.setAndUpdatePartialState(vacancy_id, '3', 'data', client_id)
+                        storageVacancyClientsUpdate.detail.id = String(vacancy_id)
+                        storageVacancyClientsUpdate.detail.clazz = sliderClazz
+                        document.dispatchEvent(storageVacancyClientsUpdate)
                     })
                     // Присваиваем класс родительскому элементу стрелки переключения
                     this.parentNode.classList.remove('choosen')
@@ -351,6 +415,12 @@ const switchRowStatuses = function (el, client_id, vacancy_id) {
                     changeClientStatus({
                         id: client_id,
                         status: '4'
+                    }).then(res => {
+                        // console.log(res)
+                        storage.setAndUpdatePartialState(vacancy_id, '4', 'data', client_id)
+                        storageVacancyClientsUpdate.detail.id = String(vacancy_id)
+                        storageVacancyClientsUpdate.detail.clazz = sliderClazz
+                        document.dispatchEvent(storageVacancyClientsUpdate)
                     })
                     //Получаем все елементы после которого будем вставлять строку
                     let nodes = tableParent.querySelector('.table-full__ready').querySelectorAll('[data-count="2"]')
@@ -377,6 +447,12 @@ const switchRowStatuses = function (el, client_id, vacancy_id) {
                     changeClientStatus({
                         id: client_id,
                         status: '5'
+                    }).then(res => {
+                        // console.log(res)
+                        storage.setAndUpdatePartialState(vacancy_id, '5', 'data', client_id)
+                        storageVacancyClientsUpdate.detail.id = String(vacancy_id)
+                        storageVacancyClientsUpdate.detail.clazz = sliderClazz
+                        document.dispatchEvent(storageVacancyClientsUpdate)
                     })
                     this.parentNode.classList.remove('ready')
                     this.parentNode.classList.add('wait')
@@ -387,6 +463,12 @@ const switchRowStatuses = function (el, client_id, vacancy_id) {
                     changeClientStatus({
                         id: client_id,
                         status: '6'
+                    }).then(res => {
+                        // console.log(res)
+                        storage.setAndUpdatePartialState(vacancy_id, '6', 'data', client_id)
+                        storageVacancyClientsUpdate.detail.id = String(vacancy_id)
+                        storageVacancyClientsUpdate.detail.clazz = sliderClazz
+                        document.dispatchEvent(storageVacancyClientsUpdate)
                     })
                     // Присваиваем класс родительскому элементу стрелки переключения
                     this.parentNode.classList.remove('wait')
@@ -410,6 +492,12 @@ const switchRowStatuses = function (el, client_id, vacancy_id) {
                     changeClientStatus({
                         id: client_id,
                         status: '7'
+                    }).then(res => {
+                        // console.log(res)
+                        storage.setAndUpdatePartialState(vacancy_id, '7', 'data', client_id)
+                        storageVacancyClientsUpdate.detail.id = String(vacancy_id)
+                        storageVacancyClientsUpdate.detail.clazz = sliderClazz
+                        document.dispatchEvent(storageVacancyClientsUpdate)
                     })
                     //Получаем все елементы после которого будем вставлять строку
                     let nodes = tableParent.querySelector('.table-full__department').querySelectorAll('[data-count="2"]')
@@ -436,6 +524,12 @@ const switchRowStatuses = function (el, client_id, vacancy_id) {
                     changeClientStatus({
                         id: client_id,
                         status: '8'
+                    }).then(res => {
+                        // console.log(res)
+                        storage.setAndUpdatePartialState(vacancy_id, '8', 'data', client_id)
+                        storageVacancyClientsUpdate.detail.id = String(vacancy_id)
+                        storageVacancyClientsUpdate.detail.clazz = sliderClazz
+                        document.dispatchEvent(storageVacancyClientsUpdate)
                     })
                     //Получаем все елементы после которого будем вставлять строку
                     let nodes = tableParent.querySelector('.table-full__department').querySelectorAll('[data-count="3"]')
@@ -470,6 +564,12 @@ const switchRowStatuses = function (el, client_id, vacancy_id) {
                     changeClientStatus({
                         id: client_id,
                         status: '9'
+                    }).then(res => {
+                        // console.log(res)
+                        storage.setAndUpdatePartialState(vacancy_id, '9', 'data', client_id)
+                        storageVacancyClientsUpdate.detail.id = String(vacancy_id)
+                        storageVacancyClientsUpdate.detail.clazz = sliderClazz
+                        document.dispatchEvent(storageVacancyClientsUpdate)
                     })
                     this.parentNode.classList.remove('department')
                     this.parentNode.classList.add('busy')
@@ -491,24 +591,27 @@ const switchRowStatuses = function (el, client_id, vacancy_id) {
 
 
 function forEachStatus(timeArray, tippy, client_id, vacancy_id, storage) {
-    // console.log(this, client_id)
 
-    // let cl_id = tippy.popper.getAttribute('data-client')
+
+    console.log(timeArray)
+    console.log(tippy)
+
+
     let sliderClazz = tippy.reference.classList[2]
-    // console.log(tippy)
+ 
 
-    // console.log(sliderClazz)
-    // let tippy = this.closest('.tippy-box').parentNode._tippy
     let row = tippy.reference.closest('.table-full__row')
     let parentRow = row.parentNode
+    let mainParentRow = parentRow.parentNode
     let parentTable = parentRow.parentNode.parentNode
 
-    // console.log(parentTable)
+    console.log(parentTable)
 
     let statuses = row.querySelectorAll('.status')
     let controls = row.querySelector('.cell-status__controls')
     let delStatus = row.querySelector('.del-status')
 
+    tippy.unmount()
 
     if (!this.classList.contains('del-status')) {
 
@@ -537,6 +640,9 @@ function forEachStatus(timeArray, tippy, client_id, vacancy_id, storage) {
         let oldChild = parentRow.removeChild(row)
 
         if (this.textContent === 'Подготовка CV') {
+            // Делаем раздел с клиентами видимым
+            // parentTable.querySelector('.table-full__choosen').classList.remove('hidden')
+
             changeClientStatus({
                 id: client_id,
                 status: '1'
@@ -565,6 +671,9 @@ function forEachStatus(timeArray, tippy, client_id, vacancy_id, storage) {
             }
 
         } else if (this.textContent === 'CV отправлено') {
+            // Делаем раздел с клиентами видимым
+            // parentTable.querySelector('.table-full__choosen').classList.remove('hidden')
+
             changeClientStatus({
                 id: client_id,
                 status: '2'
@@ -594,6 +703,10 @@ function forEachStatus(timeArray, tippy, client_id, vacancy_id, storage) {
                 }
             }
         } else if (this.textContent === 'Утвержден') {
+
+            // Делаем раздел с клиентами видимым
+            // parentTable.querySelector('.table-full__ready').classList.remove('hidden')
+
             changeClientStatus({
                 id: client_id,
                 status: '3'
@@ -622,6 +735,9 @@ function forEachStatus(timeArray, tippy, client_id, vacancy_id, storage) {
             }
 
         } else if (this.textContent === 'Контракт подписан') {
+            // Делаем раздел с клиентами видимым
+            // parentTable.querySelector('.table-full__ready').classList.remove('hidden')
+
             changeClientStatus({
                 id: client_id,
                 status: '4'
@@ -652,6 +768,9 @@ function forEachStatus(timeArray, tippy, client_id, vacancy_id, storage) {
             }
 
         } else if (this.textContent === 'Подан в визовый центр') {
+            // Делаем раздел с клиентами видимым
+            // parentTable.querySelector('.table-full__wait').classList.remove('hidden')
+
             changeClientStatus({
                 id: client_id,
                 status: '5'
@@ -667,6 +786,9 @@ function forEachStatus(timeArray, tippy, client_id, vacancy_id, storage) {
             parentTable.querySelector('.table-full__wait').querySelector('.table-full__layer').append(oldChild)
 
         } else if (this.textContent === 'Получил разрешение') {
+            // Делаем раздел с клиентами видимым
+            // parentTable.querySelector('.table-full__department').classList.remove('hidden')
+
             changeClientStatus({
                 id: client_id,
                 status: '6'
@@ -694,6 +816,10 @@ function forEachStatus(timeArray, tippy, client_id, vacancy_id, storage) {
             }
 
         } else if (this.textContent === 'Забрал разрешение') {
+            // Делаем раздел с клиентами видимым
+            // parentTable.querySelector('.table-full__department').classList.remove('hidden')
+
+
             changeClientStatus({
                 id: client_id,
                 status: '7'
@@ -725,6 +851,11 @@ function forEachStatus(timeArray, tippy, client_id, vacancy_id, storage) {
             }
 
         } else if (this.textContent === 'Билеты куплены') {
+
+            // Делаем раздел с клиентами видимым
+            // parentTable.querySelector('.table-full__department').classList.remove('hidden')
+
+
             changeClientStatus({
                 id: client_id,
                 status: '8'
@@ -762,6 +893,9 @@ function forEachStatus(timeArray, tippy, client_id, vacancy_id, storage) {
             }
 
         } else if (this.textContent === 'Трудоустроен') {
+            // Делаем раздел с клиентами видимым
+            // parentTable.querySelector('.table-full__busy').classList.remove('hidden')
+
             changeClientStatus({
                 id: client_id,
                 status: '9'
@@ -790,71 +924,73 @@ function forEachStatus(timeArray, tippy, client_id, vacancy_id, storage) {
             }
         })
     }
+
+
 }
 
-function setNewContent(instance, timeArray){
-     instance.setContent(`<div class="row-popup" id="status-change-popup">
-                  <form>
-                    <div class="input-group">
-                      <p class="status choosen"><span>Подготовка CV</span></p>
-                      <time>
-                      ${timeArray[ind].text === 'Подготовка CV' ? timeArray[ind].date : timeArray[0].date}
-                      </time>
-                    </div>
-                    <div class="input-group">
-                      <p class="status choosen"><span>CV отправлено</span></p>
-                      <time>
-                      ${timeArray[ind].text === 'CV отправлено' ? timeArray[ind].date : timeArray[1].date}
-                      </time>
-                    </div>
-                    <div class="input-group">
-                      <p class="status ready"><span>Утвержден</span></p>
-                      <time>
-                      ${timeArray[ind].text === 'Утвержден' ? timeArray[ind].date : timeArray[2].date}
-                      </time>
-                    </div>
-                    <div class="input-group">
-                      <p class="status ready"><span>Контракт подписан</span></p>
-                      <time>
-                      ${timeArray[ind].text === 'Контракт подписан' ? timeArray[ind].date : timeArray[3].date}
-                      </time>
-                    </div>
-                    <div class="input-group">
-                     <p class="status wait"><span>Подан в визовый центр</span></p>
-                     <time>
-                     ${timeArray[ind].text === 'Подан в визовый центр' ? timeArray[ind].date : timeArray[4].date}
-                     </time>
-                    </div>
-                    <div class="input-group">
-                      <p class="status department"><span>Получил разрешение</span></p>
-                      <time>
-                      ${timeArray[ind].text === 'Получил разрешение' ? timeArray[ind].date : timeArray[5].date}
-                      </time>
-                    </div>
-                    <div class="input-group">
-                      <p class="status department"><span>Забрал разрешение</span></p>
-                      <time>
-                      ${timeArray[ind].text === 'Забрал разрешение' ? timeArray[ind].date : timeArray[6].date}
-                      </time>
-                    </div>
-                    <div class="input-group">
-                      <p class="status department"><span>Билеты куплены</span></p>
-                      <time>
-                      ${timeArray[ind].text === 'Билеты куплены' ? timeArray[ind].date : timeArray[7].date}
-                      </time>
-                    </div>
-                    <div class="input-group">
-                      <p class="status busy"><span>Трудоустроен</span></p>
-                      <time>
-                      ${timeArray[ind].text === 'Трудоустроен' ? timeArray[ind].date : timeArray[8].date}
-                      </time>
-                    </div>
-                    <div class="input-group">
-                      <p class="del-status status delete"><span>Исключить из вакансии</span></p>
-                    </div>
-                  </form>
-                </div>`)
+// function setNewContent(instance, timeArray, ind){
+//      instance.setContent(`<div class="row-popup" id="status-change-popup">
+//                   <form>
+//                     <div class="input-group">
+//                       <p class="status choosen"><span>Подготовка CV</span></p>
+//                       <time>
+//                       ${timeArray[ind].text === 'Подготовка CV' ? timeArray[ind].date : timeArray[0].date}
+//                       </time>
+//                     </div>
+//                     <div class="input-group">
+//                       <p class="status choosen"><span>CV отправлено</span></p>
+//                       <time>
+//                       ${timeArray[ind].text === 'CV отправлено' ? timeArray[ind].date : timeArray[1].date}
+//                       </time>
+//                     </div>
+//                     <div class="input-group">
+//                       <p class="status ready"><span>Утвержден</span></p>
+//                       <time>
+//                       ${timeArray[ind].text === 'Утвержден' ? timeArray[ind].date : timeArray[2].date}
+//                       </time>
+//                     </div>
+//                     <div class="input-group">
+//                       <p class="status ready"><span>Контракт подписан</span></p>
+//                       <time>
+//                       ${timeArray[ind].text === 'Контракт подписан' ? timeArray[ind].date : timeArray[3].date}
+//                       </time>
+//                     </div>
+//                     <div class="input-group">
+//                      <p class="status wait"><span>Подан в визовый центр</span></p>
+//                      <time>
+//                      ${timeArray[ind].text === 'Подан в визовый центр' ? timeArray[ind].date : timeArray[4].date}
+//                      </time>
+//                     </div>
+//                     <div class="input-group">
+//                       <p class="status department"><span>Получил разрешение</span></p>
+//                       <time>
+//                       ${timeArray[ind].text === 'Получил разрешение' ? timeArray[ind].date : timeArray[5].date}
+//                       </time>
+//                     </div>
+//                     <div class="input-group">
+//                       <p class="status department"><span>Забрал разрешение</span></p>
+//                       <time>
+//                       ${timeArray[ind].text === 'Забрал разрешение' ? timeArray[ind].date : timeArray[6].date}
+//                       </time>
+//                     </div>
+//                     <div class="input-group">
+//                       <p class="status department"><span>Билеты куплены</span></p>
+//                       <time>
+//                       ${timeArray[ind].text === 'Билеты куплены' ? timeArray[ind].date : timeArray[7].date}
+//                       </time>
+//                     </div>
+//                     <div class="input-group">
+//                       <p class="status busy"><span>Трудоустроен</span></p>
+//                       <time>
+//                       ${timeArray[ind].text === 'Трудоустроен' ? timeArray[ind].date : timeArray[8].date}
+//                       </time>
+//                     </div>
+//                     <div class="input-group">
+//                       <p class="del-status status delete"><span>Исключить из вакансии</span></p>
+//                     </div>
+//                   </form>
+//                 </div>`)
 
-     return
-}
+//      return
+// }
 export default switchRowStatuses // to ../Components/Vacancy/VacancyClientsRow

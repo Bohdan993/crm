@@ -171,6 +171,10 @@ p.status {
 
 	}
 
+	&.hidden {
+		display: none;
+	}
+
 }
 
 
@@ -182,6 +186,11 @@ p.status {
 		color: @green;
 
 	}
+
+	&.hidden {
+		display: none;
+	}
+
 }
 .table-full__wait {
 	border-top: 2px solid @teal;
@@ -190,6 +199,11 @@ p.status {
 	.table-full__title {
 		color: @teal;
 	}
+
+	&.hidden {
+		display: none;
+	}
+
 }
 .table-full__department {
 	border-top: 2px solid @blue;
@@ -198,6 +212,11 @@ p.status {
 	.table-full__title {
 		color: @blue;
 	}
+
+	&.hidden {
+		display: none;
+	}
+
 }
 .table-full__busy {
 	border-top: 2px solid @brown;
@@ -206,13 +225,18 @@ p.status {
 	.table-full__title {
 		color: @brown;
 	}
+
+	&.hidden {
+		display: none;
+	}
+
 }
 
 .table-full__row:first-child {
-	// display: flex;
-	// height: auto;
-	// border-bottom: unset;
-	// padding-bottom: 2px;
+	display: flex;
+	height: auto;
+	border-bottom: unset;
+	padding-bottom: 2px;
 
 	.table-full__title {
 		flex-basis: 244/1484 * 100%;
@@ -225,8 +249,10 @@ p.status {
 			content: '';
 			position: absolute;
 			top: 0;
-			height: 100%;
-			width: 131px;
+			height: calc(100% + 34px);
+			width: 37.2%;
+			min-width: 143.5px;
+			max-width: 149px;
 			right: 0;
 			border-left: 1px solid @ligth-gray;
 		}

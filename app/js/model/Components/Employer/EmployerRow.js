@@ -1,12 +1,13 @@
 import {el, setAttr, place, list, MicroModal} from '../../../../libs/libs'
 import { initRowTooltips } from '../../initToottips'
-import getWorkModalInfo from '../../fetchingData/Employer/WorkModal/getWorkModalInfo'
 
+import getWorkModalInfo from '../../fetchingData/Employer/WorkModal/getWorkModalInfo'
 import getWorkModalManufacturyType from '../../fetchingData/Employer/WorkModal/getWorkModalManufacturyType'
 import getWorkModalMedia from '../../fetchingData/Employer/WorkModal/getWorkModalMedia'
 import getWorkModalContactHistory from '../../fetchingData/Employer/WorkModal/getWorkModalContactHistory'
 import getWorkModalVacancyHistory from '../../fetchingData/Employer/WorkModal/getWorkModalVacancyHistory'
 import getWorkModalFeedback from '../../fetchingData/Employer/WorkModal/getWorkModalFeedback'
+
 import getEmployersList from '../../fetchingData/getEmployersList'
 import {addMouseUpTrigger, closeModal} from '../../helper'
 import switchModalParts from '../../switchModalParts'

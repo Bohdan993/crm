@@ -20,6 +20,18 @@
 
 	&:hover {
 		background: @hover_row;
+
+		.cell-status__left {
+			border-right: 1px solid @white;
+		}
+
+		.table-full__row:first-child .table-full__placeholder.first:after {
+			border-left: 1px solid @white;
+		}
+
+		.table-full__layer .table-full__row:not(:first-child) {
+			border-bottom: 1px solid @white;
+		}
 	}
 
 	.tippy-content {

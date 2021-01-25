@@ -7,52 +7,61 @@ import storage from '../../Storage'
 
 const tooltipContentFunc = ({
 	firstStatus = '',
+	firstClass = '',
 	secondStatus = '',
+	secondClass = '',
 	thirdStatus = '',
+	thirdClass = '',
 	fourthStatus = '',
+	fourthClass = '',
 	fifthStatus = '',
+	fifthClass = '',
 	sixthStatus = '',
+	sixthClass = '',
 	seventhStatus = '',
+	seventhClass = '',
 	eighthStatus = '',
-	ninethStatus = ''
+	eighthClass = '',
+	ninethStatus = '',
+	ninethClass = '',
 } = {}) => {
 	return `<div class="row-popup" id="status-change-popup">
                     <form>
                         <div class="input-group">
-                            <p class="status choosen"><span>Подготовка CV</span></p>
-                            <time>${firstStatus}</time>
+                            <p class="status choosen ${firstClass}"><span>Подготовка CV</span></p>
+                            <time class="cv-preparation">${firstStatus}</time>
                         </div>
                         <div class="input-group">
-                            <p class="status choosen"><span>CV отправлено</span></p>
-                            <time>${secondStatus}</time>
+                            <p class="status choosen ${secondClass}"><span>CV отправлено</span></p>
+                            <time class="cv-sent">${secondStatus}</time>
                         </div>
                         <div class="input-group">
-                            <p class="status ready"><span>Утвержден</span></p>
-                            <time>${thirdStatus}</time>
+                            <p class="status ready ${thirdClass}"><span>Утвержден</span></p>
+                            <time class="approved">${thirdStatus}</time>
                         </div>
                         <div class="input-group">
-                            <p class="status ready"><span>Контракт подписан</span></p>
-                            <time>${fourthStatus}</time>
+                            <p class="status ready ${fourthClass}"><span>Контракт подписан</span></p>
+                            <time class="contract-signed">${fourthStatus}</time>
                         </div>
                         <div class="input-group">
-                         <p class="status wait"><span>Подан в визовый центр</span></p>
-                         <time>${fifthStatus}</time>
+                         <p class="status wait ${fifthClass}"><span>Подан в визовый центр</span></p>
+                         <time class="submitted-visa-application-center">${fifthStatus}</time>
                         </div>
                         <div class="input-group">
-                            <p class="status department"><span>Получил разрешение</span></p>
-                            <time>${sixthStatus}</time>
+                            <p class="status department ${sixthClass}"><span>Получил разрешение</span></p>
+                            <time class="got-permission">${sixthStatus}</time>
                         </div>
                         <div class="input-group">
-                            <p class="status department"><span>Забрал разрешение</span></p>
-                            <time>${seventhStatus}</time>
+                            <p class="status department ${seventhClass}"><span>Забрал разрешение</span></p>
+                            <time class="took-away-permission">${seventhStatus}</time>
                         </div>
                         <div class="input-group">
-                            <p class="status department"><span>Билеты куплены</span></p>
-                            <time>${eighthStatus}</time>
+                            <p class="status department ${eighthClass}"><span>Билеты куплены</span></p>
+                            <time class="tickets-bought">${eighthStatus}</time>
                         </div>
                         <div class="input-group">
-                            <p class="status busy"><span>Трудоустроен</span></p>
-                            <time>${ninethStatus}</time>
+                            <p class="status busy ${ninethClass}"><span>Трудоустроен</span></p>
+                            <time class="employed">${ninethStatus}</time>
                         </div>
                         <div class="input-group">
                             <p class="del-status status delete"><span>Исключить из вакансии</span></p>
@@ -198,7 +207,7 @@ export default class RowVacancyClient {
 
 
 		this.vacancyTooltipInstance = initVacancyTooltip(this.statusSlider.el)
-		this.statusSlider.el.addEventListener('click', function (e) {3
+		this.statusSlider.el.addEventListener('click', function (e) {
 			switchRowStatuses.call(this, $this.statusLeft, $this.data.vacancy.id, $this.context)
 		}, {once: true})
 
@@ -230,20 +239,31 @@ export default class RowVacancyClient {
 	}
 
 	update(data, index, items, context){
-		// console.log(this.type)
-		// console.log(data)
+
 		this.timesArr = data.status_history
+
+
+		console.log(data)
 
 		this.vacancyTooltipInstance.setContent(tooltipContentFunc({
 			firstStatus: this.timesArr.filter(el => el.id_status === '1')[0] ? this.timesArr.filter(el => el.id_status === '1')[0].date : '',
+			firstClass: this.timesArr.filter(el => el.id_status === '1')[0] ? 'taken' : '',
 			secondStatus: this.timesArr.filter(el => el.id_status === '2')[0] ? this.timesArr.filter(el => el.id_status === '2')[0].date : '',
+			secondClass: this.timesArr.filter(el => el.id_status === '2')[0] ? 'taken' : '',
 			thirdStatus: this.timesArr.filter(el => el.id_status === '3')[0] ? this.timesArr.filter(el => el.id_status === '3')[0].date : '',
+			thirdClass: this.timesArr.filter(el => el.id_status === '3')[0] ? 'taken' : '',
 			fourthStatus: this.timesArr.filter(el => el.id_status === '4')[0] ? this.timesArr.filter(el => el.id_status === '4')[0].date : '',
+			fourthClass: this.timesArr.filter(el => el.id_status === '4')[0] ? 'taken' : '',
 			fifthStatus: this.timesArr.filter(el => el.id_status === '5')[0] ? this.timesArr.filter(el => el.id_status === '5')[0].date : '',
+			fifthClass: this.timesArr.filter(el => el.id_status === '5')[0] ? 'taken' : '',
 			sixthStatus: this.timesArr.filter(el => el.id_status === '6')[0] ? this.timesArr.filter(el => el.id_status === '6')[0].date : '',
+			sixthClass: this.timesArr.filter(el => el.id_status === '6')[0] ? 'taken' : '',
 			seventhStatus: this.timesArr.filter(el => el.id_status === '7')[0] ? this.timesArr.filter(el => el.id_status === '7')[0].date : '',
+			seventhClass: this.timesArr.filter(el => el.id_status === '7')[0] ? 'taken' : '',
 			eighthStatus: this.timesArr.filter(el => el.id_status === '8')[0] ? this.timesArr.filter(el => el.id_status === '8')[0].date : '',
-			ninethStatus: this.timesArr.filter(el => el.id_status === '9')[0] ? this.timesArr.filter(el => el.id_status === '9')[0].date : ''
+			eighthClass: this.timesArr.filter(el => el.id_status === '8')[0] ? 'taken' : '',
+			ninethStatus: this.timesArr.filter(el => el.id_status === '9')[0] ? this.timesArr.filter(el => el.id_status === '9')[0].date : '',
+			ninethClass: this.timesArr.filter(el => el.id_status === '9')[0] ? 'taken' : '',
 		}))
 
 
@@ -335,10 +355,6 @@ export default class RowVacancyClient {
 		// console.log(this.data)
 	}
 
-
-	onmount(){
-		// switchRowStatuses(this.statusLeft, this.data.vacancy.id, this.context)
-	}
 
 	getItemsFromLocalStorage(){
 
