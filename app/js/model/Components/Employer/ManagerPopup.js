@@ -52,9 +52,9 @@ export default class ManagerPopup {
 	
 				if($this.type === 'employer') {
 
-					getEmployersList({[str]: ManagerPopup.checkedArr.join(','), filtered: true})
+					getEmployersList({[str]: ManagerPopup.checkedArr.join(',')})
 				} else {
-					getVacancyList({[str]: ManagerPopup.checkedArr.join(','), filtered: true})
+					getVacancyList({[str]: ManagerPopup.checkedArr.join(',')})
 				}
 				
 				sessionStorage.setItem(storageKey, JSON.stringify(ManagerPopup.checkedArr.join(',')))
@@ -63,9 +63,9 @@ export default class ManagerPopup {
 
 				if($this.type === 'employer') {
 
-					getEmployersList({[str]: ManagerPopup.checkedArr.join(','), filtered: true})
+					getEmployersList({[str]: ManagerPopup.checkedArr.join(',')})
 				} else {
-					getVacancyList({[str]: ManagerPopup.checkedArr.join(','), filtered: true})
+					getVacancyList({[str]: ManagerPopup.checkedArr.join(',')})
 				}
 
 				sessionStorage.setItem(storageKey, JSON.stringify(ManagerPopup.checkedArr.join(',')))

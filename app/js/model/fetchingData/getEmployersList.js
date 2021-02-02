@@ -18,7 +18,7 @@ import {
 
 import storage from '../Storage/globalEmployers'
 
-
+let countCallEmployersFunction =  0;
 const employersWrapper = document.querySelector('.employer-rows-wrapper')
 
 let globalEmployers = []
@@ -56,39 +56,60 @@ const getEmployersList = async({
 	last_contact = JSON.parse(sessionStorage.getItem('lastContactFilter')) || '',
 	sort = JSON.parse(sessionStorage.getItem('sortFilter')) || '',
 	scroll = false,
-	filtered = false,
 	added = false,
 	deleated = false,
 	t = '50',
 } = {}) => {
-	let flag = false
+	// console.log(filtered)
+
+	let sorted = false
+	let filtered = false
+	countCallEmployersFunction++
+
+	countCallEmployersFunction === 1 ? sessionStorage.setItem('page', JSON.stringify(1)) : null
+
 	if (employersWrapper) {
 		loader.update(true)
 
 		try {
 			
-			if (search === '' && country === '' && production === '' &&
-				contact === '' && manager === '' && intermediary === '' &&
-				intermediaries === '' && vacancy_active === '' &&
-				vacancy_type === '' && vacancy_term === '' &&
-				last_contact === ''
+			if (search !== '' || country !== '' || production !== '' ||
+				contact !== '' || manager !== '' || intermediary !== '' ||
+				intermediaries !== '' || vacancy_active !== '' ||
+				vacancy_type !== '' || vacancy_term !== '' ||
+				last_contact !== '' 
+				// && sort === ''
 			) {
-				flag = true
+				filtered = true
 			}
 
-			t = filtered && !flag ? +JSON.parse(sessionStorage.getItem('page')) * 50 || '50' : '50'
+			console.log(filtered)
+			console.log(contact)
+
+			// t = filtered ? +JSON.parse(sessionStorage.getItem('page')) * 50 || '50' : '50'
+
+			if(sort !== '') {
+				sorted = true
+				t = countCallEmployersFunction > 1 && !scroll ? +JSON.parse(sessionStorage.getItem('page')) * 50 || '50' : '50'
+			}
+
+			console.log(scroll, sorted, t)
 
 			const data = await fetch.getResourse(`/employers/get_all/?p=${p}&t=${t}&search=${search}&filter=country:${country}|production:${production}|contact:${contact}
 				|manager:${manager}|intermediaries:${intermediaries}|intermediary:${intermediary}|vacancy_active:${vacancy_active}|vacancy_type:${vacancy_type}|vacancy_term:${vacancy_term}|last_contact:${last_contact}&sort=${sort}`)
 			const employers = data.data
 
 
-			sessionStorage.setItem('employersArguments', JSON.stringify(flag))
-			sessionStorage.setItem('employersFiltered', JSON.stringify(filtered && !flag))
+			// sessionStorage.setItem('employersArguments', JSON.stringify(sorted && !filtered))
+			sessionStorage.setItem('employersFiltered', JSON.stringify(filtered))
 
+			
 
 			const total = data.total
 			const totalR = data.total_r
+
+
+			console.log(data.success)
 
 			if (data.success) {
 
@@ -106,6 +127,8 @@ const getEmployersList = async({
 					storage.setState(employers, 'id_employer')
 					empList.update(storage.getState())
 
+					console.log('scroll')
+
 				} else if (added) {
 
 					storage.setState(employers, 'id_employer', 'top')
@@ -120,16 +143,21 @@ const getEmployersList = async({
 						storage.initState(employers)
 						inited = true
 					}
-					storage.getState().length && !filtered ?
-						(console.log('first'),
-							empList.update(storage.getState())) :
-						!flag ?
-						(console.log('second'),
-							empList.update(employers)) :
-						(console.log(storage.getState()),
-							empList.update(storage.getState()))
+
+					if(storage.getState().length && storage.getState().length < 50 && !filtered) {
+						empList.update(employers)
+					} else {
+						empList.update(storage.getState())
+					}
+
+					if(sorted || filtered) {
+						empList.update(employers)
+					}
 
 				}
+
+				console.log(storage.getState())
+				console.log(employers)
 
 
 				numbers.update(numsData)
@@ -138,7 +166,7 @@ const getEmployersList = async({
 			} else {
 				loader.update(false)
 
-				if (scroll) {
+				if (scroll || sorted) {
 					empList.update(globalEmployers)
 
 					return Array(1)

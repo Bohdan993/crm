@@ -242,8 +242,8 @@ export default class WorkModalContactHistory {
 	}
 
 	getItemsLocalStorage() {
-		const managers = JSON.parse(localStorage.getItem('managers'))
-		const typeContact = JSON.parse(localStorage.getItem('type_contact'))
+		const managers = JSON.parse(localStorage.getItem('managers')) || []
+		const typeContact = JSON.parse(localStorage.getItem('type_contact')) || []
 
 		return {
 			managers,

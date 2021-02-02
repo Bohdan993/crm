@@ -1,6 +1,6 @@
 import fetch from '../../fetchingDataClass'
 import WorkModalMedia from '../../../Components/Employer/WorkModal/WorkModalMedia'
-
+import { modalRowMediaWrapper } from '../../../../view'
 import Loader from '../../../Components/Loader'
 import {list, mount, place} from '../../../../../libs/libs'
 
@@ -47,7 +47,8 @@ const getWorkModalMedia = async ({
 
 	try {
 
-
+			w = w !== 0 ? (workModalMedia.modalLayer.clientWidth - 40) || (workModalMedia.modalLayer.offsetWidth - 40) : 0
+			
 			// const delay = await sleep(15000)
 			const data = await fetch.getResourse(`/employers/get/?id=${id}&section=2&other=4&width_image=${w}`) //&p=1&t=6
 			const otherPart = data.data.other
@@ -98,6 +99,8 @@ const getWorkModalMedia = async ({
 				loader.update(false)
 				workModalMedia.removeHiddenClass()
 			}
+
+			
 			
 			state.id = id
 		}catch(e) {

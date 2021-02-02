@@ -93,12 +93,12 @@ class IntermediariesCheckbox {
 			//this - один чекбокс в попапе
 			if($this.input.checked) {
 				IntermediariesPopup.checkedArr.push(id)
-				getEmployersList({[str]: IntermediariesPopup.checkedArr.join(','), filtered: true, [str2 ? str2 : '']: id2})
+				getEmployersList({[str]: IntermediariesPopup.checkedArr.join(','), [str2 ? str2 : '']: id2})
 				sessionStorage.setItem(storageKey, JSON.stringify(IntermediariesPopup.checkedArr.join(',')))
 				storageKey2 ? sessionStorage.setItem(storageKey2, JSON.stringify(id2)) : null
 			} else {
 				IntermediariesPopup.checkedArr = IntermediariesPopup.checkedArr.filter(el => el !== id)
-				getEmployersList({[str]: IntermediariesPopup.checkedArr.join(','), filtered: true, [str2 ? str2 : '']: id2})
+				getEmployersList({[str]: IntermediariesPopup.checkedArr.join(','), [str2 ? str2 : '']: id2})
 				sessionStorage.setItem(storageKey, JSON.stringify(IntermediariesPopup.checkedArr.join(',')))
 				storageKey2 ? sessionStorage.setItem(storageKey2, JSON.stringify(id2)) : null
 			}

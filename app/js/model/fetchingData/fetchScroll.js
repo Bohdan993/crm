@@ -38,12 +38,11 @@ const fetchScroll = (elem, type) => {
 		// console.log(this.scrollHeight - (HEIGHT * Math.max(count, countVacancy)))
 			if (this.scrollTop + this.clientHeight >= this.scrollHeight - (HEIGHT * Math.max(count, countVacancy)) && data.length === DATA_LENGTH && !flag) {
 						flag = true
-						
-
+						console.log(this.scrollTop + this.clientHeight)
 	      	if(type === 'employer') {
 	      			// await sleep(10000)
-	      			// console.log(JSON.parse(sessionStorage.getItem('employersArguments')))
-	      			if(JSON.parse(sessionStorage.getItem('employersArguments'))) {
+	      			// console.log(JSON.parse(sessionStorage.getItem('employersFiltered')))
+	      			if(!JSON.parse(sessionStorage.getItem('employersFiltered'))) {
 	      				mount(elem, loader)
 								loader.update(true)
 								// await sleep(100000)

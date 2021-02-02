@@ -48,7 +48,7 @@ class WorkModalMediaRow {
 		)
 
 		this.delete.addEventListener('click', (e) => {
-			deleteMedia({idimg: this.data.id, idemp: this.employerID, w: 1000})
+			deleteMedia({idimg: this.data.id, idemp: this.employerID, w: 0})
 		})
 	}
 
@@ -66,7 +66,6 @@ class WorkModalMediaRow {
 
 		this.data = data
 		this.employerID = context.employerID
-		this.count = context.count
 
 
 	}
@@ -122,7 +121,7 @@ export default class WorkModalMedia {
 					}
 					data.append('file', files[i])
 				}
-				addMedia({id: this.data.id, data, w: 1000})
+				addMedia({id: this.data.id, data, w: 0})
 			} catch (e) {
 				toastr.error(`${e.message}`, 'Ошибка!', {
 					timeOut: 0,
@@ -139,9 +138,6 @@ export default class WorkModalMedia {
 	}
 
 	update(data, index, items, context) {
-		console.log(data.data)
-		console.log(data.total)
-		console.log(data)
 		let {
 			loading,
 			deleating,
@@ -165,12 +161,12 @@ export default class WorkModalMedia {
 		// console.log(this.pageDel)
 		// console.log(data.data)
 		this.list.update(data.data, {
-			employerID: data.id,
-			count: (this.pageShow - 1) * 6
+			employerID: data.id
 		})
 
+
 		//Пагинация
-		// if (data.data.length < data.total) {
+		if (data.data.length < data.total) {
 			this.showMore.update(true, 'показать еще')
 			this.showLess.update(false)
 
@@ -181,29 +177,34 @@ export default class WorkModalMedia {
 						showing: true,
 						w: 0
 					})
+
+					this.flag = true
 				})
 
-				this.flag = true
+				
 			}
 
 
-		// } else {
-		// 	this.showMore.update(false)
-		// 	if(data.data.length > 6) {
-		// 		this.showLess.update(true, 'скрыть')
-		// 	}
-			
-		// 	this.showLess.el.addEventListener('click', () => {
-		// 			getWorkModalMedia({
-		// 				id: this.data.id,
-		// 				showingLess: true,
-		// 				w: 1000
-		// 			})
-		// 			// console.log(this.pageShow)
-		// 		}, {once: true})
+		} else {
+			this.showMore.update(false)
 
-		// 	this.flag = false
-		// }
+			if(this.flag) {
+				this.showLess.update(true, 'скрыть')
+			}
+
+			this.showLess.el.addEventListener('click', () => {
+					getWorkModalMedia({
+						id: this.data.id,
+						showingLess: true,
+						w: 1000
+					})
+
+					this.flag = false
+
+				}, {once: true})
+
+			
+		}
 
 		//Вызов функций которые зависят от инстанса класса
 		checkIfWrapperIsEmpty(this.modalRowWrapper)
