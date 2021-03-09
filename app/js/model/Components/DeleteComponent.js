@@ -1,7 +1,7 @@
 
 import deleteElement from '../fetchingData/deleteElement'
 import {el, setAttr, MicroModal} from '../../../libs/libs'
-
+import getEmployersList from '../fetchingData/Employer/getEmployersList'
 
 export default class Delete { // to ../fetchingData/Employer/WorkModal
     constructor(type) {
@@ -17,22 +17,23 @@ export default class Delete { // to ../fetchingData/Employer/WorkModal
             if(this.type === 'employer') {
                 deleteElement({str: 'employers', id: this.data.id})
                 .then(res => {
-                    if(res === 'ok') {
+                    if(res.status === 'ok') {
+                        getEmployersList({deleated: true, id: res.id})
                         MicroModal.close('modal-1')
                     }
 
-                    if(res === 'fail') {
+                    if(res.status === 'fail') {
                         return
                     }
                 })
             } else {
                 deleteElement({str: 'vacancies', id: this.data.id})
                 .then(res => {
-                    if(res === 'ok') {
+                    if(res.status === 'ok') {
                         MicroModal.close('modal-3')
                     }
 
-                    if(res === 'fail') {
+                    if(res.status === 'fail') {
                         return
                     }
                 })

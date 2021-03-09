@@ -6,7 +6,7 @@ import Loader from '../../Components/Loader'
 import {el, mount, place, toastr} from '../../../../libs/libs'
 import Numbers from '../../Components/Vacancy/SidebarNumbersComponent'
 import {sidebarStatNumsVacancy} from '../../../view'
-import {uniq, EmptyError} from '../../helper'
+import {uniq, EmptyError, getAllUrlParams} from '../../helper'
 
 
 const vacanciesWrapper = document.querySelector('.vacancy-rows-wrapper')
@@ -112,6 +112,7 @@ const getVacancyList = async ({
 				}
 				numbers.update(numsData)
 				loader.update(false)
+
 
 			} else {
 

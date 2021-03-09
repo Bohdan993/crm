@@ -1,5 +1,5 @@
 import {el, setAttr} from '../../../../libs/libs'
-import getEmployersList from '../../fetchingData/getEmployersList'
+import getEmployersList from '../../fetchingData/Employer/getEmployersList'
 import getVacancyList from '../../fetchingData/Vacancy/getVacancyList'
 
 export default class ManagerPopup {

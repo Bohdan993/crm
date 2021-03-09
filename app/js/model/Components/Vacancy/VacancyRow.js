@@ -132,6 +132,8 @@ export default class RowVacancy {
 					getVacancyList()
 				},
 				onShow: (modal, node) => {
+
+
 					const wrapper = modal.querySelector('.my-modal-wrapper')
 					const modalClose = modal.querySelector('.modal__close')
 
@@ -150,7 +152,7 @@ export default class RowVacancy {
 		document.addEventListener('storageupdate', (e) => {
 			// console.log('storageUpdated')
 			if (e.detail.id === this.data.id_vacancy) {
-				console.log(e.detail)
+				// console.log(e.detail)
 				// if (e.detail.clazz === 'vacancy-modal') {
 					// console.log('storageUpdated')
 					// console.log('Vacancy-modal:', storage)
@@ -187,7 +189,7 @@ export default class RowVacancy {
 	update(data, index, items, context) {
 
 
-		console.log(data)
+		// console.log(data)
 		this.indicatorsArr = data.status.map((el, i) => {
 			return {
 				number: el,

@@ -1,6 +1,6 @@
 import fetch from './fetchingDataClass'
 import {StickyLoader} from '../Components/Loader'
-import getEmployersList from './getEmployersList'
+import getEmployersList from './Employer/getEmployersList'
 import getVacancyList from './Vacancy/getVacancyList'
 import {place, mount} from '../../../libs/libs'
 import {throttle, sleep} from '../helper'

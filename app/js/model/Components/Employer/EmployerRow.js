@@ -8,7 +8,7 @@ import getWorkModalContactHistory from '../../fetchingData/Employer/WorkModal/ge
 import getWorkModalVacancyHistory from '../../fetchingData/Employer/WorkModal/getWorkModalVacancyHistory'
 import getWorkModalFeedback from '../../fetchingData/Employer/WorkModal/getWorkModalFeedback'
 
-import getEmployersList from '../../fetchingData/getEmployersList'
+import getEmployersList from '../../fetchingData/Employer/getEmployersList'
 import {addMouseUpTrigger, closeModal} from '../../helper'
 import switchModalParts from '../../switchModalParts'
 import {modalSwitchers, modalParts} from '../../../view'
@@ -18,18 +18,21 @@ let flag = false
 
 class VacancyLabel {
 	constructor(){
-		this.el = el('i.label', 
+		this.el = el('a.label', {
+			href: `vacancy.html`
+			},
 			this.vacancyLabelCountry = el('span', 'NO'), 
 			this.vacancyLabelCode = el('span', '211-8'))
 	}
 
 	update(data){
 
-		// console.log(data)
+		console.log(data)
 
 		setAttr(this.el, {
+			href: `vacancy.html?id=${data.id_vacancy}`,
 			style:  {
-				background: data.archive === '0' ? '#9c3' : 'rgb(255, 153, 102)'
+				background: data.archive === '0' ? '#39c' : '#f96'
 			}
 		})
 
@@ -125,7 +128,10 @@ export default class RowEmployer {
 	update(data, index, items, context){
 		// console.log(data)
 		const { id_employer } = data
-		
+
+
+
+
 		this.companyText.innerText = data.enterprise
 		this.abbr.innerText = data.addr
 		this.addressText.innerText = data.address
@@ -134,7 +140,7 @@ export default class RowEmployer {
 			href: 'tel:' + data.phone,
 			innerText: data.phone
 		})
-		data.task ? this.attentionTag.update(true) : this.attentionTag.update(false)
+		data.task ?  this.attentionTag && this.attentionTag.update(true) : this.attentionTag && this.attentionTag.update(false)
 
 
 		data.phone ? this.phoneIco.update(true) : this.phoneIco.update(false)
@@ -191,19 +197,12 @@ export default class RowEmployer {
 
 
 		setTimeout(() => {
-		// console.log(data.country_name)
 		if(data.country_name !== null) {
-			// this.countryInstance = initRowTooltips(this.country)
-			this.countryInstance.setContent(`${data.country_name}`)
+			this.countryInstance && this.countryInstance.setContent(`${data.country_name}`)
 		}
 
-			// this.companyInstance = initRowTooltips(this.company)
-			// this.nameInstance = initRowTooltips(this.name)
-
-
-	
-			this.companyInstance.setContent(`${data.enterprise}`)
-			this.nameInstance.setContent(`${data.name}`)
+			this.companyInstance && this.companyInstance.setContent(`${data.enterprise}`)
+			this.nameInstance && this.nameInstance.setContent(`${data.name}`)
 		}, 0)
 	
 		// // console.log('updated')
@@ -237,21 +236,36 @@ export default class RowEmployer {
 
 
 	onmount() {
-		// console.log(this.data.country_name)
-		if(this.data.country_name !== null) {
-			this.countryInstance = initRowTooltips(this.country)
-		}
+
+		
+		this.countryInstance = initRowTooltips(this.country)
 		this.companyInstance = initRowTooltips(this.company)
 		this.nameInstance = initRowTooltips(this.name)
+
+		// console.log(this.countryInstance)
+		if(this.data.country_name === null) {
+			this.countryInstance.disable()
+		} else {
+			this.countryInstance.enable()
+		}
+
+		
 	}
 
-	onremount(){
-		// console.log('remount')
-	}
+	// onremount(){
+
+	// 	// this.companyInstance = initRowTooltips(this.company)
+	// 	// this.nameInstance = initRowTooltips(this.name)
+	// 	// this.countryInstance = initRowTooltips(this.country)
+	// 	// console.log('remount')
+	// }
 
 	onunmount(){
-		// console.log(this.el)
-		this.el = this.data = this.attentionTag = this.managerTag = this.vacancyLabel =  null
+		// console.log('unmount')
+		this.companyInstance.destroy()
+		this.countryInstance.destroy()
+		this.nameInstance.destroy()
+		// this.el = this.data = this.attentionTag = this.managerTag = this.vacancyLabel =  null
 	}
 
 	

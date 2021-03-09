@@ -1,5 +1,5 @@
 import fetch from '../fetchingDataClass'
-import getEmployersList from '../getEmployersList'
+import getEmployersList from '../Employer/getEmployersList'
 import { sidebarEmployer } from '../../../view'
 import { toastr }from '../../../../libs/libs'
 import {addMouseUpTrigger, closeModal} from '../../helper'
@@ -40,15 +40,17 @@ const addNewEmployer = () => {
 					    if(!flag) {
 					      wrapper.addEventListener('mouseup', addMouseUpTrigger, {once: true})
 					      wrapper.addEventListener('mousedown', closeModal.bind(null, modal.id))
-					      modalClose.addEventListener('click', function(){
-					        MicroModal.close(modal.id)
-					      })
+						      modalClose.addEventListener('click', function(){
+						        MicroModal.close(modal.id)
+						      })
 					      flag = true
 					    }
-
-					    // switchModalParts(modalSwitchers, modalParts, false)('#employer-data', '[data-part="employer-data"]')
+					 		// switchModalParts(modalSwitchers, modalParts, false)('#employer-data', '[data-part="employer-data"]')
 					  }
 		    })
+
+					// employerListAddEvent.detail.id = String(employer.id)
+					// document.dispatchEvent(employerListAddEvent)
 
 
 					getWorkModalInfo(employer.id)
@@ -63,8 +65,7 @@ const addNewEmployer = () => {
 					throw new Error('Не возможно cоздать работодателя')
 				}
 
-				employerListAddEvent.detail.id = String(employer.id)
-				document.dispatchEvent(employerListAddEvent)
+			
 
 			} catch(e) {
 				toastr.error(e.message, 'Возникла ошибка', {closeButton: true})

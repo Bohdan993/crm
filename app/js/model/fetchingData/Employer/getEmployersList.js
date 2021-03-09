@@ -1,22 +1,22 @@
-import fetch from './fetchingDataClass'
-import EmployerList from '../Components/Employer/EmployerList'
-import Loader from '../Components/Loader'
+import fetch from '../fetchingDataClass'
+import EmployerList from '../../Components/Employer/EmployerList'
+import Loader from '../../Components/Loader'
 import {
 	el,
 	mount,
 	place,
 	toastr
-} from '../../../libs/libs'
-import Numbers from '../Components/Employer/SidebarNumbersComponent'
+} from '../../../../libs/libs'
+import Numbers from '../../Components/Employer/SidebarNumbersComponent'
 import {
 	employerStatNums
-} from '../../view'
+} from '../../../view'
 import {
 	uniq,
 	EmptyError
-} from '../helper'
+} from '../../helper'
 
-import storage from '../Storage/globalEmployers'
+import storage from '../../Storage/globalEmployers'
 
 let countCallEmployersFunction =  0;
 const employersWrapper = document.querySelector('.employer-rows-wrapper')
@@ -59,6 +59,7 @@ const getEmployersList = async({
 	added = false,
 	deleated = false,
 	t = '50',
+	id = ''
 } = {}) => {
 	// console.log(filtered)
 
@@ -83,17 +84,19 @@ const getEmployersList = async({
 				filtered = true
 			}
 
-			console.log(filtered)
-			console.log(contact)
-
-			// t = filtered ? +JSON.parse(sessionStorage.getItem('page')) * 50 || '50' : '50'
 
 			if(sort !== '') {
 				sorted = true
 				t = countCallEmployersFunction > 1 && !scroll ? +JSON.parse(sessionStorage.getItem('page')) * 50 || '50' : '50'
 			}
 
-			console.log(scroll, sorted, t)
+			if (deleated) {
+				storage.deletePartialState(id, 'id_employer')
+				empList.update(storage.getState())
+				return
+			}
+
+			// console.log(scroll, sorted, t)
 
 			const data = await fetch.getResourse(`/employers/get_all/?p=${p}&t=${t}&search=${search}&filter=country:${country}|production:${production}|contact:${contact}
 				|manager:${manager}|intermediaries:${intermediaries}|intermediary:${intermediary}|vacancy_active:${vacancy_active}|vacancy_type:${vacancy_type}|vacancy_term:${vacancy_term}|last_contact:${last_contact}&sort=${sort}`)
@@ -109,7 +112,7 @@ const getEmployersList = async({
 			const totalR = data.total_r
 
 
-			console.log(data.success)
+			// console.log(data.success)
 
 			if (data.success) {
 
@@ -127,15 +130,10 @@ const getEmployersList = async({
 					storage.setState(employers, 'id_employer')
 					empList.update(storage.getState())
 
-					console.log('scroll')
-
 				} else if (added) {
 
 					storage.setState(employers, 'id_employer', 'top')
 					empList.update(storage.getState())
-
-				} else if (deleated) {
-
 
 				} else {
 
@@ -155,9 +153,6 @@ const getEmployersList = async({
 					}
 
 				}
-
-				console.log(storage.getState())
-				console.log(employers)
 
 
 				numbers.update(numsData)
@@ -183,6 +178,9 @@ const getEmployersList = async({
 				toastr.warning(`${e.message}`)
 				return
 			}
+
+
+			console.log(e)
 
 			toastr.error(`${e.message}`, '', {
 				timeOut: 0,

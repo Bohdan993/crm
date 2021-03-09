@@ -10,12 +10,13 @@ export default class EmployerList {
     constructor() {
     	this.count = 0
         this.el = el("div.rows.worker-rows")
-        this.list = list(this.el, RowEmployer)
+        this.list = list(this.el, RowEmployer, 'id_employer')
 
         this.flag = false
 
     }
     update(data) {
+
 
     	// this.count = data.length ? data[data.length - 1]['id_employer'] : ''
         // localStorage.setItem('countForModals', JSON.stringify(this.count))

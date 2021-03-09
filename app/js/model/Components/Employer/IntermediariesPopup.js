@@ -1,5 +1,5 @@
 import {el, setAttr, list} from '../../../../libs/libs'
-import getEmployersList from '../../fetchingData/getEmployersList'
+import getEmployersList from '../../fetchingData/Employer/getEmployersList'
 
 class RadioGroup {
 	constructor() {

@@ -412,8 +412,12 @@ span.negative {
 }
 
 
-i.label {
+i.label, a.label {
   // line-height: 16/14;
+  width: 100%;
+  max-width: 78px;
+  justify-content: center;
+  text-align: center;
   vertical-align: middle;
   color: @white;
   font-style: normal;
@@ -426,6 +430,7 @@ i.label {
   display: flex;
   align-items: center;
   white-space: nowrap;
+  overflow-x: visible;
   &:not(:last-child) {
     margin-right: 15px;
 

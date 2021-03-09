@@ -1,5 +1,5 @@
 import {el, setAttr, svg} from '../../../libs/libs'
-import getEmployersList from '../fetchingData/getEmployersList'
+import getEmployersList from '../fetchingData/Employer/getEmployersList'
 import getVacancyList from '../fetchingData/Vacancy/getVacancyList'
 import sidebarSearchInput from '../sidebarSearchInput'
 

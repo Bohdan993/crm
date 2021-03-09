@@ -338,7 +338,7 @@ export default class WorkModal {
 			this.comManufacturyArea.value = data.enterprise
 			this.comMapArea.value = data.address
 			this.comIframe.src = `https://maps.google.com/maps?width=100%&height=200&hl=en&q=${data.address}&ie=UTF8&t=&z=11&iwloc=B&output=embed`
-			this.comInfName.value = data.name
+			this.comInfName.value = data.name.toLowerCase().startsWith('новый') ? '' : data.name
 			this.comInfOtherNames.value = data.other_name
 			this.comInfPhone.value = data.phone
 			this.countryChoices.countryChoices.setChoiceByValue(data.id_country)

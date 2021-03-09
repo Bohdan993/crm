@@ -10,7 +10,6 @@ const deleteElement = async ({
 
 			try {
 				const fields = await fetch.getResourse(`/${str}/delete/?id=${id}`)
-
 				if(fields.success === true) {
 					// str === 'employers' ? getEmployersList() : ''
 					toastr.success(`ID ${str === 'employers' ? 'работодателя' : 'вакансии'} ${id}`, 'Успешно удалена запись', {closeButton: false})
@@ -19,11 +18,11 @@ const deleteElement = async ({
 					throw new Error('Не возможно удалить запись')
 				}
 
-				return Promise.resolve('ok')
+				return Promise.resolve({status: 'ok', id})
 			} catch(e) {
 				
 				toastr.error(e.message, 'Возникла ошибка', {closeButton: true})
-				return Promise.resolve('fail')
+				return Promise.resolve({status: 'fail'})
 			}
 
 }

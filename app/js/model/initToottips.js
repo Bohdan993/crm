@@ -1,4 +1,4 @@
-import getEmployersList from './fetchingData/getEmployersList'
+import getEmployersList from './fetchingData/Employer/getEmployersList'
 import getVacancyList from './fetchingData/Vacancy/getVacancyList'
 import {
     tippy,
@@ -418,19 +418,17 @@ function initRowTooltips(el, content) {
         content,
         appendTo: 'parent',
         onCreate(instance) {
+
             function chechOverflow(child) {
                 if (child.tagName.toLowerCase() === 'p') {
 
                     if (child.offsetWidth < child.scrollWidth && child.textContent !== "") {
-
                         instance.enable();
                     } else {
                         instance.disable();
                     }
                 }
-
             }
-
 
             chechOverflow = debounce(chechOverflow, 250);
 
@@ -438,12 +436,12 @@ function initRowTooltips(el, content) {
 
             window.addEventListener('resize', function() {
                 [...instance.reference.children].forEach(chechOverflow)
-            })
+            }, {once: true})
 
             //Этот момент нужно оптимизировать, чтобы не вызывать событие для каждой строки работодателя, а только для последней (которую добавили в список)
 
             document.addEventListener('employerslistadd', function(e) {
-
+                console.log('employer add')
                 const detail = e.detail.id
                 const attr = instance.reference.closest('.row').getAttribute('data-id_employer')
                 // console.log(detail)

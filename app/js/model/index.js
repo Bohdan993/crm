@@ -32,7 +32,7 @@ import showFullClientsRow from './vacancy/showFullClientsRow'
 
 
 
-import getEmployersList from './fetchingData/getEmployersList'
+import getEmployersList from './fetchingData/Employer/getEmployersList'
 import getManagerPopup from './fetchingData/Employer/getManagerPopup'
 import getManagerVacancyPopup from './fetchingData/Vacancy/getManagerVacancyPopup'
 import getIntermediariesPopup from './fetchingData/getIntermediariesPopup'

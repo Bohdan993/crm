@@ -1,11 +1,5 @@
-
-
 import {MicroModal} from '../../libs/libs'
 
-import {modalRowMediaWrapper,modalRowMedia,mediaShowMore, body} from '../view'
-
-import getEmployersList from './fetchingData/getEmployersList'
-import getVacancyList from './fetchingData/Vacancy/getVacancyList'
 
 
 
