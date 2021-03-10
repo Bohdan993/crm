@@ -22,7 +22,6 @@ let countCallEmployersFunction =  0;
 const employersWrapper = document.querySelector('.employer-rows-wrapper')
 
 let globalEmployers = []
-let cachedEmployers = []
 let inited = false
 
 const loader = place(Loader)
@@ -85,6 +84,9 @@ const getEmployersList = async({
 			}
 
 
+			console.log(`%cFILTERED=${filtered}`, 'color: red; font-size: 40px;')
+
+
 			if(sort !== '') {
 				sorted = true
 				t = countCallEmployersFunction > 1 && !scroll ? +JSON.parse(sessionStorage.getItem('page')) * 50 || '50' : '50'
@@ -96,33 +98,20 @@ const getEmployersList = async({
 				return
 			}
 
-			// console.log(scroll, sorted, t)
-
 			const data = await fetch.getResourse(`/employers/get_all/?p=${p}&t=${t}&search=${search}&filter=country:${country}|production:${production}|contact:${contact}
 				|manager:${manager}|intermediaries:${intermediaries}|intermediary:${intermediary}|vacancy_active:${vacancy_active}|vacancy_type:${vacancy_type}|vacancy_term:${vacancy_term}|last_contact:${last_contact}&sort=${sort}`)
 			const employers = data.data
+			const numsData = {
+					total: data.total,
+					totalR: data.total_r
+				}
 
-
-			// sessionStorage.setItem('employersArguments', JSON.stringify(sorted && !filtered))
 			sessionStorage.setItem('employersFiltered', JSON.stringify(filtered))
-
-			
-
-			const total = data.total
-			const totalR = data.total_r
-
-
-			// console.log(data.success)
 
 			if (data.success) {
 
 				if (!employers) {
 					throw new Error('Что то пошло не так, работодателей не найдено, обновите страницу, пожалуйста')
-				}
-
-				const numsData = {
-					total,
-					totalR
 				}
 
 				if (scroll) {
@@ -172,6 +161,7 @@ const getEmployersList = async({
 			}
 
 			return employers
+
 		} catch (e) {
 
 			if (e.name === 'EmptyError') {
@@ -186,6 +176,7 @@ const getEmployersList = async({
 				timeOut: 0,
 				extendedTimeOut: 0
 			})
+
 			return
 		}
 	}

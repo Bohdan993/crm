@@ -5,7 +5,7 @@ import getVacancyList from './Vacancy/getVacancyList'
 import {place, mount} from '../../../libs/libs'
 import {throttle, sleep} from '../helper'
 
-const HEIGHT = 150
+const HEIGHT = 10
 const DATA_LENGTH = 50
 const loader = place(StickyLoader)
 // let count = +JSON.parse(sessionStorage.getItem('page')) || 2
@@ -20,7 +20,13 @@ let flag = false
 const fetchScroll = (elem, type) => {
 	//@param elem - HTML node <div class="employer-rows-wrapper"></div>
 
+	mount(elem, loader)
+
+
+
+
 		if(type === 'employer') {
+		
 			data = Array(DATA_LENGTH)
 			// data = JSON.parse(sessionStorage.getItem('pageDataLength')) && Array(JSON.parse(sessionStorage.getItem('pageDataLength'))) || Array(DATA_LENGTH)
 		} else {
@@ -30,20 +36,31 @@ const fetchScroll = (elem, type) => {
 
 		// console.log(data)
 	async function ajaxData(e){
+
+
+	if(type === 'employer') {
+  		if(count <= 2 || !JSON.parse(sessionStorage.getItem('employersFiltered'))) {
+				loader.update(true)
+			} else {
+				loader.update(false)
+			}
+		}	
 	// console.log(flag)
   let vertical = e.target.scrollTop
 
     if(vertical) {
+
+
 		// console.log(this.scrollTop + this.clientHeight)
 		// console.log(this.scrollHeight - (HEIGHT * Math.max(count, countVacancy)))
 			if (this.scrollTop + this.clientHeight >= this.scrollHeight - (HEIGHT * Math.max(count, countVacancy)) && data.length === DATA_LENGTH && !flag) {
 						flag = true
-						console.log(this.scrollTop + this.clientHeight)
+						// console.log(this.scrollTop + this.clientHeight)
 	      	if(type === 'employer') {
 	      			// await sleep(10000)
 	      			// console.log(JSON.parse(sessionStorage.getItem('employersFiltered')))
 	      			if(!JSON.parse(sessionStorage.getItem('employersFiltered'))) {
-	      				mount(elem, loader)
+	      				// mount(elem, loader)
 								loader.update(true)
 								// await sleep(100000)
 				        data = await getEmployersList({t: DATA_LENGTH, p: count, scroll: true}).then((data)=> {flag = false; return data} )

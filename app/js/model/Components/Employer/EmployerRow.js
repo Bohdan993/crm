@@ -27,7 +27,7 @@ class VacancyLabel {
 
 	update(data){
 
-		console.log(data)
+		// console.log(data)
 
 		setAttr(this.el, {
 			href: `vacancy.html?id=${data.id_vacancy}`,

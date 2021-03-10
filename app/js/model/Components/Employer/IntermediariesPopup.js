@@ -98,9 +98,14 @@ class IntermediariesCheckbox {
 				storageKey2 ? sessionStorage.setItem(storageKey2, JSON.stringify(id2)) : null
 			} else {
 				IntermediariesPopup.checkedArr = IntermediariesPopup.checkedArr.filter(el => el !== id)
-				getEmployersList({[str]: IntermediariesPopup.checkedArr.join(','), [str2 ? str2 : '']: id2})
+				console.log(IntermediariesPopup.checkedArr.length)
+				getEmployersList({
+					[str]: IntermediariesPopup.checkedArr.join(','), 
+					[str2 ? str2 : '']: (IntermediariesPopup.checkedArr.length) === 0 ? "" : null}
+					)
+				console.log(IntermediariesPopup.checkedArr.length === 0)
 				sessionStorage.setItem(storageKey, JSON.stringify(IntermediariesPopup.checkedArr.join(',')))
-				storageKey2 ? sessionStorage.setItem(storageKey2, JSON.stringify(id2)) : null
+				storageKey2 ? sessionStorage.setItem(storageKey2, JSON.stringify(IntermediariesPopup.checkedArr.length === 0 ? "" : 	id2)) : null
 			}
 		}
 	}
@@ -164,7 +169,7 @@ export default class IntermediariesPopup {
 					// $this.list1.views[0].filter('1', 'intermediary', 'intermediaryFilter')
 					view.filter({id: dataAttr, str: 'intermediaries', storageKey: 'intermediariesFilter', id2: '1', str2: 'intermediary', storageKey2: 'intermediaryFilter'})
 				} else {
-					view.filter({id: dataAttr, str: 'intermediaries', storageKey: 'intermediariesFilter'})
+					view.filter({id: dataAttr, str: 'intermediaries', storageKey: 'intermediariesFilter', id2: '1', str2: 'intermediary', storageKey2: 'intermediaryFilter'})
 				}
 
 				if(!flag) {
