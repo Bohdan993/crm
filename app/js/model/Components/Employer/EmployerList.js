@@ -3,8 +3,25 @@ import RowEmployer from './EmployerRow'
 
 import initWorkPopup from '../../initWorkPopup'
 
-// import employerListUpdateEvent from '../../CustomEvents/EmployerListUpdateEvent'
+import getWorkModalInfo from '../../fetchingData/Employer/WorkModal/getWorkModalInfo'
+import getWorkModalManufacturyType from '../../fetchingData/Employer/WorkModal/getWorkModalManufacturyType'
+import getWorkModalMedia from '../../fetchingData/Employer/WorkModal/getWorkModalMedia'
+import getWorkModalContactHistory from '../../fetchingData/Employer/WorkModal/getWorkModalContactHistory'
+import getWorkModalVacancyHistory from '../../fetchingData/Employer/WorkModal/getWorkModalVacancyHistory'
+import getWorkModalFeedback from '../../fetchingData/Employer/WorkModal/getWorkModalFeedback'
+import getWorkModalTasks from '../../fetchingData/Employer/WorkModal/getWorkModalTasks'
 
+import switchModalParts from '../../switchModalParts'
+import {modalSwitchers, modalParts} from '../../../view'
+import {
+    addMouseUpTrigger,
+    closeModal,
+    getAllUrlParams
+} from '../../helper'
+
+
+// import employerListUpdateEvent from '../../CustomEvents/EmployerListUpdateEvent'
+let flag = false
 
 export default class EmployerList {
     constructor() {
@@ -31,6 +48,37 @@ export default class EmployerList {
     }
 
     onmount() {
+
+        let id_employer = getAllUrlParams().id
+        if(id_employer) {
+        MicroModal.show('modal-1', {
+              onClose: modal => {
+                getEmployersList({filtered: JSON.parse(sessionStorage.getItem('employersFiltered'))})
+              },
+              onShow: (modal, node) => {
+                    const wrapper = modal.querySelector('.my-modal-wrapper')
+                    const modalClose = modal.querySelector('.modal__close')
+
+                    if(!flag) {
+                      wrapper.addEventListener('mouseup', addMouseUpTrigger)
+                      wrapper.addEventListener('mousedown', closeModal.bind(null, modal.id))
+                      modalClose.addEventListener('click', function(){
+                        MicroModal.close(modal.id)
+                      })
+                      flag = true
+                    }
+
+                    switchModalParts(modalSwitchers, modalParts, false)('#employer-data', '[data-part="employer-data"]')
+                  }
+            })
+            getWorkModalInfo(id_employer)
+            getWorkModalManufacturyType(id_employer)
+            getWorkModalMedia({id: id_employer, loading: true})
+            getWorkModalContactHistory({id:id_employer, loading: true })
+            getWorkModalVacancyHistory({id:id_employer, loading: true })
+            getWorkModalFeedback({id:id_employer, loading: true, other: 5, str: 'employers' })
+            getWorkModalTasks({id: id_employer})
+        }
   
     }
 }

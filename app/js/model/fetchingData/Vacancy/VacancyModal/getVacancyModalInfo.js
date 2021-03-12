@@ -2,7 +2,7 @@ import fetch from '../../fetchingDataClass'
 import getVacancyClients from '../getVacancyClients'
 import ModalRowLayerLeft from '../../../Components/Vacancy/VacancyModal/ModalRowLayerLeft'
 import ModalRowLayerRight from '../../../Components/Vacancy/VacancyModal/ModalRowLayerRight'
-import Task from '../../../Components/TaskComponent'
+// import Task from '../../../Components/TaskComponent'
 import Note from '../../../Components/ModalSidebarNoteComponent'
 import Delete from '../../../Components/DeleteComponent'
 import ManagerSelect from '../../../Components/ManagerSelectComponent'
@@ -22,13 +22,13 @@ const state = {}
 const managerSelectWrap = sidebarVacancyForm ? sidebarVacancyForm.querySelector('.manager-select-wrap') : null
 
 const loader = place(Loader)
-const loader2 = place(Loader)
+// const loader2 = place(Loader)
 
 
 
 const demand = new DemandComponent()
 const terms = new TermsComponent()
-const task = new Task('vacancy')
+// const task = new Task('vacancy')
 const note = new Note('vacancy')
 const select = new ManagerSelect('vacancy')
 const deleteComponent = new Delete('vacancy')
@@ -50,11 +50,11 @@ if(managerSelectWrap) {
 	mount(managerSelectWrap, select)
 }
 
-if(sidebarVacancyForm) {
-	mount(sidebarVacancyForm, task)
-	mount(sidebarVacancyForm, loader2)
+// if(sidebarVacancyForm) {
+// 	mount(sidebarVacancyForm, task)
+// 	mount(sidebarVacancyForm, loader2)
 	
-}
+// }
 
 if(clientsRow) {
 	mount(clientsRow, clients)
@@ -127,7 +127,7 @@ try {
 		const mainPart = data.data ? data.data.main : []
 		// const source = sourseData.data.source
 		// source.unshift({id: 0, name: 'Отсутствует'})
-		const tasks = mainPart.task
+		// const tasks = mainPart.task
 		const notes = mainPart.employer ? mainPart.employer.note : ''
 		const id_manager = mainPart.employer ? mainPart.employer.id_manager : '0'
 		const employer = mainPart.employer ? mainPart.employer : {}
@@ -194,10 +194,10 @@ try {
 		}
 
 
-		const tasksData = {
-			tasks,
-			id: id_employer
-		}
+		// const tasksData = {
+		// 	tasks,
+		// 	id: id_employer
+		// }
 
 
 		const deleteData = {
@@ -212,7 +212,7 @@ try {
 		mrll.update(employerData, employerContext)
 		mrlr.update(employerData, employerContext)
 		select.update(managersData)
-		task.update(tasksData)
+		// task.update(tasksData)
 		note.update(notesData)
 		deleteComponent.update(deleteData)
 		acvccop.update(id)

@@ -4,6 +4,7 @@ import initWorkPopup from '../../initWorkPopup'
 
 import getVacancyModalInfo from '../../fetchingData/Vacancy/VacancyModal/getVacancyModalInfo'
 import getWorkModalFeedback from '../../fetchingData/Employer/WorkModal/getWorkModalFeedback'
+import getWorkModalTasks from '../../fetchingData/Employer/WorkModal/getWorkModalTasks'
 import {
     addMouseUpTrigger,
     closeModal,
@@ -84,6 +85,7 @@ export default class VacancyList {
                     str: 'vacancies',
                     other: 1
                 })
+                getWorkModalTasks({id: JSON.parse(sessionStorage.getItem('currVacancyEmployer')).id})
             })
         }
         

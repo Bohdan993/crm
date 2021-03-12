@@ -9,6 +9,8 @@ let html = `<div class="add-task-item"><i class="ico">
           </div>`
 	btn.addEventListener('click', function(){
 		this.closest('.add-task-group').querySelector('.tasks-layer').insertAdjacentHTML('beforeend', html)
+
+		console.log(res)
 	})
 }
 

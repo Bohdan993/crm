@@ -755,7 +755,7 @@
     }
   }
   .modal-row__layer {
-     max-height: 432px;
+     max-height: 27px * 15 + 42px;
      height: auto;
   }
  }
@@ -770,7 +770,7 @@
     }
   }
   .modal-row__layer {
-     max-height: 382px;
+     max-height: 27px * 10 + 42px;
      height: auto;
   }
  }
@@ -792,6 +792,12 @@
     height: 27px;
     border-bottom: 1px solid @secondary;
     cursor: pointer;
+
+    &:focus {
+      & > * {
+        font-weight: normal;
+      }
+    }
  }
 
 
@@ -1439,6 +1445,7 @@
   span {
     display: inline-block;
     margin-top: 0.2em;
+    word-break: break-word;
   }
  
 
@@ -1530,7 +1537,7 @@
   margin-bottom: 20px;
   width: 100%;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: flex-start;
 
 
@@ -1558,7 +1565,7 @@
     .manager-block {
       // flex-basis: 200/740 * 100%;
       width: auto;
-      min-width: 200px;
+      min-width: 270px;
 
       .sidebar-select-modal_inner {
         background: @white;
@@ -1628,7 +1635,7 @@
 }
 
 .contact-history-modal__body {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   .info-area {
     resize: none;
   }

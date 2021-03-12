@@ -85,10 +85,10 @@ export default class ContactHistoryModal {
 
 
 		this.confirm.addEventListener('click', (e) => {
-			console.log(this.date.value)
+			// console.log(this.date.value)
 			addContactHistory({
 					id_contact: this.data.data.id !== '' ? this.data.data.id : 0,
-					message: encodeURIComponent(this.textarea.value),
+					message: encodeURIComponent(this.textarea.value.trim()),
 					type_arrow: this.direction.classList.contains('rotate') ? 1 : 0,
 					date: encodeURIComponent(this.date.value),
 					id_login: this.managerChoices.managersChoises.getValue(true),

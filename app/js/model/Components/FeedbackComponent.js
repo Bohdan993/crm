@@ -20,6 +20,9 @@ import changeDirection from '../changeDirection'
 import {
 	initWorkModalTooltip
 } from '../initToottips'
+import {
+	dateInputChange
+} from '../helper.js'
 import storage from '../Storage/globalEmployers'
 
 
@@ -324,6 +327,8 @@ class FeedbackEdit {
 
 		this.parent = this.el.parentNode
 
+		this.date.addEventListener('change', dateInputChange.bind(null, this.date))
+
 		this.saveFeedback.addEventListener('click', (e) => {
 			e.preventDefault()
 			// console.log(+JSON.parse(sessionStorage.getItem('currClient')))
@@ -332,7 +337,7 @@ class FeedbackEdit {
 				addFeedback({
 					str: 'employers/feedback',
 					id_feedback: this.data.id_feedback,
-					feedback: this.textarea.value.trim(),
+					feedback: encodeURIComponent(this.textarea.value.trim()),
 					type_feedback: this.typeFeedback.getAttribute('data-id') || '0',
 					id_author: this.choiseClient.getAttribute('data-author') === '1' ? this.choiseClient.getAttribute('data-currClient') : '1',
 					type_author: this.choiseClient.getAttribute('data-author') || '2',
@@ -358,7 +363,7 @@ class FeedbackEdit {
 				addFeedback({
 					str: 'employers/feedback',
 					id_feedback: this.data.id_feedback,
-					feedback: this.textarea.value.trim(),
+					feedback: encodeURIComponent(this.textarea.value.trim()),
 					type_feedback: this.typeFeedback.getAttribute('data-id') || '0',
 					id_author: this.choiseClient.getAttribute('data-author') === '1' ? this.choiseClient.getAttribute('data-currClient') : '1',
 					type_author: this.choiseClient.getAttribute('data-author') || '2',
@@ -451,7 +456,7 @@ class FeedbackEdit {
 		})
 
 		setAttr(this.textarea, {
-			value: data.text,
+			value: data.text.split('<br>').join("\r\n"),
 			placeholder: 'введите текст отзыва'
 		})
 
@@ -541,13 +546,15 @@ class FeedbackRow {
 
 		this.edit.addEventListener('click', (e) => {
 			this.row.update(false)
-			console.log(this.row)
+
+			// console.log(this.text.innerHTML)
+
 			this.feedbackEdit.update(true, {
 				id_feedback: this.data.data.id,
 				type: this.data.context.type,
 				id: this.data.context.id,
 				count: this.data.context.count,
-				text: this.text.innerText,
+				text: this.text.innerHTML,
 				date: this.date.innerText,
 				typeFeedback: this.data.data.type_feedback,
 				from: this.from.innerText,

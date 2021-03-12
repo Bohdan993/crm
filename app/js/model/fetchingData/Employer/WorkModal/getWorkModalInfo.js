@@ -1,6 +1,5 @@
 import fetch from '../../fetchingDataClass'
 import WorkModal from '../../../Components/Employer/WorkModal/WorkModal'
-import Task from '../../../Components/TaskComponent'
 import Note from '../../../Components/ModalSidebarNoteComponent'
 import Delete from '../../../Components/DeleteComponent'
 import ManagerSelect from '../../../Components/ManagerSelectComponent'
@@ -17,12 +16,11 @@ const commonInfo = document.querySelector('.row.common-info ')
 const managerSelectWrap = sidebarEmployerForm ? sidebarEmployerForm.querySelector('.manager-select-wrap') : null
 
 const loader = place(Loader)
-const loader2 = place(Loader)
+// const loader2 = place(Loader)
 // const workModal = place(new WorkModal())
 const workModal = new WorkModal()
 
 
-const task = new Task('employer')
 const note = new Note('employer')
 const select = new ManagerSelect('employer')
 const deleteComponent = new Delete('employer')
@@ -32,11 +30,6 @@ if(commonInfo) {
 	mount(commonInfo, loader)
 }
 
-if(sidebarEmployerForm) {
-	mount(sidebarEmployerForm, task)
-	mount(sidebarEmployerForm, loader2)
-	
-}
 
 if(managerSelectWrap) {
 	mount(managerSelectWrap, select)
@@ -66,19 +59,23 @@ const getWorkModalInfo = async (id = '1') => {
 		workModal.setHiddenClass()
 	}
 
-	if(sidebarEmployerForm) {
-		loader2.update(true)
-	}
+	// if(sidebarEmployerForm) {
+	// 	loader2.update(true)
+	// }
 
 try {
 		const data = await fetch.getResourse(`/employers/get/?id=${id}&section=1`)
 		// console.log(data)
 		const sourseData = await fetch.getResourse('/employers/get_other/?s=5')
 
+
+		// console.log('data', data)
+
+		// console.log('sourceData')
+
 		const mainPart = data.data.main
 		const source = sourseData.data.source
 		source.unshift({id: 0, name: 'Отсутствует'})
-		const tasks = mainPart.task
 		const notes = mainPart.note ? mainPart.note : ''
 		const id_manager = mainPart.id_login
 		const date = mainPart.date
@@ -91,10 +88,6 @@ try {
 
 		// console.log(badFeedback)
 
-		const tasksData = {
-			tasks,
-			id
-		}
 
 		const notesData = {
 			notes,
@@ -116,12 +109,11 @@ try {
 
 
 		workModal.update(mainPart, feedbackEmp)
-		task.update(tasksData)
 		select.update(managersData)
 		note.update(notesData)
 		deleteComponent.update(deleteData)
 
-		loader2.update(false)
+		// loader2.update(false)
 		loader.update(false)
 		workModal.removeHiddenClass()
 
@@ -140,3 +132,4 @@ try {
 
 
 export default getWorkModalInfo 		//to ../Components/EmployersRow.js
+

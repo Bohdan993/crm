@@ -1,6 +1,5 @@
 
 
-import addNewTask from '../addNewTask'
 import addTask from '../fetchingData/Employer/WorkModal/addTask'
 import deleteTask from '../fetchingData/Employer/WorkModal/deleteTask'
 import saveFieldsData from '../fetchingData/saveFieldsData'
@@ -30,11 +29,23 @@ class TaskItem {
 			this.delete.addEventListener('click', e => {
                 // if(this.type === 'employer') {
                     this.context.count--
-                    deleteTask({
-                        id: this.data.id_employer_task, 
-                        id_employer: this.context.id,
-                        str: 'employers'
-                    })
+
+                    if(this.type === 'employer') {
+
+                        console.log(this.context)
+                        deleteTask({
+                            id: this.data.id_employer_task, 
+                            id_employer: this.context.id,
+                            str: 'employers'
+                        })
+                    } else {
+                        deleteTask({
+                            id: this.data.id_employer_task, 
+                            id_employer: this.context.id,
+                            str: 'vacancies'
+                        })
+                    }
+                    
 
                     if(this.type === 'employer') {
                         employersStorage.setPartialState(this.context.id, 'id_employer', 'task', (this.context.count > 0))
@@ -47,7 +58,7 @@ class TaskItem {
                    saveFieldsData({
                     str: 'employers',
                     id: this.context.id,
-                    value: this.textarea.value, 
+                    value: encodeURIComponent(this.textarea.value), 
                     field: 'name', 
                     target: 'task', 
                     id_target: this.data.id_employer_task
@@ -63,6 +74,11 @@ class TaskItem {
 	}
 
 	update(data, index, items, context) {
+
+        console.log(context, 'ONE TASK')
+
+
+        // console.log(context)
         
 		setAttr(this.textarea, {
 			value: data.name
@@ -71,16 +87,18 @@ class TaskItem {
 		this.data = data
 		this.context = context
 
-        console.log(this.context)
+        // console.log(this.context)
 	}
 
     onmount (){
+        // console.log('i am mounted')
         initElasticArea(this.textarea)
     }
 }
 
 export default class Task { // to ../fetchingData/Employer/WorkModal
     constructor(type) {
+        this.type = type
         this.el = el('div.input-group.add-task-group',
         	el('div.input-group__control',
         		el('p', 'Задачи'),
@@ -93,14 +111,21 @@ export default class Task { // to ../fetchingData/Employer/WorkModal
         
 
         this.addTask.addEventListener('click', e => {
+                console.log(type)
                 this.count++
-        		addTask(
-        			{
-            			id: this.data.id,
-        				str:'employers'
-    				})
-                employersStorage.setPartialState(this.data.id, 'id_employer', 'task', (this.count > 0))
-                // console.log((this.count > 0))
+                if(this.type === 'employer') {
+                    addTask({
+                        id: this.data.id,
+                        str:'employers'
+                    })
+                    employersStorage.setPartialState(this.data.id, 'id_employer', 'task', (this.count > 0))
+                } else {
+                    addTask({
+                        id: this.data.id,
+                        str:'vacancies'
+                    })
+                }
+        		
             })
     }
     update(data) {
@@ -113,13 +138,17 @@ export default class Task { // to ../fetchingData/Employer/WorkModal
 
 
     onmount() {
-        addNewTask(this.addTask)
 
 
         //Обновить список задач при загрузке информации о работодателе на странице вакансий
         document.addEventListener('storageemployeradd', (e) => {
             this.list.update(storage.getState(e.detail.id).task)
+
+            if(this.type === 'vacancy') {
+                this.data.id = e.detail.id
+            }
         })
+
     }
 }
 

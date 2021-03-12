@@ -23,6 +23,10 @@ const addContactHistory = async ({
 					throw new Error('Нужно выбрать тип контакта')
 				}
 
+				if(message === '') {
+					throw new Error('Содержание не должно быть пустым')
+				}
+
 				const contacts = await fetch.getResourse(`/employers/contact/?id_contact=${id_contact}&message=${message}&date=${date}&type_arrow=${type_arrow}&id_login=${id_login}&id_type=${id_type}&id_employer=${id_employer}`)
 
 				if(contacts.success === true) {

@@ -7,7 +7,7 @@ import {
 	// show5Rows,
 	initWorkPopup,
 	addNewTask,
-	deleteTask,
+	// deleteTask,
 	setFeedbackDate,
 	addFeedbackForm,
 	switchRowStatuses,
@@ -108,7 +108,7 @@ const app = {
 		// this.t()
 		this.iwms()
 		this.ant()
-		this.dt()
+		// this.dt()
 		this.sfd()
 		this.aff()
 		this.sdts()
@@ -186,9 +186,9 @@ const app = {
 		}
 		
 	},
-	dt() {
-		deleteTask(body)
-	},
+	// dt() {
+	// 	deleteTask(body)
+	// },
 	sfd() {
 		if(workModalFeedbackDate) {
 			setFeedbackDate(workModalFeedbackDate)

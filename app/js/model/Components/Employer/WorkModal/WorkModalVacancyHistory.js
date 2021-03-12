@@ -16,7 +16,7 @@ class WorkModalVacancyHistoryRow {
 	constructor() {
 
 
-		this.el = el('div.modal-row__contacts-history-row',
+		this.el = el('a.modal-row__contacts-history-row',
 			el('div.modal-row__vacancies-history-labels',
 				this.label = el('i.label',
 					this.name = el('span', 'NO'),
@@ -40,6 +40,12 @@ class WorkModalVacancyHistoryRow {
 
 	update(data) {
 		// console.log(data)
+
+		setAttr(this.el, {
+			href: `vacancy.html?id=${data.name.split(' ')[1]}`
+		})
+
+
 		setAttr(this.name, {
 			innerText: data.name + ' -'
 		})
@@ -49,27 +55,30 @@ class WorkModalVacancyHistoryRow {
 		})
 
 		setAttr(this.period, {
-			innerText: data.period + ' мес'
+			innerText: data.period ? data.period + ' мес' : ''
 		})
 
 		setAttr(this.production, {
 			innerText: data.type_production
 		})
 
+
 		setAttr(this.date, {
-			innerText: data.start_work ?  data.start_work : '' + ' - ' + data.finish_work ? data.finish_work : ''
+			innerText: (data.start_work ?  data.start_work : '') + (data.start_work && data.finish_work ? ' - ' : '') + (data.finish_work ? data.finish_work : '')
 		})
 
+		// console.log(data.total_woman)
+
 		setAttr(this.people, {
-			innerText: "М" + data.total_man + ' Ж' + data.total_woman,
+			innerText: (+data.total_man ? "М" + data.total_man : '') + (+data.total_woman ? ' Ж' + data.total_woman : '') ,
 			style: {
-				color: data.archive === '0' ? '#FF9966' : '#99CCCC'
+				color: data.archive === '0' ? '#FF9966' : 'rgb(51, 153, 204)'
 			}
 		})
 
 		setAttr(this.label, {
 			style: {
-				background: data.archive === '0' ? '#FF9966' : '#99CCCC'
+				background: data.archive === '0' ? '#FF9966' : 'rgb(51, 153, 204)'
 			}
 		})
 
@@ -88,7 +97,7 @@ class WorkModalVacancyHistoryRow {
 
 export default class WorkModalVacancyHistory {
 	constructor() {
-
+		this.data = {}
 		this.controls = el('div.modal-row__controls',
 			el('p', 'История вакансий')
 		)
@@ -106,7 +115,7 @@ export default class WorkModalVacancyHistory {
 			this.showMore = place(ShowMoreBtn)
 		)
 
-		console.log(this.el)
+		// console.log(this.el)
 
 		initOverlayScrollbars(this.modalLayer)
 
@@ -141,8 +150,14 @@ export default class WorkModalVacancyHistory {
 		if (loading) {
 			this.pageShow = 2
 		}
+		this.data.data = data
+		this.data.index = index
+		this.data.count = (this.pageShow - 1) * 5
 
-		this.list.update(data.data)
+		this.list.update(data.data, {
+			data: this.data,
+			count: this.data.count
+		})
 
 
 		//Пагинация
@@ -151,6 +166,7 @@ export default class WorkModalVacancyHistory {
 
 			if (!this.flagShow) {
 				this.showMore.el.addEventListener('click', () => {
+					console.log(this.data.data.id)
 					getWorkModalVacancyHistory({
 						id: this.data.data.id,
 						showing: true,
@@ -171,8 +187,8 @@ export default class WorkModalVacancyHistory {
 		checkIfWrapperIsEmpty(this.modalRowWrapper)
 		//
 
-		this.data = data
-		this.index = index
+		// this.data = data
+		// this.index = index
 	}
 
 

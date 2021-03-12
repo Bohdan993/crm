@@ -307,7 +307,7 @@ export default class WorkModal {
 		})
 
 		this.comInfNotes.addEventListener('change', (e) => {
-			save(encodeURIComponent(this.comInfNotes.value), 'note')
+			save(encodeURIComponent(this.comInfNotes.value), 'other_information')
 		})
 
 		this.intermadiariesSelect.el.addEventListener('change', (e) => {

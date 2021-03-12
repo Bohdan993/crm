@@ -21,7 +21,7 @@ import storage from '../../Storage/globalEmployers'
 let countCallEmployersFunction =  0;
 const employersWrapper = document.querySelector('.employer-rows-wrapper')
 
-let globalEmployers = []
+
 let inited = false
 
 const loader = place(Loader)
@@ -150,8 +150,15 @@ const getEmployersList = async({
 			} else {
 				loader.update(false)
 
-				if (scroll || sorted) {
-					empList.update(globalEmployers)
+					if (scroll) {
+					empList.update(storage.getState())
+
+					return {
+						employers: storage.getState(),
+						success: data.success
+					}
+				} else if (sorted) {
+					empList.update([])
 
 					return Array(1)
 				} else {
@@ -160,7 +167,7 @@ const getEmployersList = async({
 				}
 			}
 
-			return employers
+			return {employers, success: data.success}
 
 		} catch (e) {
 

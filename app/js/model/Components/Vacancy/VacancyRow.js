@@ -13,6 +13,7 @@ import {
 	addMouseUpTrigger,
 	closeModal
 } from '../../helper'
+import getWorkModalTasks from '../../fetchingData/Employer/WorkModal/getWorkModalTasks'
 import getVacancyModalInfo from '../../fetchingData/Vacancy/VacancyModal/getVacancyModalInfo'
 import getWorkModalFeedback from '../../fetchingData/Employer/WorkModal/getWorkModalFeedback'
 import storage from '../../Storage'
@@ -125,6 +126,7 @@ export default class RowVacancy {
 					str: 'vacancies',
 					other: 1
 				})
+				getWorkModalTasks({id: JSON.parse(sessionStorage.getItem('currVacancyEmployer')).id})
 			})
 
 			MicroModal.show('modal-3', {

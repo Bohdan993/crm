@@ -34,7 +34,7 @@ class StorageGlobalEmployers {
 		this.getState().every(el => {
 			// console.log(el)
 			if(el[key] === id) {
-				console.log(el[prop])
+				// console.log(el[prop])
 				res = el[prop]
 				return false
 			} else {

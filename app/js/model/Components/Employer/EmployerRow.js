@@ -7,6 +7,7 @@ import getWorkModalMedia from '../../fetchingData/Employer/WorkModal/getWorkModa
 import getWorkModalContactHistory from '../../fetchingData/Employer/WorkModal/getWorkModalContactHistory'
 import getWorkModalVacancyHistory from '../../fetchingData/Employer/WorkModal/getWorkModalVacancyHistory'
 import getWorkModalFeedback from '../../fetchingData/Employer/WorkModal/getWorkModalFeedback'
+import getWorkModalTasks from '../../fetchingData/Employer/WorkModal/getWorkModalTasks'
 
 import getEmployersList from '../../fetchingData/Employer/getEmployersList'
 import {addMouseUpTrigger, closeModal} from '../../helper'
@@ -15,6 +16,16 @@ import {modalSwitchers, modalParts} from '../../../view'
 
 
 let flag = false
+
+
+function updateURL(param) {
+    if (history.replaceState) {
+        history.replaceState(null, null, param);
+    }
+    else {
+        console.warn('History API не поддерживается');
+    }
+}
 
 class VacancyLabel {
 	constructor(){
@@ -92,6 +103,12 @@ export default class RowEmployer {
 		// this.flag = false
 
 		this.el.addEventListener('click', (e) =>{
+
+
+			let url = `?id=${this.data.id_employer}`
+
+			updateURL(url)
+
 			MicroModal.show('modal-1', {
 	      onClose: modal => {
 	      	getEmployersList({filtered: JSON.parse(sessionStorage.getItem('employersFiltered'))})
@@ -118,6 +135,7 @@ export default class RowEmployer {
 			getWorkModalContactHistory({id:this.data.id_employer, loading: true })
 			getWorkModalVacancyHistory({id:this.data.id_employer, loading: true })
 			getWorkModalFeedback({id:this.data.id_employer, loading: true, other: 5, str: 'employers' })
+			getWorkModalTasks({id: this.data.id_employer})
 
 
 
@@ -198,11 +216,10 @@ export default class RowEmployer {
 
 		setTimeout(() => {
 		if(data.country_name !== null) {
-			this.countryInstance && this.countryInstance.setContent(`${data.country_name}`)
+			this.countryInstance && !this.countryInstance.state.isDestroyed && this.countryInstance.setContent(`${data.country_name}`)
 		}
-
-			this.companyInstance && this.companyInstance.setContent(`${data.enterprise}`)
-			this.nameInstance && this.nameInstance.setContent(`${data.name}`)
+			this.companyInstance && !this.companyInstance.state.isDestroyed && this.companyInstance.setContent(`${data.enterprise}`)
+			this.nameInstance && !this.nameInstance.state.isDestroyed && this.nameInstance.setContent(`${data.name}`)
 		}, 0)
 	
 		// // console.log('updated')

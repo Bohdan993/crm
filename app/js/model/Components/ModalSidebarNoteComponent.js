@@ -6,6 +6,7 @@ import initElasticArea from '../initElasticArea'
 import storage from '../Storage'
 
 
+
 export default class Note { // to ../fetchingData/Employer/WorkModal
     constructor(type) {
     		this.type = type
@@ -21,7 +22,7 @@ export default class Note { // to ../fetchingData/Employer/WorkModal
                 saveFieldsData({
                     str: 'employers',
                     id: this.data.id,
-                    value: this.textArea.value, 
+                    value: encodeURIComponent(this.textArea.value), 
                     field: 'note', 
                     target: 'main', 
                     id_target: ''
@@ -31,7 +32,7 @@ export default class Note { // to ../fetchingData/Employer/WorkModal
                 saveFieldsData({
                     str: 'vacancies',
                     id: this.data.id,
-                    value: this.textArea.value, 
+                    value: encodeURIComponent(this.textArea.value), 
                     field: 'note', 
                     target: 'employer', 
                     id_target: ''
@@ -51,11 +52,14 @@ export default class Note { // to ../fetchingData/Employer/WorkModal
     		value: data && data.notes || data && data.notes === ''  ? data.notes : data
     	})
 
+
+        initElasticArea(this.textArea)
+   
+
      	this.data = data
     }
 
     onmount(){
-    	initElasticArea(this.textArea)
         document.addEventListener('storageemployeradd', (e) => {
             console.log(storage.getState(e.detail.id).employer.note)
             this.update(storage.getState(e.detail.id).employer.note)

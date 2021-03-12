@@ -1,5 +1,5 @@
 import {el, setAttr, place, Autocomplete} from '../../../../../libs/libs'
-import loadEmployerInfo from '../../../fetchingData/Vacancy/VacancyModal/loadEmployerInfo.js'
+import loadEmployerInfo from '../../../fetchingData/Vacancy/VacancyModal/loadEmployerInfo'
 import storage from '../../../Storage'
 import storageVacancyEmployerDataAdd from '../../../CustomEvents/storageVacancyEmployerDataAdd'
 

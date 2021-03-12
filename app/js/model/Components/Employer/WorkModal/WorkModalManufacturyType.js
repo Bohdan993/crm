@@ -110,9 +110,7 @@ export default class WorkModalManufacturyType {
         this.initData = this.getItemsFromLocalStorage().products
         this.controls = el('div.modal-row__controls',
             el('p', 'Тип производства'),
-            this.addItem = el('div.add-item', el('span', '+'), 'добавить тип производства', {
-                'data-id': '111'
-            })
+            this.addItem = el('div.add-item', el('span', '+'), 'добавить тип производства')
         )
 
         this.defaultOption = {
