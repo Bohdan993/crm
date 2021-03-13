@@ -22,7 +22,8 @@ import {
 import {
 	addMouseUpTrigger,
 	closeModal,
-	come
+	come,
+	onKeyPressClose
 } from '../../../helper'
 
 let flag = false
@@ -62,6 +63,8 @@ class WorkModalContactHistoryRow {
 						modalClose.addEventListener('click', function () {
 							MicroModal.close(modal.id)
 						})
+						// document.removeEventListener('keydown', onKeyPressClose)
+						// document.addEventListener('keydown', onKeyPressClose)
 						flag = true
 					}
 				}
@@ -157,6 +160,8 @@ export default class WorkModalContactHistory {
 						modalClose.addEventListener('click', function () {
 							MicroModal.close(modal.id)
 						})
+						// document.removeEventListener('keydown', onKeyPressClose)
+						// document.addEventListener('keydown', onKeyPressClose)
 						flag = true
 					}
 				}
@@ -173,6 +178,9 @@ export default class WorkModalContactHistory {
 				id: this.data.data.id,
 				count: this.data.count
 			})
+
+
+			console.log(MicroModal)
 		})
 
 		this.data.storage = this.getItemsLocalStorage()

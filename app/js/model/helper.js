@@ -150,6 +150,19 @@ function closeModal(id, e) {
 }
 
 
+function close (id) {
+  MicroModal.close(id)
+}
+
+
+// function onKeyPressClose (e) {
+//  if(e.keyCode === 27) {
+//     console.log(e)
+//    MicroModal.close()
+//  }
+// }
+
+
 const sleep = (ms) => {
   return new Promise(res => {
     setTimeout(function(){
@@ -247,6 +260,7 @@ function dateInputChange(element) {
 
 
 
+
 export {
 	throttle,
 	debounce,
@@ -261,5 +275,7 @@ export {
   addMouseUpTrigger,
   closeModal,
   dateInputChange,
-  getAllUrlParams
+  getAllUrlParams,
+  close,
+  // onKeyPressClose
 }

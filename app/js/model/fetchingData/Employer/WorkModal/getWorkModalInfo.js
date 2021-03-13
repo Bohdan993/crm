@@ -7,7 +7,7 @@ import ManagerSelect from '../../../Components/ManagerSelectComponent'
 import Loader from '../../../Components/Loader'
 import WorkModalCreateVacancy from '../../../Components/Employer/WorkModal/WorkModalCreateVacancy'
 import {list, mount, place} from '../../../../../libs/libs'
-import {sidebarEmployerForm, workModalSidebarNotes, employerDelete, sidebarMailingItem} from '../../../../view'
+import {sidebarEmployerForm, workModalSidebarNotes, employerDelete, sidebarMailingItem, createVacancyItem} from '../../../../view'
 import { feedbackEmp, feedbackVac } from './getWorkModalFeedback'
 // import negativeFeedbackCountChange from '../../../CustomEvents/negativeFeedbackCountChange'
 // import employerFeedbackNameChange from '../../../CustomEvents/employerFeedbackNameChange'
@@ -50,6 +50,11 @@ if(employerDelete) {
 if(sidebarMailingItem) {
 	mount(sidebarMailingItem, mailingComponent)
 }
+
+
+if(createVacancyItem) {
+	mount(createVacancyItem, createVacancyComponent)
+}
 // const sleep = (ms) => {
 // 	return new Promise(res => {
 // 		setTimeout(function(){
@@ -73,11 +78,14 @@ const getWorkModalInfo = async (id = '1') => {
 
 try {
 		const data = await fetch.getResourse(`/employers/get/?id=${id}&section=1`)
-		// console.log(data)
 		const sourseData = await fetch.getResourse('/employers/get_other/?s=5')
+
+		const tasksData = await fetch.getResourse(`/employers/get/?id=${id}&section=2&other=6`)
 
 
 		console.log('data', data)
+
+		console.log(tasksData)
 
 		// console.log('sourceData')
 
@@ -90,12 +98,6 @@ try {
 		const badFeedback = mainPart.total_bad_feedback
 		const mailing = mainPart.mailing
 
-		// negativeFeedbackCountChange.detail.count = String(badFeedback)
-		// document.dispatchEvent(negativeFeedbackCountChange)
-		// employerFeedbackNameChange.detail.name = String(mainPart.name)
-		// document.dispatchEvent(employerFeedbackNameChange)
-
-		// console.log(badFeedback)
 
 
 		const notesData = {
@@ -127,14 +129,14 @@ try {
 		note.update(notesData)
 		deleteComponent.update(deleteData)
 		mailingComponent.update(mailingData)
+		createVacancyComponent.update(id)
 
-		// loader2.update(false)
 		loader.update(false)
 		workModal.removeHiddenClass()
 
 		sessionStorage.setItem('currEmployerName', JSON.stringify(mainPart.name))
 		sessionStorage.setItem('currActiveManagerId', JSON.stringify(id_manager))
-		
+
 		state.id = id
 
 	}

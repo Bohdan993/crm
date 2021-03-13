@@ -16,6 +16,10 @@ export default class WorkModalCreateVacancy {
 
 	update(data){
 
+		setAttr(this.link, {
+			href: `vacancy.html?createvacancy=${data}`
+		})
+
 		this.data = data
 	}
 }

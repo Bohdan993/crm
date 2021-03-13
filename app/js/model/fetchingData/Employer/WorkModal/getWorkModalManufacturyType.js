@@ -28,7 +28,7 @@ if(manufacturyType) {
 
 
 
-const getWorkModalManufacturyType = async (id = '1', loading = true) => {
+const getWorkModalManufacturyType = async (id = '1', loading = true, adding = false) => {
 
 	if(manufacturyType) {
 
@@ -47,8 +47,9 @@ const getWorkModalManufacturyType = async (id = '1', loading = true) => {
 			// console.log(data2)
 			const production = {id: id, data: otherPart.production }
 
+			console.log(adding)
 			// if(state.id !== id) {
-				workModalManufacturyType.update(production)
+				workModalManufacturyType.update(production, {adding})
 			// }
 
 			if(loading) {

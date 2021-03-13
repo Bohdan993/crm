@@ -1,7 +1,7 @@
 import {el, setAttr, list} from '../../../../libs/libs'
 import RowEmployer from './EmployerRow'
 
-import initWorkPopup from '../../initWorkPopup'
+// import initWorkPopup from '../../initWorkPopup'
 
 import getWorkModalInfo from '../../fetchingData/Employer/WorkModal/getWorkModalInfo'
 import getWorkModalManufacturyType from '../../fetchingData/Employer/WorkModal/getWorkModalManufacturyType'
@@ -10,18 +10,21 @@ import getWorkModalContactHistory from '../../fetchingData/Employer/WorkModal/ge
 import getWorkModalVacancyHistory from '../../fetchingData/Employer/WorkModal/getWorkModalVacancyHistory'
 import getWorkModalFeedback from '../../fetchingData/Employer/WorkModal/getWorkModalFeedback'
 import getWorkModalTasks from '../../fetchingData/Employer/WorkModal/getWorkModalTasks'
+import getEmployersList from '../../fetchingData/Employer/getEmployersList'
 
-import switchModalParts from '../../switchModalParts'
+// import switchModalParts from '../../switchModalParts'
 import {modalSwitchers, modalParts} from '../../../view'
 import {
     addMouseUpTrigger,
     closeModal,
-    getAllUrlParams
+    getAllUrlParams,
+    close
 } from '../../helper'
 
 
 // import employerListUpdateEvent from '../../CustomEvents/EmployerListUpdateEvent'
 let flag = false
+
 
 export default class EmployerList {
     constructor() {
@@ -42,7 +45,7 @@ export default class EmployerList {
         // console.log(this.count)
         //Инициализация функций которые зависят от инстанса класса
          if(!this.flag) {
-           initWorkPopup()
+           // initWorkPopup()
             this.flag = true
         }
     }
@@ -51,7 +54,7 @@ export default class EmployerList {
 
         let id_employer = getAllUrlParams().id
         if(id_employer) {
-        MicroModal.show('modal-1', {
+        let modalInstance = MicroModal.show('modal-1', {
               onClose: modal => {
                 getEmployersList({filtered: JSON.parse(sessionStorage.getItem('employersFiltered'))})
               },
@@ -60,17 +63,22 @@ export default class EmployerList {
                     const modalClose = modal.querySelector('.modal__close')
 
                     if(!flag) {
+
+                      wrapper.removeEventListener('mouseup', addMouseUpTrigger)
+                      wrapper.removeEventListener('mousedown', closeModal.bind(null, modal.id))
+                      modalClose.removeEventListener('click', close.bind(null, modal.id))
+
                       wrapper.addEventListener('mouseup', addMouseUpTrigger)
                       wrapper.addEventListener('mousedown', closeModal.bind(null, modal.id))
-                      modalClose.addEventListener('click', function(){
-                        MicroModal.close(modal.id)
-                      })
+                      modalClose.addEventListener('click', close.bind(null, modal.id))
+
                       flag = true
                     }
 
-                    switchModalParts(modalSwitchers, modalParts, false)('#employer-data', '[data-part="employer-data"]')
+                    // switchModalParts(modalSwitchers, modalParts, false)('#employer-data', '[data-part="employer-data"]')
                   }
             })
+            console.log(modalInstance)
             getWorkModalInfo(id_employer)
             getWorkModalManufacturyType(id_employer)
             getWorkModalMedia({id: id_employer, loading: true})

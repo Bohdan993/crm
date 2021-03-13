@@ -71,7 +71,10 @@ class WorkModalManufacturyTypeRow {
 
 
             //Обновление данных в списке работодателей
-            this.data.context.products[this.data.index] = this.select.el.value
+            // if(this.select.el.value !== '0') {
+              this.data.context.products[this.data.index] = this.select.el.value  
+            // }
+
 
             this.data.context.initData.forEach(el => {
                 this.data.context.products.forEach((elem, ind) => {
@@ -80,8 +83,13 @@ class WorkModalManufacturyTypeRow {
                         this.data.context.final[ind] = el.name
                     }
 
+                    if(elem === '0') {
+                        this.data.context.final[ind] = ''
+                    }
+
                 })
             })
+
 
             storage.setPartialState(this.data.context.id_employer, 'id_employer', 'production', this.data.context.final)
         })
@@ -135,7 +143,19 @@ export default class WorkModalManufacturyType {
         })
     }
 
-    update(data, index, items, context) {
+    update(data, context) {
+        console.log(data, context)
+        let { adding } = context
+        if(!adding) {
+            data.data = data.data.filter(el => {
+                if(el.id_spec_job_list === '0') {
+                  deleteManufacturyType(el.id, undefined)
+                }
+                return el.id_spec_job_list !== '0'
+            })
+        }
+        
+        console.log(data)
         this.productsArr = data.data.map(el => el.id_spec_job_list)
 
         this.initData.forEach(el => {
@@ -161,7 +181,7 @@ export default class WorkModalManufacturyType {
         checkIfWrapperIsEmpty(this.modalRowWrapper)
 
         this.data = data
-        this.data.index = index
+        // this.data.index = index
     }
 
     getItemsFromLocalStorage() { 

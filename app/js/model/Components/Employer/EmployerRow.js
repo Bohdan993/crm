@@ -9,13 +9,18 @@ import getWorkModalVacancyHistory from '../../fetchingData/Employer/WorkModal/ge
 import getWorkModalFeedback from '../../fetchingData/Employer/WorkModal/getWorkModalFeedback'
 import getWorkModalTasks from '../../fetchingData/Employer/WorkModal/getWorkModalTasks'
 
+
+// import deleteManufacturyType from '../../fetchingData/Employer/WorkModal/deleteManufacturyType'
+
 import getEmployersList from '../../fetchingData/Employer/getEmployersList'
-import {addMouseUpTrigger, closeModal} from '../../helper'
+import {addMouseUpTrigger, closeModal, close, getAllUrlParams, onKeyPressClose} from '../../helper'
 import switchModalParts from '../../switchModalParts'
 import {modalSwitchers, modalParts} from '../../../view'
 
 
 let flag = false
+
+
 
 
 function updateURL(param) {
@@ -103,41 +108,42 @@ export default class RowEmployer {
 		// this.flag = false
 
 		this.el.addEventListener('click', (e) =>{
-
-
+			let id_employer = getAllUrlParams().id
 			let url = `?id=${this.data.id_employer}`
 
 			updateURL(url)
 
 			MicroModal.show('modal-1', {
-	      onClose: modal => {
-	      	getEmployersList({filtered: JSON.parse(sessionStorage.getItem('employersFiltered'))})
-	      },
-	      onShow: (modal, node) => {
-			    const wrapper = modal.querySelector('.my-modal-wrapper')
-			    const modalClose = modal.querySelector('.modal__close')
+			      onClose: (modal, trigger) => {
+			      	getEmployersList({filtered: JSON.parse(sessionStorage.getItem('employersFiltered'))})
+			      },
+			      onShow: (modal, node) => {
+			      	if(!id_employer) {
+						    const wrapper = modal.querySelector('.my-modal-wrapper')
+						    const modalClose = modal.querySelector('.modal__close')
 
-			    if(!flag) {
-			      wrapper.addEventListener('mouseup', addMouseUpTrigger)
-			      wrapper.addEventListener('mousedown', closeModal.bind(null, modal.id))
-			      modalClose.addEventListener('click', function(){
-			        MicroModal.close(modal.id)
-			      })
-			      flag = true
-			    }
+						    if(!flag) {
+						    	wrapper.removeEventListener('mouseup', addMouseUpTrigger)
+						    	wrapper.removeEventListener('mousedown', closeModal.bind(null, modal.id))
+						    	modalClose.removeEventListener('click', close.bind(null, modal.id))
+						      wrapper.addEventListener('mouseup', addMouseUpTrigger)
+						      wrapper.addEventListener('mousedown', closeModal.bind(null, modal.id))
+						      modalClose.addEventListener('click', close.bind(null, modal.id))
+						      flag = true
+						    }
+      				}
+					    // switchModalParts(modalSwitchers, modalParts, false)('#employer-data', '[data-part="employer-data"]')
+					  }
+		    })
 
-			    switchModalParts(modalSwitchers, modalParts, false)('#employer-data', '[data-part="employer-data"]')
-			  }
-    })
-			getWorkModalInfo(this.data.id_employer)
-			getWorkModalManufacturyType(this.data.id_employer)
-			getWorkModalMedia({id: this.data.id_employer, loading: true})
-			getWorkModalContactHistory({id:this.data.id_employer, loading: true })
-			getWorkModalVacancyHistory({id:this.data.id_employer, loading: true })
-			getWorkModalFeedback({id:this.data.id_employer, loading: true, other: 5, str: 'employers' })
-			getWorkModalTasks({id: this.data.id_employer})
-
-
+			
+					getWorkModalInfo(this.data.id_employer)
+					getWorkModalManufacturyType(this.data.id_employer)
+					getWorkModalMedia({id: this.data.id_employer, loading: true})
+					getWorkModalContactHistory({id:this.data.id_employer, loading: true })
+					getWorkModalVacancyHistory({id:this.data.id_employer, loading: true })
+					getWorkModalFeedback({id:this.data.id_employer, loading: true, other: 5, str: 'employers' })
+					getWorkModalTasks({id: this.data.id_employer})
 
 		})
 
@@ -185,35 +191,11 @@ export default class RowEmployer {
 				)
 			) : this.managerTag.update(false)
 
-		this.jobsText.innerText = data.production ? data.production.join(', ') : ""
+		console.log(data.production.length > 0 ? data.production : '')
+
+		this.jobsText.innerText = data.production ? data.production.filter(el => el.length).join(', ') : ""
 		this.vacancyLabel.update(data.vacancy)
 
-		console.log(data.vacancy)
-
-		// if(id_employer !== this.data.id_employer) {
-		
-
-
-		// this.abbr.innerText = data.addr
-		
-		
-	
-		
-		
-		// this.addressText.innerText = data.address
-	
-		// data.vacancy instanceof Array && data.vacancy.length > 0 ? 
-		// (
-		// 		this.vacancyLabel.update(data.vacancy),
-		// 		setAttr(this.vacancyLabelCountry,{
-		// 				innerText: data.country_name,
-		// 			}
-		// 		),
-		// 		setAttr(this.vacancyLabelCode, {
-		// 				innerText: '123-12'
-		// 			}
-		// 		)
-		// 	) : this.vacancyLabel.update([{}])
 
 
 		setTimeout(() => {
@@ -270,14 +252,6 @@ export default class RowEmployer {
 
 		
 	}
-
-	// onremount(){
-
-	// 	// this.companyInstance = initRowTooltips(this.company)
-	// 	// this.nameInstance = initRowTooltips(this.name)
-	// 	// this.countryInstance = initRowTooltips(this.country)
-	// 	// console.log('remount')
-	// }
 
 	onunmount(){
 		// console.log('unmount')

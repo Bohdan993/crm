@@ -3,7 +3,7 @@ import initOverlayScrollbars from './OverlayScrollbarsInit'
 // import playAudioHover from './playAudioHover'
 
 import initTooltips from './initToottips'
-import initWorkPopup from './initWorkPopup'
+// import initWorkPopup from './initWorkPopup'
 import initToastr from './initToastr'
 import initElasticArea from './initElasticArea'
 import initWorkModalSelect from './initWorkModalSelect'
@@ -80,7 +80,7 @@ export {
 	// playAudioHover,
 
 	initTooltips,
-	initWorkPopup,
+	// initWorkPopup,
 	initToastr,
 	initElasticArea,
 	initWorkModalSelect,

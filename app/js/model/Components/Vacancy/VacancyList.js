@@ -1,10 +1,54 @@
 import {el, setAttr, list} from '../../../../libs/libs'
 import RowVacancy from './VacancyRow'
-import initWorkPopup from '../../initWorkPopup'
+// import initWorkPopup from '../../initWorkPopup'
+// import fetch from '../fetchingDataClass'
 
 import getVacancyModalInfo from '../../fetchingData/Vacancy/VacancyModal/getVacancyModalInfo'
 import getWorkModalFeedback from '../../fetchingData/Employer/WorkModal/getWorkModalFeedback'
 import getWorkModalTasks from '../../fetchingData/Employer/WorkModal/getWorkModalTasks'
+import copyVacancy from '../../fetchingData/Vacancy/VacancyModal/copyVacancy'
+import onAddVacancy from '../../fetchingData/Vacancy/addNewVacancy'
+import loadEmployerInfo from '../../fetchingData/Vacancy/VacancyModal/loadEmployerInfo'
+
+
+
+
+
+// loadEmployerInfo({
+//     vacancy: this.parent.data.idVac,
+//     employer: this.result.id
+// }).then(res => {
+//     if(res !== 'fail') {
+//         this.parent.chooseEmployer._el._tippy.hide()
+//         storage.setState('vacancyEmployerData', res)
+//         storageVacancyEmployerDataAdd.detail.id = 'vacancyEmployerData'
+//         document.dispatchEvent(storageVacancyEmployerDataAdd)
+//         this.findEmployer.value = ''
+//     } else {
+//         return
+//     }
+// })
+
+
+
+// copyVacancy({
+//     vacancy: this.data
+// })
+// .then(res => {
+//     if(res  !== 'fail') {
+//         MicroModal.close('modal-3')
+//         setTimeout(()=>{
+//             getVacancyModalInfo(res).then(r =>  MicroModal.show('modal-3'))
+//         }, 1500)
+        
+//         // console.log(res)
+//     }   else {
+//         return
+//     }
+// })
+
+
+
 import {
     addMouseUpTrigger,
     closeModal,
@@ -48,7 +92,7 @@ export default class VacancyList {
         })
         //Инициализация функций которые зависят от инстанса класса
          if(!this.flag) {
-            initWorkPopup()
+            // initWorkPopup()
             this.flag = true
         }
         //
@@ -56,7 +100,7 @@ export default class VacancyList {
 
     onmount() {
         let id_vacancy = getAllUrlParams().id
-        let createVacancy = getAllUrlParams().create
+        let createVacancy = getAllUrlParams().createvacancy
         if(id_vacancy) {
             MicroModal.show('modal-3', {
                 onClose: modal => {
@@ -88,6 +132,11 @@ export default class VacancyList {
                 })
                 getWorkModalTasks({id: JSON.parse(sessionStorage.getItem('currVacancyEmployer')).id})
             })
+        }
+
+
+        if(createVacancy) {
+
         }
         
     }
