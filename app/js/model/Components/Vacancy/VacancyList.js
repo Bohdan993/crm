@@ -56,6 +56,7 @@ export default class VacancyList {
 
     onmount() {
         let id_vacancy = getAllUrlParams().id
+        let createVacancy = getAllUrlParams().create
         if(id_vacancy) {
             MicroModal.show('modal-3', {
                 onClose: modal => {

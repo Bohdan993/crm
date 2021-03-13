@@ -28,7 +28,7 @@ export default class ManagerSelect { // to ../MountingElements/Employer/WorkModa
 					let currManager = JSON.parse(localStorage.getItem('managers')).filter(el=> el.id === this.manager.value)[0]
 					employersStorage.setPartialState(this.data.id, 'id_employer', 'manager', currManager ? currManager.name.split(' ').map(el => el[0]).join('') : '')
 					employersStorage.setPartialState(this.data.id, 'id_employer', 'manager_color', currManager ? currManager.color: '')
-					 
+					sessionStorage.setItem('currActiveManagerId', JSON.stringify(currManager.id))
                 } else {
                 	this.save({
 										id: this.data.id,

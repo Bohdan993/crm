@@ -231,7 +231,7 @@ const app = {
 		
 	},
 	smp() {
-		switchModalParts(modalSwitchers, modalParts)
+		// switchModalParts(modalSwitchers, modalParts)
 	},
 	fe() {
 		 feedbackEdit(editBtns)

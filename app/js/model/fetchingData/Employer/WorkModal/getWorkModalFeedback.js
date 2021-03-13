@@ -53,7 +53,7 @@ if(feedbackVacancy) {
 const getWorkModalFeedback = async ({
 	id = '1', 
 	p = 1, 
-	t = 5,
+	t = 4,
 	loading,
 	showing,
 	deleating, 

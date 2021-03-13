@@ -702,6 +702,9 @@ export default class Feedback {
 		this.data.data = data
 		this.data.index = index
 		this.data.count = (this.pageShow - 1) * 5
+
+		
+
 		this.list.update(data.data, {
 			storage: this.data.storage,
 			id: this.data.data.id,
@@ -734,7 +737,14 @@ export default class Feedback {
 							str: 'vacancies'
 						})
 					}
-					// console.log(this.pageShow)
+
+
+					setAttr(this.modalLayer, {
+						style: {
+							"max-height" : this.modalLayer.offsetHeight + 'px',
+						}
+					})
+					
 				})
 
 				this.flagShow = true
@@ -748,6 +758,17 @@ export default class Feedback {
 		setAttr(this.feedbackCount, {
 			innerText: data.total !== 0 ? " " + data.total : ''
 		})
+
+		if(this.data.id !== data.id) {
+			setAttr(this.modalLayer, {
+				style: {
+					"max-height" : 'unset',
+				}
+			})
+		}
+
+		
+
 
 
 		data.badFeedback !== 0 ? (
@@ -770,6 +791,8 @@ export default class Feedback {
 		checkIfWrapperIsEmpty(this.modalRowWrapper)
 		//
 
+
+		this.data.id = data.id
 	}
 
 	getItemsLocalStorage() {

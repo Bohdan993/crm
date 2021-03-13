@@ -2,10 +2,12 @@ import fetch from '../../fetchingDataClass'
 import WorkModal from '../../../Components/Employer/WorkModal/WorkModal'
 import Note from '../../../Components/ModalSidebarNoteComponent'
 import Delete from '../../../Components/DeleteComponent'
+import WorkModalMailing from '../../../Components/Employer/WorkModal/WorkModalMailing'
 import ManagerSelect from '../../../Components/ManagerSelectComponent'
 import Loader from '../../../Components/Loader'
+import WorkModalCreateVacancy from '../../../Components/Employer/WorkModal/WorkModalCreateVacancy'
 import {list, mount, place} from '../../../../../libs/libs'
-import {sidebarEmployerForm, workModalSidebarNotes, employerDelete} from '../../../../view'
+import {sidebarEmployerForm, workModalSidebarNotes, employerDelete, sidebarMailingItem} from '../../../../view'
 import { feedbackEmp, feedbackVac } from './getWorkModalFeedback'
 // import negativeFeedbackCountChange from '../../../CustomEvents/negativeFeedbackCountChange'
 // import employerFeedbackNameChange from '../../../CustomEvents/employerFeedbackNameChange'
@@ -24,6 +26,8 @@ const workModal = new WorkModal()
 const note = new Note('employer')
 const select = new ManagerSelect('employer')
 const deleteComponent = new Delete('employer')
+const mailingComponent = new WorkModalMailing()
+const createVacancyComponent = new WorkModalCreateVacancy()
 
 if(commonInfo) {
 	mount(commonInfo, workModal);
@@ -41,6 +45,10 @@ if(workModalSidebarNotes) {
 
 if(employerDelete) {
 	mount(employerDelete, deleteComponent)
+}
+
+if(sidebarMailingItem) {
+	mount(sidebarMailingItem, mailingComponent)
 }
 // const sleep = (ms) => {
 // 	return new Promise(res => {
@@ -69,7 +77,7 @@ try {
 		const sourseData = await fetch.getResourse('/employers/get_other/?s=5')
 
 
-		// console.log('data', data)
+		console.log('data', data)
 
 		// console.log('sourceData')
 
@@ -80,6 +88,7 @@ try {
 		const id_manager = mainPart.id_login
 		const date = mainPart.date
 		const badFeedback = mainPart.total_bad_feedback
+		const mailing = mainPart.mailing
 
 		// negativeFeedbackCountChange.detail.count = String(badFeedback)
 		// document.dispatchEvent(negativeFeedbackCountChange)
@@ -105,6 +114,11 @@ try {
 			id
 		}
 
+		const mailingData = {
+			mailing,
+			id
+		}
+
 		mainPart.source = source
 
 
@@ -112,6 +126,7 @@ try {
 		select.update(managersData)
 		note.update(notesData)
 		deleteComponent.update(deleteData)
+		mailingComponent.update(mailingData)
 
 		// loader2.update(false)
 		loader.update(false)

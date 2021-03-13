@@ -1,4 +1,5 @@
 const switchModalParts = (switchers, parts) => {
+	console.log(switchers, parts)
 	function addActiveClass() {
 		let id = this.dataset.part
 		
@@ -20,7 +21,7 @@ const switchModalParts = (switchers, parts) => {
 
 	// if(permission) {
 		switchers.forEach(el => {
-			el.addEventListener('click', addActiveClass,  {once: true})
+			el.addEventListener('click', addActiveClass, {once: true})
 		})
 	// }
 

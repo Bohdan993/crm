@@ -188,6 +188,8 @@ export default class RowEmployer {
 		this.jobsText.innerText = data.production ? data.production.join(', ') : ""
 		this.vacancyLabel.update(data.vacancy)
 
+		console.log(data.vacancy)
+
 		// if(id_employer !== this.data.id_employer) {
 		
 
