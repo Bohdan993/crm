@@ -1,4 +1,4 @@
-import {el, setAttr, place, tippy, list, Autocomplete} from '../../../../../libs/libs'
+	import {el, setAttr, place, tippy, list, Autocomplete} from '../../../../../libs/libs'
 import FindEmployerPopupComponent from './FindEmployerPopupComponent'
 import { initVacancyModalTooltip } from '../../../initToottips'
 import storage from '../../../Storage'
@@ -267,8 +267,10 @@ export default class ModalRowLayerLeft {
 
 		}
 
+		console.log(data.employer.id_country)
+
 		setAttr(this.countries, {
-			innerText: data.employer.id_country ? this.getItemsFromLocalStorage().countries.filter(el=> el.id === data.employer.id_country)[0].name : ''
+			innerText: data.employer.id_country ? this.getItemsFromLocalStorage().countries.filter(el=> el.id === data.employer.id_country)[0]?.name : ''
 		})
 
 		// setAttr(this.abbrVacancy, {

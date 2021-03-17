@@ -18,7 +18,7 @@ import vacancyListAddEvent from '../../CustomEvents/VacancyListAddEvent'
 let flag = false
 
 
-async function onAddVacancy() {
+async function onAddVacancy(id = null) {
 	try {
 		const vacancy = await fetch.getResourse('/vacancies/create')
 
@@ -52,13 +52,15 @@ async function onAddVacancy() {
 
 			getVacancyModalInfo(vacancy.id).then(res => {
 				getWorkModalFeedback({
-					id: JSON.parse(sessionStorage.getItem('currVacancyEmployer')).id,
+					id: id || JSON.parse(sessionStorage.getItem('currVacancyEmployer')).id,
 					loading: true,
 					str: 'vacancies',
 					other: 1
 				})
 			})
 
+
+			return vacancy.id
 		} else {
 			throw new Error('Не возможно cоздать вакансию')
 		}
@@ -76,7 +78,7 @@ async function onAddVacancy() {
 
 const addNewVacancy = () => {
 	if (sidebarVacancy) {
-		sidebarVacancy.addEventListener('click', onAddVacancy)
+		sidebarVacancy.addEventListener('click', onAddVacancy.bind(null))
 	}
 }
 

@@ -37,6 +37,8 @@ const getWorkModalTasks = async ({
 
 			const data = await fetch.getResourse(`/employers/get/?id=${id}&section=2&other=6`)
 
+			if(data.success) {
+
 			const tasks = data.data.other.task
 
 			const tasksData = {
@@ -52,6 +54,12 @@ const getWorkModalTasks = async ({
 
 			if(sidebarVacancyForm) {
 				task2.update(tasksData)
+			}
+
+			} else {
+				if(sidebarVacancyForm) {
+					task2.update([])
+				}
 			}
 			
 

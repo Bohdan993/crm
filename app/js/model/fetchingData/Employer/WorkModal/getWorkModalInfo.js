@@ -83,11 +83,6 @@ try {
 		const tasksData = await fetch.getResourse(`/employers/get/?id=${id}&section=2&other=6`)
 
 
-		console.log('data', data)
-
-		console.log(tasksData)
-
-		// console.log('sourceData')
 
 		const mainPart = data.data.main
 		const source = sourseData.data.source
@@ -97,6 +92,7 @@ try {
 		const date = mainPart.date
 		const badFeedback = mainPart.total_bad_feedback
 		const mailing = mainPart.mailing
+		const lastIdVacancy = mainPart.last_id_vacancy
 
 
 
@@ -121,6 +117,12 @@ try {
 			id
 		}
 
+
+		const createVacancyData = {
+			lastIdVacancy,
+			id
+		}
+
 		mainPart.source = source
 
 
@@ -129,7 +131,7 @@ try {
 		note.update(notesData)
 		deleteComponent.update(deleteData)
 		mailingComponent.update(mailingData)
-		createVacancyComponent.update(id)
+		createVacancyComponent.update(createVacancyData)
 
 		loader.update(false)
 		workModal.removeHiddenClass()

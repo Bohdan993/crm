@@ -1,5 +1,5 @@
 import SidebarPopupRadioInterface from './SidebarPopupRadioInterface'
-
+import {setAttr} from '../../../libs/libs'
 
 export default class SortingPopup extends SidebarPopupRadioInterface {
 	constructor(type = 'employer'){
@@ -19,6 +19,12 @@ export default class SortingPopup extends SidebarPopupRadioInterface {
 
 
 	filter(id, str, storageKey){
+		console.log(this)
+		if(this.data.index === 0) {
+			setAttr(this.input, {
+				'checked': true
+			})
+		}
 		super.filter(id, str, storageKey)
 	}
 }

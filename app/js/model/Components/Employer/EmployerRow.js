@@ -150,7 +150,7 @@ export default class RowEmployer {
 	}
 
 	update(data, index, items, context){
-		// console.log(data)
+		console.log(data)
 		const { id_employer } = data
 
 
@@ -191,8 +191,7 @@ export default class RowEmployer {
 				)
 			) : this.managerTag.update(false)
 
-		console.log(data.production.length > 0 ? data.production : '')
-
+		console.log(this.managerTag)
 		this.jobsText.innerText = data.production ? data.production.filter(el => el.length).join(', ') : ""
 		this.vacancyLabel.update(data.vacancy)
 
@@ -204,31 +203,11 @@ export default class RowEmployer {
 		}
 			this.companyInstance && !this.companyInstance.state.isDestroyed && this.companyInstance.setContent(`${data.enterprise}`)
 			this.nameInstance && !this.nameInstance.state.isDestroyed && this.nameInstance.setContent(`${data.name}`)
+			this.addressInstance && !this.addressInstance.state.isDestroyed && this.addressInstance.setContent(`${data.address}`)
+			this.jobsInstance && !this.jobsInstance.state.isDestroyed && this.jobsInstance.setContent(`${this.jobsText.innerText}`)
+			this.managerInstance && !this.managerInstance.state.isDestroyed && this.managerInstance.setContent(`${data.manager}`)
 		}, 0)
 	
-		// // console.log('updated')
-
-		// // 	if(data.country_name !== null) {
-		// // 	this.countryInstance = initRowTooltips(this.country)
-		// // 	this.countryInstance.setContent(`${data.country_name}`)
-		// // }
-
-		// // if(data.enterprise !== '') {
-		// // 	this.companyInstance = initRowTooltips(this.company)
-		// // 	this.companyInstance.setContent(`${data.enterprise}`)
-		// // }
-
-		// // if(data.name !== '' ) {
-		// // 	this.nameInstance = initRowTooltips(this.name)
-		// // 	this.nameInstance.setContent(`${data.name}`)
-		// // }
-
-		// // if(!this.flag) {
-		// // 	this.makeRequestForModal(id_employer)
-		// // 	this.flag = true
-		// // }
-		
-		// }
 		this.data = data
 		this.data.id_employer = id_employer
 		this.data.index = index
@@ -242,7 +221,9 @@ export default class RowEmployer {
 		this.countryInstance = initRowTooltips(this.country)
 		this.companyInstance = initRowTooltips(this.company)
 		this.nameInstance = initRowTooltips(this.name)
-
+		this.addressInstance = initRowTooltips(this.address)
+		this.jobsInstance = initRowTooltips(this.jobs)
+		if(this.data.manager) this.managerInstance = initRowTooltips(this.managerTag._el)
 		// console.log(this.countryInstance)
 		if(this.data.country_name === null) {
 			this.countryInstance.disable()
@@ -258,6 +239,9 @@ export default class RowEmployer {
 		this.companyInstance.destroy()
 		this.countryInstance.destroy()
 		this.nameInstance.destroy()
+		this.addressInstance.destroy()
+		this.jobsInstance.destroy()
+		if(this.data.manager) this.managerInstance.destroy()
 		// this.el = this.data = this.attentionTag = this.managerTag = this.vacancyLabel =  null
 	}
 

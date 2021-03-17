@@ -154,8 +154,10 @@ const initTooltips = () => {
 ///////////////////////////////////initSidebarTooltip BLOCK////////////////////////////
 
 function checkIfShowRemoveFilterButton(storageKey, instance){
-      sessionStorage.getItem(storageKey) && JSON.parse(sessionStorage.getItem(storageKey))  !== '' ? (instance.reference.children[1].style.display = 'block',
-      instance.reference.classList.add('active')) : null
+      sessionStorage.getItem(storageKey) && (JSON.parse(sessionStorage.getItem(storageKey))  !== '' && JSON.parse(sessionStorage.getItem(storageKey))  !== 'date') ? 
+      (instance.reference.children[1].style.display = 'block',
+      instance.reference.classList.add('active')) : 
+      null
 }
 
 function initSidebarTooltip(el, content) {
@@ -296,6 +298,8 @@ function childChangeHandler(children, child, instance, e) {
       instance.reference.classList.remove('active')
   }
 
+  // console.log(child)
+
   if (child.checked || some) {
       instance.reference.children[1].style.display = 'block'
       instance.reference.classList.add('active')
@@ -305,6 +309,11 @@ function childChangeHandler(children, child, instance, e) {
   if(val) {
     instance.reference.children[1].style.display = 'block'
     instance.reference.classList.add('active')
+  }
+
+  if(child.id === 'sorting-date') {
+    instance.reference.children[1].style.display = 'none'
+    instance.reference.classList.remove('active')
   }
 
 
@@ -388,7 +397,7 @@ function removeCheckingHandler(children, instance, e){
 
                 } else if(instance.reference.classList.contains('sorting-stats-wrapper')){
 
-                    getEmployersList({sort: ''})
+                    getEmployersList({sort: 'date'})
                     sessionStorage.removeItem('sortFilter')
 
                 } else {
@@ -399,8 +408,14 @@ function removeCheckingHandler(children, instance, e){
 
 
   children.forEach(child => {
-      child.checked = false
-      child.getAttribute('type') === 'text' ? child.value = '' : null
+
+    
+    child.checked = false
+    console.log(child.id)
+    if(child.id === 'sorting-date') {
+        child.checked = true
+    }
+    child.getAttribute('type') === 'text' ? child.value = '' : null
       // child.dispatchEvent(new Event('change'))
   })
 

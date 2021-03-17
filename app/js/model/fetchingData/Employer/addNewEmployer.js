@@ -25,13 +25,16 @@ const addNewEmployer = () => {
 				const employer = await fetch.getResourse('/employers/create')
 
 				if(employer.success === true) {
-					toastr.success(`ID работодателя ${employer.id}`, 'Успешно создан работодатель', {closeButton: false})
-					await getEmployersList({added: true})
-
-
+					
 					MicroModal.show('modal-1', {
-			      onClose: modal => {
-			      	getEmployersList({filtered: JSON.parse(sessionStorage.getItem('employersFiltered'))})
+			      onClose: async modal => {
+							const data = await fetch.getResourse(`/employers/get/?id=${employer.id}&section=0`)
+							if(data.data.main.id_country !== '0' && data.data.other.production.length !== 0) {
+								toastr.success(`ID работодателя ${employer.id}`, 'Успешно создан работодатель', {closeButton: false})
+								getEmployersList({added: true, filtered: JSON.parse(sessionStorage.getItem('employersFiltered'))})
+							} else {
+								fetch.getResourse(`/employers/delete/?id=${employer.id}`)
+							}
 			      },
 			      onShow: (modal, node) => {
 					    const wrapper = modal.querySelector('.my-modal-wrapper')

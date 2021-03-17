@@ -35,7 +35,6 @@ export default class SidebarPopupRadioInterface { // класс от котор�
 
 	filter(id, str, storageKey){
 		let type = this.type
-
 		this.input.addEventListener('change', filter)
 		function filter(e){
 			//this - один чекбокс в попапе
