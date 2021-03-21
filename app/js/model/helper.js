@@ -258,6 +258,15 @@ function dateInputChange(element) {
 }
 
 
+function updateURL(param) {
+    if (history.replaceState) {
+        history.replaceState(null, null, param);
+    }
+    else {
+        console.warn('History API не поддерживается');
+    }
+}
+
 
 
 
@@ -277,5 +286,6 @@ export {
   dateInputChange,
   getAllUrlParams,
   close,
+  updateURL
   // onKeyPressClose
 }

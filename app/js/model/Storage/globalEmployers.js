@@ -11,6 +11,11 @@ class StorageGlobalEmployers {
 	}
 
 
+	clearState(){
+		this.state = []
+	}
+
+
 	setState(data, id, direction = 'bottom'){
 		if(direction === 'bottom') {
 			this.state = this.uniq([...this.state, ...data], id)

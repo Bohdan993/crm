@@ -32,7 +32,7 @@ class TaskItem {
 
                     if(this.type === 'employer') {
 
-                        console.log(this.context)
+                        // console.log(this.context)
                         deleteTask({
                             id: this.data.id_employer_task, 
                             id_employer: this.context.id,
@@ -75,7 +75,7 @@ class TaskItem {
 
 	update(data, index, items, context) {
 
-        console.log(context, 'ONE TASK')
+        // console.log(context, 'ONE TASK')
 
 
         // console.log(context)

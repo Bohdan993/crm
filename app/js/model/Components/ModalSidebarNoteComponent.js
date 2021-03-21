@@ -61,8 +61,10 @@ export default class Note { // to ../fetchingData/Employer/WorkModal
 
     onmount(){
         document.addEventListener('storageemployeradd', (e) => {
-            console.log(storage.getState(e.detail.id).employer.note)
+            // console.log(storage.getState(e.detail.id).employer.note)
             this.update(storage.getState(e.detail.id).employer.note)
         })
     }
 }
+
+

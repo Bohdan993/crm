@@ -17,6 +17,7 @@ import {
 } from '../../helper'
 
 import storage from '../../Storage/globalEmployers'
+import employerListNotFiltered from '../../CustomEvents/employerListNotFilteredEvent'
 
 let countCallEmployersFunction =  0;
 const employersWrapper = document.querySelector('.employer-rows-wrapper')
@@ -57,6 +58,7 @@ const getEmployersList = async({
 	scroll = false,
 	added = false,
 	deleated = false,
+	avoidFetch = false,
 	t = '50',
 	id = ''
 } = {}) => {
@@ -84,12 +86,12 @@ const getEmployersList = async({
 			}
 
 
-			console.log(`%cFILTERED=${filtered}`, 'color: red; font-size: 40px;')
+			// console.log(`%cFILTERED=${filtered}`, 'color: red; font-size: 40px;')
 
 
 			if(sort !== '') {
 				sorted = true
-				t = countCallEmployersFunction > 1 && !scroll ? +JSON.parse(sessionStorage.getItem('page')) * 50 || '50' : '50'
+				// t = countCallEmployersFunction > 1 && !scroll ? +JSON.parse(sessionStorage.getItem('page')) * 50 || '50' : '50'
 			}
 
 			if (deleated) {
@@ -98,15 +100,22 @@ const getEmployersList = async({
 				return
 			}
 
-			const data = await fetch.getResourse(`/employers/get_all/?p=${p}&t=${t}&search=${search}&filter=country:${country}|production:${production}|contact:${contact}
-				|manager:${manager}|intermediaries:${intermediaries}|intermediary:${intermediary}|vacancy_active:${vacancy_active}|vacancy_type:${vacancy_type}|vacancy_term:${vacancy_term}|last_contact:${last_contact}&sort=${sort}`)
+			const data = !avoidFetch ? await fetch.getResourse(`/employers/get_all/?p=${p}&t=${t}&search=${search}&filter=country:${country}|production:${production}|contact:${contact}
+				|manager:${manager}|intermediaries:${intermediaries}|intermediary:${intermediary}|vacancy_active:${vacancy_active}|vacancy_type:${vacancy_type}|vacancy_term:${vacancy_term}|last_contact:${last_contact}&sort=${sort}`) : storage.getState()
 			const employers = data.data
 			const numsData = {
 					total: data.total,
 					totalR: data.total_r
 				}
 
+			// console.log(storage)
+
 			sessionStorage.setItem('employersFiltered', JSON.stringify(filtered))
+
+
+			if(!filtered && !scroll) {
+				document.dispatchEvent(employerListNotFiltered)
+			}
 
 			if (data.success) {
 
@@ -115,30 +124,39 @@ const getEmployersList = async({
 				}
 
 				if (scroll) {
-
+					console.log('FILTERED1')
 					storage.setState(employers, 'id_employer')
 					empList.update(storage.getState())
 
 				} else if (added) {
-
+					console.log('FILTERED2')
 					storage.setState(employers, 'id_employer', 'top')
 					empList.update(storage.getState())
 
 				} else {
 
+
 					if (!inited) {
+						console.log('FILTERED3')
 						storage.initState(employers)
 						inited = true
 					}
 
-					if(storage.getState().length && storage.getState().length < 50 && !filtered) {
-						empList.update(employers)
-					} else {
-						empList.update(storage.getState())
-					}
+					// if(storage.getState().length && storage.getState().length < 50 && !filtered) {
+					// 	empList.update(employers)
+					// 	console.log('FILTERED4')
+					// } 
+					// else {
+					// 	console.log('FILTERED5')
+					// 	// empList.update(storage.getState())
+					// }
 
 					if(sorted || filtered) {
+						console.log('FILTERED6')
+						storage.clearState()
+						storage.setState(employers, 'id_employer')
 						empList.update(employers)
+						sessionStorage.setItem('page', JSON.stringify(1))
 					}
 
 				}
@@ -158,10 +176,18 @@ const getEmployersList = async({
 						success: data.success
 					}
 				} else if (sorted) {
-					empList.update([])
+					// console.log('dfdfdf', storage.getState())
+					
+					if(!avoidFetch) {
+						empList.update([])
+					} else {
+						console.log('dfdf')
+						empList.update(storage.getState())
+					}
 
 					return Array(1)
 				} else {
+					
 					empList.update([])
 					throw new EmptyError('Список работодателей пуст')
 				}
@@ -177,7 +203,7 @@ const getEmployersList = async({
 			}
 
 
-			console.log(e)
+			// console.log(e)
 
 			toastr.error(`${e.message}`, '', {
 				timeOut: 0,

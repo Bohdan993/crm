@@ -72,13 +72,13 @@ class WorkModalVacancyHistoryRow {
 		setAttr(this.people, {
 			innerText: (+data.total_man ? "М" + data.total_man : '') + (+data.total_woman ? ' Ж' + data.total_woman : '') ,
 			style: {
-				color: data.archive === '0' ? '#FF9966' : 'rgb(51, 153, 204)'
+				color: data.archive === '0' ? '#FF9966' : '#99CCCC'
 			}
 		})
 
 		setAttr(this.label, {
 			style: {
-				background: data.archive === '0' ? '#FF9966' : 'rgb(51, 153, 204)'
+				background: data.archive === '0' ? '#FF9966' : '#99CCCC'
 			}
 		})
 

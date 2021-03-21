@@ -24,7 +24,7 @@ function printFeedbackName(){
 
 	this.feedback.list.views.forEach(view=> {
 			if(view.data.data.type_arrow === '0') {
-				console.log(this)
+				// console.log(this)
 				setAttr(view.to, {
 					//Если пустое имя работодателя, тогда в отзывах выводим название организации
 					innerText: !checkIfEmployerNameIsEmpty.call(this) ? this.comInfName.value : this.comManufacturyArea.value
@@ -241,7 +241,7 @@ export default class WorkModal {
 			save(this.comManufacturyArea.value, 'enterprise')
 
 			storage.setPartialState(this.data.id_employer, 'id_employer', 'enterprise', this.comManufacturyArea.value)
-
+			console.log("ONCHANGE", storage.getState())
 			printFeedbackName.call(this)
 
 		})

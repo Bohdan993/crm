@@ -18,7 +18,8 @@ import {
     addMouseUpTrigger,
     closeModal,
     getAllUrlParams,
-    close
+    close,
+    updateURL
 } from '../../helper'
 
 
@@ -37,10 +38,6 @@ export default class EmployerList {
     }
     update(data) {
 
-
-    	// this.count = data.length ? data[data.length - 1]['id_employer'] : ''
-        // localStorage.setItem('countForModals', JSON.stringify(this.count))
-
         this.list.update(data)
         // console.log(this.count)
         //Инициализация функций которые зависят от инстанса класса
@@ -56,7 +53,9 @@ export default class EmployerList {
         if(id_employer) {
         let modalInstance = MicroModal.show('modal-1', {
               onClose: modal => {
+                
                 getEmployersList({filtered: JSON.parse(sessionStorage.getItem('employersFiltered'))})
+                updateURL(window.location.pathname)
               },
               onShow: (modal, node) => {
                     const wrapper = modal.querySelector('.my-modal-wrapper')

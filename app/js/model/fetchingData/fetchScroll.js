@@ -28,6 +28,11 @@ const fetchScroll = (elem, type) => {
 		if(type === 'employer') {
 		
 			data.success = true
+			document.addEventListener('employerlistnotfiltered', function(e){
+				console.log("EVENT NOT FILTERD")
+				count = 2
+				data.success = true
+			})
 			// data = JSON.parse(sessionStorage.getItem('pageDataLength')) && Array(JSON.parse(sessionStorage.getItem('pageDataLength'))) || Array(DATA_LENGTH)
 		} else {
 			data = Array(DATA_LENGTH)
@@ -61,16 +66,17 @@ const fetchScroll = (elem, type) => {
 	      	if(type === 'employer') {
 	      			// await sleep(10000)
 	      			// console.log(JSON.parse(sessionStorage.getItem('employersFiltered')))
-	      			if(!JSON.parse(sessionStorage.getItem('employersFiltered'))) {
+	      			// if(!JSON.parse(sessionStorage.getItem('employersFiltered'))) {
 	      				// mount(elem, loader)
+
 								loader.update(true)
 								// await sleep(100000)
 				        data = await getEmployersList({t: DATA_LENGTH, p: count, scroll: true}).then((data)=> {flag = false; return data} )
 				        sessionStorage.setItem('page', JSON.stringify(count))
 				      	count++
-			      	} else {
+			      	// } else {
 			      		flag = false
-			      	}
+			      	// }
 
 			      	console.log(!data.success)
 

@@ -13,7 +13,7 @@ import getWorkModalTasks from '../../fetchingData/Employer/WorkModal/getWorkModa
 // import deleteManufacturyType from '../../fetchingData/Employer/WorkModal/deleteManufacturyType'
 
 import getEmployersList from '../../fetchingData/Employer/getEmployersList'
-import {addMouseUpTrigger, closeModal, close, getAllUrlParams, onKeyPressClose} from '../../helper'
+import {addMouseUpTrigger, closeModal, close, getAllUrlParams, onKeyPressClose, updateURL} from '../../helper'
 import switchModalParts from '../../switchModalParts'
 import {modalSwitchers, modalParts} from '../../../view'
 
@@ -23,14 +23,7 @@ let flag = false
 
 
 
-function updateURL(param) {
-    if (history.replaceState) {
-        history.replaceState(null, null, param);
-    }
-    else {
-        console.warn('History API не поддерживается');
-    }
-}
+
 
 class VacancyLabel {
 	constructor(){
@@ -48,7 +41,7 @@ class VacancyLabel {
 		setAttr(this.el, {
 			href: `vacancy.html?id=${data.id_vacancy}`,
 			style:  {
-				background: data.archive === '0' ? '#39c' : '#f96'
+				background: data.archive === '0' ? '#FF9966' : '#99CCCC'
 			}
 		})
 
@@ -115,7 +108,10 @@ export default class RowEmployer {
 
 			MicroModal.show('modal-1', {
 			      onClose: (modal, trigger) => {
-			      	getEmployersList({filtered: JSON.parse(sessionStorage.getItem('employersFiltered'))})
+			      	// console.log('dfdfdfdf')
+			      	setTimeout(function(){getEmployersList({avoidFetch: true, filtered: JSON.parse(sessionStorage.getItem('employersFiltered'))})}, 0)
+			      	
+			      	updateURL(window.location.pathname)
 			      },
 			      onShow: (modal, node) => {
 			      	if(!id_employer) {
@@ -150,7 +146,7 @@ export default class RowEmployer {
 	}
 
 	update(data, index, items, context){
-		console.log(data)
+		// console.log(data)
 		const { id_employer } = data
 
 
@@ -191,7 +187,7 @@ export default class RowEmployer {
 				)
 			) : this.managerTag.update(false)
 
-		console.log(this.managerTag)
+		// console.log(this.managerTag)
 		this.jobsText.innerText = data.production ? data.production.filter(el => el.length).join(', ') : ""
 		this.vacancyLabel.update(data.vacancy)
 
@@ -205,7 +201,7 @@ export default class RowEmployer {
 			this.nameInstance && !this.nameInstance.state.isDestroyed && this.nameInstance.setContent(`${data.name}`)
 			this.addressInstance && !this.addressInstance.state.isDestroyed && this.addressInstance.setContent(`${data.address}`)
 			this.jobsInstance && !this.jobsInstance.state.isDestroyed && this.jobsInstance.setContent(`${this.jobsText.innerText}`)
-			this.managerInstance && !this.managerInstance.state.isDestroyed && this.managerInstance.setContent(`${data.manager}`)
+			this.managerInstance && !this.managerInstance.state.isDestroyed && this.managerInstance.setContent(`${data.manager_name}`)
 		}, 0)
 	
 		this.data = data
