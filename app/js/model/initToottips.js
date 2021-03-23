@@ -177,7 +177,6 @@ function initSidebarTooltip(el, content) {
         trigger: 'click',
         appendTo: () => document.body,
         onCreate(instance) {
-                 console.log(instance)
                 if(instance.reference.classList.contains('country-filter-wrapper-vacancy')){
 
                     checkIfShowRemoveFilterButton('countryFilterVacancy', instance)
@@ -247,7 +246,6 @@ function initSidebarTooltip(el, content) {
   
         },
         onShown(instance) {
-        // console.log(instance.props)
         let children = instance.props.content.querySelectorAll('input')
             document.addEventListener('keyup', function(e) {
                 if (e.keyCode === 27) {
@@ -287,7 +285,6 @@ function childChangeHandler(children, child, instance, e) {
   })
 
     let val = [].some.call(children, (child) => {
-    // console.log(child.getAttribute('type'))
       return child.getAttribute('type') === 'text' && child.value !== ''
   })
 
@@ -298,7 +295,6 @@ function childChangeHandler(children, child, instance, e) {
       instance.reference.classList.remove('active')
   }
 
-  // console.log(child)
 
   if (child.checked || some) {
       instance.reference.children[1].style.display = 'block'
@@ -317,7 +313,6 @@ function childChangeHandler(children, child, instance, e) {
   }
 
 
-  // console.log(val)
 }
 
 
@@ -411,7 +406,6 @@ function removeCheckingHandler(children, instance, e){
 
     
     child.checked = false
-    console.log(child.id)
     if(child.id === 'sorting-date') {
         child.checked = true
     }
@@ -456,10 +450,8 @@ function initRowTooltips(el, content) {
             //Этот момент нужно оптимизировать, чтобы не вызывать событие для каждой строки работодателя, а только для последней (которую добавили в список)
 
             document.addEventListener('employerslistadd', function(e) {
-                console.log('employer add')
                 const detail = e.detail.id
                 const attr = instance.reference.closest('.row').getAttribute('data-id_employer')
-                // console.log(detail)
                 if (attr === detail) {
                     [...instance.reference.children].forEach(chechOverflow)
                 }
@@ -481,7 +473,6 @@ function initRowTooltips(el, content) {
 
 //////////////////////////////START initWorkModalTooltip BLOCK/////////////////////////////////
 function initWorkModalTooltip(el, content) {    
-    // console.log(tippy)
     let instance = tippy(el, {
         content: content,
         // target: el,
@@ -550,7 +541,6 @@ function initWorkModalTooltip(el, content) {
 
 
    function initVacancyModalTooltip(el, content, tippy) {
-        // console.log(tippy)
         let instance = tippy(el, {
             content,
             allowHTML: true,

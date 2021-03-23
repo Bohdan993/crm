@@ -91,13 +91,12 @@ const getEmployersList = async({
 
 			if(sort !== '') {
 				sorted = true
-				// t = countCallEmployersFunction > 1 && !scroll ? +JSON.parse(sessionStorage.getItem('page')) * 50 || '50' : '50'
 			}
 
 			if (deleated) {
 				storage.deletePartialState(id, 'id_employer')
 				empList.update(storage.getState())
-				return
+				// return
 			}
 
 			const data = !avoidFetch ? await fetch.getResourse(`/employers/get_all/?p=${p}&t=${t}&search=${search}&filter=country:${country}|production:${production}|contact:${contact}
@@ -108,12 +107,13 @@ const getEmployersList = async({
 					totalR: data.total_r
 				}
 
-			// console.log(storage)
+			// console.log(data)
 
 			sessionStorage.setItem('employersFiltered', JSON.stringify(filtered))
 
 
-			if(!filtered && !scroll) {
+			if(!filtered && !scroll || filtered) {
+				employerListNotFiltered.detail.hasNextPage = !!data.exist_next_page
 				document.dispatchEvent(employerListNotFiltered)
 			}
 
@@ -124,12 +124,11 @@ const getEmployersList = async({
 				}
 
 				if (scroll) {
-					console.log('FILTERED1')
+
 					storage.setState(employers, 'id_employer')
 					empList.update(storage.getState())
 
 				} else if (added) {
-					console.log('FILTERED2')
 					storage.setState(employers, 'id_employer', 'top')
 					empList.update(storage.getState())
 
@@ -137,22 +136,12 @@ const getEmployersList = async({
 
 
 					if (!inited) {
-						console.log('FILTERED3')
+
 						storage.initState(employers)
 						inited = true
 					}
 
-					// if(storage.getState().length && storage.getState().length < 50 && !filtered) {
-					// 	empList.update(employers)
-					// 	console.log('FILTERED4')
-					// } 
-					// else {
-					// 	console.log('FILTERED5')
-					// 	// empList.update(storage.getState())
-					// }
-
 					if(sorted || filtered) {
-						console.log('FILTERED6')
 						storage.clearState()
 						storage.setState(employers, 'id_employer')
 						empList.update(employers)
@@ -160,7 +149,6 @@ const getEmployersList = async({
 					}
 
 				}
-
 
 				numbers.update(numsData)
 				loader.update(false)
@@ -173,15 +161,15 @@ const getEmployersList = async({
 
 					return {
 						employers: storage.getState(),
-						success: data.success
+						success: data.success,
+						hasNextPage: data.exist_next_page
 					}
 				} else if (sorted) {
-					// console.log('dfdfdf', storage.getState())
-					
+
 					if(!avoidFetch) {
 						empList.update([])
 					} else {
-						console.log('dfdf')
+
 						empList.update(storage.getState())
 					}
 
@@ -193,7 +181,7 @@ const getEmployersList = async({
 				}
 			}
 
-			return {employers, success: data.success}
+			return {employers, success: data.success, hasNextPage: data.exist_next_page}
 
 		} catch (e) {
 
@@ -202,8 +190,6 @@ const getEmployersList = async({
 				return
 			}
 
-
-			// console.log(e)
 
 			toastr.error(`${e.message}`, '', {
 				timeOut: 0,

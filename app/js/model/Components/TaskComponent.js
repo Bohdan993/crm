@@ -5,8 +5,8 @@ import deleteTask from '../fetchingData/Employer/WorkModal/deleteTask'
 import saveFieldsData from '../fetchingData/saveFieldsData'
 import {el, svg, list, setAttr} from '../../../libs/libs'
 import initElasticArea from '../initElasticArea'
-import storage from '../Storage'
-import {default as employersStorage} from '../Storage/globalEmployers'
+import vacanciesStrorage from '../Storage'
+import employersStorage from '../Storage/globalEmployers'
 
 
 // console.log(employersStorage)
@@ -63,6 +63,10 @@ class TaskItem {
                     target: 'task', 
                     id_target: this.data.id_employer_task
                    })
+                   
+                if(this.type === 'employer' && this.__redom_index === this.context.count - 1) {
+                    employersStorage.setPartialState(this.context.id, 'id_employer', 'task_last', this.textarea.value)
+                }
             })
 
             this.textarea.addEventListener('input', e => {
@@ -142,7 +146,7 @@ export default class Task { // to ../fetchingData/Employer/WorkModal
 
         //Обновить список задач при загрузке информации о работодателе на странице вакансий
         document.addEventListener('storageemployeradd', (e) => {
-            this.list.update(storage.getState(e.detail.id).task)
+            this.list.update(vacanciesStrorage.getState(e.detail.id).task)
 
             if(this.type === 'vacancy') {
                 this.data.id = e.detail.id

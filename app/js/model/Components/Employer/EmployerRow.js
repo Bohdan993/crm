@@ -24,7 +24,6 @@ let flag = false
 
 
 
-
 class VacancyLabel {
 	constructor(){
 		this.el = el('a.label', {
@@ -34,9 +33,15 @@ class VacancyLabel {
 			this.vacancyLabelCode = el('span', '211-8'))
 	}
 
-	update(data){
+	update(data, index, items, context){
 
-		// console.log(data)
+
+		const vacanciesIds = data.type_production.split(',')
+		const vacancies = context.filter(item => {
+			if(~vacanciesIds.indexOf(item.id)) {
+				return item
+			}
+		}).map(i =>  i.name)
 
 		setAttr(this.el, {
 			href: `vacancy.html?id=${data.id_vacancy}`,
@@ -52,7 +57,24 @@ class VacancyLabel {
 		setAttr(this.vacancyLabelCode, {
 			innerText: `${data.id_vacancy}-${data.total_client}`
 		})
+
+
+		setTimeout(() => {
+
+			this.labelInstance && !this.labelInstance.state.isDestroyed && this.labelInstance.setContent(`${data.id_vacancy} - ${data.start_work} (${data.period}) - ${vacancies.join(', ')} `)
+
+		}, 0)
+
+
 		
+	}
+
+	onmount() {
+		this.labelInstance = initRowTooltips(this.el)
+	}
+
+	onunmount(){
+		this.labelInstance.destroy()
 	}
 }
 
@@ -108,9 +130,7 @@ export default class RowEmployer {
 
 			MicroModal.show('modal-1', {
 			      onClose: (modal, trigger) => {
-			      	// console.log('dfdfdfdf')
 			      	setTimeout(function(){getEmployersList({avoidFetch: true, filtered: JSON.parse(sessionStorage.getItem('employersFiltered'))})}, 0)
-			      	
 			      	updateURL(window.location.pathname)
 			      },
 			      onShow: (modal, node) => {
@@ -146,7 +166,7 @@ export default class RowEmployer {
 	}
 
 	update(data, index, items, context){
-		// console.log(data)
+
 		const { id_employer } = data
 
 
@@ -165,8 +185,6 @@ export default class RowEmployer {
 
 		data.phone ? this.phoneIco.update(true) : this.phoneIco.update(false)
 
-		// let custom = 'data-custom' + items[items.length - 1]['id_employer'] + '-open'
-		// console.log(custom)
 
 		setAttr(this.el, {
 			"data-id_employer": data.id_employer,
@@ -187,15 +205,18 @@ export default class RowEmployer {
 				)
 			) : this.managerTag.update(false)
 
-		// console.log(this.managerTag)
 		this.jobsText.innerText = data.production ? data.production.filter(el => el.length).join(', ') : ""
-		this.vacancyLabel.update(data.vacancy)
+		this.vacancyLabel.update(data.vacancy, this.getItemsFromLocalStorage().jobs)
 
 
 
 		setTimeout(() => {
 		if(data.country_name !== null) {
 			this.countryInstance && !this.countryInstance.state.isDestroyed && this.countryInstance.setContent(`${data.country_name}`)
+		}
+
+		if(data.task_last !== null) {
+			this.taskInstance && !this.taskInstance.state.isDestroyed && this.taskInstance.setContent(`${data.task_last}`)
 		}
 			this.companyInstance && !this.companyInstance.state.isDestroyed && this.companyInstance.setContent(`${data.enterprise}`)
 			this.nameInstance && !this.nameInstance.state.isDestroyed && this.nameInstance.setContent(`${data.name}`)
@@ -215,32 +236,38 @@ export default class RowEmployer {
 
 		
 		this.countryInstance = initRowTooltips(this.country)
-		this.companyInstance = initRowTooltips(this.company)
-		this.nameInstance = initRowTooltips(this.name)
-		this.addressInstance = initRowTooltips(this.address)
-		this.jobsInstance = initRowTooltips(this.jobs)
-		if(this.data.manager) this.managerInstance = initRowTooltips(this.managerTag._el)
-		// console.log(this.countryInstance)
 		if(this.data.country_name === null) {
 			this.countryInstance.disable()
 		} else {
 			this.countryInstance.enable()
 		}
+		this.companyInstance = initRowTooltips(this.company)
+		this.nameInstance = initRowTooltips(this.name)
+		this.addressInstance = initRowTooltips(this.address)
+		this.jobsInstance = initRowTooltips(this.jobs)
+		if(this.data.manager) this.managerInstance = initRowTooltips(this.managerTag._el)
+		if(this.data.task_last) this.taskInstance = initRowTooltips(this.attentionTag._el)
 
-		
 	}
 
 	onunmount(){
-		// console.log('unmount')
 		this.companyInstance.destroy()
 		this.countryInstance.destroy()
 		this.nameInstance.destroy()
 		this.addressInstance.destroy()
 		this.jobsInstance.destroy()
 		if(this.data.manager) this.managerInstance.destroy()
-		// this.el = this.data = this.attentionTag = this.managerTag = this.vacancyLabel =  null
+		if(this.data.task_last) this.taskInstance.destroy()
 	}
 
-	
+
+	getItemsFromLocalStorage() {
+
+		let jobs = JSON.parse(localStorage.getItem('type_manufactury')) || []
+
+		return {
+			jobs
+		}
+	}
 
 }
