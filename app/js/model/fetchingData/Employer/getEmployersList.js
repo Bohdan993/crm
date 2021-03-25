@@ -19,7 +19,7 @@ import {
 import storage from '../../Storage/globalEmployers'
 import employerListNotFiltered from '../../CustomEvents/employerListNotFilteredEvent'
 
-let countCallEmployersFunction =  0;
+// let countCallEmployersFunction =  0;
 const employersWrapper = document.querySelector('.employer-rows-wrapper')
 
 
@@ -41,6 +41,9 @@ if (employerStatNums) {
 }
 
 
+
+
+
 const getEmployersList = async({
 	p = '1',
 	search = JSON.parse(sessionStorage.getItem('search')) || '',
@@ -59,41 +62,38 @@ const getEmployersList = async({
 	added = false,
 	deleated = false,
 	avoidFetch = false,
+	sorted = false,
+	filtered = false,
 	t = '50',
 	id = ''
 } = {}) => {
-	// console.log(filtered)
 
-	let sorted = false
-	let filtered = false
-	countCallEmployersFunction++
-
-	countCallEmployersFunction === 1 ? sessionStorage.setItem('page', JSON.stringify(1)) : null
+	function isFiltered() {
+		return search !== '' || country !== '' || production !== '' ||
+					contact !== '' || manager !== '' || intermediary !== '' ||
+					intermediaries !== '' || vacancy_active !== '' ||
+					vacancy_type !== '' || vacancy_term !== '' ||
+					last_contact !== ''
+	}
+	
 
 	if (employersWrapper) {
 		loader.update(true)
 
 		try {
 			
-			if (search !== '' || country !== '' || production !== '' ||
-				contact !== '' || manager !== '' || intermediary !== '' ||
-				intermediaries !== '' || vacancy_active !== '' ||
-				vacancy_type !== '' || vacancy_term !== '' ||
-				last_contact !== '' 
-				// && sort === ''
-			) {
+			if (isFiltered()) {
 				filtered = true
 			}
 
-
-			// console.log(`%cFILTERED=${filtered}`, 'color: red; font-size: 40px;')
-
+		
 
 			if(sort !== '') {
 				sorted = true
 			}
 
 			if (deleated) {
+				
 				storage.deletePartialState(id, 'id_employer')
 				empList.update(storage.getState())
 				// return
@@ -107,13 +107,22 @@ const getEmployersList = async({
 					totalR: data.total_r
 				}
 
-			// console.log(data)
 
-			sessionStorage.setItem('employersFiltered', JSON.stringify(filtered))
+			storage.hasNextPage = data.exist_next_page || storage.hasNextPage
 
+			// console.log(data.p)
 
-			if(!filtered && !scroll || filtered) {
-				employerListNotFiltered.detail.hasNextPage = !!data.exist_next_page
+			if(!filtered && !scroll || filtered && (data.p === 1 || data.p === undefined)) {
+				// console.log('filtered')
+				// console.log(data.exist_next_page)
+				// console.log((!Array.isArray(data) && !data.success ))
+
+				employerListNotFiltered.detail.hasNextPage = (!!data.exist_next_page || (!Array.isArray(data) && !data.success )) 
+				? !!data.exist_next_page : 
+				Array.isArray(data) ? 
+				!!storage.hasNextPage : 
+				!!data.exist_next_page
+
 				document.dispatchEvent(employerListNotFiltered)
 			}
 
@@ -124,7 +133,11 @@ const getEmployersList = async({
 				}
 
 				if (scroll) {
-
+					if(data.p === 2 && !filtered) {
+						storage.clearState()
+						storage.setState([...storage.getInitialState(), ...employers], 'id_employer')
+						empList.update(storage.getState())
+					}
 					storage.setState(employers, 'id_employer')
 					empList.update(storage.getState())
 
@@ -135,7 +148,7 @@ const getEmployersList = async({
 				} else {
 
 
-					if (!inited) {
+					if (data.p === 1) {
 
 						storage.initState(employers)
 						inited = true
@@ -145,7 +158,6 @@ const getEmployersList = async({
 						storage.clearState()
 						storage.setState(employers, 'id_employer')
 						empList.update(employers)
-						sessionStorage.setItem('page', JSON.stringify(1))
 					}
 
 				}
@@ -154,9 +166,11 @@ const getEmployersList = async({
 				loader.update(false)
 
 			} else {
-				loader.update(false)
 
-					if (scroll) {
+				loader.update(false)
+				
+				if (scroll) {
+					// alert('sctoll')
 					empList.update(storage.getState())
 
 					return {
@@ -164,21 +178,23 @@ const getEmployersList = async({
 						success: data.success,
 						hasNextPage: data.exist_next_page
 					}
-				} else if (sorted) {
 
+				} else if (sorted) {
+					// alert('sctolldsfdf')
 					if(!avoidFetch) {
 						empList.update([])
 					} else {
-
-						empList.update(storage.getState())
+						empList.update(storage.getInitialState())
 					}
 
 					return Array(1)
+
 				} else {
-					
 					empList.update([])
 					throw new EmptyError('Список работодателей пуст')
 				}
+
+				
 			}
 
 			return {employers, success: data.success, hasNextPage: data.exist_next_page}

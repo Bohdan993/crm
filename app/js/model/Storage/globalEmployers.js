@@ -1,12 +1,14 @@
 class StorageGlobalEmployers {
 	constructor(){
 		this.state = []
+		this.initialState = []
 	}
 
 
 
 	initState(data){
 		this.state = data
+		this.initialState = data
 		return this.state
 	}
 
@@ -30,6 +32,10 @@ class StorageGlobalEmployers {
 
 	getState(){
 		return this.state
+	}
+
+	getInitialState(){
+		return this.initialState
 	}
 
 

@@ -131,8 +131,25 @@ export default class WorkModalMedia {
 			}
 		})
 
+		this.showMoreHandler = () => {
+			getWorkModalMedia({
+				id: this.data.id,
+				showing: true,
+				w: 0
+			})
+		}
+
+
+		this.showLessHandler = () => {
+			getWorkModalMedia({
+				id: this.data.id,
+				showingLess: true,
+				w: 1000
+			})
+
+		}
+
 		this.pageShow = 2
-		this.flag = false
 		initOverlayScrollbars(this.modalLayer)
 		this.scrollInstance = OverlayScrollbars(this.modalLayer)
 	}
@@ -158,8 +175,7 @@ export default class WorkModalMedia {
 
 		if (deleating) {}
 
-		// console.log(this.pageDel)
-		// console.log(data.data)
+
 		this.list.update(data.data, {
 			employerID: data.id
 		})
@@ -169,47 +185,26 @@ export default class WorkModalMedia {
 		if (data.data.length < data.total) {
 			this.showMore.update(true, 'показать еще')
 			this.showLess.update(false)
-
-			if (!this.flag) {
-				this.showMore.el.addEventListener('click', () => {
-					getWorkModalMedia({
-						id: this.data.id,
-						showing: true,
-						w: 0
-					})
-
-					this.flag = true
-				})
-
-				
-			}
+			this.showMore.el.addEventListener('click', this.showMoreHandler)
 
 
 		} else {
 			this.showMore.update(false)
 
-			if(this.flag) {
+			console.log(data.data)
+			if(data.data.length > 0) {
 				this.showLess.update(true, 'скрыть')
 			}
-
-			this.showLess.el.addEventListener('click', () => {
-					getWorkModalMedia({
-						id: this.data.id,
-						showingLess: true,
-						w: 1000
-					})
-
-					this.flag = false
-
-				}, {once: true})
-
-			
+			// this.showLess.update(true, 'скрыть')
+			this.showLess.el.addEventListener('click', this.showLessHandler)
 		}
 
 		//Вызов функций которые зависят от инстанса класса
 		checkIfWrapperIsEmpty(this.modalRowWrapper)
 		this.scrollInstance.update()
 		//
+
+
 		this.data = data
 		this.data.index = index
 

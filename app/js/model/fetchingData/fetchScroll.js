@@ -23,6 +23,9 @@ const fetchScroll = (elem, type) => {
 		if(type === 'employer') {
 			data.hasNextPage = 0
 			document.addEventListener('employerlistnotfiltered', function(e){
+				// console.log('filtered')
+
+				// console.log(e)
 				count = 2
 				data.hasNextPage = e.detail.hasNextPage ? 1 : 0
 			})
@@ -34,6 +37,8 @@ const fetchScroll = (elem, type) => {
 
 	if(type === 'employer') {
 
+		console.log('data.hasNextPage', data.hasNextPage)
+
 		if(!!data.hasNextPage) {
 			loader.update(true)
 		} else {
@@ -42,6 +47,8 @@ const fetchScroll = (elem, type) => {
 	}	
 
 	let vertical = e.target.scrollTop
+
+		console.log(data.hasNextPage)
 
 		if(vertical) {
 			if (this.scrollTop + this.clientHeight >= this.scrollHeight - (HEIGHT * Math.max(count, countVacancy)) && !!data.hasNextPage && !flag) {
@@ -53,8 +60,8 @@ const fetchScroll = (elem, type) => {
 								// await sleep(100000)
 								data = await getEmployersList({t: DATA_LENGTH, p: count, scroll: true}).then((data)=> {flag = false; return data} )
 								sessionStorage.setItem('page', JSON.stringify(count))
+								console.log(count)
 								count++
-				 
 								flag = false
 								
 								if(!!data.hasNextPage) {

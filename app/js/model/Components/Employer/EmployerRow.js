@@ -237,7 +237,7 @@ export default class RowEmployer {
 		
 		this.countryInstance = initRowTooltips(this.country)
 		if(this.data.country_name === null) {
-			this.countryInstance.disable()
+			!this.countryInstance.state.isDestroyed && this.countryInstance.disable()
 		} else {
 			this.countryInstance.enable()
 		}
