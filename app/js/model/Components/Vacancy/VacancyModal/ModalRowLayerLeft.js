@@ -173,7 +173,7 @@ export default class ModalRowLayerLeft {
 				),
 			el('div.main-info__layer_left',
 				el('div.main-info__country', 
-					el('p', 'Страны'),
+					el('p', 'Страна'),
 					this.countries = el('span', '')
 					),
 				el('div.main-info__period', 
@@ -221,6 +221,9 @@ export default class ModalRowLayerLeft {
 		console.log(data, context)
 
 
+		let d = new Date(data.date.split('.').reverse().join('.'))
+		d.setMonth(+d.getMonth() + +data.period)
+
 		if(context === 'storage') {
 			this.chooseEmployer.update(false)
 			this.chooseProductType.update(true)
@@ -238,6 +241,10 @@ export default class ModalRowLayerLeft {
 			this.fullInfo.update(false)
 			this.chooseProductType._el.style.display = "none"
 			this.fullInfo._el.style.display = "none"
+
+			setAttr(this.dates, {
+				innerText: data.period ? `${data.date} - ${formatDate(d)}`: '-'
+			})
 		}
 
 
@@ -259,18 +266,15 @@ export default class ModalRowLayerLeft {
 				this.fullInfo._el.style.display = "none"
 			}
 
-			let d = new Date(data.date.split('.').reverse().join('.'))
-			d.setMonth(+d.getMonth() + +data.period)
+
 			setAttr(this.dates, {
-				innerText: `${data.date} - ${formatDate(d)}` 
+				innerText: data.period ? `${data.date} - ${formatDate(d)}`: '-'
 			})
 
 		}
 
-		console.log(data.employer.id_country)
-
 		setAttr(this.countries, {
-			innerText: data.employer.id_country ? this.getItemsFromLocalStorage().countries.filter(el=> el.id === data.employer.id_country)[0]?.name : ''
+			innerText: data.employer.id_country ? this.getItemsFromLocalStorage().countries.filter(el=> el.id === data.employer.id_country)[0]?.name : '-'
 		})
 
 		// setAttr(this.abbrVacancy, {
@@ -314,11 +318,11 @@ export default class ModalRowLayerLeft {
 			})
 
 		setAttr(this.totalClients, {
-			innerText: `${data.clients} -`
+			innerText: `${data.clients}`
 		})
 
 		setAttr(this.numberClients, {
-			innerText: `${'\u00A0'}М${data.men} Ж${data.women}`
+			innerText: `${+data.men ? ('\u00A0' + '-' + '\u00A0' + 'М' + data.men) : ''} ${+data.women ? ('Ж' + data.women) : ''}`
 		})
 
 
@@ -343,6 +347,7 @@ export default class ModalRowLayerLeft {
 
 
 		document.addEventListener('storageemployeradd', (e) => {
+
 			this.chooseEmployer.update(false)
 			this.chooseProductType.update(true)
 			this.chooseProductType._el.style.display = "flex"

@@ -180,7 +180,7 @@ export default class RowVacancyClient {
 						this.groupNum = el('span.no-open')))),
 				el('div.table-full__cell.row__cell.cell-status.no-open', 
 					this.statusLeft = el('div.cell-status__left.no-open', 
-						this.statusSlider = list(`div.cell-status__slider.no-open.${this.type}`, CellStatusSlider),
+						this.statusSlider = list(`div.cell-status__slider.no-open.${this.type}`, CellStatusSlider, 'id'),
 						this.statusArrows = el('div.cell-status__controls.choosen.no-open',
 							el('div.cell-status__control-left.no-open', 
 								el('i.ico.s-arr-left.no-open')),
@@ -196,7 +196,7 @@ export default class RowVacancyClient {
 					this.labelCourse = place(el('i.label.no-open',
 					this.labelCourseText = el('span.no-open'))),
 					this.speciality = el('p.no-open'),
-					this.language = list('div.language__wrapper.no-open', Language),
+					this.language = list('div.language__wrapper.no-open', Language, 'name'),
 					
 					),
 				el('div.table-full__cell.row__cell.cell-notes.no-open', 
@@ -207,9 +207,10 @@ export default class RowVacancyClient {
 
 
 		this.vacancyTooltipInstance = initVacancyTooltip(this.statusSlider.el)
-		this.statusSlider.el.addEventListener('click', function (e) {
-			switchRowStatuses.call(this, $this.statusLeft, $this.data.vacancy.id, $this.context)
-		}, {once: true})
+		// this.statusSlider.el.addEventListener('click', function (e) {
+		// 	console.log(this)
+		// 	switchRowStatuses.call(this, $this.statusLeft, $this.data.vacancy.id, $this.context)
+		// }, {once: true})
 
 
 		this.notes.addEventListener('change', e => {
@@ -234,16 +235,22 @@ export default class RowVacancyClient {
 			
 		})
 
-		
+
+		console.log('CREATED NEW ROW')
+
+
+
+		setTimeout(function(){switchRowStatuses.call($this.statusSlider.el, $this.statusLeft, $this.data.vacancy.id, $this.context); console.log($this.data)}, 0)
 
 	}
 
 	update(data, index, items, context){
+		console.log(data.status_history, data.main.snp)
 
 		this.timesArr = data.status_history
+		console.log("UPDATED")
 
-
-		console.log(data)
+		// console.log(data)
 
 		this.vacancyTooltipInstance.setContent(tooltipContentFunc({
 			firstStatus: this.timesArr.filter(el => el.id_status === '1')[0] ? this.timesArr.filter(el => el.id_status === '1')[0].date : '',
@@ -298,6 +305,9 @@ export default class RowVacancyClient {
 		this.statusSlider.update(dataArr)
 
 
+		// console.log(dataArr)
+
+
 		setAttr(this.name, {
 			innerText: data.main.snp
 		})
@@ -317,6 +327,8 @@ export default class RowVacancyClient {
 			})
 			) : this.group.update(false)
 		this.language.update(data.language)
+
+		// console.log(data.language)
 
 	
 		this.getItemsFromLocalStorage().managers.forEach(manager => {
@@ -348,6 +360,8 @@ export default class RowVacancyClient {
 				innerText: `${data.education ? data.education.form === '1' ? 'Д' : 'З' : ''} ${data.education && data.education.course ? data.education.course : ""}`
 			})
 			) : this.labelCourse.update(false) : null
+
+
 
 		this.data = data
 		this.context = context

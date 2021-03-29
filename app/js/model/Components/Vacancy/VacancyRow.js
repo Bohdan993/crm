@@ -152,23 +152,20 @@ export default class RowVacancy {
 		})
 
 		document.addEventListener('storageupdate', (e) => {
-			// console.log('storageUpdated')
+
 			if (e.detail.id === this.data.id_vacancy) {
-				// console.log(e.detail)
-				// if (e.detail.clazz === 'vacancy-modal') {
-					// console.log('storageUpdated')
-					// console.log('Vacancy-modal:', storage)
-					// console.log(this.vacancyClientsTable)
 					let data = storage.getState(this.data.id_vacancy)
+					data.data.forEach(el => {
+						if(el.vacancy.id === e.detail.clientId) {
+							let res = el.status_history.find(el => el.id_status === e.detail.statusId)
+							if(res){
+								res.date = new Date().toLocaleDateString()
+							} else {
+								el.status_history.push({id_status: e.detail.statusId, date: new Date().toLocaleDateString()})
+							}
+						}
+					})
 					this.vacancyClientsTable.update(true, data)
-
-					// setAttr(this.vacancyClientsTable.el, {
-					// 	style: {
-					// 		height: 'auto'
-					// 	}
-					// })
-				// }
-
 			}
 
 		})
@@ -178,20 +175,15 @@ export default class RowVacancy {
 			if (e.detail.id === this.data.id_vacancy) {
 				let data = storage.getState(this.data.id_vacancy)
 				this.vacancyClientsTable.update(true, data)
-
-				// setAttr(this.vacancyClientsTable.el, {
-				// 	style: {
-				// 		height: 'auto'
-				// 	}
-				// })
 			}
 		})
+
+
 	}
 
 	update(data, index, items, context) {
 
 
-		// console.log(data)
 		this.indicatorsArr = data.status.map((el, i) => {
 			return {
 				number: el,

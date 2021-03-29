@@ -7,6 +7,7 @@ const getVacancyClients = async (id) => {
 
 		try {
 				const data = await fetch.getResourse(`/vacancies/get_clients/?vacancy=${id}`)
+				console.log(data)
 				if(data.success === true) {
 					const clients = data.data.client
 					return clients

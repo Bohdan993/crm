@@ -29,54 +29,45 @@ export default class TableVacancyClient {
 		this.el = el("div.row__full-info.table-full.no-open",
 			this.choosenRow = el('div.table-full__choosen.choosen.no-open',
 				firstRow('Отобраны'),
-				this.choosenList = list('div.table-full__layer.no-open', RowVacancyClient, undefined, this.type)),
+				this.choosenList = list('div.table-full__layer.no-open', RowVacancyClient, 'id_trainees', this.type)),
 				
 			this.readyRow = el('div.table-full__ready.ready.no-open',
 				firstRow('Готовятся к подаче'),
-				this.readyList = list('div.table-full__layer.no-open', RowVacancyClient, undefined, this.type)),
+				this.readyList = list('div.table-full__layer.no-open', RowVacancyClient, 'id_trainees', this.type)),
 				
 			this.waitRow = el('div.table-full__wait.wait.no-open',
 				firstRow('Ждут разрешения'),
-				this.waitList = list('div.table-full__layer.no-open', RowVacancyClient, undefined, this.type)),
+				this.waitList = list('div.table-full__layer.no-open', RowVacancyClient, 'id_trainees', this.type)),
 
 			this.departmentRow = el('div.table-full__department.department.no-open',
 				firstRow('Готовятся к отъезду'),
-				this.departmentList = list('div.table-full__layer.no-open', RowVacancyClient, undefined, this.type)),
+				this.departmentList = list('div.table-full__layer.no-open', RowVacancyClient, 'id_trainees', this.type)),
 	
 			this.busyRow = el('div.table-full__busy.busy.no-open',
 				firstRow('Трудоустроены'),
-				this.busyList = list('div.table-full__layer.no-open', RowVacancyClient, undefined, this.type)),
+				this.busyList = list('div.table-full__layer.no-open', RowVacancyClient, 'id_trainees', this.type)),
 
 			)
-
-
 
 	}
 
 	update(data, r, t, y){
+		// console.log(data, r, t, y)
 		// console.log(data)
 		data.data && data.data.forEach(el => {
 			if(el.vacancy.id_status === '1' || el.vacancy.id_status === '2') {
-				this.choosenObj[el.main.id_trainees] = el
+				this.choosenObj[el.vacancy.id] = el
 			} else if (el.vacancy.id_status === '3' || el.vacancy.id_status === '4') {
-				this.readyObj[el.main.id_trainees] = el
+				this.readyObj[el.vacancy.id] = el
 			} else if (el.vacancy.id_status === '5')  {
-				this.waitObj[el.main.id_trainees] = el
+				this.waitObj[el.vacancy.id] = el
 			} else if (el.vacancy.id_status === '6' || el.vacancy.id_status === '7' || el.vacancy.id_status === '8') {
-				this.departmentObj[el.main.id_trainees] = el
+				this.departmentObj[el.vacancy.id] = el
 			} else if(el.vacancy.id_status === '9') {
-				this.busyObj[el.main.id_trainees] = el
+				this.busyObj[el.vacancy.id] = el
 			}
 		})
 
-
-		console.log(isObjEmpty(this.choosenObj))
-		console.log(isObjEmpty(this.readyObj))
-		console.log(isObjEmpty(this.waitObj))
-		console.log(isObjEmpty(this.departmentObj))
-		console.log(isObjEmpty(this.busyObj))
-
-		// console.log(this.choosenList)
 
 		setAttr(this.choosenRow, {
 			classList: isObjEmpty(this.choosenObj) ? 'table-full__choosen choosen no-open hidden' : 'table-full__choosen choosen no-open'
@@ -98,7 +89,15 @@ export default class TableVacancyClient {
 			classList: isObjEmpty(this.busyObj) ? 'table-full__busy busy no-open hidden' : 'table-full__busy busy no-open'
 		})
 
-		console.log('i am here')
+		// console.log('i am here')
+
+		console.log(this.choosenObj)
+		console.log(this.readyObj)
+		console.log(this.waitObj)
+		console.log(this.departmentObj)
+		console.log(this.busyObj)
+
+		console.log(Object.values(this.choosenObj))
 
 		this.choosenList.update(Object.values(this.choosenObj), data.id)
 		this.readyList.update(Object.values(this.readyObj), data.id)
