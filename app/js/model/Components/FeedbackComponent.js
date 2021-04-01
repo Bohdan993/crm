@@ -434,15 +434,15 @@ class FeedbackEdit {
 	}
 
 	update(data) {
-		console.log(data)
+		// console.log(data)
 		// console.log(storage.getPartialState(data.id, 'id_employer', 'name'))
 		setAttr(this.to, {
 			innerText: storage.getPartialState(data.id, 'id_employer', 'name')
 		})
 
 
-		console.log(data.type_arrow)
-		console.log(data.clients)
+		// console.log(data.type_arrow)
+		// console.log(data.clients)
 		setAttr(this.choiseClient, {
 			innerText: data.type_arrow === '0' ? data.from : data.to,
 			'data-currClient': data.type_arrow === '0' ? data.clients && data.from !== 'УАМФ' && data.clients.filter(client => client.snp.trim() === data.from)[0].id : data.clients && data.to !== 'УАМФ' && data.clients.filter(client => client.snp.trim() === data.to)[0].id
@@ -505,7 +505,7 @@ class FeedbackEdit {
 		this.typeFeedbackInstance.setContent(this.feedbackType.el)
 		this.choiseClientInstance.setContent(this.feedbackClient.el)
 
-		console.log(this.choiseClientInstance)
+		// console.log(this.choiseClientInstance)
 	}
 
 }
@@ -574,8 +574,8 @@ class FeedbackRow {
 
 	update(data, index, items, context) {
 
-		console.log(data)
-		console.log(context)
+		// console.log(data)
+		// console.log(context)
 
 		setAttr(this.text, {
 			innerText: data.feedback
@@ -592,7 +592,7 @@ class FeedbackRow {
 		})
 
 
-		console.log(context)
+		// console.log(context)
 		setAttr(this.from, {
 			innerText: data.type_arrow === '0' ?
 				data.type_author === '2' ?
@@ -653,7 +653,7 @@ export default class Feedback {
 		)
 
 		this.addItem.addEventListener('click', (e) => {
-			console.log(this.data)
+			// console.log(this.data)
 
 			this.feedbackEdit.update(true, {
 				id_feedback: '0',
@@ -684,7 +684,7 @@ export default class Feedback {
 	}
 
 	update(data, index, items, context) {
-		console.log(data)
+		// console.log(data)
 		let {
 			loading,
 			showing
@@ -719,7 +719,7 @@ export default class Feedback {
 
 			if (!this.flagShow) {
 				this.showMore.el.addEventListener('click', (e) => {
-					console.log(this.type)
+					// console.log(this.type)
 					if (this.type === 'employer') {
 						getWorkModalFeedback({
 							id: this.data.data.id,

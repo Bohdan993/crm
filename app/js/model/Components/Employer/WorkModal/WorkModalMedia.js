@@ -75,6 +75,7 @@ class WorkModalMediaRow {
 export default class WorkModalMedia {
 	constructor() {
 		this.data = {}
+		this.open = false
 		this.controls = el('div.modal-row__controls',
 			el('p', 'Медиа'),
 			el('div.add-item',
@@ -132,6 +133,7 @@ export default class WorkModalMedia {
 		})
 
 		this.showMoreHandler = () => {
+			this.open = true
 			getWorkModalMedia({
 				id: this.data.id,
 				showing: true,
@@ -141,6 +143,7 @@ export default class WorkModalMedia {
 
 
 		this.showLessHandler = () => {
+			this.open = false
 			getWorkModalMedia({
 				id: this.data.id,
 				showingLess: true,
@@ -149,7 +152,7 @@ export default class WorkModalMedia {
 
 		}
 
-		this.pageShow = 2
+		// this.pageShow = 2
 		initOverlayScrollbars(this.modalLayer)
 		this.scrollInstance = OverlayScrollbars(this.modalLayer)
 	}
@@ -164,11 +167,11 @@ export default class WorkModalMedia {
 		} = data
 
 		if (showing) {
-			this.pageShow++
+			// this.pageShow++
 		}
 
 		if (loading || showingLess) {
-			this.pageShow = 2
+			// this.pageShow = 2
 		}
 
 		if (adding) {}
@@ -180,23 +183,34 @@ export default class WorkModalMedia {
 			employerID: data.id
 		})
 
+		// console.log(this.data.id !== data.id)
+		// // console.log(data.id)
+
+		if(this.data.id !== data.id) this.open = false
+		
+
 
 		//Пагинация
 		if (data.data.length < data.total) {
+
 			this.showMore.update(true, 'показать еще')
 			this.showLess.update(false)
 			this.showMore.el.addEventListener('click', this.showMoreHandler)
 
+			// console.log('dfdf')
 
 		} else {
+
 			this.showMore.update(false)
 
-			console.log(data.data)
-			if(data.data.length > 0) {
+			if(this.open) {
 				this.showLess.update(true, 'скрыть')
+			} else {
+				this.showLess.update(false)
 			}
-			// this.showLess.update(true, 'скрыть')
+
 			this.showLess.el.addEventListener('click', this.showLessHandler)
+
 		}
 
 		//Вызов функций которые зависят от инстанса класса
@@ -209,6 +223,15 @@ export default class WorkModalMedia {
 		this.data.index = index
 
 	}
+
+	  // onremount() {
+   //    alert("remounted Hello");
+   //  }
+   //  onunmount() {
+   //    alert("unmounted Hello");
+   //  }
+
+
 
 }
 

@@ -11,9 +11,7 @@
   right: 0;
   bottom: 0;
   background: rgba(0,0,0,0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  overflow-x: auto;
   z-index: 99;
 }
 
@@ -181,17 +179,17 @@
   animation: mmfadeIn .3s cubic-bezier(0.0, 0.0, 0.2, 1);
 }
 
-.micromodal-slide[aria-hidden="false"] .modal__container {
-  animation: mmslideIn .3s cubic-bezier(0, 0, .2, 1);
-}
+// .micromodal-slide[aria-hidden="false"] .modal__container {
+//   animation: mmslideIn .3s cubic-bezier(0, 0, .2, 1);
+// }
 
 .micromodal-slide[aria-hidden="true"] .modal__overlay {
   animation: mmfadeOut .3s cubic-bezier(0.0, 0.0, 0.2, 1);
 }
 
-.micromodal-slide[aria-hidden="true"] .modal__container {
-  animation: mmslideOut .3s cubic-bezier(0, 0, .2, 1);
-}
+// .micromodal-slide[aria-hidden="true"] .modal__container {
+//   animation: mmslideOut .3s cubic-bezier(0, 0, .2, 1);
+// }
 
 .micromodal-slide .modal__container,
 .micromodal-slide .modal__overlay {
@@ -212,6 +210,7 @@
   height: 100%;
   display: flex;
   align-items: center;
+  min-width: 1440px;
   
 }
 
@@ -222,13 +221,15 @@
   margin: 0 auto;
   max-height: 78vh;
   padding: 0;
-  max-width: 250px + 1090px;
+  
   display: flex;
   justify-content: space-between;
   flex-wrap: nowrap;
   align-items: stretch;
   border-radius: 0;
   // overflow-x: auto;
+  height: 100%;
+  width: 250px + 1090px;
   .my-modal-part {
     & > p {
       text-align: center;
@@ -1306,8 +1307,7 @@
     display: block;
    }
 
-   height: 100%;
-   width: 100%;
+
    
   .sidebar__filter-wrapper {
     padding-top: 8px;

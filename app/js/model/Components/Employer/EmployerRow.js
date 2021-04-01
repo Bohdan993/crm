@@ -26,11 +26,11 @@ let flag = false
 
 class VacancyLabel {
 	constructor(){
-		this.el = el('a.label', {
+		this.el = el('a.label.no-open', {
 			href: `vacancy.html`
 			},
-			this.vacancyLabelCountry = el('span', 'NO'), 
-			this.vacancyLabelCode = el('span', '211-8'))
+			this.vacancyLabelCountry = el('span.no-open', 'NO'), 
+			this.vacancyLabelCode = el('span.no-open', '211-8'))
 	}
 
 	update(data, index, items, context){
@@ -43,8 +43,11 @@ class VacancyLabel {
 			}
 		}).map(i =>  i.name)
 
+
+		// console.log(data)
 		setAttr(this.el, {
 			href: `vacancy.html?id=${data.id_vacancy}`,
+			target: '_blank',
 			style:  {
 				background: data.archive === '0' ? '#FF9966' : '#99CCCC'
 			}
@@ -55,13 +58,13 @@ class VacancyLabel {
 		})
 
 		setAttr(this.vacancyLabelCode, {
-			innerText: `${data.id_vacancy}-${data.total_client}`
+			innerText: `- ${data.total_client}`
 		})
 
 
 		setTimeout(() => {
 
-			this.labelInstance && !this.labelInstance.state.isDestroyed && this.labelInstance.setContent(`${data.id_vacancy} - ${data.start_work} (${data.period}) - ${vacancies.join(', ')} `)
+			this.labelInstance && !this.labelInstance.state.isDestroyed && this.labelInstance.setContent(data.start_work || data.period || vacancies.length ?  `${data.start_work} ${data.period ? ('(' + data.period + ' мес.) -' ) : ''} ${vacancies.length ? (vacancies.join(', ')) : ''}` : 'Информация отсутствует')
 
 		}, 0)
 
@@ -74,7 +77,7 @@ class VacancyLabel {
 	}
 
 	onunmount(){
-		this.labelInstance.destroy()
+		if(this.labelInstance) this.labelInstance.destroy()
 	}
 }
 
@@ -123,6 +126,11 @@ export default class RowEmployer {
 		// this.flag = false
 
 		this.el.addEventListener('click', (e) =>{
+
+			if(e.target.classList.contains('no-open')) {
+				return
+			}
+
 			let id_employer = getAllUrlParams().id
 			let url = `?id=${this.data.id_employer}`
 
@@ -152,7 +160,6 @@ export default class RowEmployer {
 					  }
 		    })
 
-			
 					getWorkModalInfo(this.data.id_employer)
 					getWorkModalManufacturyType(this.data.id_employer)
 					getWorkModalMedia({id: this.data.id_employer, loading: true})
@@ -166,6 +173,7 @@ export default class RowEmployer {
 	}
 
 	update(data, index, items, context){
+		// console.log(data)
 
 		const { id_employer } = data
 
@@ -251,13 +259,13 @@ export default class RowEmployer {
 	}
 
 	onunmount(){
-		this.companyInstance.destroy()
-		this.countryInstance.destroy()
-		this.nameInstance.destroy()
-		this.addressInstance.destroy()
-		this.jobsInstance.destroy()
-		if(this.data.manager) this.managerInstance.destroy()
-		if(this.data.task_last) this.taskInstance.destroy()
+		if(this.companyInstance) this.companyInstance.destroy()
+		if(this.countryInstance) this.countryInstance.destroy()
+		if(this.nameInstance) this.nameInstance.destroy()
+		if(this.addressInstance) this.addressInstance.destroy()
+		if(this.jobsInstance) this.jobsInstance.destroy()
+		if(this.managerInstance) this.managerInstance.destroy()
+		if(this.taskInstance) this.taskInstance.destroy()
 	}
 
 
