@@ -14,27 +14,28 @@ const config = {
 }
 
 
-
 const addMedia = async ({
 	id, 
 	data, 
 	w = 1000
 }) => {
-			// console.log(count)
 			try {
 				const medias = await fetch.postResourse(`/employers/upload_media/?id=${id}`, data, config)
 
 				if(medias.success === true) {
-					toastr.success(`ID работодателя ${id}`, 'Успешно загружена картинка', {closeButton: false})
+					toastr.success(`ID работодателя ${id}`, 'Успешно загружено изображение', {closeButton: false})
 					getWorkModalMedia({id, adding: true, w})
+					
 				} else {
 					throw new Error('Не возможно загрузить картинку')
 				}
-				workModalMedia.progress.update(false)
 				
+				workModalMedia.progress.update(false)
+				return Promise.resolve('ok')
 				
 			} catch(e) {
 				toastr.error(e.message, 'Возникла ошибка', {closeButton: true})
+				return Promise.resolve('fail')
 			}
 }
 

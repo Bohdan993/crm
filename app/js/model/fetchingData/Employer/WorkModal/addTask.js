@@ -12,14 +12,16 @@ const addTask = async ({
 
 				if(tasks.success === true) {
 					toastr.success(`ID работодателя ${id}`, 'Успешно добавлена задача', {closeButton: false})
-
 					getWorkModalTasks({id})
 				} else {
 					throw new Error('Не возможно добавить задачу')
 				}
 
+				return Promise.resolve('ok')
+
 			} catch(e) {
-					toastr.error(e, 'Возникла ошибка', {closeButton: true})
+				toastr.error(e, 'Возникла ошибка', {closeButton: true})
+				return Promise.resolve('fail')
 			}
 }
 

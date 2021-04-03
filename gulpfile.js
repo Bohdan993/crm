@@ -40,11 +40,13 @@ let isDev = true;
 let isProd = !isDev;
 
 let webConfig = {
-    output: {
-        filename: 'script.min.js',
-        chunkFilename: '[name].bundle.js',
-        publicPath: 'js/',
-        path: path.resolve(__dirname, 'js')
+    entry: {
+        'employer': './app/js/employer.min.js',
+        'vacancy': './app/js/vacancy.min.js',
+    },
+     output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: '[name].min.js'
     },
     module: {
         rules: [{
@@ -58,13 +60,13 @@ let webConfig = {
 	externals: {
 	    moment: 'moment'
 	  }
-    // plugins: [new BundleAnalyzerPlugin()]
 };
 
 let webConfig2 = {
     output: {
         filename: 'libs.min.js'
     },
+    mode: isDev ? 'development' : 'production',
     //  externals: {
     //     moment: 'moment'
     // }
@@ -239,7 +241,9 @@ function css() {
 
 
 function scripts() {
-    return src('./app/js/main.js')
+    return src('./app/js/main.js', {
+        allowEmpty: true
+    })
         // .pipe(sourcemap.init())
         // .pipe(conct('script.js'))
         // .pipe(gulpif(isProd, uglify({})))

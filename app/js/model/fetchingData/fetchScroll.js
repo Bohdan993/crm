@@ -23,9 +23,6 @@ const fetchScroll = (elem, type) => {
 		if(type === 'employer') {
 			data.hasNextPage = 0
 			document.addEventListener('employerlistnotfiltered', function(e){
-				// console.log('filtered')
-
-				// console.log(e)
 				count = 2
 				data.hasNextPage = e.detail.hasNextPage ? 1 : 0
 			})
@@ -35,16 +32,15 @@ const fetchScroll = (elem, type) => {
 	async function ajaxData(e){
 
 
-	if(type === 'employer') {
-
-		console.log('data.hasNextPage', data.hasNextPage)
-
+	// if(type === 'employer') {
 		if(!!data.hasNextPage) {
 			loader.update(true)
 		} else {
 			loader.update(false)
 		}
-	}	
+	// } else {
+		
+	// }
 
 	let vertical = e.target.scrollTop
 

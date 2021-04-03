@@ -1,17 +1,25 @@
-
-
 import fetch from '../fetchingDataClass'
 import VacancyList from '../../Components/Vacancy/VacancyList'
 import Loader from '../../Components/Loader'
-import {el, mount, place, toastr} from '../../../../libs/libs'
+import {
+	el,
+	mount, 
+	place, 
+	toastr
+} from '../../../../libs/libs'
+
 import Numbers from '../../Components/Vacancy/SidebarNumbersComponent'
 import {sidebarStatNumsVacancy} from '../../../view'
-import {uniq, EmptyError, getAllUrlParams} from '../../helper'
+import {EmptyError} from '../../helper'
+import storage from '../../Storage/globalVacancies'
+import vacanciesListNotFiltered from '../../CustomEvents/vacanciesListNotFilteredEvent'
 
 
 const vacanciesWrapper = document.querySelector('.vacancy-rows-wrapper')
-let globalVacancies = []
-let cachedVacancies = []
+
+let inited = false
+
+
 const loader = place(Loader)
 const vacancyList = new VacancyList()
 const numbers = new Numbers()
@@ -27,109 +35,163 @@ if(vacanciesWrapper) {
 if(sidebarStatNumsVacancy) {
 	mount(sidebarStatNumsVacancy, numbers)
 }
-// const sleep = (ms) => {
-// 	return new Promise(res => {
-// 		setTimeout(function(){
-// 			res('ok')
-// 		}, ms)
-// 	})
-// }
 
 
-// let flag = false
+
 
 const getVacancyList = async ({
-	t = +JSON.parse(sessionStorage.getItem('pageVacancy')) * 50 || '50',
+	t = '50',
 	p = '1',
+	id = '',
 	search = JSON.parse(sessionStorage.getItem('searchVacancy')) || '', 
 	country = JSON.parse(sessionStorage.getItem('countryFilterVacancy')) || '',
 	manager = JSON.parse(sessionStorage.getItem('managerFilterVacancy')) || '',
 	sort = JSON.parse(sessionStorage.getItem('sortFilterVacancy')) || 'date',
-	archive = JSON.parse(sessionStorage.getItem('archiveVacancyFilter')) || '0',
-	active = JSON.parse(sessionStorage.getItem('activeVacancyFilter')) || '1',
+	archive = +JSON.parse(sessionStorage.getItem('archiveVacancyFilter')),
+	active = +JSON.parse(sessionStorage.getItem('activeVacancyFilter')) || '',
 	type_vacancy = JSON.parse(sessionStorage.getItem('v-vacancyTypeFilter')) || '',
 	type_production = JSON.parse(sessionStorage.getItem('typeManufacturyVacancyFilter')) || '',
 	job_start = JSON.parse(sessionStorage.getItem('jobStartFilter')) || '',
 	job_period = JSON.parse(sessionStorage.getItem('jobPeriodFilter')) || '',
 	status = JSON.parse(sessionStorage.getItem('stagesOfVacancies')) || '',
 	scroll = false,
-	filtered = false
+	added = false,
+	deleated = false,
+	avoidFetch = false,
+	sorted = false,
+	filtered = false,
 } = {}) => { 
-	let flag = false
-	// console.log(type_vacancy)
+	function isFiltered() {
+		return search === '' && country === '' && manager === ''   
+				&& sort === ''  && archive === ''  && active === ''   
+				&& type_vacancy === '' && type_production === '' 
+				&& job_start === '' && job_period === ''
+				&& status === ''
+	}
+
+	// console.log(+JSON.parse(sessionStorage.getItem('activeVacancyFilter')) === 0 ? 0 : 1)
+
 	if(vacanciesWrapper) {
 		loader.update(true)
 
 	try {
-			// const delay = await sleep(5000)
-			const data = await fetch.getResourse(`/vacancies/get_all/?p=${p}&t=${t}&search=${search}&filter=manager:${manager}|archive:${archive}|active:${active}|country:${country}|type_vacancy:${type_vacancy}|type_production:${type_production}|job_start:${job_start}|job_period:${job_period}|status:${status}&sort=${sort}`)
-			const vacanciesData = data.data
 
-
-			if(search === '' && country === '' && manager === ''   
-				&& sort === ''  && archive === '0'  && active === '1'   
-				&& type_vacancy === '' && type_production === '' 
-				&& job_start === '' && job_period === ''
-				&& status === '' 
-				) {
-					flag = true
-				}
-
-			const numsData = {
-				total: data.total_work,
-				totalN: data.need_employers,
-				totalC: data.current_vacancy
+			if (isFiltered()) {
+				filtered = true
 			}
 
-			if(data.success) {
+			if(sort !== '') {
+				sorted = true
+			}
 
-				if(!vacanciesData) {
+			if (deleated) {
+				
+				storage.deletePartialState(id, 'id_vacancy')
+				vacancyList.update(storage.getState())
+				// return
+			}
+
+			const data = !avoidFetch ? 
+			await fetch.getResourse(`/vacancies/get_all/?p=${p}&t=${t}&search=${search}&filter=manager:${manager}|archive:${archive}|active:${active}|country:${country}|type_vacancy:${type_vacancy}|type_production:${type_production}|job_start:${job_start}|job_period:${job_period}|status:${status}&sort=${sort}`)
+			: storage.getState()
+
+
+			const vacancies = data.data
+
+				const numsData = {
+					total: data.total_work,
+					totalN: data.need_employers,
+					totalC: data.current_vacancy
+			}
+
+			storage.hasNextPage = data.exist_next_page || storage.hasNextPage
+
+
+			if(!filtered && !scroll || filtered && (data.p === 1 || data.p === undefined)) {
+
+				vacanciesListNotFiltered.detail.hasNextPage = (!!data.exist_next_page || (!Array.isArray(data) && !data.success )) 
+				? !!data.exist_next_page : 
+				Array.isArray(data) ? 
+				!!storage.hasNextPage : 
+				!!data.exist_next_page
+
+				document.dispatchEvent(vacanciesListNotFiltered)
+			}
+
+
+			if (data.success) {
+
+				if (!vacancies) {
 					throw new Error('Что то пошло не так, вакансий не найдено, обновите страницу, пожалуйста')
 				}
 
-				if(scroll) {
-						globalVacancies = uniq([
-					...globalVacancies,
-					...vacanciesData
-					], 'id_vacancy')
+				if (scroll) {
+					if(data.p === 2 && !filtered) {
+						storage.clearState()
+						storage.setState([...storage.getInitialState(), ...vacancies], 'id_vacancy')
+						vacancyList.update(storage.getState())
+					}
+					storage.setState(vacancies, 'id_employer')
+					vacancyList.update(storage.getState())
 
-						cachedVacancies = uniq([
-					...cachedVacancies,
-					...globalVacancies
-					], 'id_vacancy')
-
-
-					vacancyList.update(cachedVacancies)
-				} else {
-					globalVacancies = vacanciesData
-					cachedVacancies.length && !filtered ? vacancyList.update(cachedVacancies) : 
-					!flag ? 
-					vacancyList.update(vacanciesData) :
-					(vacancyList.update(uniq([
-					...vacanciesData,
-					...cachedVacancies
-					], 'id_vacancy')))
 				}
+
+				// else if (added) {
+				// 	alert('added')
+				// 	storage.setState(vacancies, 'id_employer', 'top')
+				// 	vacancyList.update(storage.getState())
+
+				// } 
+
+				else {
+					if (data.p === 1) {
+						storage.initState(vacancies)
+						inited = true
+					}
+
+					if(sorted || filtered) {
+						storage.clearState()
+						storage.setState(vacancies, 'id_vacancy')
+						vacancyList.update(vacancies)
+					}
+				}
+
 				numbers.update(numsData)
 				loader.update(false)
-
 
 			} else {
 
 				loader.update(false)
+				
+				if (scroll) {
+					vacancyList.update(storage.getState())
 
-				if(scroll) {
-					vacancyList.update(globalVacancies)
+					return {
+						vacancies: storage.getState(),
+						success: data.success,
+						hasNextPage: data.exist_next_page
+					}
+
+				} else if (sorted) {
+					if(!avoidFetch) {
+						vacancyList.update([])
+					} else {
+						vacancyList.update(storage.getInitialState())
+					}
+
 					return Array(1)
+
 				} else {
 					vacancyList.update([])
 					throw new EmptyError('Список вакансий пуст')
-
 				}
+
+				
 			}
-		
-			return vacanciesData
+
+			return {vacancies, success: data.success, hasNextPage: data.exist_next_page}
 	} catch (e) {
+
 		if(e.name === 'EmptyError') {
 			toastr.warning(`${e.message}`)
 			return
@@ -139,8 +201,6 @@ const getVacancyList = async ({
 		return
 	}
 }
-
-
 
 }
 

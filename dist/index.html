@@ -5,10 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/libs.min.css?v=1615646199708">
-    <link rel="stylesheet" href="css/main.min.css?v=1615646199708">
+    <link rel="preload" href="css/main.min.css?v=1617463169150" as="style">
+    <link rel="stylesheet" href="css/libs.min.css?v=1617463169150">
+    <link rel="stylesheet" href="css/main.min.css?v=1617463169150">
   </head>
-  <body>
+  <body class="employer-page">
     <main class="main">
       <div class="sidebar">
         <div class="sidebar__layout">
@@ -157,7 +158,7 @@
                               <p>Данные для документов</p>
                             </div>
                           </li>
-                          <li class="sidebar__filter-item" data-part="create-vacancy"></li>
+                          <li class="sidebar__filter-item" id="vacancy-create"></li>
                           <li class="sidebar__filter-item delete-item" id="employer-delete"></li>
                         </ul>
                       </div>
@@ -179,9 +180,6 @@
                   <div class="data-for-documents my-modal-part" id="data-for-documents">
                     <p>Данные для документов</p>
                   </div>
-                  <div class="create-vacancy my-modal-part" id="create-vacancy">
-                    <p>Создать вакансию</p>
-                  </div>
                 </div>
               </div>
             </div>
@@ -190,7 +188,8 @@
         <div class="modal micromodal-slide" id="modal-2" aria-hidden="true"></div>
       </div>
     </div>
-    <script src="js/libs.min.js?v=1615646199708" defer></script>
-    <script src="js/script.min.js?v=1615646199708" async></script>
+    <script src="js/libs.min.js?v=1617463169150" defer></script>
+    <link rel="preload" href="js/employer.min.js?v=1617463169150" as="script">
+    <script src="js/employer.min.js?v=1617463169150" async></script>
   </body>
 </html>

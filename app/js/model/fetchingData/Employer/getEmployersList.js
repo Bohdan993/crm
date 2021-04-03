@@ -12,7 +12,6 @@ import {
 	employerStatNums
 } from '../../../view'
 import {
-	uniq,
 	EmptyError
 } from '../../helper'
 
@@ -41,11 +40,10 @@ if (employerStatNums) {
 }
 
 
-
-
-
 const getEmployersList = async({
 	p = '1',
+	t = '50',
+	id = '',
 	search = JSON.parse(sessionStorage.getItem('search')) || '',
 	country = JSON.parse(sessionStorage.getItem('countryFilter')) || '',
 	production = JSON.parse(sessionStorage.getItem('typeManufacturyFilter')) || '',
@@ -64,16 +62,14 @@ const getEmployersList = async({
 	avoidFetch = false,
 	sorted = false,
 	filtered = false,
-	t = '50',
-	id = ''
 } = {}) => {
 
 	function isFiltered() {
 		return search !== '' || country !== '' || production !== '' ||
-					contact !== '' || manager !== '' || intermediary !== '' ||
-					intermediaries !== '' || vacancy_active !== '' ||
-					vacancy_type !== '' || vacancy_term !== '' ||
-					last_contact !== ''
+                contact !== '' || manager !== '' || intermediary !== '' ||
+                intermediaries !== '' || vacancy_active !== '' ||
+                vacancy_type !== '' || vacancy_term !== '' ||
+                last_contact !== ''
 	}
 	
 
@@ -86,8 +82,6 @@ const getEmployersList = async({
 				filtered = true
 			}
 
-		
-
 			if(sort !== '') {
 				sorted = true
 			}
@@ -99,8 +93,11 @@ const getEmployersList = async({
 				// return
 			}
 
-			const data = !avoidFetch ? await fetch.getResourse(`/employers/get_all/?p=${p}&t=${t}&search=${search}&filter=country:${country}|production:${production}|contact:${contact}
-				|manager:${manager}|intermediaries:${intermediaries}|intermediary:${intermediary}|vacancy_active:${vacancy_active}|vacancy_type:${vacancy_type}|vacancy_term:${vacancy_term}|last_contact:${last_contact}&sort=${sort}`) : storage.getState()
+			const data = !avoidFetch ? 
+			await fetch.getResourse(`/employers/get_all/?p=${p}&t=${t}&search=${search}&filter=country:${country}|production:${production}|contact:${contact}
+				|manager:${manager}|intermediaries:${intermediaries}|intermediary:${intermediary}|vacancy_active:${vacancy_active}|vacancy_type:${vacancy_type}|vacancy_term:${vacancy_term}|last_contact:${last_contact}&sort=${sort}`) 
+			: storage.getState()
+
 			const employers = data.data
 			const numsData = {
 					total: data.total,
@@ -110,12 +107,7 @@ const getEmployersList = async({
 
 			storage.hasNextPage = data.exist_next_page || storage.hasNextPage
 
-			// console.log(data.p)
-
 			if(!filtered && !scroll || filtered && (data.p === 1 || data.p === undefined)) {
-				// console.log('filtered')
-				// console.log(data.exist_next_page)
-				// console.log((!Array.isArray(data) && !data.success ))
 
 				employerListNotFiltered.detail.hasNextPage = (!!data.exist_next_page || (!Array.isArray(data) && !data.success )) 
 				? !!data.exist_next_page : 
@@ -141,15 +133,17 @@ const getEmployersList = async({
 					storage.setState(employers, 'id_employer')
 					empList.update(storage.getState())
 
-				} else if (added) {
-					storage.setState(employers, 'id_employer', 'top')
-					empList.update(storage.getState())
+				}
 
-				} else {
+				// else if (added) {
+				// 	alert('added')
+				// 	storage.setState(employers, 'id_employer', 'top')
+				// 	empList.update(storage.getState())
 
+				// } 
 
+				else {
 					if (data.p === 1) {
-
 						storage.initState(employers)
 						inited = true
 					}
@@ -159,7 +153,6 @@ const getEmployersList = async({
 						storage.setState(employers, 'id_employer')
 						empList.update(employers)
 					}
-
 				}
 
 				numbers.update(numsData)
@@ -170,7 +163,6 @@ const getEmployersList = async({
 				loader.update(false)
 				
 				if (scroll) {
-					// alert('sctoll')
 					empList.update(storage.getState())
 
 					return {
@@ -180,7 +172,6 @@ const getEmployersList = async({
 					}
 
 				} else if (sorted) {
-					// alert('sctolldsfdf')
 					if(!avoidFetch) {
 						empList.update([])
 					} else {

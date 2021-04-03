@@ -3,15 +3,13 @@ import getEmployersList from '../Employer/getEmployersList'
 import { sidebarEmployer } from '../../../view'
 import { toastr }from '../../../../libs/libs'
 import {addMouseUpTrigger, closeModal} from '../../helper'
-import employerListAddEvent from '../../CustomEvents/EmployerListAddEvent'
 import getWorkModalInfo from '../../fetchingData/Employer/WorkModal/getWorkModalInfo'
 import getWorkModalManufacturyType from '../../fetchingData/Employer/WorkModal/getWorkModalManufacturyType'
 import getWorkModalMedia from '../../fetchingData/Employer/WorkModal/getWorkModalMedia'
 import getWorkModalContactHistory from '../../fetchingData/Employer/WorkModal/getWorkModalContactHistory'
 import getWorkModalVacancyHistory from '../../fetchingData/Employer/WorkModal/getWorkModalVacancyHistory'
 import getWorkModalFeedback from '../../fetchingData/Employer/WorkModal/getWorkModalFeedback'
-import switchModalParts from '../../switchModalParts'
-import {modalSwitchers, modalParts} from '../../../view'
+import getWorkModalTasks from '../../fetchingData/Employer/WorkModal/getWorkModalTasks'
 
 let flag = false
 
@@ -36,7 +34,7 @@ const addNewEmployer = () => {
 								fetch.getResourse(`/employers/delete/?id=${employer.id}`)
 							}
 			      },
-			      onShow: (modal, node) => {
+			      onShow: (modal) => {
 					    const wrapper = modal.querySelector('.my-modal-wrapper')
 					    const modalClose = modal.querySelector('.modal__close')
 
@@ -48,13 +46,8 @@ const addNewEmployer = () => {
 						      })
 					      flag = true
 					    }
-					 		// switchModalParts(modalSwitchers, modalParts, false)('#employer-data', '[data-part="employer-data"]')
 					  }
 		    })
-
-					// employerListAddEvent.detail.id = String(employer.id)
-					// document.dispatchEvent(employerListAddEvent)
-
 
 					getWorkModalInfo(employer.id)
 					getWorkModalManufacturyType(employer.id)
@@ -62,6 +55,9 @@ const addNewEmployer = () => {
 					getWorkModalContactHistory({id:employer.id, loading: true })
 					getWorkModalVacancyHistory({id:employer.id, loading: true })
 					getWorkModalFeedback({id:employer.id, loading: true, other: 5, str: 'employers' })
+					getWorkModalTasks({id: employer.id})
+
+					
 
 
 				} else {

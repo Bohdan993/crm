@@ -1,5 +1,5 @@
 const switchModalParts = (switchers, parts) => {
-	console.log(switchers, parts)
+	// console.log(switchers, parts)
 	function addActiveClass() {
 		let id = this.dataset.part
 		
@@ -19,32 +19,32 @@ const switchModalParts = (switchers, parts) => {
 	}
 
 
-	// if(permission) {
-		switchers.forEach(el => {
-			el.addEventListener('click', addActiveClass, {once: true})
-		})
-	// }
+	switchers.forEach(el => {
+		el.addEventListener('click', addActiveClass)
+	})
 
 
-
-	function changeActiveClass(targetPart, targetSwither) {
-		switchers.forEach(el=> {
-			el.classList.remove('active')
-		})
-
-		document.querySelector(targetSwither).classList.add('active')
-
-
-		parts.forEach(el => {
-			el.classList.remove('active')
-		})
-
-		// console.log(targetPart)
-
-		document.querySelector(targetPart).classList.add('active')
-	}
-
-	return changeActiveClass
 }
 
 export default switchModalParts // to ../controller/index.js
+
+
+function changeActiveClass(switchers, parts, targetPart, targetSwither) {
+	switchers.forEach(el=> {
+		el.classList.remove('active')
+	})
+
+	document.querySelector(targetSwither).classList.add('active')
+
+
+	parts.forEach(el => {
+		el.classList.remove('active')
+	})
+
+	document.querySelector(targetPart).classList.add('active')
+}
+
+
+export {
+	changeActiveClass
+}

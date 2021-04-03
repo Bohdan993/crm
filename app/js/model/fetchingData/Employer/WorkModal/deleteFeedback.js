@@ -12,11 +12,19 @@ const deleteFeedback = async ({
 	string
 } = {}) => {
 			try {
-				const contacts = await fetch.getResourse(`/${str}/delete_feedback/?id=${id}`)
-				getWorkModalFeedback({id: id_employer, p: 1, t: count, deleating: true, other, str: string})
-				toastr.success(`ID работодателя ${id_employer}`, 'Успешно удален отзыв', {closeButton: false})
+				const feedbacks = await fetch.getResourse(`/${str}/delete_feedback/?id=${id}`)
+
+				if(feedbacks.success === true) {
+					toastr.success(`ID работодателя ${id_employer}`, 'Успешно удален отзыв', {closeButton: false})
+					getWorkModalFeedback({id: id_employer, p: 1, t: count, deleating: true, other, str: string})
+				} else {
+					throw new Error('Не возможно удалить отзыв')
+				}
+
+				return Promise.resolve('ok')
 			} catch(e) {
-				console.error(e)
+				toastr.error(e, 'Возникла ошибка', {closeButton: true})
+				return Promise.resolve('fail')
 			}
 }
 

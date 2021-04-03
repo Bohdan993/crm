@@ -7,8 +7,16 @@ import ManagerSelect from '../../../Components/ManagerSelectComponent'
 import Loader from '../../../Components/Loader'
 import WorkModalCreateVacancy from '../../../Components/Employer/WorkModal/WorkModalCreateVacancy'
 import {list, mount, place} from '../../../../../libs/libs'
-import {sidebarEmployerForm, workModalSidebarNotes, employerDelete, sidebarMailingItem, createVacancyItem} from '../../../../view'
+import {sidebarEmployerForm, 
+	workModalSidebarNotes, 
+	employerDelete, 
+	sidebarMailingItem, 
+	createVacancyItem,
+	modalSwitchers,
+	modalParts
+} from '../../../../view'
 import { feedbackEmp, feedbackVac } from './getWorkModalFeedback'
+import { changeActiveClass } from '../../../switchModalParts'
 // import negativeFeedbackCountChange from '../../../CustomEvents/negativeFeedbackCountChange'
 // import employerFeedbackNameChange from '../../../CustomEvents/employerFeedbackNameChange'
 
@@ -55,14 +63,6 @@ if(sidebarMailingItem) {
 if(createVacancyItem) {
 	mount(createVacancyItem, createVacancyComponent)
 }
-// const sleep = (ms) => {
-// 	return new Promise(res => {
-// 		setTimeout(function(){
-// 			res('ok')
-// 		}, ms)
-// 	})
-// }
-
 
 
 const getWorkModalInfo = async (id = '1') => {
@@ -72,14 +72,11 @@ const getWorkModalInfo = async (id = '1') => {
 		workModal.setHiddenClass()
 	}
 
-	// if(sidebarEmployerForm) {
-	// 	loader2.update(true)
-	// }
+	changeActiveClass(modalSwitchers, modalParts, '#employer-data', '[data-part="employer-data"]')
 
 try {
 		const data = await fetch.getResourse(`/employers/get/?id=${id}&section=1`)
 		const sourseData = await fetch.getResourse('/employers/get_other/?s=5')
-
 		const tasksData = await fetch.getResourse(`/employers/get/?id=${id}&section=2&other=6`)
 
 
@@ -125,7 +122,7 @@ try {
 
 		mainPart.source = source
 
-
+		
 		workModal.update(mainPart, feedbackEmp)
 		select.update(managersData)
 		note.update(notesData)

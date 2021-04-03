@@ -267,6 +267,7 @@ html(class=html.classList)&attributes(html.attrs)
 			if link.maskIcon.href !== null
 				link(rel="mask-icon" href=link.maskIcon.href color=link.maskIcon.color)
 		block styles
+			link(rel="preload" href=`css/main.min.css?v=${Date.now()}` as="style")
 			link(rel="stylesheet" href=`css/libs.min.css?v=${Date.now()}`)
 			link(rel="stylesheet" href=`css/main.min.css?v=${Date.now()}`)
 		block head-end
@@ -274,46 +275,4 @@ html(class=html.classList)&attributes(html.attrs)
 		block body-start
 		block content
 		block scripts
-			script(src=`js/libs.min.js?v=${Date.now()}` defer)
-			script(src=`js/script.min.js?v=${Date.now()}` async)
-			//- script(type="text/javascript").
-			//- 		document.write(`<script type="text/javascript" 
-			//- 		src="js/script.min.js?v=${Date.now()}" async><\/script>`);
-
-			//- script(type="text/javascript").
-			//- 	if(screen && screen.width < 767) {
-			//- 		document.write(`<script type="text/javascript" 
-			//- 		src="js/mobile.min.js?v=${Date.now()}" async><\/script>`);
-			//- 	}
-
-
-			//- script(type="text/javascript").
-			//- 	if (screen && screen.width < 767) {
-			//- 		document.write(`<script type="text/javascript" 
-			//- 		src=js/mobile.min.js?v=${Date.now()} async`);
-			//- 	}
-			//- script(type='text/javascript').
-			//- 	function loadScript() {
-			//- 	let fragment = document.createDocumentFragment();
-			//- 	let src = [`js/libs.min.js?v=${Date.now()}`, `js/script.min.js?v=${Date.now()}`];
-			//- 	src.forEach(function(el, i){
-			//- 		let script = document.createElement('script');
-			//- 		script.type = 'text/javascript';
-			//- 		(function(ind, el, f) {
-			//- 			if(ind == 0) {
-			//- 			script.src = el;
-			//- 			}
-
-			//- 			f();
-			//- 		})(i, el, function(){
-			//- 			if (i > 0) {
-			//- 					script.src = el;
-			//- 			}
-			//- 		});
-					
-			//- 		fragment.appendChild(script);
-			//- 	})
-			//- 	document.body.appendChild(fragment);
-			//- 	}
-			//- 	window.onload = loadScript;
 		block body-end

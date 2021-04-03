@@ -399,26 +399,34 @@ class FeedbackEdit {
 
 		this.delete.addEventListener('click', (e) => {
 			e.preventDefault()
+			let conf = confirm(`Подтвердите удаление отзыва`)
 			if (this.data.type === 'employer') {
-				// alert(this.data.type)
-				deleteFeedback({
-					str: 'employers',
-					id: this.data.id_feedback,
-					id_employer: this.data.id,
-					count: this.data.count,
-					string: 'employers',
-					other: 5
-				})
+				if(conf) {
+					deleteFeedback({
+						str: 'employers',
+						id: this.data.id_feedback,
+						id_employer: this.data.id,
+						count: this.data.count,
+						string: 'employers',
+						other: 5
+					})
+				} else {
+					return
+				}
+				
 			} else {
-				// alert(this.data.type)
-				deleteFeedback({
-					str: 'employers',
-					id: this.data.id_feedback,
-					id_employer: this.data.id,
-					count: this.data.count,
-					string: 'vacancies',
-					other: 1
-				})
+				if(conf) {
+					deleteFeedback({
+						str: 'employers',
+						id: this.data.id_feedback,
+						id_employer: this.data.id,
+						count: this.data.count,
+						string: 'vacancies',
+						other: 1
+					})
+				} else {
+					return
+				}
 			}
 		})
 

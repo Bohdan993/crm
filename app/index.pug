@@ -3,6 +3,7 @@ extends pug/base
 
 
 append vars
+	- body.classList.push('employer-page')
 
 
 prepend vars
@@ -34,5 +35,12 @@ block content
 			include pug/layouts/sidebar
 		.rows-wrapper.employer-rows-wrapper
 	include pug/layouts/_popup
+
+
+
+block scripts
+	script(src=`js/libs.min.js?v=${Date.now()}` defer)
+	link(rel="preload" href=`js/employer.min.js?v=${Date.now()}` as="script")
+	script(src=`js/employer.min.js?v=${Date.now()}` async)
 
 

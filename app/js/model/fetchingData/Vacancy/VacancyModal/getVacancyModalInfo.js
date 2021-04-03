@@ -12,9 +12,21 @@ import TermsComponent from '../../../Components/Vacancy/VacancyModal/TermsCompon
 import DemandComponent from '../../../Components/Vacancy/VacancyModal/DemandsComponent'
 import  ArchiveCopyVacancyComponent from '../../../Components/Vacancy/VacancyModal/ArchiveCopyVacancy'
 import {list, mount, place} from '../../../../../libs/libs'
-import {vacancyCopy, vacancyArchive, modalLayerRight, modalLayerLeft, demandsRow, termsRow, sidebarVacancyForm, vacancyModalSidebarNotes, clientsRow, vacancyDelete} from '../../../../view'
+import {vacancyCopy, 
+	vacancyArchive, 
+	modalLayerRight,
+	modalLayerLeft, 
+	demandsRow, 
+	termsRow, 
+	sidebarVacancyForm, 
+	vacancyModalSidebarNotes, 
+	clientsRow,
+	vacancyDelete,
+	modalSwitchers,
+	modalParts
+	} from '../../../../view'
 import storage from '../../../Storage'
-
+import { changeActiveClass } from '../../../switchModalParts'
 
 // import('../../../Components/DeleteComponent').then(module => console.log(module)) 
 const state = {}
@@ -94,6 +106,8 @@ const getVacancyModalInfo = async (id = '1') => {
 	// 	workModal.setHiddenClass()
 	// }
 
+	changeActiveClass(modalSwitchers, modalParts, '#vacancy-data', '[data-part="vacancy-data"]')
+
 	// if(sidebarEmployerForm) {
 	// 	loader2.update(true)
 	// }
@@ -101,7 +115,7 @@ const getVacancyModalInfo = async (id = '1') => {
 try {
 		const data = await fetch.getResourse(`/vacancies/get/?id=${id}&section=1`)
 
-		console.log(data)
+		// console.log(data)
 			if(storage.isSet(id)) {
 				clients.update(storage.getState(id))
 			} 

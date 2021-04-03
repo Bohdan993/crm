@@ -71,7 +71,7 @@ const changeDirection = document.querySelectorAll('.change-direction')
 
 const editBtns = document.querySelectorAll('.modal-row__feedback-edit')
 const sidebarMailingItem = document.querySelector('.sidebar-mailing-item')
-const createVacancyItem = document.querySelector('[data-part="create-vacancy"]')
+const createVacancyItem = document.querySelector('#vacancy-create')
 
 // Popups elements
 const confirmBtnTypeFeedback = document.querySelector('#type-feedback-popup .confirm-btn')
