@@ -9,8 +9,12 @@ import {
 } from '../../../../libs/libs'
 
 import Numbers from '../../Components/Vacancy/SidebarNumbersComponent'
-import {sidebarStatNumsVacancy} from '../../../view'
-import {EmptyError} from '../../helper'
+import {
+	sidebarStatNumsVacancy
+} from '../../../view'
+import {
+	EmptyError
+} from '../../helper'
 import storage from '../../Storage/globalVacancies'
 import vacanciesListNotFiltered from '../../CustomEvents/vacanciesListNotFilteredEvent'
 
@@ -23,8 +27,6 @@ let inited = false
 const loader = place(Loader)
 const vacancyList = new VacancyList()
 const numbers = new Numbers()
-
-
 
 
 if(vacanciesWrapper) {
@@ -46,14 +48,14 @@ const getVacancyList = async ({
 	search = JSON.parse(sessionStorage.getItem('searchVacancy')) || '', 
 	country = JSON.parse(sessionStorage.getItem('countryFilterVacancy')) || '',
 	manager = JSON.parse(sessionStorage.getItem('managerFilterVacancy')) || '',
-	sort = JSON.parse(sessionStorage.getItem('sortFilterVacancy')) || 'date',
-	archive = +JSON.parse(sessionStorage.getItem('archiveVacancyFilter')),
-	active = +JSON.parse(sessionStorage.getItem('activeVacancyFilter')) || '',
+	archive = +JSON.parse(sessionStorage.getItem('archiveVacancyFilter')) || '',
+	active = inited ? +JSON.parse(sessionStorage.getItem('activeVacancyFilter')) : '1',
 	type_vacancy = JSON.parse(sessionStorage.getItem('v-vacancyTypeFilter')) || '',
 	type_production = JSON.parse(sessionStorage.getItem('typeManufacturyVacancyFilter')) || '',
 	job_start = JSON.parse(sessionStorage.getItem('jobStartFilter')) || '',
 	job_period = JSON.parse(sessionStorage.getItem('jobPeriodFilter')) || '',
 	status = JSON.parse(sessionStorage.getItem('stagesOfVacancies')) || '',
+	sort = JSON.parse(sessionStorage.getItem('sortFilterVacancy')) || 'date',
 	scroll = false,
 	added = false,
 	deleated = false,
@@ -61,15 +63,16 @@ const getVacancyList = async ({
 	sorted = false,
 	filtered = false,
 } = {}) => { 
+
+
 	function isFiltered() {
-		return search === '' && country === '' && manager === ''   
-				&& sort === ''  && archive === ''  && active === ''   
-				&& type_vacancy === '' && type_production === '' 
-				&& job_start === '' && job_period === ''
-				&& status === ''
+		return search !== '' && country !== '' && manager !== ''   
+				&& archive !== ''  && active !== ''   
+				&& type_vacancy !== '' && type_production !== '' 
+				&& job_start !== '' && job_period !== ''
+				&& status !== ''
 	}
 
-	// console.log(+JSON.parse(sessionStorage.getItem('activeVacancyFilter')) === 0 ? 0 : 1)
 
 	if(vacanciesWrapper) {
 		loader.update(true)
@@ -88,15 +91,21 @@ const getVacancyList = async ({
 				
 				storage.deletePartialState(id, 'id_vacancy')
 				vacancyList.update(storage.getState())
-				// return
+				return
 			}
 
 			const data = !avoidFetch ? 
-			await fetch.getResourse(`/vacancies/get_all/?p=${p}&t=${t}&search=${search}&filter=manager:${manager}|archive:${archive}|active:${active}|country:${country}|type_vacancy:${type_vacancy}|type_production:${type_production}|job_start:${job_start}|job_period:${job_period}|status:${status}&sort=${sort}`)
+			await fetch.getResourse(`/vacancies/get_all/?p=${p}&t=${t}&search=${search}&filter=manager:${manager}
+				|archive:${archive}|active:${active}|country:${country}|type_vacancy:${type_vacancy}
+				|type_production:${type_production}|job_start:${job_start}|job_period:${job_period}|status:${status}&sort=${sort}`)
 			: storage.getState()
 
 
+			// console.log(data)
+
 			const vacancies = data.data
+
+			console.log(data)
 
 				const numsData = {
 					total: data.total_work,
@@ -131,9 +140,8 @@ const getVacancyList = async ({
 						storage.setState([...storage.getInitialState(), ...vacancies], 'id_vacancy')
 						vacancyList.update(storage.getState())
 					}
-					storage.setState(vacancies, 'id_employer')
+					storage.setState(vacancies, 'id_vacancy')
 					vacancyList.update(storage.getState())
-
 				}
 
 				// else if (added) {
@@ -144,16 +152,22 @@ const getVacancyList = async ({
 				// } 
 
 				else {
-					if (data.p === 1) {
-						storage.initState(vacancies)
-						inited = true
-					}
 
 					if(sorted || filtered) {
+						console.log('UPDATE 2')
 						storage.clearState()
 						storage.setState(vacancies, 'id_vacancy')
 						vacancyList.update(vacancies)
 					}
+
+					if (data.p === 1) {
+						console.log('UPDATE 1')
+						// console.log(vacancies)
+						storage.initState(vacancies)
+						inited = true
+					}
+
+
 				}
 
 				numbers.update(numsData)
@@ -175,6 +189,7 @@ const getVacancyList = async ({
 				} else if (sorted) {
 					if(!avoidFetch) {
 						vacancyList.update([])
+						throw new EmptyError('Список вакансий пуст')
 					} else {
 						vacancyList.update(storage.getInitialState())
 					}
@@ -186,10 +201,14 @@ const getVacancyList = async ({
 					throw new EmptyError('Список вакансий пуст')
 				}
 
-				
+			}
+			
+			return {
+				vacancies, 
+				success: data.success, 
+				hasNextPage: data.exist_next_page
 			}
 
-			return {vacancies, success: data.success, hasNextPage: data.exist_next_page}
 	} catch (e) {
 
 		if(e.name === 'EmptyError') {

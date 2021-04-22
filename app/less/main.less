@@ -306,12 +306,12 @@ main.main {
 }
 
 .first-column{
-  flex-basis: 238/1720 * 100%;
+  flex-basis: 236/1720 * 100%;
   border-right: 1px solid @main-color;
 }
 
 .second-column {
-  flex-basis: 246/1720 * 100%;
+  flex-basis: 244/1720 * 100%;
   border-right: 1px solid @main-color;
 }
 
@@ -748,11 +748,16 @@ i.label, a.label {
   }
 
   &.empty {
-    width: 3px;
-    height: 3px;
-    min-width: 3px;
-    background: @gray;
-    border: 1px solid @gray;
+    background: transparent;
+
+    span {
+      width: 3px;
+      height: 3px;
+      min-width: 3px;
+      background: @gray;
+      border: 1px solid @gray;
+      border-radius: 50%;
+    }
   }
 }
 

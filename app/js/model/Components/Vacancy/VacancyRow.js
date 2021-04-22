@@ -131,7 +131,12 @@ export default class RowVacancy {
 
 			MicroModal.show('modal-3', {
 				onClose: modal => {
-					getVacancyList()
+					setTimeout(function(){
+	      		getVacancyList({
+	      			avoidFetch: true, 
+	      			filtered: JSON.parse(sessionStorage.getItem('employersFiltered'))
+	      		})
+	      	}, 0)
 				},
 				onShow: (modal, node) => {
 
@@ -165,7 +170,43 @@ export default class RowVacancy {
 							}
 						}
 					})
+
+					const countObj = {
+						decline: this.declineCount,
+						choose: 0,
+						ready: 0,
+						wait: 0,
+						department: 0,
+						busy: 0
+					}
+
+					const statusesArr = data.data.map(el => {
+						return el.vacancy.id_status
+					})
+
+					statusesArr.forEach(el => {
+						if(el === '1' || el === '2') {
+							countObj.choose++
+						} else if (el === '3' || el === '4') {
+							countObj.ready++
+						} else if (el === '5')  {
+							countObj.wait++
+						} else if (el === '6' || el === '7' || el === '8') {
+							countObj.department++
+						} else if(el === '9') {
+							countObj.busy++
+						}
+					})
+
+					const indicatorsArr = Object.values(countObj).map((el, i) => {
+						return {
+							number: el,
+							class: this.context.classes[i]
+						}
+					})
+
 					this.vacancyClientsTable.update(true, data)
+					this.indicators.update(true, indicatorsArr)
 			}
 
 		})
@@ -182,7 +223,7 @@ export default class RowVacancy {
 	}
 
 	update(data, index, items, context) {
-
+		// console.log(data)
 
 		this.indicatorsArr = data.status.map((el, i) => {
 			return {
@@ -190,6 +231,10 @@ export default class RowVacancy {
 				class: context.classes[i]
 			}
 		})
+
+		// console.log(this.indicatorsArr)
+
+		this.declineCount = data.status[0]
 
 		data.archive !== '0' ? (
 			this.archive.update(true), 
@@ -203,14 +248,16 @@ export default class RowVacancy {
 			this.archive.update(false)
 		)
 
-		// let custom = 'data-custom' + items[items.length - 1]['id_vacancy'] + '-open'
-
-
-		// console.log(custom)
 
 		setAttr(this.el, {
 			"data-id_vacancy": data.id_vacancy,
 
+		})
+
+		setAttr(this.terms, {
+			style: {
+				background: data.color_attention || '#e37373'
+			}
 		})
 
 		setAttr(this.labelsLayer, {
@@ -242,8 +289,6 @@ export default class RowVacancy {
 		})
 
 
-		// `${data.total_man ? 'М'+data.total_man}` 
-
 		setAttr(this.vacancyName, {
 			innerText: data.name + ' - '
 		})
@@ -274,9 +319,9 @@ export default class RowVacancy {
 			innerText: this.productNamesArr.join(', ')
 		})
 
-		// this.indicators.update(this.indicatorsArr)
 
 		this.data = data
+		this.context = context
 	}
 
 

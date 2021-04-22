@@ -1,5 +1,5 @@
 import {el, setAttr, place, list} from '../../../../libs/libs'
-import switchRowStatuses from '../../vacancy/switchRowStatuses'
+import switchRowStatuses, {switchRowStatusesTip} from '../../vacancy/switchRowStatuses'
 import { initVacancyTooltip } from '../../initToottips'
 import { save } from '../../helper'
 import storage from '../../Storage'
@@ -166,12 +166,10 @@ export default class RowVacancyClient {
 		this.type = type
 		this.timesArr = []
 		this.save = save.bind(this)
+		// this.firstUpdate = false
 		this.data = {}
 		this.context = ''
-		let $this = this
-		this.el = el("div.table-full__row.f-container.no-open", {
-			'data-count': '2'
-		},
+		this.el = el("div.table-full__row.f-container.no-open",
 				el('div.table-full__cell.row__cell.cell-names.no-open', 
 					this.name = el('a.no-open', {
 						href: '#'
@@ -206,51 +204,36 @@ export default class RowVacancyClient {
 			)
 
 
-		this.vacancyTooltipInstance = initVacancyTooltip(this.statusSlider.el)
-		// this.statusSlider.el.addEventListener('click', function (e) {
-		// 	console.log(this)
-		// 	switchRowStatuses.call(this, $this.statusLeft, $this.data.vacancy.id, $this.context)
-		// }, {once: true})
-
-
 		this.notes.addEventListener('change', e => {
-			// console.log(storage)
+
 			this.save({
-				id: $this.data.vacancy.id, 
+				id: this.data.vacancy.id, 
 				value: this.notes.value.trim(), 
 				field: 'note',
 				target: 'client'
 			})
 
 			storage.updateStatePartialData({
-				id: $this.context,
+				id: this.context.id,
 				key: 'data',
 				field: 'vacancy',
 				fieldKey: 'id',
 				targetKey: 'note',
-				prop: $this.data.vacancy.id,
+				prop: this.data.vacancy.id,
 				data: this.notes.value.trim()
 			})
 
-			
 		})
 
-
-		console.log('CREATED NEW ROW')
-
-
-
-		setTimeout(function(){switchRowStatuses.call($this.statusSlider.el, $this.statusLeft, $this.data.vacancy.id, $this.context); console.log($this.data)}, 0)
+		
 
 	}
 
 	update(data, index, items, context){
-		console.log(data.status_history, data.main.snp)
+
 
 		this.timesArr = data.status_history
-		console.log("UPDATED")
-
-		// console.log(data)
+		this.vacancyTooltipInstance = initVacancyTooltip(this.statusSlider.el)
 
 		this.vacancyTooltipInstance.setContent(tooltipContentFunc({
 			firstStatus: this.timesArr.filter(el => el.id_status === '1')[0] ? this.timesArr.filter(el => el.id_status === '1')[0].date : '',
@@ -272,6 +255,13 @@ export default class RowVacancyClient {
 			ninethStatus: this.timesArr.filter(el => el.id_status === '9')[0] ? this.timesArr.filter(el => el.id_status === '9')[0].date : '',
 			ninethClass: this.timesArr.filter(el => el.id_status === '9')[0] ? 'taken' : '',
 		}))
+
+		
+		switchRowStatusesTip.call(this.statusSlider.el, data.vacancy.id, context.id)
+
+		if(this.context.parent !== context.parent) {
+			switchRowStatuses.call(this.statusSlider.el, this.statusLeft, data.vacancy.id, context.id)
+		}
 
 
 		dataArr.forEach(el => {
@@ -305,17 +295,10 @@ export default class RowVacancyClient {
 		this.statusSlider.update(dataArr)
 
 
-		// console.log(dataArr)
-
-
 		setAttr(this.name, {
 			innerText: data.main.snp
 		})
 
-
-		setAttr(this.el, {
-			'data-count': '2'
-		})
 
 		data.main.task_document === '0' ? this.documents.update(false) : this.documents.update(true)
 		data.main.task_phone === '0' ? this.phone.update(false) : this.phone.update(true)
@@ -326,11 +309,9 @@ export default class RowVacancyClient {
 				innerText: data.main._group
 			})
 			) : this.group.update(false)
+
 		this.language.update(data.language)
 
-		// console.log(data.language)
-
-	
 		this.getItemsFromLocalStorage().managers.forEach(manager => {
 			manager.id === data.main.id_manager ? 
 			(this.manager.update(true),
@@ -348,7 +329,6 @@ export default class RowVacancyClient {
 			innerText: data.education ? data.education.prof_specialty ? data.education.prof_specialty : data.education.user_specialty : ''
 		})
 
-
 		data.education ? data.education.form || data.education.course ? (
 			this.labelCourse.update(true),
 			setAttr(this.labelCourse.el, {
@@ -361,12 +341,8 @@ export default class RowVacancyClient {
 			})
 			) : this.labelCourse.update(false) : null
 
-
-
 		this.data = data
 		this.context = context
-
-		// console.log(this.data)
 	}
 
 

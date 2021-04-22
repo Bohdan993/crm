@@ -7,12 +7,12 @@ export default class ModalRowLayerRight {
 	constructor(){
 		this.el = el('div.modal-row__wrapper', 
 			el('div.main-info__choose-block', 
-				this.chooseEmployer = place(el('div.choose-employer', 
-					el('p', 
-						el('span', 'Выберите работодателя')))),
-				this.employerName = place(el('div.employer-name',
-					el('p',
-						this.employerNameText = el('span', 'Thompson Equestrian Partners')))),
+				// this.chooseEmployer = place(el('div.choose-employer', 
+				// 	el('p', 
+				// 		el('span', 'Выберите работодателя')))),
+				this.employerName = el('div.employer-name',
+					this.employerNameParagraph = el('p',
+						this.employerNameText = el('span', 'Выберите работодателя'))),
 				el('div.full-info', 
 					el('p.country-vacancy', 
 						el('span', 'NO 293')),
@@ -60,22 +60,22 @@ export default class ModalRowLayerRight {
 		console.log(data, context)
 
 		if(context === 'storage') {
-			this.chooseEmployer.update(false)
-			this.employerName.update(true)
-			this.employerName._el.style.display = "flex"
+			// this.chooseEmployer.update(false)
+			// this.employerName.update(true)
+			// this.employerName._el.style.display = "flex"
 		}
 
 		if(context === 'nulledEmployer') {
-			this.chooseEmployer.update(true)
-			this.employerName.update(false)
-			this.employerName._el.style.display = "none"
+			// this.chooseEmployer.update(true)
+			// this.employerName.update(false)
+			// this.employerName._el.style.display = "none"
 		}
 
 
 		if(context === 'employer') {
-			this.chooseEmployer.update(false)
-			this.employerName.update(true)
-			this.employerName._el.style.display = "flex"
+			// this.chooseEmployer.update(false)
+			// this.employerName.update(true)
+			// this.employerName._el.style.display = "flex"
 		}
 		// if(data.employer && Object.keys(data.employer).length) {
 
@@ -102,21 +102,34 @@ export default class ModalRowLayerRight {
 
 
 		setAttr(this.employerNameText, {
-			innerText: data.employer.enterprise ? data.employer.enterprise : ''
+			innerText: data.employer.enterprise ? 
+			data.employer.enterprise : 
+			data.employer.name ? 
+			data.employer.name :
+			'Выберите работодателя'
 		})
 	// }
 		this.data = data
 	}
 
 	onmount() {
-		this.chooseEmployer.update(true)
-		this.findEmployerInstance = initVacancyModalTooltip(this.chooseEmployer._el, this.findEmployerPopup.el, tippy)
+		// this.chooseEmployer.update(true)
+		this.findEmployerInstance = initVacancyModalTooltip(this.employerNameParagraph, this.findEmployerPopup.el, tippy)
 
 		document.addEventListener('storageemployeradd', (e) => {
-			this.update(storage.getState(e.detail.id), 'storage')
-			this.chooseEmployer.update(false)
-			this.employerName.update(true)
-			this.employerName._el.style.display = "flex"
+			const {vacancyEmployerData : employer} = e.detail
+
+			console.log(employer)
+
+			this.update(
+				{
+					idVac: this.data.idVac,
+					employer: employer.employer
+				}
+				, 'storage')
+			// this.chooseEmployer.update(false)
+			// this.employerName.update(true)
+			// this.employerName._el.style.display = "flex"
 		})
 	}
 

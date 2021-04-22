@@ -10,6 +10,7 @@ const loadEmployerInfo = async ({
 
 			try {
 				const employers = await fetch.getResourse(`/vacancies/change_employer/?vacancy=${vacancy}&employer=${employer}`)
+				console.log(employers)
 				if(employers.success === true) {
 					// getVacancyList()
 					toastr.success(`ID вакансии ${vacancy}`, 'Данные о работодателе успешно загружены', {closeButton: false})
@@ -29,4 +30,4 @@ const loadEmployerInfo = async ({
 
 
 export default loadEmployerInfo //to ../../../Components/Vacancy/VacancyModal/ModalRowLayerLeft
-																//to ../../../Components/Vacancy/VacancyModal/ModalRowLayerRight
+							//to ../../../Components/Vacancy/VacancyModal/ModalRowLayerRight

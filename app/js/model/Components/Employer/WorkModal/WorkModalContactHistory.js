@@ -136,7 +136,7 @@ export default class WorkModalContactHistory {
 		)
 
 
-		this.modalRowWrapper = el('div.modal-row__contacts-history-wrapper..modal-row__wrapper')
+		this.modalRowWrapper = el('div.modal-row__contacts-history-wrapper.modal-row__wrapper')
 		this.modalLayer = el('div.modal-row__layer.empty-layer',
 			this.list = list(this.modalRowWrapper, WorkModalContactHistoryRow, 'id')
 		)

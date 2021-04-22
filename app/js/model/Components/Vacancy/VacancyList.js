@@ -15,42 +15,6 @@ import storageVacancyEmployerDataAdd from '../../CustomEvents/storageVacancyEmpl
 
 
 
-
-// loadEmployerInfo({
-//     vacancy: this.parent.data.idVac,
-//     employer: this.result.id
-// }).then(res => {
-//     if(res !== 'fail') {
-//         this.parent.chooseEmployer._el._tippy.hide()
-//         storage.setState('vacancyEmployerData', res)
-//         storageVacancyEmployerDataAdd.detail.id = 'vacancyEmployerData'
-//         document.dispatchEvent(storageVacancyEmployerDataAdd)
-//         this.findEmployer.value = ''
-//     } else {
-//         return
-//     }
-// })
-
-
-
-// copyVacancy({
-//     vacancy: this.data
-// })
-// .then(res => {
-//     if(res  !== 'fail') {
-//         MicroModal.close('modal-3')
-//         setTimeout(()=>{
-//             getVacancyModalInfo(res).then(r =>  MicroModal.show('modal-3'))
-//         }, 1500)
-        
-//         // console.log(res)
-//     }   else {
-//         return
-//     }
-// })
-
-
-
 import {
     addMouseUpTrigger,
     closeModal,
@@ -86,7 +50,7 @@ export default class VacancyList {
     }
     update(data) {
 
-        data.sort(byField('id_vacancy')).sort(byField('archive'))
+        // data.sort(byField('archive'))
 
         this.list.update(data, {
             classes: this.indicatorsClasses,

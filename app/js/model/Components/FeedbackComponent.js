@@ -401,7 +401,7 @@ class FeedbackEdit {
 			e.preventDefault()
 			let conf = confirm(`Подтвердите удаление отзыва`)
 			if (this.data.type === 'employer') {
-				if(conf) {
+				if (conf) {
 					deleteFeedback({
 						str: 'employers',
 						id: this.data.id_feedback,
@@ -413,9 +413,9 @@ class FeedbackEdit {
 				} else {
 					return
 				}
-				
+
 			} else {
-				if(conf) {
+				if (conf) {
 					deleteFeedback({
 						str: 'employers',
 						id: this.data.id_feedback,
@@ -697,7 +697,7 @@ export default class Feedback {
 			loading,
 			showing
 		} = data
-		
+
 		if (showing) {
 			this.pageShow++
 		}
@@ -711,7 +711,7 @@ export default class Feedback {
 		this.data.index = index
 		this.data.count = (this.pageShow - 1) * 5
 
-		
+
 
 		this.list.update(data.data, {
 			storage: this.data.storage,
@@ -749,10 +749,10 @@ export default class Feedback {
 
 					setAttr(this.modalLayer, {
 						style: {
-							"max-height" : this.modalLayer.offsetHeight + 'px',
+							"max-height": this.modalLayer.offsetHeight + 'px',
 						}
 					})
-					
+
 				})
 
 				this.flagShow = true
@@ -762,32 +762,32 @@ export default class Feedback {
 			this.showMore.update(false)
 			this.flagShow = false
 		}
-
+		console.log(data)
 		setAttr(this.feedbackCount, {
 			innerText: data.total !== 0 ? " " + data.total : ''
 		})
 
-		if(this.data.id !== data.id) {
+		if (this.data.id !== data.id) {
 			setAttr(this.modalLayer, {
 				style: {
-					"max-height" : 'unset',
+					"max-height": 'unset',
 				}
 			})
 		}
 
-		
+
 
 
 
 		data.badFeedback !== 0 ? (
 			this.openBraket.update(true), this.closeBraket.update(true)
-			) : (
+		) : (
 			this.openBraket.update(false), this.closeBraket.update(false)
-			)
+		)
 
 
 		setAttr(this.feedbackCountNeg, {
-			innerText: data.badFeedback !== 0 ? `негативных - ${data.badFeedback || 0}`: ''
+			innerText: data.badFeedback !== 0 ? `негативных - ${data.badFeedback || 0}` : ''
 		})
 
 
@@ -811,6 +811,32 @@ export default class Feedback {
 			clients,
 			clientsVacancy
 		}
+	}
+
+
+	onmount() {
+
+		//Обновить список отзывов при загрузке информации о работодателе на странице вакансий
+		document.addEventListener('storageemployeradd', (e) => {
+			const {
+				vacancyEmployerData: employer,
+				employerId
+			} = e.detail
+
+
+			console.log(e.detail)
+
+			const feedbackData = {
+				id: employerId,
+				badFeedback: employer.total !== undefined ? employer.total.total_bad_feedback : 0,
+				data: employer.other.feedback, 
+				total: employer.total !== undefined ? employer.total.feedback : employer.other.feedback.length, 
+			}
+
+
+			this.update(feedbackData)
+
+		})
 	}
 
 

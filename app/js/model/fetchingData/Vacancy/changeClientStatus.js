@@ -9,7 +9,7 @@ const changeClientStatus = async ({
 
 			try {
 				const clients = await fetch.getResourse(`/vacancies/set_status/?id=${id}&status=${status}`)
-				console.log(clients)
+				// console.log(clients)
 				if(clients.success === true) {
 					toastr.success(`ID клиента ${id}`, 'Успешно изменен статус клиента', {closeButton: false})
 					return clients.client

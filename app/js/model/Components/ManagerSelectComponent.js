@@ -1,7 +1,5 @@
 import {el} from '../../../libs/libs'
-// import saveFieldsData from '../fetchingData/saveFieldsData'
 import initWorkModalSelect from '../initWorkModalSelect'
-import storage from '../Storage'
 import {save} from '../helper'
 import {default as employersStorage} from '../Storage/globalEmployers'
 
@@ -56,7 +54,16 @@ export default class ManagerSelect { // to ../MountingElements/Employer/WorkModa
 
 	onmount() {
 		document.addEventListener('storageemployeradd', (e) => {
-            this.update(storage.getState(e.detail.id).employer.id_manager)
+
+						const {vacancyEmployerData : employer,  employerId} = e.detail
+
+						const managersData = {
+                id_manager: employer.employer.id_manager,
+                id: employerId
+            }
+
+            this.update(managersData)
+
         })
 	}
 }

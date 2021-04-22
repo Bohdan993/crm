@@ -32,7 +32,7 @@
 
 
 .row__labels-2 {
-	flex-basis: (228 - 26)/1720 * 100%;
+	flex-basis: (229 - 26)/1720 * 100%;
 
 
 	a.label, i.label {
@@ -123,7 +123,8 @@
 }
 
 .table-full {
-	
+	position: relative;
+	z-index: 10;
 	transition: height 0.35s ease-in-out;
   overflow: hidden;
 	&.open {
@@ -163,6 +164,10 @@ p.status {
 
 .table-full__cell {
 	padding: 2px 0px;
+
+	a.label, i.label {
+		width: auto;
+	}
 }
 
 .table-full__choosen {
@@ -237,7 +242,7 @@ p.status {
 
 .table-full__row:first-child {
 	display: flex;
-	height: auto;
+	// height: auto;
 	border-bottom: unset;
 	padding-bottom: 2px;
 
@@ -252,9 +257,9 @@ p.status {
 			content: '';
 			position: absolute;
 			top: 0;
-			height: calc(100% + 34px);
+			height: calc(100% + 9999px);
 			width: 37.2%;
-			min-width: 143.5px;
+			min-width: 143px;
 			max-width: 149px;
 			right: 0;
 			border-left: 1px solid @ligth-gray;
@@ -282,10 +287,12 @@ p.status {
 
 
 .cell-names {
-	flex-basis: (244 - 26)/1484 * 100%;
+	flex-basis: (240 - 17)/1484 * 100%;
 	display: flex;
 	justify-content: space-between;
-	align-items:center;	
+	align-items:center;
+	margin-left: 12px;
+	margin-right: 5px;
 
 	a {
 		color: @font-color;
@@ -303,8 +310,10 @@ p.status {
 }
 
 .cell-status {
-	flex-basis: (389 - 26)/1484 * 100%;
+	flex-basis: (389 - 16)/1484 * 100%;
 	padding: 0;
+	margin-left: 6px;
+	margin-right: 10px;
 	
 
 	&:hover {
@@ -379,14 +388,15 @@ p.status {
 
 
 .cell-status__left {
-	// flex-basis: 259/363 * 100%;
-	border-right: 1px solid @ligth-gray;
+	flex-basis: 259/389 * 100%;
+	// border-right: 1px solid @ligth-gray;
 	height: 100%;
 	display: flex;
 	align-items: center;
 	padding-right: 6px;
 	flex-grow: 1;
 	justify-content: space-between;
+	// max-width: 227px - 13px;
 
 	.ico {
 		width: 6px;
@@ -398,14 +408,14 @@ p.status {
 }
 
 .cell-status__right {
-	// flex-basis: (389-259)/363 * 100%;
+	flex-basis: (389-259)/363 * 100%;
 	height: 100%;
 	display: flex;
 	align-items: center;
 	padding-left: 10px;
 	justify-content: flex-end;
-	
-	width: 130px;
+	// min-width: 130px - 13px;
+	// width: 130px - 13px;
 
 	& > * {
 		margin-right: 8px;
@@ -493,13 +503,14 @@ p.status {
 
 
 .cell-status__slider {
-	padding-left: 6px;
+	// padding-left: 6px;
 }
 
-.language-stars {
+.label .language-stars {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	margin-top: 0;
 }
 
 .language__wrapper {

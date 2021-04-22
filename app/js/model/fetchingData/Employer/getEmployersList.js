@@ -18,7 +18,7 @@ import {
 import storage from '../../Storage/globalEmployers'
 import employerListNotFiltered from '../../CustomEvents/employerListNotFilteredEvent'
 
-// let countCallEmployersFunction =  0;
+
 const employersWrapper = document.querySelector('.employer-rows-wrapper')
 
 
@@ -90,15 +90,22 @@ const getEmployersList = async({
 				
 				storage.deletePartialState(id, 'id_employer')
 				empList.update(storage.getState())
-				// return
+				return
 			}
 
 			const data = !avoidFetch ? 
-			await fetch.getResourse(`/employers/get_all/?p=${p}&t=${t}&search=${search}&filter=country:${country}|production:${production}|contact:${contact}
-				|manager:${manager}|intermediaries:${intermediaries}|intermediary:${intermediary}|vacancy_active:${vacancy_active}|vacancy_type:${vacancy_type}|vacancy_term:${vacancy_term}|last_contact:${last_contact}&sort=${sort}`) 
+			await fetch.getResourse(`/employers/get_all/?p=${p}&t=${t}&search=${search}&filter=country:${country}
+				|production:${production}|contact:${contact}|manager:${manager}|intermediaries:${intermediaries}
+				|intermediary:${intermediary}|vacancy_active:${vacancy_active}|vacancy_type:${vacancy_type}|vacancy_term:${vacancy_term}
+				|last_contact:${last_contact}&sort=${sort}`) 
 			: storage.getState()
 
+
+			// console.log(data)
+
 			const employers = data.data
+
+			console.log(employers)
 			const numsData = {
 					total: data.total,
 					totalR: data.total_r
@@ -174,6 +181,7 @@ const getEmployersList = async({
 				} else if (sorted) {
 					if(!avoidFetch) {
 						empList.update([])
+						throw new EmptyError('Список работодателей пуст')
 					} else {
 						empList.update(storage.getInitialState())
 					}
@@ -188,7 +196,11 @@ const getEmployersList = async({
 				
 			}
 
-			return {employers, success: data.success, hasNextPage: data.exist_next_page}
+			return {
+				employers, 
+				success: data.success,
+				 hasNextPage: data.exist_next_page
+				}
 
 		} catch (e) {
 

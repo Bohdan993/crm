@@ -19,7 +19,8 @@ import {
 	getManufacturyTypePopup,
 	getTypeContact,
 	getClients,
-	fetchScroll,
+	// fetchScroll,
+	vacancyFetchScroll,
 	addNewEmployer,
 	mountSearchInput,
 	mountContactDataPopup,
@@ -242,13 +243,9 @@ const app = {
 		mountVacancyPopup()
 	},
 	fs(){
-		if(employerRowsWrapper) {
-			fetchScroll(employerRowsWrapper, 'employer')
-		}
-
-		if(vacancyRowsWrapper) {
-			fetchScroll(vacancyRowsWrapper, 'vacancy')
-		}
+		// if(vacancyRowsWrapper) {
+		vacancyFetchScroll(vacancyRowsWrapper)
+		// }
 	},
 	mchm(){
 		mountContactHistoryModal()

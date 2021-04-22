@@ -1,6 +1,6 @@
 import {el, setAttr, place, Autocomplete} from '../../../../../libs/libs'
 import loadEmployerInfo from '../../../fetchingData/Vacancy/VacancyModal/loadEmployerInfo'
-import storage from '../../../Storage'
+// import storage from '../../../Storage'
 import storageVacancyEmployerDataAdd from '../../../CustomEvents/storageVacancyEmployerDataAdd'
 
 export default class FindEmployerPopupComponent {
@@ -20,6 +20,8 @@ export default class FindEmployerPopupComponent {
 						)
 					)
 			)
+
+		// console.log(this.data)
 
 		this.autocomplete = new Autocomplete(this.searchGroup, {
 
@@ -42,7 +44,7 @@ export default class FindEmployerPopupComponent {
 		  	return `
 				    <li ${props}>
 				      <div class="wiki-title">
-				        ${result.name}
+				        ${((result?.name) || ' ') + (result.enterprise ? '\u00A0 - \u00A0' : ' ') + (result?.enterprise || ' ')}
 				      </div>
 				    </li>
 				  `
@@ -51,8 +53,7 @@ export default class FindEmployerPopupComponent {
 		  // // We want to display the title
 		  getResultValue: result => {
 		  	this.result = result
-		  	
-		  	return result.name
+		  	return `${((result?.name) || ' ') + (result.enterprise ? '\u00A0 - \u00A0' : ' ') + (result?.enterprise || ' ')}`
 		  },
 		  autoSelect: true
 
@@ -61,15 +62,29 @@ export default class FindEmployerPopupComponent {
 		this.form.addEventListener('submit', (e) => {
 			e.preventDefault()
 			// console.log(this.result.id)
+
+			console.log(this.parent)
+
 			loadEmployerInfo({
 				vacancy: this.parent.data.idVac,
 				employer: this.result.id
 			}).then(res => {
 				if(res !== 'fail') {
-					this.parent.chooseEmployer._el._tippy.hide()
-					storage.setState('vacancyEmployerData', res)
+
+					this.parent.chooseEmployer 
+					? this.parent.chooseEmployer._el._tippy.hide() 
+					: this.parent.employerNameParagraph._tippy.hide()
+
+					// storage.setState('vacancyEmployerData', res)
+
+					console.log(this.result.id, res)
+
 					storageVacancyEmployerDataAdd.detail.id = 'vacancyEmployerData'
+					storageVacancyEmployerDataAdd.detail.employerId = this.result.id
+					storageVacancyEmployerDataAdd.detail.vacancyEmployerData = res
+
 					document.dispatchEvent(storageVacancyEmployerDataAdd)
+
 					this.findEmployer.value = ''
 				} else {
 					return

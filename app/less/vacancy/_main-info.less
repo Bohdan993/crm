@@ -124,7 +124,9 @@
 			font-weight: 400;
 		}
 	}
-	.choose-product-type, .full-info, .employer-name {
+	.choose-product-type, .full-info
+	// .employer-name 
+	{
 		display: none;
 	}
 
@@ -154,14 +156,17 @@
 	}
 
 	.employer-name {
-		// display: flex;
+
+		display: flex;
 		justify-content: center;
 		p {
+			cursor: pointer;
 			font-weight: 400;
 			background: @main-color;
 			padding: 3px 8px;
 			border-radius: 20px;
 			color: @white;
+			display: inline-block;
 		}
 	}
 
@@ -181,6 +186,7 @@
 		}
 
 		.products {
+			cursor: pointer;
 			padding: 3px 8px;
 			display: flex;
 			align-items: center;

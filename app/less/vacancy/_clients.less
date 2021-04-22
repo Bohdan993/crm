@@ -1,5 +1,14 @@
 .clients .modal-row__layer {
 
+
+	&.empty-layer {
+		padding: 0;
+    border: none;
+    border-top: 1px solid #85a6cb;
+    height: 1px!important;
+	}
+
+
 	position: relative;
 	overflow-y: auto;
 	// height: 100%;
@@ -15,6 +24,8 @@
 		margin: 0;
 		padding: 0 13px;
 		border-right: 1px solid @white;
+		position: relative;
+		max-width: 211px;
 	}
 
 	.cell-status {
@@ -29,13 +40,59 @@
 		margin: 0;
 		padding: 0 13px;
 		border-right: 1px solid @white;
+		max-width: 177px;
 	}
 
 	.cell-notes {
-		flex-basis: 246/989 * 100%;
+		flex-basis: 248/989 * 100%;
 		margin: 0;
 		// padding: 0 13px;
+		max-width: 248px;
 		border-right: 1px solid @white;
+	}
+
+	
+	.cell-status__left {
+		border-right: 1px solid #fff;
+	}
+	
+
+	.table-full__layer {
+		.table-full__row {
+			&:first-child {
+				.cell-names,
+				 {
+					position: relative;
+					overflow: visible;
+					&:after {
+						content: '';
+						right: -1px;
+						width: 1px;
+						position: absolute;
+						height: calc(100% + 29px);
+						bottom: -4px;
+						background: @white;
+					}
+				}
+
+				.cell-exp, 
+				.cell-status,
+				.cell-notes,
+				.cell-status__left {
+					position: relative;
+					overflow: visible;
+					&:after {
+						content: '';
+						right: -1px;
+						width: 1px;
+						position: absolute;
+						height: calc(100% + 29px);
+						bottom: -4px;
+						background: @white;
+					}
+				}
+			}
+		}
 	}
 
 	.table-full__layer .table-full__row {
@@ -144,6 +201,12 @@
 #choice-client-popup {
 	p {
 		padding: 0;
+	}
+}
+
+.clients-layer {
+	.table-full__row:first-child .table-full__placeholder.first:after {
+		content: none;
 	}
 }
 

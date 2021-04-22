@@ -13,13 +13,13 @@ import {
 	feedbackEdit,
 	getEmployersList,
 	getManagerPopup,
-	getManagerVacancyPopup,
 	getIntermediariesPopup,
 	getCountryPopup,
 	getManufacturyTypePopup,
 	getTypeContact,
 	getClients,
-	fetchScroll,
+	// fetchScroll,
+	employerFetchScroll,
 	addNewEmployer,
 	mountSearchInput,
 	mountContactDataPopup,
@@ -27,18 +27,6 @@ import {
 	mountSortingPopup,
 	mountVacancyPopup,
 	mountContactHistoryModal,
-	mountSearchInputVacancy,
-	getVacancyList,
-	getCountryVacancyPopup,
-	mountSortingVacancyPopup,
-	getVacancyWorkType,
-	getStatusesVacancyPopup,
-	mountDateAndTermsPopup,
-	getClientsVacancy,
-	getVacancyEmployers,
-	addNewVacancy,
-	mountActiveArchive,
-	mountVacancyStatusesPopup
 } from '../model'
 
 import {
@@ -101,19 +89,7 @@ const app = {
 		this.mchm()
 		this.gtc()
 		this.gc()
-		this.gvl()
-		this.gcvp()
-		this.msvp()
-		this.gvwt()
-		this.gmvp()
-		this.gsvp()
-		this.msiv()
-		this.mdatp()
-		this.gcv()
-		this.maa()
-		this.anv()
-		this.gve()
-		this.mvsp()
+		// this.msiv()
 	},
 
 	initOSB(){
@@ -122,7 +98,6 @@ const app = {
 		initOverlayScrollbars(workModalSidebar)
 		initOverlayScrollbars(workModalFeedback)
 	},
-
 	it() {
 		initTooltips()
 	},
@@ -205,9 +180,6 @@ const app = {
 	gmp() {
 		getManagerPopup()
 	},
-	gmvp(){
-		getManagerVacancyPopup()
-	},
 	gip() {
 		getIntermediariesPopup()
 	},
@@ -242,53 +214,11 @@ const app = {
 		mountVacancyPopup()
 	},
 	fs(){
-		if(employerRowsWrapper) {
-			fetchScroll(employerRowsWrapper, 'employer')
-		}
-
-		if(vacancyRowsWrapper) {
-			fetchScroll(vacancyRowsWrapper, 'vacancy')
-		}
+		employerFetchScroll(employerRowsWrapper)
 	},
 	mchm(){
 		mountContactHistoryModal()
 	},
-	gvl(){
-		getVacancyList()
-	},
-	gcvp(){
-		getCountryVacancyPopup()
-	},
-	msvp(){
-		mountSortingVacancyPopup(	)
-	},
-	gvwt(){
-		getVacancyWorkType()
-	},
-	gsvp(){
-		getStatusesVacancyPopup()
-	},
-	msiv() {
-		mountSearchInputVacancy()
-	},
-	mdatp(){
-		mountDateAndTermsPopup()
-	},
-	gcv(){
-		getClientsVacancy()
-	},
-	maa(){
-		mountActiveArchive()
-	},
-	anv(){
-		addNewVacancy()
-	},
-	gve(){
-		getVacancyEmployers()
-	},
-	mvsp(){
-		mountVacancyStatusesPopup()
-	}
 
 }
 

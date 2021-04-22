@@ -31,7 +31,7 @@ const loader = place(Loader)
 const workModal = new WorkModal()
 
 
-const note = new Note('employer')
+const noteEl = new Note('employer')
 const select = new ManagerSelect('employer')
 const deleteComponent = new Delete('employer')
 const mailingComponent = new WorkModalMailing()
@@ -48,7 +48,7 @@ if(managerSelectWrap) {
 }
 
 if(workModalSidebarNotes) {
-	mount(workModalSidebarNotes, note)
+	mount(workModalSidebarNotes, noteEl)
 }
 
 if(employerDelete) {
@@ -77,14 +77,13 @@ const getWorkModalInfo = async (id = '1') => {
 try {
 		const data = await fetch.getResourse(`/employers/get/?id=${id}&section=1`)
 		const sourseData = await fetch.getResourse('/employers/get_other/?s=5')
-		const tasksData = await fetch.getResourse(`/employers/get/?id=${id}&section=2&other=6`)
 
 
 
 		const mainPart = data.data.main
 		const source = sourseData.data.source
 		source.unshift({id: 0, name: 'Отсутствует'})
-		const notes = mainPart.note ? mainPart.note : ''
+		const note = mainPart.note ? mainPart.note : ''
 		const id_manager = mainPart.id_login
 		const date = mainPart.date
 		const badFeedback = mainPart.total_bad_feedback
@@ -94,7 +93,7 @@ try {
 
 
 		const notesData = {
-			notes,
+			note,
 			id
 		}
 
@@ -125,7 +124,7 @@ try {
 		
 		workModal.update(mainPart, feedbackEmp)
 		select.update(managersData)
-		note.update(notesData)
+		noteEl.update(notesData)
 		deleteComponent.update(deleteData)
 		mailingComponent.update(mailingData)
 		createVacancyComponent.update(createVacancyData)

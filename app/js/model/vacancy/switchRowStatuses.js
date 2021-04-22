@@ -6,25 +6,32 @@ import storageVacancyClientDelete from '../CustomEvents/storageVacancyClientDele
 
 
 
+const switchRowStatusesTip = function(client_id, vacancy_id){
+
+
+
+    let instance = this._tippy
+    let instanseStatuses = instance.popper.querySelectorAll('.status')
+
+    instanseStatuses.forEach(status => {
+        let bindedHandler = forEachStatus.bind(status, instance, client_id, vacancy_id, storage)
+        status.addEventListener('click', bindedHandler, {'once': true})
+    })
+}
+
+
+export {
+    switchRowStatusesTip
+}
+
 
 
 const switchRowStatuses = function (el, client_id, vacancy_id) {
 
 
-    // let timeArray = Array(9).fill({
-    //     text: '',
-    //     date: ''
-    // })
-
     let leftArrow = el.querySelector('.cell-status__control-left')
     let rightArrow = el.querySelector('.cell-status__control-right')
     let slider = el.querySelector('.cell-status__slider')
-    let instance = this._tippy
-    let instanseStatuses = instance.popper.querySelectorAll('.status')
-
-    instanseStatuses.forEach(status => {
-        status.addEventListener('click', forEachStatus.bind(status, instance, client_id, vacancy_id, storage))
-    })
 
     leftArrow.addEventListener('click', leftArrowClickHandler.bind(leftArrow, client_id, vacancy_id))
     rightArrow.addEventListener('click', rightArrowClickHandler.bind(rightArrow, client_id, vacancy_id))
@@ -190,7 +197,7 @@ function leftArrowClickHandler(client_id, vacancy_id) {
 
 function rightArrowClickHandler(client_id, vacancy_id){
 
-        console.log(this)
+        // console.log(this)
 
         let parent = this.parentNode.parentNode
         let sliderWpar = parent.querySelector('.cell-status__slider')
@@ -342,7 +349,7 @@ function rightArrowClickHandler(client_id, vacancy_id){
 
 function forEachStatus(tippy, client_id, vacancy_id, storage) {
 
-
+    console.log(tippy)
     // console.log(timeArray)
     // console.log(tippy)
 
@@ -375,20 +382,9 @@ function forEachStatus(tippy, client_id, vacancy_id, storage) {
 
             if (this.textContent === el.textContent) {
                 el.classList.add('active')
-
-                // timeArray[ind] = {
-                //     text: this.textContent,
-                //     date: new Date().toLocaleDateString()
-                // }
-
-                // console.log(timeArray, ind)
-
-                //Добавляем дату утановки статуса в попапе
-                // this.nextElementSibling.textContent = timeArray[ind].date
             }
         })
 
-        // console.log(timeArray)
 
         if (this.textContent === 'Подготовка CV') {
 
@@ -396,7 +392,6 @@ function forEachStatus(tippy, client_id, vacancy_id, storage) {
                 id: client_id,
                 status: '1'
             }).then(res => {
-                // console.log(res)
                 storage.setAndUpdatePartialState(vacancy_id, '1', 'data', client_id)
                 storageVacancyClientsUpdate.detail.id = String(vacancy_id)
                 storageVacancyClientsUpdate.detail.clientId = String(client_id)
@@ -535,12 +530,14 @@ function forEachStatus(tippy, client_id, vacancy_id, storage) {
                     storage.deletePartialState(vacancy_id, 'data', client_id)
                     storageVacancyClientDelete.detail.id = String(vacancy_id)
                     document.dispatchEvent(storageVacancyClientDelete)
-                    tippy.unmount()
+                    // tippy.unmount()
+                    tippy.destroy()
                 } else {
                     return
                 }
             })
         }
-     tippy.unmount()
+     // tippy.unmount()
+     tippy.destroy()
 }
 

@@ -18,7 +18,7 @@ class StorageClients {
 
 	updateStatePartialData({id, data, key, field, fieldKey, targetKey, prop}){
 		this.getState(id)[key].forEach(el => {
-			console.log(el[field][fieldKey])
+			// console.log(el[field][fieldKey])
 			if(el[field][fieldKey] === prop) {
 				el[field][targetKey] = data
 			}

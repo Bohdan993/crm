@@ -138,7 +138,12 @@ export default class RowEmployer {
 
 			MicroModal.show('modal-1', {
 			      onClose: (modal, trigger) => {
-			      	setTimeout(function(){getEmployersList({avoidFetch: true, filtered: JSON.parse(sessionStorage.getItem('employersFiltered'))})}, 0)
+			      	setTimeout(function(){
+			      		getEmployersList({
+			      			avoidFetch: true, 
+			      			filtered: JSON.parse(sessionStorage.getItem('employersFiltered'))
+			      		})
+			      	}, 0)
 			      	updateURL(window.location.pathname)
 			      },
 			      onShow: (modal, node) => {

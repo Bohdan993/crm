@@ -1,7 +1,7 @@
 	import {el, setAttr, place, tippy, list, Autocomplete} from '../../../../../libs/libs'
 import FindEmployerPopupComponent from './FindEmployerPopupComponent'
 import { initVacancyModalTooltip } from '../../../initToottips'
-import storage from '../../../Storage'
+// import storage from '../../../Storage'
 import {save, formatDate} from '../../../helper'
 
 
@@ -75,13 +75,12 @@ class ChooseProductTypePopup {
 
 
 		this.list1.update(this.checkBoxData)
-		this.list2.update(this.getItemsFromLocalStorage().workTypes)
-
+		
 
 		this.form.addEventListener('submit', (e) =>{
 			e.preventDefault()
-			this.parent.choooseProduct._tippy.hide()
-			this.parent.chooseProductType.update(false)
+			this.parent.products._tippy.hide()
+			// this.parent.chooseProductType.update(false)
 			this.parent.fullInfo.update(true)
 			this.parent.fullInfo._el.style.display = "flex"
 
@@ -101,8 +100,8 @@ class ChooseProductTypePopup {
 				}
 			})
 
-			console.log(this.checkedProducts.join(','))
-			console.log(checkedID)
+			// console.log(this.checkedProducts.join(','))
+			// console.log(checkedID)
 
 			setAttr(this.parent.products, {
 				style: {
@@ -121,18 +120,26 @@ class ChooseProductTypePopup {
 				value: this.checkedProducts.join(','), 
 				field: 'type_production'
 			}).then(res => {
+				// console.log(res)
 				if(res === 'ok') {
-						this.list1.views.forEach(el => el.checked = false)
-						this.list2.views.forEach(el => el.checked = false)
+						// console.log(this.list1.views)
+						this.list1.views.forEach(el => {el.input.checked = false})
+						this.list2.views.forEach(el => {el.input.checked = false})
 				}
 			})
 		})
 	}
 
-	update(data){
-		console.log(data)
+	update(data, context){
+		// console.log(data)
+		// alert(this.data)
+
+		console.log(context)
+
+		this.list2.update(context)
 
 		this.data = data
+		this.production = context
 	}
 
 
@@ -157,12 +164,12 @@ export default class ModalRowLayerLeft {
 				this.chooseEmployer = place(el('div.choose-employer', 
 					el('p',
 						el('span', 'Выберите работодателя')))),
-				this.chooseProductType = place(el('div.choose-product-type',
-					el('p.country-vacancy',
-						this.abbrVacancy = el('span', 'NO 293')),
-					this.choooseProduct = el('p.type-product', 
-						 el('span', 'Выберите тип продукции'))
-					)),
+				// this.chooseProductType = place(el('div.choose-product-type',
+				// 	el('p.country-vacancy',
+				// 		this.abbrVacancy = el('span', 'NO 293')),
+				// 	this.choooseProduct = el('p.type-product', 
+				// 		 el('span', 'Выберите тип продукции'))
+				// 	)),
 				this.fullInfo = place(el('div.full-info',
 					el('p.country-vacancy', 
 						this.fullInfoAbbrVacancy = el('span', 'NO 293')),
@@ -221,25 +228,25 @@ export default class ModalRowLayerLeft {
 		console.log(data, context)
 
 
-		let d = new Date(data.date.split('.').reverse().join('.'))
+		let d = data.date ? new Date(data.date.split('.').reverse().join('.')) : new Date()
 		d.setMonth(+d.getMonth() + +data.period)
 
 		if(context === 'storage') {
 			this.chooseEmployer.update(false)
-			this.chooseProductType.update(true)
-			this.chooseProductType._el.style.display = "flex"
+			// this.chooseProductType.update(true)
+			// this.chooseProductType._el.style.display = "flex"
 
-			setAttr(this.abbrVacancy, {
-				innerText: data.vacancy ? data.vacancy : ''
+			setAttr(this.fullInfoAbbrVacancy, {
+				innerText: data.vacancyName ? data.vacancyName : ''
 			})
 		}
 
 
 		if(context === 'nulledEmployer') {
 			this.chooseEmployer.update(true)
-			this.chooseProductType.update(false)
+			// this.chooseProductType.update(false)
 			this.fullInfo.update(false)
-			this.chooseProductType._el.style.display = "none"
+			// this.chooseProductType._el.style.display = "none"
 			this.fullInfo._el.style.display = "none"
 
 			setAttr(this.dates, {
@@ -251,20 +258,20 @@ export default class ModalRowLayerLeft {
 		if(context === 'employer') {
 			this.chooseEmployer.update(false)
 
-			if(data.type_vacancy !== '0') {
+			// if(data.type_vacancy !== '0') {
 
-				this.chooseProductType.update(false)
+				// this.chooseProductType.update(false)
 				this.fullInfo.update(true)
-				this.chooseProductType._el.style.display = "none"
+				// this.chooseProductType._el.style.display = "none"
 				this.fullInfo._el.style.display = "flex"
 
-			} else {
+			// } else {
 
-				this.chooseProductType.update(true)
-				this.fullInfo.update(false)
-				this.chooseProductType._el.style.display = "flex"
-				this.fullInfo._el.style.display = "none"
-			}
+				// this.chooseProductType.update(true)
+				// this.fullInfo.update(false)
+				// // this.chooseProductType._el.style.display = "flex"
+				// this.fullInfo._el.style.display = "none"
+			// }
 
 
 			setAttr(this.dates, {
@@ -290,13 +297,14 @@ export default class ModalRowLayerLeft {
 		})
 
 		setAttr(this.visaType, {
-			innerText: data.type_vacancy === '1' ? `Сезонная - ${'\u00A0'}` : data.type_vacancy === '2' ? `Практика - ${'\u00A0'}` : `Рабочая - ${'\u00A0'}`
+			innerText: data.type_production ? (data.type_vacancy === '1' ? `Сезонная - ${'\u00A0'}` : data.type_vacancy === '2' ? `Практика - ${'\u00A0'}` : `Рабочая - ${'\u00A0'}`)
+			: 'Выберите тип продукции'
 		})
 
 
 	
 
-		let arr = data.type_production.split(',')
+		let arr = data.type_production ? data.type_production.split(',') : []
 		let wt = this.getItemsFromLocalStorage().workTypes
 
 		arr.forEach(el => {
@@ -313,12 +321,12 @@ export default class ModalRowLayerLeft {
 
 		setAttr(this.products, {
 				style: {
-					backgroundColor: data.type_vacancy === '2' ? '#9c3' : data.type_vacancy === '1' ? '#e37373' : '#39c'
+					backgroundColor: data.type_production ? (data.type_vacancy === '2' ? '#9c3' : data.type_vacancy === '1' ? '#e37373' : '#39c') : '#85a6cb'
 				}
 			})
 
 		setAttr(this.totalClients, {
-			innerText: `${data.clients}`
+			innerText: `${data?.clients || ''}`
 		})
 
 		setAttr(this.numberClients, {
@@ -330,11 +338,13 @@ export default class ModalRowLayerLeft {
 			innerText: data.period ? data.period + ' мес.' : '-'
 		})
 
-		this.chooseProductTypePopup.update(data.idVac)
+		this.chooseProductTypePopup.update(data.idVac, data.production)
 
 		setTimeout(()=>{this.prodTypes = []}, 0)
 
 	// }
+
+		console.log(data)
 
 		this.data = data
 	}
@@ -343,16 +353,38 @@ export default class ModalRowLayerLeft {
 	onmount() {
 		this.chooseEmployer.update(true)
 		this.findEmployerInstance = initVacancyModalTooltip(this.chooseEmployer._el, this.findEmployerPopup.el, tippy)
-		this.chooseProductTypeInstance = initVacancyModalTooltip(this.choooseProduct, this.chooseProductTypePopup.el, tippy)
+		this.chooseProductTypeInstance = initVacancyModalTooltip(this.products, this.chooseProductTypePopup.el, tippy)
 
 
 		document.addEventListener('storageemployeradd', (e) => {
 
+			const {vacancyEmployerData : employer} = e.detail
+
 			this.chooseEmployer.update(false)
-			this.chooseProductType.update(true)
-			this.chooseProductType._el.style.display = "flex"
-			this.update(storage.getState(e.detail.id), 'storage')
-			
+			this.fullInfo.update(true)
+			this.fullInfo._el.style.display = "flex"
+
+
+			console.log(
+					employer)
+
+
+			this.update(
+				{
+					idVac: this.data.idVac,
+					employer,
+					type_production: this.data.type_production,
+					type_vacancy: this.data.type_vacancy,
+					vacancyName: this.data.vacancyName,
+					period: this.data.period,
+					clients: this.data.clients,
+					men: this.data.man,
+					women: this.data.woman,
+					date: this.data.date,
+					production: employer.production
+				}
+				, 'storage')
+
 		})
 	}
 

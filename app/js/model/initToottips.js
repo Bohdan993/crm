@@ -3,6 +3,7 @@ import getVacancyList from './fetchingData/Vacancy/getVacancyList'
 import {
     tippy,
     createSingleton,
+    hideAll,
     sticky,
     delegate
 } from '../../libs/libs'
@@ -247,12 +248,6 @@ function initSidebarTooltip(el, content) {
         },
         onShown(instance) {
         let children = instance.props.content.querySelectorAll('input')
-            document.addEventListener('keyup', function(e) {
-                if (e.keyCode === 27) {
-                    instance.hide();
-                }
-            })
-
             
             if(!childChangeHandlerFlag) {
             	children.forEach((child, ind) => {
@@ -265,7 +260,6 @@ function initSidebarTooltip(el, content) {
 
             if(!removeCheckingHandlerFlag) {
             	instance.reference.children[1].addEventListener('click', removeCheckingHandler.bind(instance.reference.children[1], children, instance))
-
             	removeCheckingHandlerFlag = true
             }
         },
@@ -489,11 +483,6 @@ function initWorkModalTooltip(el, content) {
           
         },
         onShown(instance) {
-            document.addEventListener('keyup', function(e) {
-                if (e.keyCode === 27) {
-                    instance.hide();
-                }
-            })
         },
     })
     return instance
@@ -519,17 +508,6 @@ function initWorkModalTooltip(el, content) {
             sticky: 'reference',
             moveTransition: 'transform 0.2s ease-out',
             plugins: [sticky],
-            onCreate(instance) {
-
-            },
-            onShown(instance) {
-                document.addEventListener('keyup', function(e) {
-                    if (e.keyCode === 27) {
-                        instance.hide();
-                    }
-                })
-
-            },
             appendTo: () => document.body,
         })
 
@@ -553,22 +531,22 @@ function initWorkModalTooltip(el, content) {
             hideOnClick: true,
             trigger: 'click',
             appendTo: () => document.body,
-            onShown(instance) {
-                document.addEventListener('keyup', function(e) {
-                    if (e.keyCode === 27) {
-                        instance.hide();
-                    }
-                })
+            onCreate(instance) {
             },
         })
-
         return instance
     }
 
-    // initVacancyModalTooltip('.modal-row__layer.main-info_left .choose-employer', employerTypeTemplate)
-    // initVacancyModalTooltip('.modal-row__layer.main-info_right .choose-employer', employerTypeTemplate2)
-    // initVacancyModalTooltip('.modal-row__layer.main-info_left .choose-product-type .type-product', workTypeTemplate)
-    // initVacancyModalTooltip('.modal-row__layer.main-info_left .main-info__price span', pricePopupTemplate)
+
+document.addEventListener('keyup', onKeyUp)
+
+function onKeyUp (e){
+    if (e.keyCode === 27) {
+        hideAll()
+    }
+}
+
+
 
 export default initTooltips
 

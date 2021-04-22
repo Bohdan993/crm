@@ -9,7 +9,7 @@ import storage from '../Storage'
 
 export default class Note { // to ../fetchingData/Employer/WorkModal
     constructor(type) {
-    		this.type = type
+    	this.type = type
         this.el = el('div.input-group',
         		el('p', 'Заметки'),
         		this.textArea = el('textarea.sidebar__area-notes', {
@@ -49,7 +49,7 @@ export default class Note { // to ../fetchingData/Employer/WorkModal
     update(data) {
         console.log(data)
     	setAttr(this.textArea, {
-    		value: data && data.notes || data && data.notes === ''  ? data.notes : data
+    		value: data && data.note || data && data.note === ''  ? data.note : data
     	})
 
 
@@ -61,8 +61,15 @@ export default class Note { // to ../fetchingData/Employer/WorkModal
 
     onmount(){
         document.addEventListener('storageemployeradd', (e) => {
-            // console.log(storage.getState(e.detail.id).employer.note)
-            this.update(storage.getState(e.detail.id).employer.note)
+
+            const {vacancyEmployerData : employer, employerId} = e.detail
+
+            const noteData = {
+                note: employer.employer.note,
+                id: employerId
+            }
+
+            this.update(noteData)
         })
     }
 }

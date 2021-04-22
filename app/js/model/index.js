@@ -1,26 +1,18 @@
 import initOverlayScrollbars from './OverlayScrollbarsInit'
-// import sidebarListsToggle from './sidebarListsToggle'
-// import playAudioHover from './playAudioHover'
 
 import initTooltips from './initToottips'
-// import initWorkPopup from './initWorkPopup'
 import initToastr from './initToastr'
 import initElasticArea from './initElasticArea'
 import initWorkModalSelect from './initWorkModalSelect'
 import sidebarSearchInput from './sidebarSearchInput'
 
 import checkIfWrapperIsEmpty from './checkIfWrapperIsEmpty'
-// import show5Rows from './show5Rows'
-// import addManufacturyType from './addManufacturyType'
-// import show1Row from './show1rowFeedback'
 import addNewTask from './addNewTask'
 import deleteTask from './deleteTask'
 import setFeedbackDate from './setFeedbacklDate'
 import addFeedbackForm from './addfeedbackForm'
-// import showRemoveBtnOnChecking from './showRemoveBtnOnChecking'
 import autocompleteInput from './autocompleteInput'
 import switchModalParts from './switchModalParts'
-// import linkToSocial from './linkToSocial'
 import changeDirection from './changeDirection'
 import feedbackEdit from './feedbackEdit'
 
@@ -38,9 +30,10 @@ import getManagerVacancyPopup from './fetchingData/Vacancy/getManagerVacancyPopu
 import getIntermediariesPopup from './fetchingData/getIntermediariesPopup'
 import getCountryPopup from './fetchingData/Employer/getCountryPopup'
 import getManufacturyTypePopup from './fetchingData/Employer/getManufacturyTypePopup'
-// import getTextSearch from './fetchingData/Employer/getTextSearch'
 import addNewEmployer from './fetchingData/Employer/addNewEmployer'
-import fetchScroll from './fetchingData/fetchScroll'
+// import fetchScroll from './fetchingData/fetchScroll'
+import vacancyFetchScroll from './fetchingData/Vacancy/fetchListOnScroll'
+import employerFetchScroll from './fetchingData/Employer/fetchListOnScroll'
 import getTypeContact from './fetchingData/Employer/getTypeContact'
 import getClients from './fetchingData/Employer/getClients'
 
@@ -53,8 +46,7 @@ import mountLastContactPopup from './MountingElements/Employer/mountLastContactP
 import mountSortingPopup from './MountingElements/Employer/mountSortingPopup'
 import mountVacancyPopup from './MountingElements/Employer/mountVacancyPopup'
 import mountContactHistoryModal from './MountingElements/Employer/WorkModal/mountContactHistoryModal'
-// import mountManagerSelect from './MountingElements/Employer/WorkModal/mountManagerSelect'
-// import mountEmployerDelete from './MountingElements/Employer/WorkModal/mountDeleteComponent'
+
 
 
 import addNewVacancy from './fetchingData/Vacancy/addNewVacancy'
@@ -67,35 +59,25 @@ import getVacancyWorkType from './fetchingData/Vacancy/getVacancyWorkType'
 import mountSortingVacancyPopup from './MountingElements/Vacancy/mountSortingPopup'
 import mountSearchInputVacancy from './MountingElements/Vacancy/mountSearch'
 import mountDateAndTermsPopup from './MountingElements/Vacancy/mountDateAndTermsPopup'
-// import mountClientsVacancy from './MountingElements/Vacancy/VacancyModal/mountClientsComponent'
 import mountActiveArchive from './MountingElements/Vacancy/mountActiveArchiveComponent'
 
 import mountVacancyStatusesPopup from './MountingElements/Vacancy/mountVacancyStatusesPopup'
-// import mountCopyComponent from './MountingElements/Vacancy/VacancyModal/mountCopyComponent'
-// import mountArchiveComponent from './MountingElements/Vacancy/VacancyModal/mountArchiveComponent'
+
 
 export {
 	initOverlayScrollbars,
-	// sidebarListsToggle,
-	// playAudioHover,
-
 	initTooltips,
-	// initWorkPopup,
+
 	initToastr,
 	initElasticArea,
 	initWorkModalSelect,
 	sidebarSearchInput,
 
 	checkIfWrapperIsEmpty,
-	// show5Rows,
-	// addManufacturyType,
-
-	// show1Row,
 	addNewTask,
 	deleteTask,
 	setFeedbackDate,
 	addFeedbackForm,
-	// showRemoveBtnOnChecking,
 	showFullRow,
 	switchRowStatuses,
 	setDateToSlider,
@@ -103,7 +85,6 @@ export {
 	showChooseBlockFullInfo,
 	showFullClientsRow,
 	switchModalParts,
-	// linkToSocial,
 	changeDirection,
 	feedbackEdit,
 	getEmployersList,
@@ -115,7 +96,7 @@ export {
 	getManufacturyTypePopup,
 	getTypeContact,
 	getClients,
-	fetchScroll,
+	// fetchScroll,
 	mountSearchInput,
 	mountContactDataPopup,
 	mountLastContactPopup,
@@ -123,7 +104,6 @@ export {
 	mountVacancyPopup,
 	mountContactHistoryModal,
 	mountSearchInputVacancy,
-	// mountManagerSelect,
 	getVacancyList,
 	getCountryVacancyPopup,
 	mountSortingVacancyPopup,
@@ -131,13 +111,10 @@ export {
 	getStatusesVacancyPopup,
 	mountDateAndTermsPopup,
 	getClientsVacancy,
-	// mountClientsVacancy,
 	mountActiveArchive,
 	addNewVacancy,
 	getVacancyEmployers,
 	mountVacancyStatusesPopup,
-	// mountCopyComponent,
-	// mountArchiveComponent
-	// mountEmployerDelete
-	// getTextSearch
+	vacancyFetchScroll,
+	employerFetchScroll
 }

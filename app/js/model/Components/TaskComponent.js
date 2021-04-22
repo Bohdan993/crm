@@ -1,18 +1,12 @@
-
-
 import addTask from '../fetchingData/Employer/WorkModal/addTask'
 import deleteTask from '../fetchingData/Employer/WorkModal/deleteTask'
 import saveFieldsData from '../fetchingData/saveFieldsData'
 import {el, svg, list, setAttr} from '../../../libs/libs'
 import initElasticArea from '../initElasticArea'
-import vacanciesStrorage from '../Storage'
 import employersStorage from '../Storage/globalEmployers'
 
-
-// console.log(employersStorage)
 class TaskItem {
 	constructor(type){
-        // console.log(employersStorage)
 
         this.type = type
 		this.el = el('div.add-task-item', 
@@ -115,7 +109,7 @@ export default class Task { // to ../fetchingData/Employer/WorkModal
         
 
         this.addTask.addEventListener('click', e => {
-                console.log(type)
+                // console.log(type)
                 this.count++
                 if(this.type === 'employer') {
                     addTask({
@@ -147,11 +141,15 @@ export default class Task { // to ../fetchingData/Employer/WorkModal
 
         //Обновить список задач при загрузке информации о работодателе на странице вакансий
         document.addEventListener('storageemployeradd', (e) => {
-            this.list.update(vacanciesStrorage.getState(e.detail.id).task)
+            const {vacancyEmployerData : employer, employerId} = e.detail
 
-            if(this.type === 'vacancy') {
-                this.data.id = e.detail.id
+            const tasksData = {
+                tasks: employer.task,
+                id: employerId
             }
+
+            this.update(tasksData)
+
         })
 
     }

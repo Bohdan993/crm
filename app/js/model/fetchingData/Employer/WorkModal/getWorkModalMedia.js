@@ -75,11 +75,6 @@ const getWorkModalMedia = async ({
 
 			}
 
-			console.log(data.data.total !== undefined ? data.data.total.media : otherPart.media.length)
-			// console.log(data.data.total)
-			// console.log(data.data.total.media)
-			// console.log(otherPart.media.length)
-
 
 			const media = {
 				id: id, 

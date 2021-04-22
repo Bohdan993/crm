@@ -28,10 +28,6 @@ if(countryPopup) {
 					return a.name.localeCompare(b.name)
 				})
 
-
-				
-
-
 				if(sessionStorage.getItem('countryFilter')) { 
 						countries = countries.map(country => {
 						let checked = !!~JSON.parse(sessionStorage.getItem('countryFilter')).split(',').indexOf(country.id)

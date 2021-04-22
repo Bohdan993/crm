@@ -7,6 +7,9 @@ import addClientToVacancy from '../../../fetchingData/Vacancy/VacancyModal/addCl
 import storage from '../../../Storage'
 import { initVacancyModalTooltip } from '../../../initToottips'
 import storageVacancyClientsUpdate from '../../../CustomEvents/storageVacancyClientsUpdate'
+import hiddenClassMixin from '../../../Mixins/hiddenClassMixin'
+
+import checkIfWrapperIsEmpty from '../../../checkIfWrapperIsEmpty'
 
 
 class AddClientPopup {
@@ -45,7 +48,6 @@ class AddClientPopup {
 			    catch(err) {
 			    		console.error(err)
 			    }
-
 		  },
 		  renderResult(result, props) {
 		  	return `
@@ -56,8 +58,6 @@ class AddClientPopup {
 				    </li>
 				  `
 		  },
-		  
-		  // // We want to display the title
 		  getResultValue: result => {
 		  	this.result = result
 		  	sessionStorage.setItem('currClientVacancy', JSON.stringify(result.id))
@@ -69,6 +69,7 @@ class AddClientPopup {
 
 		this.form.onsubmit = (e) => {
 			e.preventDefault()
+
 			addClientToVacancy({
 				vacancy: this.parent.data.id,
 				client: this.result.id
@@ -83,6 +84,7 @@ class AddClientPopup {
 				} else {
 					return
 				}
+
 			})
 
 			}
@@ -100,42 +102,47 @@ export default class ClientsComponent {
 		this.data = {}
 		this.showed = false
 		this.el = el('div.clients-layer.modal-row__inner-layer',
-				this.switcher = el('i.switcher', 
-					el('i.s-union')),
+				this.switcher = place(el('i.switcher', 
+					el('i.s-union'))),
 				el('div.modal-row__controls', 
 					el('p', 'Клиенты'),
 					this.add = el('div.add-item', el('span', '+'), 'добавить клиента'
 						)),
-					this.modalLayer = el('div.modal-row__layer', 
+					this.modalLayer = el('div.modal-row__layer.empty-layer', 
 						el('div.modal-row__clients-row.active',
 							this.names = el('p')),
 						this.vacancyClientsTable = new TableVacancyClient('vacancy-modal')) 
 			)
 
+
 		this.addClientPopup = new AddClientPopup()
 		this.addClientPopup.main.style.display = "block"
 		this.addClientPopup.parent = this
-		// this.addClientInstance = initRowTooltips(this.country)
-
-			// tippy(this.add, {
-   //      content: this.addClientPopup.el,
-   //    });
 
    document.addEventListener('storageupdate', (e) => {
-   	
-		if(e.detail.id === this.data.id) {
-			if(e.detail.clazz === 'vacancy-row') {
-						let data = storage.getState(this.data.id)
-						this.vacancyClientsTable.update(data)
-					}
-				}
+
+
+   	if (e.detail.id === this.data.id) {
+					let data = storage.getState(this.data.id)
+					data.data.forEach(el => {
+						if(el.vacancy.id === e.detail.clientId) {
+							let res = el.status_history.find(el => el.id_status === e.detail.statusId)
+							if(res){
+								res.date = new Date().toLocaleDateString()
+							} else {
+								el.status_history.push({id_status: e.detail.statusId, date: new Date().toLocaleDateString()})
+							}
+						}
+					})
+					this.vacancyClientsTable.update(data)
+			}
 	})
 
 
    document.addEventListener('storagedelete', (e) => {
 			if(e.detail.id === this.data.id) {
 					let data = storage.getState(this.data.id)
-					this.vacancyClientsTable.update(data)
+					this.vacancyClientsTable.update(true, data)
 			}
 		})
 
@@ -146,12 +153,21 @@ export default class ClientsComponent {
 
 
 	update(data) {
-		console.log(data)
+	
+		const {data: clients} = data
 		this.vacancyClientsTable.update(data)
 
 		setAttr(this.names, {
-				innerText: `${data.data.map(el => el.main.snp).join(', ')}`
+				innerText: `${clients.map(el => el.main.snp).join(', ')}`
 			})
+
+		clients.length  ? this.switcher.update(true) : this.switcher.update(false)
+
+		setAttr(this.modalLayer, {
+			classList: clients.length ? 'modal-row__layer' : 'modal-row__layer empty-layer'
+		})
+
+		// checkIfWrapperIsEmpty(this.modalLayer)
 
 		this.data = data
 	}
@@ -159,6 +175,10 @@ export default class ClientsComponent {
 
 	onmount() {
 		this.choiseClientInstance = initVacancyModalTooltip(this.add, this.addClientPopup.el, tippy)
-		showFullClientsRow(this.switcher, this.el)
+		showFullClientsRow(this.switcher._el, this.el)
 	}
 } 
+
+
+
+// Object.assign(ClientsComponent.prototype, hiddenClassMixin)
