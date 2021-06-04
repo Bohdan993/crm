@@ -19,13 +19,6 @@ import addMedia from '../../../fetchingData/Employer/WorkModal/addMedia'
 import deleteMedia from '../../../fetchingData/Employer/WorkModal/deleteMedia'
 import getWorkModalMedia from '../../../fetchingData/Employer/WorkModal/getWorkModalMedia'
 
-import {
-	modalRowMediaWrapper, // this.modalRowWrapper(class WorkModalMedia)
-	modalRowMedia, // this.el (class WorkModalMediaRow)
-	mediaShowMore,
-	body
-} from '../../../../view'
-
 
 const URL = 'https://crm.unicorn-exp.com/images/employer/media'
 
@@ -48,13 +41,17 @@ class WorkModalMediaRow {
 		)
 
 		this.delete.addEventListener('click', (e) => {
-			deleteMedia({idimg: this.data.id, idemp: this.employerID, w: 0})
+			deleteMedia({
+				idimg: this.data.id,
+				idemp: this.employerID,
+				w: 0
+			})
 		})
 	}
 
 
 	update(data, index, items, context) {
-		// console.log(data)
+
 		setAttr(this.link, {
 			href: URL + '/' + data.name
 		})
@@ -122,7 +119,11 @@ export default class WorkModalMedia {
 					}
 					data.append('file', files[i])
 				}
-				addMedia({id: this.data.id, data, w: 0})
+				addMedia({
+					id: this.data.id,
+					data,
+					w: 0
+				})
 			} catch (e) {
 				toastr.error(`${e.message}`, 'Ошибка!', {
 					timeOut: 0,
@@ -167,11 +168,9 @@ export default class WorkModalMedia {
 		} = data
 
 		if (showing) {
-			// this.pageShow++
 		}
 
 		if (loading || showingLess) {
-			// this.pageShow = 2
 		}
 
 		if (adding) {}
@@ -183,11 +182,8 @@ export default class WorkModalMedia {
 			employerID: data.id
 		})
 
-		// console.log(this.data.id !== data.id)
-		// // console.log(data.id)
+		if (this.data.id !== data.id) this.open = false
 
-		if(this.data.id !== data.id) this.open = false
-		
 
 
 		//Пагинация
@@ -197,13 +193,11 @@ export default class WorkModalMedia {
 			this.showLess.update(false)
 			this.showMore.el.addEventListener('click', this.showMoreHandler)
 
-			// console.log('dfdf')
-
 		} else {
 
 			this.showMore.update(false)
 
-			if(this.open) {
+			if (this.open) {
 				this.showLess.update(true, 'скрыть')
 			} else {
 				this.showLess.update(false)
@@ -224,18 +218,7 @@ export default class WorkModalMedia {
 
 	}
 
-	  // onremount() {
-   //    alert("remounted Hello");
-   //  }
-   //  onunmount() {
-   //    alert("unmounted Hello");
-   //  }
-
-
 
 }
 
 Object.assign(WorkModalMedia.prototype, hiddenClassMixin)
-
-let show = false
-let flagMedia = false

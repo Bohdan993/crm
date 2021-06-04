@@ -2,7 +2,7 @@ import SidebarPopupInterface from '../SidebarPopupInterface'
 
 
 export default class ContactDataPopup extends SidebarPopupInterface {
-	constructor(){
+	constructor() {
 		super()
 	}
 
@@ -12,7 +12,7 @@ export default class ContactDataPopup extends SidebarPopupInterface {
 	}
 
 
-	filter(id, str, storageKey){
+	filter(id, str, storageKey) {
 		super.filter(id, str, storageKey)
 	}
 }

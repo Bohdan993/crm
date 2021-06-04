@@ -1,26 +1,26 @@
-let rows = document.querySelectorAll('.vacancy-rows .row')
+const rows = document.querySelectorAll('.vacancy-rows .row')
 const vacancyRowsWrapper = document.querySelector('.vacancy-rows-wrapper')
-let statusLeft = document.querySelectorAll('.cell-status__left') 
+const statusLeft = document.querySelectorAll('.cell-status__left') 
 
-let sliders = document.querySelectorAll('.cell-status__slider')
+const sliders = document.querySelectorAll('.cell-status__slider')
 
-let findEmployer = document.querySelector('#employer-type-popup .input-group')
-let findEmployer2 = document.querySelector('#employer-type-popup2 .input-group')
+const findEmployer = document.querySelector('#employer-type-popup .input-group')
+const findEmployer2 = document.querySelector('#employer-type-popup2 .input-group')
 
-let chooseEmployer =  document.querySelector('.main-info_left .choose-employer')
-let chooseEmployer2 = document.querySelector('.main-info_right .choose-employer')
+const chooseEmployer =  document.querySelector('.main-info_left .choose-employer')
+const chooseEmployer2 = document.querySelector('.main-info_right .choose-employer')
 
-let chooseProductType = document.querySelector('.main-info_left .choose-product-type')
-let chooseProductType2 = document.querySelector('.main-info_right .employer-name')
+const chooseProductType = document.querySelector('.main-info_left .choose-product-type')
+const chooseProductType2 = document.querySelector('.main-info_right .employer-name')
 
-let chooseFullInfo = document.querySelector('.main-info_left .full-info')
+const chooseFullInfo = document.querySelector('.main-info_left .full-info')
 
-let mainInfoChooseBlock = document.querySelector('.main-info_left .main-info__choose-block')
+const mainInfoChooseBlock = document.querySelector('.main-info_left .main-info__choose-block')
 
-let clientsModalLayer = document.querySelector('.clients .modal-row__layer')
+const clientsModalLayer = document.querySelector('.clients .modal-row__layer')
 
-let switcher  = document.querySelector('.switcher')
-let clientsRow = document.querySelector('.row.clients.modal-row')
+const switcher  = document.querySelector('.switcher')
+const clientsRow = document.querySelector('.row.clients.modal-row')
 
 const datePopup = document.querySelector('#date-terms-popup')
 
@@ -34,9 +34,10 @@ const modalLayerLeft = document.querySelector('.modal-row__layer.main-info_left'
 const modalLayerRight = document.querySelector('.modal-row__layer.main-info_right')
 const sidebarVacancy = document.querySelector('.vacancy-sidebar .sidebar__list-add')
 
-const vacancyDelete = document.querySelector('#vacancy-delete')
+const vacancyDeconste = document.querySelector('#vacancy-deconste')
 const vacancyCopy = document.querySelector('#vacancy-copy')
 const vacancyArchive = document.querySelector('#vacancy-archive')
+const vacancyDelete = document.querySelector('#vacancy-delete')
 
 const sidebarStatNumsVacancy = document.querySelector('.sidebar__stat-nums_vacancy')
 export {
@@ -65,10 +66,11 @@ export {
 	modalLayerLeft,
 	modalLayerRight,
 	vacancyRowsWrapper,
-	vacancyDelete,
+	vacancyDeconste,
 	vacancyCopy,
 	vacancyArchive,
-	sidebarStatNumsVacancy
+	sidebarStatNumsVacancy,
+	vacancyDelete
 	// mainInfoPrice
 	
 }

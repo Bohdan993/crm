@@ -1,15 +1,16 @@
-import {el, setAttr} from '../../../../../libs/libs'
+import {
+	el,
+	setAttr
+} from '../../../../../libs/libs'
 
 export default class ShowMoreBtn {
-	constructor(){
+	constructor() {
 		this.el = el('button.show-more', this.text = el('span'))
 	}
 
-	update(data){
+	update(data) {
 		setAttr(this.text, {
 			innerText: data
 		})
 	}
 }
-
-

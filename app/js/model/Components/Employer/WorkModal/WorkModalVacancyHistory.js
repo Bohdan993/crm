@@ -39,7 +39,6 @@ class WorkModalVacancyHistoryRow {
 
 
 	update(data) {
-		// console.log(data)
 
 		setAttr(this.el, {
 			target: '_blank',
@@ -65,13 +64,12 @@ class WorkModalVacancyHistoryRow {
 
 
 		setAttr(this.date, {
-			innerText: (data.start_work ?  data.start_work : '') + (data.start_work && data.finish_work ? ' - ' : '') + (data.finish_work ? data.finish_work : '')
+			innerText: (data.start_work ? data.start_work : '') + (data.start_work && data.finish_work ? ' - ' : '') + (data.finish_work ? data.finish_work : '')
 		})
 
-		// console.log(data.total_woman)
 
 		setAttr(this.people, {
-			innerText: (+data.total_man ? "М" + data.total_man : '') + (+data.total_woman ? ' Ж' + data.total_woman : '') ,
+			innerText: (+data.total_man ? "М" + data.total_man : '') + (+data.total_woman ? ' Ж' + data.total_woman : ''),
 			style: {
 				color: data.archive === '0' ? '#FF9966' : '#99CCCC'
 			}
@@ -173,7 +171,6 @@ export default class WorkModalVacancyHistory {
 						showing: true,
 						p: this.pageShow
 					})
-					// console.log(this.pageShow)
 				})
 
 				this.flagShow = true
@@ -186,10 +183,7 @@ export default class WorkModalVacancyHistory {
 
 		//Вызов функций которые зависят от инстанса класса
 		checkIfWrapperIsEmpty(this.modalRowWrapper)
-		//
 
-		// this.data = data
-		// this.index = index
 	}
 
 

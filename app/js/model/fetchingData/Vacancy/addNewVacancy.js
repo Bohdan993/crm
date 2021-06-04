@@ -1,5 +1,5 @@
 import fetch from '../fetchingDataClass'
-import getVacancyList from './getVacancyList'
+// import getVacancyList from './getVacancyList'
 import {
 	sidebarVacancy
 } from '../../../view'
@@ -10,10 +10,11 @@ import {
 } from '../../helper'
 import getVacancyModalInfo from '../../fetchingData/Vacancy/VacancyModal/getVacancyModalInfo'
 import getWorkModalFeedback from '../../fetchingData/Employer/WorkModal/getWorkModalFeedback'
+import getWorkModalTasks from '../../fetchingData/Employer/WorkModal/getWorkModalTasks'
 import {
 	toastr
 } from '../../../../libs/libs'
-import vacancyListAddEvent from '../../CustomEvents/VacancyListAddEvent'
+// import vacancyListAddEvent from '../../CustomEvents/vacancyListAddEvent'
 
 let flag = false
 
@@ -23,16 +24,25 @@ async function onAddVacancy(id = null) {
 		const vacancy = await fetch.getResourse('/vacancies/create')
 
 		if (vacancy.success === true) {
-			toastr.success(`ID вакансии ${vacancy.id}`, 'Успешно создана вакансия', {
-				closeButton: false
-			})
-			await getVacancyList({
-				added: true
-			})
 
 			MicroModal.show('modal-3', {
-				onClose: modal => {
-					getVacancyList()
+				onClose: async modal => {
+					const data = await fetch.getResourse(`/vacancies/get/?id=${vacancy.id}&section=0`)
+
+					if (data.data.main.id_employer !== '0') {
+						toastr.success(`ID вакансии ${vacancy.id}`, 'Успешно создана вакансия', {
+							closeButton: false
+						})
+						// getVacancyList({
+						// 	added: true
+						// })
+
+						// vacancyListAddEvent.detail.id = String(vacancy.id)
+						// document.dispatchEvent(vacancyListAddEvent)
+					} else {
+						fetch.getResourse(`/vacancies/delete/?id=${vacancy.id}`)
+					}
+			
 				},
 				onShow: (modal, node) => {
 					const wrapper = modal.querySelector('.my-modal-wrapper')
@@ -50,12 +60,17 @@ async function onAddVacancy(id = null) {
 			})
 
 
-			getVacancyModalInfo(vacancy.id).then(res => {
+			getVacancyModalInfo(vacancy.id, true).then(res => {
 				getWorkModalFeedback({
 					id: id || JSON.parse(sessionStorage.getItem('currVacancyEmployer')).id,
 					loading: true,
 					str: 'vacancies',
 					other: 1
+				})
+
+
+				getWorkModalTasks({
+					id: id || JSON.parse(sessionStorage.getItem('currVacancyEmployer')).id
 				})
 			})
 
@@ -66,8 +81,7 @@ async function onAddVacancy(id = null) {
 		}
 
 
-		vacancyListAddEvent.detail.id = String(vacancy.id)
-		document.dispatchEvent(vacancyListAddEvent)
+
 
 	} catch (e) {
 		toastr.error(e.message, 'Возникла ошибка', {
@@ -78,7 +92,7 @@ async function onAddVacancy(id = null) {
 
 const addNewVacancy = () => {
 	if (sidebarVacancy) {
-		sidebarVacancy.addEventListener('click', onAddVacancy.bind(null))
+		sidebarVacancy.addEventListener('click', onAddVacancy.bind(null, null))
 	}
 }
 

@@ -1,6 +1,6 @@
 import  ArchiveActive from '../../Components/Vacancy/ActiveArchiveComponent'
 import { archiveActive } from '../../../view/vacancy'
-import {list, mount} from '../../../../libs/libs'
+import {mount} from '../../../../libs/libs'
 
 
 const arcAct = new ArchiveActive()

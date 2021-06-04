@@ -8,15 +8,18 @@ import {
 import TableVacancyClient from './VacancyClients'
 import showFullRow from '../../vacancy/showFullRow'
 import getVacancyClients from '../../fetchingData/Vacancy/getVacancyClients'
-import getVacancyList from '../../fetchingData/Vacancy/getVacancyList'
+// import getVacancyList from '../../fetchingData/Vacancy/getVacancyList'
 import {
 	addMouseUpTrigger,
-	closeModal
+	closeModal,
+	getAllUrlParams,
+	updateURL
 } from '../../helper'
 import getWorkModalTasks from '../../fetchingData/Employer/WorkModal/getWorkModalTasks'
 import getVacancyModalInfo from '../../fetchingData/Vacancy/VacancyModal/getVacancyModalInfo'
 import getWorkModalFeedback from '../../fetchingData/Employer/WorkModal/getWorkModalFeedback'
 import storage from '../../Storage'
+import vacancyModalCloseEvent from './../../CustomEvents/vacancyModalCloseEvent';
 
 
 let flag = false
@@ -58,7 +61,8 @@ export default class RowVacancy {
 				el('div.row__name-2.row__cell',
 					el('p.row__fullname.no-open',
 						this.employer = el('a.no-open', {
-							href: '#'
+							href: '#',
+							target: "_blank"
 						})),
 					this.manager = place(el('i.tag.manager-tag'))),
 				el('div.row__vacancies.row__cell',
@@ -91,7 +95,6 @@ export default class RowVacancy {
 				getVacancyClients(this.data.id_vacancy)
 					.then(res => {
 						if (res) {
-							// console.log(res)
 							storage.setState(this.data.id_vacancy, {
 								id: this.data.id_vacancy,
 								data: res
@@ -119,38 +122,49 @@ export default class RowVacancy {
 		})
 
 		this.labelsLayer.addEventListener('click', (e) => {
+
+			let id_vacancy = getAllUrlParams().id
+			let url = `#id=${this.data.id_vacancy}`
+
+			updateURL(url)
+
 			getVacancyModalInfo(this.data.id_vacancy).then(res => {
+
 				getWorkModalFeedback({
 					id: JSON.parse(sessionStorage.getItem('currVacancyEmployer')).id,
 					loading: true,
 					str: 'vacancies',
 					other: 1
 				})
-				getWorkModalTasks({id: JSON.parse(sessionStorage.getItem('currVacancyEmployer')).id})
+
+				getWorkModalTasks({
+					id: JSON.parse(sessionStorage.getItem('currVacancyEmployer')).id
+				})
 			})
 
 			MicroModal.show('modal-3', {
 				onClose: modal => {
-					setTimeout(function(){
-	      		getVacancyList({
-	      			avoidFetch: true, 
-	      			filtered: JSON.parse(sessionStorage.getItem('employersFiltered'))
-	      		})
-	      	}, 0)
+					document.dispatchEvent(vacancyModalCloseEvent)
+					updateURL(window.location.pathname)
 				},
 				onShow: (modal, node) => {
 
+					if (!id_vacancy) {
+						const wrapper = modal.querySelector('.my-modal-wrapper')
+						const modalClose = modal.querySelector('.modal__close')
 
-					const wrapper = modal.querySelector('.my-modal-wrapper')
-					const modalClose = modal.querySelector('.modal__close')
+						if (!flag) {
 
-					if (!flag) {
-						wrapper.addEventListener('mouseup', addMouseUpTrigger)
-						wrapper.addEventListener('mousedown', closeModal.bind(null, modal.id))
-						modalClose.addEventListener('click', function () {
-							MicroModal.close(modal.id)
-						})
-						flag = true
+							wrapper.removeEventListener('mouseup', addMouseUpTrigger)
+							wrapper.removeEventListener('mousedown', closeModal.bind(null, modal.id))
+							modalClose.removeEventListener('click', close.bind(null, modal.id))
+
+							wrapper.addEventListener('mouseup', addMouseUpTrigger)
+							wrapper.addEventListener('mousedown', closeModal.bind(null, modal.id))
+							modalClose.addEventListener('click', close.bind(null, modal.id))
+
+							flag = true
+						}
 					}
 				}
 			})
@@ -159,54 +173,57 @@ export default class RowVacancy {
 		document.addEventListener('storageupdate', (e) => {
 
 			if (e.detail.id === this.data.id_vacancy) {
-					let data = storage.getState(this.data.id_vacancy)
-					data.data.forEach(el => {
-						if(el.vacancy.id === e.detail.clientId) {
-							let res = el.status_history.find(el => el.id_status === e.detail.statusId)
-							if(res){
-								res.date = new Date().toLocaleDateString()
-							} else {
-								el.status_history.push({id_status: e.detail.statusId, date: new Date().toLocaleDateString()})
-							}
+				let data = storage.getState(this.data.id_vacancy)
+				data.data.forEach(el => {
+					if (el.vacancy.id === e.detail.clientId) {
+						let res = el.status_history.find(el => el.id_status === e.detail.statusId)
+						if (res) {
+							res.date = new Date().toLocaleDateString()
+						} else {
+							el.status_history.push({
+								id_status: e.detail.statusId,
+								date: new Date().toLocaleDateString()
+							})
 						}
-					})
-
-					const countObj = {
-						decline: this.declineCount,
-						choose: 0,
-						ready: 0,
-						wait: 0,
-						department: 0,
-						busy: 0
 					}
+				})
 
-					const statusesArr = data.data.map(el => {
-						return el.vacancy.id_status
-					})
+				const countObj = {
+					decline: this.declineCount,
+					choose: 0,
+					ready: 0,
+					wait: 0,
+					department: 0,
+					busy: 0
+				}
 
-					statusesArr.forEach(el => {
-						if(el === '1' || el === '2') {
-							countObj.choose++
-						} else if (el === '3' || el === '4') {
-							countObj.ready++
-						} else if (el === '5')  {
-							countObj.wait++
-						} else if (el === '6' || el === '7' || el === '8') {
-							countObj.department++
-						} else if(el === '9') {
-							countObj.busy++
-						}
-					})
+				const statusesArr = data.data.map(el => {
+					return el.vacancy.id_status
+				})
 
-					const indicatorsArr = Object.values(countObj).map((el, i) => {
-						return {
-							number: el,
-							class: this.context.classes[i]
-						}
-					})
+				statusesArr.forEach(el => {
+					if (el === '1' || el === '2') {
+						countObj.choose++
+					} else if (el === '3' || el === '4') {
+						countObj.ready++
+					} else if (el === '5') {
+						countObj.wait++
+					} else if (el === '6' || el === '7' || el === '8') {
+						countObj.department++
+					} else if (el === '9') {
+						countObj.busy++
+					}
+				})
 
-					this.vacancyClientsTable.update(true, data)
-					this.indicators.update(true, indicatorsArr)
+				const indicatorsArr = Object.values(countObj).map((el, i) => {
+					return {
+						number: el,
+						class: this.context.classes[i]
+					}
+				})
+
+				this.vacancyClientsTable.update(true, data)
+				this.indicators.update(true, indicatorsArr)
 			}
 
 		})
@@ -215,7 +232,42 @@ export default class RowVacancy {
 		document.addEventListener('storagedelete', (e) => {
 			if (e.detail.id === this.data.id_vacancy) {
 				let data = storage.getState(this.data.id_vacancy)
+
+				const countObj = {
+					decline: this.declineCount,
+					choose: 0,
+					ready: 0,
+					wait: 0,
+					department: 0,
+					busy: 0
+				}
+
+				const statusesArr = data.data.map(el => {
+					return el.vacancy.id_status
+				})
+
+				statusesArr.forEach(el => {
+					if (el === '1' || el === '2') {
+						countObj.choose++
+					} else if (el === '3' || el === '4') {
+						countObj.ready++
+					} else if (el === '5') {
+						countObj.wait++
+					} else if (el === '6' || el === '7' || el === '8') {
+						countObj.department++
+					} else if (el === '9') {
+						countObj.busy++
+					}
+				})
+
+				const indicatorsArr = Object.values(countObj).map((el, i) => {
+					return {
+						number: el,
+						class: this.context.classes[i]
+					}
+				})
 				this.vacancyClientsTable.update(true, data)
+				this.indicators.update(true, indicatorsArr)
 			}
 		})
 
@@ -223,7 +275,6 @@ export default class RowVacancy {
 	}
 
 	update(data, index, items, context) {
-		// console.log(data)
 
 		this.indicatorsArr = data.status.map((el, i) => {
 			return {
@@ -232,21 +283,19 @@ export default class RowVacancy {
 			}
 		})
 
-		// console.log(this.indicatorsArr)
-
 		this.declineCount = data.status[0]
 
 		data.archive !== '0' ? (
-			this.archive.update(true), 
-			this.indicators.update(false),
-			setAttr(this.archiveText, {
-				innerText: 'Архив - ' + data.archive_date
-			})
-		) : 
-		(
-			this.indicators.update(true, this.indicatorsArr),
-			this.archive.update(false)
-		)
+				this.archive.update(true),
+				this.indicators.update(false),
+				setAttr(this.archiveText, {
+					innerText: 'Архив - ' + data.archive_date
+				})
+			) :
+			(
+				this.indicators.update(true, this.indicatorsArr),
+				this.archive.update(false)
+			)
 
 
 		setAttr(this.el, {
@@ -269,7 +318,8 @@ export default class RowVacancy {
 		})
 
 		setAttr(this.employer, {
-			innerText: data.employer
+			innerText: data.employer,
+			href: `index.html#id=${data.id_employer}`,
 		})
 		data.manager ? (
 			this.manager.update(true),
@@ -309,7 +359,7 @@ export default class RowVacancy {
 
 		context.productsData.forEach(el => {
 			prod.forEach((elem, ind) => {
-				if(el.id === elem) {
+				if (el.id === elem) {
 					this.productNamesArr[ind] = el.name
 				}
 			})

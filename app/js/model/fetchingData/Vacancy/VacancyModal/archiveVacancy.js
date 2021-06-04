@@ -4,12 +4,13 @@ import { toastr } from '../../../../../libs/libs'
 
 const archiveVacancy = async ({
  vacancy = '',
+ type = 0
 } = {}) => {
 
 			try {
-				const data = await fetch.getResourse(`/vacancies/archive/?id=${vacancy}`)
+				const data = await fetch.getResourse(`/vacancies/archive/?id=${vacancy}&type=${type}`)
 				if(data.success === true) {
-					toastr.success(`ID вакансии ${vacancy}`, 'Вакансия успешно заархивирована', {closeButton: false})
+					toastr.success(`ID вакансии ${vacancy}`, `${type === 0 ? 'Вакансия успешно заархивирована' : 'Вакансия успешно розархивирована'}`, {closeButton: false})
 				} else {
 					throw new Error('Не удалось заархивировать вакансию')
 				}

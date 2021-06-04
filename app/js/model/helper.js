@@ -145,6 +145,7 @@ function addMouseUpTrigger(e) {
 
 function closeModal(id, e) {
   if(e.target.classList.contains('my-modal-wrapper')) {
+    console.log(id)
     MicroModal.close(id)
   }
 }
@@ -153,14 +154,6 @@ function closeModal(id, e) {
 function close (id) {
   MicroModal.close(id)
 }
-
-
-// function onKeyPressClose (e) {
-//  if(e.keyCode === 27) {
-//     console.log(e)
-//    MicroModal.close()
-//  }
-// }
 
 
 const sleep = (ms) => {
@@ -172,9 +165,12 @@ const sleep = (ms) => {
 }
 
 function getAllUrlParams(url) {
+  // console.log(window.location)
 
   // извлекаем строку из URL или объекта window
-  var queryString = url ? url.split('?')[1] : window.location.search.slice(1);
+  var queryString = url ? url.split('#')[1] : window.location.hash.slice(1);
+
+  
  
   // объект для хранения параметров
   var obj = {};
@@ -183,7 +179,7 @@ function getAllUrlParams(url) {
   if (queryString) {
  
     // данные после знака # будут опущены
-    queryString = queryString.split('#')[0];
+    // queryString = queryString.split('#')[0];
  
     // разделяем параметры
     var arr = queryString.split('&');
@@ -226,6 +222,8 @@ function getAllUrlParams(url) {
       }
     }
   }
+
+  // console.log(obj)
  
   return obj;
 }
@@ -255,6 +253,8 @@ function dateInputChange(element) {
             }
         }
     }
+
+    return element.value
 }
 
 

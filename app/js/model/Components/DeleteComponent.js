@@ -1,7 +1,8 @@
 
 import deleteElement from '../fetchingData/deleteElement'
 import {el, setAttr, MicroModal} from '../../../libs/libs'
-import getEmployersList from '../fetchingData/Employer/getEmployersList'
+import employerListDeleteEvent from '../CustomEvents/employerListDeleteEvent'
+import vacancyListDeleteEvent from '../CustomEvents/vacancyListDeleteEvent'
 
 export default class Delete { // to ../fetchingData/Employer/WorkModal
     constructor(type) {
@@ -11,14 +12,16 @@ export default class Delete { // to ../fetchingData/Employer/WorkModal
             this.delete = el('p', 'Удалить'),
             this.date = el('span'))
 
-        this.delete.addEventListener('click', (e)=> {
+        this.clickHandler = (e) => {
             let conf = confirm(`Подтвердите удаление ${this.type === 'employer' ? 'работодателя' : 'вакансии'}`)
             if(conf) {
             if(this.type === 'employer') {
                 deleteElement({str: 'employers', id: this.data.id})
                 .then(res => {
                     if(res.status === 'ok') {
-                        getEmployersList({deleated: true, id: res.id})
+
+                        employerListDeleteEvent.detail.id = this.data.id
+                        document.dispatchEvent(employerListDeleteEvent)
                         MicroModal.close('modal-1')
                     }
 
@@ -30,6 +33,9 @@ export default class Delete { // to ../fetchingData/Employer/WorkModal
                 deleteElement({str: 'vacancies', id: this.data.id})
                 .then(res => {
                     if(res.status === 'ok') {
+
+                        vacancyListDeleteEvent.detail.id = this.data.id
+                        document.dispatchEvent(vacancyListDeleteEvent)
                         MicroModal.close('modal-3')
                     }
 
@@ -42,7 +48,9 @@ export default class Delete { // to ../fetchingData/Employer/WorkModal
                 return
             }
             
-        })
+        }
+
+        this.delete.addEventListener('click', this.clickHandler)
         
     }
 

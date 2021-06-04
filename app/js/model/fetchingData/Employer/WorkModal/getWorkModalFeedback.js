@@ -1,16 +1,20 @@
 import fetch from '../../fetchingDataClass'
-import Feedback from '../../../Components/FeedbackComponent'
-
+import Feedback, {
+	globalID as gID,
+	globalFeedback as gFB
+} from '../../../Components/FeedbackComponent'
 import Loader from '../../../Components/Loader'
 import {
-	list,
 	mount,
 	place
 } from '../../../../../libs/libs'
 
-// const state = {}
+
+
 let globalFeedback = []
 let globalID = ''
+
+
 
 
 
@@ -37,8 +41,6 @@ const nulledFeedbackData = {
 }
 
 
-
-
 if (feedbackEmployer) {
 	mount(feedbackEmployer, feedbackEmp)
 	mount(feedbackEmployer, loader)
@@ -63,7 +65,8 @@ const getWorkModalFeedback = async ({
 	deleating,
 	adding,
 	str = '',
-	other = ''
+	other = '',
+	changed
 } = {}) => {
 
 	if (feedbackEmployer) {
@@ -80,7 +83,6 @@ const getWorkModalFeedback = async ({
 			// const delay = await sleep(15000)
 			const data = await fetch.getResourse(`/${str}/get/?id=${id}&section=2&other=${other}&p=${p}&t=${t}`)
 			const otherPart = data.data.other
-			console.log(data)
 
 			if (globalID !== id) {
 				globalFeedback = [
@@ -131,25 +133,31 @@ const getWorkModalFeedback = async ({
 
 	if (feedbackVacancy) {
 
+
+		// console.log(changed)
+
+		if (changed) {
+			globalFeedback = gFB || globalFeedback
+			globalID = gID || globalID
+		}
+
+
 		if (loading) {
 			loader2.update(true)
 			feedbackVac.setHiddenClass().setEmptyLayer()
 		}
 
-
 		try {
 
 			// const delay = await sleep(15000)
 			const data = await fetch.getResourse(`/${str}/get/?id=${id}&section=2&other=${other}&p=${p}&t=${t}`)
-			console.log(data)
+			// console.log(data)
 
 
 			if (data.data) {
 
 
 				const otherPart = data.data.other
-				// console.log(otherPart)
-				// console.log(data)
 
 				if (globalID !== id) {
 					globalFeedback = [
@@ -189,10 +197,6 @@ const getWorkModalFeedback = async ({
 			} else {
 				feedbackVac.update(nulledFeedbackData)
 			}
-
-
-
-
 
 			if (loading) {
 				loader2.update(false)

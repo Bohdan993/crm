@@ -2,7 +2,6 @@ import fetch from '../fetchingDataClass'
 import EmployerList from '../../Components/Employer/EmployerList'
 import Loader from '../../Components/Loader'
 import {
-	el,
 	mount,
 	place,
 	toastr
@@ -17,7 +16,7 @@ import {
 
 import storage from '../../Storage/globalEmployers'
 import employerListNotFiltered from '../../CustomEvents/employerListNotFilteredEvent'
-
+import employerListDataFetchedEvent from '../../CustomEvents/employerListDataFetchedEvent'
 
 const employersWrapper = document.querySelector('.employer-rows-wrapper')
 
@@ -40,7 +39,23 @@ if (employerStatNums) {
 }
 
 
-const getEmployersList = async({
+function employerlistdeleteeventHandler(e) {
+	const {
+		detail: {
+			id
+		}
+	} = e
+	storage.deletePartialState(id, 'id_employer')
+	empList.update(storage.getState())
+
+	return
+}
+
+
+
+
+
+const getEmployersList = async ({
 	p = '1',
 	t = '50',
 	id = '',
@@ -57,8 +72,7 @@ const getEmployersList = async({
 	last_contact = JSON.parse(sessionStorage.getItem('lastContactFilter')) || '',
 	sort = JSON.parse(sessionStorage.getItem('sortFilter')) || 'date',
 	scroll = false,
-	added = false,
-	deleated = false,
+	// deleated = false,
 	avoidFetch = false,
 	sorted = false,
 	filtered = false,
@@ -66,61 +80,52 @@ const getEmployersList = async({
 
 	function isFiltered() {
 		return search !== '' || country !== '' || production !== '' ||
-                contact !== '' || manager !== '' || intermediary !== '' ||
-                intermediaries !== '' || vacancy_active !== '' ||
-                vacancy_type !== '' || vacancy_term !== '' ||
-                last_contact !== ''
+			contact !== '' || manager !== '' || intermediary !== '' ||
+			intermediaries !== '' || vacancy_active !== '' ||
+			vacancy_type !== '' || vacancy_term !== '' ||
+			last_contact !== ''
 	}
-	
+
 
 	if (employersWrapper) {
 		loader.update(true)
 
 		try {
-			
+
 			if (isFiltered()) {
 				filtered = true
 			}
 
-			if(sort !== '') {
+			if (sort !== '') {
 				sorted = true
 			}
 
-			if (deleated) {
-				
-				storage.deletePartialState(id, 'id_employer')
-				empList.update(storage.getState())
-				return
-			}
 
-			const data = !avoidFetch ? 
-			await fetch.getResourse(`/employers/get_all/?p=${p}&t=${t}&search=${search}&filter=country:${country}
+			const data = !avoidFetch ?
+				await fetch.getResourse(`/employers/get_all/?p=${p}&t=${t}&search=${search}&filter=country:${country}
 				|production:${production}|contact:${contact}|manager:${manager}|intermediaries:${intermediaries}
 				|intermediary:${intermediary}|vacancy_active:${vacancy_active}|vacancy_type:${vacancy_type}|vacancy_term:${vacancy_term}
-				|last_contact:${last_contact}&sort=${sort}`) 
-			: storage.getState()
+				|last_contact:${last_contact}&sort=${sort}`) :
+				storage.getState()
 
-
-			// console.log(data)
 
 			const employers = data.data
 
-			console.log(employers)
 			const numsData = {
-					total: data.total,
-					totalR: data.total_r
-				}
+				total: data.total,
+				totalR: data.total_r
+			}
 
 
 			storage.hasNextPage = data.exist_next_page || storage.hasNextPage
 
-			if(!filtered && !scroll || filtered && (data.p === 1 || data.p === undefined)) {
+			if (!filtered && !scroll || filtered && (data.p === 1 || data.p === undefined)) {
 
-				employerListNotFiltered.detail.hasNextPage = (!!data.exist_next_page || (!Array.isArray(data) && !data.success )) 
-				? !!data.exist_next_page : 
-				Array.isArray(data) ? 
-				!!storage.hasNextPage : 
-				!!data.exist_next_page
+				employerListNotFiltered.detail.hasNextPage = (!!data.exist_next_page || (!Array.isArray(data) && !data.success)) ?
+					!!data.exist_next_page :
+					Array.isArray(data) ?
+					!!storage.hasNextPage :
+					!!data.exist_next_page
 
 				document.dispatchEvent(employerListNotFiltered)
 			}
@@ -132,7 +137,7 @@ const getEmployersList = async({
 				}
 
 				if (scroll) {
-					if(data.p === 2 && !filtered) {
+					if (data.p === 2 && !filtered) {
 						storage.clearState()
 						storage.setState([...storage.getInitialState(), ...employers], 'id_employer')
 						empList.update(storage.getState())
@@ -140,22 +145,13 @@ const getEmployersList = async({
 					storage.setState(employers, 'id_employer')
 					empList.update(storage.getState())
 
-				}
-
-				// else if (added) {
-				// 	alert('added')
-				// 	storage.setState(employers, 'id_employer', 'top')
-				// 	empList.update(storage.getState())
-
-				// } 
-
-				else {
+				} else {
 					if (data.p === 1) {
 						storage.initState(employers)
 						inited = true
 					}
 
-					if(sorted || filtered) {
+					if (sorted || filtered) {
 						storage.clearState()
 						storage.setState(employers, 'id_employer')
 						empList.update(employers)
@@ -168,7 +164,7 @@ const getEmployersList = async({
 			} else {
 
 				loader.update(false)
-				
+
 				if (scroll) {
 					empList.update(storage.getState())
 
@@ -179,7 +175,7 @@ const getEmployersList = async({
 					}
 
 				} else if (sorted) {
-					if(!avoidFetch) {
+					if (!avoidFetch) {
 						empList.update([])
 						throw new EmptyError('Список работодателей пуст')
 					} else {
@@ -193,14 +189,17 @@ const getEmployersList = async({
 					throw new EmptyError('Список работодателей пуст')
 				}
 
-				
+
 			}
 
+			document.dispatchEvent(employerListDataFetchedEvent)
+			document.addEventListener('employerlistdeleteevent', employerlistdeleteeventHandler)
+
 			return {
-				employers, 
+				employers,
 				success: data.success,
-				 hasNextPage: data.exist_next_page
-				}
+				hasNextPage: data.exist_next_page
+			}
 
 		} catch (e) {
 
@@ -222,6 +221,15 @@ const getEmployersList = async({
 
 }
 
+
+function employerlistupdateeventHandler(e) {
+	getEmployersList({
+		avoidFetch: true
+	})
+}
+
+
+document.addEventListener('employerslistupdateevent', employerlistupdateeventHandler)
 
 export default getEmployersList // to ../initTooltips.js
 // to ../Components/Employer/SidebarPopupInterface.js

@@ -18,7 +18,6 @@ import feedbackEdit from './feedbackEdit'
 
 import showFullRow from './vacancy/showFullRow'
 import switchRowStatuses from './vacancy/switchRowStatuses'
-import setDateToSlider from './vacancy/setDateToSlider'
 import showChooseBlockFullInfo from './vacancy/showChooseBlockFullInfo'
 import showFullClientsRow from './vacancy/showFullClientsRow'
 
@@ -31,7 +30,6 @@ import getIntermediariesPopup from './fetchingData/getIntermediariesPopup'
 import getCountryPopup from './fetchingData/Employer/getCountryPopup'
 import getManufacturyTypePopup from './fetchingData/Employer/getManufacturyTypePopup'
 import addNewEmployer from './fetchingData/Employer/addNewEmployer'
-// import fetchScroll from './fetchingData/fetchScroll'
 import vacancyFetchScroll from './fetchingData/Vacancy/fetchListOnScroll'
 import employerFetchScroll from './fetchingData/Employer/fetchListOnScroll'
 import getTypeContact from './fetchingData/Employer/getTypeContact'
@@ -60,6 +58,7 @@ import mountSortingVacancyPopup from './MountingElements/Vacancy/mountSortingPop
 import mountSearchInputVacancy from './MountingElements/Vacancy/mountSearch'
 import mountDateAndTermsPopup from './MountingElements/Vacancy/mountDateAndTermsPopup'
 import mountActiveArchive from './MountingElements/Vacancy/mountActiveArchiveComponent'
+import mountVacancyList from './MountingElements/Vacancy/mountVacancyList'
 
 import mountVacancyStatusesPopup from './MountingElements/Vacancy/mountVacancyStatusesPopup'
 
@@ -80,7 +79,6 @@ export {
 	addFeedbackForm,
 	showFullRow,
 	switchRowStatuses,
-	setDateToSlider,
 	autocompleteInput,
 	showChooseBlockFullInfo,
 	showFullClientsRow,
@@ -116,5 +114,6 @@ export {
 	getVacancyEmployers,
 	mountVacancyStatusesPopup,
 	vacancyFetchScroll,
-	employerFetchScroll
+	employerFetchScroll,
+	mountVacancyList
 }

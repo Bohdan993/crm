@@ -1,7 +1,6 @@
 import {
 	el,
 	setAttr,
-	svg,
 	list
 } from '../../../../../libs/libs'
 import linkToSocial from '../../../linkToSocial'
@@ -10,33 +9,31 @@ import hiddenClassMixin from '../../../Mixins/hiddenClassMixin'
 import saveFieldsData from '../../../fetchingData/saveFieldsData'
 import Option from '../../OptionComponent'
 import storage from '../../../Storage/globalEmployers'
+import employerListUpdateEvent from '../../../CustomEvents/employerListUpdateEvent'
 
 
-let initedCountrySelect = false
-
-
-function checkIfEmployerNameIsEmpty () {
+function checkIfEmployerNameIsEmpty() {
 	return this.comInfName.value === ''
 }
 
 
-function printFeedbackName(){
+function printFeedbackName() {
 
-	this.feedback.list.views.forEach(view=> {
-			if(view.data.data.type_arrow === '0') {
-				// console.log(this)
-				setAttr(view.to, {
-					//Если пустое имя работодателя, тогда в отзывах выводим название организации
-					innerText: !checkIfEmployerNameIsEmpty.call(this) ? this.comInfName.value : this.comManufacturyArea.value
-				})
-			} else {
-				setAttr(view.from, {
-					//Если пустое имя работодателя, тогда в отзывах выводим название организации
-					innerText: !checkIfEmployerNameIsEmpty.call(this) ? this.comInfName.value : this.comManufacturyArea.value
-				})
-			}
+	this.feedback.list.views.forEach(view => {
+		if (view.data.data.type_arrow === '0') {
+			// console.log(this)
+			setAttr(view.to, {
+				//Если пустое имя работодателя, тогда в отзывах выводим название организации
+				innerText: !checkIfEmployerNameIsEmpty.call(this) ? this.comInfName.value : this.comManufacturyArea.value
+			})
+		} else {
+			setAttr(view.from, {
+				//Если пустое имя работодателя, тогда в отзывах выводим название организации
+				innerText: !checkIfEmployerNameIsEmpty.call(this) ? this.comInfName.value : this.comManufacturyArea.value
+			})
+		}
 
-		})
+	})
 }
 
 
@@ -88,6 +85,7 @@ export default class WorkModal {
 						}),
 						el('style', '#gmap_canvas img{max-width:none!important;background:none!important}')
 					)
+
 				)
 			),
 		)
@@ -241,8 +239,8 @@ export default class WorkModal {
 			save(this.comManufacturyArea.value, 'enterprise')
 
 			storage.setPartialState(this.data.id_employer, 'id_employer', 'enterprise', this.comManufacturyArea.value)
-			console.log("ONCHANGE", storage.getState())
 			printFeedbackName.call(this)
+			document.dispatchEvent(employerListUpdateEvent)
 
 		})
 
@@ -254,6 +252,7 @@ export default class WorkModal {
 			storage.setPartialState(this.data.id_employer, 'id_employer', 'country_name', currCountry.name)
 			storage.setPartialState(this.data.id_employer, 'id_employer', 'addr', currCountry.icon.split('.')[0].toUpperCase())
 			storage.setPartialState(this.data.id_employer, 'id_employer', 'icon', currCountry.icon)
+			document.dispatchEvent(employerListUpdateEvent)
 		})
 
 		this.comMapArea.addEventListener('change', (e) => {
@@ -261,8 +260,9 @@ export default class WorkModal {
 			this.comIframe.src = `https://maps.google.com/maps?width=100%&height=200&hl=en&q=${this.comMapArea.value}&ie=UTF8&t=&z=11&iwloc=B&output=embed`
 
 			storage.setPartialState(this.data.id_employer, 'id_employer', 'address', this.comMapArea.value)
+			document.dispatchEvent(employerListUpdateEvent)
 		})
-		
+
 
 		this.comInfName.addEventListener('change', (e) => {
 			save(encodeURIComponent(this.comInfName.value), 'name')
@@ -270,6 +270,7 @@ export default class WorkModal {
 			storage.setPartialState(this.data.id_employer, 'id_employer', 'name', this.comInfName.value)
 
 			printFeedbackName.call(this)
+			document.dispatchEvent(employerListUpdateEvent)
 		})
 
 		this.comInfOtherNames.addEventListener('change', (e) => {
@@ -280,6 +281,7 @@ export default class WorkModal {
 			save(encodeURIComponent(this.comInfPhone.value), 'phone')
 
 			storage.setPartialState(this.data.id_employer, 'id_employer', 'phone', this.comInfPhone.value)
+			document.dispatchEvent(employerListUpdateEvent)
 		})
 
 		this.comInfEmail.addEventListener('change', (e) => {

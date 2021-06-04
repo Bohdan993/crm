@@ -3,10 +3,12 @@
 	width: 100%;
 	// height: 44px;
 	background: @white;
+
 	&:nth-child(even) {
 		background: @light-blue;
-			&:hover {
-				// background: @light-blue - 10;
+
+		&:hover {
+			// background: @light-blue - 10;
 		}
 	}
 
@@ -16,6 +18,7 @@
 		height: 44px;
 		flex-wrap: nowrap;
 	}
+
 	transition: background 0.05s linear;
 
 	&:hover {
@@ -29,14 +32,14 @@
 			border-left: 1px solid @white;
 		}
 
-		.table-full__layer .table-full__row:not(:first-child) {
+		.table-full__layer .table-full__row {
 			border-bottom: 1px solid @white;
 		}
 	}
 
 	.tippy-content {
-        padding: 3px 7px;
-    }
+		padding: 3px 7px;
+	}
 }
 
 .row__cell {
@@ -50,17 +53,26 @@
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
-	
+	cursor: pointer;
 	overflow: hidden;
-	 	
-	 span, p, a {
-	 text-overflow: ellipsis;
-	 overflow-x: hidden;
-	 white-space: nowrap;
-	 line-height: 17/14;
 
-	 }
-	
+	span,
+	p,
+	a {
+		text-overflow: ellipsis;
+		overflow-x: hidden;
+		white-space: nowrap;
+		line-height: 17/14;
+
+	}
+
+}
+
+.row__cell-wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	overflow: hidden;
 }
 
 .row__country {
@@ -102,6 +114,7 @@
 	min-width: 147px;
 	margin: 0;
 	padding: 13px;
+
 	i {
 		width: 16px;
 		height: 16px;
@@ -109,6 +122,7 @@
 		margin-right: 11px;
 		margin-right: 5px;
 		overflow: visible;
+
 		svg {
 			width: 16px;
 			height: 16px;
@@ -140,36 +154,39 @@
 	margin-top: 0;
 	margin-bottom: 0;
 
-	a.label, i.label {
+	a.label,
+	i.label {
 		max-width: unset;
 		width: auto;
 	}
+
 	// border-right: 1px solid @main-color;
 }
 
 .row__labels-layer {
-	  height: 100%;
-    padding-top: 13px;
-    padding-bottom: 13px;
-    // margin-right: 13px;
-    // margin-left: 13px;
-    width: 100%;
-    letter-spacing: -.05px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    // overflow-x: auto;
-    overflow: hidden;
+	height: 100%;
+	padding-top: 13px;
+	padding-bottom: 13px;
+	// margin-right: 13px;
+	// margin-left: 13px;
+	width: 100%;
+	letter-spacing: -.05px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	// overflow-x: auto;
+	overflow: hidden;
 
-    a.label {
-    	overflow-x: visible;
-    }
+	a.label {
+		overflow-x: visible;
+	}
 }
 
 .row__flag {
 	width: 25px;
 	height: 19px;
 	margin-right: 7px;
+
 	svg {
 		width: 26px;
 		height: 19px;
@@ -193,10 +210,12 @@
 	// overflow: visible;
 	display: flex;
 	align-items: center;
+
 	i {
 		&:not(:last-of-type) {
 			margin-right: 7px;
 		}
+
 		svg {
 			width: 25px;
 			height: 25px;

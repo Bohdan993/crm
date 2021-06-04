@@ -1,147 +1,173 @@
 import addTask from '../fetchingData/Employer/WorkModal/addTask'
 import deleteTask from '../fetchingData/Employer/WorkModal/deleteTask'
 import saveFieldsData from '../fetchingData/saveFieldsData'
-import {el, svg, list, setAttr} from '../../../libs/libs'
+import {
+    el,
+    svg,
+    list,
+    setAttr
+} from '../../../libs/libs'
 import initElasticArea from '../initElasticArea'
 import employersStorage from '../Storage/globalEmployers'
+import employerListUpdateEvent from './../CustomEvents/employerListUpdateEvent';
 
 class TaskItem {
-	constructor(type){
-
+    constructor(type) {
         this.type = type
-		this.el = el('div.add-task-item', 
-        		el('i.ico', 
-        			svg('svg', svg('use', {
-        				xlink: {href: "img/sprites/svg/symbol/sprite.svg#attention"}
-        			}))),
-        		this.textarea = el('textarea.sidebar__task-input', {
-        			rows: '1',
-        			'data-elastic': true
-        		}),
-        		this.delete = el('span.delete-task-item'))
-
-			this.delete.addEventListener('click', e => {
-                // if(this.type === 'employer') {
-                    this.context.count--
-
-                    if(this.type === 'employer') {
-
-                        // console.log(this.context)
-                        deleteTask({
-                            id: this.data.id_employer_task, 
-                            id_employer: this.context.id,
-                            str: 'employers'
-                        })
-                    } else {
-                        deleteTask({
-                            id: this.data.id_employer_task, 
-                            id_employer: this.context.id,
-                            str: 'vacancies'
-                        })
+        this.el = el('div.add-task-item',
+            el('i.ico',
+                svg('svg', svg('use', {
+                    xlink: {
+                        href: "img/sprites/svg/symbol/sprite.svg#attention"
                     }
-                    
+                }))),
+            this.textarea = el('textarea.sidebar__task-input', {
+                rows: '1',
+                'data-elastic': true
+            }),
+            this.delete = el('span.delete-task-item'))
 
-                    if(this.type === 'employer') {
-                        employersStorage.setPartialState(this.context.id, 'id_employer', 'task', (this.context.count > 0))
-                    }
-				
-			})
+        this.delete.addEventListener('click', e => {
+            this.context.count--
 
-            this.textarea.addEventListener('change', e=> {
-                
-                   saveFieldsData({
-                    str: 'employers',
-                    id: this.context.id,
-                    value: encodeURIComponent(this.textarea.value), 
-                    field: 'name', 
-                    target: 'task', 
-                    id_target: this.data.id_employer_task
-                   })
-                   
-                if(this.type === 'employer' && this.__redom_index === this.context.count - 1) {
-                    employersStorage.setPartialState(this.context.id, 'id_employer', 'task_last', this.textarea.value)
-                }
+            if (this.type === 'employer') {
+
+                deleteTask({
+                    id: this.data.id_employer_task,
+                    id_employer: this.context.id,
+                    str: 'employers'
+                })
+
+                employersStorage.setPartialState(this.context.id, 'id_employer', 'task', (this.context.count > 0))
+                document.dispatchEvent(employerListUpdateEvent)
+            } else {
+                deleteTask({
+                    id: this.data.id_employer_task,
+                    id_employer: this.context.id,
+                    str: 'vacancies'
+                })
+            }
+
+        })
+
+        this.textarea.addEventListener('change', e => {
+
+            saveFieldsData({
+                str: 'employers',
+                id: this.context.id,
+                value: encodeURIComponent(this.textarea.value),
+                field: 'name',
+                target: 'task',
+                id_target: this.data.id_employer_task
             })
 
-            this.textarea.addEventListener('input', e => {
-                initElasticArea(this.textarea)
-            })
-            
+            if (this.type === 'employer' && this.__redom_index === this.context.count - 1) {
+                employersStorage.setPartialState(this.context.id, 'id_employer', 'task_last', this.textarea.value)
+            }
+        })
+
+        this.textarea.addEventListener('input', e => {
+            initElasticArea(this.textarea)
+        })
 
 
-	}
 
-	update(data, index, items, context) {
+    }
 
-        // console.log(context, 'ONE TASK')
+    update(data, index, items, context) {
+
+        setAttr(this.textarea, {
+            value: data.name
+        })
 
 
-        // console.log(context)
-        
-		setAttr(this.textarea, {
-			value: data.name
-		})
+        // if (!data.name && this.type === 'employer' && context.isNew) {
+        //     context.count--
+        //     deleteTask({
+        //         id: data.id_employer_task,
+        //         id_employer: context.id,
+        //         str: 'employers'
+        //     })
 
-		this.data = data
-		this.context = context
+        //     employersStorage.setPartialState(context.id, 'id_employer', 'task', (context.count > 0))
+        //     document.dispatchEvent(employerListUpdateEvent)
+        // }
 
-        // console.log(this.context)
-	}
+        // if (!data.name && this.type === 'vacancy' && context.isNew) {
+        //     context.count--
+        //     deleteTask({
+        //         id: data.id_employer_task,
+        //         id_employer: context.id,
+        //         str: 'vacancies'
+        //     })
+        // }
 
-    onmount (){
-        // console.log('i am mounted')
+
+        this.data = data
+        this.context = context
+
+
+    }
+
+    onmount() {
         initElasticArea(this.textarea)
     }
 }
 
 export default class Task { // to ../fetchingData/Employer/WorkModal
     constructor(type) {
+        this.data = {}
         this.type = type
         this.el = el('div.input-group.add-task-group',
-        	el('div.input-group__control',
-        		el('p', 'Задачи'),
-        		this.addTask = el('div.add-item', 
-        			el('span', '+'), 'добавить')
-        	),
-        	this.list = list('div.tasks-layer', TaskItem, 'id_employer_task', type)
+            el('div.input-group__control',
+                el('p', 'Задачи'),
+                this.addTask = el('div.add-item',
+                    el('span', '+'), 'добавить')
+            ),
+            this.list = list('div.tasks-layer', TaskItem, 'id_employer_task', type)
         )
-        
-        
 
         this.addTask.addEventListener('click', e => {
-                // console.log(type)
-                this.count++
-                if(this.type === 'employer') {
-                    addTask({
-                        id: this.data.id,
-                        str:'employers'
-                    })
-                    employersStorage.setPartialState(this.data.id, 'id_employer', 'task', (this.count > 0))
-                } else {
-                    addTask({
-                        id: this.data.id,
-                        str:'vacancies'
-                    })
-                }
-        		
-            })
+
+            this.count++
+            if (this.type === 'employer') {
+
+                addTask({
+                    id: this.data.id,
+                    str: 'employers'
+                })
+                employersStorage.setPartialState(this.data.id, 'id_employer', 'task', (this.count > 0))
+                document.dispatchEvent(employerListUpdateEvent)
+
+            } else {
+                addTask({
+                    id: this.data.id,
+                    str: 'vacancies'
+                })
+            }
+
+        })
     }
     update(data) {
-        
-    	console.log(data)
+
         this.count = data.tasks ? data.tasks.length : 0
-    	this.list.update(data.tasks, {id: data.id, count: this.count})
-     	this.data = data
-        
+        this.list.update(data.tasks, {
+            id: data.id,
+            count: this.count
+        })
+        this.data = data
+
     }
 
 
     onmount() {
 
-
         //Обновить список задач при загрузке информации о работодателе на странице вакансий
         document.addEventListener('storageemployeradd', (e) => {
-            const {vacancyEmployerData : employer, employerId} = e.detail
+            const {
+                vacancyEmployerData: employer,
+                employerId
+            } = e.detail
 
             const tasksData = {
                 tasks: employer.task,
@@ -152,6 +178,38 @@ export default class Task { // to ../fetchingData/Employer/WorkModal
 
         })
 
+
+        document.addEventListener('employermodalcloseeevent', e => {
+
+            this.data.tasks.forEach(task => {
+                if (!task.name) {
+                    this.count--
+                    deleteTask({
+                        id: task.id_employer_task,
+                        id_employer: this.data.id,
+                        str: 'employers'
+                    })
+
+                    employersStorage.setPartialState(this.data.id, 'id_employer', 'task', (this.count > 0))
+                    document.dispatchEvent(employerListUpdateEvent)
+                }
+            })
+        })
+
+
+        document.addEventListener('vacancymodalcloseeevent', e => {
+
+            this.data.tasks.forEach(task => {
+                if (!task.name) {
+                    this.count--
+                    deleteTask({
+                        id: task.id_employer_task,
+                        id_employer: this.data.id,
+                        str: 'vacancies'
+                    })
+                }
+            })
+        })
+
     }
 }
-

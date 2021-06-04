@@ -11,8 +11,6 @@ import hiddenClassMixin from '../Mixins/hiddenClassMixin'
 import ShowMoreBtn from './Employer/WorkModal/ShowMoreBtn'
 import checkIfWrapperIsEmpty from '../checkIfWrapperIsEmpty'
 import initOverlayScrollbars from '../OverlayScrollbarsInit'
-
-// import getVacancyModalFeedback from '../fetchingData/Vacancy/VacancyModal/getVacancyModalFeedback'
 import getWorkModalFeedback from '../fetchingData/Employer/WorkModal/getWorkModalFeedback'
 import addFeedback from '../fetchingData/Employer/WorkModal/addFeedback'
 import deleteFeedback from '../fetchingData/Employer/WorkModal/deleteFeedback'
@@ -25,6 +23,8 @@ import {
 } from '../helper.js'
 import storage from '../Storage/globalEmployers'
 
+let globalID = null
+let globalFeedback = null
 
 class FeedbackTypeRow {
 	constructor() {
@@ -37,18 +37,13 @@ class FeedbackTypeRow {
 			this.label = el('label', {
 					for: 'inf-feedback-rbtn'
 				},
-				this.ico = el('i.ico.s-info-feedback',
-					// svg('svg', this.svg = svg('use', {
-					// 	xlink: {href: "img/sprites/svg/symbol/sprite.svg#inf-feedback"}
-					// }))
-				),
+				this.ico = el('i.ico.s-info-feedback'),
 				this.text = el('span', 'Информационный'))
 		)
 
 	}
 	update(data) {
 
-		// console.log(data['data-id'])
 		setAttr(this.input, {
 			'data-id': data['data-id'],
 			id: data.id,
@@ -64,10 +59,6 @@ class FeedbackTypeRow {
 		setAttr(this.text, {
 			innerText: data.label
 		})
-
-		// setAttr(this.svg, {
-		// 	xlink: {href: `img/sprites/svg/symbol/sprite.svg#${data.ico}`}
-		// })
 
 		setAttr(this.ico, {
 			classList: `ico s-${data.ico}`
@@ -141,8 +132,6 @@ class FeedbackClient {
 				    </li>
 				  `
 			},
-
-			// // We want to display the title
 			getResultValue: result => {
 
 				sessionStorage.setItem('currClient', JSON.stringify(result.id))
@@ -169,11 +158,8 @@ class FeedbackClient {
 
 		})
 
-		// console.log(this.el.closest('[data-tippy-root]'))
-
 		this.form.addEventListener('submit', (e) => {
 			e.preventDefault()
-			// console.log(this.parent)
 			if (this.inputClient.checked) {
 				if (this.findClient.value.trim() === '') {
 					toastr.error(`Выберите клиента`, 'Ошибка!')
@@ -290,15 +276,9 @@ class FeedbackEdit {
 			el('div.modal-row__feedback-speakers',
 				this.typeFeedback = el('i.modal-row__feedback-ico',
 					this.typeFeedbackIco = el('i.ico')
-					// svg('svg', this.typeFeedbackIco = svg('use', {
-					// 	xlink: {href: 'img/sprites/svg/symbol/sprite.svg#pos-feedback-white'}
-					// }))
 				),
 				this.choiseClient = el('a.modal-row__feedback-choise', 'Выбрать'),
 				this.direction = el('i.modal-row__feedback-direction-edit.change-direction',
-					// svg('svg', svg('use', {
-					// 	xlink: {href:"img/sprites/svg/symbol/sprite.svg#arrow-white"}
-					// }))
 					el('span.s-arrow-white')
 				),
 				this.to = el('p.modal-row__feedback-to', 'Thompson Equestrian Partners')
@@ -331,7 +311,6 @@ class FeedbackEdit {
 
 		this.saveFeedback.addEventListener('click', (e) => {
 			e.preventDefault()
-			// console.log(+JSON.parse(sessionStorage.getItem('currClient')))
 			if (this.data.type === 'employer') {
 
 				addFeedback({
@@ -442,18 +421,22 @@ class FeedbackEdit {
 	}
 
 	update(data) {
-		// console.log(data)
+
+		// console.log(this)
+		console.log(storage, data.type)
 		// console.log(storage.getPartialState(data.id, 'id_employer', 'name'))
+
 		setAttr(this.to, {
-			innerText: storage.getPartialState(data.id, 'id_employer', 'name')
+			innerText: data.type === "employer" ? 
+			storage.getPartialState(data.id, 'id_employer', 'name') :
+			JSON.parse(sessionStorage.getItem('currVacancyEmployer')).data.name
+
 		})
 
 
-		// console.log(data.type_arrow)
-		// console.log(data.clients)
 		setAttr(this.choiseClient, {
 			innerText: data.type_arrow === '0' ? data.from : data.to,
-			'data-currClient': data.type_arrow === '0' ? data.clients && data.from !== 'УАМФ' && data.clients.filter(client => client.snp.trim() === data.from)[0].id : data.clients && data.to !== 'УАМФ' && data.clients.filter(client => client.snp.trim() === data.to)[0].id
+			'data-currClient': data.type_arrow === '0' ? data.clients && data.clients.length && data.from !== 'УАМФ' && data.clients.filter(client => client.snp.trim() === data.from)[0].id : data.clients && data.to !== 'УАМФ' && data.clients.filter(client => client.snp.trim() === data.to)[0].id
 		})
 
 		this.changechoiseClientText(data.type_arrow === '0' ? data.from : data.to)
@@ -472,8 +455,6 @@ class FeedbackEdit {
 			classList: `ico ${data.typeFeedback === '0' ? 's-info-feedback-white' : data.typeFeedback === '1' ? 's-pos-feedback-white' : 's-neg-feedback-white'}`
 		})
 
-
-		// console.log(data)
 
 		setAttr(this.date, {
 			value: data.date || new Date().toLocaleDateString()
@@ -666,7 +647,7 @@ export default class Feedback {
 			this.feedbackEdit.update(true, {
 				id_feedback: '0',
 				type,
-				id: this.data.data.id,
+				id: this.data.id,
 				count: this.data.count,
 				text: '',
 				date: '',
@@ -674,13 +655,46 @@ export default class Feedback {
 				from: 'Выбрать',
 				to: '',
 				type_arrow: '0',
-				clients: null
+				clients: []
 			})
 			checkIfWrapperIsEmpty(this.modalRowWrapper)
 			this.feedbackEdit.view.feedbackEditPlace = this.feedbackEdit
 			this.feedbackEdit.view.parent = this
 
 		})
+
+
+		this.showMoreHandler = (e) => {
+			if (this.type === 'employer') {
+				getWorkModalFeedback({
+					id: this.data.data.id,
+					showing: true,
+					p: this.pageShow,
+					other: 5,
+					str: 'employers'
+				})
+			} else {
+
+				getWorkModalFeedback({
+					id: this.data.data.id,
+					showing: true,
+					p: this.pageShow,
+					other: 1,
+					str: 'vacancies',
+					changed: this.data.context === 'vacancyEmployerChanged' ? true : false
+				})
+			}
+
+
+			setAttr(this.modalLayer, {
+				style: {
+					"max-height": this.modalLayer.offsetHeight + 'px',
+				}
+			})
+
+		}
+
+		
 
 
 		initOverlayScrollbars(this.modalLayer, type)
@@ -691,8 +705,7 @@ export default class Feedback {
 		this.flagShow = false
 	}
 
-	update(data, index, items, context) {
-		// console.log(data)
+	update(data, context) {
 		let {
 			loading,
 			showing
@@ -707,8 +720,11 @@ export default class Feedback {
 			this.feedbackEdit.update(false)
 		}
 
+
+
+
 		this.data.data = data
-		this.data.index = index
+		this.data.context = context
 		this.data.count = (this.pageShow - 1) * 5
 
 
@@ -721,48 +737,17 @@ export default class Feedback {
 		})
 
 
+
 		//Пагинация
 		if (data.data && data.data.length < data.total) {
 			this.showMore.update(true, 'показать еще')
 
-			if (!this.flagShow) {
-				this.showMore.el.addEventListener('click', (e) => {
-					// console.log(this.type)
-					if (this.type === 'employer') {
-						getWorkModalFeedback({
-							id: this.data.data.id,
-							showing: true,
-							p: this.pageShow,
-							other: 5,
-							str: 'employers'
-						})
-					} else {
-						getWorkModalFeedback({
-							id: this.data.data.id,
-							showing: true,
-							p: this.pageShow,
-							other: 1,
-							str: 'vacancies'
-						})
-					}
-
-
-					setAttr(this.modalLayer, {
-						style: {
-							"max-height": this.modalLayer.offsetHeight + 'px',
-						}
-					})
-
-				})
-
-				this.flagShow = true
-			}
-
+			this.showMore.el.addEventListener('click', this.showMoreHandler)
+	
 		} else {
 			this.showMore.update(false)
-			this.flagShow = false
 		}
-		console.log(data)
+
 		setAttr(this.feedbackCount, {
 			innerText: data.total !== 0 ? " " + data.total : ''
 		})
@@ -824,17 +809,23 @@ export default class Feedback {
 			} = e.detail
 
 
-			console.log(e.detail)
-
 			const feedbackData = {
 				id: employerId,
 				badFeedback: employer.total !== undefined ? employer.total.total_bad_feedback : 0,
-				data: employer.other.feedback, 
-				total: employer.total !== undefined ? employer.total.feedback : employer.other.feedback.length, 
+				data: employer.other.feedback,
+				total: employer.total !== undefined ? employer.total.feedback : employer.other.feedback.length,
+				loading: true,
 			}
 
 
-			this.update(feedbackData)
+			globalID = employerId
+			globalFeedback = employer.other.feedback
+
+
+			// console.log(globalID, globalFeedback)
+
+
+			this.update(feedbackData, 'vacancyEmployerChanged')
 
 		})
 	}
@@ -844,7 +835,10 @@ export default class Feedback {
 
 
 export {
-	FeedbackTypeRow
+	FeedbackTypeRow,
+	globalID,
+	globalFeedback
 }
+
 
 Object.assign(Feedback.prototype, hiddenClassMixin)

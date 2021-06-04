@@ -1,7 +1,6 @@
 import {
 	el,
 	setAttr,
-	list,
 	MicroModal
 } from '../../../../../libs/libs'
 import initWorkModalSelect from '../../../initWorkModalSelect'
@@ -11,7 +10,6 @@ import deleteContactHistory from '../../../fetchingData/Employer/WorkModal/delet
 import {
 	dateInputChange
 } from '../../../helper.js'
-let initedSelects = false
 
 export default class ContactHistoryModal {
 	constructor() {
@@ -85,7 +83,6 @@ export default class ContactHistoryModal {
 
 
 		this.confirm.addEventListener('click', (e) => {
-			// console.log(this.date.value)
 			addContactHistory({
 					id_contact: this.data.data.id !== '' ? this.data.data.id : 0,
 					message: encodeURIComponent(this.textarea.value.trim()),

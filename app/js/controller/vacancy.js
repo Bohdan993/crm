@@ -6,12 +6,10 @@ import {
 	addNewTask,
 	setFeedbackDate,
 	addFeedbackForm,
-	setDateToSlider,
 	autocompleteInput,
 	showChooseBlockFullInfo,
 	switchModalParts,
 	feedbackEdit,
-	getEmployersList,
 	getManagerPopup,
 	getManagerVacancyPopup,
 	getIntermediariesPopup,
@@ -19,9 +17,7 @@ import {
 	getManufacturyTypePopup,
 	getTypeContact,
 	getClients,
-	// fetchScroll,
 	vacancyFetchScroll,
-	addNewEmployer,
 	mountSearchInput,
 	mountContactDataPopup,
 	mountLastContactPopup,
@@ -39,7 +35,8 @@ import {
 	getVacancyEmployers,
 	addNewVacancy,
 	mountActiveArchive,
-	mountVacancyStatusesPopup
+	mountVacancyStatusesPopup,
+	mountVacancyList
 } from '../model'
 
 import {
@@ -57,7 +54,7 @@ import {
 	sliders,
 	findEmployer,
 	findEmployer2,
-	chooseEmployer, 
+	chooseEmployer,
 	chooseProductType,
 	workTypeTemplate,
 	chooseFullInfo,
@@ -68,29 +65,27 @@ import {
 	modalSwitchers,
 	editBtns,
 	workModalFeedback,
-	employerRowsWrapper,
+	// employerRowsWrapper,
 	vacancyRowsWrapper
 
 } from '../view'
 
 const app = {
 	init() {
+		this.mvl()
 		this.initOSB()
 		this.it()
 		this.iwms()
 		this.ant()
 		this.sfd()
 		this.aff()
-		this.sdts()
 		this.ai()
 		this.scbfi()
 		this.smp()
 		this.fe()
-		this.gel()
 		this.gmp()
 		this.gip()
 		this.gcp()
-		this.ane()
 		this.itstr()
 		this.gmtp()
 		this.msi()
@@ -116,8 +111,10 @@ const app = {
 		this.gve()
 		this.mvsp()
 	},
-
-	initOSB(){
+	mvl() {
+		mountVacancyList()
+	},
+	initOSB() {
 		initOverlayScrollbars(sidebarLayout)
 		initOverlayScrollbars(workModalRows)
 		initOverlayScrollbars(workModalSidebar)
@@ -130,83 +127,76 @@ const app = {
 	itstr() {
 		initToastr()
 	},
-	iwms(){
-		if(workModalManagerSelect) {
+	iwms() {
+		if (workModalManagerSelect) {
 			initWorkModalSelect(workModalManagerSelect)
 		}
 
-		
-		if(modal2ManagerSelect){
+
+		if (modal2ManagerSelect) {
 			initWorkModalSelect(modal2ManagerSelect)
 		}
-		
 
-		if(modal2ContactSelect){
+
+		if (modal2ContactSelect) {
 			initWorkModalSelect(modal2ContactSelect)
 		}
 	},
 	ant() {
-		if(workModalAddTask) {
+		if (workModalAddTask) {
 			addNewTask(workModalAddTask)
 		}
-		
+
 	},
 	sfd() {
-		if(workModalFeedbackDate) {
+		if (workModalFeedbackDate) {
 			setFeedbackDate(workModalFeedbackDate)
 		}
-		
-		if(modal2ContactDate) {
+
+		if (modal2ContactDate) {
 			setFeedbackDate(modal2ContactDate)
 		}
-		
-		
+
+
 	},
 	aff() {
-		if(addfeedbackForm) {
+		if (addfeedbackForm) {
 			addFeedbackForm(feedbackAddItem, addfeedbackForm)
 		}
-		
-	},
-	sdts() {
-		setDateToSlider(sliders)
+
 	},
 	ai() {
-		if(findEmployer) {
+		if (findEmployer) {
 			autocompleteInput(findEmployer, chooseEmployer, chooseProductType)
 		}
 
-		if(findEmployer2) {
+		if (findEmployer2) {
 			autocompleteInput(findEmployer2, chooseEmployer2, chooseProductType2)
 		}
-		
+
 	},
 
 	scbfi() {
-		if(workTypeTemplate) {
+		if (workTypeTemplate) {
 			showChooseBlockFullInfo(workTypeTemplate, {
 				prev: chooseProductType,
 				next: chooseFullInfo,
 				block: mainInfoChooseBlock
 			})
 		}
-		
+
 	},
 	smp() {
 		switchModalParts(modalSwitchers, modalParts)
 	},
 	fe() {
-		 feedbackEdit(editBtns)
-	},
-
-	gel() {
-		getEmployersList()
+		feedbackEdit(editBtns)
 	},
 
 	gmp() {
 		getManagerPopup()
 	},
-	gmvp(){
+	gmvp() {
 		getManagerVacancyPopup()
 	},
 	gip() {
@@ -215,75 +205,70 @@ const app = {
 	gcp() {
 		getCountryPopup()
 	},
-	gmtp(){
+	gmtp() {
 		getManufacturyTypePopup()
 	},
-	gtc(){
+	gtc() {
 		getTypeContact()
 	},
-	gc(){
+	gc() {
 		getClients()
 	},
-	ane() {
-		addNewEmployer()
-	},
-	msi(){
+	msi() {
 		mountSearchInput()
 	},
-	msdp(){
+	msdp() {
 		mountContactDataPopup()
 	},
-	mlcp(){
+	mlcp() {
 		mountLastContactPopup()
 	},
-	msp(){
+	msp() {
 		mountSortingPopup()
 	},
 	mvp() {
 		mountVacancyPopup()
 	},
-	fs(){
-		// if(vacancyRowsWrapper) {
+	fs() {
 		vacancyFetchScroll(vacancyRowsWrapper)
-		// }
 	},
-	mchm(){
+	mchm() {
 		mountContactHistoryModal()
 	},
-	gvl(){
+	gvl() {
 		getVacancyList()
 	},
-	gcvp(){
+	gcvp() {
 		getCountryVacancyPopup()
 	},
-	msvp(){
-		mountSortingVacancyPopup(	)
+	msvp() {
+		mountSortingVacancyPopup()
 	},
-	gvwt(){
+	gvwt() {
 		getVacancyWorkType()
 	},
-	gsvp(){
+	gsvp() {
 		getStatusesVacancyPopup()
 	},
 	msiv() {
 		mountSearchInputVacancy()
 	},
-	mdatp(){
+	mdatp() {
 		mountDateAndTermsPopup()
 	},
-	gcv(){
+	gcv() {
 		getClientsVacancy()
 	},
-	maa(){
+	maa() {
 		mountActiveArchive()
 	},
-	anv(){
+	anv() {
 		addNewVacancy()
 	},
-	gve(){
+	gve() {
 		getVacancyEmployers()
 	},
-	mvsp(){
+	mvsp() {
 		mountVacancyStatusesPopup()
 	}
 

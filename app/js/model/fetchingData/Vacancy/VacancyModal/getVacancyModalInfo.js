@@ -29,6 +29,7 @@ import {
 	modalParts
 } from '../../../../view'
 import storage from '../../../Storage'
+import vacancyStorage from '../../../Storage/globalVacancies'
 import {
 	changeActiveClass
 } from '../../../switchModalParts'
@@ -95,9 +96,8 @@ if (vacancyArchive) {
 
 
 
-const getVacancyModalInfo = async (id = '1') => {
+const getVacancyModalInfo = async (id = '1', isNewVacancy = false) => {
 
-	console.log(storage)
 	changeActiveClass(modalSwitchers, modalParts, '#vacancy-data', '[data-part="vacancy-data"]')
 
 
@@ -105,42 +105,8 @@ const getVacancyModalInfo = async (id = '1') => {
 		const data = await fetch.getResourse(`/vacancies/get/?id=${id}&section=1`)
 
 
-		console.log(data)
-
-		if (storage.isSet(id)) {
-			clients.update(storage.getState(id))
-		}
-
-
-		if (!storage.isSet(id)) {
-			getVacancyClients(id)
-				.then(res => {
-					if (res) {
-						storage.setState(id, {
-							id,
-							data: res
-						})
-						clients.update({
-							id,
-							data: res
-						})
-					} else {
-						storage.setState(id, {
-							id,
-							data: []
-						})
-						clients.update({
-							id,
-							data: []
-						})
-					}
-				})
-		}
-
-		
 
 		const mainPart = data.data ? data.data.main : []
-		console.log(mainPart)
 		const note = mainPart.employer ? mainPart.employer.note : ''
 		const id_manager = mainPart.employer ? mainPart.employer.id_manager : '0'
 		const employer = mainPart.employer ? mainPart.employer : {}
@@ -150,8 +116,10 @@ const getVacancyModalInfo = async (id = '1') => {
 		const type_production = mainPart.type_production
 		const type_vacancy = mainPart.type_vacancy
 		const production = mainPart.production || []
+		const isArchive = mainPart.archive
+		const closedVacancies = vacancyStorage.getPartialState(id, 'id_vacancy', 'status')
 
-
+		console.log(vacancyStorage)
 
 		const demandsData = {
 			id,
@@ -187,6 +155,7 @@ const getVacancyModalInfo = async (id = '1') => {
 			type_production,
 			type_vacancy,
 			production,
+			closedVacancies,
 			vacancyName: mainPart.name,
 			period: mainPart.period,
 			clients: mainPart.total_client,
@@ -208,6 +177,7 @@ const getVacancyModalInfo = async (id = '1') => {
 
 		const managersData = {
 			id_manager,
+			id_vacancy: id,
 			id: id_employer
 		}
 
@@ -225,7 +195,39 @@ const getVacancyModalInfo = async (id = '1') => {
 		noteEl.update(notesData)
 		deleteComponent.update(deleteData)
 		acvccop.update(id)
-		acvcarc.update(id)
+		acvcarc.update(id, isArchive)
+
+		if (storage.isSet(id)) {
+			clients.update(storage.getState(id), mrll)
+		}
+
+
+		if (!storage.isSet(id)) {
+			// console.log('HERE')
+			getVacancyClients(id, isNewVacancy)
+				.then(res => {
+					if (res) {
+						storage.setState(id, {
+							id,
+							data: res
+						})
+						clients.update({
+							id,
+							data: res
+						}, mrll)
+					} else {
+						storage.setState(id, {
+							id,
+							data: []
+						})
+						clients.update({
+							id,
+							data: []
+						}, mrll)
+					}
+				})
+		}
+
 		loader.update(false)
 
 

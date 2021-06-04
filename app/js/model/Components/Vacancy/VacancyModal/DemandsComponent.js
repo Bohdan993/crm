@@ -1,12 +1,22 @@
-import {el, setAttr, place} from '../../../../../libs/libs'
-import {save} from '../../../helper'
+import {
+	el,
+	setAttr
+} from '../../../../../libs/libs'
+import {
+	save
+} from '../../../helper'
+
+import vacancyStorage from '../../../Storage/globalVacancies'
+import vacancyListUpdateEvent from '../../../CustomEvents/vacancyListUpdateEvent'
+
+
 export default class DemandComponent {
-	constructor(){
+	constructor() {
 
 		this.data = {}
 		this.save = save.bind(this)
-		this.el = el('div.demands-layer.modal-row__inner-layer', 
-			el('div.modal-row__controls', 
+		this.el = el('div.demands-layer.modal-row__inner-layer',
+			el('div.modal-row__controls',
 				el('p', 'Требования')),
 			el('div.modal-row__layer',
 				el('div.demands__top',
@@ -47,66 +57,86 @@ export default class DemandComponent {
 							this.specReq = el('textarea.vacancy-textarea', {
 								rows: 3
 							}))),
-					)))
+				)))
 
 
 
 		this.clientsNumber.addEventListener('change', (e) => {
+
+			const closedVacancies = vacancyStorage.getPartialState(this.data.id, 'id_vacancy', 'status')
+			const totalClientsCount = closedVacancies.slice(1).reduce((acc, next) => acc + next, 0)
+
+
 			this.save({
-				id: this.data.id, 
-				value: this.clientsNumber.value.trim(), 
+				id: this.data.id,
+				value: this.clientsNumber.value.trim(),
 				field: 'total_client'
 			})
 
+			console.log(vacancyStorage)
+
 			setAttr(this.sibling.totalClients, {
-				innerText: this.clientsNumber.value + ' - '
+				innerText: this.clientsNumber.value
 			})
+
+			setAttr(this.sibling.totalClientsCount, {
+				innerText: +this.clientsNumber.value - totalClientsCount
+			})
+
+			vacancyStorage.setPartialState(this.data.id, 'id_vacancy', 'total_client', this.clientsNumber.value.trim())
+			document.dispatchEvent(vacancyListUpdateEvent)
 		})
 
 		this.men.addEventListener('change', (e) => {
 			this.save({
-				id: this.data.id, 
-				value: this.men.value.trim(), 
+				id: this.data.id,
+				value: this.men.value.trim(),
 				field: 'total_man'
 			})
 
 			setAttr(this.sibling.numberClients, {
-				innerText: `${'\u00A0'}М${this.men.value} Ж${this.women.value}`
+				innerText: `${'\u00A0'}-${'\u00A0'}${+this.men.value > 0 ? 'М' + this.men.value : ''} ${+this.women.value > 0 ? 'Ж' + this.women.value : ''}`
 			})
+
+			vacancyStorage.setPartialState(this.data.id, 'id_vacancy', 'total_man', this.men.value.trim())
+			document.dispatchEvent(vacancyListUpdateEvent)
 		})
 
 		this.women.addEventListener('change', (e) => {
 			this.save({
-				id: this.data.id, 
-				value: this.women.value.trim(), 
+				id: this.data.id,
+				value: this.women.value.trim(),
 				field: 'total_woman'
 			})
 
 			setAttr(this.sibling.numberClients, {
-				innerText: `${'\u00A0'}М${this.men.value} Ж${this.women.value}`
+				innerText: `${'\u00A0'}-${'\u00A0'}${+this.men.value > 0 ? 'М' + this.men.value : ''} ${+this.women.value > 0 ? 'Ж' + this.women.value : ''}`
 			})
+
+			vacancyStorage.setPartialState(this.data.id, 'id_vacancy', 'total_woman', this.women.value.trim())
+			document.dispatchEvent(vacancyListUpdateEvent)
 		})
 
 		this.languageLevel.addEventListener('change', (e) => {
 			this.save({
-				id: this.data.id, 
-				value: this.languageLevel.value.trim(), 
+				id: this.data.id,
+				value: this.languageLevel.value.trim(),
 				field: 'language_skill'
 			})
 		})
 
 		this.workExp.addEventListener('change', (e) => {
 			this.save({
-				id: this.data.id, 
-				value: this.workExp.value.trim(), 
+				id: this.data.id,
+				value: this.workExp.value.trim(),
 				field: 'experience_work'
 			})
 		})
 
 		this.specReq.addEventListener('change', (e) => {
 			this.save({
-				id: this.data.id, 
-				value: this.specReq.value.trim(), 
+				id: this.data.id,
+				value: this.specReq.value.trim(),
 				field: 'special_requirement'
 			})
 		})
@@ -114,32 +144,30 @@ export default class DemandComponent {
 	}
 
 
-	update(data, context){
-		// console.log(context)
-		console.log(data)
+	update(data, context) {
 
-		setAttr(this.clientsNumber , {
+		setAttr(this.clientsNumber, {
 			value: data.clients === '0' ? '' : data.clients
 		})
 
-		setAttr(this.men , {
+		setAttr(this.men, {
 			value: data.men === '0' ? '' : data.men
 		})
 
-		setAttr(this.women , {
+		setAttr(this.women, {
 			value: data.women === '0' ? '' : data.women
 		})
 
-		setAttr(this.languageLevel , {
+		setAttr(this.languageLevel, {
 			value: data.languageSkill
 		})
 
-		setAttr(this.workExp , {
-			value:  data.workExp
+		setAttr(this.workExp, {
+			value: data.workExp
 		})
 
-		setAttr(this.specReq , {
-			value:  data.specialReq
+		setAttr(this.specReq, {
+			value: data.specialReq
 		})
 
 
@@ -148,5 +176,9 @@ export default class DemandComponent {
 	}
 
 
-}
+	onmount() {
 
+	}
+
+
+}

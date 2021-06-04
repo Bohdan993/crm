@@ -9,6 +9,8 @@ import saveFieldsData from '../../../fetchingData/saveFieldsData'
 import addManufacturyType from '../../../fetchingData/Employer/WorkModal/addManufacturyType'
 import deleteManufacturyType from '../../../fetchingData/Employer/WorkModal/deleteManufacturyType'
 import storage from '../../../Storage/globalEmployers'
+import employerListUpdateEvent from '../../../CustomEvents/employerListUpdateEvent';
+
 
 class WorkModalManufacturyTypeRow {
     constructor() {
@@ -25,7 +27,7 @@ class WorkModalManufacturyTypeRow {
             )
         )
 
-        
+
 
         this.textArea.addEventListener('change', e => {
             saveFieldsData({
@@ -56,11 +58,12 @@ class WorkModalManufacturyTypeRow {
             })
 
             storage.setPartialState(this.data.context.id_employer, 'id_employer', 'production', this.data.context.final)
+            document.dispatchEvent(employerListUpdateEvent)
         })
 
         this.select.el.addEventListener('change', (e) => {
 
-            saveFieldsData( {
+            saveFieldsData({
                 str: 'employers',
                 id: this.data.context.id_employer,
                 value: this.select.el.value,
@@ -72,7 +75,7 @@ class WorkModalManufacturyTypeRow {
 
             //Обновление данных в списке работодателей
             // if(this.select.el.value !== '0') {
-              this.data.context.products[this.data.index] = this.select.el.value  
+            this.data.context.products[this.data.index] = this.select.el.value
             // }
 
 
@@ -83,7 +86,7 @@ class WorkModalManufacturyTypeRow {
                         this.data.context.final[ind] = el.name
                     }
 
-                    if(elem === '0') {
+                    if (elem === '0') {
                         this.data.context.final[ind] = ''
                     }
 
@@ -92,9 +95,10 @@ class WorkModalManufacturyTypeRow {
 
 
             storage.setPartialState(this.data.context.id_employer, 'id_employer', 'production', this.data.context.final)
+            document.dispatchEvent(employerListUpdateEvent)
         })
 
-        
+
 
     }
 
@@ -145,16 +149,18 @@ export default class WorkModalManufacturyType {
 
     update(data, context) {
         console.log(data, context)
-        let { adding } = context
-        if(!adding) {
+        let {
+            adding
+        } = context
+        if (!adding) {
             data.data = data.data.filter(el => {
-                if(el.id_spec_job_list === '0') {
-                  deleteManufacturyType(el.id, undefined)
+                if (el.id_spec_job_list === '0') {
+                    deleteManufacturyType(el.id, undefined)
                 }
                 return el.id_spec_job_list !== '0'
             })
         }
-        
+
         console.log(data)
         this.productsArr = data.data.map(el => el.id_spec_job_list)
 
@@ -184,7 +190,7 @@ export default class WorkModalManufacturyType {
         // this.data.index = index
     }
 
-    getItemsFromLocalStorage() { 
+    getItemsFromLocalStorage() {
         let products = JSON.parse(localStorage.getItem('type_manufactury')) || []
 
         return {

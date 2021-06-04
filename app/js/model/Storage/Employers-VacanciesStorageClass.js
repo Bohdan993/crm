@@ -5,7 +5,6 @@ export default class StorageGlobalEmployersVacancies {
 	}
 
 
-
 	initState(data){
 
 		this.state = data
@@ -42,12 +41,12 @@ export default class StorageGlobalEmployersVacancies {
 
 
 	getPartialState(id, key, prop){
-		// console.log(this.getState())
 		let res
+		while(!this.getState().length) {
+			// console.log(this.getState())
+		}
 		this.getState().every(el => {
-			// console.log(el)
 			if(el[key] === id) {
-				// console.log(el[prop])
 				res = el[prop]
 				return false
 			} else {

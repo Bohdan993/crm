@@ -139,8 +139,6 @@ class LanguageStars {
 		this.el = el('i.ico.s-star.no-open')
 	}
 
-	update(data){
-	}
 }
 
 
@@ -172,7 +170,8 @@ export default class RowVacancyClient {
 		this.el = el("div.table-full__row.f-container.no-open",
 				el('div.table-full__cell.row__cell.cell-names.no-open', 
 					this.name = el('a.no-open', {
-						href: '#'
+						href: '#',
+						target: "_blank"
 					}),
 					this.group = place(el('span.row__indicator.indicator.department.no-open', 
 						this.groupNum = el('span.no-open')))),
@@ -191,11 +190,12 @@ export default class RowVacancyClient {
 						this.anket = place(el('i.ico.s-anket.no-open')),
 						this.manager = place(el('div.tag.manager-tag.purple-tag.no-open')))),
 				el('div.table-full__cell.row__cell.cell-exp.no-open', 
+					
+					el('div.table-full__cell-wrapper.row__cell-wrapper.cell-exp-wrapper.no-open', 
 					this.labelCourse = place(el('i.label.no-open',
 					this.labelCourseText = el('span.no-open'))),
 					this.speciality = el('p.no-open'),
-					this.language = list('div.language__wrapper.no-open', Language, 'name'),
-					
+					this.language = list('div.language__wrapper.no-open', Language, 'name'))
 					),
 				el('div.table-full__cell.row__cell.cell-notes.no-open', 
 					this.notes = el('input.no-open', {
@@ -231,7 +231,7 @@ export default class RowVacancyClient {
 
 	update(data, index, items, context){
 
-
+		// console.log(data)
 		this.timesArr = data.status_history
 		this.vacancyTooltipInstance = initVacancyTooltip(this.statusSlider.el)
 
@@ -296,7 +296,8 @@ export default class RowVacancyClient {
 
 
 		setAttr(this.name, {
-			innerText: data.main.snp
+			innerText: data.main.snp,
+			href: `clients#t=${data.id_trainees}`
 		})
 
 

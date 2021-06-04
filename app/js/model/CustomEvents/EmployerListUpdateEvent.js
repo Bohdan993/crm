@@ -1,4 +1,4 @@
-const employerListUpdateEvent = new CustomEvent("employerslistupdate", {
+const employerListUpdateEvent = new CustomEvent("employerslistupdateevent", {
           detail: {name: 'Update'}
       });
 

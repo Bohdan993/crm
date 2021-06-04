@@ -1,12 +1,14 @@
-import {el, setAttr} from '../../../../../libs/libs'
-import saveFieldsData from '../../../fetchingData/saveFieldsData'
+import {
+	el,
+	setAttr
+} from '../../../../../libs/libs'
 
 
 
 export default class WorkModalCreateVacancy {
-	constructor(){
+	constructor() {
 		this.data = {}
-		this.el = el('div.sidebar__filter-wrapper', 
+		this.el = el('div.sidebar__filter-wrapper',
 			this.link = el('a', {
 				href: '#',
 			}, 'Создать вакансию'),
@@ -14,7 +16,7 @@ export default class WorkModalCreateVacancy {
 	}
 
 
-	update(data){
+	update(data) {
 
 		setAttr(this.link, {
 			target: '_blank',
@@ -24,5 +26,3 @@ export default class WorkModalCreateVacancy {
 		this.data = data
 	}
 }
-
-

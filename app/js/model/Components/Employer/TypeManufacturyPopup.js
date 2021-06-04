@@ -2,7 +2,7 @@ import SidebarPopupInterface from '../SidebarPopupInterface'
 
 
 export default class TypeManufacturyPopup extends SidebarPopupInterface {
-  constructor(type){
+  constructor(type) {
     super(type)
   }
 
@@ -12,7 +12,7 @@ export default class TypeManufacturyPopup extends SidebarPopupInterface {
   }
 
 
-  filter(id, str, storageKey){
+  filter(id, str, storageKey) {
     super.filter(id, str, storageKey)
   }
 }

@@ -243,15 +243,15 @@ p.status {
 .table-full__row:first-child {
 	display: flex;
 	// height: auto;
-	border-bottom: unset;
-	padding-bottom: 2px;
+	// border-bottom: unset;
+	// padding-bottom: 2px;
 
 	.table-full__title {
-		flex-basis: 244/1484 * 100%;
+		flex-basis: 244/1480 * 100%;
 	}
 
 	.table-full__placeholder.first {
-		flex-basis: 389/1484 * 100%;
+		flex-basis: 389/1480 * 100%;
 		position: relative; 
 		&:after {
 			content: '';
@@ -268,11 +268,11 @@ p.status {
 	}
 
 	.table-full__placeholder.second {
-		flex-basis: 320/1484 * 100%;
+		flex-basis: 320/1480 * 100%;
 	}
 
 	.table-full__placeholder.third {
-		flex-basis: 531/1484 * 100%;
+		flex-basis: 531/1480 * 100%;
 	}
 }
 
@@ -287,7 +287,7 @@ p.status {
 
 
 .cell-names {
-	flex-basis: (240 - 17)/1484 * 100%;
+	flex-basis: (240 - 17)/1480 * 100%;
 	display: flex;
 	justify-content: space-between;
 	align-items:center;
@@ -310,7 +310,7 @@ p.status {
 }
 
 .cell-status {
-	flex-basis: (389 - 16)/1484 * 100%;
+	flex-basis: (389 - 16)/1480 * 100%;
 	padding: 0;
 	margin-left: 6px;
 	margin-right: 10px;
@@ -360,18 +360,19 @@ p.status {
 }
 
 .cell-exp {
-	flex-basis: (320 - 26)/1484 * 100%;
+	flex-basis: (320 - 26)/1480 * 100%;
 	i.label:not(:last-child) {
 		margin-right: 10px;
 	}
 
 	p:not(:last-child) {
 		margin-right: 20px;
+		min-width: 30px;
 	}
 }
 
 .cell-notes {
-	flex-basis: 531/1484 * 100%;
+	flex-basis: 530/1480 * 100%;
 	margin: 0;
 	padding: 0;
 	input {

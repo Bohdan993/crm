@@ -1,4 +1,7 @@
-import {el, setAttr} from '../../../../../libs/libs'
+import {
+	el,
+	setAttr
+} from '../../../../../libs/libs'
 import saveFieldsData from '../../../fetchingData/saveFieldsData'
 
 function onChangeHandler(e) {
@@ -16,9 +19,9 @@ function onChangeHandler(e) {
 
 
 export default class WorkModalMailing {
-	constructor(){
+	constructor() {
 		this.data = {}
-		this.el = el('div.input-group', 
+		this.el = el('div.input-group',
 			this.input = el('input', {
 				type: 'checkbox',
 				id: 'remove-sending-chbx'
@@ -31,14 +34,7 @@ export default class WorkModalMailing {
 		this.input.addEventListener('change', onChangeHandler.bind(this))
 	}
 
-	update(data){
-
-		console.log(data.mailing === '1')
-		// setAttr(this.text, {
-		// 	innerText: data
-		// })
-
-
+	update(data) {
 
 		setAttr(this.input, {
 			checked: data.mailing === '1' ? false : true
@@ -47,5 +43,3 @@ export default class WorkModalMailing {
 		this.data = data
 	}
 }
-
-

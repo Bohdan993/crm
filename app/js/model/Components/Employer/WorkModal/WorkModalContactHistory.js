@@ -21,9 +21,7 @@ import {
 
 import {
 	addMouseUpTrigger,
-	closeModal,
-	come,
-	onKeyPressClose
+	closeModal
 } from '../../../helper'
 
 let flag = false

@@ -2,7 +2,7 @@ import SidebarPopupRadioInterface from '../SidebarPopupRadioInterface'
 
 
 export default class LastContactPopup extends SidebarPopupRadioInterface {
-	constructor(){
+	constructor() {
 		super()
 	}
 
@@ -12,9 +12,7 @@ export default class LastContactPopup extends SidebarPopupRadioInterface {
 	}
 
 
-	filter(id, str, storageKey){
+	filter(id, str, storageKey) {
 		super.filter(id, str, storageKey)
 	}
 }
-
-

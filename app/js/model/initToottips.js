@@ -533,6 +533,11 @@ function initWorkModalTooltip(el, content) {
             appendTo: () => document.body,
             onCreate(instance) {
             },
+            onShown(instance){
+                const input = instance.popper.querySelector('input')
+
+                input.focus()
+            }
         })
         return instance
     }

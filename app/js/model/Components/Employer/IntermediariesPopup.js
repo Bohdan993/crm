@@ -1,10 +1,14 @@
-import {el, setAttr, list} from '../../../../libs/libs'
+import {
+	el,
+	setAttr,
+	list
+} from '../../../../libs/libs'
 import getEmployersList from '../../fetchingData/Employer/getEmployersList'
 
 class RadioGroup {
 	constructor() {
-			this.data = ''
-			this.el = el('div', 
+		this.data = ''
+		this.el = el('div',
 			this.input = el('input#show-rbtn', {
 				type: 'radio',
 				name: "intermediaries-rbtn"
@@ -12,9 +16,9 @@ class RadioGroup {
 			this.label = el('label', 'Показать', {
 				for: 'show-rbtn'
 			}),
-			)
+		)
 
-		}
+	}
 
 	update(data) {
 
@@ -29,103 +33,112 @@ class RadioGroup {
 
 		this.data = data.id
 	}
-	filter(id, str, storageKey, e){
+	filter(id, str, storageKey, e) {
 		let $this = this
 		filter()
-		
+
 		function filter() {
 			//this - один чекбокс в попапе
-			if($this.input.checked) {
-				getEmployersList({[str]: id})
-				if(id !== '') {
+			if ($this.input.checked) {
+				getEmployersList({
+					[str]: id
+				})
+				if (id !== '') {
 					sessionStorage.setItem(storageKey, JSON.stringify(id))
 				} else {
 					sessionStorage.removeItem(storageKey)
 				}
-				
+
 			}
 		}
 	}
 
-	onmount(){
+	onmount() {
 		this.input.addEventListener('change', this.filter.bind(this, this.data, 'intermediary', 'intermediaryFilter'))
 	}
 }
 
 class IntermediariesCheckbox {
-	constructor(){
-		this.el= el('div.input-group', 
+	constructor() {
+		this.el = el('div.input-group',
 			this.input = el('input', {
 				type: 'checkbox',
 				id: 'chbx'
 			}),
-			this.label = el('label' ,{
+			this.label = el('label', {
 				for: 'chbx'
 			})
-			)
+		)
 	}
 
-	 update(data, index, items, context) {
-			
-			setAttr(this.input, {
-				id: 'intermediary-chbx-' + data.id,
-				checked: data.checked,
-				'data-id': data.id
-			})
-			setAttr(this.label, {
-				for: 'intermediary-chbx-' + data.id,
-				innerText: data.name
-			})
-			// this.filter({id: data.id, str: 'intermediaries', storageKey: 'intermediariesFilter'})
+	update(data, index, items, context) {
 
-			this.data = data
-			this.data.index = index
+		setAttr(this.input, {
+			id: 'intermediary-chbx-' + data.id,
+			checked: data.checked,
+			'data-id': data.id
+		})
+		setAttr(this.label, {
+			for: 'intermediary-chbx-' + data.id,
+			innerText: data.name
+		})
+
+		this.data = data
+		this.data.index = index
 	}
 
-	filter({id, str, storageKey, id2, str2, storageKey2}){
+	filter({
+		id,
+		str,
+		storageKey,
+		id2,
+		str2,
+		storageKey2
+	}) {
 		let $this = this
 		// console.log($this)
 		filter()
-		function filter(e){
+
+		function filter(e) {
 			console.log(id, str, storageKey)
 			//В свойство класса присваиваем массив данных который находится в sessionStorage по соответствующему ключу
 			IntermediariesPopup.checkedArr = sessionStorage.getItem(storageKey) && JSON.parse(sessionStorage.getItem(storageKey)) !== '' ? JSON.parse(sessionStorage.getItem(storageKey)).split(',') : []
 			//this - один чекбокс в попапе
-			if($this.input.checked) {
+			if ($this.input.checked) {
 				IntermediariesPopup.checkedArr.push(id)
-				getEmployersList({[str]: IntermediariesPopup.checkedArr.join(','), [str2 ? str2 : '']: id2})
+				getEmployersList({
+					[str]: IntermediariesPopup.checkedArr.join(','),
+					[str2 ? str2 : '']: id2
+				})
 				sessionStorage.setItem(storageKey, JSON.stringify(IntermediariesPopup.checkedArr.join(',')))
 				storageKey2 ? sessionStorage.setItem(storageKey2, JSON.stringify(id2)) : null
 			} else {
 				IntermediariesPopup.checkedArr = IntermediariesPopup.checkedArr.filter(el => el !== id)
 				console.log(IntermediariesPopup.checkedArr.length)
 				getEmployersList({
-					[str]: IntermediariesPopup.checkedArr.join(','), 
-					[str2 ? str2 : '']: (IntermediariesPopup.checkedArr.length) === 0 ? "" : null}
-					)
+					[str]: IntermediariesPopup.checkedArr.join(','),
+					[str2 ? str2 : '']: (IntermediariesPopup.checkedArr.length) === 0 ? "" : null
+				})
 				console.log(IntermediariesPopup.checkedArr.length === 0)
 				sessionStorage.setItem(storageKey, JSON.stringify(IntermediariesPopup.checkedArr.join(',')))
-				storageKey2 ? sessionStorage.setItem(storageKey2, JSON.stringify(IntermediariesPopup.checkedArr.length === 0 ? "" : 	id2)) : null
+				storageKey2 ? sessionStorage.setItem(storageKey2, JSON.stringify(IntermediariesPopup.checkedArr.length === 0 ? "" : id2)) : null
 			}
 		}
 	}
 
-	onmount(){
-			// this.input.addEventListener('change', this.filter.bind(this, {id: this.data.id, str: 'intermediaries', storageKey: 'intermediariesFilter'}))
-	}
 }
 
 
 export default class IntermediariesPopup {
-	constructor(){
-		
-		this.el = el('form', 
+	constructor() {
+
+		this.el = el('form',
 			this.list1 = list(".input-group.radio-group-type-1", RadioGroup, 'id'),
 			this.list2 = list("div", IntermediariesCheckbox, 'id'))
 
 	}
 
-	update(data){
+	update(data) {
 
 		let $this = this
 		this.list1.update(data.radioGroupData)
@@ -133,21 +146,20 @@ export default class IntermediariesPopup {
 
 		this.checkedArr = Array(this.list2.views.length).fill('')
 		this.getItemsLocalStorage().intermediaries.forEach(el => {
-			if(el !== '') {
-				// console.log(el)
+			if (el !== '') {
 				this.checkedArr[+el - 1] = '1'
 			}
 		})
 
 
 		this.list2.views.forEach((view, ind) => {
-			view.input.addEventListener('change', function(e){
+			view.input.addEventListener('change', function (e) {
 
-			let dataAttr = this.getAttribute('data-id')
+				let dataAttr = this.getAttribute('data-id')
 
-			
 
-				if(this.checked) {
+
+				if (this.checked) {
 					$this.checkedArr[ind] = '1'
 				} else {
 					$this.checkedArr[ind] = ''
@@ -164,16 +176,28 @@ export default class IntermediariesPopup {
 				})
 
 
-				if(!flag2 && flag) {
+				if (!flag2 && flag) {
 					$this.list1.views[0].input.checked = true
-					// $this.list1.views[0].filter('1', 'intermediary', 'intermediaryFilter')
-					view.filter({id: dataAttr, str: 'intermediaries', storageKey: 'intermediariesFilter', id2: '1', str2: 'intermediary', storageKey2: 'intermediaryFilter'})
+					view.filter({
+						id: dataAttr,
+						str: 'intermediaries',
+						storageKey: 'intermediariesFilter',
+						id2: '1',
+						str2: 'intermediary',
+						storageKey2: 'intermediaryFilter'
+					})
 				} else {
-					view.filter({id: dataAttr, str: 'intermediaries', storageKey: 'intermediariesFilter', id2: '1', str2: 'intermediary', storageKey2: 'intermediaryFilter'})
+					view.filter({
+						id: dataAttr,
+						str: 'intermediaries',
+						storageKey: 'intermediariesFilter',
+						id2: '1',
+						str2: 'intermediary',
+						storageKey2: 'intermediaryFilter'
+					})
 				}
 
-				if(!flag) {
-					// $this.list1.views[0].filter('', 'intermediary', 'intermediaryFilter')
+				if (!flag) {
 					$this.list1.views.forEach(el => {
 						el.input.checked = false
 					})
@@ -183,11 +207,10 @@ export default class IntermediariesPopup {
 			})
 		})
 
-
 		this.data = data
 	}
 
-	getItemsLocalStorage(){
+	getItemsLocalStorage() {
 		let intermediaries = JSON.parse(sessionStorage.getItem('intermediariesFilter')) || ''
 		intermediaries = intermediaries.split(',')
 
@@ -197,7 +220,3 @@ export default class IntermediariesPopup {
 	}
 
 }
-
-
-
-
