@@ -17,7 +17,6 @@ import {
 	getManufacturyTypePopup,
 	getTypeContact,
 	getClients,
-	// fetchScroll,
 	employerFetchScroll,
 	addNewEmployer,
 	mountSearchInput,
@@ -26,6 +25,7 @@ import {
 	mountSortingPopup,
 	mountVacancyPopup,
 	mountContactHistoryModal,
+	mountStringsPopup
 } from '../model'
 
 import {
@@ -85,6 +85,7 @@ const app = {
 		this.mchm()
 		this.gtc()
 		this.gc()
+		this.mssp()
 		// this.msiv()
 	},
 
@@ -212,6 +213,9 @@ const app = {
 	mchm() {
 		mountContactHistoryModal()
 	},
+	mssp(){
+		mountStringsPopup()
+	}
 
 }
 

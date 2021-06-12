@@ -42,9 +42,7 @@ export default class StorageGlobalEmployersVacancies {
 
 	getPartialState(id, key, prop){
 		let res
-		while(!this.getState().length) {
-			// console.log(this.getState())
-		}
+	
 		this.getState().every(el => {
 			if(el[key] === id) {
 				res = el[prop]

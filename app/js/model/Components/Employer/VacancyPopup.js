@@ -4,6 +4,7 @@ import {
 	list
 } from '../../../../libs/libs'
 import getEmployersList from '../../fetchingData/Employer/getEmployersList'
+import CheckBoxVacancy from './CheckBox'
 
 class CheckBoxVacancyEarlier {
 	constructor() {
@@ -50,64 +51,6 @@ class CheckBoxVacancyEarlier {
 		}
 	}
 }
-
-
-class CheckBoxVacancy {
-	constructor() {
-		this.el = el('div.input-group',
-			this.input = el('input', {
-				type: 'checkbox',
-				id: "#"
-			}),
-			this.label = el('label', 'Чекбокс', {
-				for: '#'
-			}),
-		)
-	}
-
-	update(data, index, items, context) {
-		// console.log(data)
-		setAttr(this.input, {
-			id: data.id,
-			checked: data.checked
-		})
-		setAttr(this.label, {
-			for: data.id,
-			innerText: data.label
-		})
-
-		this.filter(data.name, data.str, data.filter)
-	}
-
-	filter(id, str, storageKey) {
-		//@param id - id соответствующего чекбокса, который прилетает с сервака
-		//@param str - поле объекта параметра функции getEmployersList, которая выводит список работодателей
-		//@param storageKey - ключ в sessionStorage по которому хранится список checked чекбоксов из попапа
-		this.input.addEventListener('change', filter)
-
-		function filter(e) {
-			//В свойство класса присваиваем массив данных который находится в sessionStorage по соответствующему ключу
-			CheckBoxVacancy.checkedArr = sessionStorage.getItem(storageKey) && JSON.parse(sessionStorage.getItem(storageKey)) !== '' ? JSON.parse(sessionStorage.getItem(storageKey)).split(',') : []
-			//this - один чекбокс в попапе
-			if (this.checked) {
-				CheckBoxVacancy.checkedArr.push(id)
-				getEmployersList({
-					[str]: CheckBoxVacancy.checkedArr.join(',')
-				})
-
-				sessionStorage.setItem(storageKey, JSON.stringify(CheckBoxVacancy.checkedArr.join(',')))
-			} else {
-				CheckBoxVacancy.checkedArr = CheckBoxVacancy.checkedArr.filter(el => el !== id)
-				getEmployersList({
-					[str]: CheckBoxVacancy.checkedArr.join(',')
-				})
-				sessionStorage.setItem(storageKey, JSON.stringify(CheckBoxVacancy.checkedArr.join(',')))
-			}
-		}
-
-	}
-}
-
 
 
 class VacancyPopupType {

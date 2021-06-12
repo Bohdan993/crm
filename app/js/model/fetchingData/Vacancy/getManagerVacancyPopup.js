@@ -1,11 +1,9 @@
-import fetch from '../fetchingDataClass'
-import ManagerPopup from '../../Components/Employer/ManagerPopup'
-import {list, mount} from '../../../../libs/libs'
+import ManagerPopupList from '../../Components/Employer/ManagerPopup'
 import GetManagers from '../getManagersClass'
 
 
 
-const managersObj = new GetManagers('vacancies', '.managers-popup-vacancy', ManagerPopup, 'vacancy')
+const managersObj = new GetManagers('vacancies', '.managers-popup-vacancy form', ManagerPopupList, 'vacancy')
 
 const getManagerVacancyPopup = function (){
 	// console.log(managersObj)

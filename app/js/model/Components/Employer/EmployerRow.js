@@ -26,6 +26,7 @@ import {
 } from '../../helper'
 
 import employerModalCloseEvent from '../../CustomEvents/employerModalCloseEvent'
+import storage from '../../Storage/globalEmployers'
 
 let flag = false
 
@@ -71,17 +72,17 @@ class VacancyLabel {
 
 		setTimeout(() => {
 
-			this.labelInstance && 
-			!this.labelInstance.state.isDestroyed 
-			&& this.labelInstance.setContent(data.start_work 
-				|| data.period 
-				|| vacancies.length 
-				? `${data.start_work} ${data.period 
+			this.labelInstance &&
+				!this.labelInstance.state.isDestroyed &&
+				this.labelInstance.setContent(data.start_work ||
+					data.period ||
+					vacancies.length ?
+					`${data.start_work} ${data.period 
 					? ('(' + data.period + ' мес.) -' ) 
 					: ''} ${vacancies.length 
 						? (vacancies.join(', ')) 
-						: ''}` 
-						: 'Информация отсутствует')
+						: ''}` :
+					'Информация отсутствует')
 
 		}, 0)
 
@@ -137,8 +138,8 @@ export default class RowEmployer {
 			)
 		)
 
-
-		this.el.addEventListener('click', (e) => {
+					
+		this.clickHandler = (e) => {
 
 			if (e.target.classList.contains('no-open')) {
 				return
@@ -153,21 +154,28 @@ export default class RowEmployer {
 				onClose: (modal, trigger) => {
 					updateURL(window.location.pathname)
 					document.dispatchEvent(employerModalCloseEvent)
+
+					const wrapper = modal.querySelector('.my-modal-wrapper')
+					const modalClose = modal.querySelector('.modal__close')
+
+					wrapper.removeEventListener('mouseup', this.addMouseUpTrigger)
+					wrapper.removeEventListener('mousedown', this.closeModal)
+					modalClose.removeEventListener('click', this.close)
 				},
 				onShow: (modal, node) => {
 					if (!id_employer) {
 						const wrapper = modal.querySelector('.my-modal-wrapper')
 						const modalClose = modal.querySelector('.modal__close')
 
-						if (!flag) {
-							wrapper.removeEventListener('mouseup', addMouseUpTrigger)
-							wrapper.removeEventListener('mousedown', closeModal.bind(null, modal.id))
-							modalClose.removeEventListener('click', close.bind(null, modal.id))
-							wrapper.addEventListener('mouseup', addMouseUpTrigger)
-							wrapper.addEventListener('mousedown', closeModal.bind(null, modal.id))
-							modalClose.addEventListener('click', close.bind(null, modal.id))
-							flag = true
-						}
+
+						this.addMouseUpTrigger = addMouseUpTrigger
+						this.closeModal = closeModal.bind(null, modal.id)
+						this.close = close.bind(null, modal.id)
+
+						wrapper.addEventListener('mouseup', this.addMouseUpTrigger)
+						wrapper.addEventListener('mousedown', this.closeModal)
+						modalClose.addEventListener('click', this.close)
+
 					}
 
 				}
@@ -197,7 +205,13 @@ export default class RowEmployer {
 				id: this.data.id_employer
 			})
 
-		})
+		}
+
+
+		this.employerlistupdateeventHandler = employerlistupdateeventHandler.bind(this)
+
+
+		this.el.addEventListener('click', this.clickHandler)
 
 	}
 
@@ -207,19 +221,29 @@ export default class RowEmployer {
 			id_employer
 		} = data
 
+		setAttr(this.companyText, {
+			innerText: data.enterprise
+		})
+
+		setAttr(this.abbr, {
+			innerText: data.addr
+		})
+
+		setAttr(this.addressText, {
+			innerText: data.address
+		})
+
+		setAttr(this.fullname, {
+			innerText: data.name
+		})
 
 
-
-		this.companyText.innerText = data.enterprise
-		this.abbr.innerText = data.addr
-		this.addressText.innerText = data.address
-		this.fullname.innerText = data.name
 		setAttr(this.phoneLink, {
 			href: 'tel:' + data.phone,
 			innerText: data.phone
 		})
-		data.task ? this.attentionTag && this.attentionTag.update(true) : this.attentionTag && this.attentionTag.update(false)
 
+		data.task ? this.attentionTag && this.attentionTag.update(true) : this.attentionTag && this.attentionTag.update(false)
 
 		data.phone ? this.phoneIco.update(true) : this.phoneIco.update(false)
 
@@ -286,6 +310,9 @@ export default class RowEmployer {
 		if (this.data.manager) this.managerInstance = initRowTooltips(this.managerTag._el)
 		if (this.data.task_last) this.taskInstance = initRowTooltips(this.attentionTag._el)
 
+
+		document.addEventListener('employerslistupdateevent', this.employerlistupdateeventHandler)
+
 	}
 
 	onunmount() {
@@ -296,6 +323,9 @@ export default class RowEmployer {
 		if (this.jobsInstance) this.jobsInstance.destroy()
 		if (this.managerInstance) this.managerInstance.destroy()
 		if (this.taskInstance) this.taskInstance.destroy()
+
+
+		document.removeEventListener('employerslistupdateevent', this.employerlistupdateeventHandler)
 	}
 
 
@@ -308,4 +338,11 @@ export default class RowEmployer {
 		}
 	}
 
+}
+
+
+function employerlistupdateeventHandler(e) {
+	if (this.data.id_employer === e.detail.id) {
+		this.update(...storage.getState().filter(x => x.id_employer === e.detail.id), this.data.index)
+	}
 }

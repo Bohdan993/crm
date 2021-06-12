@@ -1,11 +1,43 @@
 import {
 	el,
-	setAttr
+	setAttr,
+	list
 } from '../../../../libs/libs'
 import getEmployersList from '../../fetchingData/Employer/getEmployersList'
 import getVacancyList from '../../fetchingData/Vacancy/getVacancyList'
+import CheckBox from './CheckBox';
 
-export default class ManagerPopup {
+//*comment* Это тот класс, который отвечает за формирование списка меток
+export class StringsPopup {
+	constructor() {
+		this.data = {}
+		this.el = el('fieldset',
+			el('p', 'Метки'),
+			el('div.input-group.radio-group-type-1',
+				this.list1 = list('div.group', CheckBox, 'id'),
+				this.list2 = list('div.group', CheckBox, 'id'),
+				this.list3 = list('div.group', CheckBox, 'id')
+			)
+		)
+
+	}
+
+	update(data, index, items, context) {
+		this.data = data
+
+		let data1 = data.slice(0, 2)
+		let data2 = data.slice(2, 4)
+		let data3 = data.slice(4)
+
+		this.list1.update(data1)
+		this.list2.update(data2)
+		this.list3.update(data3)
+	}
+}
+//
+
+
+class ManagerPopup {
 	constructor(type = 'employer') {
 		this.type = type
 		this.el = el('div.input-group',
@@ -20,7 +52,6 @@ export default class ManagerPopup {
 	}
 
 	update(data, index, items, context) {
-		// console.log(data)
 		this.data = data
 		this.data.index = index
 		setAttr(this.input, {
@@ -49,7 +80,8 @@ export default class ManagerPopup {
 
 		function filter(e) {
 			//В свойство класса присваиваем массив данных который находится в sessionStorage по соответствующему ключу
-			ManagerPopup.checkedArr = sessionStorage.getItem(storageKey) && JSON.parse(sessionStorage.getItem(storageKey)) !== '' ? JSON.parse(sessionStorage.getItem(storageKey)).split(',') : []
+			ManagerPopup.checkedArr = sessionStorage.getItem(storageKey) && JSON.parse(sessionStorage.getItem(storageKey)) !== '' ?
+				JSON.parse(sessionStorage.getItem(storageKey)).split(',') : []
 			//this - один чекбокс в попапе
 			if (this.checked) {
 				ManagerPopup.checkedArr.push(id)
@@ -84,5 +116,23 @@ export default class ManagerPopup {
 			}
 		}
 
+	}
+}
+
+
+export default class ManagerPopupList {
+	constructor(str) {
+		this.el = el('fieldset',
+			el('p', 'Менеджеры'),
+			this.list = list('div.group', ManagerPopup, 'id', str)
+		)
+
+	}
+
+	update(data, index, items, context) {
+		this.data = data
+		this.data.index = index
+
+		this.list.update(data)
 	}
 }

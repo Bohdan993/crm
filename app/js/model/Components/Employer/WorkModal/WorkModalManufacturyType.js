@@ -58,6 +58,7 @@ class WorkModalManufacturyTypeRow {
             })
 
             storage.setPartialState(this.data.context.id_employer, 'id_employer', 'production', this.data.context.final)
+            employerListUpdateEvent.detail.id = this.data.context.id_employer
             document.dispatchEvent(employerListUpdateEvent)
         })
 
@@ -95,6 +96,7 @@ class WorkModalManufacturyTypeRow {
 
 
             storage.setPartialState(this.data.context.id_employer, 'id_employer', 'production', this.data.context.final)
+            employerListUpdateEvent.detail.id = this.data.context.id_employer
             document.dispatchEvent(employerListUpdateEvent)
         })
 

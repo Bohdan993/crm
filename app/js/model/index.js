@@ -38,11 +38,11 @@ import getClients from './fetchingData/Employer/getClients'
 
 
 import mountSearchInput from './MountingElements/Employer/mountSearchInput'
-
 import mountContactDataPopup from './MountingElements/Employer/mountContactDataPopup'
 import mountLastContactPopup from './MountingElements/Employer/mountLastContactPopup'
 import mountSortingPopup from './MountingElements/Employer/mountSortingPopup'
 import mountVacancyPopup from './MountingElements/Employer/mountVacancyPopup'
+import mountStringsPopup from './MountingElements/Employer/mountStringsPopup'
 import mountContactHistoryModal from './MountingElements/Employer/WorkModal/mountContactHistoryModal'
 
 
@@ -102,6 +102,7 @@ export {
 	mountVacancyPopup,
 	mountContactHistoryModal,
 	mountSearchInputVacancy,
+	mountStringsPopup,
 	getVacancyList,
 	getCountryVacancyPopup,
 	mountSortingVacancyPopup,

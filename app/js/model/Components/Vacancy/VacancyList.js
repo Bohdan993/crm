@@ -25,6 +25,7 @@ import {
 
     addMouseUpTrigger,
     closeModal,
+    close,
     getAllUrlParams,
     updateURL
 } from '../../helper'
@@ -90,24 +91,29 @@ export default class VacancyList {
                 onClose: modal => {
                     document.dispatchEvent(vacancyModalCloseEvent)
                     updateURL(window.location.pathname)
-                },
-                onShow: (modal, node) => {
 
                     const wrapper = modal.querySelector('.my-modal-wrapper')
-                    const modalClose = modal.querySelector('.modal__close')
+					const modalClose = modal.querySelector('.modal__close')
 
-                    if (!flag) {
+					wrapper.removeEventListener('mouseup', this.addMouseUpTrigger)
+					wrapper.removeEventListener('mousedown', this.closeModal)
+					modalClose.removeEventListener('click', this.close)
+                },
+                onShow: (modal, node) => {
+                    if (id_vacancy) {
+                        const wrapper = modal.querySelector('.my-modal-wrapper')
+                        const modalClose = modal.querySelector('.modal__close')
 
-                        wrapper.removeEventListener('mouseup', addMouseUpTrigger)
-                        wrapper.removeEventListener('mousedown', closeModal.bind(null, modal.id))
-                        modalClose.removeEventListener('click', close.bind(null, modal.id))
 
-                        wrapper.addEventListener('mouseup', addMouseUpTrigger)
-                        wrapper.addEventListener('mousedown', closeModal.bind(null, modal.id))
-                        modalClose.addEventListener('click', close.bind(null, modal.id))
+                        this.addMouseUpTrigger = addMouseUpTrigger
+                        this.closeModal = closeModal.bind(null, modal.id)
+                        this.close = close.bind(null, modal.id)
 
-                        flag = true
+                        wrapper.addEventListener('mouseup', this.addMouseUpTrigger)
+                        wrapper.addEventListener('mousedown', this.closeModal)
+                        modalClose.addEventListener('click', this.close)
                     }
+
                 }
             })
 
@@ -132,8 +138,7 @@ export default class VacancyList {
                             setTimeout(() => {
                                 getVacancyModalInfo(res).then(r => {
                                     MicroModal.show('modal-3', {
-                                        onClose: modal => {
-                                        },
+                                        onClose: modal => {},
                                         onShow: (modal, node) => {
                                             const wrapper = modal.querySelector('.my-modal-wrapper')
                                             const modalClose = modal.querySelector('.modal__close')

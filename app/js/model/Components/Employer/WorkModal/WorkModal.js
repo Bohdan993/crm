@@ -240,6 +240,7 @@ export default class WorkModal {
 
 			storage.setPartialState(this.data.id_employer, 'id_employer', 'enterprise', this.comManufacturyArea.value)
 			printFeedbackName.call(this)
+			employerListUpdateEvent.detail.id = this.data.id_employer
 			document.dispatchEvent(employerListUpdateEvent)
 
 		})
@@ -252,6 +253,7 @@ export default class WorkModal {
 			storage.setPartialState(this.data.id_employer, 'id_employer', 'country_name', currCountry.name)
 			storage.setPartialState(this.data.id_employer, 'id_employer', 'addr', currCountry.icon.split('.')[0].toUpperCase())
 			storage.setPartialState(this.data.id_employer, 'id_employer', 'icon', currCountry.icon)
+			employerListUpdateEvent.detail.id = this.data.id_employer
 			document.dispatchEvent(employerListUpdateEvent)
 		})
 
@@ -260,6 +262,7 @@ export default class WorkModal {
 			this.comIframe.src = `https://maps.google.com/maps?width=100%&height=200&hl=en&q=${this.comMapArea.value}&ie=UTF8&t=&z=11&iwloc=B&output=embed`
 
 			storage.setPartialState(this.data.id_employer, 'id_employer', 'address', this.comMapArea.value)
+			employerListUpdateEvent.detail.id = this.data.id_employer
 			document.dispatchEvent(employerListUpdateEvent)
 		})
 
@@ -270,6 +273,7 @@ export default class WorkModal {
 			storage.setPartialState(this.data.id_employer, 'id_employer', 'name', this.comInfName.value)
 
 			printFeedbackName.call(this)
+			employerListUpdateEvent.detail.id = this.data.id_employer
 			document.dispatchEvent(employerListUpdateEvent)
 		})
 
@@ -281,6 +285,7 @@ export default class WorkModal {
 			save(encodeURIComponent(this.comInfPhone.value), 'phone')
 
 			storage.setPartialState(this.data.id_employer, 'id_employer', 'phone', this.comInfPhone.value)
+			employerListUpdateEvent.detail.id = this.data.id_employer
 			document.dispatchEvent(employerListUpdateEvent)
 		})
 

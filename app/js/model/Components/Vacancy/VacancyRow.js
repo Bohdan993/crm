@@ -13,12 +13,14 @@ import {
 	addMouseUpTrigger,
 	closeModal,
 	getAllUrlParams,
-	updateURL
+	updateURL,
+	close
 } from '../../helper'
 import getWorkModalTasks from '../../fetchingData/Employer/WorkModal/getWorkModalTasks'
 import getVacancyModalInfo from '../../fetchingData/Vacancy/VacancyModal/getVacancyModalInfo'
 import getWorkModalFeedback from '../../fetchingData/Employer/WorkModal/getWorkModalFeedback'
 import storage from '../../Storage'
+import vacancyStorage from '../../Storage/globalVacancies'
 import vacancyModalCloseEvent from './../../CustomEvents/vacancyModalCloseEvent';
 
 
@@ -126,6 +128,7 @@ export default class RowVacancy {
 			let id_vacancy = getAllUrlParams().id
 			let url = `#id=${this.data.id_vacancy}`
 
+
 			updateURL(url)
 
 			getVacancyModalInfo(this.data.id_vacancy).then(res => {
@@ -146,28 +149,35 @@ export default class RowVacancy {
 				onClose: modal => {
 					document.dispatchEvent(vacancyModalCloseEvent)
 					updateURL(window.location.pathname)
+
+					const wrapper = modal.querySelector('.my-modal-wrapper')
+					const modalClose = modal.querySelector('.modal__close')
+
+					wrapper.removeEventListener('mouseup', this.addMouseUpTrigger)
+					wrapper.removeEventListener('mousedown', this.closeModal)
+					modalClose.removeEventListener('click', this.close)
 				},
 				onShow: (modal, node) => {
-
+					console.log(modal, node)
 					if (!id_vacancy) {
 						const wrapper = modal.querySelector('.my-modal-wrapper')
-						const modalClose = modal.querySelector('.modal__close')
+                        const modalClose = modal.querySelector('.modal__close')
 
-						if (!flag) {
 
-							wrapper.removeEventListener('mouseup', addMouseUpTrigger)
-							wrapper.removeEventListener('mousedown', closeModal.bind(null, modal.id))
-							modalClose.removeEventListener('click', close.bind(null, modal.id))
+                        this.addMouseUpTrigger = addMouseUpTrigger
+                        this.closeModal = closeModal.bind(null, modal.id)
+                        this.close = close.bind(null, modal.id)
 
-							wrapper.addEventListener('mouseup', addMouseUpTrigger)
-							wrapper.addEventListener('mousedown', closeModal.bind(null, modal.id))
-							modalClose.addEventListener('click', close.bind(null, modal.id))
+                        wrapper.addEventListener('mouseup', this.addMouseUpTrigger)
+                        wrapper.addEventListener('mousedown', this.closeModal)
+                        modalClose.addEventListener('click', this.close)
+						
 
-							flag = true
-						}
 					}
 				}
 			})
+
+
 		})
 
 		document.addEventListener('storageupdate', (e) => {
@@ -272,19 +282,19 @@ export default class RowVacancy {
 		})
 
 
+		this.vacancylistupdateeventHandler = vacancylistupdateeventHandler.bind(this)
+
 	}
 
 	update(data, index, items, context) {
 
-		this.indicatorsArr = data.status.map((el, i) => {
-			return {
-				number: el,
-				class: context.classes[i]
-			}
-		})
+		this.indicatorsArr = data.status.map((el, i) => ({
+			number: el,
+			class: context.classes[i]
+		}))
+
 
 		this.declineCount = data.status[0]
-
 		data.archive !== '0' ? (
 				this.archive.update(true),
 				this.indicators.update(false),
@@ -296,7 +306,6 @@ export default class RowVacancy {
 				this.indicators.update(true, this.indicatorsArr),
 				this.archive.update(false)
 			)
-
 
 		setAttr(this.el, {
 			"data-id_vacancy": data.id_vacancy,
@@ -319,8 +328,9 @@ export default class RowVacancy {
 
 		setAttr(this.employer, {
 			innerText: data.employer,
-			href: `index.html#id=${data.id_employer}`,
+			href: `index.html#id=${data.id_employer}`
 		})
+
 		data.manager ? (
 			this.manager.update(true),
 			setAttr(this.manager.el, {
@@ -371,8 +381,26 @@ export default class RowVacancy {
 
 
 		this.data = data
+		this.data.index = index
 		this.context = context
 	}
 
 
+	onmount() {
+		document.addEventListener('vacancylistupdateevent', this.vacancylistupdateeventHandler)
+	}
+
+
+	onunmount() {
+		document.removeEventListener('vacancylistupdateevent', this.vacancylistupdateeventHandler)
+	}
+
+
+}
+
+
+function vacancylistupdateeventHandler(e) {
+	if (this.data.id_vacancy === e.detail.id) {
+		this.update(...vacancyStorage.getState().filter(x => x.id_vacancy === e.detail.id), this.data.index, '_', this.context)
+	}
 }

@@ -3,11 +3,8 @@ import {
 	VacancyPopupType,
 	VacancyPopupTerm 
 } from '../../Components/Employer/VacancyPopup'
-import {list, mount} from '../../../../libs/libs'
+import {mount} from '../../../../libs/libs'
 
-// if(managersTemplate) {
-// 		managersTemplate.style.display = 'block';
-// }
 
 const vacanciesPopup = document.querySelector('#vacancies-popup form')
 
@@ -94,7 +91,6 @@ if(vacanciesPopup) {
 
 const mountVacancyPopup = () => {
 if(vacanciesPopup) {
-
 
 			if(sessionStorage.getItem('vacancyTypeFilter')) { 
 						part1Data = part1Data.map(data => {

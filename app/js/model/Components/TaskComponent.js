@@ -39,6 +39,7 @@ class TaskItem {
                 })
 
                 employersStorage.setPartialState(this.context.id, 'id_employer', 'task', (this.context.count > 0))
+                employerListUpdateEvent.detail.id = this.context.id
                 document.dispatchEvent(employerListUpdateEvent)
             } else {
                 deleteTask({
@@ -55,11 +56,14 @@ class TaskItem {
             saveFieldsData({
                 str: 'employers',
                 id: this.context.id,
-                value: encodeURIComponent(this.textarea.value),
+                value: encodeURIComponent(this.textarea.value.trim()),
                 field: 'name',
                 target: 'task',
                 id_target: this.data.id_employer_task
             })
+
+
+            this.data.name = this.textarea.value.trim()
 
             if (this.type === 'employer' && this.__redom_index === this.context.count - 1) {
                 employersStorage.setPartialState(this.context.id, 'id_employer', 'task_last', this.textarea.value)
@@ -79,29 +83,6 @@ class TaskItem {
         setAttr(this.textarea, {
             value: data.name
         })
-
-
-        // if (!data.name && this.type === 'employer' && context.isNew) {
-        //     context.count--
-        //     deleteTask({
-        //         id: data.id_employer_task,
-        //         id_employer: context.id,
-        //         str: 'employers'
-        //     })
-
-        //     employersStorage.setPartialState(context.id, 'id_employer', 'task', (context.count > 0))
-        //     document.dispatchEvent(employerListUpdateEvent)
-        // }
-
-        // if (!data.name && this.type === 'vacancy' && context.isNew) {
-        //     context.count--
-        //     deleteTask({
-        //         id: data.id_employer_task,
-        //         id_employer: context.id,
-        //         str: 'vacancies'
-        //     })
-        // }
-
 
         this.data = data
         this.context = context
@@ -137,6 +118,7 @@ export default class Task { // to ../fetchingData/Employer/WorkModal
                     str: 'employers'
                 })
                 employersStorage.setPartialState(this.data.id, 'id_employer', 'task', (this.count > 0))
+                employerListUpdateEvent.detail.id = this.data.id
                 document.dispatchEvent(employerListUpdateEvent)
 
             } else {
@@ -191,6 +173,7 @@ export default class Task { // to ../fetchingData/Employer/WorkModal
                     })
 
                     employersStorage.setPartialState(this.data.id, 'id_employer', 'task', (this.count > 0))
+                    employerListUpdateEvent.detail.id = this.data.id
                     document.dispatchEvent(employerListUpdateEvent)
                 }
             })

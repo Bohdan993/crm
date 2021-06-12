@@ -91,7 +91,7 @@ class AddClientPopup {
 	}
 
 	update(data) {
-
+		// console.log(data)
 	}
 
 }
@@ -152,7 +152,7 @@ export default class ClientsComponent {
 
 
 	update(data, context) {
-
+		console.log(data)
 
 		const {
 			data: clients

@@ -193,11 +193,15 @@ function initSidebarTooltip(el, content) {
                     checkIfShowRemoveFilterButton('jobPeriodFilter', instance)
 
                 } else if(instance.reference.classList.contains('managers-filter-wrapper-vacancy')){
-
+                    
                     checkIfShowRemoveFilterButton('managerFilterVacancy', instance)
 
-                } else if(instance.reference.classList.contains('managers-filter-wrapper')){
+                    ///********************* <-------------> *************************/
 
+                } else if(instance.reference.classList.contains('managers-filter-wrapper')){
+                    //*comment* Тут сделать по аналогии, только подставить ключ из sessionStorage который ты использовал для меток
+                    //*comment* Этот код отрабатывает тогда, когда страница загрузилась, и проверяет есть по ключу в sessionStorage какие то данные
+                    //*comment* Если есть,то отображать кретик у фильтра
                     checkIfShowRemoveFilterButton('managerFilter', instance)
 
                 } else if(instance.reference.classList.contains('stages-vacancies-filter-wrapper')){
@@ -337,7 +341,8 @@ function removeCheckingHandler(children, instance, e){
                     sessionStorage.removeItem('managerFilterVacancy')
 
                 } else if(instance.reference.classList.contains('managers-filter-wrapper')){
-
+                    //*comment* Дописать в аргумент функции название ключа для меток. Этот код отрабатывает когда пользователь
+                    //*comment* нажимает крестик в фильтре
                     getEmployersList({manager: ''})
                     sessionStorage.removeItem('managerFilter')
 
@@ -469,7 +474,6 @@ function initRowTooltips(el, content) {
 function initWorkModalTooltip(el, content) {    
     let instance = tippy(el, {
         content: content,
-        // target: el,
         allowHTML: true,
         interactive: true,
         interactiveBorder: 5,

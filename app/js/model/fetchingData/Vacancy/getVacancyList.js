@@ -99,6 +99,7 @@ const getVacancyList = async ({
 				|type_production:${type_production}|job_start:${job_start}|job_period:${job_period}|status:${status}&sort=${sort}`) :
 				storage.getState()
 
+
 			const vacancies = data.data
 
 
@@ -220,13 +221,6 @@ function vacancylistupdatefetcheventHandler(e) {
 	})
 }
 
-function vacancylistupdateeventHandler(e) {
-	// alert('df')
-	getVacancyList({
-		avoidFetch: true
-	})
-}
-
 function storageemployeraddHandler(e) {
 	// alert('df')
 	getVacancyList({
@@ -236,7 +230,6 @@ function storageemployeraddHandler(e) {
 
 
 document.addEventListener('vacancylistupdatefetchevent', vacancylistupdatefetcheventHandler)
-document.addEventListener('vacancylistupdateevent', vacancylistupdateeventHandler)
 document.addEventListener('storageemployeradd', storageemployeraddHandler)
 
 

@@ -8,6 +8,7 @@ export default class SortingPopup extends SidebarPopupRadioInterface {
 	}
 
 	update(data, index, items, context) {
+		console.log('data')
 		super.update(data, index, items, context)
 
 		if(this.type === 'employer') {

@@ -59,22 +59,28 @@ export default class EmployerList {
                 onClose: modal => {
                     updateURL(window.location.pathname)
                     document.dispatchEvent(employerModalCloseEvent)
-                },
-                onShow: (modal, node) => {
+
                     const wrapper = modal.querySelector('.my-modal-wrapper')
                     const modalClose = modal.querySelector('.modal__close')
 
-                    if (!flag) {
+                    wrapper.removeEventListener('mouseup', this.addMouseUpTrigger)
+                    wrapper.removeEventListener('mousedown', this.closeModal)
+                    modalClose.removeEventListener('click', this.close)
+                },
+                onShow: (modal, node) => {
 
-                        wrapper.removeEventListener('mouseup', addMouseUpTrigger)
-                        wrapper.removeEventListener('mousedown', closeModal.bind(null, modal.id))
-                        modalClose.removeEventListener('click', close.bind(null, modal.id))
+                    if (id_employer) {
+                        const wrapper = modal.querySelector('.my-modal-wrapper')
+                        const modalClose = modal.querySelector('.modal__close')
 
-                        wrapper.addEventListener('mouseup', addMouseUpTrigger)
-                        wrapper.addEventListener('mousedown', closeModal.bind(null, modal.id))
-                        modalClose.addEventListener('click', close.bind(null, modal.id))
 
-                        flag = true
+                        this.addMouseUpTrigger = addMouseUpTrigger
+                        this.closeModal = closeModal.bind(null, modal.id)
+                        this.close = close.bind(null, modal.id)
+
+                        wrapper.addEventListener('mouseup', this.addMouseUpTrigger)
+                        wrapper.addEventListener('mousedown', this.closeModal)
+                        modalClose.addEventListener('click', this.close)
                     }
 
                 }

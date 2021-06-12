@@ -84,6 +84,7 @@ export default class DemandComponent {
 			})
 
 			vacancyStorage.setPartialState(this.data.id, 'id_vacancy', 'total_client', this.clientsNumber.value.trim())
+			vacancyListUpdateEvent.detail.id = this.data.id
 			document.dispatchEvent(vacancyListUpdateEvent)
 		})
 
@@ -99,6 +100,7 @@ export default class DemandComponent {
 			})
 
 			vacancyStorage.setPartialState(this.data.id, 'id_vacancy', 'total_man', this.men.value.trim())
+			vacancyListUpdateEvent.detail.id = this.data.id
 			document.dispatchEvent(vacancyListUpdateEvent)
 		})
 
@@ -114,6 +116,7 @@ export default class DemandComponent {
 			})
 
 			vacancyStorage.setPartialState(this.data.id, 'id_vacancy', 'total_woman', this.women.value.trim())
+			vacancyListUpdateEvent.detail.id = this.data.id
 			document.dispatchEvent(vacancyListUpdateEvent)
 		})
 

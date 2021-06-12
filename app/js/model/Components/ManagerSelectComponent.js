@@ -33,8 +33,8 @@ export default class ManagerSelect { // to ../MountingElements/Employer/WorkModa
 				let currManager = JSON.parse(localStorage.getItem('managers')).filter(el => el.id === this.manager.value)[0]
 				employersStorage.setPartialState(this.data.id, 'id_employer', 'manager', currManager ? currManager.name.split(' ').map(el => el[0]).join('') : '')
 				employersStorage.setPartialState(this.data.id, 'id_employer', 'manager_color', currManager ? currManager.color : '')
-				sessionStorage.setItem('currActiveManagerId', JSON.stringify(currManager.id))
-
+				sessionStorage.setItem('currActiveManagerId', JSON.stringify(currManager?.id || null))
+				employerListUpdateEvent.detail.id = this.data.id
 				document.dispatchEvent(employerListUpdateEvent)
 			} else {
 				this.save({
@@ -47,6 +47,7 @@ export default class ManagerSelect { // to ../MountingElements/Employer/WorkModa
 				let currManager = JSON.parse(localStorage.getItem('managersVacancy')).filter(el => el.id === this.manager.value)[0]
 				vacancyStorage.setPartialState(this.data.id_vacancy, 'id_vacancy', 'manager', currManager ? currManager.name.split(' ').map(el => el[0]).join('') : '')
 				vacancyStorage.setPartialState(this.data.id_vacancy, 'id_vacancy', 'manager_color', currManager ? currManager.color : '')
+				vacancyListUpdateEvent.detail.id = this.data.id_vacancy
 				document.dispatchEvent(vacancyListUpdateEvent)
 			}
 		})

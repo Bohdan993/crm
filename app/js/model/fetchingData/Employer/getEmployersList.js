@@ -54,7 +54,7 @@ function employerlistdeleteeventHandler(e) {
 
 
 
-
+//*comment* Нужно будет добавить название ключа для меток по аналогии с другими ключами
 const getEmployersList = async ({
 	p = '1',
 	t = '50',
@@ -72,7 +72,6 @@ const getEmployersList = async ({
 	last_contact = JSON.parse(sessionStorage.getItem('lastContactFilter')) || '',
 	sort = JSON.parse(sessionStorage.getItem('sortFilter')) || 'date',
 	scroll = false,
-	// deleated = false,
 	avoidFetch = false,
 	sorted = false,
 	filtered = false,
@@ -107,6 +106,9 @@ const getEmployersList = async ({
 				|intermediary:${intermediary}|vacancy_active:${vacancy_active}|vacancy_type:${vacancy_type}|vacancy_term:${vacancy_term}
 				|last_contact:${last_contact}&sort=${sort}`) :
 				storage.getState()
+
+
+				console.log(data)
 
 
 			const employers = data.data
@@ -222,14 +224,6 @@ const getEmployersList = async ({
 }
 
 
-function employerlistupdateeventHandler(e) {
-	getEmployersList({
-		avoidFetch: true
-	})
-}
-
-
-document.addEventListener('employerslistupdateevent', employerlistupdateeventHandler)
 
 export default getEmployersList // to ../initTooltips.js
 // to ../Components/Employer/SidebarPopupInterface.js
