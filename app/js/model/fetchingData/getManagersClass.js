@@ -9,11 +9,9 @@ export default class GetManagers {
 	constructor(type, selector, element, str = 'employer') {
 		this.type = type
 		this.selector = this.__getDOMNode(selector)
-		// this.element = this.__createElement(clazz, str)
 		this.element = new element(str)
 		this.__mountElement(this.selector, this.element)
 
-		console.log(element)
 	}
 
 
@@ -21,13 +19,9 @@ export default class GetManagers {
 		return document.querySelector(str)
 	}
 
-	// __createElement(clazz, str) {
-	// 	return list('form', clazz, 'id', str)
-	// }
 
 	__mountElement(selector, el) {
 		if (selector) {
-			console.log(el)
 			mount(selector, el)
 		}
 	}

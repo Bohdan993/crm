@@ -8,7 +8,9 @@ import {
 import TableVacancyClient from '../VacancyClients'
 import showFullClientsRow from '../../../vacancy/showFullClientsRow'
 import addClientToVacancy from '../../../fetchingData/Vacancy/VacancyModal/addClientToVacancy'
+import clientAddToVacancyEvent from '../../../CustomEvents/clientAddToVacancyEvent'
 import storage from '../../../Storage'
+import vacancyStorage from '../../../Storage/globalVacancies'
 import {
 	initVacancyModalTooltip
 } from '../../../initToottips'
@@ -76,10 +78,20 @@ class AddClientPopup {
 				client: this.result.id
 			}).then(res => {
 				if (res !== 'fail') {
+
+					let statusesArr = vacancyStorage.getPartialState(this.parent.data.id, 'id_vacancy', 'status')
+					let [firstInd, secondInd, ...rest] = statusesArr
+					vacancyStorage.setPartialState(this.parent.data.id, 'id_vacancy', 'status', [firstInd - 1, secondInd + 1, ...rest])
+
 					storage.setPartialState(this.parent.data.id, res, 'data')
-					this.parent.update(storage.getState(this.parent.data.id))
+					this.parent.update(storage.getState(this.parent.data.id), this.parent.sibling)
+
+
 					this.findClient.value = ''
 					this.parent.add._tippy.hide()
+
+					clientAddToVacancyEvent.detail.id = this.parent.data.id
+					document.dispatchEvent(clientAddToVacancyEvent)
 				} else {
 					return
 				}
@@ -88,10 +100,6 @@ class AddClientPopup {
 
 		}
 
-	}
-
-	update(data) {
-		// console.log(data)
 	}
 
 }
@@ -113,12 +121,8 @@ export default class ClientsComponent {
 		)
 
 
-		this.addClientPopup = new AddClientPopup()
-		this.addClientPopup.main.style.display = "block"
-		this.addClientPopup.parent = this
 
-		document.addEventListener('storageupdate', (e) => {
-
+		this.storageupdateeventHandler = (e) => {
 
 			if (e.detail.id === this.data.id) {
 				let data = storage.getState(this.data.id)
@@ -136,28 +140,39 @@ export default class ClientsComponent {
 					}
 				})
 
+				// let statusDecline = vacancyStorage.getPartialState(this.data.id, 'id_vacancy', 'status')[0]
+
+				// data.statusDecline = statusDecline
 				this.vacancyClientsTable.update(data, this.sibling)
 			}
-		})
+		}
 
-
-		document.addEventListener('storagedelete', (e) => {
+		this.storagedeleteeventHandler = (e) => {
 			if (e.detail.id === this.data.id) {
+
 				let data = storage.getState(this.data.id)
+				let statusDecline = vacancyStorage.getPartialState(this.data.id, 'id_vacancy', 'status')
+				console.log(statusDecline, 'Delete handler')
+				// data.statusDecline = statusDecline
 				this.update(data, this.sibling)
 			}
-		})
+		}
+
+
+		this.addClientPopup = new AddClientPopup()
+		this.addClientPopup.main.style.display = "block"
+		this.addClientPopup.parent = this
 
 	}
 
 
 	update(data, context) {
-		console.log(data)
+
 
 		const {
 			data: clients
 		} = data
-		
+
 
 		setAttr(this.names, {
 			innerText: `${clients.map(el => el.main.snp).join(', ')}`
@@ -172,6 +187,7 @@ export default class ClientsComponent {
 		this.data = data
 		this.sibling = context
 
+
 		this.vacancyClientsTable.update(data, this.sibling)
 	}
 
@@ -179,5 +195,13 @@ export default class ClientsComponent {
 	onmount() {
 		this.choiseClientInstance = initVacancyModalTooltip(this.add, this.addClientPopup.el, tippy)
 		showFullClientsRow(this.switcher._el, this.el)
+		document.addEventListener('storageupdate', this.storageupdateeventHandler)
+		document.addEventListener('storagedelete', this.storagedeleteeventHandler)
+	}
+
+	onunmount() {
+		if (this.choiseClientInstance) this.choiseClientInstance.destroy()
+		document.removeEventListener('storageupdate', this.storageupdateeventHandler)
+		document.removeEventListener('storagedelete', this.storagedeleteeventHandler)
 	}
 }

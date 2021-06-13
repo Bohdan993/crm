@@ -199,7 +199,7 @@
 						el('p',
 							el('span', 'Выберите работодателя')))),
 					this.fullInfo = place(el('div.full-info',
-						el('p.country-vacancy',
+						this.countryVacancy = el('p.country-vacancy',
 							this.fullInfoAbbrVacancy = el('span', 'NO 293')),
 						this.products = el('p.products',
 							this.visaType = el('span.visa-type', 'Сезонная - '),
@@ -259,7 +259,7 @@
 
 		update(data, context) {
 
-			let d = data.date ? new Date(data.date.split('.').reverse().join('.')) : new Date()
+			let d = data.startWork ? new Date(data.startWork.split('.').reverse().join('.')) : new Date()
 			d.setMonth(+d.getMonth() + +data.period)
 
 			if (context === 'storage') {
@@ -276,8 +276,10 @@
 				this.fullInfo.update(false)
 				this.fullInfo._el.style.display = "none"
 
+
+
 				setAttr(this.dates, {
-					innerText: data.period ? `${data.date} - ${formatDate(d)}` : '-'
+					innerText: data.period ? `${data.startWork} - ${formatDate(d)}` : '-'
 				})
 			}
 
@@ -286,9 +288,9 @@
 				this.chooseEmployer.update(false)
 				this.fullInfo.update(true)
 				this.fullInfo._el.style.display = "flex"
-
+	
 				setAttr(this.dates, {
-					innerText: data.period ? `${data.date} - ${formatDate(d)}` : '-'
+					innerText: data.period ? `${data.startWork} - ${formatDate(d)}` : '-'
 				})
 
 			}
@@ -324,6 +326,12 @@
 				innerText: data.employer.id_country ? this.getItemsFromLocalStorage().countries.filter(el => el.id === data.employer.id_country)[0]?.name : '-'
 			})
 
+			setAttr(this.countryVacancy, {
+				style : {
+					backgroundColor: data.isArchive !== '0' ? '#99CCCC' : '#FF9966'
+				}
+			})
+			 
 
 			setAttr(this.fullInfoAbbrVacancy, {
 				innerText: data.employer && data.employer.vacancy ? data.employer.vacancy : data.vacancyName ? data.vacancyName : ''
@@ -425,6 +433,7 @@
 					men: this.data.man,
 					women: this.data.woman,
 					date: this.data.date,
+					startWork: this.data.startWork,
 					production: employer.production
 				}, 'storage')
 

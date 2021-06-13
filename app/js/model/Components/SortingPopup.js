@@ -8,7 +8,6 @@ export default class SortingPopup extends SidebarPopupRadioInterface {
 	}
 
 	update(data, index, items, context) {
-		console.log('data')
 		super.update(data, index, items, context)
 
 		if(this.type === 'employer') {
@@ -20,7 +19,6 @@ export default class SortingPopup extends SidebarPopupRadioInterface {
 
 
 	filter(id, str, storageKey){
-		console.log(this)
 		if(this.data.index === 0) {
 			setAttr(this.input, {
 				'checked': true

@@ -21,8 +21,7 @@ const initWorkModalSelect = (elem, {
 } = {}) => {
 	let finalResult = {}
 	if (elem.classList.contains('manager-select')) {
-		// console.log(selected_manager)
-		// console.log(managers)
+	
 		let choisesManagers = managers ? managers.map(manager => {
 			return {
 				value: manager.id,
@@ -51,9 +50,8 @@ const initWorkModalSelect = (elem, {
 
 
 	} else if (elem.classList.contains('country-select')) {
-		console.log(countries)
 		let choisesCountries = countries.map(country => {
-			// console.log(country)
+
 			return {
 				value: country.id,
 				label: `<i class="row__flag s-${country.icon.split('.')[0]}">
@@ -65,8 +63,6 @@ const initWorkModalSelect = (elem, {
 
 
 		let resultArray = defaultValue.concat(choisesCountries)
-
-		// console.log(countries)
 
 		let choices = new Choices(elem, {
 			choices: resultArray,
@@ -83,7 +79,7 @@ const initWorkModalSelect = (elem, {
 
 
 	} else if (elem.classList.contains('contact-select')) {
-		// console.log(contacts)
+
 		let choisesContacts = contacts ? contacts.map(contact => {
 			return {
 				value: contact.id,

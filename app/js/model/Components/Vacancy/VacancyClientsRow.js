@@ -164,7 +164,6 @@ export default class RowVacancyClient {
 		this.type = type
 		this.timesArr = []
 		this.save = save.bind(this)
-		// this.firstUpdate = false
 		this.data = {}
 		this.context = ''
 		this.el = el("div.table-full__row.f-container.no-open",
@@ -231,7 +230,6 @@ export default class RowVacancyClient {
 
 	update(data, index, items, context){
 
-		// console.log(data)
 		this.timesArr = data.status_history
 		this.vacancyTooltipInstance = initVacancyTooltip(this.statusSlider.el)
 

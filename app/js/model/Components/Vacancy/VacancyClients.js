@@ -69,11 +69,11 @@ export default class TableVacancyClient {
 			}
 		})
 
-		const choosenValues = Object.values(this.choosenObj)
-		const readyValues = Object.values(this.readyObj)
-		const waitValues = Object.values(this.waitObj)
-		const departmentValues = Object.values(this.departmentObj)
-		const busyValues = Object.values(this.busyObj)
+		const choosenValues = Object.values(this.choosenObj).sort((a,b) => +a.vacancy.id_status - +b.vacancy.id_status)
+		const readyValues = Object.values(this.readyObj).sort((a,b) => +a.vacancy.id_status - +b.vacancy.id_status)
+		const waitValues = Object.values(this.waitObj).sort((a,b) => +a.vacancy.id_status - +b.vacancy.id_status)
+		const departmentValues = Object.values(this.departmentObj).sort((a,b) => +a.vacancy.id_status - +b.vacancy.id_status)
+		const busyValues = Object.values(this.busyObj).sort((a,b) => +a.vacancy.id_status - +b.vacancy.id_status)
 
 
 		setAttr(this.choosenRow, {
@@ -118,11 +118,7 @@ export default class TableVacancyClient {
 			parent: this.busyRow
 		})
 
-
-		// console.log(context)
-
-		console.log(context)
-
+		//Обновляем числа в 'Закрытых вакансиях'
 		if (this.type === 'vacancy-modal') {
 			context && setAttr( context.choosenClientsCount, {
 				innerText: choosenValues.length

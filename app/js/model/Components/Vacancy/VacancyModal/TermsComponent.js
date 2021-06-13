@@ -9,6 +9,10 @@ import {
 	formatDate
 } from '../../../helper'
 
+
+import vacancyStorage from '../../../Storage/globalVacancies'
+import vacancyListUpdateEvent from '../../../CustomEvents/vacancyListUpdateEvent'
+
 export default class TermsComponent {
 	constructor() {
 
@@ -89,6 +93,12 @@ export default class TermsComponent {
 			setAttr(this.sibling.dates, {
 				innerText: this.period.value.trim() ? `${changedDate} - ${formatDate(d)}` : '-'
 			})
+
+
+			vacancyStorage.setPartialState(this.data.id, 'id_vacancy', 'start_work', this.period.value.trim() ? `${changedDate}` : '')
+			vacancyStorage.setPartialState(this.data.id, 'id_vacancy', 'finish_work', this.period.value.trim() ? `${formatDate(d)}` : '')
+			vacancyListUpdateEvent.detail.id = this.data.id
+			document.dispatchEvent(vacancyListUpdateEvent)
 		})
 
 		this.period.addEventListener('change', (e) => {
@@ -110,6 +120,13 @@ export default class TermsComponent {
 			setAttr(this.sibling.dates, {
 				innerText: this.period.value.trim() ? `${changedDate} - ${formatDate(d)}` : '-'
 			})
+
+
+			vacancyStorage.setPartialState(this.data.id, 'id_vacancy', 'start_work', this.period.value.trim() ? `${changedDate}` : '')
+			vacancyStorage.setPartialState(this.data.id, 'id_vacancy', 'finish_work', this.period.value.trim() ? `${formatDate(d)}` : '')
+			vacancyStorage.setPartialState(this.data.id, 'id_vacancy', 'period', this.period.value.trim())
+			vacancyListUpdateEvent.detail.id = this.data.id
+			document.dispatchEvent(vacancyListUpdateEvent)
 		})
 
 		this.salary.addEventListener('change', (e) => {

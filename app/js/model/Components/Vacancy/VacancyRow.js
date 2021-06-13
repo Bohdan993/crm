@@ -8,7 +8,6 @@ import {
 import TableVacancyClient from './VacancyClients'
 import showFullRow from '../../vacancy/showFullRow'
 import getVacancyClients from '../../fetchingData/Vacancy/getVacancyClients'
-// import getVacancyList from '../../fetchingData/Vacancy/getVacancyList'
 import {
 	addMouseUpTrigger,
 	closeModal,
@@ -24,8 +23,6 @@ import vacancyStorage from '../../Storage/globalVacancies'
 import vacancyModalCloseEvent from './../../CustomEvents/vacancyModalCloseEvent';
 
 
-let flag = false
-
 class Indicator {
 	constructor() {
 		this.el = el('span.row__indicator indicator.decline',
@@ -33,6 +30,7 @@ class Indicator {
 	}
 
 	update(data) {
+
 		setAttr(this.el, {
 			classList: `row__indicator indicator ${data.number === 0 ? 'empty': data.class}`
 		})
@@ -47,16 +45,15 @@ export default class RowVacancy {
 		this.data = {}
 		this.active = false
 		this.productNamesArr = []
-		// this.updated = false
 		this.el = el("div.row.no-open",
 			el('div.f-container',
 				this.terms = el('div.row__terms.row__cell hot'),
 				el('div.row__labels-2.row__cell',
 					this.labelsLayer = el('div.row__labels-2-layer.no-open',
-						el('i.label.attention__label.no-open',
+						this.label = el('i.label.no-open',
 							this.vacancyName = el('span.no-open'),
 							this.vacancyNumbers = el('span.no-open')),
-						this.numberPeople = el('span.number-of-people.attention-number.no-open'))),
+						this.numberPeople = el('span.number-of-people.no-open'))),
 				this.indicators = place(list('div.row__indicators.row__cell', Indicator)),
 				this.archive = place(el('div.row__archive row__cell',
 					this.archiveText = el('p'))),
@@ -77,7 +74,8 @@ export default class RowVacancy {
 			this.vacancyClientsTable = place(TableVacancyClient, 'vacancy-row')
 		)
 
-		this.el.addEventListener('click', (e) => {
+
+		this.elClickHandler = (e) => {
 
 			if (e.target.classList.contains('no-open')) {
 				return
@@ -121,9 +119,9 @@ export default class RowVacancy {
 				showFullRow(this.el, e)
 			}
 
-		})
+		}
 
-		this.labelsLayer.addEventListener('click', (e) => {
+		this.labelsLayerClickHandler = (e) => {
 
 			let id_vacancy = getAllUrlParams().id
 			let url = `#id=${this.data.id_vacancy}`
@@ -158,29 +156,28 @@ export default class RowVacancy {
 					modalClose.removeEventListener('click', this.close)
 				},
 				onShow: (modal, node) => {
-					console.log(modal, node)
 					if (!id_vacancy) {
 						const wrapper = modal.querySelector('.my-modal-wrapper')
-                        const modalClose = modal.querySelector('.modal__close')
+						const modalClose = modal.querySelector('.modal__close')
 
 
-                        this.addMouseUpTrigger = addMouseUpTrigger
-                        this.closeModal = closeModal.bind(null, modal.id)
-                        this.close = close.bind(null, modal.id)
+						this.addMouseUpTrigger = addMouseUpTrigger
+						this.closeModal = closeModal.bind(null, modal.id)
+						this.close = close.bind(null, modal.id)
 
-                        wrapper.addEventListener('mouseup', this.addMouseUpTrigger)
-                        wrapper.addEventListener('mousedown', this.closeModal)
-                        modalClose.addEventListener('click', this.close)
-						
+						wrapper.addEventListener('mouseup', this.addMouseUpTrigger)
+						wrapper.addEventListener('mousedown', this.closeModal)
+						modalClose.addEventListener('click', this.close)
+
 
 					}
 				}
 			})
 
 
-		})
+		}
 
-		document.addEventListener('storageupdate', (e) => {
+		this.storagedeupdateHandler = (e) => {
 
 			if (e.detail.id === this.data.id_vacancy) {
 				let data = storage.getState(this.data.id_vacancy)
@@ -198,6 +195,9 @@ export default class RowVacancy {
 					}
 				})
 
+
+				
+
 				const countObj = {
 					decline: this.declineCount,
 					choose: 0,
@@ -232,16 +232,24 @@ export default class RowVacancy {
 					}
 				})
 
+
+				
+
 				this.vacancyClientsTable.update(true, data)
 				this.indicators.update(true, indicatorsArr)
+
+				
+				vacancyStorage.setPartialState(this.data.id_vacancy, 'id_vacancy', 'status', Object.values(countObj))
+				// console.log(vacancyStorage.getPartialState(this.data.id_vacancy, 'id_vacancy', 'status'))
 			}
 
-		})
+		}
 
+		this.storagedeleteHandler = (e) => {
 
-		document.addEventListener('storagedelete', (e) => {
 			if (e.detail.id === this.data.id_vacancy) {
 				let data = storage.getState(this.data.id_vacancy)
+				this.declineCount++
 
 				const countObj = {
 					decline: this.declineCount,
@@ -278,16 +286,22 @@ export default class RowVacancy {
 				})
 				this.vacancyClientsTable.update(true, data)
 				this.indicators.update(true, indicatorsArr)
+				vacancyStorage.setPartialState(this.data.id_vacancy, 'id_vacancy', 'status', Object.values(countObj))
+
+
+				console.log('DELETE HANDLER', vacancyStorage.getPartialState(this.data.id_vacancy, 'id_vacancy', 'status'))
 			}
-		})
+		}
 
 
 		this.vacancylistupdateeventHandler = vacancylistupdateeventHandler.bind(this)
 
+		this.el.addEventListener('click', this.elClickHandler)
+		this.labelsLayer.addEventListener('click', this.labelsLayerClickHandler)
+
 	}
 
 	update(data, index, items, context) {
-
 		this.indicatorsArr = data.status.map((el, i) => ({
 			number: el,
 			class: context.classes[i]
@@ -322,6 +336,13 @@ export default class RowVacancy {
 			'data-custom-open': `modal-3`
 		})
 
+		setAttr(this.label, {
+			style: {
+				'background-color': data.archive !== '0' ? '#99CCCC' : '#FF9966'
+			}
+
+		})
+
 		setAttr(this.el, {
 			classList: data.archive !== '0' ? 'row no-open archive-row' : 'row no-open'
 		})
@@ -345,7 +366,10 @@ export default class RowVacancy {
 		})
 
 		setAttr(this.numberPeople, {
-			innerText: `${data.total_man !== "0" ? 'М'+data.total_man : ''} ${data.total_woman !== "0" ? 'Ж'+data.total_woman : ''}`
+			innerText: `${data.total_man !== "0" ? 'М'+data.total_man : ''} ${data.total_woman !== "0" ? 'Ж'+data.total_woman : ''}`,
+			style: {
+				'color': data.archive !== '0' ? '#99CCCC' : '#FF9966'
+			}
 		})
 
 
@@ -388,11 +412,17 @@ export default class RowVacancy {
 
 	onmount() {
 		document.addEventListener('vacancylistupdateevent', this.vacancylistupdateeventHandler)
+		document.addEventListener('storagedelete', this.storagedeleteHandler)
+		document.addEventListener('storageupdate', this.storagedeupdateHandler)
+		document.addEventListener('clientaddtovacancyevent', this.vacancylistupdateeventHandler)
 	}
 
 
 	onunmount() {
 		document.removeEventListener('vacancylistupdateevent', this.vacancylistupdateeventHandler)
+		document.removeEventListener('storagedelete', this.storagedeleteHandler)
+		document.removeEventListener('storageupdate', this.storagedeupdateHandler)
+		document.removeEventListener('clientaddtovacancyevent', this.vacancylistupdateeventHandler)
 	}
 
 

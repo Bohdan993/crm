@@ -1,6 +1,6 @@
 import fetch from '../../fetchingDataClass'
 import { toastr } from '../../../../../libs/libs'
-import getVacancyList from '../getVacancyList'
+// import getVacancyList from '../getVacancyList'
 
 
 const addClientToVacancy = async ({
@@ -11,7 +11,7 @@ const addClientToVacancy = async ({
 			try {
 				const clients = await fetch.getResourse(`/vacancies/set_client/?vacancy=${vacancy}&client=${client}`)
 				if(clients.success === true) {
-					getVacancyList()
+					// getVacancyList()
 					toastr.success(`ID вакансии ${vacancy}`, 'Успешно создан новый клиент', {closeButton: false})
 				} else {
 					throw new Error('Не возможно создать клиента')

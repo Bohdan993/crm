@@ -119,7 +119,6 @@ const getVacancyModalInfo = async (id = '1', isNewVacancy = false) => {
 		const isArchive = mainPart.archive
 		const closedVacancies = vacancyStorage.getPartialState(id, 'id_vacancy', 'status')
 
-		console.log(vacancyStorage)
 
 		const demandsData = {
 			id,
@@ -161,6 +160,8 @@ const getVacancyModalInfo = async (id = '1', isNewVacancy = false) => {
 			clients: mainPart.total_client,
 			men: mainPart.total_man,
 			women: mainPart.total_woman,
+			startWork: mainPart.start_work,
+			isArchive,
 			date,
 			employer
 		}

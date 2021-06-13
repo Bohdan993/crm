@@ -13,7 +13,7 @@ import {
     onAddVacancy
 } from '../../fetchingData/Vacancy/addNewVacancy'
 import loadEmployerInfo from '../../fetchingData/Vacancy/VacancyModal/loadEmployerInfo'
-import storage from '../../Storage'
+// import storage from '../../Storage'
 import storageVacancyEmployerDataAdd from '../../CustomEvents/storageVacancyEmployerDataAdd'
 import vacancyModalCloseEvent from './../../CustomEvents/vacancyModalCloseEvent'
 
@@ -73,7 +73,7 @@ export default class VacancyList {
     }
     update(data) {
 
-        console.log(data.length, 'DATA LENGTH')
+        // console.log(data.length, 'DATA LENGTH')
 
         this.list.update(data, {
             classes: this.indicatorsClasses,
@@ -93,11 +93,11 @@ export default class VacancyList {
                     updateURL(window.location.pathname)
 
                     const wrapper = modal.querySelector('.my-modal-wrapper')
-					const modalClose = modal.querySelector('.modal__close')
+                    const modalClose = modal.querySelector('.modal__close')
 
-					wrapper.removeEventListener('mouseup', this.addMouseUpTrigger)
-					wrapper.removeEventListener('mousedown', this.closeModal)
-					modalClose.removeEventListener('click', this.close)
+                    wrapper.removeEventListener('mouseup', this.addMouseUpTrigger)
+                    wrapper.removeEventListener('mousedown', this.closeModal)
+                    modalClose.removeEventListener('click', this.close)
                 },
                 onShow: (modal, node) => {
                     if (id_vacancy) {
@@ -129,6 +129,9 @@ export default class VacancyList {
             let employerID = getAllUrlParams().id_employer
             let vacancyID = getAllUrlParams().id_vacancy
 
+
+            console.log()
+
             if (vacancyID) {
                 copyVacancy({
                         vacancy: vacancyID
@@ -138,18 +141,26 @@ export default class VacancyList {
                             setTimeout(() => {
                                 getVacancyModalInfo(res).then(r => {
                                     MicroModal.show('modal-3', {
-                                        onClose: modal => {},
+                                        onClose: modal => {
+                                            const wrapper = modal.querySelector('.my-modal-wrapper')
+                                            const modalClose = modal.querySelector('.modal__close')
+
+                                            wrapper.removeEventListener('mouseup', this.addMouseUpTrigger)
+                                            wrapper.removeEventListener('mousedown', this.closeModal)
+                                            modalClose.removeEventListener('click', this.close)
+                                        },
                                         onShow: (modal, node) => {
                                             const wrapper = modal.querySelector('.my-modal-wrapper')
                                             const modalClose = modal.querySelector('.modal__close')
-                                            if (!flag) {
-                                                wrapper.addEventListener('mouseup', addMouseUpTrigger)
-                                                wrapper.addEventListener('mousedown', closeModal.bind(null, modal.id))
-                                                modalClose.addEventListener('click', function () {
-                                                    MicroModal.close(modal.id)
-                                                })
-                                                flag = true
-                                            }
+
+
+                                            this.addMouseUpTrigger = addMouseUpTrigger
+                                            this.closeModal = closeModal.bind(null, modal.id)
+                                            this.close = close.bind(null, modal.id)
+
+                                            wrapper.addEventListener('mouseup', this.addMouseUpTrigger)
+                                            wrapper.addEventListener('mousedown', this.closeModal)
+                                            modalClose.addEventListener('click', this.close)
                                         }
                                     })
                                 })
@@ -167,8 +178,10 @@ export default class VacancyList {
                             employer: employerID
                         }).then(res => {
                             if (res !== 'fail') {
-                                storage.setState('vacancyEmployerData', res)
+                                // storage.setState('vacancyEmployerData', res)
                                 storageVacancyEmployerDataAdd.detail.id = 'vacancyEmployerData'
+                                storageVacancyEmployerDataAdd.detail.employerId = employerID
+                                storageVacancyEmployerDataAdd.detail.vacancyEmployerData = res
                                 document.dispatchEvent(storageVacancyEmployerDataAdd)
                             } else {
                                 return

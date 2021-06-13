@@ -99,7 +99,7 @@ const getVacancyList = async ({
 				|type_production:${type_production}|job_start:${job_start}|job_period:${job_period}|status:${status}&sort=${sort}`) :
 				storage.getState()
 
-
+			console.log(data)
 			const vacancies = data.data
 
 
