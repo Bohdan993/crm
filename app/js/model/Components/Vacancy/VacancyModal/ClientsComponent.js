@@ -84,8 +84,6 @@ class AddClientPopup {
 					vacancyStorage.setPartialState(this.parent.data.id, 'id_vacancy', 'status', [firstInd - 1, secondInd + 1, ...rest])
 
 					storage.setPartialState(this.parent.data.id, res, 'data')
-					this.parent.update(storage.getState(this.parent.data.id), this.parent.sibling)
-
 
 					this.findClient.value = ''
 					this.parent.add._tippy.hide()
@@ -122,7 +120,15 @@ export default class ClientsComponent {
 
 
 
-		this.storageupdateeventHandler = (e) => {
+		this.clientaddtovacancyeventHandler = (e) => {
+			if (e.detail.id === this.data.id) {
+				let data = storage.getState(this.data.id)
+				this.update(data)
+			}
+		}
+
+
+		this.clientupdateinvacancyeventHandler = (e) => {
 
 			if (e.detail.id === this.data.id) {
 				let data = storage.getState(this.data.id)
@@ -140,21 +146,15 @@ export default class ClientsComponent {
 					}
 				})
 
-				// let statusDecline = vacancyStorage.getPartialState(this.data.id, 'id_vacancy', 'status')[0]
-
-				// data.statusDecline = statusDecline
-				this.vacancyClientsTable.update(data, this.sibling)
+				this.vacancyClientsTable.update(data)
 			}
+
 		}
 
-		this.storagedeleteeventHandler = (e) => {
+		this.clientdeletefromvacancyeventHandler = (e) => {
 			if (e.detail.id === this.data.id) {
-
 				let data = storage.getState(this.data.id)
-				let statusDecline = vacancyStorage.getPartialState(this.data.id, 'id_vacancy', 'status')
-				console.log(statusDecline, 'Delete handler')
-				// data.statusDecline = statusDecline
-				this.update(data, this.sibling)
+				this.update(data)
 			}
 		}
 
@@ -166,7 +166,7 @@ export default class ClientsComponent {
 	}
 
 
-	update(data, context) {
+	update(data) {
 
 
 		const {
@@ -185,23 +185,23 @@ export default class ClientsComponent {
 		})
 
 		this.data = data
-		this.sibling = context
-
-
-		this.vacancyClientsTable.update(data, this.sibling)
+	
+		this.vacancyClientsTable.update(data)
 	}
 
 
 	onmount() {
 		this.choiseClientInstance = initVacancyModalTooltip(this.add, this.addClientPopup.el, tippy)
 		showFullClientsRow(this.switcher._el, this.el)
-		document.addEventListener('storageupdate', this.storageupdateeventHandler)
-		document.addEventListener('storagedelete', this.storagedeleteeventHandler)
+		document.addEventListener('clientaddtovacancyevent', this.clientaddtovacancyeventHandler)
+		document.addEventListener('clientupdateinvacancyevent', this.clientupdateinvacancyeventHandler)
+		document.addEventListener('clientdeletefromvacancyevent', this.clientdeletefromvacancyeventHandler)
 	}
 
 	onunmount() {
 		if (this.choiseClientInstance) this.choiseClientInstance.destroy()
-		document.removeEventListener('storageupdate', this.storageupdateeventHandler)
-		document.removeEventListener('storagedelete', this.storagedeleteeventHandler)
+		document.removeEventListener('clientaddtovacancyevent', this.clientaddtovacancyeventHandler)
+		document.removeEventListener('clientupdateinvacancyevent', this.clientupdateinvacancyeventHandler)
+		document.removeEventListener('clientdeletefromvacancyevent', this.clientdeletefromvacancyeventHandler)
 	}
 }

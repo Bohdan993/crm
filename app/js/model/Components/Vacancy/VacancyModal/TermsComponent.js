@@ -11,6 +11,7 @@ import {
 
 
 import vacancyStorage from '../../../Storage/globalVacancies'
+import vacancyListUpdateFetchEvent from '../../../CustomEvents/vacancyListUpdateFetchEvent'
 import vacancyListUpdateEvent from '../../../CustomEvents/vacancyListUpdateEvent'
 
 export default class TermsComponent {
@@ -97,8 +98,8 @@ export default class TermsComponent {
 
 			vacancyStorage.setPartialState(this.data.id, 'id_vacancy', 'start_work', this.period.value.trim() ? `${changedDate}` : '')
 			vacancyStorage.setPartialState(this.data.id, 'id_vacancy', 'finish_work', this.period.value.trim() ? `${formatDate(d)}` : '')
-			vacancyListUpdateEvent.detail.id = this.data.id
-			document.dispatchEvent(vacancyListUpdateEvent)
+			vacancyListUpdateFetchEvent.detail.id = this.data.id
+			document.dispatchEvent(vacancyListUpdateFetchEvent)
 		})
 
 		this.period.addEventListener('change', (e) => {

@@ -13,13 +13,8 @@ import {
     onAddVacancy
 } from '../../fetchingData/Vacancy/addNewVacancy'
 import loadEmployerInfo from '../../fetchingData/Vacancy/VacancyModal/loadEmployerInfo'
-// import storage from '../../Storage'
 import storageVacancyEmployerDataAdd from '../../CustomEvents/storageVacancyEmployerDataAdd'
 import vacancyModalCloseEvent from './../../CustomEvents/vacancyModalCloseEvent'
-
-// console.log(getVacancyList)
-
-
 
 import {
 
@@ -30,13 +25,6 @@ import {
     updateURL
 } from '../../helper'
 
-
-
-// function byField(field) {
-//     return (a, b) => +a[field] > +b[field] ? 1 : -1;
-// }
-
-let flag = false
 
 
 function vacancylistdatafetchedeventHandler(id_vacancy, e) {
@@ -87,7 +75,7 @@ export default class VacancyList {
         let createVacancy = getAllUrlParams().createvacancy
 
         if (id_vacancy) {
-            MicroModal.show('modal-3', {
+            const instance = MicroModal.show('modal-3', {
                 onClose: modal => {
                     document.dispatchEvent(vacancyModalCloseEvent)
                     updateURL(window.location.pathname)
@@ -105,13 +93,16 @@ export default class VacancyList {
                         const modalClose = modal.querySelector('.modal__close')
 
 
-                        this.addMouseUpTrigger = addMouseUpTrigger
-                        this.closeModal = closeModal.bind(null, modal.id)
-                        this.close = close.bind(null, modal.id)
+                        setTimeout(
+                            () => {
+                                this.addMouseUpTrigger = addMouseUpTrigger
+                                this.closeModal = closeModal.bind(null, modal.id, instance)
+                                this.close = close.bind(null, modal.id, instance)
 
-                        wrapper.addEventListener('mouseup', this.addMouseUpTrigger)
-                        wrapper.addEventListener('mousedown', this.closeModal)
-                        modalClose.addEventListener('click', this.close)
+                                wrapper.addEventListener('mouseup', this.addMouseUpTrigger)
+                                wrapper.addEventListener('mousedown', this.closeModal)
+                                modalClose.addEventListener('click', this.close)
+                            }, 0)
                     }
 
                 }
@@ -140,7 +131,7 @@ export default class VacancyList {
                         if (res !== 'fail') {
                             setTimeout(() => {
                                 getVacancyModalInfo(res).then(r => {
-                                    MicroModal.show('modal-3', {
+                                    const instance = MicroModal.show('modal-3', {
                                         onClose: modal => {
                                             const wrapper = modal.querySelector('.my-modal-wrapper')
                                             const modalClose = modal.querySelector('.modal__close')
@@ -154,13 +145,16 @@ export default class VacancyList {
                                             const modalClose = modal.querySelector('.modal__close')
 
 
-                                            this.addMouseUpTrigger = addMouseUpTrigger
-                                            this.closeModal = closeModal.bind(null, modal.id)
-                                            this.close = close.bind(null, modal.id)
+                                            setTimeout(
+                                                () => {
+                                                    this.addMouseUpTrigger = addMouseUpTrigger
+                                                    this.closeModal = closeModal.bind(null, modal.id, instance)
+                                                    this.close = close.bind(null, modal.id, instance)
 
-                                            wrapper.addEventListener('mouseup', this.addMouseUpTrigger)
-                                            wrapper.addEventListener('mousedown', this.closeModal)
-                                            modalClose.addEventListener('click', this.close)
+                                                    wrapper.addEventListener('mouseup', this.addMouseUpTrigger)
+                                                    wrapper.addEventListener('mousedown', this.closeModal)
+                                                    modalClose.addEventListener('click', this.close)
+                                                }, 0)
                                         }
                                     })
                                 })

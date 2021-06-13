@@ -55,7 +55,7 @@ export default class EmployerList {
 
         let id_employer = getAllUrlParams().id
         if (id_employer) {
-            let modalInstance = MicroModal.show('modal-1', {
+            const instance = MicroModal.show('modal-1', {
                 onClose: modal => {
                     updateURL(window.location.pathname)
                     document.dispatchEvent(employerModalCloseEvent)
@@ -74,13 +74,16 @@ export default class EmployerList {
                         const modalClose = modal.querySelector('.modal__close')
 
 
-                        this.addMouseUpTrigger = addMouseUpTrigger
-                        this.closeModal = closeModal.bind(null, modal.id)
-                        this.close = close.bind(null, modal.id)
+                        setTimeout(
+							() => {
+								this.addMouseUpTrigger = addMouseUpTrigger
+								this.closeModal = closeModal.bind(null, modal.id, instance)
+								this.close = close.bind(null, modal.id, instance)
 
-                        wrapper.addEventListener('mouseup', this.addMouseUpTrigger)
-                        wrapper.addEventListener('mousedown', this.closeModal)
-                        modalClose.addEventListener('click', this.close)
+								wrapper.addEventListener('mouseup', this.addMouseUpTrigger)
+								wrapper.addEventListener('mousedown', this.closeModal)
+								modalClose.addEventListener('click', this.close)
+						}, 0)
                     }
 
                 }

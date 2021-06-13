@@ -104,8 +104,6 @@ const getVacancyModalInfo = async (id = '1', isNewVacancy = false) => {
 	try {
 		const data = await fetch.getResourse(`/vacancies/get/?id=${id}&section=1`)
 
-
-
 		const mainPart = data.data ? data.data.main : []
 		const note = mainPart.employer ? mainPart.employer.note : ''
 		const id_manager = mainPart.employer ? mainPart.employer.id_manager : '0'
@@ -199,7 +197,7 @@ const getVacancyModalInfo = async (id = '1', isNewVacancy = false) => {
 		acvcarc.update(id, isArchive)
 
 		if (storage.isSet(id)) {
-			clients.update(storage.getState(id), mrll)
+			clients.update(storage.getState(id))
 		}
 
 
@@ -215,7 +213,7 @@ const getVacancyModalInfo = async (id = '1', isNewVacancy = false) => {
 						clients.update({
 							id,
 							data: res
-						}, mrll)
+						})
 					} else {
 						storage.setState(id, {
 							id,
@@ -224,7 +222,7 @@ const getVacancyModalInfo = async (id = '1', isNewVacancy = false) => {
 						clients.update({
 							id,
 							data: []
-						}, mrll)
+						})
 					}
 				})
 		}

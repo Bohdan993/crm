@@ -63,7 +63,7 @@ export default class DemandComponent {
 
 		this.clientsNumber.addEventListener('change', (e) => {
 
-			const closedVacancies = vacancyStorage.getPartialState(this.data.id, 'id_vacancy', 'status')
+			const closedVacancies = vacancyStorage.getPartialState(this.data.id, 'id_vacancy', 'status') || []
 			const totalClientsCount = closedVacancies.slice(1).reduce((acc, next) => acc + next, 0)
 
 
@@ -73,17 +73,20 @@ export default class DemandComponent {
 				field: 'total_client'
 			})
 
-			console.log(vacancyStorage)
-
 			setAttr(this.sibling.totalClients, {
-				innerText: this.clientsNumber.value
+				innerText: this.clientsNumber.value.trim()
 			})
 
 			setAttr(this.sibling.totalClientsCount, {
 				innerText: +this.clientsNumber.value - totalClientsCount
 			})
 
+			closedVacancies[0] = +this.clientsNumber.value - totalClientsCount
+			
+
 			vacancyStorage.setPartialState(this.data.id, 'id_vacancy', 'total_client', this.clientsNumber.value.trim())
+			vacancyStorage.setPartialState(this.data.id, 'id_vacancy', 'status', closedVacancies)
+
 			vacancyListUpdateEvent.detail.id = this.data.id
 			document.dispatchEvent(vacancyListUpdateEvent)
 		})

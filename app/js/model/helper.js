@@ -143,19 +143,17 @@ function addMouseUpTrigger(e) {
 }
 
 
-function closeModal(id, e) {
+function closeModal(id, instance, e) {
   e.stopImmediatePropagation()
   if (e.target.classList.contains('my-modal-wrapper')) {
-    MicroModal.close(id)
-    console.log(id)
+    instance.closeModal()
   }
 }
 
 
-function close(id, e) {
+function close(id, instance, e) {
   e.stopImmediatePropagation()
-  MicroModal.close(id)
-  console.log(id)
+  instance.closeModal()
 }
 
 

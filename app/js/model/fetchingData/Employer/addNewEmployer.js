@@ -31,7 +31,7 @@ const addNewEmployer = () => {
 
 				if (employer.success === true) {
 
-					MicroModal.show('modal-1', {
+					const instance = MicroModal.show('modal-1', {
 						onClose: async modal => {
 							const data = await fetch.getResourse(`/employers/get/?id=${employer.id}&section=0`)
 							if (data.data.main.id_country !== '0' && data.data.other.production.length !== 0) {
@@ -51,13 +51,16 @@ const addNewEmployer = () => {
 							const modalClose = modal.querySelector('.modal__close')
 
 							if (!flag) {
-								wrapper.addEventListener('mouseup', addMouseUpTrigger, {
-									once: true
-								})
-								wrapper.addEventListener('mousedown', closeModal.bind(null, modal.id))
-								modalClose.addEventListener('click', function () {
-									MicroModal.close(modal.id)
-								})
+								setTimeout(() => {
+									wrapper.addEventListener('mouseup', addMouseUpTrigger, {
+										once: true
+									})
+									wrapper.addEventListener('mousedown', closeModal.bind(null, modal.id, instance))
+									modalClose.addEventListener('click', function () {
+										MicroModal.close(modal.id)
+									})
+								}, 0)
+
 								flag = true
 							}
 						}

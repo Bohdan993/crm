@@ -53,7 +53,7 @@ export default class TableVacancyClient {
 		)
 	}
 
-	update(data, context) {
+	update(data) {
 
 		data.data && data.data.forEach(el => {
 			if (el.vacancy.id_status === '1' || el.vacancy.id_status === '2') {
@@ -119,23 +119,23 @@ export default class TableVacancyClient {
 		})
 
 		//Обновляем числа в 'Закрытых вакансиях'
-		if (this.type === 'vacancy-modal') {
-			context && setAttr( context.choosenClientsCount, {
-				innerText: choosenValues.length
-			})
-			context && setAttr(context.readyClientsCount, {
-				innerText: readyValues.length
-			})
-			context && setAttr(context.waitClientsCount, {
-				innerText: waitValues.length
-			})
-			context && setAttr(context.departmentClientsCount, {
-				innerText: departmentValues.length
-			})
-			context && setAttr(context.busyClientsCount, {
-				innerText: busyValues.length
-			})
-		}
+		// if (this.type === 'vacancy-modal') {
+		// 	context && setAttr( context.choosenClientsCount, {
+		// 		innerText: choosenValues.length
+		// 	})
+		// 	context && setAttr(context.readyClientsCount, {
+		// 		innerText: readyValues.length
+		// 	})
+		// 	context && setAttr(context.waitClientsCount, {
+		// 		innerText: waitValues.length
+		// 	})
+		// 	context && setAttr(context.departmentClientsCount, {
+		// 		innerText: departmentValues.length
+		// 	})
+		// 	context && setAttr(context.busyClientsCount, {
+		// 		innerText: busyValues.length
+		// 	})
+		// }
 
 
 		this.choosenObj = {}

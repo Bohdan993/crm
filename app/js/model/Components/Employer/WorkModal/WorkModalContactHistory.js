@@ -51,18 +51,20 @@ class WorkModalContactHistoryRow {
 		)
 
 		this.el.addEventListener('click', (e) => {
-			MicroModal.show('modal-2', {
+			const instance = MicroModal.show('modal-2', {
 				onShow: (modal, node) => {
 					if (!flag) {
 						const wrapper = modal.querySelector('.my-modal-wrapper')
 						const modalClose = modal.querySelector('.modal__close')
-						wrapper.addEventListener('mouseup', addMouseUpTrigger)
-						wrapper.addEventListener('mousedown', closeModal.bind(null, modal.id))
-						modalClose.addEventListener('click', function () {
-							MicroModal.close(modal.id)
-						})
-						// document.removeEventListener('keydown', onKeyPressClose)
-						// document.addEventListener('keydown', onKeyPressClose)
+
+						setTimeout(()=>{
+							wrapper.addEventListener('mouseup', addMouseUpTrigger)
+							wrapper.addEventListener('mousedown', closeModal.bind(null, modal.id, instance))
+							modalClose.addEventListener('click', function () {
+								MicroModal.close(modal.id)
+							})
+						}, 0)
+						
 						flag = true
 					}
 				}
@@ -148,16 +150,20 @@ export default class WorkModalContactHistory {
 
 
 		this.addItem.addEventListener('click', (e) => {
-			MicroModal.show('modal-2', {
+			const instance = MicroModal.show('modal-2', {
 				onShow: (modal, node) => {
 					if (!flag) {
 						const wrapper = modal.querySelector('.my-modal-wrapper')
 						const modalClose = modal.querySelector('.modal__close')
-						wrapper.addEventListener('mouseup', addMouseUpTrigger)
-						wrapper.addEventListener('mousedown', closeModal.bind(null, modal.id))
-						modalClose.addEventListener('click', function () {
-							MicroModal.close(modal.id)
-						})
+
+						setTimeout(()=>{
+							wrapper.addEventListener('mouseup', addMouseUpTrigger)
+							wrapper.addEventListener('mousedown', closeModal.bind(null, modal.id, instance))
+							modalClose.addEventListener('click', function () {
+								MicroModal.close(modal.id)
+							})
+						}, 0)
+						
 						// document.removeEventListener('keydown', onKeyPressClose)
 						// document.addEventListener('keydown', onKeyPressClose)
 						flag = true

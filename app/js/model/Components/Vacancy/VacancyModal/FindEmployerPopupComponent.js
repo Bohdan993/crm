@@ -4,7 +4,7 @@ import {
 } from '../../../../../libs/libs'
 import loadEmployerInfo from '../../../fetchingData/Vacancy/VacancyModal/loadEmployerInfo'
 import storageVacancyEmployerDataAdd from '../../../CustomEvents/storageVacancyEmployerDataAdd'
-
+import vacancyListUpdateFetchEvent from '../../../CustomEvents/vacancyListUpdateFetchEvent'
 
 export default class FindEmployerPopupComponent {
 
@@ -76,6 +76,7 @@ export default class FindEmployerPopupComponent {
 					storageVacancyEmployerDataAdd.detail.employerId = this.result.id
 					storageVacancyEmployerDataAdd.detail.vacancyEmployerData = res
 					document.dispatchEvent(storageVacancyEmployerDataAdd)
+					document.dispatchEvent(vacancyListUpdateFetchEvent)
 					this.findEmployer.value = ''
 				} else {
 					return

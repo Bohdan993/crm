@@ -25,7 +25,7 @@ async function onAddVacancy(id = null) {
 
 		if (vacancy.success === true) {
 
-			MicroModal.show('modal-3', {
+			const instance = MicroModal.show('modal-3', {
 				onClose: async modal => {
 					const data = await fetch.getResourse(`/vacancies/get/?id=${vacancy.id}&section=0`)
 
@@ -42,18 +42,21 @@ async function onAddVacancy(id = null) {
 					} else {
 						fetch.getResourse(`/vacancies/delete/?id=${vacancy.id}`)
 					}
-			
+
 				},
 				onShow: (modal, node) => {
 					const wrapper = modal.querySelector('.my-modal-wrapper')
 					const modalClose = modal.querySelector('.modal__close')
 
 					if (!flag) {
-						wrapper.addEventListener('mouseup', addMouseUpTrigger)
-						wrapper.addEventListener('mousedown', closeModal.bind(null, modal.id))
-						modalClose.addEventListener('click', function () {
-							MicroModal.close(modal.id)
-						})
+						setTimeout(() => {
+							wrapper.addEventListener('mouseup', addMouseUpTrigger)
+							wrapper.addEventListener('mousedown', closeModal.bind(null, modal.id, instance))
+							modalClose.addEventListener('click', function () {
+								MicroModal.close(modal.id)
+							})
+						}, 0)
+
 						flag = true
 					}
 				}

@@ -13,6 +13,8 @@
 		save,
 		formatDate
 	} from '../../../helper'
+	import vacancyListUpdateEvent from '../../../CustomEvents/vacancyListUpdateEvent'
+	import vacancyStorage from '../../../Storage/globalVacancies'
 
 
 
@@ -30,7 +32,7 @@
 			)
 		}
 
-		update(data, index, items, context) {
+		update(data) {
 
 			setAttr(this.input, {
 				id: this.type + '-' + data.id,
@@ -68,6 +70,8 @@
 					'dataID': '3'
 				}
 			]
+			
+
 			this.el = el('div.vacancy-modal-popup#work-type-popup',
 				this.form = el('form',
 					el('div.form-group',
@@ -88,7 +92,7 @@
 
 			this.form.addEventListener('submit', (e) => {
 				e.preventDefault()
-				this.parent.products._tippy.hide()
+				
 
 
 				this.parent.fullInfo.update(true)
@@ -122,18 +126,28 @@
 					field: 'type_vacancy'
 				})
 
+				// console.log(this.checkedProducts)
+
 				this.save({
 					id: this.data,
 					value: this.checkedProducts.join(','),
 					field: 'type_production'
 				}).then(res => {
 					if (res === 'ok') {
-						this.list1.views.forEach(el => {
-							el.input.checked = false
-						})
-						this.list2.views.forEach(el => {
-							el.input.checked = false
-						})
+						console.log(this.checkedProducts.join(','))
+						vacancyStorage.setPartialState(this.data, 'id_vacancy', 'type_production', this.checkedProducts.join(','))
+						vacancyStorage.setPartialState(this.data, 'id_vacancy', 'type_vacancy', checkedID)
+						
+						this.parent.products._tippy.hide()
+						this.checkedProducts = []
+						// this.list1.views.forEach(el => {
+						// 	el.input.checked = false
+						// })
+						// this.list2.views.forEach(el => {
+						// 	el.input.checked = false
+						// })
+						vacancyListUpdateEvent.detail.id = this.data
+						document.dispatchEvent(vacancyListUpdateEvent)
 					} else {
 						return
 					}
@@ -143,19 +157,35 @@
 
 		update(data, context) {
 
+			console.log(data, context)
+
+			this.visaTypeText = this.parent.visaType.innerText
+			this.typesText = this.parent.types.innerText
+
 			this.list2.update(context)
+
 			this.list1.views.forEach(el => {
+				if(this.visaTypeText.includes(el.label.innerText)) {
+					el.input.checked = true
+					return
+				}
 				el.input.checked = false
 			})
+
 			this.list2.views.forEach(el => {
+
+				if(this.typesText.includes(el.label.innerText)) {
+					el.input.checked = true
+					return
+				}
 				el.input.checked = false
+				
 			})
+
 			this.data = data
 			this.production = context
 		}
 
-
-		onmount() {}
 
 		getItemsFromLocalStorage() {
 
@@ -255,10 +285,90 @@
 			this.pricePopup = new PricePopup()
 			this.pricePopup.el.style.display = 'block'
 			this.pricePopup.parent = this
+
+
+
+			this.clientaddtovacancyeventHandler = (e) => {
+				if (e.detail.id === this.data.idVac) {
+					const statusesCountArr = vacancyStorage.getPartialState(this.data.idVac, 'id_vacancy', 'status')
+			
+					setAttr(this.totalClientsCount, {
+						innerText: statusesCountArr[0]
+					})
+
+					setAttr(this.choosenClientsCount, {
+						innerText: statusesCountArr[1]
+					})
+	
+				}
+
+			}
+
+			this.clientupdateinvacancyeventHandler = (e) => {
+				if (e.detail.id === this.data.idVac) {	
+					const {statusesArr} = e.detail
+					console.log(e)
+					setAttr(this.totalClientsCount, {
+						innerText: statusesArr[0]
+					})
+
+					setAttr(this.choosenClientsCount, {
+						innerText: statusesArr[1]
+					})
+
+					setAttr(this.readyClientsCount, {
+						innerText: statusesArr[2]
+					})
+
+					setAttr(this.waitClientsCount, {
+						innerText: statusesArr[3]
+					})
+
+					setAttr(this.departmentClientsCount, {
+						innerText: statusesArr[4]
+					})
+
+					setAttr(this.busyClientsCount, {
+						innerText: statusesArr[5]
+					})
+	
+				}
+				
+			}
+
+			this.clientdeletefromvacancyeventHandler = (e) => {
+				if (e.detail.id === this.data.idVac) {	
+					const {statusesArr} = e.detail
+					setAttr(this.totalClientsCount, {
+						innerText: statusesArr[0]
+					})
+
+					setAttr(this.choosenClientsCount, {
+						innerText: statusesArr[1]
+					})
+
+					setAttr(this.readyClientsCount, {
+						innerText: statusesArr[2]
+					})
+
+					setAttr(this.waitClientsCount, {
+						innerText: statusesArr[3]
+					})
+
+					setAttr(this.departmentClientsCount, {
+						innerText: statusesArr[4]
+					})
+
+					setAttr(this.busyClientsCount, {
+						innerText: statusesArr[5]
+					})
+	
+				}
+			}
 		}
 
 		update(data, context) {
-
+			console.log(data)
 			let d = data.startWork ? new Date(data.startWork.split('.').reverse().join('.')) : new Date()
 			d.setMonth(+d.getMonth() + +data.period)
 
@@ -288,7 +398,7 @@
 				this.chooseEmployer.update(false)
 				this.fullInfo.update(true)
 				this.fullInfo._el.style.display = "flex"
-	
+
 				setAttr(this.dates, {
 					innerText: data.period ? `${data.startWork} - ${formatDate(d)}` : '-'
 				})
@@ -320,6 +430,29 @@
 				setAttr(this.busyClientsCount, {
 					innerText: data.closedVacancies[5]
 				})
+			} else {
+				setAttr(this.totalClientsCount, {
+					innerText: data?.clients
+				})
+				setAttr(this.choosenClientsCount, {
+					innerText: '0'
+				})
+
+				setAttr(this.readyClientsCount, {
+					innerText: '0'
+				})
+
+				setAttr(this.waitClientsCount, {
+					innerText: '0'
+				})
+
+				setAttr(this.departmentClientsCount, {
+					innerText: '0'
+				})
+
+				setAttr(this.busyClientsCount, {
+					innerText: '0'
+				})
 			}
 
 			setAttr(this.countries, {
@@ -327,11 +460,11 @@
 			})
 
 			setAttr(this.countryVacancy, {
-				style : {
+				style: {
 					backgroundColor: data.isArchive !== '0' ? '#99CCCC' : '#FF9966'
 				}
 			})
-			 
+
 
 			setAttr(this.fullInfoAbbrVacancy, {
 				innerText: data.employer && data.employer.vacancy ? data.employer.vacancy : data.vacancyName ? data.vacancyName : ''
@@ -399,45 +532,18 @@
 			this.priceInstance = initVacancyModalTooltip(this.price, this.pricePopup.el, tippy)
 
 
-			document.addEventListener('storageemployeradd', (e) => {
-
-				const {
-					vacancyEmployerData: { employer }
-				} = e.detail
-
-				this.chooseEmployer.update(false)
-				this.fullInfo.update(true)
-				this.fullInfo._el.style.display = "flex"
-
-				this.chooseProductTypePopup.save({
-					id: this.data.idVac,
-					value: '',
-					field: 'type_vacancy'
-				})
-
-				this.chooseProductTypePopup.save({
-					id: this.data.idVac,
-					value: '',
-					field: 'type_production'
-				})
+			document.addEventListener('clientaddtovacancyevent', this.clientaddtovacancyeventHandler)
+			document.addEventListener('clientupdateinvacancyevent', this.clientupdateinvacancyeventHandler)
+			document.addEventListener('clientdeletefromvacancyevent', this.clientdeletefromvacancyeventHandler)
 
 
-				this.update({
-					idVac: this.data.idVac,
-					employer,
-					type_production: '',
-					type_vacancy: '0',
-					vacancyName: this.data.vacancyName,
-					period: this.data.period,
-					clients: this.data.clients,
-					men: this.data.man,
-					women: this.data.woman,
-					date: this.data.date,
-					startWork: this.data.startWork,
-					production: employer.production
-				}, 'storage')
+		}
 
-			})
+		onunmount() {
+
+			document.removeEventListener('clientaddtovacancyevent', this.clientaddtovacancyeventHandler)
+			document.removeEventListener('clientupdateinvacancyevent', this.clientupdateinvacancyeventHandler)
+			document.removeEventListener('clientdeletefromvacancyevent', this.clientdeletefromvacancyeventHandler)
 		}
 
 

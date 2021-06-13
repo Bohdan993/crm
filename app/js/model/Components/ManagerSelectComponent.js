@@ -8,7 +8,8 @@ import {
 import employersStorage from '../Storage/globalEmployers'
 import employerListUpdateEvent from './../CustomEvents/employerListUpdateEvent'
 import vacancyStorage from '../Storage/globalVacancies'
-import vacancyListUpdateEvent from './../CustomEvents/vacancyListUpdateEvent'
+
+import vacancyListUpdateFetchEvent from '../CustomEvents/vacancyListUpdateFetchEvent'
 
 
 export default class ManagerSelect { // to ../MountingElements/Employer/WorkModal/mountManagerSelect.js
@@ -47,8 +48,8 @@ export default class ManagerSelect { // to ../MountingElements/Employer/WorkModa
 				let currManager = JSON.parse(localStorage.getItem('managersVacancy')).filter(el => el.id === this.manager.value)[0]
 				vacancyStorage.setPartialState(this.data.id_vacancy, 'id_vacancy', 'manager', currManager ? currManager.name.split(' ').map(el => el[0]).join('') : '')
 				vacancyStorage.setPartialState(this.data.id_vacancy, 'id_vacancy', 'manager_color', currManager ? currManager.color : '')
-				vacancyListUpdateEvent.detail.id = this.data.id_vacancy
-				document.dispatchEvent(vacancyListUpdateEvent)
+				vacancyListUpdateFetchEvent.detail.id = this.data.id_vacancy
+				document.dispatchEvent(vacancyListUpdateFetchEvent)
 			}
 		})
 

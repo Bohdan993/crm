@@ -230,6 +230,8 @@ export default class RowVacancyClient {
 
 	update(data, index, items, context){
 
+		console.log(data)
+
 		this.timesArr = data.status_history
 		this.vacancyTooltipInstance = initVacancyTooltip(this.statusSlider.el)
 
