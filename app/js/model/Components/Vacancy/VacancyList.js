@@ -67,6 +67,8 @@ export default class VacancyList {
             classes: this.indicatorsClasses,
             productsData: this.getItemsFromLocalStorage().products
         })
+
+        sessionStorage.setItem('addNewVacancyMode', '0')
         //Инициализация функций которые зависят от инстанса класса
     }
 

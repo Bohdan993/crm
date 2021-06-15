@@ -207,7 +207,8 @@ export default class RowVacancyClient {
 							this.labelCourseText = el('span.no-open'))),
 						this.speciality = place(el('p.no-open'))
 					)),
-					this.language = list('div.language__wrapper.no-open', Language, 'name'))
+					this.language = list('div.language__wrapper.no-open', Language, 'name')),
+					this.driver = place(el('div.tag.driver-tag.dirty-green-tag.no-open'))
 			),
 			el('div.table-full__cell.row__cell.cell-notes.no-open',
 				this.notes = el('input.no-open', {
@@ -324,6 +325,16 @@ export default class RowVacancyClient {
 			})
 		) : (
 			this.manager.update(false)
+		)
+
+		data.main.driver ? (
+			this.driver.update(true),
+			setAttr(this.manager.el, {
+				innerText: data.main.driver,
+			})
+
+		) : (
+			this.driver.update(false)
 		)
 		data.main._group !== '0' ? (
 			this.group.update(true),

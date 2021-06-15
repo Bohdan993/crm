@@ -99,7 +99,10 @@ export default class TermsComponent {
 			vacancyStorage.setPartialState(this.data.id, 'id_vacancy', 'start_work', this.period.value.trim() ? `${changedDate}` : '')
 			vacancyStorage.setPartialState(this.data.id, 'id_vacancy', 'finish_work', this.period.value.trim() ? `${formatDate(d)}` : '')
 			vacancyListUpdateFetchEvent.detail.id = this.data.id
-			document.dispatchEvent(vacancyListUpdateFetchEvent)
+
+			if(!+JSON.parse(sessionStorage.getItem('addNewVacancyMode'))) {
+				document.dispatchEvent(vacancyListUpdateFetchEvent)
+			}
 		})
 
 		this.period.addEventListener('change', (e) => {

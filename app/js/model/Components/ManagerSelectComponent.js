@@ -49,7 +49,9 @@ export default class ManagerSelect { // to ../MountingElements/Employer/WorkModa
 				vacancyStorage.setPartialState(this.data.id_vacancy, 'id_vacancy', 'manager', currManager ? currManager.name.split(' ').map(el => el[0]).join('') : '')
 				vacancyStorage.setPartialState(this.data.id_vacancy, 'id_vacancy', 'manager_color', currManager ? currManager.color : '')
 				vacancyListUpdateFetchEvent.detail.id = this.data.id_vacancy
-				document.dispatchEvent(vacancyListUpdateFetchEvent)
+				if(!+JSON.parse(sessionStorage.getItem('addNewVacancyMode'))) {
+					document.dispatchEvent(vacancyListUpdateFetchEvent)
+				}
 			}
 		})
 

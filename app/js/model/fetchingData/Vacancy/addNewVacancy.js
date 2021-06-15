@@ -14,6 +14,8 @@ import {
 
 	toastr
 } from '../../../../libs/libs'
+import vacancyListUpdateFetchEvent from '../../CustomEvents/vacancyListUpdateFetchEvent'
+
 
 let listeners = []
 
@@ -27,15 +29,18 @@ async function onAddVacancy(id = null) {
 
 			const instance = MicroModal.show('modal-3', {
 				onClose: modal => {
+					sessionStorage.setItem('addNewVacancyMode', '0')
 					const wrapper = modal.querySelector('.my-modal-wrapper')
 					const modalClose = modal.querySelector('.modal__close')
 
 					wrapper.removeEventListener('click', listeners[0])
 					modalClose.removeEventListener('click', listeners[1])
+					window.removeEventListener('keydown', listeners[1])
 
-					listeners = []
+					document.dispatchEvent(vacancyListUpdateFetchEvent)
 				},
 				onShow: (modal, node) => {
+					sessionStorage.setItem('addNewVacancyMode', '1')
 					listeners = []
 					const wrapper = modal.querySelector('.my-modal-wrapper')
 					const modalClose = modal.querySelector('.modal__close')
@@ -45,17 +50,15 @@ async function onAddVacancy(id = null) {
 						const wantToCloseModalBinded = wantToCloseModal.bind(wrapper, instance, vacancy.id)
 						const wantToCloseBinded = wantToClose.bind(modalClose, instance, vacancy.id)
 
+
 						wrapper.addEventListener('click', wantToCloseModalBinded)
 						modalClose.addEventListener('click', wantToCloseBinded)
+						window.addEventListener('keydown', wantToCloseBinded, true)
 
 						listeners.push(wantToCloseModalBinded)
 						listeners.push(wantToCloseBinded)
 
-
-
 					}, 0)
-
-
 
 
 					getVacancyModalInfo(vacancy.id, true).then(res => {

@@ -77,7 +77,11 @@ export default class FindEmployerPopupComponent {
 					storageVacancyEmployerDataAdd.detail.employerId = this.result.id
 					storageVacancyEmployerDataAdd.detail.vacancyEmployerData = res
 					document.dispatchEvent(storageVacancyEmployerDataAdd)
-					// document.dispatchEvent(vacancyListUpdateFetchEvent)
+
+					if(!+JSON.parse(sessionStorage.getItem('addNewVacancyMode'))) {
+						document.dispatchEvent(vacancyListUpdateFetchEvent)
+					}
+					
 					this.findEmployer.value = ''
 				} else {
 					return

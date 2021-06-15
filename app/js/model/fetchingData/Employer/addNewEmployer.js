@@ -26,7 +26,7 @@ const addNewEmployer = () => {
 
 		sidebarEmployer.addEventListener('click', loadData)
 
-		async function loadData () {
+		async function loadData() {
 
 			try {
 				const employer = await fetch.getResourse('/employers/create')
@@ -40,32 +40,28 @@ const addNewEmployer = () => {
 							console.log(listeners)
 							wrapper.removeEventListener('mousedown', listeners[0])
 							modalClose.removeEventListener('mousedown', listeners[1])
-							// document.removeEventListener('keydown', listeners[1])
-
-							// listeners = []
+							window.removeEventListener('keydown', listeners[1])
 						},
 						onShow: (modal) => {
 							listeners = []
 							const wrapper = modal.querySelector('.my-modal-wrapper')
 							const modalClose = modal.querySelector('.modal__close')
 
-							// if (!flag) {
-								setTimeout(() => {
 
-									const wantToCloseModalBinded = wantToCloseModal.bind(wrapper, instance, employer.id)
-									const wantToCloseBinded = wantToClose.bind(modalClose, instance, employer.id)
+							setTimeout(() => {
 
-									wrapper.addEventListener('mousedown', wantToCloseModalBinded)
-									modalClose.addEventListener('mousedown', wantToCloseBinded)
-									// document.addEventListener('keydown', wantToCloseBinded)
+								const wantToCloseModalBinded = wantToCloseModal.bind(wrapper, instance, employer.id)
+								const wantToCloseBinded = wantToClose.bind(modalClose, instance, employer.id)
 
-									listeners.push(wantToCloseModalBinded)
-									listeners.push(wantToCloseBinded)
+								wrapper.addEventListener('mousedown', wantToCloseModalBinded)
+								modalClose.addEventListener('mousedown', wantToCloseBinded)
+								window.addEventListener('keydown', wantToCloseBinded, true)
 
-								}, 0)
+								listeners.push(wantToCloseModalBinded)
+								listeners.push(wantToCloseBinded)
 
-							// 	flag = true
-							// }
+							}, 0)
+
 
 							getWorkModalInfo(employer.id)
 							getWorkModalManufacturyType(employer.id)

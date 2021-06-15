@@ -169,11 +169,25 @@ function wantToCloseModal(instance, id, e) {
 }
 
 function wantToClose(instance, id, e) {
-  e.stopPropagation()
-  console.log('ererr')
-  wantToCloseModalEvent.detail.instance = instance
-  wantToCloseModalEvent.detail.id = id
-  document.dispatchEvent(wantToCloseModalEvent)
+
+  if (e.type === 'click') {
+    e.stopPropagation()
+    wantToCloseModalEvent.detail.instance = instance
+    wantToCloseModalEvent.detail.id = id
+    document.dispatchEvent(wantToCloseModalEvent)
+    return
+  }
+
+  if (e.type === 'keydown' && e.code === 'Escape') {
+    e.stopImmediatePropagation()
+    wantToCloseModalEvent.detail.instance = instance
+    wantToCloseModalEvent.detail.id = id
+    document.dispatchEvent(wantToCloseModalEvent)
+    return
+  } else {
+    return false
+  }
+
 }
 
 
