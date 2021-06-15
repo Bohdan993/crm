@@ -1,7 +1,18 @@
-import {el, setAttr, place, list} from '../../../../libs/libs'
-import switchRowStatuses, {switchRowStatusesTip} from '../../vacancy/switchRowStatuses'
-import { initVacancyTooltip } from '../../initToottips'
-import { save } from '../../helper'
+import {
+	el,
+	setAttr,
+	place,
+	list
+} from '../../../../libs/libs'
+import switchRowStatuses, {
+	switchRowStatusesTip
+} from '../../vacancy/switchRowStatuses'
+import {
+	initVacancyTooltip
+} from '../../initToottips'
+import {
+	save
+} from '../../helper'
 import storage from '../../Storage'
 
 
@@ -68,63 +79,63 @@ const tooltipContentFunc = ({
                         </div>
                     </form>
                 </div>`
-} 
+}
 
 
-const dataArr = [
-{
-	id: '1',
-	class: 'choosen',
-	text: 'Подготовка CV'
-},
-{
-	id: '2',
-	class: 'choosen',
-	text: 'CV отправлено'
-},
-{
-	id: '3',
-	class: 'ready',
-	text: 'Утвержден'
-},
-{
-	id: '4',
-	class: 'ready',
-	text: 'Контракт подписан'
-},
-{
-	id: '5',
-	class: 'wait',
-	text: 'Подан в визовый центр'
-},
-{
-	id: '6',
-	class: 'department',
-	text: 'Получил разрешение'
-},
-{
-	id: '7',
-	class: 'department',
-	text: 'Забрал разрешение'
-},
-{
-	id: '8',
-	class: 'department',
-	text: 'Билеты куплены'
-},
-{
-	id: '9',
-	class: 'busy',
-	text: 'Трудоустроен'
-}]
+const dataArr = [{
+		id: '1',
+		class: 'choosen',
+		text: 'Подготовка CV'
+	},
+	{
+		id: '2',
+		class: 'choosen',
+		text: 'CV отправлено'
+	},
+	{
+		id: '3',
+		class: 'ready',
+		text: 'Утвержден'
+	},
+	{
+		id: '4',
+		class: 'ready',
+		text: 'Контракт подписан'
+	},
+	{
+		id: '5',
+		class: 'wait',
+		text: 'Подан в визовый центр'
+	},
+	{
+		id: '6',
+		class: 'department',
+		text: 'Получил разрешение'
+	},
+	{
+		id: '7',
+		class: 'department',
+		text: 'Забрал разрешение'
+	},
+	{
+		id: '8',
+		class: 'department',
+		text: 'Билеты куплены'
+	},
+	{
+		id: '9',
+		class: 'busy',
+		text: 'Трудоустроен'
+	}
+]
 
 
 class CellStatusSlider {
-	constructor(){
+	constructor() {
 		this.el = el('p.status.no-open')
 	}
 
-	update(data){
+	update(data) {
 		setAttr(this.el, {
 			classList: `status no-open ${data.class}`,
 			innerText: data.text
@@ -135,7 +146,7 @@ class CellStatusSlider {
 
 
 class LanguageStars {
-	constructor(){
+	constructor() {
 		this.el = el('i.ico.s-star.no-open')
 	}
 
@@ -143,8 +154,8 @@ class LanguageStars {
 
 
 class Language {
-	constructor(){
-		this.el = el('i.label.blue__label.no-open', 
+	constructor() {
+		this.el = el('i.label.blue__label.no-open',
 			this.languageName = el('span.language.no-open'),
 			this.languageStars = list('span.language-stars.no-open', LanguageStars)
 		)
@@ -152,62 +163,64 @@ class Language {
 
 
 	update(data) {
-			setAttr(this.languageName,{
-				innerText: data.addr
-			})
-			this.languageStars.update(Array(data.level).fill(0))
+		setAttr(this.languageName, {
+			innerText: data.addr
+		})
+		this.languageStars.update(Array(data.level).fill(0))
 	}
 }
 
 export default class RowVacancyClient {
-	constructor(type){
+	constructor(type) {
 		this.type = type
 		this.timesArr = []
 		this.save = save.bind(this)
 		this.data = {}
 		this.context = ''
 		this.el = el("div.table-full__row.f-container.no-open",
-				el('div.table-full__cell.row__cell.cell-names.no-open', 
-					this.name = el('a.no-open', {
-						href: '#',
-						target: "_blank"
-					}),
-					this.group = place(el('span.row__indicator.indicator.department.no-open', 
-						this.groupNum = el('span.no-open')))),
-				el('div.table-full__cell.row__cell.cell-status.no-open', 
-					this.statusLeft = el('div.cell-status__left.no-open', 
-						this.statusSlider = list(`div.cell-status__slider.no-open.${this.type}`, CellStatusSlider, 'id'),
-						this.statusArrows = el('div.cell-status__controls.choosen.no-open',
-							el('div.cell-status__control-left.no-open', 
-								el('i.ico.s-arr-left.no-open')),
-							el('div.cell-status__control-right.no-open',
-								el('i.ico.s-arr-right.no-open'))
-							)),
-					el('div.cell-status__right.no-open',
-						this.phone = place(el('i.ico.s-phone-red.no-open')),
-						this.documents = place(el('i.ico.s-documents.no-open')),
-						this.anket = place(el('i.ico.s-anket.no-open')),
-						this.manager = place(el('div.tag.manager-tag.purple-tag.no-open')))),
-				el('div.table-full__cell.row__cell.cell-exp.no-open', 
-					
-					el('div.table-full__cell-wrapper.row__cell-wrapper.cell-exp-wrapper.no-open', 
-					this.labelCourse = place(el('i.label.no-open',
-					this.labelCourseText = el('span.no-open'))),
-					this.speciality = el('p.no-open'),
+			el('div.table-full__cell.row__cell.cell-names.no-open',
+				this.name = el('a.no-open', {
+					href: '#',
+					target: "_blank"
+				}),
+				this.group = place(el('span.row__indicator.indicator.department.no-open',
+					this.groupNum = el('span.no-open')))),
+			el('div.table-full__cell.row__cell.cell-status.no-open',
+				this.statusLeft = el('div.cell-status__left.no-open',
+					this.statusSlider = list(`div.cell-status__slider.no-open.${this.type}`, CellStatusSlider, 'id'),
+					this.statusArrows = el('div.cell-status__controls.choosen.no-open',
+						el('div.cell-status__control-left.no-open',
+							el('i.ico.s-arr-left.no-open')),
+						el('div.cell-status__control-right.no-open',
+							el('i.ico.s-arr-right.no-open'))
+					)),
+				el('div.cell-status__right.no-open',
+					this.phone = place(el('i.ico.s-phone-red.no-open')),
+					this.documents = place(el('i.ico.s-documents.no-open')),
+					this.anket = place(el('i.ico.s-anket.no-open')),
+					this.manager = place(el('div.tag.manager-tag.purple-tag.no-open')))),
+			el('div.table-full__cell.row__cell.cell-exp.no-open',
+
+				el('div.table-full__cell-wrapper.row__cell-wrapper.cell-exp-wrapper.no-open',
+					this.educationBlock = place(el('div.no-open.prof-education',
+						this.labelCourse = place(el('i.label.no-open',
+							this.labelCourseText = el('span.no-open'))),
+						this.speciality = place(el('p.no-open'))
+					)),
 					this.language = list('div.language__wrapper.no-open', Language, 'name'))
-					),
-				el('div.table-full__cell.row__cell.cell-notes.no-open', 
-					this.notes = el('input.no-open', {
-						type: 'text'
-					}))
-			)
+			),
+			el('div.table-full__cell.row__cell.cell-notes.no-open',
+				this.notes = el('input.no-open', {
+					type: 'text'
+				}))
+		)
 
 
 		this.notes.addEventListener('change', e => {
 
 			this.save({
-				id: this.data.vacancy.id, 
-				value: this.notes.value.trim(), 
+				id: this.data.vacancy.id,
+				value: this.notes.value.trim(),
 				field: 'note',
 				target: 'client'
 			})
@@ -224,11 +237,11 @@ export default class RowVacancyClient {
 
 		})
 
-		
+
 
 	}
 
-	update(data, index, items, context){
+	update(data, index, items, context) {
 
 		console.log(data)
 
@@ -256,36 +269,32 @@ export default class RowVacancyClient {
 			ninethClass: this.timesArr.filter(el => el.id_status === '9')[0] ? 'taken' : '',
 		}))
 
-		
+
 		switchRowStatusesTip.call(this.statusSlider.el, data.vacancy.id, context.id)
 
-		if(this.context.parent !== context.parent) {
+		if (this.context.parent !== context.parent) {
 			switchRowStatuses.call(this.statusSlider.el, this.statusLeft, data.vacancy.id, context.id)
 		}
 
 
 		dataArr.forEach(el => {
 
-			if(el.id === '1' || el.id === '2') {
+			if (el.id === '1' || el.id === '2') {
 				el.class = 'choosen'
-			}
-			else if(el.id === '3' || el.id === '4') {
+			} else if (el.id === '3' || el.id === '4') {
 				el.class = 'ready'
-			}
-			else if(el.id === '5') {
+			} else if (el.id === '5') {
 				el.class = 'wait'
-			}
-			else if(el.id === '6' || el.id === '7' || el.id === '8') {
+			} else if (el.id === '6' || el.id === '7' || el.id === '8') {
 				el.class = 'department'
-			}
-			else if(el.id === '9') {
+			} else if (el.id === '9') {
 				el.class = 'busy'
 			}
 
-			
-			if(el.id === data.vacancy.id_status) {
-				
-				setAttr(this.statusArrows,{
+
+			if (el.id === data.vacancy.id_status) {
+
+				setAttr(this.statusArrows, {
 					classList: `cell-status__controls no-open ${el.class}`
 				})
 				el.class += ' active'
@@ -304,31 +313,57 @@ export default class RowVacancyClient {
 		data.main.task_document === '0' ? this.documents.update(false) : this.documents.update(true)
 		data.main.task_phone === '0' ? this.phone.update(false) : this.phone.update(true)
 		data.main.task_questionnaire === '0' ? this.anket.update(false) : this.anket.update(true)
+		data.main.manager_abbr ? (
+			this.manager.update(true),
+			setAttr(this.manager.el, {
+				innerText: data.main.manager_abbr,
+				title: data.main.manager_name,
+				style: {
+					backgroundColor: data.main.manager_color
+				}
+			})
+		) : (
+			this.manager.update(false)
+		)
 		data.main._group !== '0' ? (
 			this.group.update(true),
 			setAttr(this.groupNum, {
 				innerText: data.main._group
 			})
-			) : this.group.update(false)
+		) : this.group.update(false)
+
+		data.language = data.language.filter(x => x.addr.toUpperCase() === 'EN')
 
 		this.language.update(data.language)
 
-		this.getItemsFromLocalStorage().managers.forEach(manager => {
-			manager.id === data.main.id_manager ? 
-			(this.manager.update(true),
-				setAttr(this.manager.el, {
-					innerText: manager.name.split(' ').map(el => el[0]).join('')
-				}) 
-				) : this.manager.update(false)
-		})
+		// this.getItemsFromLocalStorage().managers.forEach(manager => {
+		// 	manager.id === data.main.id_manager ? 
+		// 	(this.manager.update(true),
+		// 		setAttr(this.manager.el, {
+		// 			innerText: manager.name.split(' ').map(el => el[0]).join('')
+		// 		}) 
+		// 		) : this.manager.update(false)
+		// })
 
 		setAttr(this.notes, {
 			value: data.vacancy.note
 		})
 
-		setAttr(this.speciality, {
-			innerText: data.education ? data.education.prof_specialty ? data.education.prof_specialty : data.education.user_specialty : ''
-		})
+		data.education && data.education.form && (
+			this.educationBlock.update(true),
+			setAttr(this.educationBlock.el, {
+				title: `${data.education.name} - ${data.education.user_specialty} ${data.education.prof_specialty ? '(' + data.education.prof_specialty + ')' : ''}`
+			})
+			)
+
+		data.education && data.education.prof_specialty ? (
+			this.speciality.update(true),
+			setAttr(this.speciality.el, {
+				innerText: data.education.prof_specialty
+			})
+		) : (
+			this.speciality.update(false)
+			)
 
 		data.education ? data.education.form || data.education.course ? (
 			this.labelCourse.update(true),
@@ -340,14 +375,14 @@ export default class RowVacancyClient {
 			setAttr(this.labelCourseText, {
 				innerText: `${data.education ? data.education.form === '1' ? 'Д' : 'З' : ''} ${data.education && data.education.course ? data.education.course : ""}`
 			})
-			) : this.labelCourse.update(false) : null
+		) : this.labelCourse.update(false) : null
 
 		this.data = data
 		this.context = context
 	}
 
 
-	getItemsFromLocalStorage(){
+	getItemsFromLocalStorage() {
 
 		let managers = JSON.parse(localStorage.getItem('managersVacancy')) || []
 

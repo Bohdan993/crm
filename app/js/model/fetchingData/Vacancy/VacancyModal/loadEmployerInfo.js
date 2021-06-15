@@ -15,7 +15,7 @@ const loadEmployerInfo = async ({
 		if (employers.success === true) {
 			const data = {
 				id: employer,
-				data: employers.data.employer
+				data: employers.data
 			}
 			sessionStorage.setItem('currVacancyEmployer', JSON.stringify(data))
 			toastr.success(`ID вакансии ${vacancy}`, 'Данные о работодателе успешно загружены', {

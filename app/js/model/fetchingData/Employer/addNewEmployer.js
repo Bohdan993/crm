@@ -1,5 +1,4 @@
 import fetch from '../fetchingDataClass'
-import getEmployersList from '../Employer/getEmployersList'
 import {
 	sidebarEmployer
 } from '../../../view'
@@ -7,8 +6,8 @@ import {
 	toastr
 } from '../../../../libs/libs'
 import {
-	addMouseUpTrigger,
-	closeModal
+	wantToClose,
+	wantToCloseModal
 } from '../../helper'
 import getWorkModalInfo from '../../fetchingData/Employer/WorkModal/getWorkModalInfo'
 import getWorkModalManufacturyType from '../../fetchingData/Employer/WorkModal/getWorkModalManufacturyType'
@@ -18,13 +17,16 @@ import getWorkModalVacancyHistory from '../../fetchingData/Employer/WorkModal/ge
 import getWorkModalFeedback from '../../fetchingData/Employer/WorkModal/getWorkModalFeedback'
 import getWorkModalTasks from '../../fetchingData/Employer/WorkModal/getWorkModalTasks'
 
-let flag = false
+
+let listeners = []
+
 
 const addNewEmployer = () => {
 	if (sidebarEmployer) {
 
+		sidebarEmployer.addEventListener('click', loadData)
 
-		sidebarEmployer.addEventListener('click', async function () {
+		async function loadData () {
 
 			try {
 				const employer = await fetch.getResourse('/employers/create')
@@ -32,62 +34,63 @@ const addNewEmployer = () => {
 				if (employer.success === true) {
 
 					const instance = MicroModal.show('modal-1', {
-						onClose: async modal => {
-							const data = await fetch.getResourse(`/employers/get/?id=${employer.id}&section=0`)
-							if (data.data.main.id_country !== '0' && data.data.other.production.length !== 0) {
-								toastr.success(`ID работодателя ${employer.id}`, 'Успешно создан работодатель', {
-									closeButton: false
-								})
-								getEmployersList({
-									added: true,
-									// filtered: JSON.parse(sessionStorage.getItem('employersFiltered'))
-								})
-							} else {
-								fetch.getResourse(`/employers/delete/?id=${employer.id}`)
-							}
+						onClose: modal => {
+							const wrapper = modal.querySelector('.my-modal-wrapper')
+							const modalClose = modal.querySelector('.modal__close')
+							console.log(listeners)
+							wrapper.removeEventListener('mousedown', listeners[0])
+							modalClose.removeEventListener('mousedown', listeners[1])
+							// document.removeEventListener('keydown', listeners[1])
+
+							// listeners = []
 						},
 						onShow: (modal) => {
+							listeners = []
 							const wrapper = modal.querySelector('.my-modal-wrapper')
 							const modalClose = modal.querySelector('.modal__close')
 
-							if (!flag) {
+							// if (!flag) {
 								setTimeout(() => {
-									wrapper.addEventListener('mouseup', addMouseUpTrigger, {
-										once: true
-									})
-									wrapper.addEventListener('mousedown', closeModal.bind(null, modal.id, instance))
-									modalClose.addEventListener('click', function () {
-										MicroModal.close(modal.id)
-									})
+
+									const wantToCloseModalBinded = wantToCloseModal.bind(wrapper, instance, employer.id)
+									const wantToCloseBinded = wantToClose.bind(modalClose, instance, employer.id)
+
+									wrapper.addEventListener('mousedown', wantToCloseModalBinded)
+									modalClose.addEventListener('mousedown', wantToCloseBinded)
+									// document.addEventListener('keydown', wantToCloseBinded)
+
+									listeners.push(wantToCloseModalBinded)
+									listeners.push(wantToCloseBinded)
+
 								}, 0)
 
-								flag = true
-							}
-						}
-					})
+							// 	flag = true
+							// }
 
-					getWorkModalInfo(employer.id)
-					getWorkModalManufacturyType(employer.id)
-					getWorkModalMedia({
-						id: employer.id,
-						loading: true
-					})
-					getWorkModalContactHistory({
-						id: employer.id,
-						loading: true
-					})
-					getWorkModalVacancyHistory({
-						id: employer.id,
-						loading: true
-					})
-					getWorkModalFeedback({
-						id: employer.id,
-						loading: true,
-						other: 5,
-						str: 'employers'
-					})
-					getWorkModalTasks({
-						id: employer.id
+							getWorkModalInfo(employer.id)
+							getWorkModalManufacturyType(employer.id)
+							getWorkModalMedia({
+								id: employer.id,
+								loading: true
+							})
+							getWorkModalContactHistory({
+								id: employer.id,
+								loading: true
+							})
+							getWorkModalVacancyHistory({
+								id: employer.id,
+								loading: true
+							})
+							getWorkModalFeedback({
+								id: employer.id,
+								loading: true,
+								other: 5,
+								str: 'employers'
+							})
+							getWorkModalTasks({
+								id: employer.id
+							})
+						}
 					})
 
 				} else {
@@ -100,7 +103,7 @@ const addNewEmployer = () => {
 				})
 			}
 
-		})
+		}
 	}
 }
 

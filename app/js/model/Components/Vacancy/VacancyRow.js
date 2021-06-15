@@ -273,7 +273,7 @@ export default class RowVacancy {
 		})
 
 		setAttr(this.employer, {
-			innerText: data.employer,
+			innerText: data.enterprise || data.employer,
 			href: `index.html#id=${data.id_employer}`
 		})
 

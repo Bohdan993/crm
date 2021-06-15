@@ -134,7 +134,7 @@
 					field: 'type_production'
 				}).then(res => {
 					if (res === 'ok') {
-						console.log(this.checkedProducts.join(','))
+						// console.log(this.checkedProducts.join(','))
 						vacancyStorage.setPartialState(this.data, 'id_vacancy', 'type_production', this.checkedProducts.join(','))
 						vacancyStorage.setPartialState(this.data, 'id_vacancy', 'type_vacancy', checkedID)
 						
@@ -157,7 +157,7 @@
 
 		update(data, context) {
 
-			console.log(data, context)
+			// console.log(data, context)
 
 			this.visaTypeText = this.parent.visaType.innerText
 			this.typesText = this.parent.types.innerText
@@ -307,7 +307,7 @@
 			this.clientupdateinvacancyeventHandler = (e) => {
 				if (e.detail.id === this.data.idVac) {	
 					const {statusesArr} = e.detail
-					console.log(e)
+					// console.log(e)
 					setAttr(this.totalClientsCount, {
 						innerText: statusesArr[0]
 					})
@@ -365,10 +365,53 @@
 	
 				}
 			}
+
+
+			this.storageemployeraddHandler = (e) => {
+
+				const {
+					vacancyEmployerData: { employer, production, vacancy }
+				} = e.detail
+
+				console.log(e.detail)
+
+				this.chooseEmployer.update(false)
+				this.fullInfo.update(true)
+				this.fullInfo._el.style.display = "flex"
+
+				// this.chooseProductTypePopup.save({
+				// 	id: this.data.idVac,
+				// 	value: '',
+				// 	field: 'type_vacancy'
+				// })
+
+				// this.chooseProductTypePopup.save({
+				// 	id: this.data.idVac,
+				// 	value: '',
+				// 	field: 'type_production'
+				// })
+
+				this.update({
+					idVac: this.data.idVac,
+					employer,
+					type_production: '',
+					type_vacancy: '0',
+					vacancyName: vacancy,
+					period: this.data.period,
+					clients: this.data.clients,
+					men: this.data.man,
+					women: this.data.woman,
+					date: this.data.date,
+					production
+				}, 'storage')
+
+			}
 		}
 
 		update(data, context) {
-			console.log(data)
+			// console.log(data)
+
+
 			let d = data.startWork ? new Date(data.startWork.split('.').reverse().join('.')) : new Date()
 			d.setMonth(+d.getMonth() + +data.period)
 
@@ -377,7 +420,6 @@
 				setAttr(this.fullInfoAbbrVacancy, {
 					innerText: data.employer && data.employer.vacancy ? data.employer.vacancy : data.vacancyName ? data.vacancyName : ''
 				})
-
 			}
 
 
@@ -385,8 +427,6 @@
 				this.chooseEmployer.update(true)
 				this.fullInfo.update(false)
 				this.fullInfo._el.style.display = "none"
-
-
 
 				setAttr(this.dates, {
 					innerText: data.period ? `${data.startWork} - ${formatDate(d)}` : '-'
@@ -515,6 +555,8 @@
 				innerText: data.period ? data.period + ' мес' : '-'
 			})
 
+
+			// console.log(data)
 			this.chooseProductTypePopup.update(data.idVac, data.production)
 
 			setTimeout(() => {
@@ -535,6 +577,9 @@
 			document.addEventListener('clientaddtovacancyevent', this.clientaddtovacancyeventHandler)
 			document.addEventListener('clientupdateinvacancyevent', this.clientupdateinvacancyeventHandler)
 			document.addEventListener('clientdeletefromvacancyevent', this.clientdeletefromvacancyeventHandler)
+			document.addEventListener('storageemployeradd', this.storageemployeraddHandler)
+
+			
 
 
 		}
@@ -544,6 +589,7 @@
 			document.removeEventListener('clientaddtovacancyevent', this.clientaddtovacancyeventHandler)
 			document.removeEventListener('clientupdateinvacancyevent', this.clientupdateinvacancyeventHandler)
 			document.removeEventListener('clientdeletefromvacancyevent', this.clientdeletefromvacancyeventHandler)
+			
 		}
 
 

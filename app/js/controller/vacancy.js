@@ -36,7 +36,8 @@ import {
 	addNewVacancy,
 	mountActiveArchive,
 	mountVacancyStatusesPopup,
-	mountVacancyList
+	mountVacancyList,
+	checkIfAddNewVacancy
 } from '../model'
 
 import {
@@ -110,6 +111,7 @@ const app = {
 		this.anv()
 		this.gve()
 		this.mvsp()
+		this.cianv()
 	},
 	mvl() {
 		mountVacancyList()
@@ -270,6 +272,9 @@ const app = {
 	},
 	mvsp() {
 		mountVacancyStatusesPopup()
+	},
+	cianv(){
+		checkIfAddNewVacancy()
 	}
 
 }

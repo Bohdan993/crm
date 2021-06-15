@@ -182,7 +182,7 @@ export default class Task { // to ../fetchingData/Employer/WorkModal
 
         document.addEventListener('vacancymodalcloseeevent', e => {
 
-            this.data.tasks.forEach(task => {
+            this.data.tasks && this.data.tasks.forEach(task => {
                 if (!task.name) {
                     this.count--
                     deleteTask({

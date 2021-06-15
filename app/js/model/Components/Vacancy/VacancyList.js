@@ -120,9 +120,6 @@ export default class VacancyList {
             let employerID = getAllUrlParams().id_employer
             let vacancyID = getAllUrlParams().id_vacancy
 
-
-            console.log()
-
             if (vacancyID) {
                 copyVacancy({
                         vacancy: vacancyID

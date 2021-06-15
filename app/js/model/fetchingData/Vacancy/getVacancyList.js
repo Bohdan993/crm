@@ -221,16 +221,15 @@ function vacancylistupdatefetcheventHandler(e) {
 	})
 }
 
-function storageemployeraddHandler(e) {
-	// alert('df')
-	getVacancyList({
-		added: true
-	})
-}
+// function storageemployeraddHandler(e) {
+// 	getVacancyList({
+// 		added: true
+// 	})
+// }
 
 
 document.addEventListener('vacancylistupdatefetchevent', vacancylistupdatefetcheventHandler)
-document.addEventListener('storageemployeradd', storageemployeraddHandler)
+// document.addEventListener('storageemployeradd', storageemployeraddHandler)
 
 
 

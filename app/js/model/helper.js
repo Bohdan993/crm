@@ -1,4 +1,5 @@
 import saveFieldsData from './fetchingData/saveFieldsData'
+import wantToCloseModalEvent from './CustomEvents/wantToCloseModalEvent';
 
 
 function throttle(f, ms) {
@@ -157,6 +158,25 @@ function close(id, instance, e) {
 }
 
 
+function wantToCloseModal(instance, id, e) {
+  e.stopPropagation()
+  if (e.target.classList.contains('my-modal-wrapper')) {
+    wantToCloseModalEvent.detail.instance = instance
+    wantToCloseModalEvent.detail.id = id
+    document.dispatchEvent(wantToCloseModalEvent)
+  }
+
+}
+
+function wantToClose(instance, id, e) {
+  e.stopPropagation()
+  console.log('ererr')
+  wantToCloseModalEvent.detail.instance = instance
+  wantToCloseModalEvent.detail.id = id
+  document.dispatchEvent(wantToCloseModalEvent)
+}
+
+
 const sleep = (ms) => {
   return new Promise(res => {
     setTimeout(function () {
@@ -285,6 +305,8 @@ export {
   dateInputChange,
   getAllUrlParams,
   close,
-  updateURL
+  updateURL,
+  wantToCloseModal,
+  wantToClose
   // onKeyPressClose
 }

@@ -34,6 +34,7 @@ import vacancyFetchScroll from './fetchingData/Vacancy/fetchListOnScroll'
 import employerFetchScroll from './fetchingData/Employer/fetchListOnScroll'
 import getTypeContact from './fetchingData/Employer/getTypeContact'
 import getClients from './fetchingData/Employer/getClients'
+import checkIfAddNewEmployer from './fetchingData/Employer/checkIfAddNewEmployer'
 
 
 
@@ -54,6 +55,7 @@ import getStatusesVacancyPopup from './fetchingData/Vacancy/getVacancyStatuses'
 import getClientsVacancy from './fetchingData/Vacancy/getClients'
 import getVacancyEmployers from './fetchingData/Vacancy/getVacancyEmployers'
 import getVacancyWorkType from './fetchingData/Vacancy/getVacancyWorkType'
+import checkIfAddNewVacancy from './fetchingData/Vacancy/VacancyModal/checkIfCanAddNewVacancy'
 import mountSortingVacancyPopup from './MountingElements/Vacancy/mountSortingPopup'
 import mountSearchInputVacancy from './MountingElements/Vacancy/mountSearch'
 import mountDateAndTermsPopup from './MountingElements/Vacancy/mountDateAndTermsPopup'
@@ -116,5 +118,7 @@ export {
 	mountVacancyStatusesPopup,
 	vacancyFetchScroll,
 	employerFetchScroll,
-	mountVacancyList
+	mountVacancyList,
+	checkIfAddNewEmployer,
+	checkIfAddNewVacancy
 }

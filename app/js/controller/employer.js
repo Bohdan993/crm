@@ -25,7 +25,8 @@ import {
 	mountSortingPopup,
 	mountVacancyPopup,
 	mountContactHistoryModal,
-	mountStringsPopup
+	mountStringsPopup,
+	checkIfAddNewEmployer
 } from '../model'
 
 import {
@@ -86,6 +87,7 @@ const app = {
 		this.gtc()
 		this.gc()
 		this.mssp()
+		this.ciane()
 		// this.msiv()
 	},
 
@@ -215,6 +217,9 @@ const app = {
 	},
 	mssp(){
 		mountStringsPopup()
+	},
+	ciane(){
+		checkIfAddNewEmployer()
 	}
 
 }

@@ -1,22 +1,22 @@
 import fetch from '../fetchingDataClass'
-// import getVacancyList from './getVacancyList'
 import {
 	sidebarVacancy
 } from '../../../view'
 
 import {
-	addMouseUpTrigger,
-	closeModal
+	wantToClose,
+	wantToCloseModal
 } from '../../helper'
 import getVacancyModalInfo from '../../fetchingData/Vacancy/VacancyModal/getVacancyModalInfo'
 import getWorkModalFeedback from '../../fetchingData/Employer/WorkModal/getWorkModalFeedback'
 import getWorkModalTasks from '../../fetchingData/Employer/WorkModal/getWorkModalTasks'
 import {
+
 	toastr
 } from '../../../../libs/libs'
-// import vacancyListAddEvent from '../../CustomEvents/vacancyListAddEvent'
 
-let flag = false
+let listeners = []
+
 
 
 async function onAddVacancy(id = null) {
@@ -26,55 +26,52 @@ async function onAddVacancy(id = null) {
 		if (vacancy.success === true) {
 
 			const instance = MicroModal.show('modal-3', {
-				onClose: async modal => {
-					const data = await fetch.getResourse(`/vacancies/get/?id=${vacancy.id}&section=0`)
-
-					if (data.data.main.id_employer !== '0') {
-						toastr.success(`ID вакансии ${vacancy.id}`, 'Успешно создана вакансия', {
-							closeButton: false
-						})
-						// getVacancyList({
-						// 	added: true
-						// })
-
-						// vacancyListAddEvent.detail.id = String(vacancy.id)
-						// document.dispatchEvent(vacancyListAddEvent)
-					} else {
-						fetch.getResourse(`/vacancies/delete/?id=${vacancy.id}`)
-					}
-
-				},
-				onShow: (modal, node) => {
+				onClose: modal => {
 					const wrapper = modal.querySelector('.my-modal-wrapper')
 					const modalClose = modal.querySelector('.modal__close')
 
-					if (!flag) {
-						setTimeout(() => {
-							wrapper.addEventListener('mouseup', addMouseUpTrigger)
-							wrapper.addEventListener('mousedown', closeModal.bind(null, modal.id, instance))
-							modalClose.addEventListener('click', function () {
-								MicroModal.close(modal.id)
-							})
-						}, 0)
+					wrapper.removeEventListener('click', listeners[0])
+					modalClose.removeEventListener('click', listeners[1])
 
-						flag = true
-					}
+					listeners = []
+				},
+				onShow: (modal, node) => {
+					listeners = []
+					const wrapper = modal.querySelector('.my-modal-wrapper')
+					const modalClose = modal.querySelector('.modal__close')
+
+
+					setTimeout(() => {
+						const wantToCloseModalBinded = wantToCloseModal.bind(wrapper, instance, vacancy.id)
+						const wantToCloseBinded = wantToClose.bind(modalClose, instance, vacancy.id)
+
+						wrapper.addEventListener('click', wantToCloseModalBinded)
+						modalClose.addEventListener('click', wantToCloseBinded)
+
+						listeners.push(wantToCloseModalBinded)
+						listeners.push(wantToCloseBinded)
+
+
+
+					}, 0)
+
+
+
+
+					getVacancyModalInfo(vacancy.id, true).then(res => {
+						getWorkModalFeedback({
+							id: id || JSON.parse(sessionStorage.getItem('currVacancyEmployer')).id,
+							loading: true,
+							str: 'vacancies',
+							other: 1
+						})
+
+
+						getWorkModalTasks({
+							id: id || JSON.parse(sessionStorage.getItem('currVacancyEmployer')).id
+						})
+					})
 				}
-			})
-
-
-			getVacancyModalInfo(vacancy.id, true).then(res => {
-				getWorkModalFeedback({
-					id: id || JSON.parse(sessionStorage.getItem('currVacancyEmployer')).id,
-					loading: true,
-					str: 'vacancies',
-					other: 1
-				})
-
-
-				getWorkModalTasks({
-					id: id || JSON.parse(sessionStorage.getItem('currVacancyEmployer')).id
-				})
 			})
 
 
