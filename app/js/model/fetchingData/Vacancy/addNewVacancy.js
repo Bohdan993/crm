@@ -33,9 +33,9 @@ async function onAddVacancy(id = null) {
 					const wrapper = modal.querySelector('.my-modal-wrapper')
 					const modalClose = modal.querySelector('.modal__close')
 
-					wrapper.removeEventListener('click', listeners[0])
-					modalClose.removeEventListener('click', listeners[1])
-					window.removeEventListener('keydown', listeners[1])
+					wrapper.removeEventListener('mousedown', listeners[0])
+					modalClose.removeEventListener('mousedown', listeners[1])
+					window.removeEventListener('keydown', listeners[2], true)
 
 					document.dispatchEvent(vacancyListUpdateFetchEvent)
 				},
@@ -49,14 +49,16 @@ async function onAddVacancy(id = null) {
 					setTimeout(() => {
 						const wantToCloseModalBinded = wantToCloseModal.bind(wrapper, instance, vacancy.id)
 						const wantToCloseBinded = wantToClose.bind(modalClose, instance, vacancy.id)
+						const wantToCloseWindowBinded = wantToClose.bind(window, instance, vacancy.id)
 
 
-						wrapper.addEventListener('click', wantToCloseModalBinded)
-						modalClose.addEventListener('click', wantToCloseBinded)
-						window.addEventListener('keydown', wantToCloseBinded, true)
+						wrapper.addEventListener('mousedown', wantToCloseModalBinded)
+						modalClose.addEventListener('mousedown', wantToCloseBinded)
+						window.addEventListener('keydown', wantToCloseWindowBinded, true)
 
 						listeners.push(wantToCloseModalBinded)
 						listeners.push(wantToCloseBinded)
+						listeners.push(wantToCloseWindowBinded)
 
 					}, 0)
 

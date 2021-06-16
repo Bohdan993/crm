@@ -26,7 +26,7 @@ const checkIfAddNewEmployer = () => {
 
 
             if(!other.production.length) {
-                errorArr.push('Типы продукции.')
+                errorArr.push('Типы производства.')
             }
      
 
@@ -43,10 +43,10 @@ const checkIfAddNewEmployer = () => {
         } catch (e) {
             const {message} = e
 
-            const agree = confirm(`Вы не заполнили необходимые данные. Нужно выбрать/заполнить: ${'\n' + message + '\n' } Хотите прервать заполнение?`)
+            const agree = confirm(`Вы не заполнили необходимые данные. Нужно выбрать/заполнить: ${'\n' + message + '\n' } Продолжить заполнение данных?`)
             
 
-            if(agree) {
+            if(!agree) {
                 await fetch.getResourse(`/employers/delete/?id=${id}`)
                 instance.closeModal()
                 return

@@ -353,7 +353,7 @@ function removeCheckingHandler(children, instance, e){
 
                 } else if(instance.reference.classList.contains('selecting-stats-wrapper')){
 
-                    getVacancyList({'sort': ''})
+                    getVacancyList({sort: 'date'})
                     sessionStorage.removeItem('sortFilterVacancy')
 
                 } else if(instance.reference.classList.contains('country-filter-wrapper')){
@@ -409,7 +409,6 @@ function removeCheckingHandler(children, instance, e){
         child.checked = true
     }
     child.getAttribute('type') === 'text' ? child.value = '' : null
-      // child.dispatchEvent(new Event('change'))
   })
 
   this.style.display = 'none'

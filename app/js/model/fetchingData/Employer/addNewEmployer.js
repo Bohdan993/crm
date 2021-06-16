@@ -40,7 +40,7 @@ const addNewEmployer = () => {
 							console.log(listeners)
 							wrapper.removeEventListener('mousedown', listeners[0])
 							modalClose.removeEventListener('mousedown', listeners[1])
-							window.removeEventListener('keydown', listeners[1])
+							window.removeEventListener('keydown', listeners[2], true)
 						},
 						onShow: (modal) => {
 							listeners = []
@@ -52,13 +52,15 @@ const addNewEmployer = () => {
 
 								const wantToCloseModalBinded = wantToCloseModal.bind(wrapper, instance, employer.id)
 								const wantToCloseBinded = wantToClose.bind(modalClose, instance, employer.id)
+								const wantToCloseWindowBinded = wantToClose.bind(window, instance, employer.id)
 
 								wrapper.addEventListener('mousedown', wantToCloseModalBinded)
 								modalClose.addEventListener('mousedown', wantToCloseBinded)
-								window.addEventListener('keydown', wantToCloseBinded, true)
+								window.addEventListener('keydown', wantToCloseWindowBinded, true)
 
 								listeners.push(wantToCloseModalBinded)
 								listeners.push(wantToCloseBinded)
+								listeners.push(wantToCloseWindowBinded)
 
 							}, 0)
 

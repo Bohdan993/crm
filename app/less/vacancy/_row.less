@@ -453,7 +453,7 @@ p.status {
 	// min-width: 130px - 13px;
 	// width: 130px - 13px;
 
-	&>* {
+	&>*:not(:last-child) {
 		margin-right: 8px;
 	}
 }
@@ -565,4 +565,5 @@ p.status {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	margin-right: 10px;
 }

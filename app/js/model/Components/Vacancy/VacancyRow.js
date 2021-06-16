@@ -291,7 +291,7 @@ export default class RowVacancy {
 		})
 
 		setAttr(this.numberPeople, {
-			innerText: `${data.total_man !== "0" ? 'М'+data.total_man : ''} ${data.total_woman !== "0" ? 'Ж'+data.total_woman : ''}`,
+			innerText: `${data.total_man && data.total_man !== "0" ? 'М'+data.total_man : ''} ${data.total_woman && data.total_woman !== "0" ? 'Ж'+data.total_woman : ''}`,
 			style: {
 				'color': data.archive !== '0' ? '#99CCCC' : '#FF9966'
 			}

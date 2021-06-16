@@ -149,29 +149,34 @@ function closeModal(id, instance, e) {
   if (e.target.classList.contains('my-modal-wrapper')) {
     instance.closeModal()
   }
+
+  return
 }
 
 
 function close(id, instance, e) {
   e.stopImmediatePropagation()
   instance.closeModal()
+
+  return
 }
 
 
 function wantToCloseModal(instance, id, e) {
-  e.stopPropagation()
+  e.stopImmediatePropagation()
   if (e.target.classList.contains('my-modal-wrapper')) {
     wantToCloseModalEvent.detail.instance = instance
     wantToCloseModalEvent.detail.id = id
     document.dispatchEvent(wantToCloseModalEvent)
   }
 
+  return
+
 }
 
 function wantToClose(instance, id, e) {
-
-  if (e.type === 'click') {
-    e.stopPropagation()
+  if (e.type === 'click' || e.type === 'mousedown') {
+    e.stopImmediatePropagation()
     wantToCloseModalEvent.detail.instance = instance
     wantToCloseModalEvent.detail.id = id
     document.dispatchEvent(wantToCloseModalEvent)
@@ -184,9 +189,9 @@ function wantToClose(instance, id, e) {
     wantToCloseModalEvent.detail.id = id
     document.dispatchEvent(wantToCloseModalEvent)
     return
-  } else {
-    return false
   }
+
+  return false
 
 }
 

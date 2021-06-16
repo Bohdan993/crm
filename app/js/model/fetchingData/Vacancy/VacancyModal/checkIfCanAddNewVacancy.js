@@ -51,10 +51,10 @@ const checkIfAddNewVacancy = () => {
         } catch (e) {
             const {message} = e
 
-            const agree = confirm(`Вы не заполнили необходимые данные. Нужно выбрать/заполнить: ${'\n' + message + '\n' } Хотите прервать заполнение?`)
+            const agree = confirm(`Вы не заполнили необходимые данные. Нужно выбрать/заполнить: ${'\n' + message + '\n' } Продолжить заполнение данных?`)
             
 
-            if(agree) {
+            if(!agree) {
                 fetch.getResourse(`/vacancies/delete/?id=${id}`)
                 instance.closeModal()
                 return
