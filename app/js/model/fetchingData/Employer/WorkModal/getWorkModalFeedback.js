@@ -80,7 +80,6 @@ const getWorkModalFeedback = async ({
 
 		try {
 
-			// const delay = await sleep(15000)
 			const data = await fetch.getResourse(`/${str}/get/?id=${id}&section=2&other=${other}&p=${p}&t=${t}`)
 			const otherPart = data.data.other
 
@@ -134,8 +133,6 @@ const getWorkModalFeedback = async ({
 	if (feedbackVacancy) {
 
 
-		// console.log(changed)
-
 		if (changed) {
 			globalFeedback = gFB || globalFeedback
 			globalID = gID || globalID
@@ -149,11 +146,8 @@ const getWorkModalFeedback = async ({
 
 		try {
 
-			// const delay = await sleep(15000)
 			const data = await fetch.getResourse(`/${str}/get/?id=${id}&section=2&other=${other}&p=${p}&t=${t}`)
-			// console.log(data)
-
-
+	
 			if (data.data) {
 
 

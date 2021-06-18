@@ -546,9 +546,10 @@ function initWorkModalTooltip(el, content) {
     }
 
 
-document.addEventListener('keyup', onKeyUp)
+document.addEventListener('keydown', onkeydown)
+document.addEventListener('keyup', onkeydown)
 
-function onKeyUp (e){
+function onkeydown (e){
     if (e.keyCode === 27) {
         hideAll()
     }

@@ -19,12 +19,10 @@ const showFullRow = (row, event) => {
 		    
 
 		    if (container && !container.classList.contains('active')) {
-		    	// console.log(container)
-		      
+
+
 		      container.classList.add('active')
 		      container.style.height = 'auto'
-
-		      let height = container.clientHeight + 'px'
 
 		      container.style.height = '0px'
 
@@ -33,15 +31,9 @@ const showFullRow = (row, event) => {
 		      }, 0)
 		      
 		    } else {
-		      	// console.log(container)
 		      container.style.height = '0px'
 		      container.classList.remove('active')
 		      
-		      // linkToggle.addEventListener('transitionend', function () {
-		      //   container.classList.remove('active')
-		      // }, {
-		      //   once: true
-		      // });
 		      
 		    }
 }

@@ -54,9 +54,7 @@ const getWorkModalContactHistory = async ({
 			// const delay = await sleep(15000)
 			const data = await fetch.getResourse(`/employers/get/?id=${id}&section=2&other=2&p=${p}&t=${t}`)
 			const otherPart = data.data.other
-			// console.log(otherPart)
-			console.log(data)
-
+	
 			if(globalID !== id) {
 				globalContacts = [
 					...otherPart.contact_history 

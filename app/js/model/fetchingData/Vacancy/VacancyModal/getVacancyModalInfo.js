@@ -202,7 +202,6 @@ const getVacancyModalInfo = async (id = '1', isNewVacancy = false) => {
 
 
 		if (!storage.isSet(id)) {
-			// console.log('HERE')
 			getVacancyClients(id, isNewVacancy)
 				.then(res => {
 					if (res) {

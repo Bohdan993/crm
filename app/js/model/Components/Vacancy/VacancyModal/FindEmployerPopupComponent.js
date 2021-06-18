@@ -66,7 +66,6 @@ export default class FindEmployerPopupComponent {
 				vacancy: this.parent.data.idVac,
 				employer: this.result.id
 			}).then(res => {
-				console.log(res)
 				if (res !== 'fail') {
 
 					this.parent.chooseEmployer ?

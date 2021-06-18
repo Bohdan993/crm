@@ -78,7 +78,6 @@ export default class StorageGlobalEmployersVacancies {
     let seen = {};
     let res = xs.filter(function(x) {
         let key = JSON.stringify(x[id]);
-        // console.log(seen)
         return !(key in seen) && (seen[key] = x[id]);
     });
     return res

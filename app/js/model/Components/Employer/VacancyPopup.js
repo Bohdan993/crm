@@ -21,7 +21,7 @@ class CheckBoxVacancyEarlier {
 	}
 
 	update(data, index, items, context) {
-		// console.log(data)
+
 		setAttr(this.input, {
 			id: data.id,
 			checked: data.checked

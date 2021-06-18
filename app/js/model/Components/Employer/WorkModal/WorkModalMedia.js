@@ -105,7 +105,7 @@ export default class WorkModalMedia {
 		})
 
 		this.addItem.addEventListener('change', (e) => {
-			// console.log(e.target.files)
+
 			let files = e.target.files
 			if (typeof files === undefined) return;
 

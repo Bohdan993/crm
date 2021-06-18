@@ -5,7 +5,8 @@ import {
 
 import {
 	wantToClose,
-	wantToCloseModal
+	wantToCloseModal,
+	debounce
 } from '../../helper'
 import getVacancyModalInfo from '../../fetchingData/Vacancy/VacancyModal/getVacancyModalInfo'
 import getWorkModalFeedback from '../../fetchingData/Employer/WorkModal/getWorkModalFeedback'
@@ -18,6 +19,8 @@ import vacancyListUpdateFetchEvent from '../../CustomEvents/vacancyListUpdateFet
 
 
 let listeners = []
+
+
 
 
 
@@ -49,7 +52,7 @@ async function onAddVacancy(id = null) {
 					setTimeout(() => {
 						const wantToCloseModalBinded = wantToCloseModal.bind(wrapper, instance, vacancy.id)
 						const wantToCloseBinded = wantToClose.bind(modalClose, instance, vacancy.id)
-						const wantToCloseWindowBinded = wantToClose.bind(window, instance, vacancy.id)
+						const wantToCloseWindowBinded = debounce(wantToClose.bind(window, instance, vacancy.id), 1000)
 
 
 						wrapper.addEventListener('mousedown', wantToCloseModalBinded)

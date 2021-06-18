@@ -1,6 +1,7 @@
 import fetch from '../../fetchingDataClass'
 import {
-    toastr
+    toastr,
+    hideAll
 } from '../../../../../libs/libs'
 
 const checkIfAddNewVacancy = () => {
@@ -55,8 +56,9 @@ const checkIfAddNewVacancy = () => {
             
 
             if(!agree) {
-                fetch.getResourse(`/vacancies/delete/?id=${id}`)
+                await fetch.getResourse(`/vacancies/delete/?id=${id}`)
                 instance.closeModal()
+                hideAll()
                 return
             }
 

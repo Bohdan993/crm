@@ -9,7 +9,7 @@ const mountSearchInputVacancy = () => {
 	if(inputWrapper) {
 		mount(inputWrapper, searchInput)
 		searchInput.update(true)
-		// console.log(searchInput)
+
 		setTimeout(function(){
 			searchInput.view.removeHiddenClass()
 		}, 0)

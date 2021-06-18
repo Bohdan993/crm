@@ -126,7 +126,7 @@
 					field: 'type_vacancy'
 				})
 
-				// console.log(this.checkedProducts)
+
 
 				this.save({
 					id: this.data,
@@ -134,18 +134,13 @@
 					field: 'type_production'
 				}).then(res => {
 					if (res === 'ok') {
-						// console.log(this.checkedProducts.join(','))
+	
 						vacancyStorage.setPartialState(this.data, 'id_vacancy', 'type_production', this.checkedProducts.join(','))
 						vacancyStorage.setPartialState(this.data, 'id_vacancy', 'type_vacancy', checkedID)
 						
 						this.parent.products._tippy.hide()
 						this.checkedProducts = []
-						// this.list1.views.forEach(el => {
-						// 	el.input.checked = false
-						// })
-						// this.list2.views.forEach(el => {
-						// 	el.input.checked = false
-						// })
+		
 						vacancyListUpdateEvent.detail.id = this.data
 						document.dispatchEvent(vacancyListUpdateEvent)
 					} else {
@@ -156,8 +151,6 @@
 		}
 
 		update(data, context) {
-
-			// console.log(data, context)
 
 			this.visaTypeText = this.parent.visaType.innerText
 			this.typesText = this.parent.types.innerText
@@ -307,7 +300,7 @@
 			this.clientupdateinvacancyeventHandler = (e) => {
 				if (e.detail.id === this.data.idVac) {	
 					const {statusesArr} = e.detail
-					// console.log(e)
+
 					setAttr(this.totalClientsCount, {
 						innerText: statusesArr[0]
 					})
@@ -373,8 +366,6 @@
 					vacancyEmployerData: { employer, production, vacancy }
 				} = e.detail
 
-				console.log(e.detail)
-
 				this.chooseEmployer.update(false)
 				this.fullInfo.update(true)
 				this.fullInfo._el.style.display = "flex"
@@ -409,8 +400,6 @@
 		}
 
 		update(data, context) {
-			// console.log(data)
-
 
 			let d = data.startWork ? new Date(data.startWork.split('.').reverse().join('.')) : new Date()
 			d.setMonth(+d.getMonth() + +data.period)
@@ -556,7 +545,6 @@
 			})
 
 
-			// console.log(data)
 			this.chooseProductTypePopup.update(data.idVac, data.production)
 
 			setTimeout(() => {

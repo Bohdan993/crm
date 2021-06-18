@@ -18,7 +18,7 @@ class CheckBoxVacancy {
 		}
 
 	update(data, index, items, context){
-		// console.log(data)
+
 		setAttr(this.input, {
 			id: data.id,
 			checked: data.checked
@@ -42,7 +42,7 @@ class CheckBoxVacancy {
 			CheckBoxVacancy.checkedArr = sessionStorage.getItem(storageKey) && JSON.parse(sessionStorage.getItem(storageKey)) !== '' ? JSON.parse(sessionStorage.getItem(storageKey)).split(',') : []
 			//this - один чекбокс в попапе
 			if(this.checked) {
-				// console.log(id, str, storageKey)
+
 				CheckBoxVacancy.checkedArr.push(id)
 				getVacancyList({[str]: CheckBoxVacancy.checkedArr.join(','), filtered: true})
 				

@@ -50,6 +50,20 @@ function debounce(f, ms) {
 }
 
 
+function debounce2(f, ms) {
+  let timer
+  return function () {
+    const fnCall = () => {
+      f.apply(this, arguments)
+    }
+    clearTimeout(timer)
+
+    timer = setTimeout(fnCall, ms)
+  }
+
+}
+
+
 
 function isChildOf(child, parent) {
   var node = child.parentNode;
@@ -112,12 +126,11 @@ function formatDate(date) {
 
 
 
-let uniq = function (xs, id, arr) {
+let uniq = function (xs, id) {
   let seen = {};
 
   let res = xs.filter(function (x) {
     let key = JSON.stringify(x[id]);
-    // console.log(seen)
     return !(key in seen) && (seen[key] = x[id]);
   });
 
@@ -205,7 +218,6 @@ const sleep = (ms) => {
 }
 
 function getAllUrlParams(url) {
-  // console.log(window.location)
 
   // извлекаем строку из URL или объекта window
   var queryString = url ? url.split('#')[1] : window.location.hash.slice(1);
@@ -263,7 +275,6 @@ function getAllUrlParams(url) {
     }
   }
 
-  // console.log(obj)
 
   return obj;
 }
@@ -311,6 +322,7 @@ function updateURL(param) {
 export {
   throttle,
   debounce,
+  debounce2,
   isChildOf,
   come,
   // makeCaching,

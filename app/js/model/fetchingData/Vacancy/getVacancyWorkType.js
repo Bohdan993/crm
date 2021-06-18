@@ -49,7 +49,6 @@ const getVacancyWorkType = async () => {
 
 		const data = await fetch.getResourse('/vacancies/get_other/?s=2')
 		let production = data.data.production
-		// console.log(data)
 
 		if (sessionStorage.getItem('v-vacancyTypeFilter')) {
 			checkboxData = checkboxData.map(data => {

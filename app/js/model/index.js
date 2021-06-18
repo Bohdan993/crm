@@ -11,7 +11,6 @@ import addNewTask from './addNewTask'
 import deleteTask from './deleteTask'
 import setFeedbackDate from './setFeedbacklDate'
 import addFeedbackForm from './addfeedbackForm'
-import autocompleteInput from './autocompleteInput'
 import switchModalParts from './switchModalParts'
 import changeDirection from './changeDirection'
 import feedbackEdit from './feedbackEdit'
@@ -81,7 +80,6 @@ export {
 	addFeedbackForm,
 	showFullRow,
 	switchRowStatuses,
-	autocompleteInput,
 	showChooseBlockFullInfo,
 	showFullClientsRow,
 	switchModalParts,

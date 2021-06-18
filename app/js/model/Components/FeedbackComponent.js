@@ -422,9 +422,6 @@ class FeedbackEdit {
 
 	update(data) {
 
-		// console.log(this)
-		console.log(storage, data.type)
-		// console.log(storage.getPartialState(data.id, 'id_employer', 'name'))
 
 		setAttr(this.to, {
 			innerText: data.type === "employer" ? 
@@ -459,7 +456,6 @@ class FeedbackEdit {
 		setAttr(this.date, {
 			value: data.date || new Date().toLocaleDateString()
 		})
-		// console.log(this.data)
 
 
 		this.data = data
@@ -494,7 +490,6 @@ class FeedbackEdit {
 		this.typeFeedbackInstance.setContent(this.feedbackType.el)
 		this.choiseClientInstance.setContent(this.feedbackClient.el)
 
-		// console.log(this.choiseClientInstance)
 	}
 
 }
@@ -536,8 +531,6 @@ class FeedbackRow {
 		this.edit.addEventListener('click', (e) => {
 			this.row.update(false)
 
-			// console.log(this.text.innerHTML)
-
 			this.feedbackEdit.update(true, {
 				id_feedback: this.data.data.id,
 				type: this.data.context.type,
@@ -563,8 +556,7 @@ class FeedbackRow {
 
 	update(data, index, items, context) {
 
-		// console.log(data)
-		// console.log(context)
+
 
 		setAttr(this.text, {
 			innerText: data.feedback
@@ -581,7 +573,7 @@ class FeedbackRow {
 		})
 
 
-		// console.log(context)
+
 		setAttr(this.from, {
 			innerText: data.type_arrow === '0' ?
 				data.type_author === '2' ?
@@ -642,7 +634,7 @@ export default class Feedback {
 		)
 
 		this.addItem.addEventListener('click', (e) => {
-			// console.log(this.data)
+
 
 			this.feedbackEdit.update(true, {
 				id_feedback: '0',
@@ -821,8 +813,6 @@ export default class Feedback {
 			globalID = employerId
 			globalFeedback = employer.other.feedback
 
-
-			// console.log(globalID, globalFeedback)
 
 
 			this.update(feedbackData, 'vacancyEmployerChanged')

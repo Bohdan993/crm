@@ -6,6 +6,7 @@ import {
 	toastr
 } from '../../../../libs/libs'
 import {
+	debounce,
 	wantToClose,
 	wantToCloseModal
 } from '../../helper'
@@ -16,6 +17,7 @@ import getWorkModalContactHistory from '../../fetchingData/Employer/WorkModal/ge
 import getWorkModalVacancyHistory from '../../fetchingData/Employer/WorkModal/getWorkModalVacancyHistory'
 import getWorkModalFeedback from '../../fetchingData/Employer/WorkModal/getWorkModalFeedback'
 import getWorkModalTasks from '../../fetchingData/Employer/WorkModal/getWorkModalTasks'
+import employerListUpdateFetchEvent from './../../CustomEvents/employerListUpdateFetchEvent';
 
 
 let listeners = []
@@ -23,6 +25,7 @@ let listeners = []
 
 const addNewEmployer = () => {
 	if (sidebarEmployer) {
+
 
 		sidebarEmployer.addEventListener('click', loadData)
 
@@ -37,10 +40,12 @@ const addNewEmployer = () => {
 						onClose: modal => {
 							const wrapper = modal.querySelector('.my-modal-wrapper')
 							const modalClose = modal.querySelector('.modal__close')
-							console.log(listeners)
+
 							wrapper.removeEventListener('mousedown', listeners[0])
 							modalClose.removeEventListener('mousedown', listeners[1])
 							window.removeEventListener('keydown', listeners[2], true)
+
+							document.dispatchEvent(employerListUpdateFetchEvent)
 						},
 						onShow: (modal) => {
 							listeners = []
@@ -52,7 +57,7 @@ const addNewEmployer = () => {
 
 								const wantToCloseModalBinded = wantToCloseModal.bind(wrapper, instance, employer.id)
 								const wantToCloseBinded = wantToClose.bind(modalClose, instance, employer.id)
-								const wantToCloseWindowBinded = wantToClose.bind(window, instance, employer.id)
+								const wantToCloseWindowBinded = debounce(wantToClose.bind(window, instance, employer.id), 1000)
 
 								wrapper.addEventListener('mousedown', wantToCloseModalBinded)
 								modalClose.addEventListener('mousedown', wantToCloseBinded)

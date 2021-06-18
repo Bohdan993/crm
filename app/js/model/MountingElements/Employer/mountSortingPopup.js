@@ -28,7 +28,7 @@ if (sortPopup) {
 
 
 const mountSortingPopup = () => {
-	console.log('dfdf')
+
 	if (sortPopup) {
 
 

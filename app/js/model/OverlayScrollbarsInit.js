@@ -32,7 +32,6 @@ const initOverlayScrollbars = (node, type = '')=> {
 					}
 				}
 				else if(target.classList.contains('modal-row__layer')) {
-					// console.log(false)
 					this.scroll({ y : "100%"})
 				}
 				flag = true

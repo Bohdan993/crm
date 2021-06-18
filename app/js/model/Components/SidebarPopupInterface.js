@@ -40,7 +40,7 @@ export default class SidebarPopupInterface { // класс от которого
 		this.input.addEventListener('change', filter)
 
 		function filter(e){
-			// console.log(type)
+
 			//В свойство класса присваиваем массив данных который находится в sessionStorage по соответствующему ключу
 			SidebarPopupInterface.checkedArr = sessionStorage.getItem(storageKey) && JSON.parse(sessionStorage.getItem(storageKey)) !== '' ? JSON.parse(sessionStorage.getItem(storageKey)).split(',') : []
 			//this - один чекбокс в попапе

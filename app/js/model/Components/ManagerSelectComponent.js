@@ -23,9 +23,9 @@ export default class ManagerSelect { // to ../MountingElements/Employer/WorkModa
 			})
 		)
 
-		this.manager.addEventListener('change', (e) => {
+		this.manager.addEventListener('change', async (e) => {
 			if (this.type === 'employer') {
-				this.save({
+				await this.save({
 					str: 'employers',
 					id: this.data.id,
 					value: this.manager.value,
@@ -38,7 +38,7 @@ export default class ManagerSelect { // to ../MountingElements/Employer/WorkModa
 				employerListUpdateEvent.detail.id = this.data.id
 				document.dispatchEvent(employerListUpdateEvent)
 			} else {
-				this.save({
+				await this.save({
 					id: this.data.id,
 					value: this.manager.value,
 					field: 'id_manager',
@@ -68,7 +68,6 @@ export default class ManagerSelect { // to ../MountingElements/Employer/WorkModa
 	}
 
 	update(data) {
-		// console.log(data)
 		this.managerChoices.managersChoises.setChoiceByValue(data.id_manager)
 
 		this.data = data

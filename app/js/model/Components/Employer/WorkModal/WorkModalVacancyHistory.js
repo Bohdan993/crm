@@ -114,7 +114,6 @@ export default class WorkModalVacancyHistory {
 			this.showMore = place(ShowMoreBtn)
 		)
 
-		// console.log(this.el)
 
 		initOverlayScrollbars(this.modalLayer)
 
@@ -165,7 +164,7 @@ export default class WorkModalVacancyHistory {
 
 			if (!this.flagShow) {
 				this.showMore.el.addEventListener('click', () => {
-					console.log(this.data.data.id)
+
 					getWorkModalVacancyHistory({
 						id: this.data.data.id,
 						showing: true,

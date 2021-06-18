@@ -184,7 +184,7 @@ export default class WorkModalContactHistory {
 			})
 
 
-			console.log(MicroModal)
+
 		})
 
 		this.data.storage = this.getItemsLocalStorage()
@@ -234,7 +234,7 @@ export default class WorkModalContactHistory {
 						showing: true,
 						p: this.pageShow
 					})
-					console.log(this.pageShow)
+
 				})
 
 				this.flagShow = true

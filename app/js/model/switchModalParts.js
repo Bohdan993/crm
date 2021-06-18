@@ -1,5 +1,4 @@
 const switchModalParts = (switchers, parts) => {
-	// console.log(switchers, parts)
 	function addActiveClass() {
 		let id = this.dataset.part
 		

@@ -22,14 +22,16 @@ import {
     closeModal,
     close,
     getAllUrlParams,
-    updateURL
+    updateURL,
+    debounce,
+    debounce2
 } from '../../helper'
 
 
 
 function vacancylistdatafetchedeventHandler(id_vacancy, e) {
     getVacancyModalInfo(id_vacancy).then(res => {
-        // console.log(res)
+
         getWorkModalFeedback({
             id: JSON.parse(sessionStorage.getItem('currVacancyEmployer')).id,
             loading: true,
@@ -61,7 +63,7 @@ export default class VacancyList {
     }
     update(data) {
 
-        // console.log(data.length, 'DATA LENGTH')
+
 
         this.list.update(data, {
             classes: this.indicatorsClasses,

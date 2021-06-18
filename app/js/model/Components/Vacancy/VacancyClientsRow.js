@@ -11,7 +11,8 @@ import {
 	initVacancyTooltip
 } from '../../initToottips'
 import {
-	save
+	save,
+	uniq
 } from '../../helper'
 import storage from '../../Storage'
 
@@ -198,7 +199,7 @@ export default class RowVacancyClient {
 					this.phone = place(el('i.ico.s-phone-red.no-open')),
 					this.documents = place(el('i.ico.s-documents.no-open')),
 					this.anket = place(el('i.ico.s-anket.no-open')),
-					this.manager = place(el('div.tag.manager-tag.purple-tag.no-open')))),
+					this.manager = place(el('div.tag.manager-tag.no-open')))),
 			el('div.table-full__cell.row__cell.cell-exp.no-open',
 
 				el('div.table-full__cell-wrapper.row__cell-wrapper.cell-exp-wrapper.no-open',
@@ -207,7 +208,7 @@ export default class RowVacancyClient {
 							this.labelCourseText = el('span.no-open'))),
 						this.speciality = place(el('p.no-open'))
 					)),
-					this.language = list('div.language__wrapper.no-open', Language, 'name'),
+					this.language = place(list('div.language__wrapper.no-open', Language, 'name')),
 					this.driver = place(el('div.tag.driver-tag.dirty-green-tag.no-open'))
 					),
 					
@@ -245,8 +246,20 @@ export default class RowVacancyClient {
 	}
 
 	update(data, index, items, context) {
+		let resArr = []
+		const statusHistory = data.status_history.sort((a, b) => +a.id_status - +b.id_status)
+		
 
-		this.timesArr = data.status_history
+		if(((+statusHistory[statusHistory.length - 1].id_status) - (+statusHistory[0].id_status)) > 1) {
+			for(let i = +statusHistory[0].id_status + 1; i < +statusHistory[statusHistory.length - 1].id_status; i++) {
+				resArr.push({id_status: `${i}`, date: statusHistory[statusHistory.length - 1].date})
+			}
+
+			statusHistory.splice(1,0, ...resArr)
+		}
+
+	
+		this.timesArr = uniq(statusHistory, 'id_status')
 		this.vacancyTooltipInstance = initVacancyTooltip(this.statusSlider.el)
 
 		this.vacancyTooltipInstance.setContent(tooltipContentFunc({
@@ -320,7 +333,7 @@ export default class RowVacancyClient {
 				innerText: data.main.manager_abbr,
 				title: data.main.manager_name,
 				style: {
-					backgroundColor: data.main.manager_color
+					'background-color': `#${data.main.manager_color}`
 				}
 			})
 		) : (
@@ -345,16 +358,8 @@ export default class RowVacancyClient {
 
 		data.language = data.language.filter(x => x.addr.toUpperCase() === 'EN')
 
-		this.language.update(data.language)
+		data.language.length ? this.language.update(true, data.language) : this.language.update(false)
 
-		// this.getItemsFromLocalStorage().managers.forEach(manager => {
-		// 	manager.id === data.main.id_manager ? 
-		// 	(this.manager.update(true),
-		// 		setAttr(this.manager.el, {
-		// 			innerText: manager.name.split(' ').map(el => el[0]).join('')
-		// 		}) 
-		// 		) : this.manager.update(false)
-		// })
 
 		setAttr(this.notes, {
 			value: data.vacancy.note

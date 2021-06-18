@@ -108,9 +108,6 @@ const getEmployersList = async ({
 				storage.getState()
 
 
-				console.log(data)
-
-
 			const employers = data.data
 
 			const numsData = {
@@ -222,6 +219,16 @@ const getEmployersList = async ({
 
 
 }
+
+
+function employerlistupdatefetcheventHandler(e) {
+
+	getEmployersList({
+	})
+}
+
+
+document.addEventListener('employerlistupdatefetchevent', employerlistupdatefetcheventHandler)
 
 
 

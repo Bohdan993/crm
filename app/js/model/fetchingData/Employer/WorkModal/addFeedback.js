@@ -17,7 +17,6 @@ const addFeedback = async ({
 	other, 
 	string
 } = {}) => {
-			console.log(type_feedback, type_author)
 			try {
 				if(feedback === '') {
 					throw new Error('Введите текст отзыва')

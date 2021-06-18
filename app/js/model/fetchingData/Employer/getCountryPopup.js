@@ -19,7 +19,7 @@ if(countryPopup) {
 
 
 const getCountryPopup = async () => {
-	// console.log('dd')
+
 if(countryPopup) {
 		try {
 				const data = await fetch.getResourse('/employers/get_other/?s=4')

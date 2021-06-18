@@ -20,7 +20,6 @@ const getCountryVacancyPopup = async () => {
 if(countryPopup) {
 		try {
 				const data = await fetch.getResourse('/vacancies/get_other/?s=3')
-				// console.log(data)
 				let countries = data.data.country
 				countries.sort((a, b) => {
 					return a.name.localeCompare(b.name)

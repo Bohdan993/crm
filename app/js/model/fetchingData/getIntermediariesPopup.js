@@ -34,9 +34,7 @@ if(intermediariesPopup) {
 	try {
 			const data = await fetch.getResourse('/employers/get_other/?s=2')
 			let intermediaries = data.data.intermediaries
-			// console.log(intermediaries)
 
-			
 
 			if(sessionStorage.getItem('intermediariesFilter')) { 
 						intermediaries = intermediaries.map(intermediary => {

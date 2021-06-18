@@ -49,6 +49,12 @@ const mediaShowMore = document.querySelector('.work-modal .media .show-more')
 const modalRowLayer = document.querySelectorAll('.work-modal .modal-row__layer')
 const contactsHistory = document.querySelector('.work-modal .contacts-history')
 const contactsHistoryShowMore = document.querySelector('.work-modal .contacts-history .show-more')
+// const commonInfoContactPersonArea = document.querySelector('.common-info__contact-person-area')
+// const commonInfoManufacturyArea = document.querySelector('.common-info__manufactury-area')
+// const commonInfoPhone = document.querySelector('#common-info-phone')
+// const commonInfoEmail = document.querySelector('#common-info-email')
+
+
 
 const vacanciesHistory = document.querySelector('.work-modal .vacancies-history')
 const vacanciesHistoryShowMore = document.querySelector('.work-modal .vacancies-history .show-more')
@@ -74,7 +80,6 @@ const sidebarMailingItem = document.querySelector('.sidebar-mailing-item')
 const createVacancyItem = document.querySelector('#vacancy-create')
 
 // Popups elements
-const confirmBtnTypeFeedback = document.querySelector('#type-feedback-popup .confirm-btn')
 const sidebarEmployerForm = document.querySelector('.work-modal__sidebar-employer-form')
 const workModalSidebarNotes = document.querySelector('.work-modal__sidebar-notes')
 
@@ -88,7 +93,7 @@ import {
 	statusLeft,
 	sliders,
 	findEmployer,
-	chooseEmployer, 
+	chooseEmployer,
 	chooseProductType,
 	chooseFullInfo,
 	mainInfoChooseBlock,
@@ -165,7 +170,7 @@ export {
 	employerTypeTemplate,
 	employerTypeTemplate2,
 	findEmployer,
-	chooseEmployer, 
+	chooseEmployer,
 	chooseProductType,
 	workTypeTemplate,
 	chooseFullInfo,
@@ -203,5 +208,9 @@ export {
 	vacancyCopy,
 	sidebarStatNumsVacancy,
 	sidebarMailingItem,
-	createVacancyItem
+	createVacancyItem,
+	// commonInfoContactPersonArea,
+	// commonInfoManufacturyArea,
+	// commonInfoPhone,
+	// commonInfoEmail
 }

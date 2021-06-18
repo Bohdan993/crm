@@ -11,7 +11,6 @@ import getWorkModalContactHistory from '../../fetchingData/Employer/WorkModal/ge
 import getWorkModalVacancyHistory from '../../fetchingData/Employer/WorkModal/getWorkModalVacancyHistory'
 import getWorkModalFeedback from '../../fetchingData/Employer/WorkModal/getWorkModalFeedback'
 import getWorkModalTasks from '../../fetchingData/Employer/WorkModal/getWorkModalTasks'
-// import getEmployersList from '../../fetchingData/Employer/getEmployersList'
 
 
 import {

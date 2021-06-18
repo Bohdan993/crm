@@ -12,9 +12,7 @@ export default class ModalRowLayerRight {
 	constructor() {
 		this.el = el('div.modal-row__wrapper',
 			el('div.main-info__choose-block',
-				// this.chooseEmployer = place(el('div.choose-employer', 
-				// 	el('p', 
-				// 		el('span', 'Выберите работодателя')))),
+
 				this.employerName = el('div.employer-name',
 					this.employerNameParagraph = el('p',
 						this.employerNameText = el('span', 'Выберите работодателя'))),
@@ -66,27 +64,7 @@ export default class ModalRowLayerRight {
 	}
 
 	update(data, context) {
-		console.log(data, context)
 
-		if (context === 'storage') {
-			// this.chooseEmployer.update(false)
-			// this.employerName.update(true)
-			// this.employerName._el.style.display = "flex"
-		}
-
-		if (context === 'nulledEmployer') {
-			// this.chooseEmployer.update(true)
-			// this.employerName.update(false)
-			// this.employerName._el.style.display = "none"
-		}
-
-
-		if (context === 'employer') {
-			// this.chooseEmployer.update(false)
-			// this.employerName.update(true)
-			// this.employerName._el.style.display = "flex"
-		}
-		// if(data.employer && Object.keys(data.employer).length) {
 
 		setAttr(this.email, {
 			innerText: data.employer.email ? data.employer.email : '',
@@ -120,7 +98,6 @@ export default class ModalRowLayerRight {
 	}
 
 	onmount() {
-		// this.chooseEmployer.update(true)
 		this.findEmployerInstance = initVacancyModalTooltip(this.employerNameParagraph, this.findEmployerPopup.el, tippy)
 
 		document.addEventListener('storageemployeradd', (e) => {
@@ -128,15 +105,12 @@ export default class ModalRowLayerRight {
 				vacancyEmployerData: employer
 			} = e.detail
 
-			console.log(employer)
 
 			this.update({
 				idVac: this.data.idVac,
 				employer: employer.employer
 			}, 'storage')
-			// this.chooseEmployer.update(false)
-			// this.employerName.update(true)
-			// this.employerName._el.style.display = "flex"
+	
 		})
 	}
 

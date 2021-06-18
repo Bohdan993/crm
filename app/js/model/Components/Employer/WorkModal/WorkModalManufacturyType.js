@@ -150,7 +150,7 @@ export default class WorkModalManufacturyType {
     }
 
     update(data, context) {
-        console.log(data, context)
+
         let {
             adding
         } = context
@@ -163,7 +163,6 @@ export default class WorkModalManufacturyType {
             })
         }
 
-        console.log(data)
         this.productsArr = data.data.map(el => el.id_spec_job_list)
 
         this.initData.forEach(el => {

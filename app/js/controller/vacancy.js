@@ -6,7 +6,7 @@ import {
 	addNewTask,
 	setFeedbackDate,
 	addFeedbackForm,
-	autocompleteInput,
+	// autocompleteInput,
 	showChooseBlockFullInfo,
 	switchModalParts,
 	feedbackEdit,
@@ -80,7 +80,7 @@ const app = {
 		this.ant()
 		this.sfd()
 		this.aff()
-		this.ai()
+		// this.ai()
 		this.scbfi()
 		this.smp()
 		this.fe()
@@ -167,16 +167,16 @@ const app = {
 		}
 
 	},
-	ai() {
-		if (findEmployer) {
-			autocompleteInput(findEmployer, chooseEmployer, chooseProductType)
-		}
+	// ai() {
+	// 	if (findEmployer) {
+	// 		autocompleteInput(findEmployer, chooseEmployer, chooseProductType)
+	// 	}
 
-		if (findEmployer2) {
-			autocompleteInput(findEmployer2, chooseEmployer2, chooseProductType2)
-		}
+	// 	if (findEmployer2) {
+	// 		autocompleteInput(findEmployer2, chooseEmployer2, chooseProductType2)
+	// 	}
 
-	},
+	// },
 
 	scbfi() {
 		if (workTypeTemplate) {

@@ -6,7 +6,8 @@ import {
 import linkToSocial from '../../../linkToSocial'
 import initWorkModalSelect from '../../../initWorkModalSelect'
 import hiddenClassMixin from '../../../Mixins/hiddenClassMixin'
-import saveFieldsData from '../../../fetchingData/saveFieldsData'
+// import saveFieldsData from '../../../fetchingData/saveFieldsData'
+import {save} from '../../../helper'
 import Option from '../../OptionComponent'
 import storage from '../../../Storage/globalEmployers'
 import employerListUpdateEvent from '../../../CustomEvents/employerListUpdateEvent'
@@ -21,7 +22,7 @@ function printFeedbackName() {
 
 	this.feedback.list.views.forEach(view => {
 		if (view.data.data.type_arrow === '0') {
-			// console.log(this)
+
 			setAttr(view.to, {
 				//Если пустое имя работодателя, тогда в отзывах выводим название организации
 				innerText: !checkIfEmployerNameIsEmpty.call(this) ? this.comInfName.value : this.comManufacturyArea.value
@@ -43,6 +44,7 @@ export default class WorkModal {
 	constructor() {
 		this.data = {}
 		this.countriesData = this.getItemsFromLocalStorage().countries
+		this.save = save.bind(this)
 		this.comInfLeft = el('div.common-info__left',
 			el('div.common-info__company.info-block',
 				el('p', 'Предприятие'),
@@ -115,7 +117,7 @@ export default class WorkModal {
 							// 	xlink: { href: "img/sprites/svg/symbol/sprite.svg#phone"}
 							// }))
 						),
-						this.comInfPhone = el('input.info-area', {
+						this.comInfPhone = el('input.info-area#common-info-phone', {
 							type: 'text'
 						})
 					),
@@ -131,7 +133,7 @@ export default class WorkModal {
 								// }))
 							)
 						),
-						this.comInfEmail = el('input.info-area', {
+						this.comInfEmail = el('input.info-area#common-info-email', {
 							type: 'text',
 							value: ''
 						})
@@ -224,19 +226,13 @@ export default class WorkModal {
 			this.comInfRight
 		)
 
-		let save = (value, field, target = 'main') => {
-			saveFieldsData({
-				str: 'employers',
+		this.comManufacturyArea.addEventListener('change', async (e) => {
+			await this.save({
 				id: this.data.id_employer,
-				value,
-				field,
-				target,
-				id_target: ''
+				value: this.comManufacturyArea.value.trim(),
+				field: 'enterprise',
+				str: 'employers'
 			})
-		}
-
-		this.comManufacturyArea.addEventListener('change', (e) => {
-			save(this.comManufacturyArea.value, 'enterprise')
 
 			storage.setPartialState(this.data.id_employer, 'id_employer', 'enterprise', this.comManufacturyArea.value)
 			printFeedbackName.call(this)
@@ -245,8 +241,13 @@ export default class WorkModal {
 
 		})
 
-		this.comCountrySelect.addEventListener('change', (e) => {
-			save(this.comCountrySelect.value, 'id_country')
+		this.comCountrySelect.addEventListener('change', async (e) => {
+			await this.save({
+				id: this.data.id_employer,
+				value: this.comCountrySelect.value.trim(),
+				field: 'id_country',
+				str: 'employers'
+			})
 
 			let currCountry = this.countriesData.filter(el => el.id === this.comCountrySelect.value)[0]
 
@@ -257,8 +258,13 @@ export default class WorkModal {
 			document.dispatchEvent(employerListUpdateEvent)
 		})
 
-		this.comMapArea.addEventListener('change', (e) => {
-			save(encodeURIComponent(this.comMapArea.value), 'address')
+		this.comMapArea.addEventListener('change', async (e) => {
+			await this.save({
+				id: this.data.id_employer,
+				value: encodeURIComponent(this.comMapArea.value),
+				field: 'address',
+				str: 'employers'
+			})
 			this.comIframe.src = `https://maps.google.com/maps?width=100%&height=200&hl=en&q=${this.comMapArea.value}&ie=UTF8&t=&z=11&iwloc=B&output=embed`
 
 			storage.setPartialState(this.data.id_employer, 'id_employer', 'address', this.comMapArea.value)
@@ -267,8 +273,13 @@ export default class WorkModal {
 		})
 
 
-		this.comInfName.addEventListener('change', (e) => {
-			save(encodeURIComponent(this.comInfName.value), 'name')
+		this.comInfName.addEventListener('change', async (e) => {
+			await this.save({
+				id: this.data.id_employer,
+				value: encodeURIComponent(this.comInfName.value),
+				field: 'name',
+				str: 'employers'
+			})
 
 			storage.setPartialState(this.data.id_employer, 'id_employer', 'name', this.comInfName.value)
 
@@ -277,53 +288,109 @@ export default class WorkModal {
 			document.dispatchEvent(employerListUpdateEvent)
 		})
 
-		this.comInfOtherNames.addEventListener('change', (e) => {
-			save(encodeURIComponent(this.comInfOtherNames.value), 'other_name')
+		this.comInfOtherNames.addEventListener('change', async (e) => {
+			await this.save({
+				id: this.data.id_employer,
+				value: encodeURIComponent(this.comInfOtherNames.value),
+				field: 'other_name',
+				str: 'employers'
+			})
 		})
 
-		this.comInfPhone.addEventListener('change', (e) => {
-			save(encodeURIComponent(this.comInfPhone.value), 'phone')
+		this.comInfPhone.addEventListener('change', async (e) => {
+			await this.save({
+				id: this.data.id_employer,
+				value: encodeURIComponent(this.comInfPhone.value),
+				field: 'phone',
+				str: 'employers'
+			})
 
 			storage.setPartialState(this.data.id_employer, 'id_employer', 'phone', this.comInfPhone.value)
 			employerListUpdateEvent.detail.id = this.data.id_employer
 			document.dispatchEvent(employerListUpdateEvent)
 		})
 
-		this.comInfEmail.addEventListener('change', (e) => {
-			save(encodeURIComponent(this.comInfEmail.value), 'email')
+		this.comInfEmail.addEventListener('change', async (e) => {
+			await this.save({
+				id: this.data.id_employer,
+				value: encodeURIComponent(this.comInfEmail.value),
+				field: 'email',
+				str: 'employers'
+			})
 		})
 
-		this.comInfPhoneOthers.addEventListener('change', (e) => {
-			save(encodeURIComponent(this.comInfPhoneOthers.value), 'other_phone')
+		this.comInfPhoneOthers.addEventListener('change', async (e) => {
+			await this.save({
+				id: this.data.id_employer,
+				value: encodeURIComponent(this.comInfPhoneOthers.value),
+				field: 'other_phone',
+				str: 'employers'
+			})
 		})
 
-		this.comInfMailOthers.addEventListener('change', (e) => {
-			save(encodeURIComponent(this.comInfMailOthers.value), 'other_email')
+		this.comInfMailOthers.addEventListener('change', async (e) => {
+			await this.save({
+				id: this.data.id_employer,
+				value: encodeURIComponent(this.comInfMailOthers.value),
+				field: 'other_email',
+				str: 'employers'
+			})
 		})
 
-		this.comInfSite.addEventListener('change', (e) => {
-			save(encodeURIComponent(this.comInfSite.value), 'site')
+		this.comInfSite.addEventListener('change', async (e) => {
+			await this.save({
+				id: this.data.id_employer,
+				value: encodeURIComponent(this.comInfSite.value),
+				field: 'site',
+				str: 'employers'
+			})
 		})
 
-		this.comInfFacebook.addEventListener('change', (e) => {
-			save(encodeURIComponent(this.comInfFacebook.value), 'social_media_facebook')
+		this.comInfFacebook.addEventListener('change', async (e) => {
+			await this.save({
+				id: this.data.id_employer,
+				value: encodeURIComponent(this.comInfFacebook.value),
+				field: 'social_media_facebook',
+				str: 'employers'
+			})
+
 		})
 
-		this.comInfInstagram.addEventListener('change', (e) => {
-			save(encodeURIComponent(this.comInfInstagram.value), 'social_media_instagram')
+		this.comInfInstagram.addEventListener('change', async (e) => {
+			await this.save({
+				id: this.data.id_employer,
+				value: encodeURIComponent(this.comInfInstagram.value),
+				field: 'social_media_instagram',
+				str: 'employers'
+			})
 		})
 
-		this.comInfNotes.addEventListener('change', (e) => {
-			save(encodeURIComponent(this.comInfNotes.value), 'other_information')
+		this.comInfNotes.addEventListener('change', async (e) => {
+			await this.save({
+				id: this.data.id_employer,
+				value: encodeURIComponent(this.comInfNotes.value),
+				field: 'other_information',
+				str: 'employers'
+			})
 		})
 
-		this.intermadiariesSelect.el.addEventListener('change', (e) => {
-			save(this.intermadiariesSelect.el.value, 'id_employer_intermediator_list')
+		this.intermadiariesSelect.el.addEventListener('change', async (e) => {
+			await this.save({
+				id: this.data.id_employer,
+				value: this.intermadiariesSelect.el.value,
+				field: 'id_employer_intermediator_list',
+				str: 'employers'
+			})
 		})
 
 
-		this.sourceSelect.el.addEventListener('change', (e) => {
-			save(this.sourceSelect.el.value, 'id_employer_source_list')
+		this.sourceSelect.el.addEventListener('change', async (e) => {
+			await this.save({
+				id: this.data.id_employer,
+				value: this.sourceSelect.el.value,
+				field: 'id_employer_source_list',
+				str: 'employers'
+			})
 		})
 
 
@@ -333,8 +400,6 @@ export default class WorkModal {
 	}
 
 	update(data, context) {
-		console.log(data)
-		console.log(context)
 		const {
 			id_employer
 		} = data

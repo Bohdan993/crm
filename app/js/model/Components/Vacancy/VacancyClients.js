@@ -15,6 +15,14 @@ function firstRow(title) {
 }
 
 
+function tableFullGrid(type) {
+	return type === 'vacancy-row' ? el('.table-full__grid.no-open',
+		el('div.table-full__grid-column_first.no-open'),
+		el('div.table-full__grid-column_second.no-open'),
+		el('div.table-full__grid-column_third.no-open'),
+		el('div.table-full__grid-column_fourth.no-open')) : null
+}
+
 function isObjEmpty(obj) {
 	return Object.keys(obj).length == 0
 }
@@ -32,22 +40,27 @@ export default class TableVacancyClient {
 
 		this.el = el("div.row__full-info.table-full.no-open",
 			this.choosenRow = el('div.table-full__choosen.choosen.no-open',
+				tableFullGrid(this.type),
 				firstRow('Отобраны'),
 				this.choosenList = list('div.table-full__layer.no-open', RowVacancyClient, 'id_trainees', this.type)),
 
 			this.readyRow = el('div.table-full__ready.ready.no-open',
+				tableFullGrid(this.type),
 				firstRow('Готовятся к подаче'),
 				this.readyList = list('div.table-full__layer.no-open', RowVacancyClient, 'id_trainees', this.type)),
 
 			this.waitRow = el('div.table-full__wait.wait.no-open',
+				tableFullGrid(this.type),
 				firstRow('Ждут разрешения'),
 				this.waitList = list('div.table-full__layer.no-open', RowVacancyClient, 'id_trainees', this.type)),
 
 			this.departmentRow = el('div.table-full__department.department.no-open',
+				tableFullGrid(this.type),
 				firstRow('Готовятся к отъезду'),
 				this.departmentList = list('div.table-full__layer.no-open', RowVacancyClient, 'id_trainees', this.type)),
 
 			this.busyRow = el('div.table-full__busy.busy.no-open',
+				tableFullGrid(this.type),
 				firstRow('Трудоустроены'),
 				this.busyList = list('div.table-full__layer.no-open', RowVacancyClient, 'id_trainees', this.type)),
 		)
@@ -69,11 +82,11 @@ export default class TableVacancyClient {
 			}
 		})
 
-		const choosenValues = Object.values(this.choosenObj).sort((a,b) => +a.vacancy.id_status - +b.vacancy.id_status)
-		const readyValues = Object.values(this.readyObj).sort((a,b) => +a.vacancy.id_status - +b.vacancy.id_status)
-		const waitValues = Object.values(this.waitObj).sort((a,b) => +a.vacancy.id_status - +b.vacancy.id_status)
-		const departmentValues = Object.values(this.departmentObj).sort((a,b) => +a.vacancy.id_status - +b.vacancy.id_status)
-		const busyValues = Object.values(this.busyObj).sort((a,b) => +a.vacancy.id_status - +b.vacancy.id_status)
+		const choosenValues = Object.values(this.choosenObj).sort((a, b) => +a.vacancy.id_status - +b.vacancy.id_status)
+		const readyValues = Object.values(this.readyObj).sort((a, b) => +a.vacancy.id_status - +b.vacancy.id_status)
+		const waitValues = Object.values(this.waitObj).sort((a, b) => +a.vacancy.id_status - +b.vacancy.id_status)
+		const departmentValues = Object.values(this.departmentObj).sort((a, b) => +a.vacancy.id_status - +b.vacancy.id_status)
+		const busyValues = Object.values(this.busyObj).sort((a, b) => +a.vacancy.id_status - +b.vacancy.id_status)
 
 
 		setAttr(this.choosenRow, {
@@ -117,25 +130,6 @@ export default class TableVacancyClient {
 			id: data.id,
 			parent: this.busyRow
 		})
-
-		//Обновляем числа в 'Закрытых вакансиях'
-		// if (this.type === 'vacancy-modal') {
-		// 	context && setAttr( context.choosenClientsCount, {
-		// 		innerText: choosenValues.length
-		// 	})
-		// 	context && setAttr(context.readyClientsCount, {
-		// 		innerText: readyValues.length
-		// 	})
-		// 	context && setAttr(context.waitClientsCount, {
-		// 		innerText: waitValues.length
-		// 	})
-		// 	context && setAttr(context.departmentClientsCount, {
-		// 		innerText: departmentValues.length
-		// 	})
-		// 	context && setAttr(context.busyClientsCount, {
-		// 		innerText: busyValues.length
-		// 	})
-		// }
 
 
 		this.choosenObj = {}

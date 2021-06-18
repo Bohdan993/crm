@@ -6,7 +6,6 @@ import saveFieldsData from '../../../fetchingData/saveFieldsData'
 
 function onChangeHandler(e) {
 
-	console.log(this.input.checked)
 	saveFieldsData({
 		str: 'employers',
 		id: this.data.id,

@@ -145,8 +145,7 @@ export default class ContactHistoryModal {
 
 
 	update(data) {
-		console.log(this.data)
-		// console.log(JSON.parse(localStorage.getItem('managers')))
+
 		setAttr(this.textarea, {
 			value: data.data.message
 		})

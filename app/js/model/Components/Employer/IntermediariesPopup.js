@@ -96,11 +96,11 @@ class IntermediariesCheckbox {
 		storageKey2
 	}) {
 		let $this = this
-		// console.log($this)
+
 		filter()
 
 		function filter(e) {
-			console.log(id, str, storageKey)
+
 			//В свойство класса присваиваем массив данных который находится в sessionStorage по соответствующему ключу
 			IntermediariesPopup.checkedArr = sessionStorage.getItem(storageKey) && JSON.parse(sessionStorage.getItem(storageKey)) !== '' ? JSON.parse(sessionStorage.getItem(storageKey)).split(',') : []
 			//this - один чекбокс в попапе
@@ -114,12 +114,12 @@ class IntermediariesCheckbox {
 				storageKey2 ? sessionStorage.setItem(storageKey2, JSON.stringify(id2)) : null
 			} else {
 				IntermediariesPopup.checkedArr = IntermediariesPopup.checkedArr.filter(el => el !== id)
-				console.log(IntermediariesPopup.checkedArr.length)
+
 				getEmployersList({
 					[str]: IntermediariesPopup.checkedArr.join(','),
 					[str2 ? str2 : '']: (IntermediariesPopup.checkedArr.length) === 0 ? "" : null
 				})
-				console.log(IntermediariesPopup.checkedArr.length === 0)
+	
 				sessionStorage.setItem(storageKey, JSON.stringify(IntermediariesPopup.checkedArr.join(',')))
 				storageKey2 ? sessionStorage.setItem(storageKey2, JSON.stringify(IntermediariesPopup.checkedArr.length === 0 ? "" : id2)) : null
 			}

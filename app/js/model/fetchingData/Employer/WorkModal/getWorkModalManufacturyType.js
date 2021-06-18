@@ -2,7 +2,11 @@ import fetch from '../../fetchingDataClass'
 import WorkModalManufacturyType from '../../../Components/Employer/WorkModal/WorkModalManufacturyType'
 
 import Loader from '../../../Components/Loader'
-import {list, mount, place} from '../../../../../libs/libs'
+import {
+	list,
+	mount,
+	place
+} from '../../../../../libs/libs'
 
 const state = {}
 
@@ -19,7 +23,7 @@ const workModalManufacturyType = new WorkModalManufacturyType()
 
 
 
-if(manufacturyType) {
+if (manufacturyType) {
 	mount(manufacturyType, workModalManufacturyType)
 	mount(manufacturyType, loader)
 }
@@ -30,40 +34,44 @@ if(manufacturyType) {
 
 const getWorkModalManufacturyType = async (id = '1', loading = true, adding = false) => {
 
-	if(manufacturyType) {
+	if (manufacturyType) {
 
-		if(loading) {
+		if (loading) {
 			loader.update(true)
 			workModalManufacturyType.setHiddenClass().setEmptyLayer()
 		}
-		
-		
 
-	try {
 
-			// const delay = await sleep(15000)
+
+		try {
+
+
 			const data = await fetch.getResourse(`/employers/get/?id=${id}&section=2&other=1`)
 			const otherPart = data.data.other
-			// console.log(data2)
-			const production = {id: id, data: otherPart.production }
 
-			console.log(adding)
-			// if(state.id !== id) {
-				workModalManufacturyType.update(production, {adding})
-			// }
+			const production = {
+				id: id,
+				data: otherPart.production
+			}
 
-			if(loading) {
+
+			workModalManufacturyType.update(production, {
+				adding
+			})
+
+
+			if (loading) {
 				loader.update(false)
 				workModalManufacturyType.removeHiddenClass()
 			}
-			
+
 			state.id = id
-		}catch(e) {
+		} catch (e) {
 			console.error(e)
 		}
-}
+	}
 
 }
 
 
-export default getWorkModalManufacturyType 		//to ../../../Components/EmployersRow.js
+export default getWorkModalManufacturyType //to ../../../Components/EmployersRow.js

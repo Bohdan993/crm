@@ -19,8 +19,7 @@ if(typeManufacturyPopup) {
 
 const getManufacturyTypePopup = async () => {
 	if(typeManufacturyPopup) {
-		// console.log(new TypeManufacturyPopup())
-
+	
 		try {
 				const data = await fetch.getResourse('/employers/get_other/?s=3')
 				let production = data.data.production

@@ -29,7 +29,7 @@ export default class Note { // to ../fetchingData/Employer/WorkModal
                     id_target: ''
                 })
             } else {
-                // console.log(this.data.id)
+
                 saveFieldsData({
                     str: 'vacancies',
                     id: this.data.id,
@@ -48,7 +48,7 @@ export default class Note { // to ../fetchingData/Employer/WorkModal
 
     }
     update(data) {
-        console.log('ddfermjekrgfe')
+
         setAttr(this.textArea, {
             value: data && data.note === '' || data && data.note === null ? "" : data.note
         })

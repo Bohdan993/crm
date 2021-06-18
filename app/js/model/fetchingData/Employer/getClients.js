@@ -5,7 +5,7 @@ const getClients = async () => {
 		try{
 			const data = await fetch.getResourse('/employers/get_other/?s=7')
 			let clients = data.data.client
-			// console.log(typeContact)
+
 			localStorage.setItem('clients', JSON.stringify(clients))
 		}catch(e) {
 			console.error(e)

@@ -324,7 +324,7 @@ export default class RowVacancy {
 			})
 		})
 
-		// console.log(this.productNamesArr)
+
 
 		setAttr(this.jobsText, {
 			innerText: this.productNamesArr.join(', ')
