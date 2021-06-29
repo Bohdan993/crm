@@ -24,8 +24,6 @@ import {
 import employerModalCloseEvent from '../../CustomEvents/employerModalCloseEvent'
 
 
-let flag = false
-
 
 function employerlistdatafetchedeventHandler(id_employer, e) {
     getWorkModalFeedback({
@@ -39,7 +37,6 @@ function employerlistdatafetchedeventHandler(id_employer, e) {
 
 export default class EmployerList {
     constructor() {
-        this.count = 0
         this.el = el("div.rows.worker-rows")
         this.list = list(this.el, RowEmployer, 'id_employer')
 
