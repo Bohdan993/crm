@@ -13,10 +13,12 @@ export class StringsPopup {
 		this.data = {}
 		this.el = el('fieldset',
 			el('p', 'Метки'),
+			//*comment*
 			el('div.input-group.radio-group-type-1',
 				this.list1 = list('div.group', CheckBox, 'id'),
 				this.list2 = list('div.group', CheckBox, 'id'),
-				this.list3 = list('div.group', CheckBox, 'id')
+				this.list3 = list('div.group', CheckBox, 'id'),
+				this.list4 = list('div.group', CheckBox, 'id'),
 			)
 		)
 
@@ -24,14 +26,16 @@ export class StringsPopup {
 
 	update(data, index, items, context) {
 		this.data = data
-
+		//*comment*
 		let data1 = data.slice(0, 2)
 		let data2 = data.slice(2, 4)
-		let data3 = data.slice(4)
+		let data3 = data.slice(4, 7)
+		let data4 = data.slice(7)
 
 		this.list1.update(data1)
 		this.list2.update(data2)
 		this.list3.update(data3)
+		this.list4.update(data4)
 	}
 }
 //

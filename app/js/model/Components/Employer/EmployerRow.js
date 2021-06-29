@@ -152,6 +152,8 @@ export default class RowEmployer {
 
 			const instance = MicroModal.show('modal-1', {
 				onClose: (modal, trigger) => {
+					// *comment* триггер события закрытия модального окна
+					document.id_employer = this.data.id_employer;
 					updateURL(window.location.pathname)
 					document.dispatchEvent(employerModalCloseEvent)
 
@@ -164,6 +166,10 @@ export default class RowEmployer {
 				},
 				onShow: (modal, node) => {
 					if (!id_employer) {
+						// *comment* триггер события открытия модального окна
+						document.id_employer = this.data.id_employer;
+						document.dispatchEvent(new Event('open-basic-modal'));
+
 						const wrapper = modal.querySelector('.my-modal-wrapper')
 						const modalClose = modal.querySelector('.modal__close')
 

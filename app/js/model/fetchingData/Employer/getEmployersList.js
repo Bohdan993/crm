@@ -64,6 +64,7 @@ const getEmployersList = async ({
 	production = JSON.parse(sessionStorage.getItem('typeManufacturyFilter')) || '',
 	contact = JSON.parse(sessionStorage.getItem('contactDataFilter')) || '',
 	manager = JSON.parse(sessionStorage.getItem('managerFilter')) || '',
+	marks = JSON.parse(sessionStorage.getItem('marksFilter')) || '',
 	intermediary = JSON.parse(sessionStorage.getItem('intermediaryFilter')) || '',
 	intermediaries = JSON.parse(sessionStorage.getItem('intermediariesFilter')) || '',
 	vacancy_active = JSON.parse(sessionStorage.getItem('vacancyActiveFilter')) || '',
@@ -79,7 +80,7 @@ const getEmployersList = async ({
 
 	function isFiltered() {
 		return search !== '' || country !== '' || production !== '' ||
-			contact !== '' || manager !== '' || intermediary !== '' ||
+			contact !== '' || manager !== '' || marks !== '' || intermediary !== '' ||
 			intermediaries !== '' || vacancy_active !== '' ||
 			vacancy_type !== '' || vacancy_term !== '' ||
 			last_contact !== ''
@@ -102,7 +103,7 @@ const getEmployersList = async ({
 
 			const data = !avoidFetch ?
 				await fetch.getResourse(`/employers/get_all/?p=${p}&t=${t}&search=${search}&filter=country:${country}
-				|production:${production}|contact:${contact}|manager:${manager}|intermediaries:${intermediaries}
+				|production:${production}|contact:${contact}|manager:${manager}|marks:${marks}|intermediaries:${intermediaries}
 				|intermediary:${intermediary}|vacancy_active:${vacancy_active}|vacancy_type:${vacancy_type}|vacancy_term:${vacancy_term}
 				|last_contact:${last_contact}&sort=${sort}`) :
 				storage.getState()

@@ -203,6 +203,7 @@ function initSidebarTooltip(el, content) {
                     //*comment* Этот код отрабатывает тогда, когда страница загрузилась, и проверяет есть по ключу в sessionStorage какие то данные
                     //*comment* Если есть,то отображать кретик у фильтра
                     checkIfShowRemoveFilterButton('managerFilter', instance)
+                    checkIfShowRemoveFilterButton('marksFilter', instance)
 
                 } else if(instance.reference.classList.contains('stages-vacancies-filter-wrapper')){
 
@@ -343,9 +344,9 @@ function removeCheckingHandler(children, instance, e){
                 } else if(instance.reference.classList.contains('managers-filter-wrapper')){
                     //*comment* Дописать в аргумент функции название ключа для меток. Этот код отрабатывает когда пользователь
                     //*comment* нажимает крестик в фильтре
-                    getEmployersList({manager: ''})
+                    getEmployersList({manager: '', marks: ''})
                     sessionStorage.removeItem('managerFilter')
-
+                    sessionStorage.removeItem('marksFilter')
                 } else if(instance.reference.classList.contains('stages-vacancies-filter-wrapper')){
 
                     getVacancyList({status: ''})

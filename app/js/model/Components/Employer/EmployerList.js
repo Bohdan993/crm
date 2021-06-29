@@ -24,8 +24,6 @@ import {
 import employerModalCloseEvent from '../../CustomEvents/employerModalCloseEvent'
 
 
-let flag = false
-
 
 function employerlistdatafetchedeventHandler(id_employer, e) {
     getWorkModalFeedback({
@@ -39,7 +37,6 @@ function employerlistdatafetchedeventHandler(id_employer, e) {
 
 export default class EmployerList {
     constructor() {
-        this.count = 0
         this.el = el("div.rows.worker-rows")
         this.list = list(this.el, RowEmployer, 'id_employer')
 
@@ -69,6 +66,10 @@ export default class EmployerList {
                 onShow: (modal, node) => {
 
                     if (id_employer) {
+                        // *comment* триггер события открытия модального окна
+                        document.id_employer = id_employer;
+                        document.dispatchEvent(new Event('open-basic-modal'));
+
                         const wrapper = modal.querySelector('.my-modal-wrapper')
                         const modalClose = modal.querySelector('.modal__close')
 
