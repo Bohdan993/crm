@@ -25,12 +25,9 @@ let listeners = []
 
 const addNewEmployer = () => {
 	if (sidebarEmployer) {
-
-
 		sidebarEmployer.addEventListener('click', loadData)
 
 		async function loadData() {
-
 			try {
 				const employer = await fetch.getResourse('/employers/create')
 
@@ -49,6 +46,10 @@ const addNewEmployer = () => {
 						},
 						onShow: (modal) => {
 							listeners = []
+							// *comment* триггер события открытия модального окна
+							document.id_employer = employer.id;
+							document.dispatchEvent(new Event('open-basic-modal'));
+
 							const wrapper = modal.querySelector('.my-modal-wrapper')
 							const modalClose = modal.querySelector('.modal__close')
 

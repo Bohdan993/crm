@@ -20,7 +20,7 @@ export default class WorkModalCreateVacancy {
 
 		setAttr(this.link, {
 			target: '_blank',
-			href: `vacancy.html#createvacancy=true&id_employer=${data.id}${data.lastIdVacancy ? ('&id_vacancy=' + data.lastIdVacancy) : ''}`
+			href: `vacancies#createvacancy=true&id_employer=${data.id}${data.lastIdVacancy ? ('&id_vacancy=' + data.lastIdVacancy) : ''}`
 		})
 
 		this.data = data

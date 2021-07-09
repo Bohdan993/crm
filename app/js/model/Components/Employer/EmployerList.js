@@ -75,15 +75,15 @@ export default class EmployerList {
 
 
                         setTimeout(
-							() => {
-								this.addMouseUpTrigger = addMouseUpTrigger
-								this.closeModal = closeModal.bind(null, modal.id, instance)
-								this.close = close.bind(null, modal.id, instance)
+                            () => {
+                                this.addMouseUpTrigger = addMouseUpTrigger
+                                this.closeModal = closeModal.bind(null, modal.id, instance)
+                                this.close = close.bind(null, modal.id, instance)
 
-								wrapper.addEventListener('mouseup', this.addMouseUpTrigger)
-								wrapper.addEventListener('mousedown', this.closeModal)
-								modalClose.addEventListener('click', this.close)
-						}, 0)
+                                wrapper.addEventListener('mouseup', this.addMouseUpTrigger)
+                                wrapper.addEventListener('mousedown', this.closeModal)
+                                modalClose.addEventListener('click', this.close)
+                            }, 0)
                     }
 
                 }
