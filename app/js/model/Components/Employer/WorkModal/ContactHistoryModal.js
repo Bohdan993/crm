@@ -164,4 +164,3 @@ export default class ContactHistoryModal {
 	}
 }
 
-// initWorkModalSelect(this.comCountrySelect, {countries: JSON.parse(localStorage.getItem('countries'))})

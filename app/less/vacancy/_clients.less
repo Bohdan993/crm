@@ -1,19 +1,20 @@
 .clients .modal-row__layer {
-
+	.table-full__layer .table-full__row:not(:last-child):before {
+		content: none;
+	}
 
 	&.empty-layer {
 		padding: 0;
-    border: none;
-    border-top: 1px solid #85a6cb;
-    height: 1px!important;
+		border: none;
+		border-top: 1px solid #85a6cb;
+		height: 1px !important;
 	}
 
 
 	position: relative;
 	overflow-y: auto;
-	// height: 100%;
+
 	.table-full {
-		// display: block;
 		max-width: 100%;
 		margin: 0;
 		min-width: 998px;
@@ -67,19 +68,19 @@
 		flex-shrink: 1;
 	}
 
-	
+
 	.cell-status__left {
 		border-right: 1px solid #fff;
 	}
-	
+
 
 	.table-full__layer {
 		.table-full__row {
 			&:first-child {
-				.cell-names
-				 {
+				.cell-names {
 					position: relative;
 					overflow: visible;
+
 					&:after {
 						content: '';
 						right: -1px;
@@ -92,12 +93,13 @@
 					}
 				}
 
-				.cell-exp, 
+				.cell-exp,
 				.cell-status,
 				.cell-notes,
 				.cell-status__left {
 					position: relative;
 					overflow: visible;
+
 					&:after {
 						content: '';
 						right: -1px;
@@ -122,18 +124,19 @@
 		// 		}
 		// 	}
 		// }
-	
+
 		border-bottom: 1px solid @white;
 		// &:not(:first-child) {
 		// 	border-bottom: 1px solid @white;
 		// }
 
-			&:last-child {
-				border-bottom: none;
+		&:last-child {
+			border-bottom: none;
 		}
 
 
 		&:first-child {
+
 			// padding-bottom: 0;
 			.table-full__title {
 				flex-basis: 211/989 * 100%;
@@ -155,10 +158,10 @@
 				border-right: 1px solid @white;
 			}
 		}
-		
+
 	}
 
-	.table-full__busy  {
+	.table-full__busy {
 		.table-full__row {
 			&:last-child {
 				border-bottom: 1px solid @white;
@@ -167,17 +170,17 @@
 	}
 }
 
-	.clients-layer {
-		width: 100%;
+.clients-layer {
+	width: 100%;
 
-		.row__full-info .row__indicator span {
-			margin-top: 0.25em;
-		}
-
-		.cell-status__left {
-			padding-right: 9px;
-		}
+	.row__full-info .row__indicator span {
+		margin-top: 0.25em;
 	}
+
+	.cell-status__left {
+		padding-right: 9px;
+	}
+}
 
 .switcher {
 	position: absolute;
@@ -194,10 +197,11 @@
 	justify-content: center;
 	transition: transform 0.2s linear;
 	transform: rotate(0deg);
+
 	svg {
 		width: 8px;
 		height: 8px;
-	
+
 	}
 
 	&.rotate {
@@ -216,10 +220,11 @@
 		height: 0;
 
 	}
+
 	p {
 		// text-overflow: ellipsis;
-    // overflow: hidden;
-    // white-space: nowrap;
+		// overflow: hidden;
+		// white-space: nowrap;
 
 	}
 }

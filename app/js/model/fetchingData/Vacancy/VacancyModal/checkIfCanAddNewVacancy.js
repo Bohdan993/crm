@@ -38,6 +38,10 @@ const checkIfAddNewVacancy = () => {
                 errorArr.push('Дату начала работы.')
             }
 
+            if(main.period === '') {
+                errorArr.push('Период (мес).')
+            }
+
 
             if(errorArr.length) {
                 throw new Error(`${errorArr.map((el, i) => '' + (i + 1) + '. ' + el).join('\n')}`)
@@ -67,6 +71,7 @@ const checkIfAddNewVacancy = () => {
     }
 
     document.addEventListener('wanttoclosemodalevent', wanttoclosemodaleventHandler)
+    
 }
 
 

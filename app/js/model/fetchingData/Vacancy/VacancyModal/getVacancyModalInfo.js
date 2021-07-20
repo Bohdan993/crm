@@ -100,6 +100,8 @@ const getVacancyModalInfo = async (id = '1', isNewVacancy = false) => {
 
 	changeActiveClass(modalSwitchers, modalParts, '#vacancy-data', '[data-part="vacancy-data"]')
 
+	
+
 
 	try {
 		const data = await fetch.getResourse(`/vacancies/get/?id=${id}&section=1`)
@@ -213,6 +215,7 @@ const getVacancyModalInfo = async (id = '1', isNewVacancy = false) => {
 							id,
 							data: res
 						})
+
 					} else {
 						storage.setState(id, {
 							id,
@@ -225,6 +228,8 @@ const getVacancyModalInfo = async (id = '1', isNewVacancy = false) => {
 					}
 				})
 		}
+
+		
 
 		loader.update(false)
 

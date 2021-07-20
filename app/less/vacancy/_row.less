@@ -176,6 +176,7 @@
 			background-color: @ligth-gray;
 			z-index: -5;
 			opacity: 0.99;
+			transition: 0.25s background-color linear;
 		}
 	}
 
@@ -390,6 +391,7 @@ p.status {
 	padding: 0;
 	margin-left: 6px;
 	margin-right: 10px;
+	overflow: visible;
 
 
 	&:hover {
@@ -491,6 +493,24 @@ p.status {
 		justify-content: center;
 		align-items: center;
 	}
+
+
+
+	position: relative;
+	overflow: visible;
+
+	&:after {
+		content: '';
+		right: -1px;
+		width: 1px;
+		position: absolute;
+		height: calc(100% + 29px);
+		bottom: -4px;
+		background: @ligth-gray;
+		z-index: -1;
+		transition: 0.25s linear background-color;
+	}
+
 }
 
 .cell-status__right {

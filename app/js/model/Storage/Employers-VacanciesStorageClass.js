@@ -1,11 +1,11 @@
 export default class StorageGlobalEmployersVacancies {
-	constructor(){
+	constructor() {
 		this.state = []
 		this.initialState = []
 	}
 
 
-	initState(data){
+	initState(data) {
 
 		this.state = data
 		this.initialState = data
@@ -14,37 +14,37 @@ export default class StorageGlobalEmployersVacancies {
 	}
 
 
-	clearState(){
+	clearState() {
 		this.state = []
 	}
 
 
-	setState(data, id, direction = 'bottom'){
-		if(direction === 'bottom') {
+	setState(data, id, direction = 'bottom') {
+		if (direction === 'bottom') {
 			this.state = this.uniq([...this.state, ...data], id)
 		}
 
-		if(direction === 'top') {
+		if (direction === 'top') {
 			this.state = this.uniq([...data, ...this.state], id)
 		}
-		
+
 		return this.state
 	}
 
-	getState(){
+	getState() {
 		return this.state
 	}
 
-	getInitialState(){
+	getInitialState() {
 		return this.initialState
 	}
 
 
-	getPartialState(id, key, prop){
+	getPartialState(id, key, prop) {
 		let res
-	
+
 		this.getState().every(el => {
-			if(el[key] === id) {
+			if (el[key] === id) {
 				res = el[prop]
 				return false
 			} else {
@@ -55,11 +55,11 @@ export default class StorageGlobalEmployersVacancies {
 	}
 
 
-	setPartialState(id, key, prop, data){
+	setPartialState(id, key, prop, data) {
 		this.getState().every(el => {
-			if(el[key] === id) {
-				 el[prop] = data
-				 return false
+			if (el[key] === id) {
+				el[prop] = data
+				return false
 			} else {
 				return true
 			}
@@ -68,20 +68,19 @@ export default class StorageGlobalEmployersVacancies {
 	}
 
 
-	deletePartialState(id, key){
+	deletePartialState(id, key) {
 		this.state = this.getState().filter(el => el[key] !== id)
 		return this.state
 	}
-	
+
 
 	uniq(xs, id) {
-    let seen = {};
-    let res = xs.filter(function(x) {
-        let key = JSON.stringify(x[id]);
-        return !(key in seen) && (seen[key] = x[id]);
-    });
-    return res
-  }
+		let seen = {};
+		let res = xs.filter(function (x) {
+			let key = JSON.stringify(x[id]);
+			return !(key in seen) && (seen[key] = x[id]);
+		});
+		return res
+	}
 
 }
-
