@@ -370,17 +370,6 @@
 				this.fullInfo.update(true)
 				this.fullInfo._el.style.display = "flex"
 
-				// this.chooseProductTypePopup.save({
-				// 	id: this.data.idVac,
-				// 	value: '',
-				// 	field: 'type_vacancy'
-				// })
-
-				// this.chooseProductTypePopup.save({
-				// 	id: this.data.idVac,
-				// 	value: '',
-				// 	field: 'type_production'
-				// })
 
 				this.update({
 					idVac: this.data.idVac,
@@ -551,7 +540,10 @@
 				this.prodTypes = []
 			}, 0)
 
+			
+
 			this.data = data
+
 		}
 
 

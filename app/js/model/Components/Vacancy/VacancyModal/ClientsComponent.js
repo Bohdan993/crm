@@ -80,6 +80,7 @@ class AddClientPopup {
 				if (res !== 'fail') {
 
 					let statusesArr = vacancyStorage.getPartialState(this.parent.data.id, 'id_vacancy', 'status')
+
 					let [firstInd, secondInd, ...rest] = statusesArr
 					vacancyStorage.setPartialState(this.parent.data.id, 'id_vacancy', 'status', [firstInd - 1, secondInd + 1, ...rest])
 

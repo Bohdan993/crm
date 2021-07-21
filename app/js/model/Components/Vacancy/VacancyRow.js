@@ -307,12 +307,13 @@ export default class RowVacancy {
 		})
 
 		setAttr(this.typeVacancy, {
-			classList: data.type_vacancy === '1' ? 'label hot__label' : data.type_vacancy === '2' ? 'label green__label' : 'label blue__label'
+			classList: data.type_vacancy === '1' ? 'label hot__label' : data.type_vacancy === '2' ? 'label green__label' : data.type_vacancy === '3' ? 'label blue__label' : null
 		})
 
 		setAttr(this.typeVacancyName, {
-			innerText: data.type_vacancy === '1' ? 'Сезонная' : data.type_vacancy === '2' ? 'Практика' : 'Рабочая'
+			innerText: data.type_vacancy === '1' ? 'Сезонная' : data.type_vacancy === '2' ? 'Практика' : data.type_vacancy === '3' ? 'Рабочая' : ''
 		})
+
 
 		const prod = data.type_production.split(',')
 

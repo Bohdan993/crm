@@ -6,8 +6,10 @@ import {
 import {
 	wantToClose,
 	wantToCloseModal,
-	debounce
+	debounce,
+	updateURL
 } from '../../helper'
+import unloadHandler from './VacancyModal/deleteNewVacancyOnUnload'
 import getVacancyModalInfo from '../../fetchingData/Vacancy/VacancyModal/getVacancyModalInfo'
 import getWorkModalFeedback from '../../fetchingData/Employer/WorkModal/getWorkModalFeedback'
 import getWorkModalTasks from '../../fetchingData/Employer/WorkModal/getWorkModalTasks'
@@ -17,11 +19,10 @@ import {
 } from '../../../../libs/libs'
 import vacancyListUpdateFetchEvent from '../../CustomEvents/vacancyListUpdateFetchEvent'
 
+import vacancyStorage from '../../Storage/globalVacancies'
+
 
 let listeners = []
-
-
-
 
 
 async function onAddVacancy(id = null) {
@@ -30,66 +31,79 @@ async function onAddVacancy(id = null) {
 
 		if (vacancy.success === true) {
 
-			const instance = MicroModal.show('modal-3', {
-				onClose: modal => {
-					sessionStorage.setItem('addNewVacancyMode', '0')
-					const wrapper = modal.querySelector('.my-modal-wrapper')
-					const modalClose = modal.querySelector('.modal__close')
+			vacancyStorage.setState([vacancy.data.main], 'id_vacancy')
 
-					wrapper.removeEventListener('mousedown', listeners[0])
-					modalClose.removeEventListener('mousedown', listeners[1])
-					window.removeEventListener('keydown', listeners[2], true)
+			const promise = new Promise(function (res, rej) {
+				const instance = MicroModal.show('modal-3', {
+					onClose: modal => {
+						updateURL(window.location.pathname)
+						sessionStorage.setItem('addNewVacancyMode', '0')
+						const wrapper = modal.querySelector('.my-modal-wrapper')
+						const modalClose = modal.querySelector('.modal__close')
 
-					document.dispatchEvent(vacancyListUpdateFetchEvent)
-				},
-				onShow: (modal, node) => {
-					sessionStorage.setItem('addNewVacancyMode', '1')
-					listeners = []
-					const wrapper = modal.querySelector('.my-modal-wrapper')
-					const modalClose = modal.querySelector('.modal__close')
+						wrapper.removeEventListener('mousedown', listeners[0])
+						modalClose.removeEventListener('mousedown', listeners[1])
+						window.removeEventListener('keydown', listeners[2], true)
+						window.removeEventListener('beforeunload', listeners[3])
 
 
-					setTimeout(() => {
-						const wantToCloseModalBinded = wantToCloseModal.bind(wrapper, instance, vacancy.id)
-						const wantToCloseBinded = wantToClose.bind(modalClose, instance, vacancy.id)
-						const wantToCloseWindowBinded = debounce(wantToClose.bind(window, instance, vacancy.id), 1000)
+						document.dispatchEvent(vacancyListUpdateFetchEvent)
+					},
+					onShow: async (modal, node) => {
+						sessionStorage.setItem('addNewVacancyMode', '1')
+						listeners = []
+						const wrapper = modal.querySelector('.my-modal-wrapper')
+						const modalClose = modal.querySelector('.modal__close')
 
 
-						wrapper.addEventListener('mousedown', wantToCloseModalBinded)
-						modalClose.addEventListener('mousedown', wantToCloseBinded)
-						window.addEventListener('keydown', wantToCloseWindowBinded, true)
-
-						listeners.push(wantToCloseModalBinded)
-						listeners.push(wantToCloseBinded)
-						listeners.push(wantToCloseWindowBinded)
-
-					}, 0)
+						setTimeout(() => {
+							const wantToCloseModalBinded = wantToCloseModal.bind(wrapper, instance, vacancy.data.main.id_vacancy)
+							const wantToCloseBinded = wantToClose.bind(modalClose, instance, vacancy.data.main.id_vacancy)
+							const wantToCloseWindowBinded = debounce(wantToClose.bind(window, instance, vacancy.data.main.id_vacancy), 1000)
+							const unloadHandlerBinded = unloadHandler.bind(window, vacancy.data.main.id_vacancy)
 
 
-					getVacancyModalInfo(vacancy.id, true).then(res => {
-						getWorkModalFeedback({
+							wrapper.addEventListener('mousedown', wantToCloseModalBinded)
+							modalClose.addEventListener('mousedown', wantToCloseBinded)
+							window.addEventListener('keydown', wantToCloseWindowBinded, true)
+							window.addEventListener('beforeunload', unloadHandlerBinded)
+
+							listeners.push(wantToCloseModalBinded)
+							listeners.push(wantToCloseBinded)
+							listeners.push(wantToCloseWindowBinded)
+							listeners.push(unloadHandlerBinded)
+
+
+						}, 0)
+
+
+						await getVacancyModalInfo(vacancy.data.main.id_vacancy, true)
+
+
+						await getWorkModalFeedback({
 							id: id || JSON.parse(sessionStorage.getItem('currVacancyEmployer')).id,
 							loading: true,
 							str: 'vacancies',
 							other: 1
 						})
 
-
-						getWorkModalTasks({
+						await getWorkModalTasks({
 							id: id || JSON.parse(sessionStorage.getItem('currVacancyEmployer')).id
 						})
-					})
-				}
+
+						res()
+
+					}
+				})
 			})
 
 
-			return vacancy.id
+			await promise
+
+			return vacancy.data.main.id_vacancy
 		} else {
 			throw new Error('Не возможно cоздать вакансию')
 		}
-
-
-
 
 	} catch (e) {
 		toastr.error(e.message, 'Возникла ошибка', {

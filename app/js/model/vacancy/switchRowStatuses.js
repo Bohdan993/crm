@@ -4,7 +4,7 @@ import storage from '../Storage'
 import vacancyStorage from '../Storage/globalVacancies'
 import clientUpdateInVacancyEvent from '../CustomEvents/clientUpdateInVacancyEvent'
 import clientDeleteFromVacancyEvent from '../CustomEvents/clientDeleteFromVacancyEvent'
-
+import checkIfAllVacancyClientsReady from '../fetchingData/Vacancy/checkIfAllVacancyClientsReady'
 
 
 const switchRowStatusesTip = function (client_id, vacancy_id) {
@@ -463,7 +463,7 @@ function rightArrowClickHandler(client_id, vacancy_id) {
                     } = calculate(vacancy_id)
                     clientUpdateInVacancyEvent.detail.indicatorsArr = indicators
                     clientUpdateInVacancyEvent.detail.statusesArr = statuses
-
+                    checkIfAllVacancyClientsReady(vacancy_id)
                     document.dispatchEvent(clientUpdateInVacancyEvent)
                 })
 
@@ -691,7 +691,7 @@ function forEachStatus(tippy, client_id, vacancy_id, storage) {
                 } = calculate(vacancy_id)
                 clientUpdateInVacancyEvent.detail.indicatorsArr = indicators
                 clientUpdateInVacancyEvent.detail.statusesArr = statuses
-
+                checkIfAllVacancyClientsReady(vacancy_id)
                 document.dispatchEvent(clientUpdateInVacancyEvent)
             })
 

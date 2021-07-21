@@ -101,7 +101,6 @@ const getVacancyList = async ({
 
 			const vacancies = data.data
 
-
 			const numsData = {
 				total: data.total_work,
 				totalN: data.need_employers,

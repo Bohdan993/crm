@@ -424,9 +424,11 @@ class FeedbackEdit {
 
 
 		setAttr(this.to, {
-			innerText: data.type === "employer" ? 
-			storage.getPartialState(data.id, 'id_employer', 'name') :
-			JSON.parse(sessionStorage.getItem('currVacancyEmployer')).data.name
+			innerText: data.type === "employer" ?
+				storage.getPartialState(data.id, 'id_employer', 'name') : (
+					JSON.parse(sessionStorage.getItem('currVacancyEmployer')).data.enterprise ||
+					JSON.parse(sessionStorage.getItem('currVacancyEmployer')).data.name
+				)
 
 		})
 
@@ -582,7 +584,7 @@ class FeedbackRow {
 				//Если имя работодателя пустое, то выводим название организации
 				storage.getPartialState(context.id, 'id_employer', 'name') !== "" ? storage.getPartialState(context.id, 'id_employer', 'name') : storage.getPartialState(context.id, 'id_employer', 'enterprise') :
 				//Выводим имя работодателя на странице вакансий
-				JSON.parse(sessionStorage.getItem('currVacancyEmployer')).data && JSON.parse(sessionStorage.getItem('currVacancyEmployer')).data.name
+				JSON.parse(sessionStorage.getItem('currVacancyEmployer')).data && (JSON.parse(sessionStorage.getItem('currVacancyEmployer')).data.enterprise || JSON.parse(sessionStorage.getItem('currVacancyEmployer')).data.name)
 		})
 
 		setAttr(this.to, {
@@ -593,7 +595,7 @@ class FeedbackRow {
 				//Если имя работодателя пустое, то выводим название организации
 				storage.getPartialState(context.id, 'id_employer', 'name') !== "" ? storage.getPartialState(context.id, 'id_employer', 'name') : storage.getPartialState(context.id, 'id_employer', 'enterprise') :
 				//Выводим имя работодателя на странице вакансий
-				JSON.parse(sessionStorage.getItem('currVacancyEmployer')).data.name
+				JSON.parse(sessionStorage.getItem('currVacancyEmployer')).data && (JSON.parse(sessionStorage.getItem('currVacancyEmployer')).data.enterprise || JSON.parse(sessionStorage.getItem('currVacancyEmployer')).data.name)
 		})
 
 
@@ -686,7 +688,7 @@ export default class Feedback {
 
 		}
 
-		
+
 
 
 		initOverlayScrollbars(this.modalLayer, type)
@@ -735,7 +737,7 @@ export default class Feedback {
 			this.showMore.update(true, 'показать еще')
 
 			this.showMore.el.addEventListener('click', this.showMoreHandler)
-	
+
 		} else {
 			this.showMore.update(false)
 		}

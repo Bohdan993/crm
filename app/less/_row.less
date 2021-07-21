@@ -28,9 +28,15 @@
 			border-left: 1px solid @white;
 		}
 
+		.cell-status__left:after {
+			background: @white;
+		}
+
 		.table-full__layer .table-full__row {
 			&:not(:last-child) {
-				border-bottom: 1px solid @white;
+				&:before {
+					background-color: @white;
+				}
 			}
 			
 		}

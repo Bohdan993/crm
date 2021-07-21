@@ -22,9 +22,7 @@ import {
     closeModal,
     close,
     getAllUrlParams,
-    updateURL,
-    debounce,
-    debounce2
+    updateURL
 } from '../../helper'
 
 
@@ -131,9 +129,12 @@ export default class VacancyList {
                     .then(res => {
                         if (res !== 'fail') {
                             setTimeout(() => {
+                                
                                 getVacancyModalInfo(res).then(r => {
                                     const instance = MicroModal.show('modal-3', {
                                         onClose: modal => {
+                                            
+                                            
                                             const wrapper = modal.querySelector('.my-modal-wrapper')
                                             const modalClose = modal.querySelector('.modal__close')
 
@@ -173,7 +174,6 @@ export default class VacancyList {
                             employer: employerID
                         }).then(res => {
                             if (res !== 'fail') {
-                                // storage.setState('vacancyEmployerData', res)
                                 storageVacancyEmployerDataAdd.detail.id = 'vacancyEmployerData'
                                 storageVacancyEmployerDataAdd.detail.employerId = employerID
                                 storageVacancyEmployerDataAdd.detail.vacancyEmployerData = res
