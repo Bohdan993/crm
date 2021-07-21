@@ -42,7 +42,7 @@ class WorkModalVacancyHistoryRow {
 
 		setAttr(this.el, {
 			target: '_blank',
-			href: `vacancy.html?id=${data.name.split(' ')[1]}`
+			href: `vacancies#id=${data.name.split(' ')[1]}`
 		})
 
 
