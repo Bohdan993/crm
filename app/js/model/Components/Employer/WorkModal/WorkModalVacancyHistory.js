@@ -50,6 +50,7 @@ class WorkModalVacancyHistoryRow {
 			innerText: data.name + ' -'
 		})
 
+
 		setAttr(this.total_client, {
 			innerText: data.total_client
 		})
