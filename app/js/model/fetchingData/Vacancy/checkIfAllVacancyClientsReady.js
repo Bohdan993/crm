@@ -6,17 +6,19 @@ import getVacancyClients from './getVacancyClients'
 import vacancyStorage from '../../Storage/globalVacancies'
 import archiveVacancy from './VacancyModal/archiveVacancy'
 import vacancyListUpdateFetchEvent from '../../CustomEvents/vacancyListUpdateFetchEvent'
+import vacancyArchiveWithoutCloseModalEvent from '../../CustomEvents/vacancyArchiveWithoutCloseModalEvent'
+
 
 const checkIfAllVacancyClientsReady = (id) => {
-    if (!clientsStorage.isSet(id)) {
-        getVacancyClients(id, false)
-            .then(res => {
-                if (res) {
+    // if (!clientsStorage.isSet(id)) {
+    //     getVacancyClients(id, false)
+    //         .then(res => {
+    //             if (res) {
 
-                }
-            })
-        return
-    }
+    //             }
+    //         })
+    //     return
+    // }
 
     if (clientsStorage.isSet(id)) {
 
@@ -42,8 +44,8 @@ const checkIfAllVacancyClientsReady = (id) => {
                     type: 0
                 }).then(res => {
                     if (res === 'ok') {
-                        MicroModal.close('modal-3')
                         document.dispatchEvent(vacancyListUpdateFetchEvent)
+                        document.dispatchEvent(vacancyArchiveWithoutCloseModalEvent)
                     } else {
                         return
                     }

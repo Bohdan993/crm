@@ -87,6 +87,13 @@ export default class ArchiveCopyVacancyComponent {
 			}
 
 		})
+
+
+		this.vacancyarchivewithoutclosemodalHandler = (e) => {
+			if(this.type === 'archive') {
+				this.update(this.data, '1')
+			}	
+		}
 	}
 
 
@@ -107,4 +114,17 @@ export default class ArchiveCopyVacancyComponent {
 		this.data = data
 		this.context = context
 	}
+
+
+	onmount(){
+		document.addEventListener('vacancyarchivewithoutclosemodal', this.vacancyarchivewithoutclosemodalHandler)
+	}
+
+
+	onunmount(){
+		document.removeEventListener('vacancyarchivewithoutclosemodal', this.vacancyarchivewithoutclosemodalHandler)
+	}
+
+
+
 }

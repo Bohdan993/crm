@@ -297,6 +297,10 @@
 
 			}
 
+			this.vacancyarchivewithoutclosemodalHandler = (e) => {
+				this.update({...this.data, isArchive: '1'})
+			}
+
 			this.clientupdateinvacancyeventHandler = (e) => {
 				if (e.detail.id === this.data.idVac) {	
 					const {statusesArr} = e.detail
@@ -541,7 +545,6 @@
 			}, 0)
 
 			
-
 			this.data = data
 
 		}
@@ -558,6 +561,7 @@
 			document.addEventListener('clientupdateinvacancyevent', this.clientupdateinvacancyeventHandler)
 			document.addEventListener('clientdeletefromvacancyevent', this.clientdeletefromvacancyeventHandler)
 			document.addEventListener('storageemployeradd', this.storageemployeraddHandler)
+			document.addEventListener('vacancyarchivewithoutclosemodal', this.vacancyarchivewithoutclosemodalHandler)
 
 			
 
@@ -569,6 +573,8 @@
 			document.removeEventListener('clientaddtovacancyevent', this.clientaddtovacancyeventHandler)
 			document.removeEventListener('clientupdateinvacancyevent', this.clientupdateinvacancyeventHandler)
 			document.removeEventListener('clientdeletefromvacancyevent', this.clientdeletefromvacancyeventHandler)
+			document.removeEventListener('storageemployeradd', this.storageemployeraddHandler)
+			document.removeEventListener('vacancyarchivewithoutclosemodal', this.vacancyarchivewithoutclosemodalHandler)
 			
 		}
 
