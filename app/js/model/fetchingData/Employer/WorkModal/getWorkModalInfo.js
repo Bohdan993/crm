@@ -7,23 +7,23 @@ import ManagerSelect from '../../../Components/ManagerSelectComponent'
 import Loader from '../../../Components/Loader'
 import WorkModalCreateVacancy from '../../../Components/Employer/WorkModal/WorkModalCreateVacancy'
 import {
-	mount,
-	place
+    mount,
+    place
 } from '../../../../../libs/libs'
 import {
-	sidebarEmployerForm,
-	workModalSidebarNotes,
-	employerDelete,
-	sidebarMailingItem,
-	createVacancyItem,
-	modalSwitchers,
-	modalParts
+    sidebarEmployerForm,
+    workModalSidebarNotes,
+    employerDelete,
+    sidebarMailingItem,
+    createVacancyItem,
+    modalSwitchers,
+    modalParts
 } from '../../../../view'
 import {
-	feedbackEmp
+    feedbackEmp
 } from './getWorkModalFeedback'
 import {
-	changeActiveClass
+    changeActiveClass
 } from '../../../switchModalParts'
 
 
@@ -45,111 +45,109 @@ const mailingComponent = new WorkModalMailing()
 const createVacancyComponent = new WorkModalCreateVacancy()
 
 if (commonInfo) {
-	mount(commonInfo, workModal);
-	mount(commonInfo, loader)
+    mount(commonInfo, workModal);
+    mount(commonInfo, loader)
 }
 
 
 if (managerSelectWrap) {
-	mount(managerSelectWrap, select)
+    mount(managerSelectWrap, select)
 }
 
 if (workModalSidebarNotes) {
-	mount(workModalSidebarNotes, noteEl)
+    mount(workModalSidebarNotes, noteEl)
 }
 
 if (employerDelete) {
-	mount(employerDelete, deleteComponent)
+    mount(employerDelete, deleteComponent)
 }
 
 if (sidebarMailingItem) {
-	mount(sidebarMailingItem, mailingComponent)
+    mount(sidebarMailingItem, mailingComponent)
 }
 
 
 if (createVacancyItem) {
-	mount(createVacancyItem, createVacancyComponent)
+    mount(createVacancyItem, createVacancyComponent)
 }
 
 
 const getWorkModalInfo = async (id = '1') => {
 
-	if (commonInfo) {
-		loader.update(true)
-		workModal.setHiddenClass()
-	}
+    if (commonInfo) {
+        loader.update(true)
+        workModal.setHiddenClass()
+    }
 
-	changeActiveClass(modalSwitchers, modalParts, '#employer-data', '[data-part="employer-data"]')
+    changeActiveClass(modalSwitchers, modalParts, '#employer-data', '[data-part="employer-data"]')
 
-	try {
-		const data = await fetch.getResourse(`/employers/get/?id=${id}&section=1`)
-		const sourseData = await fetch.getResourse('/employers/get_other/?s=5')
-
-
-
-		const mainPart = data.data.main
-		const source = sourseData.data.source
-		source.unshift({
-			id: 0,
-			name: 'Отсутствует'
-		})
-		const note = mainPart.note ? mainPart.note : ''
-		const id_manager = mainPart.id_login
-		const date = mainPart.date
-		const badFeedback = mainPart.total_bad_feedback
-		const mailing = mainPart.mailing
-		const lastIdVacancy = mainPart.last_id_vacancy
+    try {
+        const data = await fetch.getResourse(`/employers/get/?id=${id}&section=1`)
+        const sourseData = await fetch.getResourse('/employers/get_other/?s=5')
 
 
-
-		const notesData = {
-			note,
-			id
-		}
-
-
-		const deleteData = {
-			date,
-			id
-		}
-
-		const managersData = {
-			id_manager,
-			id
-		}
-
-		const mailingData = {
-			mailing,
-			id
-		}
+        const mainPart = data.data.main
+        const source = sourseData.data.source
+        source.unshift({
+            id: 0,
+            name: 'Відсутньо'
+        })
+        const note = mainPart.note ? mainPart.note : ''
+        const id_manager = mainPart.id_login
+        const date = mainPart.date
+        const badFeedback = mainPart.total_bad_feedback
+        const mailing = mainPart.mailing
+        const lastIdVacancy = mainPart.last_id_vacancy
 
 
-		const createVacancyData = {
-			lastIdVacancy,
-			id
-		}
-
-		mainPart.source = source
+        const notesData = {
+            note,
+            id
+        }
 
 
-		workModal.update(mainPart, feedbackEmp)
-		select.update(managersData)
-		noteEl.update(notesData)
-		deleteComponent.update(deleteData)
-		mailingComponent.update(mailingData)
-		createVacancyComponent.update(createVacancyData)
+        const deleteData = {
+            date,
+            id
+        }
 
-		loader.update(false)
-		workModal.removeHiddenClass()
+        const managersData = {
+            id_manager,
+            id
+        }
 
-		sessionStorage.setItem('currEmployerName', JSON.stringify(mainPart.name))
-		sessionStorage.setItem('currActiveManagerId', JSON.stringify(id_manager))
+        const mailingData = {
+            mailing,
+            id
+        }
 
-		state.id = id
 
-	} catch (e) {
-		console.error(e)
-	}
+        const createVacancyData = {
+            lastIdVacancy,
+            id
+        }
+
+        mainPart.source = source
+
+
+        workModal.update(mainPart, feedbackEmp)
+        select.update(managersData)
+        noteEl.update(notesData)
+        deleteComponent.update(deleteData)
+        mailingComponent.update(mailingData)
+        createVacancyComponent.update(createVacancyData)
+
+        loader.update(false)
+        workModal.removeHiddenClass()
+
+        sessionStorage.setItem('currEmployerName', JSON.stringify(mainPart.name))
+        sessionStorage.setItem('currActiveManagerId', JSON.stringify(id_manager))
+
+        state.id = id
+
+    } catch (e) {
+        console.error(e)
+    }
 
 
 }

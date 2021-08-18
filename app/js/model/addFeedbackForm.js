@@ -1,9 +1,7 @@
-
-
 const addFeedbackForm = (btn, block) => {
-	btn.addEventListener('click', function(){
-		block.style.display = 'block'
-	})
+    btn.addEventListener('click', function () {
+        block.style.display = 'block'
+    })
 }
 
 

@@ -2,24 +2,24 @@ import SidebarPopupInterface from './SidebarPopupInterface'
 
 
 export default class CountryPopup extends SidebarPopupInterface {
-	constructor(type = 'employer'){
-		super(type)
-		this.type = type
-	}
+    constructor(type = 'employer') {
+        super(type)
+        this.type = type
+    }
 
-	update(data, index, items, context) {
-		super.update(data, index, items, context)
-		if(this.type === 'employer') {
-			this.filter(data.id, 'country', 'countryFilter')
-		} else {
-			this.filter(data.id, 'country', 'countryFilterVacancy')
-		}
-	}
+    update(data, index, items, context) {
+        super.update(data, index, items, context)
+        if (this.type === 'employer') {
+            this.filter(data.id, 'country', 'countryFilter')
+        } else {
+            this.filter(data.id, 'country', 'countryFilterVacancy')
+        }
+    }
 
 
-	filter(id, str, storageKey){
-		super.filter(id, str, storageKey)
-	}
+    filter(id, str, storageKey) {
+        super.filter(id, str, storageKey)
+    }
 }
 
 

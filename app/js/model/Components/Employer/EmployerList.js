@@ -24,7 +24,6 @@ import {
 import employerModalCloseEvent from '../../CustomEvents/employerModalCloseEvent'
 
 
-
 function employerlistdatafetchedeventHandler(id_employer, e) {
     getWorkModalFeedback({
         id: id_employer,
@@ -41,6 +40,7 @@ export default class EmployerList {
         this.list = list(this.el, RowEmployer, 'id_employer')
 
     }
+
     update(data) {
 
         this.list.update(data)

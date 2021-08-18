@@ -1,14 +1,14 @@
 import {
-	el,
-	setAttr,
-	svg,
-	list,
-	place
+    el,
+    setAttr,
+    svg,
+    list,
+    place
 } from '../../../../../libs/libs';
 import hiddenClassMixin from '../../../Mixins/hiddenClassMixin'
 import ShowMoreBtn from './ShowMoreBtn'
 import {
-	modal
+    modal
 } from '../../../MountingElements/Employer/WorkModal/mountContactHistoryModal'
 
 import checkIfWrapperIsEmpty from '../../../checkIfWrapperIsEmpty'
@@ -16,252 +16,252 @@ import initOverlayScrollbars from '../../../OverlayScrollbarsInit'
 import getWorkModalContactHistory from '../../../fetchingData/Employer/WorkModal/getWorkModalContactHistory'
 
 import {
-	MicroModal
+    MicroModal
 } from '../../../../../libs/libs'
 
 import {
-	addMouseUpTrigger,
-	closeModal
+    addMouseUpTrigger,
+    closeModal
 } from '../../../helper'
 
 let flag = false
 
 class WorkModalContactHistoryRow {
-	constructor() {
+    constructor() {
 
-		this.data = {}
-		this.el = el('div.modal-row__contacts-history-row', {
-				'data-contact-history-open': "modal-2"
-			},
-			el('div.modal-row__contacts-history-manager.modal-row__cell', {},
-				this.manager = el('i.tag.manager-tag.dark-blue-tag'),
-				this.direction = el('i.ico', svg('svg', svg('use', {
-					xlink: {
-						href: "img/sprites/svg/symbol/sprite.svg#arrow"
-					}
-				})))
-			),
+        this.data = {}
+        this.el = el('div.modal-row__contacts-history-row', {
+                'data-contact-history-open': "modal-2"
+            },
+            el('div.modal-row__contacts-history-manager.modal-row__cell', {},
+                this.manager = el('i.tag.manager-tag.dark-blue-tag'),
+                this.direction = el('i.ico', svg('svg', svg('use', {
+                    xlink: {
+                        href: "img/sprites/svg/symbol/sprite.svg#arrow"
+                    }
+                })))
+            ),
 
-			el('div.modal-row__contacts-history-date.modal-row__cell',
-				this.date = el('time')),
-			el('div.modal-row__contacts-history-text.modal-row__cell',
-				el('span.ico__layer', this.typeContact = el('i.ico.letter-ico')),
-				this.text = el('p', 'Прислал полный пакет документов :)')
-			)
-		)
+            el('div.modal-row__contacts-history-date.modal-row__cell',
+                this.date = el('time')),
+            el('div.modal-row__contacts-history-text.modal-row__cell',
+                el('span.ico__layer', this.typeContact = el('i.ico.letter-ico')),
+                this.text = el('p', 'Надіслав повний пакет документів :)')
+            )
+        )
 
-		this.el.addEventListener('click', (e) => {
-			const instance = MicroModal.show('modal-2', {
-				onShow: (modal, node) => {
-					if (!flag) {
-						const wrapper = modal.querySelector('.my-modal-wrapper')
-						const modalClose = modal.querySelector('.modal__close')
+        this.el.addEventListener('click', (e) => {
+            const instance = MicroModal.show('modal-2', {
+                onShow: (modal, node) => {
+                    if (!flag) {
+                        const wrapper = modal.querySelector('.my-modal-wrapper')
+                        const modalClose = modal.querySelector('.modal__close')
 
-						setTimeout(()=>{
-							wrapper.addEventListener('mouseup', addMouseUpTrigger)
-							wrapper.addEventListener('mousedown', closeModal.bind(null, modal.id, instance))
-							modalClose.addEventListener('click', function () {
-								MicroModal.close(modal.id)
-							})
-						}, 0)
-						
-						flag = true
-					}
-				}
-			})
-			modal.update(this.data)
-		})
-	}
+                        setTimeout(() => {
+                            wrapper.addEventListener('mouseup', addMouseUpTrigger)
+                            wrapper.addEventListener('mousedown', closeModal.bind(null, modal.id, instance))
+                            modalClose.addEventListener('click', function () {
+                                MicroModal.close(modal.id)
+                            })
+                        }, 0)
 
-
-	update(data, index, items, context) {
+                        flag = true
+                    }
+                }
+            })
+            modal.update(this.data)
+        })
+    }
 
 
-		const currManager = context.data.storage.managers.filter(manager => {
-			return manager.id === data.id_manager
-		})
-
-		const currContact = context.data.storage.typeContact.filter(contact => {
-			return contact.id === data.id_type_contact
-		})
+    update(data, index, items, context) {
 
 
-		setAttr(this.date, {
-			innerText: data.date
-		})
+        const currManager = context.data.storage.managers.filter(manager => {
+            return manager.id === data.id_manager
+        })
+
+        const currContact = context.data.storage.typeContact.filter(contact => {
+            return contact.id === data.id_type_contact
+        })
 
 
-		setAttr(this.text, {
-			innerText: data.message.split('\n')[0]
-		})
-
-		setAttr(this.manager, {
-			style: {
-				"background-color": "#" + (currManager[0] ? currManager[0].color : null)
-			},
-			innerText: currManager[0] ? currManager[0].name.split(/\s+/).map(word => word[0].toUpperCase()).join('') : null
-		})
-
-		setAttr(this.typeContact, {
-			// xlink: {
-			// 	href: `img/sprites/svg/symbol/sprite.svg#${currContact[0] ? currContact[0].icon : null}`
-			// }
-			classList: `ico-s s-${currContact[0] ? currContact[0].icon.split('.')[0] : null}`
-		})
-
-		setAttr(this.direction, {
-			classList: `ico${data.type_arrow === '0' ? ' rotate' : ''}`
-		})
+        setAttr(this.date, {
+            innerText: data.date
+        })
 
 
+        setAttr(this.text, {
+            innerText: data.message.split('\n')[0]
+        })
 
-		this.data.data = data
-		this.data.id = context.data.data.id
-		this.data.count = context.count
-		this.index = index
-	}
+        setAttr(this.manager, {
+            style: {
+                "background-color": "#" + (currManager[0] ? currManager[0].color : null)
+            },
+            innerText: currManager[0] ? currManager[0].name.split(/\s+/).map(word => word[0].toUpperCase()).join('') : null
+        })
+
+        setAttr(this.typeContact, {
+            // xlink: {
+            // 	href: `img/sprites/svg/symbol/sprite.svg#${currContact[0] ? currContact[0].icon : null}`
+            // }
+            classList: `ico-s s-${currContact[0] ? currContact[0].icon.split('.')[0] : null}`
+        })
+
+        setAttr(this.direction, {
+            classList: `ico${data.type_arrow === '0' ? ' rotate' : ''}`
+        })
+
+
+        this.data.data = data
+        this.data.id = context.data.data.id
+        this.data.count = context.count
+        this.index = index
+    }
 
 
 }
 
 
 export default class WorkModalContactHistory {
-	constructor() {
-		this.data = {}
-		this.controls = el('div.modal-row__controls',
-			el('p', 'История контактов'),
-			this.addItem = el('div.add-item', el('span', '+'), 'добавить контакт', {
-				'data-contact-history-open': "modal-2"
-			})
-		)
+    constructor() {
+        this.data = {}
+        this.controls = el('div.modal-row__controls',
+            el('p', 'Історія контактів'),
+            this.addItem = el('div.add-item', el('span', '+'), 'додати контакт', {
+                'data-contact-history-open': "modal-2"
+            })
+        )
 
 
-		this.modalRowWrapper = el('div.modal-row__contacts-history-wrapper.modal-row__wrapper')
-		this.modalLayer = el('div.modal-row__layer.empty-layer',
-			this.list = list(this.modalRowWrapper, WorkModalContactHistoryRow, 'id')
-		)
+        this.modalRowWrapper = el('div.modal-row__contacts-history-wrapper.modal-row__wrapper')
+        this.modalLayer = el('div.modal-row__layer.empty-layer',
+            this.list = list(this.modalRowWrapper, WorkModalContactHistoryRow, 'id')
+        )
 
 
-		this.el = el('div.contact-history__layer.modal-row__inner-layer',
-			this.controls,
-			this.modalLayer,
-			this.showMore = place(ShowMoreBtn)
-		)
+        this.el = el('div.contact-history__layer.modal-row__inner-layer',
+            this.controls,
+            this.modalLayer,
+            this.showMore = place(ShowMoreBtn)
+        )
 
 
-		this.addItem.addEventListener('click', (e) => {
-			const instance = MicroModal.show('modal-2', {
-				onShow: (modal, node) => {
-					if (!flag) {
-						const wrapper = modal.querySelector('.my-modal-wrapper')
-						const modalClose = modal.querySelector('.modal__close')
+        this.addItem.addEventListener('click', (e) => {
+            const instance = MicroModal.show('modal-2', {
+                onShow: (modal, node) => {
+                    if (!flag) {
+                        const wrapper = modal.querySelector('.my-modal-wrapper')
+                        const modalClose = modal.querySelector('.modal__close')
 
-						setTimeout(()=>{
-							wrapper.addEventListener('mouseup', addMouseUpTrigger)
-							wrapper.addEventListener('mousedown', closeModal.bind(null, modal.id, instance))
-							modalClose.addEventListener('click', function () {
-								MicroModal.close(modal.id)
-							})
-						}, 0)
-						
-						// document.removeEventListener('keydown', onKeyPressClose)
-						// document.addEventListener('keydown', onKeyPressClose)
-						flag = true
-					}
-				}
-			})
-			modal.update({
-				data: {
-					message: '',
-					date: '',
-					id: '',
-					id_manager: JSON.parse(sessionStorage.getItem('currActiveManagerId')),
-					id_type_contact: '0',
-					type_arrow: '',
-				},
-				id: this.data.data.id,
-				count: this.data.count
-			})
+                        setTimeout(() => {
+                            wrapper.addEventListener('mouseup', addMouseUpTrigger)
+                            wrapper.addEventListener('mousedown', closeModal.bind(null, modal.id, instance))
+                            modalClose.addEventListener('click', function () {
+                                MicroModal.close(modal.id)
+                            })
+                        }, 0)
 
-
-
-		})
-
-		this.data.storage = this.getItemsLocalStorage()
-		this.pageShow = 2
-		this.flagShow = false
-
-		initOverlayScrollbars(this.modalLayer)
-	}
+                        // document.removeEventListener('keydown', onKeyPressClose)
+                        // document.addEventListener('keydown', onKeyPressClose)
+                        flag = true
+                    }
+                }
+            })
+            modal.update({
+                data: {
+                    message: '',
+                    date: '',
+                    id: '',
+                    id_manager: JSON.parse(sessionStorage.getItem('currActiveManagerId')),
+                    id_type_contact: '0',
+                    type_arrow: '',
+                },
+                id: this.data.data.id,
+                count: this.data.count
+            })
 
 
-	update(data, index, items, context) {
-		let {
-			loading,
-			deleating,
-			adding,
-			showing
-		} = data
-		if (showing) {
-			this.pageShow++
-		}
+        })
 
-		if (loading) {
-			this.pageShow = 2
-		}
+        this.data.storage = this.getItemsLocalStorage()
+        this.pageShow = 2
+        this.flagShow = false
 
-		if (adding) {}
-
-		if (deleating) {}
-
-		this.data.data = data
-		this.data.index = index
-		this.data.count = (this.pageShow - 1) * 5
-		this.list.update(data.data, {
-			data: this.data,
-			count: this.data.count
-		})
+        initOverlayScrollbars(this.modalLayer)
+    }
 
 
-		//Пагинация
-		if (data.data.length < data.total) {
-			this.showMore.update(true, 'показать еще 5')
+    update(data, index, items, context) {
+        let {
+            loading,
+            deleating,
+            adding,
+            showing
+        } = data
+        if (showing) {
+            this.pageShow++
+        }
 
-			if (!this.flagShow) {
-				this.showMore.el.addEventListener('click', () => {
-					getWorkModalContactHistory({
-						id: this.data.data.id,
-						showing: true,
-						p: this.pageShow
-					})
+        if (loading) {
+            this.pageShow = 2
+        }
 
-				})
+        if (adding) {
+        }
 
-				this.flagShow = true
-			}
+        if (deleating) {
+        }
 
-		} else {
-			this.showMore.update(false)
-			this.flagShow = false
-		}
-
-		//Вызов функций которые зависят от инстанса класса
-		checkIfWrapperIsEmpty(this.modalRowWrapper)
-		// this.scrollInstance.update()
-		//
+        this.data.data = data
+        this.data.index = index
+        this.data.count = (this.pageShow - 1) * 5
+        this.list.update(data.data, {
+            data: this.data,
+            count: this.data.count
+        })
 
 
-	}
+        //Пагинация
+        if (data.data.length < data.total) {
+            this.showMore.update(true, 'показати ще 5')
 
-	getItemsLocalStorage() {
-		const managers = JSON.parse(localStorage.getItem('managers')) || []
-		const typeContact = JSON.parse(localStorage.getItem('type_contact')) || []
+            if (!this.flagShow) {
+                this.showMore.el.addEventListener('click', () => {
+                    getWorkModalContactHistory({
+                        id: this.data.data.id,
+                        showing: true,
+                        p: this.pageShow
+                    })
 
-		return {
-			managers,
-			typeContact
-		}
-	}
+                })
+
+                this.flagShow = true
+            }
+
+        } else {
+            this.showMore.update(false)
+            this.flagShow = false
+        }
+
+        //Вызов функций которые зависят от инстанса класса
+        checkIfWrapperIsEmpty(this.modalRowWrapper)
+        // this.scrollInstance.update()
+        //
+
+
+    }
+
+    getItemsLocalStorage() {
+        const managers = JSON.parse(localStorage.getItem('managers')) || []
+        const typeContact = JSON.parse(localStorage.getItem('type_contact')) || []
+
+        return {
+            managers,
+            typeContact
+        }
+    }
 
 
 }

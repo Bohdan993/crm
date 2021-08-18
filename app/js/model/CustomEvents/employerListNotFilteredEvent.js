@@ -1,5 +1,5 @@
 const employerListNotFiltered = new CustomEvent("employerlistnotfiltered", {
-            detail: {name: "NotFiltered"}
-        });
+    detail: {name: "NotFiltered"}
+});
 
 export default employerListNotFiltered 		//to ../fetchingData/getEmployersList

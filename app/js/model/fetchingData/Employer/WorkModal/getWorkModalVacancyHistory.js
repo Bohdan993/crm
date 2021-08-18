@@ -15,90 +15,81 @@ const vacancyHistory = document.querySelector('.row.vacancies-history')
 const loader = place(Loader)
 
 
-
-
 const workModalVacancyHistory = new WorkModalVacancyHistory()
 
 
-
-
-
-if(vacancyHistory) {
-	mount(vacancyHistory, workModalVacancyHistory)
-	mount(vacancyHistory, loader)
+if (vacancyHistory) {
+    mount(vacancyHistory, workModalVacancyHistory)
+    mount(vacancyHistory, loader)
 }
-
-
-
 
 
 const getWorkModalVacancyHistory = async ({
-	id = '1', 
-	p = 1, 
-	t = 5,
-	loading,
-	showing
-} = {}) => {
+                                              id = '1',
+                                              p = 1,
+                                              t = 5,
+                                              loading,
+                                              showing
+                                          } = {}) => {
 
-	if(vacancyHistory) {
+    if (vacancyHistory) {
 
-		if(loading) {
-			loader.update(true)
-			workModalVacancyHistory.setHiddenClass().setEmptyLayer()
-		}
-		
-		
+        if (loading) {
+            loader.update(true)
+            workModalVacancyHistory.setHiddenClass().setEmptyLayer()
+        }
 
-	try {
-			// const delay = await sleep(15000)
-			const data = await fetch.getResourse(`/employers/get/?id=${id}&section=2&other=3&p=${p}&t=${t}`)
-			const otherPart = data.data.other
 
-			if(globalID !== id) {
-				globalVacancies = [
-					...otherPart.vacancy_history 
-				]
-			} else {
+        try {
+            // const delay = await sleep(15000)
+            const data = await fetch.getResourse(`/employers/get/?id=${id}&section=2&other=3&p=${p}&t=${t}`)
+            const otherPart = data.data.other
 
-				if(loading) {
-						globalVacancies = [
-						...otherPart.vacancy_history 
-					]
-				}
+            if (globalID !== id) {
+                globalVacancies = [
+                    ...otherPart.vacancy_history
+                ]
+            } else {
 
-				if(showing) {
-						globalVacancies = [
-						...globalVacancies,
-						...otherPart.vacancy_history
-					]
-				}
+                if (loading) {
+                    globalVacancies = [
+                        ...otherPart.vacancy_history
+                    ]
+                }
 
-			}
+                if (showing) {
+                    globalVacancies = [
+                        ...globalVacancies,
+                        ...otherPart.vacancy_history
+                    ]
+                }
 
-			const vacancies = {
-				id: id, 
-				data: globalVacancies, 
-				total: data.data.total !== undefined ? data.data.total.vacancy_history : otherPart.vacancy_history.length, 
-				loading,  
-				showing
-			}
+            }
 
-			// if(state.id !== id) {
-				workModalVacancyHistory.update(vacancies)
-			// }
+            const vacancies = {
+                id: id,
+                data: globalVacancies,
+                total: data.data.total !== undefined ? data.data.total.vacancy_history : otherPart.vacancy_history.length,
+                loading,
+                showing
+            }
 
-			if(loading) {
-				loader.update(false)
-				workModalVacancyHistory.removeHiddenClass()
-			}
-			
-			// state.id = id
-		}catch(e) {
-			console.error(e)
-		}
-}
+            // if(state.id !== id) {
+            workModalVacancyHistory.update(vacancies)
+            // }
 
-	globalID = id
+            if (loading) {
+                loader.update(false)
+                workModalVacancyHistory.removeHiddenClass()
+            }
+
+            // state.id = id
+        } catch (e) {
+            console.error(e)
+        }
+    }
+
+    globalID = id
 
 }
 

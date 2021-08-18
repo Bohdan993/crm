@@ -1,38 +1,37 @@
 import fetch from '../../fetchingDataClass'
 import {
-	toastr
+    toastr
 } from '../../../../../libs/libs'
 
 
 const loadEmployerInfo = async ({
-	vacancy = '',
-	employer = '',
-	t = 4
-} = {}) => {
+                                    vacancy = '',
+                                    employer = '',
+                                    t = 4
+                                } = {}) => {
 
-	try {
-		const employers = await fetch.getResourse(`/vacancies/change_employer/?vacancy=${vacancy}&employer=${employer}&t=${t}`)
-		if (employers.success === true) {
-			const data = {
-				id: employer,
-				data: employers.data
-			}
-			sessionStorage.setItem('currVacancyEmployer', JSON.stringify(data))
-			toastr.success(`ID вакансии ${vacancy}`, 'Данные о работодателе успешно загружены', {
-				closeButton: false
-			})
-		} else {
-			throw new Error('Не возможно загрузить информацию о работодателе')
-		}
+    try {
+        const employers = await fetch.getResourse(`/vacancies/change_employer/?vacancy=${vacancy}&employer=${employer}&t=${t}`)
+        if (employers.success === true) {
+            const data = {
+                id: employer,
+                data: employers.data
+            }
+            sessionStorage.setItem('currVacancyEmployer', JSON.stringify(data))
+            toastr.success(`ID вакансії ${vacancy}`, 'Дані про роботодавця успішно завантажені', {
+                closeButton: false
+            })
+        } else {
+            throw new Error('Не можливо завантажити інформацію про роботодавця')
+        }
 
-		return Promise.resolve(employers.data)
-	} catch (e) {
-		toastr.error(e.message, 'Возникла ошибка', {
-			closeButton: true
-		})
-		return Promise.resolve('fail')
-	}
-
+        return Promise.resolve(employers.data)
+    } catch (e) {
+        toastr.error(e.message, 'Виникла помилка', {
+            closeButton: true
+        })
+        return Promise.resolve('fail')
+    }
 
 
 }

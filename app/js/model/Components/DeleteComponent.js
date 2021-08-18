@@ -1,4 +1,3 @@
-
 import deleteElement from '../fetchingData/deleteElement'
 import {el, setAttr, MicroModal} from '../../../libs/libs'
 import employerListDeleteEvent from '../CustomEvents/employerListDeleteEvent'
@@ -8,50 +7,50 @@ export default class Delete { // to ../fetchingData/Employer/WorkModal
     constructor(type) {
         this.type = type
         this.data = {}
-        this.el = el('div.sidebar__filter-wrapper', 
-            this.delete = el('p', 'Удалить'),
+        this.el = el('div.sidebar__filter-wrapper',
+            this.delete = el('p', 'Видалити'),
             this.date = el('span'))
 
         this.clickHandler = (e) => {
-            let conf = confirm(`Подтвердите удаление ${this.type === 'employer' ? 'работодателя' : 'вакансии'}`)
-            if(conf) {
-            if(this.type === 'employer') {
-                deleteElement({str: 'employers', id: this.data.id})
-                .then(res => {
-                    if(res.status === 'ok') {
+            let conf = confirm(`Підтвердіть видалення ${this.type === 'employer' ? 'роботодавця' : 'вакансії'}`)
+            if (conf) {
+                if (this.type === 'employer') {
+                    deleteElement({str: 'employers', id: this.data.id})
+                        .then(res => {
+                            if (res.status === 'ok') {
 
-                        employerListDeleteEvent.detail.id = this.data.id
-                        document.dispatchEvent(employerListDeleteEvent)
-                        MicroModal.close('modal-1')
-                    }
+                                employerListDeleteEvent.detail.id = this.data.id
+                                document.dispatchEvent(employerListDeleteEvent)
+                                MicroModal.close('modal-1')
+                            }
 
-                    if(res.status === 'fail') {
-                        return
-                    }
-                })
-            } else {
-                deleteElement({str: 'vacancies', id: this.data.id})
-                .then(res => {
-                    if(res.status === 'ok') {
+                            if (res.status === 'fail') {
+                                return
+                            }
+                        })
+                } else {
+                    deleteElement({str: 'vacancies', id: this.data.id})
+                        .then(res => {
+                            if (res.status === 'ok') {
 
-                        vacancyListDeleteEvent.detail.id = this.data.id
-                        document.dispatchEvent(vacancyListDeleteEvent)
-                        MicroModal.close('modal-3')
-                    }
+                                vacancyListDeleteEvent.detail.id = this.data.id
+                                document.dispatchEvent(vacancyListDeleteEvent)
+                                MicroModal.close('modal-3')
+                            }
 
-                    if(res.status === 'fail') {
-                        return
-                    }
-                })
+                            if (res.status === 'fail') {
+                                return
+                            }
+                        })
                 }
             } else {
                 return
             }
-            
+
         }
 
         this.delete.addEventListener('click', this.clickHandler)
-        
+
     }
 
 

@@ -28,7 +28,6 @@ class WorkModalManufacturyTypeRow {
         )
 
 
-
         this.textArea.addEventListener('change', e => {
             saveFieldsData({
                 str: 'employers',
@@ -101,7 +100,6 @@ class WorkModalManufacturyTypeRow {
         })
 
 
-
     }
 
     update(data, index, items, context) {
@@ -123,13 +121,13 @@ export default class WorkModalManufacturyType {
         this.data = {}
         this.initData = this.getItemsFromLocalStorage().products
         this.controls = el('div.modal-row__controls',
-            el('p', 'Тип производства'),
-            this.addItem = el('div.add-item', el('span', '+'), 'добавить тип производства')
+            el('p', 'Тип виробництва'),
+            this.addItem = el('div.add-item', el('span', '+'), 'додати тип виробництва')
         )
 
         this.defaultOption = {
             id: 0,
-            name: 'Выбрать'
+            name: 'Вибрати'
         }
 
         this.initData.unshift(this.defaultOption)

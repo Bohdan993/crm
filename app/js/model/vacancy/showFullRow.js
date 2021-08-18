@@ -1,40 +1,41 @@
 import {isChildOf} from '../helper'
 
 const showFullRow = (row, event) => {
-	slideToggle(row, event)
+    slideToggle(row, event)
 }
 
 
-	function slideToggle(linkToggle, event) {
+function slideToggle(linkToggle, event) {
 
-	  		let container  = linkToggle.querySelector('.table-full')
-	  		
-	  		if(event.target.classList.contains('no-open')) {
-					return
-				}
+    let container = linkToggle.querySelector('.table-full')
 
-				if(isChildOf(event.target, container)) {
-					return
-				}
-		    
+    if (event.target.classList.contains('no-open')) {
+        return
+    }
 
-		    if (container && !container.classList.contains('active')) {
+    if (isChildOf(event.target, container)) {
+        return
+    }
 
 
-		      container.classList.add('active')
-		      container.style.height = 'auto'
+    if (container && !container.classList.contains('active')) {
 
-		      container.style.height = '0px'
 
-		      setTimeout(function () {
-		        container.style.height = 'auto'
-		      }, 0)
-		      
-		    } else {
-		      container.style.height = '0px'
-		      container.classList.remove('active')
-		      
-		      
-		    }
+        container.classList.add('active')
+        container.style.height = 'auto'
+
+        container.style.height = '0px'
+
+        setTimeout(function () {
+            container.style.height = 'auto'
+        }, 0)
+
+    } else {
+        container.style.height = '0px'
+        container.classList.remove('active')
+
+
+    }
 }
+
 export default showFullRow

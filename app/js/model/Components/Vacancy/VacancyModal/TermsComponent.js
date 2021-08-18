@@ -1,12 +1,12 @@
 import {
-	el,
-	setAttr,
-	place
+    el,
+    setAttr,
+    place
 } from '../../../../../libs/libs'
 import {
-	save,
-	dateInputChange,
-	formatDate
+    save,
+    dateInputChange,
+    formatDate
 } from '../../../helper'
 
 
@@ -15,212 +15,213 @@ import vacancyListUpdateFetchEvent from '../../../CustomEvents/vacancyListUpdate
 import vacancyListUpdateEvent from '../../../CustomEvents/vacancyListUpdateEvent'
 
 export default class TermsComponent {
-	constructor() {
+    constructor() {
 
-		this.data = {}
-		this.save = save.bind(this)
-		this.el = el('div.terms-layer.modal-row__inner-layer',
-			el('div.modal-row__controls',
-				el('p', 'Условия')),
-			el('div.modal-row__layer',
-				el('div.terms__top',
-					el('div.terms__start-date.info-block',
-						el('p', 'Дата начала работы'),
-						el('div.input-group',
-							this.startWork = el('input.info-area', {
-								type: 'text'
-							}))),
-					el('div.terms__period.info-block',
-						el('p', 'Период (мес)'),
-						el('div.input-group',
-							this.period = el('input.info-area', {
-								type: 'text'
-							}))),
-					el('div.terms__salary.info-block',
-						el('p', 'Заработная плата'),
-						el('div.input-group',
-							this.salary = el('input.info-area', {
-								type: 'text'
-							})))),
-				el('div.terms__middle',
-					el('div.terms__accommodation.info-block',
-						el('p', 'Проживание'),
-						el('div.input-group',
-							this.accomodation = el('textarea.vacancy-textarea', {
-								rows: 3
-							}))),
-					el('div.terms__nutrition.info-block',
-						el('p', 'Питание'),
-						el('div.input-group',
-							this.feeding = el('textarea.vacancy-textarea', {
-								rows: 3
-							}))),
-					el('div.terms__taxes.info-block',
-						el('p', 'Налоги'),
-						el('div.input-group',
-							this.taxes = el('textarea.vacancy-textarea', {
-								rows: 3
-							})))),
-				el('div.terms__bottom.bottom-areas',
-					el('div.terms__work-responsibilities.info-block',
-						el('p', 'Рабочие обязаности'),
-						el('div.input-group',
-							this.workResp = el('textarea.vacancy-textarea', {
-								rows: 3
-							}))),
-					el('div.terms__work-time.info-block',
-						el('p', 'Рабочее время'),
-						el('div.input-group',
-							this.workTime = el('textarea.vacancy-textarea', {
-								rows: 3
-							})))
-				),
-			))
-
-
-		this.startWork.addEventListener('change', (e) => {
-			const changedDate = dateInputChange(this.startWork)
+        this.data = {}
+        this.save = save.bind(this)
+        this.el = el('div.terms-layer.modal-row__inner-layer',
+            el('div.modal-row__controls',
+                el('p', 'Умови')),
+            el('div.modal-row__layer',
+                el('div.terms__top',
+                    el('div.terms__start-date.info-block',
+                        el('p', 'Дата початку роботи'),
+                        el('div.input-group',
+                            this.startWork = el('input.info-area', {
+                                type: 'text'
+                            }))),
+                    el('div.terms__period.info-block',
+                        el('p', 'Період (міс)'),
+                        el('div.input-group',
+                            this.period = el('input.info-area', {
+                                type: 'text'
+                            }))),
+                    el('div.terms__salary.info-block',
+                        el('p', 'Заробітня плата'),
+                        el('div.input-group',
+                            this.salary = el('input.info-area', {
+                                type: 'text'
+                            })))),
+                el('div.terms__middle',
+                    el('div.terms__accommodation.info-block',
+                        el('p', 'Проживання'),
+                        el('div.input-group',
+                            this.accomodation = el('textarea.vacancy-textarea', {
+                                rows: 3
+                            }))),
+                    el('div.terms__nutrition.info-block',
+                        el('p', 'Харчування'),
+                        el('div.input-group',
+                            this.feeding = el('textarea.vacancy-textarea', {
+                                rows: 3
+                            }))),
+                    el('div.terms__taxes.info-block',
+                        el('p', 'Податки'),
+                        el('div.input-group',
+                            this.taxes = el('textarea.vacancy-textarea', {
+                                rows: 3
+                            })))),
+                el('div.terms__bottom.bottom-areas',
+                    el('div.terms__work-responsibilities.info-block',
+                        el('p', 'Рабочі обов\'язки'),
+                        el('div.input-group',
+                            this.workResp = el('textarea.vacancy-textarea', {
+                                rows: 3
+                            }))),
+                    el('div.terms__work-time.info-block',
+                        el('p', 'Кількість годин'),
+                        el('div.input-group',
+                            this.workTime = el('textarea.vacancy-textarea', {
+                                rows: 3
+                            })))
+                ),
+            ))
 
 
-			let d = new Date(changedDate.split('.').reverse().join('.'))
-			d.setMonth(+d.getMonth() + +this.period.value.trim())
-
-			this.save({
-				id: this.data.id,
-				value: changedDate,
-				field: 'start_work'
-			})
-
-			setAttr(this.sibling.dates, {
-				innerText: this.period.value.trim() ? `${changedDate} - ${formatDate(d)}` : '-'
-			})
+        this.startWork.addEventListener('change', (e) => {
+            const changedDate = dateInputChange(this.startWork)
 
 
-			vacancyStorage.setPartialState(this.data.id, 'id_vacancy', 'start_work', this.period.value.trim() ? `${changedDate}` : '')
-			vacancyStorage.setPartialState(this.data.id, 'id_vacancy', 'finish_work', this.period.value.trim() ? `${formatDate(d)}` : '')
-			vacancyListUpdateFetchEvent.detail.id = this.data.id
+            let d = new Date(changedDate.split('.').reverse().join('.'))
+            d.setMonth(+d.getMonth() + +this.period.value.trim())
 
-			if(!+JSON.parse(sessionStorage.getItem('addNewVacancyMode'))) {
-				document.dispatchEvent(vacancyListUpdateFetchEvent)
-			}
-		})
+            this.save({
+                id: this.data.id,
+                value: changedDate,
+                field: 'start_work'
+            })
 
-		this.period.addEventListener('change', (e) => {
-			const changedDate = dateInputChange(this.startWork)
-
-			let d = new Date(changedDate.split('.').reverse().join('.'))
-			d.setMonth(+d.getMonth() + +this.period.value.trim())
-
-			this.save({
-				id: this.data.id,
-				value: this.period.value.trim(),
-				field: 'period'
-			})
-
-			setAttr(this.sibling.period, {
-				innerText: `${this.period.value.trim()} мес`
-			})
-
-			setAttr(this.sibling.dates, {
-				innerText: this.period.value.trim() ? `${changedDate} - ${formatDate(d)}` : '-'
-			})
+            setAttr(this.sibling.dates, {
+                innerText: this.period.value.trim() ? `${changedDate} - ${formatDate(d)}` : '-'
+            })
 
 
-			vacancyStorage.setPartialState(this.data.id, 'id_vacancy', 'start_work', this.period.value.trim() ? `${changedDate}` : '')
-			vacancyStorage.setPartialState(this.data.id, 'id_vacancy', 'finish_work', this.period.value.trim() ? `${formatDate(d)}` : '')
-			vacancyStorage.setPartialState(this.data.id, 'id_vacancy', 'period', this.period.value.trim())
-			vacancyListUpdateEvent.detail.id = this.data.id
-			document.dispatchEvent(vacancyListUpdateEvent)
-		})
+            vacancyStorage.setPartialState(this.data.id, 'id_vacancy', 'start_work', this.period.value.trim() ? `${changedDate}` : '')
+            vacancyStorage.setPartialState(this.data.id, 'id_vacancy', 'finish_work', this.period.value.trim() ? `${formatDate(d)}` : '')
+            vacancyListUpdateFetchEvent.detail.id = this.data.id
 
-		this.salary.addEventListener('change', (e) => {
-			this.save({
-				id: this.data.id,
-				value: this.salary.value.trim(),
-				field: 'salary'
-			})
-		})
+            if (!+JSON.parse(sessionStorage.getItem('addNewVacancyMode'))) {
+                document.dispatchEvent(vacancyListUpdateFetchEvent)
+            }
+        })
 
-		this.accomodation.addEventListener('change', (e) => {
-			this.save({
-				id: this.data.id,
-				value: this.accomodation.value.trim(),
-				field: 'residency'
-			})
-		})
+        this.period.addEventListener('change', (e) => {
+            const changedDate = dateInputChange(this.startWork)
 
-		this.feeding.addEventListener('change', (e) => {
-			this.save({
-				id: this.data.id,
-				value: this.feeding.value.trim(),
-				field: 'feeding'
-			})
-		})
+            let d = new Date(changedDate.split('.').reverse().join('.'))
+            d.setMonth(+d.getMonth() + +this.period.value.trim())
 
-		this.taxes.addEventListener('change', (e) => {
-			this.save({
-				id: this.data.id,
-				value: this.taxes.value.trim(),
-				field: 'tax'
-			})
-		})
+            this.save({
+                id: this.data.id,
+                value: this.period.value.trim(),
+                field: 'period'
+            })
 
-		this.workResp.addEventListener('change', (e) => {
-			this.save({
-				id: this.data.id,
-				value: this.workResp.value.trim(),
-				field: 'responsibilities_work'
-			})
-		})
+            setAttr(this.sibling.period, {
+                innerText: `${this.period.value.trim()} міс`
+            })
 
-		this.workTime.addEventListener('change', (e) => {
-			this.save({
-				id: this.data.id,
-				value: this.workTime.value.trim(),
-				field: 'work_time'
-			})
-		})
-	}
+            setAttr(this.sibling.dates, {
+                innerText: this.period.value.trim() ? `${changedDate} - ${formatDate(d)}` : '-'
+            })
 
 
-	update(data, context) {
+            vacancyStorage.setPartialState(this.data.id, 'id_vacancy', 'start_work', this.period.value.trim() ? `${changedDate}` : '')
+            vacancyStorage.setPartialState(this.data.id, 'id_vacancy', 'finish_work', this.period.value.trim() ? `${formatDate(d)}` : '')
+            vacancyStorage.setPartialState(this.data.id, 'id_vacancy', 'period', this.period.value.trim())
+            vacancyListUpdateEvent.detail.id = this.data.id
+            document.dispatchEvent(vacancyListUpdateEvent)
+        })
 
-		setAttr(this.startWork, {
-			value: data.startWork
-		})
+        this.salary.addEventListener('change', (e) => {
+            this.save({
+                id: this.data.id,
+                value: this.salary.value.trim(),
+                field: 'salary'
+            })
+        })
 
-		setAttr(this.period, {
-			value: data.period
-		})
+        this.accomodation.addEventListener('change', (e) => {
+            this.save({
+                id: this.data.id,
+                value: this.accomodation.value.trim(),
+                field: 'residency'
+            })
+        })
 
-		setAttr(this.salary, {
-			value: data.salary
-		})
+        this.feeding.addEventListener('change', (e) => {
+            this.save({
+                id: this.data.id,
+                value: this.feeding.value.trim(),
+                field: 'feeding'
+            })
+        })
 
-		setAttr(this.accomodation, {
-			value: data.residency
-		})
+        this.taxes.addEventListener('change', (e) => {
+            this.save({
+                id: this.data.id,
+                value: this.taxes.value.trim(),
+                field: 'tax'
+            })
+        })
 
-		setAttr(this.feeding, {
-			value: data.feeding
-		})
+        this.workResp.addEventListener('change', (e) => {
+            this.save({
+                id: this.data.id,
+                value: this.workResp.value.trim(),
+                field: 'responsibilities_work'
+            })
+        })
 
-		setAttr(this.taxes, {
-			value: data.taxes
-		})
+        this.workTime.addEventListener('change', (e) => {
+            this.save({
+                id: this.data.id,
+                value: this.workTime.value.trim(),
+                field: 'work_time'
+            })
+        })
+    }
 
-		setAttr(this.workResp, {
-			value: data.workResp
-		})
 
-		setAttr(this.workTime, {
-			value: data.workTime
-		})
+    update(data, context) {
 
-		this.data = data
-		this.sibling = context
-	}
+        setAttr(this.startWork, {
+            value: data.startWork
+        })
 
-	onmount() {}
+        setAttr(this.period, {
+            value: data.period
+        })
+
+        setAttr(this.salary, {
+            value: data.salary
+        })
+
+        setAttr(this.accomodation, {
+            value: data.residency
+        })
+
+        setAttr(this.feeding, {
+            value: data.feeding
+        })
+
+        setAttr(this.taxes, {
+            value: data.taxes
+        })
+
+        setAttr(this.workResp, {
+            value: data.workResp
+        })
+
+        setAttr(this.workTime, {
+            value: data.workTime
+        })
+
+        this.data = data
+        this.sibling = context
+    }
+
+    onmount() {
+    }
 
 }

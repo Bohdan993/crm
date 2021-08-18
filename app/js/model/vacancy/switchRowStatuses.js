@@ -10,7 +10,6 @@ import checkIfAllVacancyClientsReady from '../fetchingData/Vacancy/checkIfAllVac
 const switchRowStatusesTip = function (client_id, vacancy_id) {
 
 
-
     let instance = this._tippy
     let instanseStatuses = instance.popper.querySelectorAll('.status')
 
@@ -26,7 +25,6 @@ const switchRowStatusesTip = function (client_id, vacancy_id) {
 export {
     switchRowStatusesTip
 }
-
 
 
 const switchRowStatuses = function (el, client_id, vacancy_id) {
@@ -113,7 +111,7 @@ function leftArrowClickHandler(client_id, vacancy_id) {
             ind = ind === 0 ? 0 : ind - 1
             arr[ind].classList.add('active')
 
-            if (arr[ind].textContent === 'Подготовка CV') {
+            if (arr[ind].textContent === 'Підготовка CV') {
 
                 changeClientStatus({
                     id: client_id,
@@ -134,7 +132,7 @@ function leftArrowClickHandler(client_id, vacancy_id) {
                     document.dispatchEvent(clientUpdateInVacancyEvent)
                 })
 
-            } else if (arr[ind].textContent === 'CV отправлено') {
+            } else if (arr[ind].textContent === 'CV відправлено') {
                 changeClientStatus({
                     id: client_id,
                     status: '2'
@@ -154,7 +152,7 @@ function leftArrowClickHandler(client_id, vacancy_id) {
                     document.dispatchEvent(clientUpdateInVacancyEvent)
                 })
 
-            } else if (arr[ind].textContent === 'Утвержден') {
+            } else if (arr[ind].textContent === 'Затверджений') {
 
                 changeClientStatus({
                     id: client_id,
@@ -175,7 +173,7 @@ function leftArrowClickHandler(client_id, vacancy_id) {
                     document.dispatchEvent(clientUpdateInVacancyEvent)
                 })
 
-            } else if (arr[ind].textContent === 'Контракт подписан') {
+            } else if (arr[ind].textContent === 'Контракт підписаний') {
 
                 changeClientStatus({
                     id: client_id,
@@ -196,7 +194,7 @@ function leftArrowClickHandler(client_id, vacancy_id) {
                     document.dispatchEvent(clientUpdateInVacancyEvent)
                 })
 
-            } else if (arr[ind].textContent === 'Подан в визовый центр') {
+            } else if (arr[ind].textContent === 'Поданий в візовий центр') {
 
 
                 changeClientStatus({
@@ -218,7 +216,7 @@ function leftArrowClickHandler(client_id, vacancy_id) {
                     document.dispatchEvent(clientUpdateInVacancyEvent)
                 })
 
-            } else if (arr[ind].textContent === 'Получил разрешение') {
+            } else if (arr[ind].textContent === 'Отримав рішення') {
 
                 changeClientStatus({
                     id: client_id,
@@ -239,7 +237,7 @@ function leftArrowClickHandler(client_id, vacancy_id) {
                     document.dispatchEvent(clientUpdateInVacancyEvent)
                 })
 
-            } else if (arr[ind].textContent === 'Забрал разрешение') {
+            } else if (arr[ind].textContent === 'Забрав рішення') {
 
                 changeClientStatus({
                     id: client_id,
@@ -260,7 +258,7 @@ function leftArrowClickHandler(client_id, vacancy_id) {
                     document.dispatchEvent(clientUpdateInVacancyEvent)
                 })
 
-            } else if (arr[ind].textContent === 'Билеты куплены') {
+            } else if (arr[ind].textContent === 'Білети куплені') {
 
                 changeClientStatus({
                     id: client_id,
@@ -305,7 +303,7 @@ function rightArrowClickHandler(client_id, vacancy_id) {
             ind = ind === arr.length - 1 ? arr.length - 1 : ind + 1
             arr[ind].classList.add('active')
 
-            if (arr[ind].textContent === 'CV отправлено') {
+            if (arr[ind].textContent === 'CV відправлено') {
                 changeClientStatus({
                     id: client_id,
                     status: '2'
@@ -324,7 +322,7 @@ function rightArrowClickHandler(client_id, vacancy_id) {
 
                     document.dispatchEvent(clientUpdateInVacancyEvent)
                 })
-            } else if (arr[ind].textContent === 'Утвержден') {
+            } else if (arr[ind].textContent === 'Затверджений') {
                 changeClientStatus({
                     id: client_id,
                     status: '3'
@@ -344,7 +342,7 @@ function rightArrowClickHandler(client_id, vacancy_id) {
                     document.dispatchEvent(clientUpdateInVacancyEvent)
                 })
 
-            } else if (arr[ind].textContent === 'Контракт подписан') {
+            } else if (arr[ind].textContent === 'Контракт підписаний') {
 
                 changeClientStatus({
                     id: client_id,
@@ -365,7 +363,7 @@ function rightArrowClickHandler(client_id, vacancy_id) {
                     document.dispatchEvent(clientUpdateInVacancyEvent)
                 })
 
-            } else if (arr[ind].textContent === 'Подан в визовый центр') {
+            } else if (arr[ind].textContent === 'Поданий в візовий центр') {
                 changeClientStatus({
                     id: client_id,
                     status: '5'
@@ -384,7 +382,7 @@ function rightArrowClickHandler(client_id, vacancy_id) {
 
                     document.dispatchEvent(clientUpdateInVacancyEvent)
                 })
-            } else if (arr[ind].textContent === 'Получил разрешение') {
+            } else if (arr[ind].textContent === 'Отримав рішення') {
                 changeClientStatus({
                     id: client_id,
                     status: '6'
@@ -404,7 +402,7 @@ function rightArrowClickHandler(client_id, vacancy_id) {
                     document.dispatchEvent(clientUpdateInVacancyEvent)
                 })
 
-            } else if (arr[ind].textContent === 'Забрал разрешение') {
+            } else if (arr[ind].textContent === 'Забрав рішення') {
 
                 changeClientStatus({
                     id: client_id,
@@ -425,7 +423,7 @@ function rightArrowClickHandler(client_id, vacancy_id) {
                     document.dispatchEvent(clientUpdateInVacancyEvent)
                 })
 
-            } else if (arr[ind].textContent === 'Билеты куплены') {
+            } else if (arr[ind].textContent === 'Білети куплені') {
 
                 changeClientStatus({
                     id: client_id,
@@ -446,7 +444,7 @@ function rightArrowClickHandler(client_id, vacancy_id) {
                     document.dispatchEvent(clientUpdateInVacancyEvent)
                 })
 
-            } else if (arr[ind].textContent === 'Трудоустроен') {
+            } else if (arr[ind].textContent === 'Працевлаштований') {
 
                 changeClientStatus({
                     id: client_id,
@@ -499,7 +497,7 @@ function forEachStatus(tippy, client_id, vacancy_id, storage) {
         })
 
 
-        if (this.textContent === 'Подготовка CV') {
+        if (this.textContent === 'Підготовка CV') {
 
             changeClientStatus({
                 id: client_id,
@@ -521,7 +519,7 @@ function forEachStatus(tippy, client_id, vacancy_id, storage) {
             })
             // Присваиваем класс родительскому элементу стрелки переключения
             controls.classList.add('choosen')
-        } else if (this.textContent === 'CV отправлено') {
+        } else if (this.textContent === 'CV відправлено') {
 
             changeClientStatus({
                 id: client_id,
@@ -543,7 +541,7 @@ function forEachStatus(tippy, client_id, vacancy_id, storage) {
             })
             controls.classList.add('choosen')
 
-        } else if (this.textContent === 'Утвержден') {
+        } else if (this.textContent === 'Затверджений') {
             changeClientStatus({
                 id: client_id,
                 status: '3'
@@ -565,7 +563,7 @@ function forEachStatus(tippy, client_id, vacancy_id, storage) {
             // Присваиваем класс родительскому элементу стрелки переключения
             controls.classList.add('ready')
 
-        } else if (this.textContent === 'Контракт подписан') {
+        } else if (this.textContent === 'Контракт підписаний') {
 
             changeClientStatus({
                 id: client_id,
@@ -587,7 +585,7 @@ function forEachStatus(tippy, client_id, vacancy_id, storage) {
             })
             controls.classList.add('ready')
 
-        } else if (this.textContent === 'Подан в визовый центр') {
+        } else if (this.textContent === 'Поданий в візовий центр') {
 
             changeClientStatus({
                 id: client_id,
@@ -608,7 +606,7 @@ function forEachStatus(tippy, client_id, vacancy_id, storage) {
                 document.dispatchEvent(clientUpdateInVacancyEvent)
             })
 
-        } else if (this.textContent === 'Получил разрешение') {
+        } else if (this.textContent === 'Отримав рішення') {
 
             changeClientStatus({
                 id: client_id,
@@ -630,7 +628,7 @@ function forEachStatus(tippy, client_id, vacancy_id, storage) {
             })
             controls.classList.add('department')
 
-        } else if (this.textContent === 'Забрал разрешение') {
+        } else if (this.textContent === 'Забрав рішення') {
 
             changeClientStatus({
                 id: client_id,
@@ -652,7 +650,7 @@ function forEachStatus(tippy, client_id, vacancy_id, storage) {
             })
             controls.classList.add('department')
 
-        } else if (this.textContent === 'Билеты куплены') {
+        } else if (this.textContent === 'Білети куплені') {
 
             changeClientStatus({
                 id: client_id,
@@ -674,7 +672,7 @@ function forEachStatus(tippy, client_id, vacancy_id, storage) {
             })
             controls.classList.add('department')
 
-        } else if (this.textContent === 'Трудоустроен') {
+        } else if (this.textContent === 'Працевлаштований') {
 
             changeClientStatus({
                 id: client_id,

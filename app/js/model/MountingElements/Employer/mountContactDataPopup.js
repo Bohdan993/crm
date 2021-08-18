@@ -3,70 +3,63 @@ import {list, mount, tippy} from '../../../../libs/libs'
 
 const contactPopup = document.querySelector('#contact-popup')
 let contacts = [
-	{
-		id: 'phone',
-		name: 'Телефон'
-	},{
-		id: 'email',
-		name: 'E-mail'
-	},{
-		id: 'address',
-		name: 'Почтовый адрес'
-	},{
-		id: 'site',
-		name: 'Сайт'
-	},{
-		id: 'facebook',
-		name: 'Facebook',
-	},{
-		id: 'instagram',
-		name: 'Instagram'
-	},
+    {
+        id: 'phone',
+        name: 'Телефон'
+    }, {
+        id: 'email',
+        name: 'E-mail'
+    }, {
+        id: 'address',
+        name: 'Поштова адреса'
+    }, {
+        id: 'site',
+        name: 'Сайт'
+    }, {
+        id: 'facebook',
+        name: 'Facebook',
+    }, {
+        id: 'instagram',
+        name: 'Instagram'
+    },
 ]
 
 
 const popup = list("form", ContactDataPopup, 'id')
 
-if(contactPopup) {
-	mount(contactPopup, popup)
+if (contactPopup) {
+    mount(contactPopup, popup)
 }
 
 
 const mountContactDataPopup = () => {
-if(contactPopup) {
+    if (contactPopup) {
 
 
+        if (sessionStorage.getItem('contactDataFilter')) {
+            contacts = contacts.map(contact => {
+                let checked = !!~JSON.parse(sessionStorage.getItem('contactDataFilter')).split(',').indexOf(contact.id)
+                return {
+                    id: contact.id,
+                    name: contact.name,
+                    prefix: 'contact-data-',
+                    checked
+                }
+            })
+        } else {
+            contacts = contacts.map(contact => {
+                return {
+                    id: contact.id,
+                    name: contact.name,
+                    prefix: 'contact-data-',
+                }
+            })
+        }
 
 
-				if(sessionStorage.getItem('contactDataFilter')) { 
-						contacts = contacts.map(contact => {
-						let checked = !!~JSON.parse(sessionStorage.getItem('contactDataFilter')).split(',').indexOf(contact.id)
-						return {
-							id: contact.id,
-							name: contact.name,
-							prefix: 'contact-data-',
-							checked
-						}
-					})
-				} else {
-					contacts = contacts.map(contact => {
-					return {
-								id: contact.id,
-								name: contact.name,
-								prefix: 'contact-data-',
-							}
-					})
-				}
-
-
-			
-
-
-				popup.update(contacts);
-	}
+        popup.update(contacts);
+    }
 }
-
-
 
 
 export default mountContactDataPopup // to ../../index.js

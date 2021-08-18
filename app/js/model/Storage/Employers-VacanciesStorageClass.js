@@ -1,86 +1,86 @@
 export default class StorageGlobalEmployersVacancies {
-	constructor() {
-		this.state = []
-		this.initialState = []
-	}
+    constructor() {
+        this.state = []
+        this.initialState = []
+    }
 
 
-	initState(data) {
+    initState(data) {
 
-		this.state = data
-		this.initialState = data
+        this.state = data
+        this.initialState = data
 
-		return this.state
-	}
-
-
-	clearState() {
-		this.state = []
-	}
+        return this.state
+    }
 
 
-	setState(data, id, direction = 'bottom') {
-		if (direction === 'bottom') {
-			this.state = this.uniq([...this.state, ...data], id)
-		}
-
-		if (direction === 'top') {
-			this.state = this.uniq([...data, ...this.state], id)
-		}
-
-		return this.state
-	}
-
-	getState() {
-		return this.state
-	}
-
-	getInitialState() {
-		return this.initialState
-	}
+    clearState() {
+        this.state = []
+    }
 
 
-	getPartialState(id, key, prop) {
-		let res
+    setState(data, id, direction = 'bottom') {
+        if (direction === 'bottom') {
+            this.state = this.uniq([...this.state, ...data], id)
+        }
 
-		this.getState().every(el => {
-			if (el[key] === id) {
-				res = el[prop]
-				return false
-			} else {
-				return true
-			}
-		})
-		return res
-	}
+        if (direction === 'top') {
+            this.state = this.uniq([...data, ...this.state], id)
+        }
 
+        return this.state
+    }
 
-	setPartialState(id, key, prop, data) {
-		this.getState().every(el => {
-			if (el[key] === id) {
-				el[prop] = data
-				return false
-			} else {
-				return true
-			}
-		})
-		return this.state
-	}
+    getState() {
+        return this.state
+    }
+
+    getInitialState() {
+        return this.initialState
+    }
 
 
-	deletePartialState(id, key) {
-		this.state = this.getState().filter(el => el[key] !== id)
-		return this.state
-	}
+    getPartialState(id, key, prop) {
+        let res
+
+        this.getState().every(el => {
+            if (el[key] === id) {
+                res = el[prop]
+                return false
+            } else {
+                return true
+            }
+        })
+        return res
+    }
 
 
-	uniq(xs, id) {
-		let seen = {};
-		let res = xs.filter(function (x) {
-			let key = JSON.stringify(x[id]);
-			return !(key in seen) && (seen[key] = x[id]);
-		});
-		return res
-	}
+    setPartialState(id, key, prop, data) {
+        this.getState().every(el => {
+            if (el[key] === id) {
+                el[prop] = data
+                return false
+            } else {
+                return true
+            }
+        })
+        return this.state
+    }
+
+
+    deletePartialState(id, key) {
+        this.state = this.getState().filter(el => el[key] !== id)
+        return this.state
+    }
+
+
+    uniq(xs, id) {
+        let seen = {};
+        let res = xs.filter(function (x) {
+            let key = JSON.stringify(x[id]);
+            return !(key in seen) && (seen[key] = x[id]);
+        });
+        return res
+    }
 
 }

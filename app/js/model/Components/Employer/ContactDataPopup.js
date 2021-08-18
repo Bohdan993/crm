@@ -2,17 +2,17 @@ import SidebarPopupInterface from '../SidebarPopupInterface'
 
 
 export default class ContactDataPopup extends SidebarPopupInterface {
-	constructor() {
-		super()
-	}
+    constructor() {
+        super()
+    }
 
-	update(data, index, items, context) {
-		super.update(data, index, items, context)
-		this.filter(data.id, 'contact', 'contactDataFilter')
-	}
+    update(data, index, items, context) {
+        super.update(data, index, items, context)
+        this.filter(data.id, 'contact', 'contactDataFilter')
+    }
 
 
-	filter(id, str, storageKey) {
-		super.filter(id, str, storageKey)
-	}
+    filter(id, str, storageKey) {
+        super.filter(id, str, storageKey)
+    }
 }

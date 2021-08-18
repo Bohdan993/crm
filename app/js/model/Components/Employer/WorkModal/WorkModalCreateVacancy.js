@@ -11,7 +11,7 @@ export default class WorkModalCreateVacancy {
 		this.el = el('div.sidebar__filter-wrapper',
 			this.link = el('a', {
 				href: '#',
-			}, 'Создать вакансию'),
+			}, 'Створити вакансію'),
 		)
 	}
 

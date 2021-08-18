@@ -26,7 +26,6 @@ import {
 } from '../../helper'
 
 
-
 function vacancylistdatafetchedeventHandler(id_vacancy, e) {
     getVacancyModalInfo(id_vacancy).then(res => {
 
@@ -59,8 +58,8 @@ export default class VacancyList {
         )
 
     }
-    update(data) {
 
+    update(data) {
 
 
         this.list.update(data, {
@@ -114,7 +113,6 @@ export default class VacancyList {
             document.addEventListener('vacancylistdatafetchedevent', vacancylistdatafetchedeventHandler.bind(null, id_vacancy))
 
 
-
         }
 
 
@@ -124,17 +122,17 @@ export default class VacancyList {
 
             if (vacancyID) {
                 copyVacancy({
-                        vacancy: vacancyID
-                    })
+                    vacancy: vacancyID
+                })
                     .then(res => {
                         if (res !== 'fail') {
                             setTimeout(() => {
-                                
+
                                 getVacancyModalInfo(res).then(r => {
                                     const instance = MicroModal.show('modal-3', {
                                         onClose: modal => {
-                                            
-                                            
+
+
                                             const wrapper = modal.querySelector('.my-modal-wrapper')
                                             const modalClose = modal.querySelector('.modal__close')
 

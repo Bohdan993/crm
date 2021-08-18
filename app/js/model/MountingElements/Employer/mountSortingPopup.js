@@ -1,67 +1,61 @@
 import SortingPopup from '../../Components/SortingPopup'
 import {
-	list,
-	mount
+    list,
+    mount
 } from '../../../../libs/libs'
 
 const sortPopup = document.querySelector('#sorting-popup')
 let filters = [{
-	id: 'date',
-	name: 'По внесению'
+    id: 'date',
+    name: 'По додаванню'
 }, {
-	id: 'name',
-	name: 'По имени'
+    id: 'name',
+    name: 'По імені'
 }, {
-	id: 'contact',
-	name: 'По контактам'
+    id: 'contact',
+    name: 'По контактах'
 }, {
-	id: 'vacancy',
-	name: 'По вакансиям'
+    id: 'vacancy',
+    name: 'По вакансіях'
 }]
 
 
 const popup = list("form", SortingPopup, 'id', 'employer')
 
 if (sortPopup) {
-	mount(sortPopup, popup)
+    mount(sortPopup, popup)
 }
 
 
 const mountSortingPopup = () => {
 
-	if (sortPopup) {
+    if (sortPopup) {
 
 
-
-		if (sessionStorage.getItem('sortFilter')) {
-			filters = filters.map(filter => {
-				let checked = JSON.parse(sessionStorage.getItem('sortFilter')) === filter.id
-				return {
-					id: filter.id,
-					name: filter.name,
-					prefix: 'sorting-',
-					checked
-				}
-			})
-		} else {
-			filters = filters.map(filter => {
-				return {
-					id: filter.id,
-					name: filter.name,
-					prefix: 'sorting-'
-				}
-			})
-		}
-
+        if (sessionStorage.getItem('sortFilter')) {
+            filters = filters.map(filter => {
+                let checked = JSON.parse(sessionStorage.getItem('sortFilter')) === filter.id
+                return {
+                    id: filter.id,
+                    name: filter.name,
+                    prefix: 'sorting-',
+                    checked
+                }
+            })
+        } else {
+            filters = filters.map(filter => {
+                return {
+                    id: filter.id,
+                    name: filter.name,
+                    prefix: 'sorting-'
+                }
+            })
+        }
 
 
-
-
-		popup.update(filters);
-	}
+        popup.update(filters);
+    }
 }
-
-
 
 
 export default mountSortingPopup // to ../../index.js

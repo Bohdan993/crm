@@ -1,37 +1,37 @@
 import fetch from './fetchingDataClass'
 import {
-	toastr
+    toastr
 } from '../../../libs/libs'
 
 
 const deleteElement = async ({
-	str,
-	id
-} = {}) => {
+                                 str,
+                                 id
+                             } = {}) => {
 
-	try {
-		const fields = await fetch.getResourse(`/${str}/delete/?id=${id}`)
-		if (fields.success === true) {
-			toastr.success(`ID ${str === 'employers' ? 'работодателя' : 'вакансии'} ${id}`, 'Успешно удалена запись', {
-				closeButton: false
-			})
-		} else {
-			throw new Error('Не возможно удалить запись')
-		}
+    try {
+        const fields = await fetch.getResourse(`/${str}/delete/?id=${id}`)
+        if (fields.success === true) {
+            toastr.success(`ID ${str === 'employers' ? 'роботодавця' : 'вакансії'} ${id}`, 'Успішно видалений запис', {
+                closeButton: false
+            })
+        } else {
+            throw new Error('Не можливо видалити запис')
+        }
 
-		return Promise.resolve({
-			status: 'ok',
-			id
-		})
-	} catch (e) {
+        return Promise.resolve({
+            status: 'ok',
+            id
+        })
+    } catch (e) {
 
-		toastr.error(e.message, 'Возникла ошибка', {
-			closeButton: true
-		})
-		return Promise.resolve({
-			status: 'fail'
-		})
-	}
+        toastr.error(e.message, 'Виникла помилка', {
+            closeButton: true
+        })
+        return Promise.resolve({
+            status: 'fail'
+        })
+    }
 
 }
 

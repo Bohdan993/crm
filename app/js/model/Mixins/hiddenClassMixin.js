@@ -1,26 +1,26 @@
 let hiddenClassMixin = {
-  setHiddenClass(){
+    setHiddenClass() {
 
-		this.el.classList.add('hidden')
-		this.el.parentNode.classList.add('loading')
+        this.el.classList.add('hidden')
+        this.el.parentNode.classList.add('loading')
 
-		return this
-	},
+        return this
+    },
 
-	removeHiddenClass(){
+    removeHiddenClass() {
 
-		this.el.classList.remove('hidden')
-		this.el.parentNode.classList.remove('loading')
+        this.el.classList.remove('hidden')
+        this.el.parentNode.classList.remove('loading')
 
-		return this
-	},
+        return this
+    },
 
-	setEmptyLayer(){
+    setEmptyLayer() {
 
-  		this.modalLayer.classList.add('empty-layer')
+        this.modalLayer.classList.add('empty-layer')
 
-			return this
-	}
+        return this
+    }
 };
 
 

@@ -1,12 +1,11 @@
-import { toastr } from '../../libs/libs'
-
+import {toastr} from '../../libs/libs'
 
 
 const initToastr = () => {
-	toastr.options.progressBar = true
-	toastr.options.preventDuplicates = true
-	toastr.options.timeOut = 3000
-	toastr.options.closeButton = true
+    toastr.options.progressBar = true
+    toastr.options.preventDuplicates = true
+    toastr.options.timeOut = 3000
+    toastr.options.closeButton = true
 }
 
 

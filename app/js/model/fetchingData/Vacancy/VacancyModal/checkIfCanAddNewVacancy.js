@@ -18,48 +18,48 @@ const checkIfAddNewVacancy = () => {
             const {main} = data.data
 
 
-            if(main.id_employer === '0') {
-                errorArr.push('Работодателя.')
+            if (main.id_employer === '0') {
+                errorArr.push('Роботодавця.')
             }
 
-            if(main.type_vacancy === '0') {
-                errorArr.push('Тип визы.')
+            if (main.type_vacancy === '0') {
+                errorArr.push('Тип візи.')
             }
 
-            if(main.type_production === '') {
-                errorArr.push('Типы продукции.')
+            if (main.type_production === '') {
+                errorArr.push('Типи продукції.')
             }
 
-            if(main.total_client === '0') {
-                errorArr.push('Количество клиентов.')
+            if (main.total_client === '0') {
+                errorArr.push('Кількість клієнтів.')
             }
 
-            if(main.start_work === '') {
-                errorArr.push('Дату начала работы.')
+            if (main.start_work === '') {
+                errorArr.push('Дату початку роботи.')
             }
 
-            if(main.period === '') {
-                errorArr.push('Период (мес).')
+            if (main.period === '') {
+                errorArr.push('Період (міс).')
             }
 
 
-            if(errorArr.length) {
+            if (errorArr.length) {
                 throw new Error(`${errorArr.map((el, i) => '' + (i + 1) + '. ' + el).join('\n')}`)
             }
 
 
             instance.closeModal()
-            toastr.success(`ID вакансии ${id}`, 'Успешно создана вакансия', {
+            toastr.success(`ID вакансії ${id}`, 'Успішно створена вакансія', {
                 closeButton: false
             })
 
         } catch (e) {
             const {message} = e
 
-            const agree = confirm(`Вы не заполнили необходимые данные. Нужно выбрать/заполнить: ${'\n' + message + '\n' } Продолжить заполнение данных?`)
-            
+            const agree = confirm(`Ви не заповнили необхідні дані. Потрібно вибрати/заповнити: ${'\n' + message + '\n'} Продовжити заповнення даних?`)
 
-            if(!agree) {
+
+            if (!agree) {
                 await fetch.getResourse(`/vacancies/delete/?id=${id}`)
                 instance.closeModal()
                 hideAll()
@@ -71,7 +71,7 @@ const checkIfAddNewVacancy = () => {
     }
 
     document.addEventListener('wanttoclosemodalevent', wanttoclosemodaleventHandler)
-    
+
 }
 
 

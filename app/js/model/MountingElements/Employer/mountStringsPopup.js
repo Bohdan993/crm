@@ -6,7 +6,6 @@ import {
 } from '../../../../libs/libs'
 
 
-
 const managersPopup = document.querySelector('#managers-popup form')
 
 //Пример заполнения этого массива в файле mountVacancyPopup.js
@@ -14,7 +13,7 @@ const managersPopup = document.querySelector('#managers-popup form')
 let stringsData = [
     {
         id: 'call-anwer-chbx',
-        label: 'Автоответчик',
+        label: 'Автовідповідач',
         name: 'answerphone', //*comment* Значение поля которое отправляется на сервер
         str: 'marks',
         filter: 'marksFilter',
@@ -25,7 +24,7 @@ let stringsData = [
     },
     {
         id: 'no-eng-chbx',
-        label: 'Не знает англ',
+        label: 'Не знає англ',
         name: 'not_english',
         str: 'marks',
         filter: 'marksFilter',
@@ -39,7 +38,7 @@ let stringsData = [
     },
     {
         id: 'email-send-chbx',
-        label: 'Отправил email',
+        label: 'Відправлено email',
         name: 'send_email',
         str: 'marks',
         filter: 'marksFilter',
@@ -53,27 +52,26 @@ let stringsData = [
     },
     {
         id: 'recall-chbx',
-        label: 'Перезвон',
+        label: 'Передзвон',
         name: 'return_call',
         str: 'marks',
         filter: 'marksFilter',
     },
     {
         id: 'dont-call-chbx',
-        label: 'Не звонить',
+        label: 'Не дзвонити',
         name: 'not_call',
         str: 'marks',
         filter: 'marksFilter',
     },
     {
         id: 'dont-mark-chbx',
-        label: 'Нет меток',
+        label: 'Немає поміток',
         name: 'not_mark',
         str: 'marks',
         filter: 'marksFilter',
     },
 ]
-
 
 
 const strings = new StringsPopup()
@@ -119,8 +117,6 @@ const mountStringsPopup = () => {
 
     }
 }
-
-
 
 
 export default mountStringsPopup

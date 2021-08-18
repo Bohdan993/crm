@@ -10,63 +10,59 @@ const task = new Task('employer')
 const task2 = new Task('vacancy')
 
 
-if(sidebarEmployerForm) {
-	mount(sidebarEmployerForm, task)
+if (sidebarEmployerForm) {
+    mount(sidebarEmployerForm, task)
 }
 
-if(sidebarVacancyForm) {
-	mount(sidebarVacancyForm, task2)
+if (sidebarVacancyForm) {
+    mount(sidebarVacancyForm, task2)
 }
-
 
 
 const getWorkModalTasks = async ({
-	id = '1', 
-	p = 1, 
-	t = 5,
-	loading,
-	showing,
-	deleating, 
-	adding,
-} = {}) => {
+                                     id = '1',
+                                     p = 1,
+                                     t = 5,
+                                     loading,
+                                     showing,
+                                     deleating,
+                                     adding,
+                                 } = {}) => {
 
 
+    try {
+
+        const data = await fetch.getResourse(`/employers/get/?id=${id}&section=2&other=6`)
+
+        if (data.success) {
+
+            const tasks = data.data.other.task
+
+            const tasksData = {
+                tasks,
+                id
+            }
 
 
-	try {
-
-			const data = await fetch.getResourse(`/employers/get/?id=${id}&section=2&other=6`)
-
-			if(data.success) {
-
-			const tasks = data.data.other.task
-
-			const tasksData = {
-				tasks,
-				id
-			}
+            if (sidebarEmployerForm) {
+                task.update(tasksData)
+            }
 
 
-			if(sidebarEmployerForm) {
-				task.update(tasksData)
-			}
+            if (sidebarVacancyForm) {
+                task2.update(tasksData)
+            }
+
+        } else {
+            if (sidebarVacancyForm) {
+                task2.update([])
+            }
+        }
 
 
-			if(sidebarVacancyForm) {
-				task2.update(tasksData)
-			}
-
-			} else {
-				if(sidebarVacancyForm) {
-					task2.update([])
-				}
-			}
-			
-
-
-		}catch(e) {
-			console.error(e)
-		}
+    } catch (e) {
+        console.error(e)
+    }
 // }	
 
 }

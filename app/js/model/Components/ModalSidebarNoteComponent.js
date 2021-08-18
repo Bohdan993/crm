@@ -6,13 +6,11 @@ import {
 import initElasticArea from '../initElasticArea'
 
 
-
-
 export default class Note { // to ../fetchingData/Employer/WorkModal
     constructor(type) {
         this.type = type
         this.el = el('div.input-group',
-            el('p', 'Заметки'),
+            el('p', 'Замітки'),
             this.textArea = el('textarea.sidebar__area-notes', {
                 rows: 5
             })
@@ -47,6 +45,7 @@ export default class Note { // to ../fetchingData/Employer/WorkModal
         })
 
     }
+
     update(data) {
 
         setAttr(this.textArea, {

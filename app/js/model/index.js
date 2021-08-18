@@ -21,7 +21,6 @@ import showChooseBlockFullInfo from './vacancy/showChooseBlockFullInfo'
 import showFullClientsRow from './vacancy/showFullClientsRow'
 
 
-
 import getEmployersList from './fetchingData/Employer/getEmployersList'
 import getManagerPopup from './fetchingData/Employer/getManagerPopup'
 import getManagerVacancyPopup from './fetchingData/Vacancy/getManagerVacancyPopup'
@@ -36,7 +35,6 @@ import getClients from './fetchingData/Employer/getClients'
 import checkIfAddNewEmployer from './fetchingData/Employer/checkIfAddNewEmployer'
 
 
-
 import mountSearchInput from './MountingElements/Employer/mountSearchInput'
 import mountContactDataPopup from './MountingElements/Employer/mountContactDataPopup'
 import mountLastContactPopup from './MountingElements/Employer/mountLastContactPopup'
@@ -44,7 +42,6 @@ import mountSortingPopup from './MountingElements/Employer/mountSortingPopup'
 import mountVacancyPopup from './MountingElements/Employer/mountVacancyPopup'
 import mountStringsPopup from './MountingElements/Employer/mountStringsPopup'
 import mountContactHistoryModal from './MountingElements/Employer/WorkModal/mountContactHistoryModal'
-
 
 
 import addNewVacancy from './fetchingData/Vacancy/addNewVacancy'
@@ -65,58 +62,58 @@ import mountVacancyStatusesPopup from './MountingElements/Vacancy/mountVacancySt
 
 
 export {
-	initOverlayScrollbars,
-	initTooltips,
+    initOverlayScrollbars,
+    initTooltips,
 
-	initToastr,
-	initElasticArea,
-	initWorkModalSelect,
-	sidebarSearchInput,
+    initToastr,
+    initElasticArea,
+    initWorkModalSelect,
+    sidebarSearchInput,
 
-	checkIfWrapperIsEmpty,
-	addNewTask,
-	deleteTask,
-	setFeedbackDate,
-	addFeedbackForm,
-	showFullRow,
-	switchRowStatuses,
-	showChooseBlockFullInfo,
-	showFullClientsRow,
-	switchModalParts,
-	changeDirection,
-	feedbackEdit,
-	getEmployersList,
-	getManagerPopup,
-	getManagerVacancyPopup,
-	getIntermediariesPopup,
-	addNewEmployer,
-	getCountryPopup,
-	getManufacturyTypePopup,
-	getTypeContact,
-	getClients,
-	// fetchScroll,
-	mountSearchInput,
-	mountContactDataPopup,
-	mountLastContactPopup,
-	mountSortingPopup,
-	mountVacancyPopup,
-	mountContactHistoryModal,
-	mountSearchInputVacancy,
-	mountStringsPopup,
-	getVacancyList,
-	getCountryVacancyPopup,
-	mountSortingVacancyPopup,
-	getVacancyWorkType,
-	getStatusesVacancyPopup,
-	mountDateAndTermsPopup,
-	getClientsVacancy,
-	mountActiveArchive,
-	addNewVacancy,
-	getVacancyEmployers,
-	mountVacancyStatusesPopup,
-	vacancyFetchScroll,
-	employerFetchScroll,
-	mountVacancyList,
-	checkIfAddNewEmployer,
-	checkIfAddNewVacancy
+    checkIfWrapperIsEmpty,
+    addNewTask,
+    deleteTask,
+    setFeedbackDate,
+    addFeedbackForm,
+    showFullRow,
+    switchRowStatuses,
+    showChooseBlockFullInfo,
+    showFullClientsRow,
+    switchModalParts,
+    changeDirection,
+    feedbackEdit,
+    getEmployersList,
+    getManagerPopup,
+    getManagerVacancyPopup,
+    getIntermediariesPopup,
+    addNewEmployer,
+    getCountryPopup,
+    getManufacturyTypePopup,
+    getTypeContact,
+    getClients,
+    // fetchScroll,
+    mountSearchInput,
+    mountContactDataPopup,
+    mountLastContactPopup,
+    mountSortingPopup,
+    mountVacancyPopup,
+    mountContactHistoryModal,
+    mountSearchInputVacancy,
+    mountStringsPopup,
+    getVacancyList,
+    getCountryVacancyPopup,
+    mountSortingVacancyPopup,
+    getVacancyWorkType,
+    getStatusesVacancyPopup,
+    mountDateAndTermsPopup,
+    getClientsVacancy,
+    mountActiveArchive,
+    addNewVacancy,
+    getVacancyEmployers,
+    mountVacancyStatusesPopup,
+    vacancyFetchScroll,
+    employerFetchScroll,
+    mountVacancyList,
+    checkIfAddNewEmployer,
+    checkIfAddNewVacancy
 }

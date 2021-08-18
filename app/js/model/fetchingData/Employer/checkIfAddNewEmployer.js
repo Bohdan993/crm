@@ -25,9 +25,8 @@ const checkIfAddNewEmployer = () => {
             } = data.data
 
             if (main.id_country === '0') {
-                errorArr.push('Страну.')
+                errorArr.push('Країну.')
             }
-
 
 
             if ((!main.enterprise ||
@@ -37,7 +36,7 @@ const checkIfAddNewEmployer = () => {
                     !main.name.trim() ||
                     !name.value.trim()
                 )) {
-                errorArr.push('Предприятие или контактное лицо.')
+                errorArr.push('Підприємство або контактна особа.')
             }
 
 
@@ -48,12 +47,12 @@ const checkIfAddNewEmployer = () => {
                     !main.email.trim() ||
                     !email.value.trim()
                 )) {
-                errorArr.push('Основной номер телефона или основной адрес эл. почты.')
+                errorArr.push('Основний номер телефону або основна адреса ел. пошти.')
             }
 
 
             if (!other.production.length) {
-                errorArr.push('Типы производства.')
+                errorArr.push('Типи виробництва.')
             }
 
 
@@ -63,7 +62,7 @@ const checkIfAddNewEmployer = () => {
 
 
             instance.closeModal()
-            toastr.success(`ID вакансии ${id}`, 'Успешно создан работодатель', {
+            toastr.success(`ID вакансії ${id}`, 'Успішно створений роботодавець', {
                 closeButton: false
             })
 
@@ -72,7 +71,7 @@ const checkIfAddNewEmployer = () => {
                 message
             } = e
 
-            const agree = confirm(`Вы не заполнили необходимые данные. Нужно выбрать/заполнить: ${'\n' + message + '\n' } Продолжить заполнение данных?`)
+            const agree = confirm(`Ви не заповнили необхідні дані. Потрібно вибрати/заповнити: ${'\n' + message + '\n'} Продовжити заповнення даних?`)
 
 
             if (!agree) {

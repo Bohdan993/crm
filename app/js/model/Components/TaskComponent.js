@@ -75,7 +75,6 @@ class TaskItem {
         })
 
 
-
     }
 
     update(data, index, items, context) {
@@ -101,9 +100,9 @@ export default class Task { // to ../fetchingData/Employer/WorkModal
         this.type = type
         this.el = el('div.input-group.add-task-group',
             el('div.input-group__control',
-                el('p', 'Задачи'),
+                el('p', 'Завдання'),
                 this.addTask = el('div.add-item',
-                    el('span', '+'), 'добавить')
+                    el('span', '+'), 'додати')
             ),
             this.list = list('div.tasks-layer', TaskItem, 'id_employer_task', type)
         )
@@ -130,6 +129,7 @@ export default class Task { // to ../fetchingData/Employer/WorkModal
 
         })
     }
+
     update(data) {
 
         this.count = data.tasks ? data.tasks.length : 0

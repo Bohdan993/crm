@@ -1,7 +1,6 @@
+const storageVacancyEmployerDataAdd = new CustomEvent("storageemployeradd", {
+    detail: {name: 'Data add'}
+});
 
-	const storageVacancyEmployerDataAdd = new CustomEvent("storageemployeradd", {
-            detail: {name: 'Data add'}
-        });
 
-
-	export default storageVacancyEmployerDataAdd 		//to ../Components/Vacancy/VacancyModal/FindEmployerPopupComponent
+export default storageVacancyEmployerDataAdd 		//to ../Components/Vacancy/VacancyModal/FindEmployerPopupComponent

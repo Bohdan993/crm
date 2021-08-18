@@ -3,9 +3,9 @@ import WorkModalManufacturyType from '../../../Components/Employer/WorkModal/Wor
 
 import Loader from '../../../Components/Loader'
 import {
-	list,
-	mount,
-	place
+    list,
+    mount,
+    place
 } from '../../../../../libs/libs'
 
 const state = {}
@@ -16,60 +16,52 @@ const manufacturyType = document.querySelector('.row.manufactury-type')
 const loader = place(Loader)
 
 
-
-
 const workModalManufacturyType = new WorkModalManufacturyType()
 
 
-
-
 if (manufacturyType) {
-	mount(manufacturyType, workModalManufacturyType)
-	mount(manufacturyType, loader)
+    mount(manufacturyType, workModalManufacturyType)
+    mount(manufacturyType, loader)
 }
-
-
-
 
 
 const getWorkModalManufacturyType = async (id = '1', loading = true, adding = false) => {
 
-	if (manufacturyType) {
+    if (manufacturyType) {
 
-		if (loading) {
-			loader.update(true)
-			workModalManufacturyType.setHiddenClass().setEmptyLayer()
-		}
-
-
-
-		try {
+        if (loading) {
+            loader.update(true)
+            workModalManufacturyType.setHiddenClass().setEmptyLayer()
+        }
 
 
-			const data = await fetch.getResourse(`/employers/get/?id=${id}&section=2&other=1`)
-			const otherPart = data.data.other
-
-			const production = {
-				id: id,
-				data: otherPart.production
-			}
+        try {
 
 
-			workModalManufacturyType.update(production, {
-				adding
-			})
+            const data = await fetch.getResourse(`/employers/get/?id=${id}&section=2&other=1`)
+            const otherPart = data.data.other
+
+            const production = {
+                id: id,
+                data: otherPart.production
+            }
 
 
-			if (loading) {
-				loader.update(false)
-				workModalManufacturyType.removeHiddenClass()
-			}
+            workModalManufacturyType.update(production, {
+                adding
+            })
 
-			state.id = id
-		} catch (e) {
-			console.error(e)
-		}
-	}
+
+            if (loading) {
+                loader.update(false)
+                workModalManufacturyType.removeHiddenClass()
+            }
+
+            state.id = id
+        } catch (e) {
+            console.error(e)
+        }
+    }
 
 }
 

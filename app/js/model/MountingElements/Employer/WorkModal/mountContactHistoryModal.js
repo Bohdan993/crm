@@ -6,16 +6,14 @@ const modal = new ContactHistoryModal()
 
 
 const mountContactHistoryModal = () => {
-	if(contactModal) {
-		mount(contactModal, modal)
-		// modal.update()
-	}
+    if (contactModal) {
+        mount(contactModal, modal)
+        // modal.update()
+    }
 }
-
-
 
 
 export default mountContactHistoryModal // to ../../../index.js
 export {
-	modal // to ../../../Components/Employer/WorkModal/WorkModalContactHistory
+    modal // to ../../../Components/Employer/WorkModal/WorkModalContactHistory
 }

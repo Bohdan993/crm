@@ -12,57 +12,55 @@ let data = {}
 let flag = false
 
 
-
 const fetchScroll = (elem, type) => {
-	//@param elem - HTML node <div class="employer-rows-wrapper"></div>
+    //@param elem - HTML node <div class="employer-rows-wrapper"></div>
 
-	mount(elem, loader)
+    mount(elem, loader)
 
-	data.hasNextPage = 0
-	document.addEventListener('employerlistnotfiltered', function(e){
-		count = 2
-		data.hasNextPage = e.detail.hasNextPage ? 1 : 0
-	})
+    data.hasNextPage = 0
+    document.addEventListener('employerlistnotfiltered', function (e) {
+        count = 2
+        data.hasNextPage = e.detail.hasNextPage ? 1 : 0
+    })
 
-	async function ajaxData(e){
+    async function ajaxData(e) {
 
-		if(!!data.hasNextPage) {
-			loader.update(true)
-		} else {
-			loader.update(false)
-		}
+        if (!!data.hasNextPage) {
+            loader.update(true)
+        } else {
+            loader.update(false)
+        }
 
-		let vertical = e.target.scrollTop
+        let vertical = e.target.scrollTop
 
-		if(vertical) {
-			if (this.scrollTop + this.clientHeight >= this.scrollHeight - (HEIGHT * count) && !!data.hasNextPage && !flag) {
-					flag = true
+        if (vertical) {
+            if (this.scrollTop + this.clientHeight >= this.scrollHeight - (HEIGHT * count) && !!data.hasNextPage && !flag) {
+                flag = true
 
-					loader.update(true)
-					data = await getEmployersList({t: DATA_LENGTH, p: count, scroll: true})
-					.then((data)=> {
-						flag = false
-						return data
-					})
+                loader.update(true)
+                data = await getEmployersList({t: DATA_LENGTH, p: count, scroll: true})
+                    .then((data) => {
+                        flag = false
+                        return data
+                    })
 
 
-					sessionStorage.setItem('page', JSON.stringify(count))
-					count++
-					flag = false
-					
-					if(!!data.hasNextPage) {
-						loader.update(false)
-					}
-			}
-		}
-	}
+                sessionStorage.setItem('page', JSON.stringify(count))
+                count++
+                flag = false
 
-	ajaxData = throttle(ajaxData, 250)
-	elem.addEventListener('scroll', ajaxData)
+                if (!!data.hasNextPage) {
+                    loader.update(false)
+                }
+            }
+        }
+    }
+
+    ajaxData = throttle(ajaxData, 250)
+    elem.addEventListener('scroll', ajaxData)
 
 
 }
-
 
 
 export default fetchScroll // to ../index.js

@@ -1,47 +1,45 @@
 import fetch from '../fetchingDataClass'
 import {
-	toastr
+    toastr
 } from '../../../../libs/libs'
 import {
-	EmptyError
+    EmptyError
 } from '../../helper'
 
 
 const getVacancyClients = async (id, isNewVacancy) => {
 
-	try {
-		const data = await fetch.getResourse(`/vacancies/get_clients/?vacancy=${id}`)
+    try {
+        const data = await fetch.getResourse(`/vacancies/get_clients/?vacancy=${id}`)
 
 
-		if (data.success === true) {
-			const clients = data.data.client
-			return clients
-		} 
+        if (data.success === true) {
+            const clients = data.data.client
+            return clients
+        }
 
-		if (!isNewVacancy) {
-			throw new EmptyError('В данной вакансии ещё нет клиентов')
-		}
+        if (!isNewVacancy) {
+            throw new EmptyError('В даній вакансії поки що немає клієнтів')
+        }
 
-		
-	} catch (e) {
-		
-		if (e.name === 'EmptyError') {
-			toastr.warning(e.message, 'Предупреждение', {
-				closeButton: true
-			})
-		} else {
-			toastr.error(e.message, 'Возникла ошибка', {
-				closeButton: true
-			})
-		}
 
-		return false
-	}
+    } catch (e) {
+
+        if (e.name === 'EmptyError') {
+            toastr.warning(e.message, 'Попередження', {
+                closeButton: true
+            })
+        } else {
+            toastr.error(e.message, 'Виникла помилка', {
+                closeButton: true
+            })
+        }
+
+        return false
+    }
 
 
 }
-
-
 
 
 export default getVacancyClients

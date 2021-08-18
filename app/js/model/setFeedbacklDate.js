@@ -1,7 +1,5 @@
-
-
 const setFeedbackDate = (input) => {
-	input.value = new Date().toLocaleDateString()
+    input.value = new Date().toLocaleDateString()
 }
 
 

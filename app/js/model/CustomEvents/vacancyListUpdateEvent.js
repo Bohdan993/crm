@@ -1,6 +1,6 @@
 const vacancyListUpdateEvent = new CustomEvent("vacancylistupdateevent", {
-          detail: {name: 'Update'}
-      });
+    detail: {name: 'Update'}
+});
 
 
 export default vacancyListUpdateEvent 		//to ../Components/vacancy/vacancyList.js

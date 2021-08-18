@@ -1,26 +1,25 @@
 import fetch from '../fetchingDataClass'
-import { toastr } from '../../../../libs/libs'
+import {toastr} from '../../../../libs/libs'
 
 
 const deleteClientFromVacancy = async ({
- id = ''
-} = {}) => {
+                                           id = ''
+                                       } = {}) => {
 
-			try {
-				const clients = await fetch.getResourse(`/vacancies/delete_client/?id=${id}`)
-				if(clients.success === true) {
-					toastr.success(`ID клиента ${id}`, 'Успешно удален клиент', {closeButton: false})
-				} else {
-					throw new Error('Не возможно удалить клиента')
-				}
+    try {
+        const clients = await fetch.getResourse(`/vacancies/delete_client/?id=${id}`)
+        if (clients.success === true) {
+            toastr.success(`ID клієнта ${id}`, 'Успішно видалений клієнт', {closeButton: false})
+        } else {
+            throw new Error('Не можливо видалити клієнта')
+        }
 
-				return Promise.resolve('ok')
-			} catch(e) {
-				toastr.error(e.message, 'Возникла ошибка', {closeButton: true})
-				return Promise.resolve('fail')
-			}
+        return Promise.resolve('ok')
+    } catch (e) {
+        toastr.error(e.message, 'Виникла помилка', {closeButton: true})
+        return Promise.resolve('fail')
+    }
 
-			
 
 }
 
