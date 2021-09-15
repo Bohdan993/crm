@@ -56,7 +56,7 @@ const tooltipContentFunc = ({
                             <time class="contract-signed">${fourthStatus}</time>
                         </div>
                         <div class="input-group">
-                         <p class="status wait ${fifthClass}"><span>Поданий в візовий центр</span></p>
+                         <p class="status wait ${fifthClass}"><span>Документи подані</span></p>
                          <time class="submitted-visa-application-center">${fifthStatus}</time>
                         </div>
                         <div class="input-group">
@@ -106,7 +106,7 @@ const dataArr = [{
     {
         id: '5',
         class: 'wait',
-        text: 'Поданий в візовий центр'
+        text: 'Документи подані'
     },
     {
         id: '6',

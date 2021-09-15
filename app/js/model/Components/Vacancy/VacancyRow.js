@@ -285,7 +285,7 @@ export default class RowVacancy {
                 })) : this.manager.update(false)
 
         setAttr(this.term, {
-            innerText: data.start_work ? `${data.start_work} - ${data.finish_work} (${data.period} мес)` : ''
+            innerText: data.start_work ? `${data.start_work} - ${data.finish_work} (${data.period} міс)` : ''
         })
 
         setAttr(this.numberPeople, {
@@ -322,7 +322,6 @@ export default class RowVacancy {
                 }
             })
         })
-
 
         setAttr(this.jobsText, {
             innerText: this.productNamesArr.join(', ')

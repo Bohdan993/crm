@@ -58,6 +58,7 @@ const calculate = function (vacancy_id, type = 'update') {
         busy: 0
     }
 
+
     const statusesArr = data.data.map(el => {
         return el.vacancy.id_status
     })
@@ -194,7 +195,7 @@ function leftArrowClickHandler(client_id, vacancy_id) {
                     document.dispatchEvent(clientUpdateInVacancyEvent)
                 })
 
-            } else if (arr[ind].textContent === 'Поданий в візовий центр') {
+            } else if (arr[ind].textContent === 'Документи подані') {
 
 
                 changeClientStatus({
@@ -363,7 +364,7 @@ function rightArrowClickHandler(client_id, vacancy_id) {
                     document.dispatchEvent(clientUpdateInVacancyEvent)
                 })
 
-            } else if (arr[ind].textContent === 'Поданий в візовий центр') {
+            } else if (arr[ind].textContent === 'Документи подані') {
                 changeClientStatus({
                     id: client_id,
                     status: '5'
@@ -585,7 +586,7 @@ function forEachStatus(tippy, client_id, vacancy_id, storage) {
             })
             controls.classList.add('ready')
 
-        } else if (this.textContent === 'Поданий в візовий центр') {
+        } else if (this.textContent === 'Документи подані') {
 
             changeClientStatus({
                 id: client_id,
