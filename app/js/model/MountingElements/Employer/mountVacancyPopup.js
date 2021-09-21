@@ -2,7 +2,7 @@ import {
     CheckBoxVacancyEarlier,
     VacancyPopupType,
     VacancyPopupTerm
-} from '../../Components/Employer/VacancyPopup'
+} from '../../Components/Employer/VacancyPopupComponent'
 import {mount} from '../../../../libs/libs'
 
 
@@ -35,6 +35,13 @@ let part1Data = [
         id: 'work-chbx',
         label: 'Робоча',
         name: 'job',
+        str: 'vacancy_type',
+        filter: 'vacancyTypeFilter'
+    },
+    {
+        id: 'holydays-chbx',
+        label: 'Канікули',
+        name: 'holydays',
         str: 'vacancy_type',
         filter: 'vacancyTypeFilter'
     }

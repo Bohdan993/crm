@@ -3,7 +3,7 @@ import Feedback, {
     globalID as gID,
     globalFeedback as gFB
 } from '../../../Components/FeedbackComponent'
-import Loader from '../../../Components/Loader'
+import Loader from '../../../Components/LoaderComponent'
 import {
     mount,
     place

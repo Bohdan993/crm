@@ -1,4 +1,4 @@
-import SortingPopup from '../../Components/SortingPopup'
+import SortingPopup from '../../Components/SortingPopupComponent'
 import {
     list,
     mount

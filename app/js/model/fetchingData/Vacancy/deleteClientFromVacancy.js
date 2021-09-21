@@ -3,11 +3,12 @@ import {toastr} from '../../../../libs/libs'
 
 
 const deleteClientFromVacancy = async ({
-                                           id = ''
+                                           id = '',
+                                           message
                                        } = {}) => {
 
     try {
-        const clients = await fetch.getResourse(`/vacancies/delete_client/?id=${id}`)
+        const clients = await fetch.getResourse(`/vacancies/delete_client/?id=${id}&message=${message}`)
         if (clients.success === true) {
             toastr.success(`ID клієнта ${id}`, 'Успішно видалений клієнт', {closeButton: false})
         } else {

@@ -598,10 +598,19 @@
 
   .common-info__social {
     margin-bottom: 15px;
-    input {
-      background: @sky-blue;
-    }
+    // input {
+    //   background: @sky-blue;
+    // }
   }
+
+  .social-link + input {
+    background: @sky-blue;
+  }
+
+  .whatsapp-group {
+    width: 100%;
+  }
+
 
   .common-info__more-info_inner-left {
     flex-basis: 365/730 * 100%;
@@ -611,12 +620,13 @@
     flex-basis: 318/730 * 100%;
     display: flex;
     flex-wrap: wrap;
-    align-content: flex-end;
+    align-content: flex-start;
   }
 
   .common-info__more-info-mediator {
     margin-bottom: 12px;
     width: 100%;
+    max-width: 160px;
   }
 
   .common-info__more-info-source {
@@ -1054,6 +1064,17 @@
     width: 100%;
     opacity: 1;
     transition: opacity 0.25s linear;
+    &.hidden {
+      opacity: 0;
+    }
+  }
+ }
+
+ .media-vacancy {
+  .media__layer {
+    width: 100%;
+    opacity: 1;
+    transition: opacity .25s linear;
     &.hidden {
       opacity: 0;
     }
@@ -1506,7 +1527,8 @@
 
 //////////////////////////////////////
 
-.contact-history-modal {
+.contact-history-modal,
+.client-delete-reason-modal {
   background: @main-color;
   max-width: 800px;
   width: 100%;
@@ -1546,7 +1568,19 @@
   }
 }
 
-.contact-history-modal__header {
+.client-delete-reason-modal {
+  .input-group {
+    width: 100%;
+    color:@white;
+  }
+
+  input[type=radio] {
+    display: none;
+  }
+}
+
+.contact-history-modal__header,
+.client-delete-reason-modal__header {
   margin-bottom: 20px;
   width: 100%;
   display: flex;
@@ -1556,7 +1590,8 @@
 
  
 
-  .contact-history-modal__block {
+  .contact-history-modal__block,
+  .client-delete-reason-modal__block {
     &:not(:last-child) {
       margin-right: 20px;
     }
@@ -1639,7 +1674,8 @@
   }
 }
 
-.contact-history-modal__block {
+.contact-history-modal__block,
+.client-delete-reason-modal__block {
   color: @white;
   font-size: 12/14 * 1rem;
    p {
@@ -1647,7 +1683,8 @@
     }
 }
 
-.contact-history-modal__body {
+.contact-history-modal__body,
+.client-delete-reason-modal__body {
   margin-bottom: 30px;
   .info-area {
     resize: none;

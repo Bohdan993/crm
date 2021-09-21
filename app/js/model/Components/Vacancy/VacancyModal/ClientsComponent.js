@@ -5,7 +5,7 @@ import {
     tippy,
     Autocomplete
 } from '../../../../../libs/libs'
-import TableVacancyClient from '../VacancyClients'
+import TableVacancyClient from '../VacancyClientsComponent'
 import showFullClientsRow from '../../../vacancy/showFullClientsRow'
 import addClientToVacancy from '../../../fetchingData/Vacancy/VacancyModal/addClientToVacancy'
 import clientAddToVacancyEvent from '../../../CustomEvents/clientAddToVacancyEvent'

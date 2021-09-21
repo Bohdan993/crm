@@ -2,13 +2,10 @@ import getEmployersList from './fetchingData/Employer/getEmployersList'
 import getVacancyList from './fetchingData/Vacancy/getVacancyList'
 import {
     tippy,
-    createSingleton,
     hideAll,
     sticky,
-    delegate
 } from '../../libs/libs'
 import {
-    throttle,
     debounce
 } from './helper'
 import {
@@ -22,19 +19,11 @@ import {
     intermediariesTemplate,
     vacanciesTemplate,
     sortingTemplate,
-    // typeFeedbackTemplate,
-    // choiceClientTemplate,
-    body,
     selectingTemplate,
     statusTemplate,
     typeWorkTemplate,
     dateTermsTemplate,
-    employerTypeTemplate,
-    employerTypeTemplate2,
-    workTypeTemplate,
-    pricePopupTemplate,
-    // choiceClientTemplate2
-    // statusChangeTemplate	
+
 
 } from '../view'
 
@@ -65,12 +54,6 @@ const initTooltips = () => {
     if (sortingTemplate) {
         sortingTemplate.style.display = 'block';
     }
-    // if (typeFeedbackTemplate) {
-    //     typeFeedbackTemplate.style.display = 'block'
-    // }
-    // if (choiceClientTemplate) {
-    //     choiceClientTemplate.style.display = 'block'
-    // }
     if (statusTemplate) {
         statusTemplate.style.display = 'block'
     }
@@ -86,24 +69,6 @@ const initTooltips = () => {
     if (dateTermsTemplate) {
         dateTermsTemplate.style.display = 'block'
     }
-    if (employerTypeTemplate) {
-        employerTypeTemplate.style.display = 'block'
-    }
-    if (workTypeTemplate) {
-        workTypeTemplate.style.display = 'block'
-    }
-    if (pricePopupTemplate) {
-        pricePopupTemplate.style.display = 'block'
-    }
-    if (employerTypeTemplate2) {
-        employerTypeTemplate2.style.display = 'block'
-    }
-    // if (choiceClientTemplate2) {
-    //     choiceClientTemplate2.style.display = 'block'
-    // }
-
-    /////////////////////////////////////////////////////
-
 
     /////////////////////////////////////////
     initSidebarTooltip('.country-filter-wrapper', countryTemplate)
@@ -133,13 +98,7 @@ const initTooltips = () => {
     initSidebarTooltip('.date-terms-filter-wrapper', dateTermsTemplate)
     ////////////////////////////////////////////////////////////////////////////////
     initSidebarTooltip('.managers-filter-wrapper-vacancy', managersTemplate)
-
-
     ////////////////////////////////////////////////////////////////////////////////
-    // initWorkModalTooltip('.row.feedback', '.add-feedback-form .modal-row__feedback-ico', typeFeedbackTemplate)
-    // initWorkModalTooltip('.row.feedback', '.add-feedback-form .modal-row__feedback-choise', choiceClientTemplate)
-    // initWorkModalTooltip('.row.clients', '.clients .modal-row__controls .add-item', choiceClientTemplate2)
-    /////////////////////////////////////////////////////////////////////////////////
 
 
 }
@@ -554,5 +513,4 @@ export {
     initRowTooltips, // to './Components/Employer/EmployerRow.js'
     initWorkModalTooltip, // to './Components/FeedbackComponent'
     initVacancyTooltip
-    // initVacancyModalTooltip
 }

@@ -1,15 +1,15 @@
 import fetch from '../../fetchingDataClass'
 import getVacancyClients from '../getVacancyClients'
-import ModalRowLayerLeft from '../../../Components/Vacancy/VacancyModal/ModalRowLayerLeft'
-import ModalRowLayerRight from '../../../Components/Vacancy/VacancyModal/ModalRowLayerRight'
+import ModalRowLayerLeft from '../../../Components/Vacancy/VacancyModal/ModalRowLayerLeftComponent'
+import ModalRowLayerRight from '../../../Components/Vacancy/VacancyModal/ModalRowLayerRightComponent'
 import Note from '../../../Components/ModalSidebarNoteComponent'
 import Delete from '../../../Components/DeleteComponent'
 import ManagerSelect from '../../../Components/ManagerSelectComponent'
-import Loader from '../../../Components/Loader'
+import Loader from '../../../Components/LoaderComponent'
 import ClientsComponent from '../../../Components/Vacancy/VacancyModal/ClientsComponent'
 import TermsComponent from '../../../Components/Vacancy/VacancyModal/TermsComponent'
 import DemandComponent from '../../../Components/Vacancy/VacancyModal/DemandsComponent'
-import ArchiveCopyVacancyComponent from '../../../Components/Vacancy/VacancyModal/ArchiveCopyVacancy'
+import ArchiveCopyVacancyComponent from '../../../Components/Vacancy/VacancyModal/ArchiveCopyVacancyComponent'
 import {
     mount,
     place
@@ -132,6 +132,7 @@ const getVacancyModalInfo = async (id = '1', isNewVacancy = false) => {
             id,
             startWork: mainPart.start_work,
             period: mainPart.period,
+            period_day: mainPart.period_day,
             salary: mainPart.salary,
             residency: mainPart.residency,
             feeding: mainPart.feeding,
@@ -154,6 +155,7 @@ const getVacancyModalInfo = async (id = '1', isNewVacancy = false) => {
             closedVacancies,
             vacancyName: mainPart.name,
             period: mainPart.period,
+            period_day: mainPart.period_day,
             clients: mainPart.total_client,
             men: mainPart.total_man,
             women: mainPart.total_woman,

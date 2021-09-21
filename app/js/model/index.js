@@ -7,17 +7,13 @@ import initWorkModalSelect from './initWorkModalSelect'
 import sidebarSearchInput from './sidebarSearchInput'
 
 import checkIfWrapperIsEmpty from './checkIfWrapperIsEmpty'
-import addNewTask from './addNewTask'
 import deleteTask from './deleteTask'
-import setFeedbackDate from './setFeedbacklDate'
-import addFeedbackForm from './addfeedbackForm'
 import switchModalParts from './switchModalParts'
 import changeDirection from './changeDirection'
 import feedbackEdit from './feedbackEdit'
 
 import showFullRow from './vacancy/showFullRow'
 import switchRowStatuses from './vacancy/switchRowStatuses'
-import showChooseBlockFullInfo from './vacancy/showChooseBlockFullInfo'
 import showFullClientsRow from './vacancy/showFullClientsRow'
 
 
@@ -57,8 +53,8 @@ import mountSearchInputVacancy from './MountingElements/Vacancy/mountSearch'
 import mountDateAndTermsPopup from './MountingElements/Vacancy/mountDateAndTermsPopup'
 import mountActiveArchive from './MountingElements/Vacancy/mountActiveArchiveComponent'
 import mountVacancyList from './MountingElements/Vacancy/mountVacancyList'
-
 import mountVacancyStatusesPopup from './MountingElements/Vacancy/mountVacancyStatusesPopup'
+import mountClientDeleteReasonModalComponent from './MountingElements/Vacancy/mountClientDeleteReasonModalComponent'
 
 
 export {
@@ -71,13 +67,9 @@ export {
     sidebarSearchInput,
 
     checkIfWrapperIsEmpty,
-    addNewTask,
     deleteTask,
-    setFeedbackDate,
-    addFeedbackForm,
     showFullRow,
     switchRowStatuses,
-    showChooseBlockFullInfo,
     showFullClientsRow,
     switchModalParts,
     changeDirection,
@@ -91,7 +83,6 @@ export {
     getManufacturyTypePopup,
     getTypeContact,
     getClients,
-    // fetchScroll,
     mountSearchInput,
     mountContactDataPopup,
     mountLastContactPopup,
@@ -115,5 +106,6 @@ export {
     employerFetchScroll,
     mountVacancyList,
     checkIfAddNewEmployer,
-    checkIfAddNewVacancy
+    checkIfAddNewVacancy,
+    mountClientDeleteReasonModalComponent
 }

@@ -1,4 +1,4 @@
-import ManagerPopupList from '../../Components/Employer/ManagerPopup'
+import ManagerPopupList from '../../Components/Employer/ManagerPopupComponent'
 import GetManagers from '../getManagersClass'
 
 

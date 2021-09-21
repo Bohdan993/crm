@@ -1,4 +1,4 @@
-import StagesOfVacanciesPopup from '../../Components/Vacancy/StagesOfVacanciesPopup'
+import StagesOfVacanciesPopup from '../../Components/Vacancy/StagesOfVacanciesPopupComponent'
 import {list, mount} from '../../../../libs/libs'
 
 const stagesPopup = document.querySelector('#status-popup')

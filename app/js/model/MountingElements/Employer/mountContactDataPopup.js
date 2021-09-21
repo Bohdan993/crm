@@ -1,4 +1,4 @@
-import ContactDataPopup from '../../Components/Employer/ContactDataPopup'
+import ContactDataPopup from '../../Components/Employer/ContactDataPopupComponent'
 import {list, mount, tippy} from '../../../../libs/libs'
 
 const contactPopup = document.querySelector('#contact-popup')

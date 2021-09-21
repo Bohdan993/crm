@@ -1,6 +1,6 @@
 import {
     StringsPopup
-} from '../../Components/Employer/ManagerPopup'
+} from '../../Components/Employer/ManagerPopupComponent'
 import {
     mount
 } from '../../../../libs/libs'

@@ -1,4 +1,4 @@
-import SearchInput from '../../Components/SearchInput'
+import SearchInput from '../../Components/SearchInputComponent'
 import {el, mount, place} from '../../../../libs/libs'
 
 

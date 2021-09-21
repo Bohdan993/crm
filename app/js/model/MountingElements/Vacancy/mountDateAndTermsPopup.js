@@ -1,4 +1,4 @@
-import DateAndTerms from '../../Components/Vacancy/DateAndTermsPopup'
+import DateAndTerms from '../../Components/Vacancy/DateAndTermsPopupComponent'
 import {list, mount} from '../../../../libs/libs'
 import {datePopup} from '../../../view/vacancy'
 

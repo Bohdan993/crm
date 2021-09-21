@@ -1,4 +1,4 @@
-import LastContactPopup from '../../Components/Employer/LastContactPopup'
+import LastContactPopup from '../../Components/Employer/LastContactPopupComponent'
 import {list, mount, tippy} from '../../../../libs/libs'
 
 const lastContactPopup = document.querySelector('#last-contact-popup')

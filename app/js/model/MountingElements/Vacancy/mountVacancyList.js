@@ -1,5 +1,5 @@
-import VacancyList from '../../Components/Vacancy/VacancyList'
-import Loader from '../../Components/Loader'
+import VacancyList from '../../Components/Vacancy/VacancyListComponent'
+import Loader from '../../Components/LoaderComponent'
 import {
     mount,
     place

@@ -11,6 +11,7 @@ import {
 } from '../../helper'
 import unloadHandler from './VacancyModal/deleteNewVacancyOnUnload'
 import getVacancyModalInfo from '../../fetchingData/Vacancy/VacancyModal/getVacancyModalInfo'
+import getWorkModalMedia from '../../fetchingData/Employer/WorkModal/getWorkModalMedia'
 import getWorkModalFeedback from '../../fetchingData/Employer/WorkModal/getWorkModalFeedback'
 import getWorkModalTasks from '../../fetchingData/Employer/WorkModal/getWorkModalTasks'
 import {
@@ -79,7 +80,11 @@ async function onAddVacancy(id = null) {
 
                         await getVacancyModalInfo(vacancy.data.main.id_vacancy, true)
 
-
+                        await getWorkModalMedia({
+                            id: id || JSON.parse(sessionStorage.getItem('currVacancyEmployer')).id,
+                            loading: true
+                        })
+                        
                         await getWorkModalFeedback({
                             id: id || JSON.parse(sessionStorage.getItem('currVacancyEmployer')).id,
                             loading: true,

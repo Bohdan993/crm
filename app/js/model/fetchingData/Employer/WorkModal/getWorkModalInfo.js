@@ -1,11 +1,11 @@
 import fetch from '../../fetchingDataClass'
-import WorkModal from '../../../Components/Employer/WorkModal/WorkModal'
+import WorkModal from '../../../Components/Employer/WorkModal/WorkModalComponent'
 import Note from '../../../Components/ModalSidebarNoteComponent'
 import Delete from '../../../Components/DeleteComponent'
-import WorkModalMailing from '../../../Components/Employer/WorkModal/WorkModalMailing'
+import WorkModalMailing from '../../../Components/Employer/WorkModal/WorkModalMailingComponent'
 import ManagerSelect from '../../../Components/ManagerSelectComponent'
-import Loader from '../../../Components/Loader'
-import WorkModalCreateVacancy from '../../../Components/Employer/WorkModal/WorkModalCreateVacancy'
+import Loader from '../../../Components/LoaderComponent'
+import WorkModalCreateVacancy from '../../../Components/Employer/WorkModal/WorkModalCreateVacancyComponent'
 import {
     mount,
     place

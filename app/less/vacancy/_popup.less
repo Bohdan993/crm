@@ -17,6 +17,16 @@
 		
 	}
 
+	.radio-group-type-2 {
+		.input-group {
+			width: auto;
+
+			&:not(:last-child) {
+				margin-right: 10px;
+			}
+		}
+	}
+
 	 input:checked {
         & + [for="season-chbx"] {
             background: @hot
@@ -30,7 +40,16 @@
         & + [for="work-chbx"] {
             background: @blue
         }
+
+		& + [for="holydays-chbx"] {
+			background: @yellow
+		}
     }
+
+	fieldset:not(:last-child) {
+		padding-bottom: unset;
+		border-bottom: unset;
+	}
 
 }
 
@@ -309,6 +328,10 @@
         input:checked + [for="radio-work-rbtn-1"] {
             background: @blue;
         }
+
+		input:checked+[for="radio-holydays-rbtn-1"] {
+			background: @yellow;
+		}
 
 
     }

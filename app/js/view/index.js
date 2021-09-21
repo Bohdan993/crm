@@ -21,10 +21,7 @@ const statusTemplate = document.querySelector('#status-popup')
 const selectingTemplate = document.querySelector('#selecting-popup')
 const typeWorkTemplate = document.querySelector('#type-work-popup')
 const dateTermsTemplate = document.querySelector('#date-terms-popup')
-const employerTypeTemplate = document.querySelector('#employer-type-popup')
-const employerTypeTemplate2 = document.querySelector('#employer-type-popup2')
-const workTypeTemplate = document.querySelector('#work-type-popup')
-const pricePopupTemplate = document.querySelector('#price-popup')
+
 
 
 ///WorkModal elements
@@ -47,10 +44,7 @@ const mediaShowMore = document.querySelector('.work-modal .media .show-more')
 const modalRowLayer = document.querySelectorAll('.work-modal .modal-row__layer')
 const contactsHistory = document.querySelector('.work-modal .contacts-history')
 const contactsHistoryShowMore = document.querySelector('.work-modal .contacts-history .show-more')
-// const commonInfoContactPersonArea = document.querySelector('.common-info__contact-person-area')
-// const commonInfoManufacturyArea = document.querySelector('.common-info__manufactury-area')
-// const commonInfoPhone = document.querySelector('#common-info-phone')
-// const commonInfoEmail = document.querySelector('#common-info-email')
+
 
 
 const vacanciesHistory = document.querySelector('.work-modal .vacancies-history')
@@ -61,11 +55,6 @@ const manufacturyType = document.querySelector('.work-modal .manufactury-type')
 
 const contactsHistoryAddItem = document.querySelector('.work-modal .contacts-history .add-item')
 
-const workModalFeedbackDate = document.querySelector('.work-modal .modal-row__feedback-date input')
-const modal2ContactDate = document.querySelector('#modal-2 .date-block input')
-
-const feedbackAddItem = document.querySelector('.work-modal .feedback .add-item')
-const addfeedbackForm = document.querySelector('.work-modal .feedback .add-feedback-form')
 
 const modalSwitchers = document.querySelectorAll('[data-part]')
 const modalParts = document.querySelectorAll('.my-modal-part')
@@ -149,12 +138,8 @@ export {
     contactsHistoryAddItem,
     workModalMediaLayer,
     mediaShowMore,
-    workModalFeedbackDate,
     modal2ManagerSelect,
     modal2ContactSelect,
-    modal2ContactDate,
-    feedbackAddItem,
-    addfeedbackForm,
     statusTemplate,
     selectingTemplate,
     vacancyRows,
@@ -162,15 +147,11 @@ export {
     typeWorkTemplate,
     dateTermsTemplate,
     sliders,
-    employerTypeTemplate,
-    employerTypeTemplate2,
     findEmployer,
     chooseEmployer,
     chooseProductType,
-    workTypeTemplate,
     chooseFullInfo,
     mainInfoChooseBlock,
-    pricePopupTemplate,
     switcher,
     findEmployer2,
     chooseEmployer2,
@@ -204,8 +185,4 @@ export {
     sidebarStatNumsVacancy,
     sidebarMailingItem,
     createVacancyItem,
-    // commonInfoContactPersonArea,
-    // commonInfoManufacturyArea,
-    // commonInfoPhone,
-    // commonInfoEmail
 }

@@ -1,5 +1,5 @@
 import fetch from '../fetchingDataClass'
-import CountryPopup from '../../Components/CountryPopup'
+import CountryPopup from '../../Components/CountryPopupComponent'
 import {list, mount} from '../../../../libs/libs'
 
 const countryPopup = document.querySelector('#country-popup-vacancy .flex-form')

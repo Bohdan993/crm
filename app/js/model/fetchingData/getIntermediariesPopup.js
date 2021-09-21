@@ -1,5 +1,5 @@
 import fetch from './fetchingDataClass'
-import IntermediariesPopup from '../Components/Employer/IntermediariesPopup'
+import IntermediariesPopup from '../Components/Employer/IntermediariesPopupComponent'
 import {list, mount} from '../../../libs/libs'
 
 // if(managersTemplate) {

@@ -1,99 +1,64 @@
 import changeClientStatus from '../fetchingData/Vacancy/changeClientStatus'
-import deleteClientFromVacancy from '../fetchingData/Vacancy/deleteClientFromVacancy'
 import storage from '../Storage'
 import vacancyStorage from '../Storage/globalVacancies'
 import clientUpdateInVacancyEvent from '../CustomEvents/clientUpdateInVacancyEvent'
-import clientDeleteFromVacancyEvent from '../CustomEvents/clientDeleteFromVacancyEvent'
-import checkIfAllVacancyClientsReady from '../fetchingData/Vacancy/checkIfAllVacancyClientsReady'
+import {
+    modal
+} from '../../model/MountingElements/Vacancy/mountClientDeleteReasonModalComponent'
+import {
+    calculate
+} from './../calculate'
+import {
+    addMouseUpTrigger,
+    closeModal,
+    close
+} from '../helper'
 
-
-const switchRowStatusesTip = function (client_id, vacancy_id) {
-
-
+export const switchRowStatusesTip = function (client_id, vacancy_id) {
     let instance = this._tippy
     let instanseStatuses = instance.popper.querySelectorAll('.status')
 
     instanseStatuses.forEach(status => {
         let bindedHandler = forEachStatus.bind(status, instance, client_id, vacancy_id, storage)
-        status.addEventListener('click', bindedHandler, {
-            'once': true
-        })
+        status.addEventListener('click', bindedHandler)
     })
 }
 
 
-export {
-    switchRowStatusesTip
+function changeClientsStatusAndUpdateUI(status_id, vacancy_id, client_id, sliderClazz) {
+    changeClientStatus({
+        id: client_id,
+        status: status_id
+    }).then(res => {
+        storage.setAndUpdatePartialState(vacancy_id, status_id, 'data', client_id)
+        clientUpdateInVacancyEvent.detail.id = String(vacancy_id)
+        clientUpdateInVacancyEvent.detail.clientId = String(client_id)
+        clientUpdateInVacancyEvent.detail.statusId = status_id
+        clientUpdateInVacancyEvent.detail.clazz = sliderClazz
+        const {
+            indicators,
+            statuses
+        } = calculate(vacancy_id, 'update', storage, vacancyStorage)
+        clientUpdateInVacancyEvent.detail.indicatorsArr = indicators
+        clientUpdateInVacancyEvent.detail.statusesArr = statuses
+
+        document.dispatchEvent(clientUpdateInVacancyEvent)
+    })
+
 }
 
 
 const switchRowStatuses = function (el, client_id, vacancy_id) {
-
-
     let leftArrow = el.querySelector('.cell-status__control-left')
     let rightArrow = el.querySelector('.cell-status__control-right')
     let slider = el.querySelector('.cell-status__slider')
 
     leftArrow.addEventListener('click', leftArrowClickHandler.bind(leftArrow, client_id, vacancy_id))
     rightArrow.addEventListener('click', rightArrowClickHandler.bind(rightArrow, client_id, vacancy_id))
-
 }
 
 
 export default switchRowStatuses // to ../Components/Vacancy/VacancyClientsRow
-
-
-const calculate = function (vacancy_id, type = 'update') {
-
-    const indicatorsClasses = ['decline', 'choosen', 'ready', 'wait', 'department', 'busy']
-    const data = storage.getState(vacancy_id)
-    let declineCount = +vacancyStorage.getPartialState(vacancy_id, 'id_vacancy', 'status')[0]
-
-    const countObj = {
-        decline: type === 'delete' ? ++declineCount : declineCount,
-        choose: 0,
-        ready: 0,
-        wait: 0,
-        department: 0,
-        busy: 0
-    }
-
-
-    const statusesArr = data.data.map(el => {
-        return el.vacancy.id_status
-    })
-
-    statusesArr.forEach(el => {
-        if (el === '1' || el === '2') {
-            countObj.choose++
-        } else if (el === '3' || el === '4') {
-            countObj.ready++
-        } else if (el === '5') {
-            countObj.wait++
-        } else if (el === '6' || el === '7' || el === '8') {
-            countObj.department++
-        } else if (el === '9') {
-            countObj.busy++
-        }
-    })
-
-    const statuses = Object.values(countObj)
-
-    const indicatorsArr = statuses.map((el, i) => {
-        return {
-            number: el,
-            class: indicatorsClasses[i]
-        }
-    })
-
-    vacancyStorage.setPartialState(vacancy_id, 'id_vacancy', 'status', statuses)
-
-
-    return {
-        indicators: indicatorsArr,
-        statuses
-    }
-}
 
 
 function leftArrowClickHandler(client_id, vacancy_id) {
@@ -105,182 +70,37 @@ function leftArrowClickHandler(client_id, vacancy_id) {
     let flag = false
     let sliderClazz = instance.reference.classList[2]
 
+
     slider.forEach((elem, ind, arr) => {
         if (elem.classList.contains('active') && !flag) {
-
             elem.classList.remove('active')
             ind = ind === 0 ? 0 : ind - 1
             arr[ind].classList.add('active')
-
             if (arr[ind].textContent === 'Підготовка CV') {
-
-                changeClientStatus({
-                    id: client_id,
-                    status: '1'
-                }).then(res => {
-                    storage.setAndUpdatePartialState(vacancy_id, '1', 'data', client_id)
-                    clientUpdateInVacancyEvent.detail.id = String(vacancy_id)
-                    clientUpdateInVacancyEvent.detail.clientId = String(client_id)
-                    clientUpdateInVacancyEvent.detail.statusId = '1'
-                    clientUpdateInVacancyEvent.detail.clazz = sliderClazz
-                    const {
-                        indicators,
-                        statuses
-                    } = calculate(vacancy_id)
-                    clientUpdateInVacancyEvent.detail.indicatorsArr = indicators
-                    clientUpdateInVacancyEvent.detail.statusesArr = statuses
-
-                    document.dispatchEvent(clientUpdateInVacancyEvent)
-                })
-
+                changeClientsStatusAndUpdateUI('1', vacancy_id, client_id, sliderClazz)
             } else if (arr[ind].textContent === 'CV відправлено') {
-                changeClientStatus({
-                    id: client_id,
-                    status: '2'
-                }).then(res => {
-                    storage.setAndUpdatePartialState(vacancy_id, '2', 'data', client_id)
-                    clientUpdateInVacancyEvent.detail.id = String(vacancy_id)
-                    clientUpdateInVacancyEvent.detail.clientId = String(client_id)
-                    clientUpdateInVacancyEvent.detail.statusId = '2'
-                    clientUpdateInVacancyEvent.detail.clazz = sliderClazz
-                    const {
-                        indicators,
-                        statuses
-                    } = calculate(vacancy_id)
-                    clientUpdateInVacancyEvent.detail.indicatorsArr = indicators
-                    clientUpdateInVacancyEvent.detail.statusesArr = statuses
-
-                    document.dispatchEvent(clientUpdateInVacancyEvent)
-                })
-
+                changeClientsStatusAndUpdateUI('2', vacancy_id, client_id, sliderClazz)
             } else if (arr[ind].textContent === 'Затверджений') {
-
-                changeClientStatus({
-                    id: client_id,
-                    status: '3'
-                }).then(res => {
-                    storage.setAndUpdatePartialState(vacancy_id, '3', 'data', client_id)
-                    clientUpdateInVacancyEvent.detail.id = String(vacancy_id)
-                    clientUpdateInVacancyEvent.detail.clientId = String(client_id)
-                    clientUpdateInVacancyEvent.detail.statusId = '3'
-                    clientUpdateInVacancyEvent.detail.clazz = sliderClazz
-                    const {
-                        indicators,
-                        statuses
-                    } = calculate(vacancy_id)
-                    clientUpdateInVacancyEvent.detail.indicatorsArr = indicators
-                    clientUpdateInVacancyEvent.detail.statusesArr = statuses
-
-                    document.dispatchEvent(clientUpdateInVacancyEvent)
-                })
-
+                changeClientsStatusAndUpdateUI('3', vacancy_id, client_id, sliderClazz)
             } else if (arr[ind].textContent === 'Контракт підписаний') {
-
-                changeClientStatus({
-                    id: client_id,
-                    status: '4'
-                }).then(res => {
-                    storage.setAndUpdatePartialState(vacancy_id, '4', 'data', client_id)
-                    clientUpdateInVacancyEvent.detail.id = String(vacancy_id)
-                    clientUpdateInVacancyEvent.detail.clientId = String(client_id)
-                    clientUpdateInVacancyEvent.detail.statusId = '4'
-                    clientUpdateInVacancyEvent.detail.clazz = sliderClazz
-                    const {
-                        indicators,
-                        statuses
-                    } = calculate(vacancy_id)
-                    clientUpdateInVacancyEvent.detail.indicatorsArr = indicators
-                    clientUpdateInVacancyEvent.detail.statusesArr = statuses
-
-                    document.dispatchEvent(clientUpdateInVacancyEvent)
-                })
-
+                changeClientsStatusAndUpdateUI('4', vacancy_id, client_id, sliderClazz)
+            } else if (arr[ind].textContent === 'Поданий в ВА') {
+                changeClientsStatusAndUpdateUI('5', vacancy_id, client_id, sliderClazz)
+            } else if (arr[ind].textContent === 'Рішення ВА отримано') {
+                changeClientsStatusAndUpdateUI('6', vacancy_id, client_id, sliderClazz)
             } else if (arr[ind].textContent === 'Документи подані') {
-
-
-                changeClientStatus({
-                    id: client_id,
-                    status: '5'
-                }).then(res => {
-                    storage.setAndUpdatePartialState(vacancy_id, '5', 'data', client_id)
-                    clientUpdateInVacancyEvent.detail.id = String(vacancy_id)
-                    clientUpdateInVacancyEvent.detail.clientId = String(client_id)
-                    clientUpdateInVacancyEvent.detail.statusId = '5'
-                    clientUpdateInVacancyEvent.detail.clazz = sliderClazz
-                    const {
-                        indicators,
-                        statuses
-                    } = calculate(vacancy_id)
-                    clientUpdateInVacancyEvent.detail.indicatorsArr = indicators
-                    clientUpdateInVacancyEvent.detail.statusesArr = statuses
-
-                    document.dispatchEvent(clientUpdateInVacancyEvent)
-                })
-
+                changeClientsStatusAndUpdateUI('7', vacancy_id, client_id, sliderClazz)
             } else if (arr[ind].textContent === 'Отримав рішення') {
-
-                changeClientStatus({
-                    id: client_id,
-                    status: '6'
-                }).then(res => {
-                    storage.setAndUpdatePartialState(vacancy_id, '6', 'data', client_id)
-                    clientUpdateInVacancyEvent.detail.id = String(vacancy_id)
-                    clientUpdateInVacancyEvent.detail.clientId = String(client_id)
-                    clientUpdateInVacancyEvent.detail.statusId = '6'
-                    clientUpdateInVacancyEvent.detail.clazz = sliderClazz
-                    const {
-                        indicators,
-                        statuses
-                    } = calculate(vacancy_id)
-                    clientUpdateInVacancyEvent.detail.indicatorsArr = indicators
-                    clientUpdateInVacancyEvent.detail.statusesArr = statuses
-
-                    document.dispatchEvent(clientUpdateInVacancyEvent)
-                })
-
-            } else if (arr[ind].textContent === 'Забрав рішення') {
-
-                changeClientStatus({
-                    id: client_id,
-                    status: '7'
-                }).then(res => {
-                    storage.setAndUpdatePartialState(vacancy_id, '7', 'data', client_id)
-                    clientUpdateInVacancyEvent.detail.id = String(vacancy_id)
-                    clientUpdateInVacancyEvent.detail.clientId = String(client_id)
-                    clientUpdateInVacancyEvent.detail.statusId = '7'
-                    clientUpdateInVacancyEvent.detail.clazz = sliderClazz
-                    const {
-                        indicators,
-                        statuses
-                    } = calculate(vacancy_id)
-                    clientUpdateInVacancyEvent.detail.indicatorsArr = indicators
-                    clientUpdateInVacancyEvent.detail.statusesArr = statuses
-
-                    document.dispatchEvent(clientUpdateInVacancyEvent)
-                })
-
+                changeClientsStatusAndUpdateUI('8', vacancy_id, client_id, sliderClazz)
+            } else if (arr[ind].textContent === 'Забрав дозвіл') {
+                changeClientsStatusAndUpdateUI('9', vacancy_id, client_id, sliderClazz)
+            } else if (arr[ind].textContent === 'Готуємо виїзд') {
+                changeClientsStatusAndUpdateUI('10', vacancy_id, client_id, sliderClazz)
             } else if (arr[ind].textContent === 'Білети куплені') {
-
-                changeClientStatus({
-                    id: client_id,
-                    status: '8'
-                }).then(res => {
-                    storage.setAndUpdatePartialState(vacancy_id, '8', 'data', client_id)
-                    clientUpdateInVacancyEvent.detail.id = String(vacancy_id)
-                    clientUpdateInVacancyEvent.detail.clientId = String(client_id)
-                    clientUpdateInVacancyEvent.detail.statusId = '8'
-                    clientUpdateInVacancyEvent.detail.clazz = sliderClazz
-                    const {
-                        indicators,
-                        statuses
-                    } = calculate(vacancy_id)
-                    clientUpdateInVacancyEvent.detail.indicatorsArr = indicators
-                    clientUpdateInVacancyEvent.detail.statusesArr = statuses
-
-                    document.dispatchEvent(clientUpdateInVacancyEvent)
-                })
+                changeClientsStatusAndUpdateUI('11', vacancy_id, client_id, sliderClazz)
+            } else if (arr[ind].textContent === 'Забрав документи') {
+                changeClientsStatusAndUpdateUI('12', vacancy_id, client_id, sliderClazz)
             }
-
             flag = true
         }
     })
@@ -305,167 +125,29 @@ function rightArrowClickHandler(client_id, vacancy_id) {
             arr[ind].classList.add('active')
 
             if (arr[ind].textContent === 'CV відправлено') {
-                changeClientStatus({
-                    id: client_id,
-                    status: '2'
-                }).then(res => {
-                    storage.setAndUpdatePartialState(vacancy_id, '2', 'data', client_id)
-                    clientUpdateInVacancyEvent.detail.id = String(vacancy_id)
-                    clientUpdateInVacancyEvent.detail.clientId = String(client_id)
-                    clientUpdateInVacancyEvent.detail.statusId = '2'
-                    clientUpdateInVacancyEvent.detail.clazz = sliderClazz
-                    const {
-                        indicators,
-                        statuses
-                    } = calculate(vacancy_id)
-                    clientUpdateInVacancyEvent.detail.indicatorsArr = indicators
-                    clientUpdateInVacancyEvent.detail.statusesArr = statuses
-
-                    document.dispatchEvent(clientUpdateInVacancyEvent)
-                })
+                changeClientsStatusAndUpdateUI('2', vacancy_id, client_id, sliderClazz)
             } else if (arr[ind].textContent === 'Затверджений') {
-                changeClientStatus({
-                    id: client_id,
-                    status: '3'
-                }).then(res => {
-                    storage.setAndUpdatePartialState(vacancy_id, '3', 'data', client_id)
-                    clientUpdateInVacancyEvent.detail.id = String(vacancy_id)
-                    clientUpdateInVacancyEvent.detail.clientId = String(client_id)
-                    clientUpdateInVacancyEvent.detail.statusId = '3'
-                    clientUpdateInVacancyEvent.detail.clazz = sliderClazz
-                    const {
-                        indicators,
-                        statuses
-                    } = calculate(vacancy_id)
-                    clientUpdateInVacancyEvent.detail.indicatorsArr = indicators
-                    clientUpdateInVacancyEvent.detail.statusesArr = statuses
-
-                    document.dispatchEvent(clientUpdateInVacancyEvent)
-                })
-
+                changeClientsStatusAndUpdateUI('3', vacancy_id, client_id, sliderClazz)
             } else if (arr[ind].textContent === 'Контракт підписаний') {
-
-                changeClientStatus({
-                    id: client_id,
-                    status: '4'
-                }).then(res => {
-                    storage.setAndUpdatePartialState(vacancy_id, '4', 'data', client_id)
-                    clientUpdateInVacancyEvent.detail.id = String(vacancy_id)
-                    clientUpdateInVacancyEvent.detail.clientId = String(client_id)
-                    clientUpdateInVacancyEvent.detail.statusId = '4'
-                    clientUpdateInVacancyEvent.detail.clazz = sliderClazz
-                    const {
-                        indicators,
-                        statuses
-                    } = calculate(vacancy_id)
-                    clientUpdateInVacancyEvent.detail.indicatorsArr = indicators
-                    clientUpdateInVacancyEvent.detail.statusesArr = statuses
-
-                    document.dispatchEvent(clientUpdateInVacancyEvent)
-                })
-
+                changeClientsStatusAndUpdateUI('4', vacancy_id, client_id, sliderClazz)
+            } else if (arr[ind].textContent === 'Поданий в ВА') {
+                changeClientsStatusAndUpdateUI('5', vacancy_id, client_id, sliderClazz)
+            } else if (arr[ind].textContent === 'Рішення ВА отримано') {
+                changeClientsStatusAndUpdateUI('6', vacancy_id, client_id, sliderClazz)
             } else if (arr[ind].textContent === 'Документи подані') {
-                changeClientStatus({
-                    id: client_id,
-                    status: '5'
-                }).then(res => {
-                    storage.setAndUpdatePartialState(vacancy_id, '5', 'data', client_id)
-                    clientUpdateInVacancyEvent.detail.id = String(vacancy_id)
-                    clientUpdateInVacancyEvent.detail.clientId = String(client_id)
-                    clientUpdateInVacancyEvent.detail.statusId = '5'
-                    clientUpdateInVacancyEvent.detail.clazz = sliderClazz
-                    const {
-                        indicators,
-                        statuses
-                    } = calculate(vacancy_id)
-                    clientUpdateInVacancyEvent.detail.indicatorsArr = indicators
-                    clientUpdateInVacancyEvent.detail.statusesArr = statuses
-
-                    document.dispatchEvent(clientUpdateInVacancyEvent)
-                })
+                changeClientsStatusAndUpdateUI('7', vacancy_id, client_id, sliderClazz)
             } else if (arr[ind].textContent === 'Отримав рішення') {
-                changeClientStatus({
-                    id: client_id,
-                    status: '6'
-                }).then(res => {
-                    storage.setAndUpdatePartialState(vacancy_id, '6', 'data', client_id)
-                    clientUpdateInVacancyEvent.detail.id = String(vacancy_id)
-                    clientUpdateInVacancyEvent.detail.clientId = String(client_id)
-                    clientUpdateInVacancyEvent.detail.statusId = '6'
-                    clientUpdateInVacancyEvent.detail.clazz = sliderClazz
-                    const {
-                        indicators,
-                        statuses
-                    } = calculate(vacancy_id)
-                    clientUpdateInVacancyEvent.detail.indicatorsArr = indicators
-                    clientUpdateInVacancyEvent.detail.statusesArr = statuses
-
-                    document.dispatchEvent(clientUpdateInVacancyEvent)
-                })
-
-            } else if (arr[ind].textContent === 'Забрав рішення') {
-
-                changeClientStatus({
-                    id: client_id,
-                    status: '7'
-                }).then(res => {
-                    storage.setAndUpdatePartialState(vacancy_id, '7', 'data', client_id)
-                    clientUpdateInVacancyEvent.detail.id = String(vacancy_id)
-                    clientUpdateInVacancyEvent.detail.clientId = String(client_id)
-                    clientUpdateInVacancyEvent.detail.statusId = '7'
-                    clientUpdateInVacancyEvent.detail.clazz = sliderClazz
-                    const {
-                        indicators,
-                        statuses
-                    } = calculate(vacancy_id)
-                    clientUpdateInVacancyEvent.detail.indicatorsArr = indicators
-                    clientUpdateInVacancyEvent.detail.statusesArr = statuses
-
-                    document.dispatchEvent(clientUpdateInVacancyEvent)
-                })
-
+                changeClientsStatusAndUpdateUI('8', vacancy_id, client_id, sliderClazz)
+            } else if (arr[ind].textContent === 'Забрав дозвіл') {
+                changeClientsStatusAndUpdateUI('9', vacancy_id, client_id, sliderClazz)
+            } else if (arr[ind].textContent === 'Готуємо виїзд') {
+                changeClientsStatusAndUpdateUI('10', vacancy_id, client_id, sliderClazz)
             } else if (arr[ind].textContent === 'Білети куплені') {
-
-                changeClientStatus({
-                    id: client_id,
-                    status: '8'
-                }).then(res => {
-                    storage.setAndUpdatePartialState(vacancy_id, '8', 'data', client_id)
-                    clientUpdateInVacancyEvent.detail.id = String(vacancy_id)
-                    clientUpdateInVacancyEvent.detail.clientId = String(client_id)
-                    clientUpdateInVacancyEvent.detail.statusId = '8'
-                    clientUpdateInVacancyEvent.detail.clazz = sliderClazz
-                    const {
-                        indicators,
-                        statuses
-                    } = calculate(vacancy_id)
-                    clientUpdateInVacancyEvent.detail.indicatorsArr = indicators
-                    clientUpdateInVacancyEvent.detail.statusesArr = statuses
-
-                    document.dispatchEvent(clientUpdateInVacancyEvent)
-                })
-
+                changeClientsStatusAndUpdateUI('11', vacancy_id, client_id, sliderClazz)
+            } else if (arr[ind].textContent === 'Забрав документи') {
+                changeClientsStatusAndUpdateUI('12', vacancy_id, client_id, sliderClazz)
             } else if (arr[ind].textContent === 'Працевлаштований') {
-
-                changeClientStatus({
-                    id: client_id,
-                    status: '9'
-                }).then(res => {
-                    storage.setAndUpdatePartialState(vacancy_id, '9', 'data', client_id)
-                    clientUpdateInVacancyEvent.detail.id = String(vacancy_id)
-                    clientUpdateInVacancyEvent.detail.clientId = String(client_id)
-                    clientUpdateInVacancyEvent.detail.statusId = '9'
-                    clientUpdateInVacancyEvent.detail.clazz = sliderClazz
-                    const {
-                        indicators,
-                        statuses
-                    } = calculate(vacancy_id)
-                    clientUpdateInVacancyEvent.detail.indicatorsArr = indicators
-                    clientUpdateInVacancyEvent.detail.statusesArr = statuses
-                    checkIfAllVacancyClientsReady(vacancy_id)
-                    document.dispatchEvent(clientUpdateInVacancyEvent)
-                })
-
+                changeClientsStatusAndUpdateUI('13', vacancy_id, client_id, sliderClazz)
             }
 
             flag = true
@@ -499,225 +181,84 @@ function forEachStatus(tippy, client_id, vacancy_id, storage) {
 
 
         if (this.textContent === 'Підготовка CV') {
-
-            changeClientStatus({
-                id: client_id,
-                status: '1'
-            }).then(res => {
-                storage.setAndUpdatePartialState(vacancy_id, '1', 'data', client_id)
-                clientUpdateInVacancyEvent.detail.id = String(vacancy_id)
-                clientUpdateInVacancyEvent.detail.clientId = String(client_id)
-                clientUpdateInVacancyEvent.detail.statusId = '1'
-                clientUpdateInVacancyEvent.detail.clazz = sliderClazz
-                const {
-                    indicators,
-                    statuses
-                } = calculate(vacancy_id)
-                clientUpdateInVacancyEvent.detail.indicatorsArr = indicators
-                clientUpdateInVacancyEvent.detail.statusesArr = statuses
-
-                document.dispatchEvent(clientUpdateInVacancyEvent)
-            })
+            changeClientsStatusAndUpdateUI('1', vacancy_id, client_id, sliderClazz)
             // Присваиваем класс родительскому элементу стрелки переключения
             controls.classList.add('choosen')
         } else if (this.textContent === 'CV відправлено') {
-
-            changeClientStatus({
-                id: client_id,
-                status: '2'
-            }).then(res => {
-                storage.setAndUpdatePartialState(vacancy_id, '2', 'data', client_id)
-                clientUpdateInVacancyEvent.detail.id = String(vacancy_id)
-                clientUpdateInVacancyEvent.detail.clientId = String(client_id)
-                clientUpdateInVacancyEvent.detail.statusId = '2'
-                clientUpdateInVacancyEvent.detail.clazz = sliderClazz
-                const {
-                    indicators,
-                    statuses
-                } = calculate(vacancy_id)
-                clientUpdateInVacancyEvent.detail.indicatorsArr = indicators
-                clientUpdateInVacancyEvent.detail.statusesArr = statuses
-
-                document.dispatchEvent(clientUpdateInVacancyEvent)
-            })
+            changeClientsStatusAndUpdateUI('2', vacancy_id, client_id, sliderClazz)
             controls.classList.add('choosen')
-
         } else if (this.textContent === 'Затверджений') {
-            changeClientStatus({
-                id: client_id,
-                status: '3'
-            }).then(res => {
-                storage.setAndUpdatePartialState(vacancy_id, '3', 'data', client_id)
-                clientUpdateInVacancyEvent.detail.id = String(vacancy_id)
-                clientUpdateInVacancyEvent.detail.clientId = String(client_id)
-                clientUpdateInVacancyEvent.detail.statusId = '3'
-                clientUpdateInVacancyEvent.detail.clazz = sliderClazz
-                const {
-                    indicators,
-                    statuses
-                } = calculate(vacancy_id)
-                clientUpdateInVacancyEvent.detail.indicatorsArr = indicators
-                clientUpdateInVacancyEvent.detail.statusesArr = statuses
-
-                document.dispatchEvent(clientUpdateInVacancyEvent)
-            })
-            // Присваиваем класс родительскому элементу стрелки переключения
+            changeClientsStatusAndUpdateUI('3', vacancy_id, client_id, sliderClazz)
             controls.classList.add('ready')
-
         } else if (this.textContent === 'Контракт підписаний') {
-
-            changeClientStatus({
-                id: client_id,
-                status: '4'
-            }).then(res => {
-                storage.setAndUpdatePartialState(vacancy_id, '4', 'data', client_id)
-                clientUpdateInVacancyEvent.detail.id = String(vacancy_id)
-                clientUpdateInVacancyEvent.detail.clientId = String(client_id)
-                clientUpdateInVacancyEvent.detail.statusId = '4'
-                clientUpdateInVacancyEvent.detail.clazz = sliderClazz
-                const {
-                    indicators,
-                    statuses
-                } = calculate(vacancy_id)
-                clientUpdateInVacancyEvent.detail.indicatorsArr = indicators
-                clientUpdateInVacancyEvent.detail.statusesArr = statuses
-
-                document.dispatchEvent(clientUpdateInVacancyEvent)
-            })
+            changeClientsStatusAndUpdateUI('4', vacancy_id, client_id, sliderClazz)
             controls.classList.add('ready')
-
+        } else if (this.textContent === 'Поданий в ВА') {
+            changeClientsStatusAndUpdateUI('5', vacancy_id, client_id, sliderClazz)
+            controls.classList.add('wait')
+        } else if (this.textContent === 'Рішення ВА отримано') {
+            changeClientsStatusAndUpdateUI('6', vacancy_id, client_id, sliderClazz)
+            controls.classList.add('wait')
         } else if (this.textContent === 'Документи подані') {
-
-            changeClientStatus({
-                id: client_id,
-                status: '5'
-            }).then(res => {
-                storage.setAndUpdatePartialState(vacancy_id, '5', 'data', client_id)
-                clientUpdateInVacancyEvent.detail.id = String(vacancy_id)
-                clientUpdateInVacancyEvent.detail.clientId = String(client_id)
-                clientUpdateInVacancyEvent.detail.statusId = '5'
-                clientUpdateInVacancyEvent.detail.clazz = sliderClazz
-                const {
-                    indicators,
-                    statuses
-                } = calculate(vacancy_id)
-                clientUpdateInVacancyEvent.detail.indicatorsArr = indicators
-                clientUpdateInVacancyEvent.detail.statusesArr = statuses
-
-                document.dispatchEvent(clientUpdateInVacancyEvent)
-            })
-
+            changeClientsStatusAndUpdateUI('7', vacancy_id, client_id, sliderClazz)
+            controls.classList.add('wait')
         } else if (this.textContent === 'Отримав рішення') {
-
-            changeClientStatus({
-                id: client_id,
-                status: '6'
-            }).then(res => {
-                storage.setAndUpdatePartialState(vacancy_id, '6', 'data', client_id)
-                clientUpdateInVacancyEvent.detail.id = String(vacancy_id)
-                clientUpdateInVacancyEvent.detail.clientId = String(client_id)
-                clientUpdateInVacancyEvent.detail.statusId = '6'
-                clientUpdateInVacancyEvent.detail.clazz = sliderClazz
-                const {
-                    indicators,
-                    statuses
-                } = calculate(vacancy_id)
-                clientUpdateInVacancyEvent.detail.indicatorsArr = indicators
-                clientUpdateInVacancyEvent.detail.statusesArr = statuses
-
-                document.dispatchEvent(clientUpdateInVacancyEvent)
-            })
+            changeClientsStatusAndUpdateUI('8', vacancy_id, client_id, sliderClazz)
             controls.classList.add('department')
-
-        } else if (this.textContent === 'Забрав рішення') {
-
-            changeClientStatus({
-                id: client_id,
-                status: '7'
-            }).then(res => {
-                storage.setAndUpdatePartialState(vacancy_id, '7', 'data', client_id)
-                clientUpdateInVacancyEvent.detail.id = String(vacancy_id)
-                clientUpdateInVacancyEvent.detail.clientId = String(client_id)
-                clientUpdateInVacancyEvent.detail.statusId = '7'
-                clientUpdateInVacancyEvent.detail.clazz = sliderClazz
-                const {
-                    indicators,
-                    statuses
-                } = calculate(vacancy_id)
-                clientUpdateInVacancyEvent.detail.indicatorsArr = indicators
-                clientUpdateInVacancyEvent.detail.statusesArr = statuses
-
-                document.dispatchEvent(clientUpdateInVacancyEvent)
-            })
+        } else if (this.textContent === 'Забрав дозвіл') {
+            changeClientsStatusAndUpdateUI('9', vacancy_id, client_id, sliderClazz)
             controls.classList.add('department')
-
+        } else if (this.textContent === 'Готуємо виїзд') {
+            changeClientsStatusAndUpdateUI('10', vacancy_id, client_id, sliderClazz)
+            controls.classList.add('department')
         } else if (this.textContent === 'Білети куплені') {
-
-            changeClientStatus({
-                id: client_id,
-                status: '8'
-            }).then(res => {
-                storage.setAndUpdatePartialState(vacancy_id, '8', 'data', client_id)
-                clientUpdateInVacancyEvent.detail.id = String(vacancy_id)
-                clientUpdateInVacancyEvent.detail.clientId = String(client_id)
-                clientUpdateInVacancyEvent.detail.statusId = '8'
-                clientUpdateInVacancyEvent.detail.clazz = sliderClazz
-                const {
-                    indicators,
-                    statuses
-                } = calculate(vacancy_id)
-                clientUpdateInVacancyEvent.detail.indicatorsArr = indicators
-                clientUpdateInVacancyEvent.detail.statusesArr = statuses
-
-                document.dispatchEvent(clientUpdateInVacancyEvent)
-            })
+            changeClientsStatusAndUpdateUI('11', vacancy_id, client_id, sliderClazz)
             controls.classList.add('department')
-
+        } else if (this.textContent === 'Забрав документи') {
+            changeClientsStatusAndUpdateUI('12', vacancy_id, client_id, sliderClazz)
+            controls.classList.add('department')
         } else if (this.textContent === 'Працевлаштований') {
-
-            changeClientStatus({
-                id: client_id,
-                status: '9'
-            }).then(res => {
-                storage.setAndUpdatePartialState(vacancy_id, '9', 'data', client_id)
-                clientUpdateInVacancyEvent.detail.id = String(vacancy_id)
-                clientUpdateInVacancyEvent.detail.clientId = String(client_id)
-                clientUpdateInVacancyEvent.detail.statusId = '9'
-                clientUpdateInVacancyEvent.detail.clazz = sliderClazz
-                const {
-                    indicators,
-                    statuses
-                } = calculate(vacancy_id)
-                clientUpdateInVacancyEvent.detail.indicatorsArr = indicators
-                clientUpdateInVacancyEvent.detail.statusesArr = statuses
-                checkIfAllVacancyClientsReady(vacancy_id)
-                document.dispatchEvent(clientUpdateInVacancyEvent)
-            })
-
+            changeClientsStatusAndUpdateUI('13', vacancy_id, client_id, sliderClazz)
             controls.classList.add('busy')
         }
     } else {
+        const instance = MicroModal.show('modal-4', {
+            onClose: (modal) => {
+                const wrapper = modal.querySelector('.my-modal-wrapper')
+                const modalClose = modal.querySelector('.modal__close')
 
-        deleteClientFromVacancy({
-            id: client_id,
-        }).then(res => {
-            if (res !== 'fail') {
-                storage.deletePartialState(vacancy_id, 'data', client_id)
-                clientDeleteFromVacancyEvent.detail.id = String(vacancy_id)
+                wrapper.removeEventListener('mouseup', this.addMouseUpTrigger)
+                wrapper.removeEventListener('mousedown', this.closeModal)
+                modalClose.removeEventListener('click', this.close)
+            },
+            onShow: (modal) => {
+                const wrapper = modal.querySelector('.my-modal-wrapper')
+                const modalClose = modal.querySelector('.modal__close')
 
-                const {
-                    indicators,
-                    statuses
-                } = calculate(vacancy_id, 'delete')
-                clientDeleteFromVacancyEvent.detail.indicatorsArr = indicators
-                clientDeleteFromVacancyEvent.detail.statusesArr = statuses
 
-                document.dispatchEvent(clientDeleteFromVacancyEvent)
-                tippy.destroy()
-            } else {
-                return
+                setTimeout(
+                    () => {
+
+                        this.addMouseUpTrigger = addMouseUpTrigger
+                        this.closeModal = closeModal.bind(null, modal.id, instance)
+                        this.close = close.bind(null, modal.id, instance)
+
+                        wrapper.addEventListener('mouseup', this.addMouseUpTrigger)
+                        wrapper.addEventListener('mousedown', this.closeModal)
+                        modalClose.addEventListener('click', this.close)
+                    }, 0)
             }
         })
+
+        modal.update({
+            client_id,
+            vacancy_id,
+            tippy
+        })
+
+        tippy.hide()
+        return
+
     }
 
     tippy.destroy()

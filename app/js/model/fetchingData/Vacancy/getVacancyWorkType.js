@@ -2,7 +2,7 @@ import fetch from '../fetchingDataClass'
 import {
     VacancyPopupType,
     TypeManufactury
-} from '../../Components/Vacancy/TypeWorkPopup'
+} from '../../Components/Vacancy/TypeWorkPopupComponent'
 import {
     mount
 } from '../../../../libs/libs'
@@ -11,13 +11,14 @@ import {
 const typeWorkPopup = document.querySelector('#type-work-popup form')
 
 
-let checkboxData = [{
-    id: 'season-chbx',
-    label: 'Сезонна',
-    name: 'season',
-    str: 'type_vacancy',
-    filter: 'v-vacancyTypeFilter'
-},
+let checkboxData = [
+    {
+        id: 'season-chbx',
+        label: 'Сезонна',
+        name: 'season',
+        str: 'type_vacancy',
+        filter: 'v-vacancyTypeFilter'
+    },
     {
         id: 'practice-chbx',
         label: 'Практика',
@@ -29,6 +30,13 @@ let checkboxData = [{
         id: 'work-chbx',
         label: 'Робоча',
         name: 'job',
+        str: 'type_vacancy',
+        filter: 'v-vacancyTypeFilter'
+    },
+    {
+        id: 'holydays-chbx',
+        label: 'Канікули',
+        name: 'holydays',
         str: 'type_vacancy',
         filter: 'v-vacancyTypeFilter'
     }

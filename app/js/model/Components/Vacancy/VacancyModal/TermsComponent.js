@@ -36,6 +36,12 @@ export default class TermsComponent {
                             this.period = el('input.info-area', {
                                 type: 'text'
                             }))),
+                    el('div.terms__period.info-block',
+                        el('p', 'Період (днів)'),
+                        el('div.input-group',
+                            this.periodDays = el('input.info-area', {
+                                type: 'text'
+                            }))),
                     el('div.terms__salary.info-block',
                         el('p', 'Заробітня плата'),
                         el('div.input-group',
@@ -81,9 +87,10 @@ export default class TermsComponent {
         this.startWork.addEventListener('change', (e) => {
             const changedDate = dateInputChange(this.startWork)
 
-
             let d = new Date(changedDate.split('.').reverse().join('.'))
             d.setMonth(+d.getMonth() + +this.period.value.trim())
+            d.setDate(+d.getDate() + +this.periodDays.value.trim())
+
 
             this.save({
                 id: this.data.id,
@@ -91,17 +98,16 @@ export default class TermsComponent {
                 field: 'start_work'
             })
 
-            setAttr(this.sibling.dates, {
-                innerText: this.period.value.trim() ? `${changedDate} - ${formatDate(d)}` : '-'
-            })
-
-
             vacancyStorage.setPartialState(this.data.id, 'id_vacancy', 'start_work', this.period.value.trim() ? `${changedDate}` : '')
             vacancyStorage.setPartialState(this.data.id, 'id_vacancy', 'finish_work', this.period.value.trim() ? `${formatDate(d)}` : '')
             vacancyListUpdateFetchEvent.detail.id = this.data.id
 
             if (!+JSON.parse(sessionStorage.getItem('addNewVacancyMode'))) {
                 document.dispatchEvent(vacancyListUpdateFetchEvent)
+            } else {
+                setAttr(this.sibling.dates, {
+                    innerText: this.period.value.trim() || this.periodDays.value.trim() ? `${changedDate} - ${formatDate(d)}` : '-'
+                })
             }
         })
 
@@ -110,6 +116,8 @@ export default class TermsComponent {
 
             let d = new Date(changedDate.split('.').reverse().join('.'))
             d.setMonth(+d.getMonth() + +this.period.value.trim())
+            d.setDate(+d.getDate() + +this.periodDays.value.trim())
+
 
             this.save({
                 id: this.data.id,
@@ -117,12 +125,62 @@ export default class TermsComponent {
                 field: 'period'
             })
 
+
             setAttr(this.sibling.period, {
-                innerText: `${this.period.value.trim()} міс`
+                innerText: `${this.period.value.trim() ? this.period.value.trim() + ' міс' : ''} ${this.periodDays.value.trim() ? this.periodDays.value.trim() + ' дн' : ''}` || '-'
             })
 
             setAttr(this.sibling.dates, {
-                innerText: this.period.value.trim() ? `${changedDate} - ${formatDate(d)}` : '-'
+                innerText: this.period.value.trim() || this.periodDays.value.trim() ? `${changedDate} - ${formatDate(d)}` : '-'
+            })
+
+
+            vacancyStorage.setPartialState(this.data.id, 'id_vacancy', 'start_work', this.period.value.trim() ? `${changedDate}` : '')
+            vacancyStorage.setPartialState(this.data.id, 'id_vacancy', 'finish_work', this.period.value.trim() ? `${formatDate(d)}` : '')
+            vacancyStorage.setPartialState(this.data.id, 'id_vacancy', 'period', this.period.value.trim())
+            vacancyListUpdateEvent.detail.id = this.data.id
+            document.dispatchEvent(vacancyListUpdateEvent)
+        })
+
+
+        this.periodDays.addEventListener('change', (e) => {
+            const changedDate = dateInputChange(this.startWork)
+
+            let d = new Date(changedDate.split('.').reverse().join('.'))
+            d.setMonth(+d.getMonth() + +this.period.value.trim())
+            d.setDate(+d.getDate() + +this.periodDays.value.trim())
+
+            if (+this.periodDays.value.trim() > 30) {
+                this.save({
+                    id: this.data.id,
+                    value: +this.periodDays.value.trim() % 30,
+                    field: 'period_day'
+                })
+
+                setAttr(this.period, {
+                    value: Math.floor(+this.periodDays.value.trim() / 30) + +this.period.value.trim()
+                })
+                setAttr(this.periodDays, {
+                    value: +this.periodDays.value.trim() % 30,
+                })
+
+
+            } else {
+                this.save({
+                    id: this.data.id,
+                    value: this.periodDays.value.trim(),
+                    field: 'period_day'
+                })
+            }
+
+
+
+            setAttr(this.sibling.period, {
+                innerText: `${this.period.value.trim() ? this.period.value.trim() + ' міс' : ''} ${this.periodDays.value.trim() ? this.periodDays.value.trim() + ' дн' : ''}` || '-'
+            })
+
+            setAttr(this.sibling.dates, {
+                innerText: this.period.value.trim() || this.periodDays.value.trim() ? `${changedDate} - ${formatDate(d)}` : '-'
             })
 
 
@@ -193,6 +251,10 @@ export default class TermsComponent {
             value: data.period
         })
 
+        setAttr(this.periodDays, {
+            value: data.period_day
+        })
+
         setAttr(this.salary, {
             value: data.salary
         })
@@ -221,7 +283,6 @@ export default class TermsComponent {
         this.sibling = context
     }
 
-    onmount() {
-    }
+    onmount() {}
 
 }

@@ -1,5 +1,5 @@
 import fetch from '../fetchingDataClass'
-import TypeManufacturyPopup from '../../Components/Employer/TypeManufacturyPopup'
+import TypeManufacturyPopup from '../../Components/Employer/TypeManufacturyPopupComponent'
 import {list, mount} from '../../../../libs/libs'
 
 

@@ -1,7 +1,7 @@
 import fetch from '../../fetchingDataClass'
-import WorkModalManufacturyType from '../../../Components/Employer/WorkModal/WorkModalManufacturyType'
+import WorkModalManufacturyType from '../../../Components/Employer/WorkModal/WorkModalManufacturyTypeComponent'
 
-import Loader from '../../../Components/Loader'
+import Loader from '../../../Components/LoaderComponent'
 import {
     list,
     mount,

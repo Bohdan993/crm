@@ -8,7 +8,7 @@ import {
     toastr
 } from '../../../libs/libs';
 import hiddenClassMixin from '../Mixins/hiddenClassMixin'
-import ShowMoreBtn from './Employer/WorkModal/ShowMoreBtn'
+import ShowMoreBtn from './Employer/WorkModal/ShowMoreBtnComponent'
 import checkIfWrapperIsEmpty from '../checkIfWrapperIsEmpty'
 import initOverlayScrollbars from '../OverlayScrollbarsInit'
 import getWorkModalFeedback from '../fetchingData/Employer/WorkModal/getWorkModalFeedback'
