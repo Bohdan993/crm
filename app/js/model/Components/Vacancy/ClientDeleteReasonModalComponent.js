@@ -57,10 +57,9 @@ export default class ClientDeleteReasonModal {
                         ),
                         el('div.client-delete-reason-modal__body',
                             el('div.client-delete-reason-modal__block',
-                                el('p', 'Зміст'),
                                 el('div.input-group',
                                     this.textarea = el('textarea.info-area', {
-                                        rows: 12,
+                                        rows: 5,
                                         value: ''
                                     })
                                 )
@@ -80,7 +79,7 @@ export default class ClientDeleteReasonModal {
             const text = this.textarea.value.trim()
             deleteClientFromVacancy({
                 id: this.data.client_id,
-                message: encodeURIComponent(`${reason}.${text}`)
+                message: encodeURIComponent(`${reason}. ${text}`)
             }).then(res => {
                 if (res !== 'fail') {
                     storage.deletePartialState(this.data.vacancy_id, 'data', this.data.client_id)

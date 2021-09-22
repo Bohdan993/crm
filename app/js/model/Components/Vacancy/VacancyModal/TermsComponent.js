@@ -157,6 +157,12 @@ export default class TermsComponent {
                     field: 'period_day'
                 })
 
+                this.save({
+                    id: this.data.id,
+                    value: Math.floor(+this.periodDays.value.trim() / 30) + +this.period.value.trim(),
+                    field: 'period'
+                })
+
                 setAttr(this.period, {
                     value: Math.floor(+this.periodDays.value.trim() / 30) + +this.period.value.trim()
                 })
