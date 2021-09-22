@@ -34,7 +34,7 @@ export default class ClientDeleteReasonModal {
                                     type: 'radio',
                                     id: 'client-delete-neutral',
                                     name: 'client-delete-name',
-                                    value: 'Нейтральна причина',
+                                    value: '1',
                                     checked: true
                                 }),
                                 this.label1 = el('label', {
@@ -47,7 +47,7 @@ export default class ClientDeleteReasonModal {
                                     type: 'radio',
                                     id: 'client-delete-problem',
                                     name: 'client-delete-name',
-                                    value: 'Проблема з клієнтом',
+                                    value: '2',
                                 }),
                                 this.label2 = el('label', {
                                     for: 'client-delete-problem',
@@ -75,11 +75,12 @@ export default class ClientDeleteReasonModal {
 
 
         this.confirm.addEventListener('click', (e) => {
-            const reason = this.header.querySelector('input[name="client-delete-name"]:checked').value
+            const reason = +this.header.querySelector('input[name="client-delete-name"]:checked').value
             const text = this.textarea.value.trim()
             deleteClientFromVacancy({
                 id: this.data.client_id,
-                message: encodeURIComponent(`${reason}. ${text}`)
+                message: encodeURIComponent(`${text}`),
+                type: reason
             }).then(res => {
                 if (res !== 'fail') {
                     storage.deletePartialState(this.data.vacancy_id, 'data', this.data.client_id)
@@ -104,7 +105,8 @@ export default class ClientDeleteReasonModal {
         this.delete.addEventListener('click', (e) => {
             deleteClientFromVacancy({
                 id: this.data.client_id,
-                message: encodeURIComponent('Причина не вказана')
+                message: '',
+                type: 0
             }).then(res => {
                 if (res !== 'fail') {
                     storage.deletePartialState(this.data.vacancy_id, 'data', this.data.client_id)
