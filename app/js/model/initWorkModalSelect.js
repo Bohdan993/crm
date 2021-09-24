@@ -5,7 +5,7 @@ import {
 
 let defaultValue = [{
     value: '0',
-    label: '<span>Відсутньо</span>',
+    label: '<span>Вибрати</span>',
     selected: true,
     disabled: false,
 }]
