@@ -9,6 +9,8 @@ const linkToSocial = (links = []) => {
             el.setAttribute('target', '_blank')
             if (el.classList.contains('mail-link')) {
                 el.setAttribute('href', 'mailto:' + value)
+            } else if(el.classList.contains('whatsapp-link')) {
+                el.setAttribute('href', 'https://wa.me/' + value.replace(/\s/g, ''))
             } else {
                 const result = value.match(/^(https?:\/\/)/)
                 if (result && result.input) {

@@ -291,7 +291,7 @@ export default class RowVacancy {
                 })) : this.manager.update(false)
 
         setAttr(this.term, {
-            innerText: data.start_work ? `${data.start_work} - ${data.finish_work} (${data.period} міс)` : ''
+            innerText: data.start_work ? `${data.start_work} - ${data.finish_work} (${data.period} міс ${data.period_day} дн)` : ''
         })
 
         setAttr(this.numberPeople, {
