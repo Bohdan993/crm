@@ -195,7 +195,7 @@ export default class WorkModal {
             el('div.common-info__more-info.common-info__group',
                 el('div.common-info__more-info_inner-right',
                     el('div.input-group.info-group-ico.whatsapp-group',
-                    this.comInfWhatsappLink = el('a.social-link', {
+                    this.comInfWhatsappLink = el('a.social-link.whatsapp-link', {
                             href: '',
                             rel: 'nofollow noreferrer noopener',
                             target: '_blank'
