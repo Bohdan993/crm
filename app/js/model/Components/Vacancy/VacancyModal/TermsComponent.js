@@ -143,7 +143,7 @@ export default class TermsComponent {
 
 
             // vacancyStorage.setPartialState(this.data.id, 'id_vacancy', 'start_work', this.period.value.trim() ? `${changedDate}` : '')
-            vacancyStorage.setPartialState(this.data.id, 'id_vacancy', 'finish_work', this.period.value.trim() ? `${formatDate(d)}` : '')
+            vacancyStorage.setPartialState(this.data.id, 'id_vacancy', 'finish_work', this.period.value.trim() || this.periodDays.value.trim() ? `${formatDate(d)}` : '')
             vacancyStorage.setPartialState(this.data.id, 'id_vacancy', 'period', this.period.value.trim())
             vacancyStorage.setPartialState(this.data.id, 'id_vacancy', 'period_day', this.periodDays.value.trim())
             vacancyListUpdateEvent.detail.id = this.data.id
@@ -206,7 +206,7 @@ export default class TermsComponent {
 
 
             // vacancyStorage.setPartialState(this.data.id, 'id_vacancy', 'start_work', this.period.value.trim() ? `${changedDate}` : '')
-            vacancyStorage.setPartialState(this.data.id, 'id_vacancy', 'finish_work', this.period.value.trim() ? `${formatDate(d)}` : '')
+            vacancyStorage.setPartialState(this.data.id, 'id_vacancy', 'finish_work', this.periodDays.value.trim() || this.period.value.trim()? `${formatDate(d)}` : '')
             vacancyStorage.setPartialState(this.data.id, 'id_vacancy', 'period', this.period.value.trim())
             vacancyStorage.setPartialState(this.data.id, 'id_vacancy', 'period_day', this.periodDays.value.trim())
             vacancyListUpdateEvent.detail.id = this.data.id
