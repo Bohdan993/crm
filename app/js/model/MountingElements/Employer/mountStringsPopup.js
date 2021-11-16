@@ -71,6 +71,13 @@ let stringsData = [
         str: 'marks',
         filter: 'marksFilter',
     },
+    {
+        id: 'task-chbx',
+        label: 'Задачі',
+        name: 'task',
+        str: 'marks',
+        filter: 'marksFilter',
+    },
 ]
 
 
